@@ -13238,53 +13238,11 @@ foreach()</code></pre>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">findspark</span><span class="o">,</span> <span class="nn">os</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYSPARK_PYTHON&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
-<span class="n">findspark</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-1-70845c51d571&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> sys<span class="ansi-blue-fg">,</span> findspark<span class="ansi-blue-fg">,</span> os
-<span class="ansi-green-intense-fg ansi-bold">      2</span> os<span class="ansi-blue-fg">.</span>environ<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;PYSPARK_PYTHON&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> sys<span class="ansi-blue-fg">.</span>executable
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>findspark<span class="ansi-blue-fg">.</span>init<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> sys<span class="ansi-blue-fg">.</span>path
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/findspark.py</span> in <span class="ansi-cyan-fg">init</span><span class="ansi-blue-fg">(spark_home, python_path, edit_rc, edit_profile)</span>
-<span class="ansi-green-intense-fg ansi-bold">    120</span> 
-<span class="ansi-green-intense-fg ansi-bold">    121</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> spark_home<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 122</span><span class="ansi-red-fg">         </span>spark_home <span class="ansi-blue-fg">=</span> find<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    123</span> 
-<span class="ansi-green-intense-fg ansi-bold">    124</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> python_path<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/findspark.py</span> in <span class="ansi-cyan-fg">find</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">     31</span> 
-<span class="ansi-green-intense-fg ansi-bold">     32</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> spark_home<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 33</span><span class="ansi-red-fg">         raise ValueError(&#34;Couldn&#39;t find Spark, make sure SPARK_HOME env is set&#34;
-</span><span class="ansi-green-intense-fg ansi-bold">     34</span>                          &#34; or Spark is in an expected location (e.g. from homebrew installation).&#34;)
-<span class="ansi-green-intense-fg ansi-bold">     35</span> 
-
-<span class="ansi-red-fg">ValueError</span>: Couldn&#39;t find Spark, make sure SPARK_HOME env is set or Spark is in an expected location (e.g. from homebrew installation).</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13460,15 +13418,15 @@ foreach()</code></pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Quisquam aliquam eius consectetur porro. Ipsum adipisci ut numquam amet. Numquam velit quisquam consectetur non dolorem sed. Neque consectetur adipisci aliquam. Ut amet quisquam numquam consectetur ut numquam. Non adipisci labore eius voluptatem.&#39;,
+<pre>[&#39;Consectetur porro aliquam est numquam. Dolorem etincidunt neque tempora adipisci quisquam. Amet ut voluptatem dolor consectetur porro quiquia. Dolorem modi neque etincidunt quisquam numquam quisquam neque. Amet consectetur porro eius consectetur labore non.&#39;,
  &#39;&#39;,
- &#39;Amet dolor ipsum consectetur sit velit porro. Amet consectetur velit etincidunt tempora labore. Porro dolor quiquia dolore ipsum labore. Quaerat etincidunt sed adipisci ipsum dolor dolore voluptatem. Numquam porro aliquam dolore amet ipsum. Voluptatem quisquam est eius. Dolorem consectetur amet aliquam velit amet porro ipsum. Modi consectetur est quiquia dolor. Labore tempora dolore ut ipsum quiquia amet sed. Quisquam ut dolor consectetur amet.&#39;,
+ &#39;Ipsum dolore modi amet quisquam. Ut adipisci neque velit amet. Etincidunt ipsum amet aliquam modi. Quisquam tempora porro eius voluptatem quisquam sit. Non aliquam quisquam sed numquam aliquam porro aliquam. Etincidunt labore quisquam adipisci est est quiquia. Consectetur dolorem quisquam magnam dolore dolor neque. Dolore eius ut tempora eius quaerat. Dolore numquam non ut consectetur.&#39;,
  &#39;&#39;,
- &#39;Ipsum quisquam tempora tempora consectetur tempora tempora. Eius non consectetur quiquia dolorem quisquam porro. Dolorem est eius tempora neque dolore. Eius aliquam labore etincidunt modi non quaerat. Porro voluptatem quaerat voluptatem eius modi. Neque amet modi dolorem est amet magnam. Etincidunt est est numquam. Amet non consectetur amet amet. Etincidunt modi labore sit. Dolore voluptatem voluptatem etincidunt tempora amet consectetur dolor.&#39;,
+ &#39;Sed est etincidunt non sit amet amet non. Neque ut consectetur quisquam tempora magnam magnam. Adipisci voluptatem adipisci voluptatem porro. Est adipisci eius tempora. Neque voluptatem aliquam dolorem. Ut neque quisquam etincidunt.&#39;,
  &#39;&#39;,
- &#39;Ipsum aliquam sed sed sed magnam sit. Velit non velit neque. Dolor est adipisci tempora dolorem modi quisquam. Labore sed quaerat labore amet. Tempora quiquia numquam ut voluptatem sit sed quiquia.&#39;,
+ &#39;Consectetur ut modi quisquam ipsum. Sit dolor velit ut quiquia sit velit magnam. Modi voluptatem est eius ipsum ipsum aliquam. Magnam tempora quiquia modi quiquia eius consectetur numquam. Modi ipsum velit quaerat quisquam magnam labore. Ipsum ipsum ut consectetur. Neque velit velit voluptatem eius quisquam. Quisquam modi non porro dolor. Labore amet porro neque velit eius tempora velit. Magnam non labore non adipisci magnam quaerat.&#39;,
  &#39;&#39;,
- &#39;Sed magnam consectetur porro. Tempora voluptatem eius porro eius porro consectetur. Neque aliquam modi voluptatem. Eius quisquam consectetur amet numquam. Est etincidunt sed quaerat velit velit. Velit quisquam quaerat quiquia. Amet modi neque etincidunt non quaerat. Est quisquam non ut tempora ut sed. Etincidunt sed est ipsum. Non quaerat consectetur consectetur etincidunt.&#39;]</pre>
+ &#39;Adipisci aliquam consectetur quaerat tempora est ut. Etincidunt eius quiquia consectetur etincidunt quaerat ut. Dolorem numquam consectetur etincidunt voluptatem dolore etincidunt porro. Non numquam modi ut dolorem modi aliquam quiquia. Dolorem voluptatem quaerat sit amet neque porro sit. Quiquia ut ut adipisci. Amet non etincidunt numquam.&#39;]</pre>
 </div>
 
 </div>
@@ -13556,8 +13514,8 @@ foreach()</code></pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 2.96 ms, sys: 3.68 ms, total: 6.64 ms
-Wall time: 2.09 s
+<pre>CPU times: user 0 ns, sys: 6.48 ms, total: 6.48 ms
+Wall time: 2.1 s
 </pre>
 </div>
 </div>
@@ -14102,33 +14060,32 @@ Source: <a href="http://i.imgur.com/jvQTGv6.png">http://i.imgur.com/jvQTGv6.png<
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;porro&#39;, 11),
- (&#39;quaerat&#39;, 11),
- (&#39;aliquam&#39;, 10),
- (&#39;neque&#39;, 10),
- (&#39;magnam&#39;, 9),
- (&#39;consectetur&#39;, 9),
- (&#39;adipisci&#39;, 9),
- (&#39;amet&#39;, 8),
- (&#39;voluptatem&#39;, 8),
- (&#39;est&#39;, 7),
- (&#39;sed&#39;, 7),
- (&#39;labore&#39;, 7),
- (&#39;velit&#39;, 7),
- (&#39;quisquam&#39;, 7),
- (&#39;non&#39;, 7),
- (&#39;etincidunt&#39;, 7),
- (&#39;dolor&#39;, 6),
- (&#39;ipsum&#39;, 5),
- (&#39;tempora&#39;, 5),
+<pre>[(&#39;eius&#39;, 9),
+ (&#39;neque&#39;, 9),
+ (&#39;sed&#39;, 8),
+ (&#39;magnam&#39;, 8),
+ (&#39;modi&#39;, 8),
+ (&#39;quisquam&#39;, 8),
+ (&#39;ipsum&#39;, 7),
+ (&#39;adipisci&#39;, 7),
+ (&#39;labore&#39;, 6),
+ (&#39;quaerat&#39;, 6),
+ (&#39;tempora&#39;, 6),
+ (&#39;aliquam&#39;, 6),
+ (&#39;consectetur&#39;, 5),
  (&#39;quiquia&#39;, 5),
- (&#39;dolore&#39;, 5),
- (&#39;sit&#39;, 5),
- (&#39;eius&#39;, 4),
- (&#39;modi&#39;, 4),
- (&#39;ut&#39;, 4),
- (&#39;numquam&#39;, 4),
- (&#39;dolorem&#39;, 3)]</pre>
+ (&#39;ut&#39;, 5),
+ (&#39;numquam&#39;, 5),
+ (&#39;non&#39;, 5),
+ (&#39;porro&#39;, 4),
+ (&#39;amet&#39;, 4),
+ (&#39;voluptatem&#39;, 4),
+ (&#39;velit&#39;, 3),
+ (&#39;dolore&#39;, 3),
+ (&#39;est&#39;, 2),
+ (&#39;dolorem&#39;, 2),
+ (&#39;dolor&#39;, 2),
+ (&#39;sit&#39;, 2)]</pre>
 </div>
 
 </div>
@@ -14217,7 +14174,7 @@ allows programming Spark with DataFrame and Dataset APIs.</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Pi is roughly 3.144255
+<pre>Pi is roughly 3.142060
 </pre>
 </div>
 </div>
@@ -14627,8 +14584,8 @@ Finished : xom.h5
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.16 s, sys: 106 ms, total: 1.27 s
-Wall time: 1.26 s
+<pre>CPU times: user 1.15 s, sys: 121 ms, total: 1.28 s
+Wall time: 1.27 s
 </pre>
 </div>
 </div>
