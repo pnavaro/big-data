@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+    <title>Build and publish the course material</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/codehilite/default.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon-notebook.ico">
+    
+</head>
+<body>
+    <div class="container">
+        
+        <p class="menu">
+                <a href="index.html"><img src="img/Home_Icon.svg" width="20px"></a>
+                
+                >
+                <a href="manual.html">Manual</a>
+                
+                >
+                <a href="build.html">Build and publish the course material</a>
+                
+        </p>
+        
+        
+        <h1>Build and publish the course material</h1>
+        
+        <div class="toc">
+<ul>
+<li><a href="#convert-to-html-slideshow-and-pdf">Convert to html, slideshow and pdf</a></li>
+<li><a href="#publish-with-gitlab-pages">Publish with GitLab Pages</a></li>
+</ul>
+</div>
+
+        
+        <h3 id="convert-to-html-slideshow-and-pdf">
+ Convert to html, slideshow and pdf
+</h3>
+<p>
+ Use
+ <a href="https://gitlab.math.unistra.fr/boileau/nbcourse">
+  nbcourse
+ </a>
+ :
+</p>
+<div class="codehilite">
+ <pre><span></span><code>nbcourse list
+build_book          Build pdf book
+build_pages         Build html pages
+convert_to_html     Convert executed notebook to html page
+convert_to_slides   Convert executed notebook to reveal slides
+copy_material       Copy notebook and theme material to output directory
+copy_reveal         Copy reveal.js to output directory
+execute_notebooks   Write executed notebooks to output directory
+output_dir          Create empty output directory
+zip_archive         Build a single zip archive <span class="k">for</span> all material
+zip_chapters        Build zip archives <span class="k">for</span> single chapter downloads
+</code></pre>
+</div>
+<p>
+ Edit the
+ <code>
+  nbcourse.yml
+ </code>
+ file and run:
+</p>
+<div class="codehilite">
+ <pre><span></span><code>nbcourse <span class="o">[</span>-n <span class="m">4</span><span class="o">]</span> <span class="o">[</span>target<span class="o">]</span>  <span class="c1"># [to run on 4 parallel threads]</span>
+</code></pre>
+</div>
+<p>
+ The result will be located in
+ <code>
+  build/
+ </code>
+ directory.
+</p>
+<h3 id="publish-with-gitlab-pages">
+ Publish with GitLab Pages
+</h3>
+<p>
+ Publishing with
+ <a href="https://docs.gitlab.com/ee/user/project/pages/">
+  GitLab Pages
+ </a>
+ is as simple as adding a
+ <code>
+  .gitlab-ci.yml
+ </code>
+ such as:
+</p>
+<div class="codehilite">
+ <pre><span></span><code><span class="nt">pages</span><span class="p">:</span>
+  <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">boileaum/jupyter</span>
+  <span class="nt">script</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install nbcourse</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">nbcourse -n 5</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mv build public</span>
+  <span class="nt">artifacts</span><span class="p">:</span>
+    <span class="nt">paths</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">public</span>
+</code></pre>
+</div>
+        
+    </div>
+</body>
+</html>
