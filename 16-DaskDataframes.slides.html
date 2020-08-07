@@ -13835,29 +13835,29 @@ a.anchor-link {
 <pre>Traceback (most recent call last):
   File &#34;&lt;ipython-input-7-7cb27b738c02&gt;&#34;, line 4, in &lt;module&gt;
     df.tail() # Get the last 5 rows
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/dataframe/core.py&#34;, line 1053, in tail
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dataframe/core.py&#34;, line 1053, in tail
     result = result.compute()
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/base.py&#34;, line 167, in compute
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/base.py&#34;, line 167, in compute
     (result,) = compute(self, traverse=False, **kwargs)
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/base.py&#34;, line 447, in compute
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/base.py&#34;, line 447, in compute
     results = schedule(dsk, keys, **kwargs)
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/threaded.py&#34;, line 76, in get
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/threaded.py&#34;, line 76, in get
     results = get_async(
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/local.py&#34;, line 486, in get_async
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/local.py&#34;, line 486, in get_async
     raise_exception(exc, tb)
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/local.py&#34;, line 316, in reraise
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/local.py&#34;, line 316, in reraise
     raise exc
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/local.py&#34;, line 222, in execute_task
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/local.py&#34;, line 222, in execute_task
     result = _execute_task(task, data)
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/core.py&#34;, line 121, in _execute_task
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/core.py&#34;, line 121, in _execute_task
     return func(*(_execute_task(a, cache) for a in args))
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/core.py&#34;, line 121, in &lt;genexpr&gt;
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/core.py&#34;, line 121, in &lt;genexpr&gt;
     return func(*(_execute_task(a, cache) for a in args))
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/core.py&#34;, line 121, in _execute_task
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/core.py&#34;, line 121, in _execute_task
     return func(*(_execute_task(a, cache) for a in args))
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/dataframe/io/csv.py&#34;, line 151, in pandas_read_text
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dataframe/io/csv.py&#34;, line 151, in pandas_read_text
     coerce_dtypes(df, dtypes)
-  File &#34;/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/dataframe/io/csv.py&#34;, line 255, in coerce_dtypes
+  File &#34;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dataframe/io/csv.py&#34;, line 255, in coerce_dtypes
     raise ValueError(msg)
 ValueError: Mismatched dtypes found in `pd.read_csv`/`pd.read_table`.
 
@@ -14261,8 +14261,8 @@ Length: 21, dtype: object</pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 4.41 s, sys: 506 ms, total: 4.92 s
-Wall time: 3.31 s
+<pre>CPU times: user 3.44 s, sys: 273 ms, total: 3.71 s
+Wall time: 2.48 s
 </pre>
 </div>
 </div>
@@ -14327,17 +14327,17 @@ Wall time: 3.31 s
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(cmd, input, capture_output, check, encoding, quiet, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(cmd, input, capture_output, check, encoding, quiet, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    165</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">--&gt; 166</span><span class="ansi-red-fg">         </span>proc <span class="ansi-blue-fg">=</span> subprocess<span class="ansi-blue-fg">.</span>Popen<span class="ansi-blue-fg">(</span>cmd<span class="ansi-blue-fg">,</span> startupinfo<span class="ansi-blue-fg">=</span>get_startupinfo<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    167</span>     <span class="ansi-green-fg">except</span> OSError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
 <span class="ansi-green-intense-fg ansi-bold">    853</span> 
 <span class="ansi-green-fg">--&gt; 854</span><span class="ansi-red-fg">             self._execute_child(args, executable, preexec_fn, close_fds,
 </span><span class="ansi-green-intense-fg ansi-bold">    855</span>                                 pass_fds<span class="ansi-blue-fg">,</span> cwd<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">,</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
 <span class="ansi-green-intense-fg ansi-bold">   1701</span>                         err_msg <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>strerror<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-fg">-&gt; 1702</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">,</span> err_msg<span class="ansi-blue-fg">,</span> err_filename<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">   1703</span>                 <span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>err_msg<span class="ansi-blue-fg">)</span>
@@ -14350,49 +14350,49 @@ During handling of the above exception, another exception occurred:
 <span class="ansi-green-fg">&lt;ipython-input-13-5a7336c66be3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>df<span class="ansi-blue-fg">.</span>DepDelay<span class="ansi-blue-fg">.</span>max<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>visualize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/base.py</span> in <span class="ansi-cyan-fg">visualize</span><span class="ansi-blue-fg">(self, filename, format, optimize_graph, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/base.py</span> in <span class="ansi-cyan-fg">visualize</span><span class="ansi-blue-fg">(self, filename, format, optimize_graph, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">     91</span>         https<span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">//</span>docs<span class="ansi-blue-fg">.</span>dask<span class="ansi-blue-fg">.</span>org<span class="ansi-blue-fg">/</span>en<span class="ansi-blue-fg">/</span>latest<span class="ansi-blue-fg">/</span>optimize<span class="ansi-blue-fg">.</span>html
 <span class="ansi-green-intense-fg ansi-bold">     92</span>         &#34;&#34;&#34;
 <span class="ansi-green-fg">---&gt; 93</span><span class="ansi-red-fg">         return visualize(
 </span><span class="ansi-green-intense-fg ansi-bold">     94</span>             self<span class="ansi-blue-fg">,</span>
 <span class="ansi-green-intense-fg ansi-bold">     95</span>             filename<span class="ansi-blue-fg">=</span>filename<span class="ansi-blue-fg">,</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/base.py</span> in <span class="ansi-cyan-fg">visualize</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/base.py</span> in <span class="ansi-cyan-fg">visualize</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    551</span>         <span class="ansi-green-fg">raise</span> NotImplementedError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Unknown value color=%s&#34;</span> <span class="ansi-blue-fg">%</span> color<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    552</span> 
 <span class="ansi-green-fg">--&gt; 553</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> dot_graph<span class="ansi-blue-fg">(</span>dsk<span class="ansi-blue-fg">,</span> filename<span class="ansi-blue-fg">=</span>filename<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    554</span> 
 <span class="ansi-green-intense-fg ansi-bold">    555</span> 
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/dot.py</span> in <span class="ansi-cyan-fg">dot_graph</span><span class="ansi-blue-fg">(dsk, filename, format, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dot.py</span> in <span class="ansi-cyan-fg">dot_graph</span><span class="ansi-blue-fg">(dsk, filename, format, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    270</span>     &#34;&#34;&#34;
 <span class="ansi-green-intense-fg ansi-bold">    271</span>     g <span class="ansi-blue-fg">=</span> to_graphviz<span class="ansi-blue-fg">(</span>dsk<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-fg">--&gt; 272</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> graphviz_to_file<span class="ansi-blue-fg">(</span>g<span class="ansi-blue-fg">,</span> filename<span class="ansi-blue-fg">,</span> format<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    273</span> 
 <span class="ansi-green-intense-fg ansi-bold">    274</span> 
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/dot.py</span> in <span class="ansi-cyan-fg">graphviz_to_file</span><span class="ansi-blue-fg">(g, filename, format)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dot.py</span> in <span class="ansi-cyan-fg">graphviz_to_file</span><span class="ansi-blue-fg">(g, filename, format)</span>
 <span class="ansi-green-intense-fg ansi-bold">    282</span>         format <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#34;png&#34;</span>
 <span class="ansi-green-intense-fg ansi-bold">    283</span> 
 <span class="ansi-green-fg">--&gt; 284</span><span class="ansi-red-fg">     </span>data <span class="ansi-blue-fg">=</span> g<span class="ansi-blue-fg">.</span>pipe<span class="ansi-blue-fg">(</span>format<span class="ansi-blue-fg">=</span>format<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    285</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> data<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">    286</span>         raise RuntimeError(
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/graphviz/files.py</span> in <span class="ansi-cyan-fg">pipe</span><span class="ansi-blue-fg">(self, format, renderer, formatter, quiet)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/graphviz/files.py</span> in <span class="ansi-cyan-fg">pipe</span><span class="ansi-blue-fg">(self, format, renderer, formatter, quiet)</span>
 <span class="ansi-green-intense-fg ansi-bold">    134</span>         data <span class="ansi-blue-fg">=</span> text_type<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>source<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>encode<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_encoding<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    135</span> 
 <span class="ansi-green-fg">--&gt; 136</span><span class="ansi-red-fg">         out = backend.pipe(self._engine, format, data,
 </span><span class="ansi-green-intense-fg ansi-bold">    137</span>                            renderer<span class="ansi-blue-fg">=</span>renderer<span class="ansi-blue-fg">,</span> formatter<span class="ansi-blue-fg">=</span>formatter<span class="ansi-blue-fg">,</span>
 <span class="ansi-green-intense-fg ansi-bold">    138</span>                            quiet=quiet)
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">pipe</span><span class="ansi-blue-fg">(engine, format, data, renderer, formatter, quiet)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">pipe</span><span class="ansi-blue-fg">(engine, format, data, renderer, formatter, quiet)</span>
 <span class="ansi-green-intense-fg ansi-bold">    244</span>     &#34;&#34;&#34;
 <span class="ansi-green-intense-fg ansi-bold">    245</span>     cmd<span class="ansi-blue-fg">,</span> _ <span class="ansi-blue-fg">=</span> command<span class="ansi-blue-fg">(</span>engine<span class="ansi-blue-fg">,</span> format<span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> renderer<span class="ansi-blue-fg">,</span> formatter<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-fg">--&gt; 246</span><span class="ansi-red-fg">     </span>out<span class="ansi-blue-fg">,</span> _ <span class="ansi-blue-fg">=</span> run<span class="ansi-blue-fg">(</span>cmd<span class="ansi-blue-fg">,</span> input<span class="ansi-blue-fg">=</span>data<span class="ansi-blue-fg">,</span> capture_output<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span> check<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span> quiet<span class="ansi-blue-fg">=</span>quiet<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    247</span>     <span class="ansi-green-fg">return</span> out
 <span class="ansi-green-intense-fg ansi-bold">    248</span> 
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(cmd, input, capture_output, check, encoding, quiet, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(cmd, input, capture_output, check, encoding, quiet, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    167</span>     <span class="ansi-green-fg">except</span> OSError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">    168</span>         <span class="ansi-green-fg">if</span> e<span class="ansi-blue-fg">.</span>errno <span class="ansi-blue-fg">==</span> errno<span class="ansi-blue-fg">.</span>ENOENT<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">--&gt; 169</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> ExecutableNotFound<span class="ansi-blue-fg">(</span>cmd<span class="ansi-blue-fg">)</span>
@@ -14451,8 +14451,8 @@ During handling of the above exception, another exception occurred:
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 4.56 s, sys: 396 ms, total: 4.95 s
-Wall time: 3.36 s
+<pre>CPU times: user 3.4 s, sys: 326 ms, total: 3.72 s
+Wall time: 2.52 s
 </pre>
 </div>
 </div>
@@ -14504,7 +14504,7 @@ Wall time: 3.36 s
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/pyarrow/compat.py:24: FutureWarning: pyarrow.compat has been deprecated and will be removed in a future release
+<pre>/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyarrow/compat.py:24: FutureWarning: pyarrow.compat has been deprecated and will be removed in a future release
   warnings.warn(&#34;pyarrow.compat has been deprecated and will be removed in a &#34;
 </pre>
 </div>
@@ -14782,8 +14782,8 @@ Wall time: 3.36 s
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 161 ms, sys: 16.5 ms, total: 177 ms
-Wall time: 117 ms
+<pre>CPU times: user 109 ms, sys: 24.6 ms, total: 134 ms
+Wall time: 85.3 ms
 </pre>
 </div>
 </div>
@@ -16325,8 +16325,8 @@ Name: DepDelay, dtype: int64</pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 2.75 s, sys: 275 ms, total: 3.03 s
-Wall time: 2.06 s
+<pre>CPU times: user 2.33 s, sys: 211 ms, total: 2.54 s
+Wall time: 1.73 s
 </pre>
 </div>
 </div>
@@ -16365,8 +16365,8 @@ Wall time: 2.06 s
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.4 s, sys: 108 ms, total: 1.51 s
-Wall time: 1.02 s
+<pre>CPU times: user 1.19 s, sys: 55.5 ms, total: 1.25 s
+Wall time: 861 ms
 </pre>
 </div>
 </div>
@@ -16414,17 +16414,17 @@ Wall time: 1.02 s
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(cmd, input, capture_output, check, encoding, quiet, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(cmd, input, capture_output, check, encoding, quiet, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    165</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">--&gt; 166</span><span class="ansi-red-fg">         </span>proc <span class="ansi-blue-fg">=</span> subprocess<span class="ansi-blue-fg">.</span>Popen<span class="ansi-blue-fg">(</span>cmd<span class="ansi-blue-fg">,</span> startupinfo<span class="ansi-blue-fg">=</span>get_startupinfo<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    167</span>     <span class="ansi-green-fg">except</span> OSError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
 <span class="ansi-green-intense-fg ansi-bold">    853</span> 
 <span class="ansi-green-fg">--&gt; 854</span><span class="ansi-red-fg">             self._execute_child(args, executable, preexec_fn, close_fds,
 </span><span class="ansi-green-intense-fg ansi-bold">    855</span>                                 pass_fds<span class="ansi-blue-fg">,</span> cwd<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">,</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
 <span class="ansi-green-intense-fg ansi-bold">   1701</span>                         err_msg <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>strerror<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-fg">-&gt; 1702</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">,</span> err_msg<span class="ansi-blue-fg">,</span> err_filename<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">   1703</span>                 <span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>err_msg<span class="ansi-blue-fg">)</span>
@@ -16437,42 +16437,42 @@ During handling of the above exception, another exception occurred:
 <span class="ansi-green-fg">&lt;ipython-input-38-547954d62040&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>dask<span class="ansi-blue-fg">.</span>visualize<span class="ansi-blue-fg">(</span>mean_delay<span class="ansi-blue-fg">,</span> std_delay<span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/base.py</span> in <span class="ansi-cyan-fg">visualize</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/base.py</span> in <span class="ansi-cyan-fg">visualize</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    551</span>         <span class="ansi-green-fg">raise</span> NotImplementedError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Unknown value color=%s&#34;</span> <span class="ansi-blue-fg">%</span> color<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    552</span> 
 <span class="ansi-green-fg">--&gt; 553</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> dot_graph<span class="ansi-blue-fg">(</span>dsk<span class="ansi-blue-fg">,</span> filename<span class="ansi-blue-fg">=</span>filename<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    554</span> 
 <span class="ansi-green-intense-fg ansi-bold">    555</span> 
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/dot.py</span> in <span class="ansi-cyan-fg">dot_graph</span><span class="ansi-blue-fg">(dsk, filename, format, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dot.py</span> in <span class="ansi-cyan-fg">dot_graph</span><span class="ansi-blue-fg">(dsk, filename, format, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    270</span>     &#34;&#34;&#34;
 <span class="ansi-green-intense-fg ansi-bold">    271</span>     g <span class="ansi-blue-fg">=</span> to_graphviz<span class="ansi-blue-fg">(</span>dsk<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-fg">--&gt; 272</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> graphviz_to_file<span class="ansi-blue-fg">(</span>g<span class="ansi-blue-fg">,</span> filename<span class="ansi-blue-fg">,</span> format<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    273</span> 
 <span class="ansi-green-intense-fg ansi-bold">    274</span> 
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/dask/dot.py</span> in <span class="ansi-cyan-fg">graphviz_to_file</span><span class="ansi-blue-fg">(g, filename, format)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dot.py</span> in <span class="ansi-cyan-fg">graphviz_to_file</span><span class="ansi-blue-fg">(g, filename, format)</span>
 <span class="ansi-green-intense-fg ansi-bold">    282</span>         format <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#34;png&#34;</span>
 <span class="ansi-green-intense-fg ansi-bold">    283</span> 
 <span class="ansi-green-fg">--&gt; 284</span><span class="ansi-red-fg">     </span>data <span class="ansi-blue-fg">=</span> g<span class="ansi-blue-fg">.</span>pipe<span class="ansi-blue-fg">(</span>format<span class="ansi-blue-fg">=</span>format<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    285</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> data<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">    286</span>         raise RuntimeError(
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/graphviz/files.py</span> in <span class="ansi-cyan-fg">pipe</span><span class="ansi-blue-fg">(self, format, renderer, formatter, quiet)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/graphviz/files.py</span> in <span class="ansi-cyan-fg">pipe</span><span class="ansi-blue-fg">(self, format, renderer, formatter, quiet)</span>
 <span class="ansi-green-intense-fg ansi-bold">    134</span>         data <span class="ansi-blue-fg">=</span> text_type<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>source<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>encode<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_encoding<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    135</span> 
 <span class="ansi-green-fg">--&gt; 136</span><span class="ansi-red-fg">         out = backend.pipe(self._engine, format, data,
 </span><span class="ansi-green-intense-fg ansi-bold">    137</span>                            renderer<span class="ansi-blue-fg">=</span>renderer<span class="ansi-blue-fg">,</span> formatter<span class="ansi-blue-fg">=</span>formatter<span class="ansi-blue-fg">,</span>
 <span class="ansi-green-intense-fg ansi-bold">    138</span>                            quiet=quiet)
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">pipe</span><span class="ansi-blue-fg">(engine, format, data, renderer, formatter, quiet)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">pipe</span><span class="ansi-blue-fg">(engine, format, data, renderer, formatter, quiet)</span>
 <span class="ansi-green-intense-fg ansi-bold">    244</span>     &#34;&#34;&#34;
 <span class="ansi-green-intense-fg ansi-bold">    245</span>     cmd<span class="ansi-blue-fg">,</span> _ <span class="ansi-blue-fg">=</span> command<span class="ansi-blue-fg">(</span>engine<span class="ansi-blue-fg">,</span> format<span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> renderer<span class="ansi-blue-fg">,</span> formatter<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-fg">--&gt; 246</span><span class="ansi-red-fg">     </span>out<span class="ansi-blue-fg">,</span> _ <span class="ansi-blue-fg">=</span> run<span class="ansi-blue-fg">(</span>cmd<span class="ansi-blue-fg">,</span> input<span class="ansi-blue-fg">=</span>data<span class="ansi-blue-fg">,</span> capture_output<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span> check<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span> quiet<span class="ansi-blue-fg">=</span>quiet<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    247</span>     <span class="ansi-green-fg">return</span> out
 <span class="ansi-green-intense-fg ansi-bold">    248</span> 
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(cmd, input, capture_output, check, encoding, quiet, **kwargs)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/graphviz/backend.py</span> in <span class="ansi-cyan-fg">run</span><span class="ansi-blue-fg">(cmd, input, capture_output, check, encoding, quiet, **kwargs)</span>
 <span class="ansi-green-intense-fg ansi-bold">    167</span>     <span class="ansi-green-fg">except</span> OSError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-intense-fg ansi-bold">    168</span>         <span class="ansi-green-fg">if</span> e<span class="ansi-blue-fg">.</span>errno <span class="ansi-blue-fg">==</span> errno<span class="ansi-blue-fg">.</span>ENOENT<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">--&gt; 169</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> ExecutableNotFound<span class="ansi-blue-fg">(</span>cmd<span class="ansi-blue-fg">)</span>

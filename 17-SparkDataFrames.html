@@ -13242,14 +13242,14 @@ Actions cause the execution of the query.</p>
 <span class="ansi-green-intense-fg ansi-bold">      5</span> os<span class="ansi-blue-fg">.</span>environ<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#34;PYSPARK_PYTHON&#34;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> sys<span class="ansi-blue-fg">.</span>executable
 <span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>findspark<span class="ansi-blue-fg">.</span>init<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/findspark.py</span> in <span class="ansi-cyan-fg">init</span><span class="ansi-blue-fg">(spark_home, python_path, edit_rc, edit_profile)</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/findspark.py</span> in <span class="ansi-cyan-fg">init</span><span class="ansi-blue-fg">(spark_home, python_path, edit_rc, edit_profile)</span>
 <span class="ansi-green-intense-fg ansi-bold">    120</span> 
 <span class="ansi-green-intense-fg ansi-bold">    121</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> spark_home<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">--&gt; 122</span><span class="ansi-red-fg">         </span>spark_home <span class="ansi-blue-fg">=</span> find<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">    123</span> 
 <span class="ansi-green-intense-fg ansi-bold">    124</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> python_path<span class="ansi-blue-fg">:</span>
 
-<span class="ansi-green-fg">/usr/share/miniconda/envs/big-data/lib/python3.8/site-packages/findspark.py</span> in <span class="ansi-cyan-fg">find</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/findspark.py</span> in <span class="ansi-cyan-fg">find</span><span class="ansi-blue-fg">()</span>
 <span class="ansi-green-intense-fg ansi-bold">     31</span> 
 <span class="ansi-green-intense-fg ansi-bold">     32</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> spark_home<span class="ansi-blue-fg">:</span>
 <span class="ansi-green-fg">---&gt; 33</span><span class="ansi-red-fg">         raise ValueError(&#34;Couldn&#39;t find Spark, make sure SPARK_HOME env is set&#34;
@@ -13839,16 +13839,16 @@ only showing top 20 rows
 |                name|position|
 +--------------------+--------+
 |        Morvan Marie|     DOC|
-|           Mom Alain|      MC|
-|    Rouviere Laurent|      MC|
-|     Le Guevel Ronan|      MC|
-|Klutchnikoff Nicolas|      MC|
-|Giacofci Joyce Ma...|      MC|
 |Cornillon Pierre-...|      MC|
 |Bennani-Dosse Moh...|      MC|
-|     Pelletier Bruno|      PR|
-|     Fromont Magalie|      PR|
+|Giacofci Joyce Ma...|      MC|
+|           Mom Alain|      MC|
+|Klutchnikoff Nicolas|      MC|
+|    Rouviere Laurent|      MC|
+|     Le Guevel Ronan|      MC|
 |   Benasseni Jacques|      PR|
+|     Fromont Magalie|      PR|
+|     Pelletier Bruno|      PR|
 +--------------------+--------+
 
 </pre>
@@ -13890,7 +13890,7 @@ only showing top 20 rows
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;pyspark.sql.group.GroupedData at 0x7f940cfcfa30&gt;</pre>
+<pre>&lt;pyspark.sql.group.GroupedData at 0x7f3d482e8a30&gt;</pre>
 </div>
 
 </div>
@@ -14412,13 +14412,13 @@ only showing top 20 rows
 |    team1|count1|count2|total|
 +---------+------+------+-----+
 |   ANANUM|    21|     0|   21|
-| THEO-ERG|    11|     3|   14|
 |     STAT|    14|     0|   14|
+| THEO-ERG|    11|     3|   14|
 |      EDP|    10|     1|   11|
 |      GAN|     9|     0|    9|
 |      G&amp;S|     8|     1|    9|
-|      GAE|     8|     0|    8|
 |       GA|     7|     1|    8|
+|      GAE|     8|     0|    8|
 |PROC-STOC|     6|     1|    7|
 |     MECA|     6|     0|    6|
 |     IREM|     2|     0|    2|
