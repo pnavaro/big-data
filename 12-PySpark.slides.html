@@ -13203,6 +13203,13 @@ a.anchor-link {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="PySpark">PySpark<a class="anchor-link" href="#PySpark">&#182;</a></h1><p><img src="images/apache_spark_logo.png" alt="Logo"></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li><a href="https://spark.apache.org">Apache Spark</a> was first released in 2014. </li>
 <li>It was originally developed by <a href="http://people.csail.mit.edu/matei">Matei Zaharia</a> as a class project, and later a PhD dissertation, at University of California, Berkeley.</li>
@@ -13302,16 +13309,8 @@ foreach()</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="PySpark">PySpark<a class="anchor-link" href="#PySpark">&#182;</a></h2><p>PySpark uses Py4J that enables Python programs to dynamically access Java objects.</p>
+<h2 id="Python-API">Python API<a class="anchor-link" href="#Python-API">&#182;</a></h2><p>PySpark uses Py4J that enables Python programs to dynamically access Java objects.</p>
 <p><img src="images/YlI8AqEl.png" alt="PySpark Internals"></p>
-<p>Source: <a href="http://i.imgur.com/YlI8AqEl.png">http://i.imgur.com/YlI8AqEl.png</a></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-SparkContext-class">The <code>SparkContext</code> class<a class="anchor-link" href="#The-SparkContext-class">&#182;</a></h2><ul>
 <li><p>When working with Apache Spark we invoke methods on an object which is an instance of the <code>pyspark.SparkContext</code> context.</p>
 </li>
@@ -13391,6 +13390,7 @@ foreach()</code></pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="s2">&quot;local[4]&quot;</span><span class="p">,</span> <span class="n">appName</span><span class="o">=</span><span class="s2">&quot;FirstExample&quot;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13543,15 +13543,11 @@ foreach()</code></pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Dolor ipsum ut modi consectetur ipsum tempora. Non labore dolore dolore dolor quaerat. Quiquia sed dolor porro. Porro modi velit eius. Consectetur magnam porro consectetur dolorem est. Dolorem voluptatem numquam voluptatem dolorem. Velit porro modi adipisci numquam.&#39;,
+<pre>[&#39;Dolore quiquia consectetur magnam dolore velit quaerat consectetur. Porro est etincidunt ipsum. Quaerat etincidunt est etincidunt consectetur sed. Sit labore adipisci neque dolore consectetur aliquam. Adipisci consectetur voluptatem tempora magnam adipisci voluptatem sit.&#39;,
  &#39;&#39;,
- &#39;Quisquam velit tempora eius dolore magnam. Quisquam labore adipisci adipisci velit quaerat. Dolorem velit est neque quisquam dolor dolorem. Dolore porro neque porro magnam numquam voluptatem aliquam. Sed quisquam modi quaerat magnam quisquam quisquam. Numquam dolor etincidunt modi magnam voluptatem dolorem tempora. Porro neque sed etincidunt. Ipsum porro est quisquam adipisci non. Numquam quaerat non eius neque etincidunt amet non.&#39;,
+ &#39;Etincidunt tempora dolore neque porro eius adipisci dolorem. Eius eius modi modi dolorem consectetur tempora velit. Porro quaerat aliquam non. Voluptatem consectetur sit amet etincidunt velit. Dolor sed aliquam porro dolor neque.&#39;,
  &#39;&#39;,
- &#39;Aliquam non dolore dolore porro est quiquia. Dolore voluptatem quisquam quiquia voluptatem ut quaerat. Etincidunt magnam porro amet. Porro dolor voluptatem adipisci amet dolor. Adipisci porro voluptatem amet amet ut quaerat est. Ipsum amet porro tempora consectetur dolore sed. Quisquam non amet porro. Sed est consectetur quiquia. Aliquam magnam labore dolorem tempora adipisci voluptatem labore. Etincidunt ipsum est neque quisquam porro.&#39;,
- &#39;&#39;,
- &#39;Est amet adipisci quisquam quaerat eius quaerat. Voluptatem quisquam modi quisquam. Magnam tempora dolor eius. Sed voluptatem ut adipisci ut quisquam. Porro porro porro dolorem. Tempora quaerat est numquam. Ut voluptatem dolor dolor non eius ipsum.&#39;,
- &#39;&#39;,
- &#39;Adipisci eius tempora non sit sit. Voluptatem tempora magnam magnam. Velit modi est etincidunt modi sit ipsum consectetur. Quaerat labore eius quaerat sit eius ipsum. Labore non adipisci amet dolor. Neque non amet adipisci ipsum modi etincidunt etincidunt.&#39;]</pre>
+ &#39;Modi est ut sed. Dolorem quiquia labore non dolor numquam adipisci quisquam. Quaerat velit neque adipisci. Est eius eius amet voluptatem. Ipsum non voluptatem eius sed quiquia. Quisquam eius neque dolore. Neque consectetur sit amet labore adipisci quisquam amet. Magnam neque quisquam aliquam non. Neque amet adipisci adipisci modi amet eius.&#39;]</pre>
 </div>
 
 </div>
@@ -13639,7 +13635,7 @@ foreach()</code></pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 4.1 ms, sys: 4.03 ms, total: 8.12 ms
+<pre>CPU times: user 0 ns, sys: 5.89 ms, total: 5.89 ms
 Wall time: 2.1 s
 </pre>
 </div>
@@ -13710,8 +13706,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="FlatMap">FlatMap<a class="anchor-link" href="#FlatMap">&#182;</a></h3><p>Transformation / Narrow: Return a new RDD by first applying a function to all elements of this RDD, and then flattening the results</p>
-<p><img src="images/TsSUex8.png" alt="">
-Source: <a href="http://i.imgur.com/TsSUex8.png">http://i.imgur.com/TsSUex8.png</a></p>
+<p><img src="images/TsSUex8.png" alt=""></p>
 
 </div>
 </div>
@@ -13755,8 +13750,7 @@ Source: <a href="http://i.imgur.com/TsSUex8.png">http://i.imgur.com/TsSUex8.png<
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">&#182;</a></h3><p>Use FlatMap to clean the text from <code>sample.txt</code>file. Lower, remove dots and split into words.</p>
 <h3 id="GroupBy">GroupBy<a class="anchor-link" href="#GroupBy">&#182;</a></h3><p>Transformation / Wide: Group the data in the original RDD. Create pairs where the key is the output of a user function, and the value is all items for which the function yields this key.</p>
-<p><img src="images/gdj0Ey8.png" alt="">
-Source: <a href="http://i.imgur.com/gdj0Ey8.png">http://i.imgur.com/gdj0Ey8.png</a></p>
+<p><img src="images/gdj0Ey8.png" alt=""></p>
 
 </div>
 </div>
@@ -13800,8 +13794,7 @@ Source: <a href="http://i.imgur.com/gdj0Ey8.png">http://i.imgur.com/gdj0Ey8.png<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="GroupByKey">GroupByKey<a class="anchor-link" href="#GroupByKey">&#182;</a></h3><p>Transformation / Wide: Group the values for each key in the original RDD. Create a new pair where the original key corresponds to this collected group of values.</p>
-<p><img src="images/TlWRGr2.png" alt="">
-Source: <a href="http://i.imgur.com/TlWRGr2.png">http://i.imgur.com/TlWRGr2.png</a></p>
+<p><img src="images/TlWRGr2.png" alt=""></p>
 
 </div>
 </div>
@@ -13845,8 +13838,7 @@ Source: <a href="http://i.imgur.com/TlWRGr2.png">http://i.imgur.com/TlWRGr2.png<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Join">Join<a class="anchor-link" href="#Join">&#182;</a></h3><p>Transformation / Wide: Return a new RDD containing all pairs of elements having the same key in the original RDDs</p>
-<p><img src="images/YXL42Nl.png" alt="">
-Source: <a href="http://i.imgur.com/YXL42Nl.png">http://i.imgur.com/YXL42Nl.png</a></p>
+<p><img src="images/YXL42Nl.png" alt=""></p>
 
 </div>
 </div>
@@ -13890,8 +13882,7 @@ Source: <a href="http://i.imgur.com/YXL42Nl.png">http://i.imgur.com/YXL42Nl.png<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Distinct">Distinct<a class="anchor-link" href="#Distinct">&#182;</a></h3><p>Transformation / Wide: Return a new RDD containing distinct items from the original RDD (omitting all duplicates)</p>
-<p><img src="images/Vqgy2a4.png" alt="">
-Source: <a href="http://i.imgur.com/Vqgy2a4.png">http://i.imgur.com/Vqgy2a4.png</a></p>
+<p><img src="images/Vqgy2a4.png" alt=""></p>
 
 </div>
 </div>
@@ -13934,8 +13925,7 @@ Source: <a href="http://i.imgur.com/Vqgy2a4.png">http://i.imgur.com/Vqgy2a4.png<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="KeyBy">KeyBy<a class="anchor-link" href="#KeyBy">&#182;</a></h3><p>Transformation / Narrow: Create a Pair RDD, forming one pair for each item in the original RDD. The pair’s key is calculated from the value via a user-supplied function.</p>
-<p><img src="images/nqYhDW5.png" alt="">
-Source: <a href="http://i.imgur.com/nqYhDW5.png">http://i.imgur.com/nqYhDW5.png</a></p>
+<p><img src="images/nqYhDW5.png" alt=""></p>
 
 </div>
 </div>
@@ -13978,8 +13968,7 @@ Source: <a href="http://i.imgur.com/nqYhDW5.png">http://i.imgur.com/nqYhDW5.png<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Actions">Actions<a class="anchor-link" href="#Actions">&#182;</a></h2><h3 id="Map-Reduce-operation">Map-Reduce operation<a class="anchor-link" href="#Map-Reduce-operation">&#182;</a></h3><p>Action / To Driver: Aggregate all the elements of the RDD by applying a user function pairwise to elements and partial results, and return a result to the driver</p>
-<p><img src="images/R72uzwX.png" alt="">
-Source: <a href="http://i.imgur.com/R72uzwX.png">http://i.imgur.com/R72uzwX.png</a></p>
+<p><img src="images/R72uzwX.png" alt=""></p>
 
 </div>
 </div>
@@ -14023,8 +14012,7 @@ Source: <a href="http://i.imgur.com/R72uzwX.png">http://i.imgur.com/R72uzwX.png<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Max,-Min,-Sum,-Mean,-Variance,-Stdev">Max, Min, Sum, Mean, Variance, Stdev<a class="anchor-link" href="#Max,-Min,-Sum,-Mean,-Variance,-Stdev">&#182;</a></h3><p>Action / To Driver: Compute the respective function (maximum value, minimum value, sum, mean, variance, or standard deviation) from a numeric RDD</p>
-<p><img src="images/HUCtib1.png" alt="">
-Source: <a href="http://i.imgur.com/HUCtib1.png">http://i.imgur.com/HUCtib1.png</a></p>
+<p><img src="images/HUCtib1.png" alt=""></p>
 
 </div>
 </div>
@@ -14033,8 +14021,7 @@ Source: <a href="http://i.imgur.com/HUCtib1.png">http://i.imgur.com/HUCtib1.png<
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="CountByKey">CountByKey<a class="anchor-link" href="#CountByKey">&#182;</a></h3><p>Action / To Driver: Return a map of keys and counts of their occurrences in the RDD</p>
-<p><img src="images/jvQTGv6.png" alt="">
-Source: <a href="http://i.imgur.com/jvQTGv6.png">http://i.imgur.com/jvQTGv6.png</a></p>
+<p><img src="images/jvQTGv6.png" alt=""></p>
 
 </div>
 </div>
@@ -14185,33 +14172,33 @@ Source: <a href="http://i.imgur.com/jvQTGv6.png">http://i.imgur.com/jvQTGv6.png<
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;porro&#39;, 15),
- (&#39;quisquam&#39;, 14),
- (&#39;voluptatem&#39;, 14),
- (&#39;dolor&#39;, 13),
- (&#39;sit&#39;, 13),
+<pre>[(&#39;dolorem&#39;, 19),
+ (&#39;modi&#39;, 14),
+ (&#39;quiquia&#39;, 14),
+ (&#39;quaerat&#39;, 14),
+ (&#39;sit&#39;, 14),
+ (&#39;amet&#39;, 13),
  (&#39;adipisci&#39;, 13),
- (&#39;labore&#39;, 12),
- (&#39;modi&#39;, 11),
- (&#39;est&#39;, 11),
- (&#39;non&#39;, 11),
- (&#39;quiquia&#39;, 10),
+ (&#39;non&#39;, 12),
+ (&#39;labore&#39;, 11),
+ (&#39;consectetur&#39;, 10),
  (&#39;magnam&#39;, 10),
- (&#39;consectetur&#39;, 9),
+ (&#39;tempora&#39;, 10),
+ (&#39;quisquam&#39;, 10),
+ (&#39;dolor&#39;, 10),
  (&#39;eius&#39;, 9),
- (&#39;etincidunt&#39;, 9),
- (&#39;neque&#39;, 9),
+ (&#39;ipsum&#39;, 9),
+ (&#39;porro&#39;, 8),
+ (&#39;est&#39;, 8),
+ (&#39;sed&#39;, 8),
+ (&#39;numquam&#39;, 8),
  (&#39;velit&#39;, 8),
- (&#39;quaerat&#39;, 7),
- (&#39;ipsum&#39;, 7),
- (&#39;numquam&#39;, 7),
- (&#39;tempora&#39;, 6),
- (&#39;ut&#39;, 6),
- (&#39;dolorem&#39;, 6),
- (&#39;aliquam&#39;, 5),
- (&#39;dolore&#39;, 5),
- (&#39;amet&#39;, 4),
- (&#39;sed&#39;, 4)]</pre>
+ (&#39;etincidunt&#39;, 8),
+ (&#39;aliquam&#39;, 8),
+ (&#39;voluptatem&#39;, 8),
+ (&#39;ut&#39;, 7),
+ (&#39;neque&#39;, 6),
+ (&#39;dolore&#39;, 5)]</pre>
 </div>
 
 </div>
@@ -14300,7 +14287,7 @@ allows programming Spark with DataFrame and Dataset APIs.</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Pi is roughly 3.142775
+<pre>Pi is roughly 3.142675
 </pre>
 </div>
 </div>
@@ -14710,8 +14697,8 @@ Finished : xom.h5
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.72 s, sys: 173 ms, total: 1.9 s
-Wall time: 1.89 s
+<pre>CPU times: user 1.21 s, sys: 127 ms, total: 1.34 s
+Wall time: 1.33 s
 </pre>
 </div>
 </div>

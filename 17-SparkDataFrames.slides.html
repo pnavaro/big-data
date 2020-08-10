@@ -13358,6 +13358,7 @@ Actions cause the execution of the query.</p>
 <span class="c1"># in the pyspark shell</span>
 <span class="n">conf</span> <span class="o">=</span> <span class="n">SparkConf</span><span class="p">()</span><span class="o">.</span><span class="n">setAppName</span><span class="p">(</span><span class="s2">&quot;people&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setMaster</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span> 
 <span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
 <span class="n">sqlContext</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
 </pre></div>
 
@@ -13974,7 +13975,7 @@ only showing top 20 rows
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;pyspark.sql.group.GroupedData at 0x7f9df1cf6ac0&gt;</pre>
+<pre>&lt;pyspark.sql.group.GroupedData at 0x7fd78cf63e80&gt;</pre>
 </div>
 
 </div>
