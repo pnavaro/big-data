@@ -13273,7 +13273,6 @@ foreach()</code></pre>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYSPARK_PYTHON&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPARK_HOME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/&quot;</span>
 </pre></div>
 
     </div>
@@ -13307,65 +13306,6 @@ foreach()</code></pre>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-4-3a256f6e0da1&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>sc <span class="ansi-blue-fg">=</span> pyspark<span class="ansi-blue-fg">.</span>SparkContext<span class="ansi-blue-fg">(</span>master<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;local[*]&#34;</span><span class="ansi-blue-fg">,</span> appName<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;FirstExample&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> sc<span class="ansi-blue-fg">.</span>setLogLevel<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;ERROR&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler_cls)</span>
-<span class="ansi-green-intense-fg ansi-bold">    126</span>                 &#34; is not allowed as it is a security risk.&#34;)
-<span class="ansi-green-intense-fg ansi-bold">    127</span> 
-<span class="ansi-green-fg">--&gt; 128</span><span class="ansi-red-fg">         </span>SparkContext<span class="ansi-blue-fg">.</span>_ensure_initialized<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> gateway<span class="ansi-blue-fg">=</span>gateway<span class="ansi-blue-fg">,</span> conf<span class="ansi-blue-fg">=</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    129</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    130</span>             self._do_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">_ensure_initialized</span><span class="ansi-blue-fg">(cls, instance, gateway, conf)</span>
-<span class="ansi-green-intense-fg ansi-bold">    318</span>         <span class="ansi-green-fg">with</span> SparkContext<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    319</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 320</span><span class="ansi-red-fg">                 </span>SparkContext<span class="ansi-blue-fg">.</span>_gateway <span class="ansi-blue-fg">=</span> gateway <span class="ansi-green-fg">or</span> launch_gateway<span class="ansi-blue-fg">(</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    321</span>                 SparkContext<span class="ansi-blue-fg">.</span>_jvm <span class="ansi-blue-fg">=</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">.</span>jvm
-<span class="ansi-green-intense-fg ansi-bold">    322</span> 
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java_gateway.py</span> in <span class="ansi-cyan-fg">launch_gateway</span><span class="ansi-blue-fg">(conf, popen_kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     93</span>                     signal<span class="ansi-blue-fg">.</span>signal<span class="ansi-blue-fg">(</span>signal<span class="ansi-blue-fg">.</span>SIGINT<span class="ansi-blue-fg">,</span> signal<span class="ansi-blue-fg">.</span>SIG_IGN<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     94</span>                 popen_kwargs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;preexec_fn&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> preexec_func
-<span class="ansi-green-fg">---&gt; 95</span><span class="ansi-red-fg">                 </span>proc <span class="ansi-blue-fg">=</span> Popen<span class="ansi-blue-fg">(</span>command<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>popen_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     96</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     97</span>                 <span class="ansi-red-fg"># preexec_fn not supported on Windows</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
-<span class="ansi-green-intense-fg ansi-bold">    852</span>                             encoding=encoding, errors=errors)
-<span class="ansi-green-intense-fg ansi-bold">    853</span> 
-<span class="ansi-green-fg">--&gt; 854</span><span class="ansi-red-fg">             self._execute_child(args, executable, preexec_fn, close_fds,
-</span><span class="ansi-green-intense-fg ansi-bold">    855</span>                                 pass_fds<span class="ansi-blue-fg">,</span> cwd<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    856</span>                                 startupinfo<span class="ansi-blue-fg">,</span> creationflags<span class="ansi-blue-fg">,</span> shell<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1700</span>                     <span class="ansi-green-fg">if</span> errno_num <span class="ansi-blue-fg">!=</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1701</span>                         err_msg <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>strerror<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 1702</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">,</span> err_msg<span class="ansi-blue-fg">,</span> err_filename<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1703</span>                 <span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>err_msg<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1704</span> 
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit&#39;</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13388,14 +13328,9 @@ foreach()</code></pre>
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-5-0397d240b7aa&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>sc<span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># it is like a Pool Processor executor</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;SparkContext master=local[*] appName=FirstExample&gt;
+</pre>
 </div>
 </div>
 
@@ -13422,29 +13357,6 @@ foreach()</code></pre>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-6-e503b87c1698&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">(</span>range<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">8</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># create collection</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -13464,18 +13376,15 @@ foreach()</code></pre>
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-7-fee4b19893bf&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd
 
-<span class="ansi-red-fg">NameError</span>: name &#39;rdd&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>ParallelCollectionRDD[0] at readRDDFromFile at PythonRDD.scala:262</pre>
 </div>
+
 </div>
 
 </div>
@@ -13504,31 +13413,6 @@ foreach()</code></pre>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-8-85555ffba4f8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>     f<span class="ansi-blue-fg">.</span>write<span class="ansi-blue-fg">(</span>lorem<span class="ansi-blue-fg">.</span>text<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> 
-<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>textFile<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;sample.txt&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13562,18 +13446,21 @@ foreach()</code></pre>
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-9-4ff2a94bd2aa&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd<span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;rdd&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;Dolore quiquia magnam amet eius. Dolorem labore eius etincidunt dolorem magnam neque est. Magnam tempora quaerat consectetur adipisci. Amet numquam quiquia dolore aliquam est. Adipisci quaerat ipsum adipisci ipsum sit. Tempora dolor quisquam est ipsum numquam magnam.&#39;,
+ &#39;&#39;,
+ &#39;Etincidunt est est numquam eius sed quiquia non. Dolorem numquam ut quisquam. Tempora dolore sed eius dolor sed non dolore. Ut eius porro dolorem labore. Quisquam labore est numquam.&#39;,
+ &#39;&#39;,
+ &#39;Ipsum dolor consectetur etincidunt velit. Etincidunt labore labore dolore quiquia. Magnam eius sed dolore ipsum. Modi modi quaerat dolore. Labore quiquia sit neque velit. Voluptatem labore quisquam quiquia.&#39;,
+ &#39;&#39;,
+ &#39;Labore quisquam porro sit sit ut. Ipsum numquam eius voluptatem amet numquam. Consectetur adipisci sit non. Dolor velit numquam sit quiquia dolor non. Velit quaerat consectetur sit dolore. Voluptatem dolor neque dolorem consectetur.&#39;]</pre>
 </div>
+
 </div>
 
 </div>
@@ -13609,19 +13496,15 @@ foreach()</code></pre>
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-10-abbcf926a9b8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">(</span>range<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">8</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> rdd<span class="ansi-blue-fg">.</span>map<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> x<span class="ansi-blue-fg">:</span> x <span class="ansi-blue-fg">**</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># Square each element</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 4, 9, 16, 25, 36, 49]</pre>
 </div>
+
 </div>
 
 </div>
@@ -13662,14 +13545,24 @@ foreach()</code></pre>
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;timed eval&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;rdd&#39; is not defined</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.95 ms, sys: 3.74 ms, total: 6.69 ms
+Wall time: 4.06 s
+</pre>
 </div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 1, 4, 9, 16, 25, 36, 49]</pre>
+</div>
+
 </div>
 
 </div>
@@ -13705,19 +13598,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-12-2d28124fe2bf&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Select only the even elements</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>rdd<span class="ansi-blue-fg">.</span>filter<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> x<span class="ansi-blue-fg">:</span> x <span class="ansi-blue-fg">%</span> <span class="ansi-cyan-fg">2</span> <span class="ansi-blue-fg">==</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;rdd&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 2, 4, 6]</pre>
 </div>
+
 </div>
 
 </div>
@@ -13752,19 +13641,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-13-1a0eebf19d3e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> rdd<span class="ansi-blue-fg">.</span>flatMap<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> x<span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">,</span> x<span class="ansi-blue-fg">*</span><span class="ansi-cyan-fg">100</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">42</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[1, 100, 42, 2, 200, 42, 3, 300, 42]</pre>
 </div>
+
 </div>
 
 </div>
@@ -13801,20 +13686,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-14-de3d6d01b14b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;John&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Fred&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Anna&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;James&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> rdd <span class="ansi-blue-fg">=</span> rdd<span class="ansi-blue-fg">.</span>groupBy<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> w<span class="ansi-blue-fg">:</span> w<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">(</span>k<span class="ansi-blue-fg">,</span> list<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> <span class="ansi-blue-fg">(</span>k<span class="ansi-blue-fg">,</span> v<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">in</span> rdd<span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;J&#39;, [&#39;John&#39;, &#39;James&#39;]), (&#39;F&#39;, [&#39;Fred&#39;]), (&#39;A&#39;, [&#39;Anna&#39;])]</pre>
 </div>
+
 </div>
 
 </div>
@@ -13850,20 +13730,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-15-e03952df1c28&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;B&#39;</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;B&#39;</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;A&#39;</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;A&#39;</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;A&#39;</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> rdd <span class="ansi-blue-fg">=</span> rdd<span class="ansi-blue-fg">.</span>groupByKey<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">(</span>j<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> list<span class="ansi-blue-fg">(</span>j<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> j <span class="ansi-green-fg">in</span> rdd<span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;B&#39;, [5, 4]), (&#39;A&#39;, [3, 2, 1])]</pre>
 </div>
+
 </div>
 
 </div>
@@ -13899,20 +13774,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-16-c0512ba78509&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>x <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;a&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;b&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> y <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;a&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;a&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;b&#34;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> x<span class="ansi-blue-fg">.</span>join<span class="ansi-blue-fg">(</span>y<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;b&#39;, (2, 5)), (&#39;a&#39;, (1, 3)), (&#39;a&#39;, (1, 4))]</pre>
 </div>
+
 </div>
 
 </div>
@@ -13947,19 +13817,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-17-ed4ce2a27a22&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> rdd<span class="ansi-blue-fg">.</span>distinct<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[2, 4, 1, 3]</pre>
 </div>
+
 </div>
 
 </div>
@@ -13994,19 +13860,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-18-43b2f71c81c9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;John&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Fred&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Anna&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;James&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> rdd<span class="ansi-blue-fg">.</span>keyBy<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> w<span class="ansi-blue-fg">:</span> w<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>collect<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;J&#39;, &#39;John&#39;), (&#39;F&#39;, &#39;Fred&#39;), (&#39;A&#39;, &#39;Anna&#39;), (&#39;J&#39;, &#39;James&#39;)]</pre>
 </div>
+
 </div>
 
 </div>
@@ -14042,20 +13904,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-19-0f495997cc85&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">from</span> operator <span class="ansi-green-fg">import</span> add
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>parallelize<span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">(</span>range<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">8</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> rdd<span class="ansi-blue-fg">.</span>map<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> x<span class="ansi-blue-fg">:</span> x <span class="ansi-blue-fg">**</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>reduce<span class="ansi-blue-fg">(</span>add<span class="ansi-blue-fg">)</span> <span class="ansi-red-fg"># reduce is an action!</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>140</pre>
 </div>
+
 </div>
 
 </div>
@@ -14101,21 +13958,15 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-20-15b136bb7b93&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> rdd = sc.parallelize([(&#39;J&#39;, &#39;James&#39;), (&#39;F&#39;,&#39;Fred&#39;), 
-</span><span class="ansi-green-intense-fg ansi-bold">      2</span>                     (&#39;A&#39;,&#39;Anna&#39;), (&#39;J&#39;,&#39;John&#39;)])
-<span class="ansi-green-intense-fg ansi-bold">      3</span> 
-<span class="ansi-green-intense-fg ansi-bold">      4</span> rdd<span class="ansi-blue-fg">.</span>countByKey<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>defaultdict(int, {&#39;J&#39;: 2, &#39;F&#39;: 1, &#39;A&#39;: 1})</pre>
 </div>
+
 </div>
 
 </div>
@@ -14132,30 +13983,6 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-21-910d0b713108&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Stop the local spark cluster</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>sc<span class="ansi-blue-fg">.</span>stop<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -14216,67 +14043,6 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-23-f265ba7ee6e3&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> pyspark
-<span class="ansi-green-intense-fg ansi-bold">      2</span> 
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>sc <span class="ansi-blue-fg">=</span> pyspark<span class="ansi-blue-fg">.</span>SparkContext<span class="ansi-blue-fg">(</span>master<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;local[*]&#34;</span><span class="ansi-blue-fg">,</span> appName<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;wordcount&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> sc<span class="ansi-blue-fg">.</span>setLogLevel<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;ERROR&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler_cls)</span>
-<span class="ansi-green-intense-fg ansi-bold">    126</span>                 &#34; is not allowed as it is a security risk.&#34;)
-<span class="ansi-green-intense-fg ansi-bold">    127</span> 
-<span class="ansi-green-fg">--&gt; 128</span><span class="ansi-red-fg">         </span>SparkContext<span class="ansi-blue-fg">.</span>_ensure_initialized<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> gateway<span class="ansi-blue-fg">=</span>gateway<span class="ansi-blue-fg">,</span> conf<span class="ansi-blue-fg">=</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    129</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    130</span>             self._do_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">_ensure_initialized</span><span class="ansi-blue-fg">(cls, instance, gateway, conf)</span>
-<span class="ansi-green-intense-fg ansi-bold">    318</span>         <span class="ansi-green-fg">with</span> SparkContext<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    319</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 320</span><span class="ansi-red-fg">                 </span>SparkContext<span class="ansi-blue-fg">.</span>_gateway <span class="ansi-blue-fg">=</span> gateway <span class="ansi-green-fg">or</span> launch_gateway<span class="ansi-blue-fg">(</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    321</span>                 SparkContext<span class="ansi-blue-fg">.</span>_jvm <span class="ansi-blue-fg">=</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">.</span>jvm
-<span class="ansi-green-intense-fg ansi-bold">    322</span> 
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java_gateway.py</span> in <span class="ansi-cyan-fg">launch_gateway</span><span class="ansi-blue-fg">(conf, popen_kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     93</span>                     signal<span class="ansi-blue-fg">.</span>signal<span class="ansi-blue-fg">(</span>signal<span class="ansi-blue-fg">.</span>SIGINT<span class="ansi-blue-fg">,</span> signal<span class="ansi-blue-fg">.</span>SIG_IGN<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     94</span>                 popen_kwargs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;preexec_fn&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> preexec_func
-<span class="ansi-green-fg">---&gt; 95</span><span class="ansi-red-fg">                 </span>proc <span class="ansi-blue-fg">=</span> Popen<span class="ansi-blue-fg">(</span>command<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>popen_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     96</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     97</span>                 <span class="ansi-red-fg"># preexec_fn not supported on Windows</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
-<span class="ansi-green-intense-fg ansi-bold">    852</span>                             encoding=encoding, errors=errors)
-<span class="ansi-green-intense-fg ansi-bold">    853</span> 
-<span class="ansi-green-fg">--&gt; 854</span><span class="ansi-red-fg">             self._execute_child(args, executable, preexec_fn, close_fds,
-</span><span class="ansi-green-intense-fg ansi-bold">    855</span>                                 pass_fds<span class="ansi-blue-fg">,</span> cwd<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    856</span>                                 startupinfo<span class="ansi-blue-fg">,</span> creationflags<span class="ansi-blue-fg">,</span> shell<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1700</span>                     <span class="ansi-green-fg">if</span> errno_num <span class="ansi-blue-fg">!=</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1701</span>                         err_msg <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>strerror<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 1702</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">,</span> err_msg<span class="ansi-blue-fg">,</span> err_filename<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1703</span>                 <span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>err_msg<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1704</span> 
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit&#39;</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14287,29 +14053,6 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-24-64cca669c4a2&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>rdd <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>textFile<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;sample.txt&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -14335,21 +14078,41 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-25-75e4d2070255&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> (rdd.flatMap(lambda line: line.lower().replace(&#34;.&#34;,&#34; &#34;).split())
-</span><span class="ansi-green-intense-fg ansi-bold">      2</span>    <span class="ansi-blue-fg">.</span>map<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> w <span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">(</span>w<span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span>    <span class="ansi-blue-fg">.</span>reduceByKey<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> w<span class="ansi-blue-fg">,</span> c<span class="ansi-blue-fg">:</span> w <span class="ansi-blue-fg">+</span> c<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>    .sortBy( lambda w : -w[1]).collect())
 
-<span class="ansi-red-fg">NameError</span>: name &#39;rdd&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;porro&#39;, 14),
+ (&#39;sed&#39;, 14),
+ (&#39;eius&#39;, 13),
+ (&#39;est&#39;, 12),
+ (&#39;consectetur&#39;, 11),
+ (&#39;velit&#39;, 11),
+ (&#39;numquam&#39;, 11),
+ (&#39;modi&#39;, 10),
+ (&#39;neque&#39;, 10),
+ (&#39;etincidunt&#39;, 10),
+ (&#39;aliquam&#39;, 10),
+ (&#39;tempora&#39;, 9),
+ (&#39;magnam&#39;, 9),
+ (&#39;labore&#39;, 9),
+ (&#39;dolor&#39;, 9),
+ (&#39;adipisci&#39;, 8),
+ (&#39;ut&#39;, 8),
+ (&#39;quaerat&#39;, 7),
+ (&#39;dolore&#39;, 6),
+ (&#39;quisquam&#39;, 6),
+ (&#39;non&#39;, 6),
+ (&#39;ipsum&#39;, 5),
+ (&#39;dolorem&#39;, 5),
+ (&#39;sit&#39;, 5),
+ (&#39;amet&#39;, 4),
+ (&#39;quiquia&#39;, 3),
+ (&#39;voluptatem&#39;, 3)]</pre>
 </div>
+
 </div>
 
 </div>
@@ -14365,29 +14128,6 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-26-8d3513b7698b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>sc<span class="ansi-blue-fg">.</span>stop<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -14457,67 +14197,9 @@ allows programming Spark with DataFrame and Dataset APIs.</p>
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-27-d3f4ca2b62c9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> pyspark<span class="ansi-blue-fg">.</span>sql <span class="ansi-green-fg">import</span> SparkSession
-<span class="ansi-green-intense-fg ansi-bold">      6</span> 
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> spark = (SparkSession.builder.master(&#34;local[*]&#34;)
-</span><span class="ansi-green-intense-fg ansi-bold">      8</span>          <span class="ansi-blue-fg">.</span>appName<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;PythonPi&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      9</span>          .getOrCreate())
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/sql/session.py</span> in <span class="ansi-cyan-fg">getOrCreate</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    184</span>                             sparkConf<span class="ansi-blue-fg">.</span>set<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">,</span> value<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    185</span>                         <span class="ansi-red-fg"># This SparkContext may be an existing one.</span>
-<span class="ansi-green-fg">--&gt; 186</span><span class="ansi-red-fg">                         </span>sc <span class="ansi-blue-fg">=</span> SparkContext<span class="ansi-blue-fg">.</span>getOrCreate<span class="ansi-blue-fg">(</span>sparkConf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    187</span>                     <span class="ansi-red-fg"># Do not update `SparkConf` for existing `SparkContext`, as it&#39;s shared</span>
-<span class="ansi-green-intense-fg ansi-bold">    188</span>                     <span class="ansi-red-fg"># by all sessions.</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">getOrCreate</span><span class="ansi-blue-fg">(cls, conf)</span>
-<span class="ansi-green-intense-fg ansi-bold">    369</span>         <span class="ansi-green-fg">with</span> SparkContext<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    370</span>             <span class="ansi-green-fg">if</span> SparkContext<span class="ansi-blue-fg">.</span>_active_spark_context <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 371</span><span class="ansi-red-fg">                 </span>SparkContext<span class="ansi-blue-fg">(</span>conf<span class="ansi-blue-fg">=</span>conf <span class="ansi-green-fg">or</span> SparkConf<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    372</span>             <span class="ansi-green-fg">return</span> SparkContext<span class="ansi-blue-fg">.</span>_active_spark_context
-<span class="ansi-green-intense-fg ansi-bold">    373</span> 
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler_cls)</span>
-<span class="ansi-green-intense-fg ansi-bold">    126</span>                 &#34; is not allowed as it is a security risk.&#34;)
-<span class="ansi-green-intense-fg ansi-bold">    127</span> 
-<span class="ansi-green-fg">--&gt; 128</span><span class="ansi-red-fg">         </span>SparkContext<span class="ansi-blue-fg">.</span>_ensure_initialized<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> gateway<span class="ansi-blue-fg">=</span>gateway<span class="ansi-blue-fg">,</span> conf<span class="ansi-blue-fg">=</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    129</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    130</span>             self._do_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">_ensure_initialized</span><span class="ansi-blue-fg">(cls, instance, gateway, conf)</span>
-<span class="ansi-green-intense-fg ansi-bold">    318</span>         <span class="ansi-green-fg">with</span> SparkContext<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    319</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 320</span><span class="ansi-red-fg">                 </span>SparkContext<span class="ansi-blue-fg">.</span>_gateway <span class="ansi-blue-fg">=</span> gateway <span class="ansi-green-fg">or</span> launch_gateway<span class="ansi-blue-fg">(</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    321</span>                 SparkContext<span class="ansi-blue-fg">.</span>_jvm <span class="ansi-blue-fg">=</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">.</span>jvm
-<span class="ansi-green-intense-fg ansi-bold">    322</span> 
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java_gateway.py</span> in <span class="ansi-cyan-fg">launch_gateway</span><span class="ansi-blue-fg">(conf, popen_kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     93</span>                     signal<span class="ansi-blue-fg">.</span>signal<span class="ansi-blue-fg">(</span>signal<span class="ansi-blue-fg">.</span>SIGINT<span class="ansi-blue-fg">,</span> signal<span class="ansi-blue-fg">.</span>SIG_IGN<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     94</span>                 popen_kwargs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;preexec_fn&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> preexec_func
-<span class="ansi-green-fg">---&gt; 95</span><span class="ansi-red-fg">                 </span>proc <span class="ansi-blue-fg">=</span> Popen<span class="ansi-blue-fg">(</span>command<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>popen_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     96</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     97</span>                 <span class="ansi-red-fg"># preexec_fn not supported on Windows</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
-<span class="ansi-green-intense-fg ansi-bold">    852</span>                             encoding=encoding, errors=errors)
-<span class="ansi-green-intense-fg ansi-bold">    853</span> 
-<span class="ansi-green-fg">--&gt; 854</span><span class="ansi-red-fg">             self._execute_child(args, executable, preexec_fn, close_fds,
-</span><span class="ansi-green-intense-fg ansi-bold">    855</span>                                 pass_fds<span class="ansi-blue-fg">,</span> cwd<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    856</span>                                 startupinfo<span class="ansi-blue-fg">,</span> creationflags<span class="ansi-blue-fg">,</span> shell<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1700</span>                     <span class="ansi-green-fg">if</span> errno_num <span class="ansi-blue-fg">!=</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1701</span>                         err_msg <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>strerror<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 1702</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">,</span> err_msg<span class="ansi-blue-fg">,</span> err_filename<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1703</span>                 <span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>err_msg<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1704</span> 
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit&#39;</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Pi is roughly 3.143145
+</pre>
 </div>
 </div>
 
@@ -14926,8 +14608,8 @@ Finished : xom.h5
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.02 s, sys: 115 ms, total: 1.13 s
-Wall time: 1.13 s
+<pre>CPU times: user 1.14 s, sys: 115 ms, total: 1.25 s
+Wall time: 1.24 s
 </pre>
 </div>
 </div>
@@ -15068,53 +14750,9 @@ Wall time: 1.13 s
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-39-1404d3a1a06b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">import</span> pandas <span class="ansi-green-fg">as</span> pd
-<span class="ansi-green-intense-fg ansi-bold">      3</span> 
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>sc <span class="ansi-blue-fg">=</span> pyspark<span class="ansi-blue-fg">.</span>SparkContext<span class="ansi-blue-fg">(</span>master<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;local[*]&#34;</span><span class="ansi-blue-fg">,</span> appName<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;series&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> sc<span class="ansi-blue-fg">.</span>setLogLevel<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;ERROR&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> 
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler_cls)</span>
-<span class="ansi-green-intense-fg ansi-bold">    126</span>                 &#34; is not allowed as it is a security risk.&#34;)
-<span class="ansi-green-intense-fg ansi-bold">    127</span> 
-<span class="ansi-green-fg">--&gt; 128</span><span class="ansi-red-fg">         </span>SparkContext<span class="ansi-blue-fg">.</span>_ensure_initialized<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> gateway<span class="ansi-blue-fg">=</span>gateway<span class="ansi-blue-fg">,</span> conf<span class="ansi-blue-fg">=</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    129</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    130</span>             self._do_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">_ensure_initialized</span><span class="ansi-blue-fg">(cls, instance, gateway, conf)</span>
-<span class="ansi-green-intense-fg ansi-bold">    318</span>         <span class="ansi-green-fg">with</span> SparkContext<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    319</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 320</span><span class="ansi-red-fg">                 </span>SparkContext<span class="ansi-blue-fg">.</span>_gateway <span class="ansi-blue-fg">=</span> gateway <span class="ansi-green-fg">or</span> launch_gateway<span class="ansi-blue-fg">(</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    321</span>                 SparkContext<span class="ansi-blue-fg">.</span>_jvm <span class="ansi-blue-fg">=</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">.</span>jvm
-<span class="ansi-green-intense-fg ansi-bold">    322</span> 
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java_gateway.py</span> in <span class="ansi-cyan-fg">launch_gateway</span><span class="ansi-blue-fg">(conf, popen_kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     93</span>                     signal<span class="ansi-blue-fg">.</span>signal<span class="ansi-blue-fg">(</span>signal<span class="ansi-blue-fg">.</span>SIGINT<span class="ansi-blue-fg">,</span> signal<span class="ansi-blue-fg">.</span>SIG_IGN<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     94</span>                 popen_kwargs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;preexec_fn&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> preexec_func
-<span class="ansi-green-fg">---&gt; 95</span><span class="ansi-red-fg">                 </span>proc <span class="ansi-blue-fg">=</span> Popen<span class="ansi-blue-fg">(</span>command<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>popen_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     96</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     97</span>                 <span class="ansi-red-fg"># preexec_fn not supported on Windows</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
-<span class="ansi-green-intense-fg ansi-bold">    852</span>                             encoding=encoding, errors=errors)
-<span class="ansi-green-intense-fg ansi-bold">    853</span> 
-<span class="ansi-green-fg">--&gt; 854</span><span class="ansi-red-fg">             self._execute_child(args, executable, preexec_fn, close_fds,
-</span><span class="ansi-green-intense-fg ansi-bold">    855</span>                                 pass_fds<span class="ansi-blue-fg">,</span> cwd<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    856</span>                                 startupinfo<span class="ansi-blue-fg">,</span> creationflags<span class="ansi-blue-fg">,</span> shell<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1700</span>                     <span class="ansi-green-fg">if</span> errno_num <span class="ansi-blue-fg">!=</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1701</span>                         err_msg <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>strerror<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 1702</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">,</span> err_msg<span class="ansi-blue-fg">,</span> err_filename<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1703</span>                 <span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>err_msg<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1704</span> 
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit&#39;</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9413176064560881
+</pre>
 </div>
 </div>
 
@@ -15148,68 +14786,6 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-40-5559182bd46f&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">import</span> pyspark
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>sc <span class="ansi-blue-fg">=</span> pyspark<span class="ansi-blue-fg">.</span>SparkContext<span class="ansi-blue-fg">(</span>master<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;local[*]&#34;</span><span class="ansi-blue-fg">,</span> appName<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;series&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> sc<span class="ansi-blue-fg">.</span>setLogLevel<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;ERROR&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> 
-<span class="ansi-green-intense-fg ansi-bold">      5</span> genome <span class="ansi-blue-fg">=</span> sc<span class="ansi-blue-fg">.</span>textFile<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;data/genome.txt&#39;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler_cls)</span>
-<span class="ansi-green-intense-fg ansi-bold">    126</span>                 &#34; is not allowed as it is a security risk.&#34;)
-<span class="ansi-green-intense-fg ansi-bold">    127</span> 
-<span class="ansi-green-fg">--&gt; 128</span><span class="ansi-red-fg">         </span>SparkContext<span class="ansi-blue-fg">.</span>_ensure_initialized<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> gateway<span class="ansi-blue-fg">=</span>gateway<span class="ansi-blue-fg">,</span> conf<span class="ansi-blue-fg">=</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    129</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    130</span>             self._do_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py</span> in <span class="ansi-cyan-fg">_ensure_initialized</span><span class="ansi-blue-fg">(cls, instance, gateway, conf)</span>
-<span class="ansi-green-intense-fg ansi-bold">    318</span>         <span class="ansi-green-fg">with</span> SparkContext<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    319</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 320</span><span class="ansi-red-fg">                 </span>SparkContext<span class="ansi-blue-fg">.</span>_gateway <span class="ansi-blue-fg">=</span> gateway <span class="ansi-green-fg">or</span> launch_gateway<span class="ansi-blue-fg">(</span>conf<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    321</span>                 SparkContext<span class="ansi-blue-fg">.</span>_jvm <span class="ansi-blue-fg">=</span> SparkContext<span class="ansi-blue-fg">.</span>_gateway<span class="ansi-blue-fg">.</span>jvm
-<span class="ansi-green-intense-fg ansi-bold">    322</span> 
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java_gateway.py</span> in <span class="ansi-cyan-fg">launch_gateway</span><span class="ansi-blue-fg">(conf, popen_kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     93</span>                     signal<span class="ansi-blue-fg">.</span>signal<span class="ansi-blue-fg">(</span>signal<span class="ansi-blue-fg">.</span>SIGINT<span class="ansi-blue-fg">,</span> signal<span class="ansi-blue-fg">.</span>SIG_IGN<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     94</span>                 popen_kwargs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;preexec_fn&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> preexec_func
-<span class="ansi-green-fg">---&gt; 95</span><span class="ansi-red-fg">                 </span>proc <span class="ansi-blue-fg">=</span> Popen<span class="ansi-blue-fg">(</span>command<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>popen_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     96</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     97</span>                 <span class="ansi-red-fg"># preexec_fn not supported on Windows</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
-<span class="ansi-green-intense-fg ansi-bold">    852</span>                             encoding=encoding, errors=errors)
-<span class="ansi-green-intense-fg ansi-bold">    853</span> 
-<span class="ansi-green-fg">--&gt; 854</span><span class="ansi-red-fg">             self._execute_child(args, executable, preexec_fn, close_fds,
-</span><span class="ansi-green-intense-fg ansi-bold">    855</span>                                 pass_fds<span class="ansi-blue-fg">,</span> cwd<span class="ansi-blue-fg">,</span> env<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    856</span>                                 startupinfo<span class="ansi-blue-fg">,</span> creationflags<span class="ansi-blue-fg">,</span> shell<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py</span> in <span class="ansi-cyan-fg">_execute_child</span><span class="ansi-blue-fg">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1700</span>                     <span class="ansi-green-fg">if</span> errno_num <span class="ansi-blue-fg">!=</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1701</span>                         err_msg <span class="ansi-blue-fg">=</span> os<span class="ansi-blue-fg">.</span>strerror<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 1702</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>errno_num<span class="ansi-blue-fg">,</span> err_msg<span class="ansi-blue-fg">,</span> err_filename<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1703</span>                 <span class="ansi-green-fg">raise</span> child_exception_type<span class="ansi-blue-fg">(</span>err_msg<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1704</span> 
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit&#39;</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -15232,21 +14808,15 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[41]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-41-cfa26747a609&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>lines <span class="ansi-blue-fg">=</span> genome<span class="ansi-blue-fg">.</span>flatMap<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> line<span class="ansi-blue-fg">:</span> line<span class="ansi-blue-fg">.</span>split<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> g <span class="ansi-blue-fg">=</span> lines<span class="ansi-blue-fg">.</span>map<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> line<span class="ansi-blue-fg">:</span> line<span class="ansi-blue-fg">.</span>count<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;G&#34;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>sum<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> c <span class="ansi-blue-fg">=</span> lines<span class="ansi-blue-fg">.</span>map<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> line<span class="ansi-blue-fg">:</span> line<span class="ansi-blue-fg">.</span>count<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;C&#34;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>sum<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-blue-fg">(</span>g <span class="ansi-blue-fg">+</span> c<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">/</span> lines<span class="ansi-blue-fg">.</span>map<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> line<span class="ansi-blue-fg">:</span>len<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>sum<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;genome&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.5048333333333334</pre>
 </div>
+
 </div>
 
 </div>
@@ -15293,21 +14863,15 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[42]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-42-06b96ae94a2a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     12</span>     <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>sequence <span class="ansi-green-fg">for</span> sequence <span class="ansi-green-fg">in</span> group_characters<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">     13</span> 
-<span class="ansi-green-fg">---&gt; 14</span><span class="ansi-red-fg"> </span>sequences <span class="ansi-blue-fg">=</span> genome<span class="ansi-blue-fg">.</span>flatMap<span class="ansi-blue-fg">(</span>group_and_split<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     15</span> sequences<span class="ansi-blue-fg">.</span>take<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;genome&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;GATCA&#39;, &#39;ATGAG&#39;, &#39;GTGGA&#39;]</pre>
 </div>
+
 </div>
 
 </div>
@@ -15333,19 +14897,24 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-43-6752ce565abe&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>counts <span class="ansi-blue-fg">=</span> sequences<span class="ansi-blue-fg">.</span>map<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> w<span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">(</span>w<span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>reduceByKey<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> x<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">:</span> x <span class="ansi-blue-fg">+</span> y<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>sortBy<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> v<span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">-</span>v<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> counts<span class="ansi-blue-fg">.</span>take<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sequences&#39; is not defined</pre>
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;CTGTG&#39;, 59),
+ (&#39;CCCAG&#39;, 55),
+ (&#39;CCTGG&#39;, 52),
+ (&#39;AAAAA&#39;, 49),
+ (&#39;TGCTG&#39;, 42),
+ (&#39;TGTGT&#39;, 41),
+ (&#39;CCACC&#39;, 39),
+ (&#39;GGCTG&#39;, 38),
+ (&#39;CACCA&#39;, 37),
+ (&#39;GTGGG&#39;, 37)]</pre>
 </div>
+
 </div>
 
 </div>
@@ -15361,29 +14930,6 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-44-8d3513b7698b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>sc<span class="ansi-blue-fg">.</span>stop<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined</pre>
-</div>
-</div>
-
 </div>
 </div>
 

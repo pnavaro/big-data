@@ -594,7 +594,6 @@ nodes (will work just fine on a multicore machine).
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{sys}\PY{o}{,} \PY{n+nn}{os}
 \PY{n}{os}\PY{o}{.}\PY{n}{environ}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{PYSPARK\PYZus{}PYTHON}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{sys}\PY{o}{.}\PY{n}{executable}
-\PY{n}{os}\PY{o}{.}\PY{n}{environ}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{SPARK\PYZus{}HOME}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{/Users/navaro/opt/spark\PYZhy{}3.0.0\PYZhy{}bin\PYZhy{}hadoop2.7/}\PY{l+s+s2}{\PYZdq{}}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -613,61 +612,6 @@ nodes (will work just fine on a multicore machine).
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        FileNotFoundError                         Traceback (most recent call last)
-
-        <ipython-input-4-3a256f6e0da1> in <module>
-    ----> 1 sc = pyspark.SparkContext(master="local[*]", appName="FirstExample")
-          2 sc.setLogLevel("ERROR")
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_\_init\_\_(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler\_cls)
-        126                 " is not allowed as it is a security risk.")
-        127 
-    --> 128         SparkContext.\_ensure\_initialized(self, gateway=gateway, conf=conf)
-        129         try:
-        130             self.\_do\_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_ensure\_initialized(cls, instance, gateway, conf)
-        318         with SparkContext.\_lock:
-        319             if not SparkContext.\_gateway:
-    --> 320                 SparkContext.\_gateway = gateway or launch\_gateway(conf)
-        321                 SparkContext.\_jvm = SparkContext.\_gateway.jvm
-        322 
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java\_gateway.py in launch\_gateway(conf, popen\_kwargs)
-         93                     signal.signal(signal.SIGINT, signal.SIG\_IGN)
-         94                 popen\_kwargs['preexec\_fn'] = preexec\_func
-    ---> 95                 proc = Popen(command, **popen\_kwargs)
-         96             else:
-         97                 \# preexec\_fn not supported on Windows
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_\_init\_\_(self, args, bufsize, executable, stdin, stdout, stderr, preexec\_fn, close\_fds, shell, cwd, env, universal\_newlines, startupinfo, creationflags, restore\_signals, start\_new\_session, pass\_fds, encoding, errors, text)
-        852                             encoding=encoding, errors=errors)
-        853 
-    --> 854             self.\_execute\_child(args, executable, preexec\_fn, close\_fds,
-        855                                 pass\_fds, cwd, env,
-        856                                 startupinfo, creationflags, shell,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_execute\_child(self, args, executable, preexec\_fn, close\_fds, pass\_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore\_signals, start\_new\_session)
-       1700                     if errno\_num != 0:
-       1701                         err\_msg = os.strerror(errno\_num)
-    -> 1702                     raise child\_exception\_type(errno\_num, err\_msg, err\_filename)
-       1703                 raise child\_exception\_type(err\_msg)
-       1704 
-
-
-        FileNotFoundError: [Errno 2] No such file or directory: '/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit'
-
-    \end{Verbatim}
-
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -676,17 +620,7 @@ nodes (will work just fine on a multicore machine).
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-5-0397d240b7aa> in <module>
-    ----> 1 print(sc) \# it is like a Pool Processor executor
-    
-
-        NameError: name 'sc' is not defined
-
+<SparkContext master=local[*] appName=FirstExample>
     \end{Verbatim}
 
     \subsection{Create your first RDD}\label{create-your-first-rdd}
@@ -698,20 +632,6 @@ nodes (will work just fine on a multicore machine).
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-6-e503b87c1698> in <module>
-    ----> 1 rdd = sc.parallelize(list(range(8))) \# create collection
-    
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -719,20 +639,13 @@ nodes (will work just fine on a multicore machine).
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-7-fee4b19893bf> in <module>
-    ----> 1 rdd
-    
-
-        NameError: name 'rdd' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+ParallelCollectionRDD[0] at readRDDFromFile at PythonRDD.scala:262
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Exercise}\label{exercise}
 
 Create a file \texttt{sample.txt}with lorem package. Read and load it
@@ -749,22 +662,6 @@ into a RDD with the \texttt{textFile} spark function.
 \PY{n}{rdd} \PY{o}{=} \PY{n}{sc}\PY{o}{.}\PY{n}{textFile}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sample.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-8-85555ffba4f8> in <module>
-          4     f.write(lorem.text())
-          5 
-    ----> 6 rdd = sc.textFile("sample.txt")
-    
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
 
     \subsubsection{Collect}\label{collect}
 
@@ -790,20 +687,28 @@ Collect the text you read before from the \texttt{sample.txt}file.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-9-4ff2a94bd2aa> in <module>
-    ----> 1 rdd.collect()
-    
-
-        NameError: name 'rdd' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+['Dolore quiquia magnam amet eius. Dolorem labore eius etincidunt dolorem magnam
+neque est. Magnam tempora quaerat consectetur adipisci. Amet numquam quiquia
+dolore aliquam est. Adipisci quaerat ipsum adipisci ipsum sit. Tempora dolor
+quisquam est ipsum numquam magnam.',
+ '',
+ 'Etincidunt est est numquam eius sed quiquia non. Dolorem numquam ut quisquam.
+Tempora dolore sed eius dolor sed non dolore. Ut eius porro dolorem labore.
+Quisquam labore est numquam.',
+ '',
+ 'Ipsum dolor consectetur etincidunt velit. Etincidunt labore labore dolore
+quiquia. Magnam eius sed dolore ipsum. Modi modi quaerat dolore. Labore quiquia
+sit neque velit. Voluptatem labore quisquam quiquia.',
+ '',
+ 'Labore quisquam porro sit sit ut. Ipsum numquam eius voluptatem amet numquam.
+Consectetur adipisci sit non. Dolor velit numquam sit quiquia dolor non. Velit
+quaerat consectetur sit dolore. Voluptatem dolor neque dolorem consectetur.']
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Map}\label{map}
 
 Transformation / Narrow: Return a new RDD by applying a function to each
@@ -825,21 +730,13 @@ Source: http://i.imgur.com/PxNJf0U.png
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-10-abbcf926a9b8> in <module>
-    ----> 1 rdd = sc.parallelize(list(range(8)))
-          2 rdd.map(lambda x: x ** 2).collect() \# Square each element
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[0, 1, 4, 9, 16, 25, 36, 49]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Exercise}\label{exercise}
 
 Replace the lambda function by a function that contains a pause
@@ -858,18 +755,17 @@ Replace the lambda function by a function that contains a pause
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <timed eval> in <module>
-
-
-        NameError: name 'rdd' is not defined
-
+CPU times: user 2.95 ms, sys: 3.74 ms, total: 6.69 ms
+Wall time: 4.06 s
     \end{Verbatim}
 
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[0, 1, 4, 9, 16, 25, 36, 49]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Filter}\label{filter}
 
 Transformation / Narrow: Return a new RDD containing only the elements
@@ -886,21 +782,13 @@ http://i.imgur.com/GFyji4U.png
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-12-2d28124fe2bf> in <module>
-          1 \# Select only the even elements
-    ----> 2 rdd.filter(lambda x: x \% 2 == 0).collect()
-    
-
-        NameError: name 'rdd' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[0, 2, 4, 6]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{FlatMap}\label{flatmap}
 
 Transformation / Narrow: Return a new RDD by first applying a function
@@ -920,21 +808,13 @@ to all elements of this RDD, and then flattening the results
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-13-1a0eebf19d3e> in <module>
-    ----> 1 rdd = sc.parallelize([1,2,3])
-          2 rdd.flatMap(lambda x: (x, x*100, 42)).collect()
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[1, 100, 42, 2, 200, 42, 3, 300, 42]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Exercise}\label{exercise}
 
 Use FlatMap to clean the text from \texttt{sample.txt}file. Lower,
@@ -961,22 +841,13 @@ items for which the function yields this key.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-14-de3d6d01b14b> in <module>
-    ----> 1 rdd = sc.parallelize(['John', 'Fred', 'Anna', 'James'])
-          2 rdd = rdd.groupBy(lambda w: w[0])
-          3 [(k, list(v)) for (k, v) in rdd.collect()]
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[('J', ['John', 'James']), ('F', ['Fred']), ('A', ['Anna'])]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{GroupByKey}\label{groupbykey}
 
 Transformation / Wide: Group the values for each key in the original
@@ -998,22 +869,13 @@ collected group of values.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-15-e03952df1c28> in <module>
-    ----> 1 rdd = sc.parallelize([('B',5),('B',4),('A',3),('A',2),('A',1)])
-          2 rdd = rdd.groupByKey()
-          3 [(j[0], list(j[1])) for j in rdd.collect()]
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[('B', [5, 4]), ('A', [3, 2, 1])]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Join}\label{join}
 
 Transformation / Wide: Return a new RDD containing all pairs of elements
@@ -1034,22 +896,13 @@ having the same key in the original RDDs
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-16-c0512ba78509> in <module>
-    ----> 1 x = sc.parallelize([("a", 1), ("b", 2)])
-          2 y = sc.parallelize([("a", 3), ("a", 4), ("b", 5)])
-          3 x.join(y).collect()
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[('b', (2, 5)), ('a', (1, 3)), ('a', (1, 4))]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Distinct}\label{distinct}
 
 Transformation / Wide: Return a new RDD containing distinct items from
@@ -1069,21 +922,13 @@ the original RDD (omitting all duplicates)
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-17-ed4ce2a27a22> in <module>
-    ----> 1 rdd = sc.parallelize([1,2,3,3,4])
-          2 rdd.distinct().collect()
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[2, 4, 1, 3]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{KeyBy}\label{keyby}
 
 Transformation / Narrow: Create a Pair RDD, forming one pair for each
@@ -1104,21 +949,13 @@ via a user-supplied function.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-18-43b2f71c81c9> in <module>
-    ----> 1 rdd = sc.parallelize(['John', 'Fred', 'Anna', 'James'])
-          2 rdd.keyBy(lambda w: w[0]).collect()
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[('J', 'John'), ('F', 'Fred'), ('A', 'Anna'), ('J', 'James')]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsection{Actions}\label{actions}
 
 \subsubsection{Map-Reduce operation}\label{map-reduce-operation}
@@ -1142,22 +979,13 @@ result to the driver
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-19-0f495997cc85> in <module>
-          1 from operator import add
-    ----> 2 rdd = sc.parallelize(list(range(8)))
-          3 rdd.map(lambda x: x ** 2).reduce(add) \# reduce is an action!
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+140
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Max, Min, Sum, Mean, Variance,
 Stdev}\label{max-min-sum-mean-variance-stdev}
 
@@ -1192,23 +1020,13 @@ in the RDD
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-20-15b136bb7b93> in <module>
-    ----> 1 rdd = sc.parallelize([('J', 'James'), ('F','Fred'), 
-          2                     ('A','Anna'), ('J','John')])
-          3 
-          4 rdd.countByKey()
-
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+defaultdict(int, \{'J': 2, 'F': 1, 'A': 1\})
+\end{Verbatim}
+\end{tcolorbox}
+        
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{21}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -1216,21 +1034,6 @@ in the RDD
 \PY{n}{sc}\PY{o}{.}\PY{n}{stop}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-21-910d0b713108> in <module>
-          1 \# Stop the local spark cluster
-    ----> 2 sc.stop()
-    
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
 
     \subsubsection{Exercise 10.1 Word-count in Apache
 Spark}\label{exercise-10.1-word-count-in-apache-spark}
@@ -1284,83 +1087,12 @@ guide}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        FileNotFoundError                         Traceback (most recent call last)
-
-        <ipython-input-23-f265ba7ee6e3> in <module>
-          1 import pyspark
-          2 
-    ----> 3 sc = pyspark.SparkContext(master="local[*]", appName="wordcount")
-          4 sc.setLogLevel("ERROR")
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_\_init\_\_(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler\_cls)
-        126                 " is not allowed as it is a security risk.")
-        127 
-    --> 128         SparkContext.\_ensure\_initialized(self, gateway=gateway, conf=conf)
-        129         try:
-        130             self.\_do\_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_ensure\_initialized(cls, instance, gateway, conf)
-        318         with SparkContext.\_lock:
-        319             if not SparkContext.\_gateway:
-    --> 320                 SparkContext.\_gateway = gateway or launch\_gateway(conf)
-        321                 SparkContext.\_jvm = SparkContext.\_gateway.jvm
-        322 
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java\_gateway.py in launch\_gateway(conf, popen\_kwargs)
-         93                     signal.signal(signal.SIGINT, signal.SIG\_IGN)
-         94                 popen\_kwargs['preexec\_fn'] = preexec\_func
-    ---> 95                 proc = Popen(command, **popen\_kwargs)
-         96             else:
-         97                 \# preexec\_fn not supported on Windows
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_\_init\_\_(self, args, bufsize, executable, stdin, stdout, stderr, preexec\_fn, close\_fds, shell, cwd, env, universal\_newlines, startupinfo, creationflags, restore\_signals, start\_new\_session, pass\_fds, encoding, errors, text)
-        852                             encoding=encoding, errors=errors)
-        853 
-    --> 854             self.\_execute\_child(args, executable, preexec\_fn, close\_fds,
-        855                                 pass\_fds, cwd, env,
-        856                                 startupinfo, creationflags, shell,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_execute\_child(self, args, executable, preexec\_fn, close\_fds, pass\_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore\_signals, start\_new\_session)
-       1700                     if errno\_num != 0:
-       1701                         err\_msg = os.strerror(errno\_num)
-    -> 1702                     raise child\_exception\_type(errno\_num, err\_msg, err\_filename)
-       1703                 raise child\_exception\_type(err\_msg)
-       1704 
-
-
-        FileNotFoundError: [Errno 2] No such file or directory: '/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit'
-
-    \end{Verbatim}
-
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{24}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{rdd} \PY{o}{=} \PY{n}{sc}\PY{o}{.}\PY{n}{textFile}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sample.txt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-24-64cca669c4a2> in <module>
-    ----> 1 rdd = sc.textFile("sample.txt")
-    
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{25}{\boxspacing}
@@ -1372,43 +1104,45 @@ guide}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-25-75e4d2070255> in <module>
-    ----> 1 (rdd.flatMap(lambda line: line.lower().replace("."," ").split())
-          2    .map(lambda w : (w,1))
-          3    .reduceByKey(lambda w, c: w + c)
-          4    .sortBy( lambda w : -w[1]).collect())
-
-
-        NameError: name 'rdd' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[('porro', 14),
+ ('sed', 14),
+ ('eius', 13),
+ ('est', 12),
+ ('consectetur', 11),
+ ('velit', 11),
+ ('numquam', 11),
+ ('modi', 10),
+ ('neque', 10),
+ ('etincidunt', 10),
+ ('aliquam', 10),
+ ('tempora', 9),
+ ('magnam', 9),
+ ('labore', 9),
+ ('dolor', 9),
+ ('adipisci', 8),
+ ('ut', 8),
+ ('quaerat', 7),
+ ('dolore', 6),
+ ('quisquam', 6),
+ ('non', 6),
+ ('ipsum', 5),
+ ('dolorem', 5),
+ ('sit', 5),
+ ('amet', 4),
+ ('quiquia', 3),
+ ('voluptatem', 3)]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{26}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sc}\PY{o}{.}\PY{n}{stop}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-26-8d3513b7698b> in <module>
-    ----> 1 sc.stop()
-    
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
 
     \subsection{SparkSession}\label{sparksession}
 
@@ -1480,77 +1214,7 @@ tutorial}.
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        FileNotFoundError                         Traceback (most recent call last)
-
-        <ipython-input-27-d3f4ca2b62c9> in <module>
-          5 from pyspark.sql import SparkSession
-          6 
-    ----> 7 spark = (SparkSession.builder.master("local[*]")
-          8          .appName("PythonPi")
-          9          .getOrCreate())
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/sql/session.py in getOrCreate(self)
-        184                             sparkConf.set(key, value)
-        185                         \# This SparkContext may be an existing one.
-    --> 186                         sc = SparkContext.getOrCreate(sparkConf)
-        187                     \# Do not update `SparkConf` for existing `SparkContext`, as it's shared
-        188                     \# by all sessions.
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in getOrCreate(cls, conf)
-        369         with SparkContext.\_lock:
-        370             if SparkContext.\_active\_spark\_context is None:
-    --> 371                 SparkContext(conf=conf or SparkConf())
-        372             return SparkContext.\_active\_spark\_context
-        373 
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_\_init\_\_(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler\_cls)
-        126                 " is not allowed as it is a security risk.")
-        127 
-    --> 128         SparkContext.\_ensure\_initialized(self, gateway=gateway, conf=conf)
-        129         try:
-        130             self.\_do\_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_ensure\_initialized(cls, instance, gateway, conf)
-        318         with SparkContext.\_lock:
-        319             if not SparkContext.\_gateway:
-    --> 320                 SparkContext.\_gateway = gateway or launch\_gateway(conf)
-        321                 SparkContext.\_jvm = SparkContext.\_gateway.jvm
-        322 
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java\_gateway.py in launch\_gateway(conf, popen\_kwargs)
-         93                     signal.signal(signal.SIGINT, signal.SIG\_IGN)
-         94                 popen\_kwargs['preexec\_fn'] = preexec\_func
-    ---> 95                 proc = Popen(command, **popen\_kwargs)
-         96             else:
-         97                 \# preexec\_fn not supported on Windows
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_\_init\_\_(self, args, bufsize, executable, stdin, stdout, stderr, preexec\_fn, close\_fds, shell, cwd, env, universal\_newlines, startupinfo, creationflags, restore\_signals, start\_new\_session, pass\_fds, encoding, errors, text)
-        852                             encoding=encoding, errors=errors)
-        853 
-    --> 854             self.\_execute\_child(args, executable, preexec\_fn, close\_fds,
-        855                                 pass\_fds, cwd, env,
-        856                                 startupinfo, creationflags, shell,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_execute\_child(self, args, executable, preexec\_fn, close\_fds, pass\_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore\_signals, start\_new\_session)
-       1700                     if errno\_num != 0:
-       1701                         err\_msg = os.strerror(errno\_num)
-    -> 1702                     raise child\_exception\_type(errno\_num, err\_msg, err\_filename)
-       1703                 raise child\_exception\_type(err\_msg)
-       1704 
-
-
-        FileNotFoundError: [Errno 2] No such file or directory: '/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit'
-
+Pi is roughly 3.143145
     \end{Verbatim}
 
     \subsubsection{Exercise 9.2}\label{exercise-9.2}
@@ -1795,8 +1459,8 @@ Finished : xom.h5
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-CPU times: user 1.02 s, sys: 115 ms, total: 1.13 s
-Wall time: 1.13 s
+CPU times: user 1.14 s, sys: 115 ms, total: 1.25 s
+Wall time: 1.24 s
     \end{Verbatim}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
@@ -1879,61 +1543,7 @@ Parallelize the code above with Apache Spark.
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        FileNotFoundError                         Traceback (most recent call last)
-
-        <ipython-input-39-1404d3a1a06b> in <module>
-          2 import pandas as pd
-          3 
-    ----> 4 sc = pyspark.SparkContext(master="local[*]", appName="series")
-          5 sc.setLogLevel("ERROR")
-          6 
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_\_init\_\_(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler\_cls)
-        126                 " is not allowed as it is a security risk.")
-        127 
-    --> 128         SparkContext.\_ensure\_initialized(self, gateway=gateway, conf=conf)
-        129         try:
-        130             self.\_do\_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_ensure\_initialized(cls, instance, gateway, conf)
-        318         with SparkContext.\_lock:
-        319             if not SparkContext.\_gateway:
-    --> 320                 SparkContext.\_gateway = gateway or launch\_gateway(conf)
-        321                 SparkContext.\_jvm = SparkContext.\_gateway.jvm
-        322 
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java\_gateway.py in launch\_gateway(conf, popen\_kwargs)
-         93                     signal.signal(signal.SIGINT, signal.SIG\_IGN)
-         94                 popen\_kwargs['preexec\_fn'] = preexec\_func
-    ---> 95                 proc = Popen(command, **popen\_kwargs)
-         96             else:
-         97                 \# preexec\_fn not supported on Windows
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_\_init\_\_(self, args, bufsize, executable, stdin, stdout, stderr, preexec\_fn, close\_fds, shell, cwd, env, universal\_newlines, startupinfo, creationflags, restore\_signals, start\_new\_session, pass\_fds, encoding, errors, text)
-        852                             encoding=encoding, errors=errors)
-        853 
-    --> 854             self.\_execute\_child(args, executable, preexec\_fn, close\_fds,
-        855                                 pass\_fds, cwd, env,
-        856                                 startupinfo, creationflags, shell,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_execute\_child(self, args, executable, preexec\_fn, close\_fds, pass\_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore\_signals, start\_new\_session)
-       1700                     if errno\_num != 0:
-       1701                         err\_msg = os.strerror(errno\_num)
-    -> 1702                     raise child\_exception\_type(errno\_num, err\_msg, err\_filename)
-       1703                 raise child\_exception\_type(err\_msg)
-       1704 
-
-
-        FileNotFoundError: [Errno 2] No such file or directory: '/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit'
-
+0.9413176064560881
     \end{Verbatim}
 
     Computation time is slower because there is a lot of setup, workers
@@ -1962,64 +1572,6 @@ and 'C' then divide by the total number of bases.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        FileNotFoundError                         Traceback (most recent call last)
-
-        <ipython-input-40-5559182bd46f> in <module>
-          1 import pyspark
-    ----> 2 sc = pyspark.SparkContext(master="local[*]", appName="series")
-          3 sc.setLogLevel("ERROR")
-          4 
-          5 genome = sc.textFile('data/genome.txt')
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_\_init\_\_(self, master, appName, sparkHome, pyFiles, environment, batchSize, serializer, conf, gateway, jsc, profiler\_cls)
-        126                 " is not allowed as it is a security risk.")
-        127 
-    --> 128         SparkContext.\_ensure\_initialized(self, gateway=gateway, conf=conf)
-        129         try:
-        130             self.\_do\_init(master, appName, sparkHome, pyFiles, environment, batchSize, serializer,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/context.py in \_ensure\_initialized(cls, instance, gateway, conf)
-        318         with SparkContext.\_lock:
-        319             if not SparkContext.\_gateway:
-    --> 320                 SparkContext.\_gateway = gateway or launch\_gateway(conf)
-        321                 SparkContext.\_jvm = SparkContext.\_gateway.jvm
-        322 
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pyspark/java\_gateway.py in launch\_gateway(conf, popen\_kwargs)
-         93                     signal.signal(signal.SIGINT, signal.SIG\_IGN)
-         94                 popen\_kwargs['preexec\_fn'] = preexec\_func
-    ---> 95                 proc = Popen(command, **popen\_kwargs)
-         96             else:
-         97                 \# preexec\_fn not supported on Windows
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_\_init\_\_(self, args, bufsize, executable, stdin, stdout, stderr, preexec\_fn, close\_fds, shell, cwd, env, universal\_newlines, startupinfo, creationflags, restore\_signals, start\_new\_session, pass\_fds, encoding, errors, text)
-        852                             encoding=encoding, errors=errors)
-        853 
-    --> 854             self.\_execute\_child(args, executable, preexec\_fn, close\_fds,
-        855                                 pass\_fds, cwd, env,
-        856                                 startupinfo, creationflags, shell,
-
-
-        /usr/share/miniconda3/envs/big-data/lib/python3.8/subprocess.py in \_execute\_child(self, args, executable, preexec\_fn, close\_fds, pass\_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore\_signals, start\_new\_session)
-       1700                     if errno\_num != 0:
-       1701                         err\_msg = os.strerror(errno\_num)
-    -> 1702                     raise child\_exception\_type(errno\_num, err\_msg, err\_filename)
-       1703                 raise child\_exception\_type(err\_msg)
-       1704 
-
-
-        FileNotFoundError: [Errno 2] No such file or directory: '/Users/navaro/opt/spark-3.0.0-bin-hadoop2.7/./bin/spark-submit'
-
-    \end{Verbatim}
-
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{41}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -2030,23 +1582,13 @@ and 'C' then divide by the total number of bases.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-41-cfa26747a609> in <module>
-    ----> 1 lines = genome.flatMap(lambda line: line.split())
-          2 g = lines.map(lambda line: line.count("G")).sum()
-          3 c = lines.map(lambda line: line.count("C")).sum()
-          4 (g + c) / lines.map(lambda line:len(line)).sum()
-
-
-        NameError: name 'genome' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{41}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0.5048333333333334
+\end{Verbatim}
+\end{tcolorbox}
+        
     \subsubsection{Another example}\label{another-example}
 
 Compute the most frequent sequence with 5 bases.
@@ -2072,23 +1614,13 @@ Compute the most frequent sequence with 5 bases.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-42-06b96ae94a2a> in <module>
-         12     return [sequence for sequence in group\_characters(line)]
-         13 
-    ---> 14 sequences = genome.flatMap(group\_and\_split)
-         15 sequences.take(3)
-
-
-        NameError: name 'genome' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{42}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+['GATCA', 'ATGAG', 'GTGGA']
+\end{Verbatim}
+\end{tcolorbox}
+        
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{43}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -2097,41 +1629,28 @@ Compute the most frequent sequence with 5 bases.
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-43-6752ce565abe> in <module>
-    ----> 1 counts = sequences.map(lambda w: (w, 1)).reduceByKey(lambda x, y: x + y).sortBy(lambda v:-v[1])
-          2 counts.take(10)
-
-
-        NameError: name 'sequences' is not defined
-
-    \end{Verbatim}
-
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{43}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+[('CTGTG', 59),
+ ('CCCAG', 55),
+ ('CCTGG', 52),
+ ('AAAAA', 49),
+ ('TGCTG', 42),
+ ('TGTGT', 41),
+ ('CCACC', 39),
+ ('GGCTG', 38),
+ ('CACCA', 37),
+ ('GTGGG', 37)]
+\end{Verbatim}
+\end{tcolorbox}
+        
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{44}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{sc}\PY{o}{.}\PY{n}{stop}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-44-8d3513b7698b> in <module>
-    ----> 1 sc.stop()
-    
-
-        NameError: name 'sc' is not defined
-
-    \end{Verbatim}
 
 
     % Add a bibliography block to the postdoc
