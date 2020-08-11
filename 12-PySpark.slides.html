@@ -13362,11 +13362,31 @@ foreach()</code></pre>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYSPARK_PYTHON&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;/usr/share/miniconda3/envs/big-data/bin/python&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13376,7 +13396,8 @@ foreach()</code></pre>
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYSPARK_PYTHON&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
 </pre></div>
 
     </div>
@@ -13389,7 +13410,20 @@ foreach()</code></pre>
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="s2">&quot;local[4]&quot;</span><span class="p">,</span> <span class="n">appName</span><span class="o">=</span><span class="s2">&quot;FirstExample&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="s2">&quot;local[*]&quot;</span><span class="p">,</span> <span class="n">appName</span><span class="o">=</span><span class="s2">&quot;FirstExample&quot;</span><span class="p">)</span>
 <span class="n">sc</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -13400,7 +13434,7 @@ foreach()</code></pre>
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span> <span class="c1"># it is like a Pool Processor executor</span>
@@ -13420,7 +13454,7 @@ foreach()</code></pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;SparkContext master=local[4] appName=FirstExample&gt;
+<pre>&lt;SparkContext master=local[*] appName=FirstExample&gt;
 </pre>
 </div>
 </div>
@@ -13438,7 +13472,7 @@ foreach()</code></pre>
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span> <span class="c1"># create collection</span>
@@ -13451,7 +13485,7 @@ foreach()</code></pre>
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span>
@@ -13467,7 +13501,7 @@ foreach()</code></pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13492,7 +13526,7 @@ foreach()</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">lorem</span>
@@ -13521,7 +13555,7 @@ foreach()</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
@@ -13537,23 +13571,17 @@ foreach()</code></pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Non est quiquia labore non modi velit etincidunt. Eius quisquam dolore non. Amet adipisci quiquia sit adipisci numquam. Sed quisquam eius amet. Quiquia quaerat numquam dolorem amet modi. Dolorem porro etincidunt aliquam ut eius sit labore. Magnam adipisci modi sit est.&#39;,
+<pre>[&#39;Eius quaerat adipisci tempora. Velit magnam consectetur ut ipsum sed quiquia. Tempora magnam sed aliquam tempora voluptatem eius. Neque neque modi labore. Non etincidunt modi sed sed quiquia ipsum. Adipisci quiquia magnam sed. Quaerat ut neque velit. Non voluptatem neque etincidunt quisquam sit amet sit. Sit magnam dolorem consectetur non.&#39;,
  &#39;&#39;,
- &#39;Magnam ut est numquam consectetur. Quaerat sed numquam quaerat. Numquam porro dolorem quaerat est neque labore. Eius adipisci est magnam amet aliquam aliquam porro. Quiquia est consectetur dolor. Neque ut modi porro etincidunt porro voluptatem dolor. Voluptatem eius dolore dolore eius est. Velit modi sit adipisci quiquia tempora. Etincidunt aliquam modi aliquam est sit.&#39;,
+ &#39;Tempora dolor sed ut. Quaerat adipisci magnam adipisci ut tempora. Tempora neque labore etincidunt adipisci quaerat adipisci. Aliquam non dolore quiquia eius. Etincidunt amet labore sed dolor. Dolor etincidunt eius etincidunt aliquam amet adipisci numquam. Numquam quaerat labore voluptatem.&#39;,
  &#39;&#39;,
- &#39;Quisquam eius labore quisquam numquam adipisci consectetur ipsum. Modi quisquam amet numquam aliquam velit non. Magnam amet labore quiquia ipsum eius voluptatem tempora. Eius consectetur neque numquam tempora aliquam eius consectetur. Velit amet tempora etincidunt numquam sed magnam eius.&#39;,
- &#39;&#39;,
- &#39;Ipsum ipsum sit ut. Numquam ipsum amet non sit labore amet. Tempora velit non numquam quaerat quaerat labore. Ipsum ut aliquam modi aliquam est. Est consectetur est dolorem dolor tempora porro. Sed voluptatem neque non. Quiquia quisquam neque labore sit numquam. Sed modi quaerat quaerat ut. Quaerat quisquam tempora amet ipsum quiquia.&#39;,
- &#39;&#39;,
- &#39;Magnam sed velit labore non ut. Quaerat sit consectetur neque dolorem. Tempora voluptatem dolor adipisci. Ipsum dolorem porro dolor eius quaerat ut. Magnam neque neque ut porro etincidunt magnam amet.&#39;,
- &#39;&#39;,
- &#39;Etincidunt numquam quaerat ipsum magnam quiquia est non. Labore quisquam aliquam ipsum neque. Numquam non labore sit voluptatem porro non magnam. Tempora quiquia quiquia ipsum numquam labore. Est magnam eius magnam. Porro quisquam numquam etincidunt quisquam. Voluptatem numquam porro voluptatem quisquam quiquia.&#39;]</pre>
+ &#39;Sit porro voluptatem dolore porro est non aliquam. Amet est ut sed modi quiquia. Dolore consectetur est magnam voluptatem sit aliquam. Quaerat sit dolore numquam. Ut neque quiquia ipsum quiquia. Eius ut amet quaerat adipisci tempora. Non eius non adipisci quisquam labore.&#39;]</pre>
 </div>
 
 </div>
@@ -13574,7 +13602,7 @@ foreach()</code></pre>
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span>
@@ -13591,7 +13619,7 @@ foreach()</code></pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -13616,7 +13644,7 @@ foreach()</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
@@ -13641,15 +13669,15 @@ foreach()</code></pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 5.36 ms, sys: 1.48 ms, total: 6.84 ms
-Wall time: 2.13 s
+<pre>CPU times: user 3.65 ms, sys: 2.91 ms, total: 6.56 ms
+Wall time: 4.07 s
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -13676,7 +13704,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select only the even elements</span>
@@ -13693,7 +13721,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -13719,7 +13747,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
@@ -13736,7 +13764,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -13763,7 +13791,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Fred&#39;</span><span class="p">,</span> <span class="s1">&#39;Anna&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">])</span>
@@ -13781,7 +13809,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -13807,7 +13835,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
@@ -13825,7 +13853,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -13851,7 +13879,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
@@ -13869,13 +13897,13 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;a&#39;, (1, 3)), (&#39;a&#39;, (1, 4)), (&#39;b&#39;, (2, 5))]</pre>
+<pre>[(&#39;b&#39;, (2, 5)), (&#39;a&#39;, (1, 3)), (&#39;a&#39;, (1, 4))]</pre>
 </div>
 
 </div>
@@ -13895,7 +13923,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
@@ -13912,13 +13940,13 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[4, 1, 2, 3]</pre>
+<pre>[2, 4, 1, 3]</pre>
 </div>
 
 </div>
@@ -13938,7 +13966,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;Fred&#39;</span><span class="p">,</span> <span class="s1">&#39;Anna&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">])</span>
@@ -13955,7 +13983,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -13981,7 +14009,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
@@ -13999,7 +14027,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -14034,7 +14062,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([(</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;James&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;Fred&#39;</span><span class="p">),</span> 
@@ -14053,7 +14081,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -14070,7 +14098,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Stop the local spark cluster</span>
@@ -14094,7 +14122,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lorem</span> <span class="kn">import</span> <span class="n">text</span>
@@ -14125,12 +14153,12 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark</span>
 
-<span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="s2">&quot;local[4]&quot;</span><span class="p">,</span> <span class="n">appName</span><span class="o">=</span><span class="s2">&quot;wordcount&quot;</span><span class="p">)</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="s2">&quot;local[*]&quot;</span><span class="p">,</span> <span class="n">appName</span><span class="o">=</span><span class="s2">&quot;wordcount&quot;</span><span class="p">)</span>
 <span class="n">sc</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -14141,7 +14169,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">)</span>
@@ -14154,7 +14182,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">rdd</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
@@ -14173,39 +14201,39 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;quaerat&#39;, 12),
- (&#39;tempora&#39;, 11),
- (&#39;etincidunt&#39;, 10),
- (&#39;quiquia&#39;, 9),
- (&#39;modi&#39;, 9),
- (&#39;eius&#39;, 8),
- (&#39;ipsum&#39;, 8),
- (&#39;numquam&#39;, 8),
- (&#39;voluptatem&#39;, 8),
- (&#39;dolor&#39;, 8),
- (&#39;sed&#39;, 7),
- (&#39;est&#39;, 7),
- (&#39;ut&#39;, 7),
- (&#39;quisquam&#39;, 7),
- (&#39;velit&#39;, 7),
- (&#39;consectetur&#39;, 6),
- (&#39;aliquam&#39;, 6),
- (&#39;adipisci&#39;, 6),
- (&#39;amet&#39;, 5),
- (&#39;magnam&#39;, 5),
- (&#39;dolore&#39;, 5),
- (&#39;porro&#39;, 4),
- (&#39;labore&#39;, 4),
- (&#39;dolorem&#39;, 4),
- (&#39;neque&#39;, 4),
- (&#39;sit&#39;, 4),
- (&#39;non&#39;, 3)]</pre>
+<pre>[(&#39;porro&#39;, 16),
+ (&#39;dolorem&#39;, 16),
+ (&#39;ut&#39;, 15),
+ (&#39;tempora&#39;, 13),
+ (&#39;sed&#39;, 12),
+ (&#39;modi&#39;, 12),
+ (&#39;quisquam&#39;, 12),
+ (&#39;labore&#39;, 11),
+ (&#39;quiquia&#39;, 11),
+ (&#39;eius&#39;, 11),
+ (&#39;dolore&#39;, 11),
+ (&#39;amet&#39;, 9),
+ (&#39;ipsum&#39;, 9),
+ (&#39;magnam&#39;, 9),
+ (&#39;velit&#39;, 9),
+ (&#39;numquam&#39;, 9),
+ (&#39;sit&#39;, 8),
+ (&#39;etincidunt&#39;, 8),
+ (&#39;consectetur&#39;, 7),
+ (&#39;adipisci&#39;, 7),
+ (&#39;voluptatem&#39;, 7),
+ (&#39;aliquam&#39;, 7),
+ (&#39;dolor&#39;, 6),
+ (&#39;non&#39;, 6),
+ (&#39;quaerat&#39;, 5),
+ (&#39;est&#39;, 4),
+ (&#39;neque&#39;, 3)]</pre>
 </div>
 
 </div>
@@ -14216,7 +14244,7 @@ Source: <a href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
@@ -14252,7 +14280,7 @@ allows programming Spark with DataFrame and Dataset APIs.</p>
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -14261,9 +14289,8 @@ allows programming Spark with DataFrame and Dataset APIs.</p>
 
 <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
 
-<span class="n">spark</span> <span class="o">=</span> <span class="p">(</span><span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[4]&quot;</span><span class="p">)</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="p">(</span><span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span>
          <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;PythonPi&quot;</span><span class="p">)</span>
-         <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.executor.instances&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">)</span>
          <span class="o">.</span><span class="n">getOrCreate</span><span class="p">())</span>
 
 <span class="n">partitions</span> <span class="o">=</span> <span class="mi">8</span>
@@ -14294,7 +14321,7 @@ allows programming Spark with DataFrame and Dataset APIs.</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Pi is roughly 3.139455
+<pre>Pi is roughly 3.143445
 </pre>
 </div>
 </div>
@@ -14317,7 +14344,7 @@ You can check your result with numpy</p>
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># numpy evaluates solution using numeric computation. </span>
@@ -14337,7 +14364,7 @@ You can check your result with numpy</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[28]:</div>
 
 
 
@@ -14354,7 +14381,7 @@ You can check your result with numpy</p>
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># numpy and scipy evaluates solution using numeric computation. It uses discrete values</span>
@@ -14375,7 +14402,7 @@ You can check your result with numpy</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -14402,7 +14429,7 @@ You can check your result with numpy</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># library to get directory and file paths</span>
@@ -14426,7 +14453,7 @@ You can check your result with numpy</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -14449,7 +14476,7 @@ You can check your result with numpy</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[30]:</div>
+    <div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -14486,7 +14513,7 @@ You can check your result with numpy</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">rm</span> data/daily-stock/*.h5
@@ -14499,7 +14526,7 @@ You can check your result with numpy</p>
 </div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
@@ -14571,7 +14598,7 @@ Finished : xom.h5
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filenames</span>
@@ -14587,7 +14614,7 @@ Finished : xom.h5
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[34]:</div>
 
 
 
@@ -14624,7 +14651,7 @@ Finished : xom.h5
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s1">&#39;data/daily-stock/aet.h5&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdf</span><span class="p">:</span>
@@ -14657,7 +14684,7 @@ Finished : xom.h5
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">&#39;data/daily-stock/aet.h5&#39;</span><span class="p">)</span>
@@ -14670,7 +14697,7 @@ Finished : xom.h5
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -14704,21 +14731,21 @@ Finished : xom.h5
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.3 s, sys: 146 ms, total: 1.44 s
-Wall time: 1.44 s
+<pre>CPU times: user 1.14 s, sys: 123 ms, total: 1.26 s
+Wall time: 1.27 s
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
+    <div class="prompt output_prompt">Out[37]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.9413176064560879</pre>
+<pre>0.9413176064560881</pre>
 </div>
 
 </div>
@@ -14747,7 +14774,7 @@ Wall time: 1.44 s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
@@ -14767,7 +14794,7 @@ Wall time: 1.44 s
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[37]:</div>
+    <div class="prompt output_prompt">Out[38]:</div>
 
 
 
@@ -14812,13 +14839,13 @@ Wall time: 1.44 s
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Parallel code</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="s2">&quot;local[4]&quot;</span><span class="p">,</span> <span class="n">appName</span><span class="o">=</span><span class="s2">&quot;Exercise 9.3-4&quot;</span><span class="p">)</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="s2">&quot;local[*]&quot;</span><span class="p">,</span> <span class="n">appName</span><span class="o">=</span><span class="s2">&quot;series&quot;</span><span class="p">)</span>
 <span class="n">sc</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
 
 <span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
@@ -14830,29 +14857,10 @@ Wall time: 1.44 s
               <span class="o">.</span><span class="n">max</span><span class="p">())</span>
 
 <span class="n">corr</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[38]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0.9413176064560879</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -14869,10 +14877,14 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">genome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="p">(</span><span class="s1">&#39;data/genome.txt&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">SparkContext</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="s2">&quot;local[*]&quot;</span><span class="p">,</span> <span class="n">appName</span><span class="o">=</span><span class="s2">&quot;series&quot;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+
+
+<span class="n">genome</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="p">(</span><span class="s1">&#39;data/genome.txt&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14882,7 +14894,7 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
@@ -14901,7 +14913,7 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[40]:</div>
+    <div class="prompt output_prompt">Out[41]:</div>
 
 
 
@@ -14926,7 +14938,7 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">group_characters</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
@@ -14956,7 +14968,7 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[41]:</div>
+    <div class="prompt output_prompt">Out[42]:</div>
 
 
 
@@ -14973,7 +14985,7 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">sequences</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">sortBy</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span><span class="o">-</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -14990,7 +15002,7 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[42]:</div>
+    <div class="prompt output_prompt">Out[43]:</div>
 
 
 
@@ -15016,7 +15028,7 @@ $$\cfrac{G+C}{A+T+G+C}\times100%$$<p>Create a rdd from fasta file genome.txt in 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
