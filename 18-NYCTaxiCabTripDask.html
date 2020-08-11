@@ -13142,7 +13142,7 @@ div#notebook {
 #SBATCH --mem=15G
 #SBATCH -t 01:00:00
 
-/usr/share/miniconda3/envs/big-data/bin/python -m distributed.cli.dask_worker tcp://10.1.0.4:44225 --nthreads 4 --nprocs 4 --memory-limit 4.00GB --name name --nanny --death-timeout 60
+/usr/share/miniconda3/envs/big-data/bin/python -m distributed.cli.dask_worker tcp://10.1.0.4:42855 --nthreads 4 --nprocs 4 --memory-limit 4.00GB --name name --nanny --death-timeout 60
 
 </pre>
 </div>
