@@ -13124,7 +13124,7 @@ which does not return until the results are available.</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 0 ns, sys: 1.48 ms, total: 1.48 ms
+<pre>CPU times: user 1.42 ms, sys: 289 µs, total: 1.71 ms
 Wall time: 1 s
 </pre>
 </div>
@@ -13175,7 +13175,7 @@ Wall time: 1 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;Future at 0x7f59ad1de490 state=running&gt;</pre>
+<pre>&lt;Future at 0x7f1e6c5eee20 state=running&gt;</pre>
 </div>
 
 </div>
@@ -13250,7 +13250,7 @@ Wall time: 1 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[0, 2, 4, 6, 8, 10, 12, 14]
-CPU times: user 0 ns, sys: 3.97 ms, total: 3.97 ms
+CPU times: user 4.3 ms, sys: 58 µs, total: 4.35 ms
 Wall time: 8.01 s
 </pre>
 </div>
@@ -13287,7 +13287,7 @@ Wall time: 8.01 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[0, 2, 4, 6, 8, 10, 12, 14]
-CPU times: user 4.26 ms, sys: 0 ns, total: 4.26 ms
+CPU times: user 2.57 ms, sys: 3.69 ms, total: 6.26 ms
 Wall time: 2 s
 </pre>
 </div>
@@ -13365,7 +13365,7 @@ Wall time: 2 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[1, 2, 3, 1, 3, 4, 2, 1, 5, 3, 2, 1]
-CPU times: user 4.64 ms, sys: 124 µs, total: 4.76 ms
+CPU times: user 4.61 ms, sys: 942 µs, total: 5.56 ms
 Wall time: 12 s
 </pre>
 </div>
@@ -13543,8 +13543,8 @@ Finished : pcg.h5
 Finished : tgt.h5
 Finished : usb.h5
 Finished : xom.h5
-CPU times: user 8.25 s, sys: 1.05 s, total: 9.29 s
-Wall time: 8.88 s
+CPU times: user 8.37 s, sys: 966 ms, total: 9.33 s
+Wall time: 9.18 s
 </pre>
 </div>
 </div>
@@ -13602,11 +13602,11 @@ Wall time: 8.88 s
 <span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">     </span>series<span class="ansi-blue-fg">[</span>fn<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>read_hdf<span class="ansi-blue-fg">(</span>fn<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;close&#39;</span><span class="ansi-blue-fg">]</span>
 
 <span class="ansi-green-fg">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/pandas/io/pytables.py</span> in <span class="ansi-cyan-fg">read_hdf</span><span class="ansi-blue-fg">(path_or_buf, key, mode, errors, where, start, stop, columns, iterator, chunksize, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    400</span>             <span class="ansi-green-fg">for</span> group_to_check <span class="ansi-green-fg">in</span> groups<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    401</span>                 <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> _is_metadata_of<span class="ansi-blue-fg">(</span>group_to_check<span class="ansi-blue-fg">,</span> candidate_only_group<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 402</span><span class="ansi-red-fg">                     raise ValueError(
-</span><span class="ansi-green-intense-fg ansi-bold">    403</span>                         <span class="ansi-blue-fg">&#34;key must be provided when HDF5 &#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">    404</span>                         <span class="ansi-blue-fg">&#34;file contains multiple datasets.&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">    408</span>             <span class="ansi-green-fg">for</span> group_to_check <span class="ansi-green-fg">in</span> groups<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    409</span>                 <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> _is_metadata_of<span class="ansi-blue-fg">(</span>group_to_check<span class="ansi-blue-fg">,</span> candidate_only_group<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 410</span><span class="ansi-red-fg">                     raise ValueError(
+</span><span class="ansi-green-intense-fg ansi-bold">    411</span>                         <span class="ansi-blue-fg">&#34;key must be provided when HDF5 &#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">    412</span>                         <span class="ansi-blue-fg">&#34;file contains multiple datasets.&#34;</span>
 
 <span class="ansi-red-fg">ValueError</span>: key must be provided when HDF5 file contains multiple datasets.</pre>
 </div>
