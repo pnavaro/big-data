@@ -51,7 +51,7 @@
 <meta property="og:url"         content="https://pnavaro.github.io/big-data/08-DaskDelayed.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Dask" />
-<meta property="og:description" content="Dask  &lt;img src=&#34;images/dask_logo.jpg&#34;&gt;  process data that doesn’t fit into memory by breaking it into blocks and specifying task chains  parallelize execution o" />
+<meta property="og:description" content="Dask    process data that doesn’t fit into memory by breaking it into blocks and specifying task chains  parallelize execution of tasks across cores and even no" />
 <meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
 
 <meta name="twitter:card" content="summary" />
@@ -348,7 +348,8 @@
                 
   <div class="section" id="dask">
 <h1>Dask<a class="headerlink" href="#dask" title="Permalink to this headline">¶</a></h1>
-<img src="images/dask_logo.jpg"><ul class="simple">
+<img alt="_images/dask_logo.jpg" src="_images/dask_logo.jpg" />
+<ul class="simple">
 <li><p>process data that doesn’t fit into memory by breaking it into blocks and specifying task chains</p></li>
 <li><p>parallelize execution of tasks across cores and even nodes of a cluster</p></li>
 <li><p>move computation to the data rather than the other way around, to minimize communication overheads</p></li>
@@ -389,7 +390,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 1.81 ms, total: 1.81 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.86 ms, sys: 0 ns, total: 1.86 ms
 Wall time: 3 s
 </pre></div>
 </div>
@@ -426,7 +427,7 @@ Wall time: 3 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.64 ms, sys: 0 ns, total: 6.64 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.28 ms, sys: 4.17 ms, total: 7.46 ms
 Wall time: 2.01 s
 </pre></div>
 </div>
@@ -472,7 +473,7 @@ Wall time: 2.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 49 µs, sys: 4.02 ms, total: 4.07 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 3.24 ms, total: 3.24 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -520,7 +521,7 @@ Wall time: 8.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.22 ms, sys: 0 ns, total: 7.22 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.07 ms, sys: 4 ms, total: 7.07 ms
 Wall time: 4.01 s
 </pre></div>
 </div>
@@ -556,8 +557,8 @@ Wall time: 4.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.98 ms, sys: 562 µs, total: 4.55 ms
-Wall time: 2.01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 3.79 ms, total: 3.79 ms
+Wall time: 2 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
@@ -596,7 +597,7 @@ Wall time: 2.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[94, 22, 71, 53, 9, 91, 97, 25]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[39, 62, 81, 19, 3, 17, 0, 82]
 </pre></div>
 </div>
 </div>
@@ -744,8 +745,8 @@ data/daily-stock/b.h5     data/daily-stock/jbl.h5  data/daily-stock/xom.h5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.66 s, sys: 1.03 s, total: 9.68 s
-Wall time: 9.33 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.12 s, sys: 1.12 s, total: 10.2 s
+Wall time: 9.32 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aet&#39;,
