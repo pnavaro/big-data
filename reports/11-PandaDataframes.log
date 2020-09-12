@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/usr/share/miniconda3/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/usr/share/miniconda3/lib/python3.8/site-packages/nbclient/client.py", line 1082, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/share/miniconda3/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/share/miniconda3/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/share/miniconda3/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/usr/share/miniconda3/lib/python3.8/site-packages/nbclient/client.py", line 535, in async_execute
+    await self.async_execute_cell(
+  File "/usr/share/miniconda3/lib/python3.8/site-packages/nbclient/client.py", line 827, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/usr/share/miniconda3/lib/python3.8/site-packages/nbclient/client.py", line 735, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import locale
+import calendar
+
+locale.setlocale(locale.LC_ALL,'en_US')
+
+months = calendar.month_abbr
+print(*months)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mError[0m                                     Traceback (most recent call last)
+[0;32m<ipython-input-9-e38d847f0b53>[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0;32mimport[0m [0mcalendar[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[0;32m----> 4[0;31m [0mlocale[0m[0;34m.[0m[0msetlocale[0m[0;34m([0m[0mlocale[0m[0;34m.[0m[0mLC_ALL[0m[0;34m,[0m[0;34m'en_US'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0;34m[0m[0m
+[1;32m      6[0m [0mmonths[0m [0;34m=[0m [0mcalendar[0m[0;34m.[0m[0mmonth_abbr[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/share/miniconda3/envs/big-data/lib/python3.8/locale.py[0m in [0;36msetlocale[0;34m(category, locale)[0m
+[1;32m    606[0m         [0;31m# convert to string[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    607[0m         [0mlocale[0m [0;34m=[0m [0mnormalize[0m[0;34m([0m[0m_build_localename[0m[0;34m([0m[0mlocale[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 608[0;31m     [0;32mreturn[0m [0m_setlocale[0m[0;34m([0m[0mcategory[0m[0;34m,[0m [0mlocale[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    609[0m [0;34m[0m[0m
+[1;32m    610[0m [0;32mdef[0m [0mresetlocale[0m[0;34m([0m[0mcategory[0m[0;34m=[0m[0mLC_ALL[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mError[0m: unsupported locale setting
+Error: unsupported locale setting
+
