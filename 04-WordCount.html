@@ -85,6 +85,11 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="01-GitBasics.html">
+   Git
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="02-Installation.html">
    Installation
   </a>
@@ -410,7 +415,7 @@ du -h sample.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   69682  2009845 14201988 sample.txt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   70038  2012725 14217571 sample.txt
 14M	sample.txt
 </pre></div>
 </div>
@@ -430,7 +435,7 @@ du -h sample.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>69683
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70039
 </pre></div>
 </div>
 </div>
@@ -446,7 +451,7 @@ du -h sample.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2009845
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2012725
 </pre></div>
 </div>
 </div>
@@ -463,7 +468,7 @@ du -h sample.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12157303
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12169828
 </pre></div>
 </div>
 </div>
@@ -479,35 +484,41 @@ du -h sample.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Amet&#39;,
- &#39;Labore&#39;,
- &#39;Neque&#39;,
- &#39;Non&#39;,
- &#39;Sed&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Consectetur&#39;,
+ &#39;Dolorem&#39;,
+ &#39;Etincidunt&#39;,
+ &#39;Numquam&#39;,
+ &#39;Porro&#39;,
+ &#39;Quaerat&#39;,
  &#39;Tempora&#39;,
- &#39;adipisci&#39;,
+ &#39;Velit&#39;,
  &#39;aliquam&#39;,
  &#39;aliquam.&#39;,
  &#39;amet&#39;,
- &#39;consectetur&#39;,
+ &#39;amet.&#39;,
+ &#39;dolor&#39;,
  &#39;dolore&#39;,
- &#39;dolore.&#39;,
  &#39;dolorem&#39;,
+ &#39;eius&#39;,
  &#39;est&#39;,
+ &#39;est.&#39;,
  &#39;etincidunt&#39;,
  &#39;ipsum&#39;,
- &#39;ipsum.&#39;,
- &#39;labore&#39;,
- &#39;magnam&#39;,
- &#39;magnam.&#39;,
+ &#39;labore.&#39;,
  &#39;modi&#39;,
  &#39;neque&#39;,
+ &#39;neque.&#39;,
+ &#39;non&#39;,
+ &#39;non.&#39;,
  &#39;numquam&#39;,
- &#39;porro&#39;,
+ &#39;quiquia&#39;,
+ &#39;quisquam&#39;,
  &#39;sed&#39;,
  &#39;sit&#39;,
- &#39;tempora.&#39;,
- &#39;velit&#39;,
+ &#39;tempora&#39;,
+ &#39;ut&#39;,
+ &#39;ut.&#39;,
+ &#39;velit.&#39;,
  &#39;voluptatem&#39;}
 </pre></div>
 </div>
@@ -604,33 +615,33 @@ Return a callable object that fetches item from its operand using the operand’
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dolorem&#39;: 75309,
- &#39;ut&#39;: 75308,
- &#39;etincidunt&#39;: 75148,
- &#39;aliquam&#39;: 75108,
- &#39;velit&#39;: 75077,
- &#39;sit&#39;: 75038,
- &#39;adipisci&#39;: 75017,
- &#39;quiquia&#39;: 75000,
- &#39;quisquam&#39;: 74987,
- &#39;neque&#39;: 74985,
- &#39;voluptatem&#39;: 74977,
- &#39;magnam&#39;: 74942,
- &#39;non&#39;: 74924,
- &#39;numquam&#39;: 74904,
- &#39;quaerat&#39;: 74798,
- &#39;est&#39;: 74782,
- &#39;eius&#39;: 74755,
- &#39;ipsum&#39;: 74661,
- &#39;amet&#39;: 74660,
- &#39;tempora&#39;: 74620,
- &#39;sed&#39;: 74570,
- &#39;dolore&#39;: 74505,
- &#39;porro&#39;: 74425,
- &#39;modi&#39;: 74393,
- &#39;consectetur&#39;: 74354,
- &#39;dolor&#39;: 74316,
- &#39;labore&#39;: 74281}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neque&#39;: 75331,
+ &#39;quaerat&#39;: 75289,
+ &#39;ipsum&#39;: 75278,
+ &#39;quisquam&#39;: 75201,
+ &#39;est&#39;: 75165,
+ &#39;modi&#39;: 75134,
+ &#39;dolorem&#39;: 75083,
+ &#39;labore&#39;: 75081,
+ &#39;aliquam&#39;: 75066,
+ &#39;porro&#39;: 75024,
+ &#39;non&#39;: 75001,
+ &#39;amet&#39;: 74989,
+ &#39;eius&#39;: 74976,
+ &#39;sed&#39;: 74919,
+ &#39;velit&#39;: 74911,
+ &#39;adipisci&#39;: 74879,
+ &#39;magnam&#39;: 74803,
+ &#39;tempora&#39;: 74795,
+ &#39;consectetur&#39;: 74772,
+ &#39;dolore&#39;: 74750,
+ &#39;sit&#39;: 74734,
+ &#39;ut&#39;: 74688,
+ &#39;numquam&#39;: 74642,
+ &#39;dolor&#39;: 74616,
+ &#39;voluptatem&#39;: 74587,
+ &#39;quiquia&#39;: 74512,
+ &#39;etincidunt&#39;: 74498}
 </pre></div>
 </div>
 </div>
@@ -657,33 +668,33 @@ Return a callable object that fetches item from its operand using the operand’
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dolorem&#39;: 75309,
- &#39;ut&#39;: 75308,
- &#39;etincidunt&#39;: 75148,
- &#39;aliquam&#39;: 75108,
- &#39;velit&#39;: 75077,
- &#39;sit&#39;: 75038,
- &#39;adipisci&#39;: 75017,
- &#39;quiquia&#39;: 75000,
- &#39;quisquam&#39;: 74987,
- &#39;neque&#39;: 74985,
- &#39;voluptatem&#39;: 74977,
- &#39;magnam&#39;: 74942,
- &#39;non&#39;: 74924,
- &#39;numquam&#39;: 74904,
- &#39;quaerat&#39;: 74798,
- &#39;est&#39;: 74782,
- &#39;eius&#39;: 74755,
- &#39;ipsum&#39;: 74661,
- &#39;amet&#39;: 74660,
- &#39;tempora&#39;: 74620,
- &#39;sed&#39;: 74570,
- &#39;dolore&#39;: 74505,
- &#39;porro&#39;: 74425,
- &#39;modi&#39;: 74393,
- &#39;consectetur&#39;: 74354,
- &#39;dolor&#39;: 74316,
- &#39;labore&#39;: 74281}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neque&#39;: 75331,
+ &#39;quaerat&#39;: 75289,
+ &#39;ipsum&#39;: 75278,
+ &#39;quisquam&#39;: 75201,
+ &#39;est&#39;: 75165,
+ &#39;modi&#39;: 75134,
+ &#39;dolorem&#39;: 75083,
+ &#39;labore&#39;: 75081,
+ &#39;aliquam&#39;: 75066,
+ &#39;porro&#39;: 75024,
+ &#39;non&#39;: 75001,
+ &#39;amet&#39;: 74989,
+ &#39;eius&#39;: 74976,
+ &#39;sed&#39;: 74919,
+ &#39;velit&#39;: 74911,
+ &#39;adipisci&#39;: 74879,
+ &#39;magnam&#39;: 74803,
+ &#39;tempora&#39;: 74795,
+ &#39;consectetur&#39;: 74772,
+ &#39;dolore&#39;: 74750,
+ &#39;sit&#39;: 74734,
+ &#39;ut&#39;: 74688,
+ &#39;numquam&#39;: 74642,
+ &#39;dolor&#39;: 74616,
+ &#39;voluptatem&#39;: 74587,
+ &#39;quiquia&#39;: 74512,
+ &#39;etincidunt&#39;: 74498}
 </pre></div>
 </div>
 </div>
@@ -745,33 +756,33 @@ For example, using list as the default_factory, it is easy to group a sequence o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dolorem&#39;: 75309,
- &#39;ut&#39;: 75308,
- &#39;etincidunt&#39;: 75148,
- &#39;aliquam&#39;: 75108,
- &#39;velit&#39;: 75077,
- &#39;sit&#39;: 75038,
- &#39;adipisci&#39;: 75017,
- &#39;quiquia&#39;: 75000,
- &#39;quisquam&#39;: 74987,
- &#39;neque&#39;: 74985,
- &#39;voluptatem&#39;: 74977,
- &#39;magnam&#39;: 74942,
- &#39;non&#39;: 74924,
- &#39;numquam&#39;: 74904,
- &#39;quaerat&#39;: 74798,
- &#39;est&#39;: 74782,
- &#39;eius&#39;: 74755,
- &#39;ipsum&#39;: 74661,
- &#39;amet&#39;: 74660,
- &#39;tempora&#39;: 74620,
- &#39;sed&#39;: 74570,
- &#39;dolore&#39;: 74505,
- &#39;porro&#39;: 74425,
- &#39;modi&#39;: 74393,
- &#39;consectetur&#39;: 74354,
- &#39;dolor&#39;: 74316,
- &#39;labore&#39;: 74281}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neque&#39;: 75331,
+ &#39;quaerat&#39;: 75289,
+ &#39;ipsum&#39;: 75278,
+ &#39;quisquam&#39;: 75201,
+ &#39;est&#39;: 75165,
+ &#39;modi&#39;: 75134,
+ &#39;dolorem&#39;: 75083,
+ &#39;labore&#39;: 75081,
+ &#39;aliquam&#39;: 75066,
+ &#39;porro&#39;: 75024,
+ &#39;non&#39;: 75001,
+ &#39;amet&#39;: 74989,
+ &#39;eius&#39;: 74976,
+ &#39;sed&#39;: 74919,
+ &#39;velit&#39;: 74911,
+ &#39;adipisci&#39;: 74879,
+ &#39;magnam&#39;: 74803,
+ &#39;tempora&#39;: 74795,
+ &#39;consectetur&#39;: 74772,
+ &#39;dolore&#39;: 74750,
+ &#39;sit&#39;: 74734,
+ &#39;ut&#39;: 74688,
+ &#39;numquam&#39;: 74642,
+ &#39;dolor&#39;: 74616,
+ &#39;voluptatem&#39;: 74587,
+ &#39;quiquia&#39;: 74512,
+ &#39;etincidunt&#39;: 74498}
 </pre></div>
 </div>
 </div>
@@ -860,33 +871,33 @@ For example, using list as the default_factory, it is easy to group a sequence o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dolorem&#39;: 75309,
- &#39;ut&#39;: 75308,
- &#39;etincidunt&#39;: 75148,
- &#39;aliquam&#39;: 75108,
- &#39;velit&#39;: 75077,
- &#39;sit&#39;: 75038,
- &#39;adipisci&#39;: 75017,
- &#39;quiquia&#39;: 75000,
- &#39;quisquam&#39;: 74987,
- &#39;neque&#39;: 74985,
- &#39;voluptatem&#39;: 74977,
- &#39;magnam&#39;: 74942,
- &#39;non&#39;: 74924,
- &#39;numquam&#39;: 74904,
- &#39;quaerat&#39;: 74798,
- &#39;est&#39;: 74782,
- &#39;eius&#39;: 74755,
- &#39;ipsum&#39;: 74661,
- &#39;amet&#39;: 74660,
- &#39;tempora&#39;: 74620,
- &#39;sed&#39;: 74570,
- &#39;dolore&#39;: 74505,
- &#39;porro&#39;: 74425,
- &#39;modi&#39;: 74393,
- &#39;consectetur&#39;: 74354,
- &#39;dolor&#39;: 74316,
- &#39;labore&#39;: 74281}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neque&#39;: 75331,
+ &#39;quaerat&#39;: 75289,
+ &#39;ipsum&#39;: 75278,
+ &#39;quisquam&#39;: 75201,
+ &#39;est&#39;: 75165,
+ &#39;modi&#39;: 75134,
+ &#39;dolorem&#39;: 75083,
+ &#39;labore&#39;: 75081,
+ &#39;aliquam&#39;: 75066,
+ &#39;porro&#39;: 75024,
+ &#39;non&#39;: 75001,
+ &#39;amet&#39;: 74989,
+ &#39;eius&#39;: 74976,
+ &#39;sed&#39;: 74919,
+ &#39;velit&#39;: 74911,
+ &#39;adipisci&#39;: 74879,
+ &#39;magnam&#39;: 74803,
+ &#39;tempora&#39;: 74795,
+ &#39;consectetur&#39;: 74772,
+ &#39;dolore&#39;: 74750,
+ &#39;sit&#39;: 74734,
+ &#39;ut&#39;: 74688,
+ &#39;numquam&#39;: 74642,
+ &#39;dolor&#39;: 74616,
+ &#39;voluptatem&#39;: 74587,
+ &#39;quiquia&#39;: 74512,
+ &#39;etincidunt&#39;: 74498}
 </pre></div>
 </div>
 </div>
@@ -962,33 +973,33 @@ For example, using list as the default_factory, it is easy to group a sequence o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;quaerat&#39;: 26,
- &#39;magnam&#39;: 23,
- &#39;labore&#39;: 22,
- &#39;quisquam&#39;: 22,
- &#39;consectetur&#39;: 20,
- &#39;dolore&#39;: 20,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dolor&#39;: 24,
+ &#39;porro&#39;: 24,
+ &#39;consectetur&#39;: 22,
+ &#39;ut&#39;: 22,
+ &#39;velit&#39;: 22,
+ &#39;magnam&#39;: 21,
+ &#39;non&#39;: 21,
+ &#39;amet&#39;: 20,
  &#39;dolorem&#39;: 20,
- &#39;amet&#39;: 19,
- &#39;non&#39;: 18,
- &#39;est&#39;: 17,
- &#39;modi&#39;: 17,
- &#39;etincidunt&#39;: 16,
- &#39;sed&#39;: 16,
- &#39;tempora&#39;: 16,
- &#39;ut&#39;: 16,
- &#39;aliquam&#39;: 15,
- &#39;numquam&#39;: 15,
- &#39;porro&#39;: 15,
- &#39;dolor&#39;: 14,
- &#39;eius&#39;: 14,
- &#39;neque&#39;: 14,
- &#39;quiquia&#39;: 13,
- &#39;sit&#39;: 13,
- &#39;velit&#39;: 13,
- &#39;adipisci&#39;: 12,
- &#39;voluptatem&#39;: 10,
- &#39;ipsum&#39;: 9}
+ &#39;modi&#39;: 19,
+ &#39;adipisci&#39;: 18,
+ &#39;neque&#39;: 18,
+ &#39;tempora&#39;: 18,
+ &#39;ipsum&#39;: 17,
+ &#39;quisquam&#39;: 17,
+ &#39;aliquam&#39;: 16,
+ &#39;quiquia&#39;: 16,
+ &#39;eius&#39;: 15,
+ &#39;est&#39;: 15,
+ &#39;etincidunt&#39;: 15,
+ &#39;dolore&#39;: 13,
+ &#39;voluptatem&#39;: 13,
+ &#39;numquam&#39;: 12,
+ &#39;quaerat&#39;: 12,
+ &#39;sit&#39;: 12,
+ &#39;labore&#39;: 11,
+ &#39;sed&#39;: 11}
 </pre></div>
 </div>
 </div>
@@ -1006,33 +1017,33 @@ For example, using list as the default_factory, it is easy to group a sequence o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;magnam&#39;: 54,
- &#39;labore&#39;: 48,
- &#39;quaerat&#39;: 46,
- &#39;non&#39;: 44,
- &#39;amet&#39;: 43,
- &#39;quisquam&#39;: 41,
- &#39;ut&#39;: 41,
- &#39;consectetur&#39;: 38,
- &#39;dolorem&#39;: 38,
- &#39;dolore&#39;: 37,
- &#39;eius&#39;: 37,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;consectetur&#39;: 49,
+ &#39;non&#39;: 49,
+ &#39;velit&#39;: 49,
+ &#39;neque&#39;: 43,
+ &#39;ut&#39;: 43,
+ &#39;dolor&#39;: 42,
+ &#39;dolorem&#39;: 42,
+ &#39;aliquam&#39;: 41,
+ &#39;etincidunt&#39;: 40,
+ &#39;magnam&#39;: 40,
+ &#39;modi&#39;: 38,
+ &#39;quisquam&#39;: 38,
+ &#39;adipisci&#39;: 37,
  &#39;porro&#39;: 37,
- &#39;numquam&#39;: 36,
- &#39;quiquia&#39;: 36,
- &#39;etincidunt&#39;: 35,
- &#39;modi&#39;: 35,
- &#39;neque&#39;: 34,
- &#39;sed&#39;: 34,
- &#39;dolor&#39;: 33,
- &#39;est&#39;: 33,
- &#39;tempora&#39;: 32,
- &#39;adipisci&#39;: 30,
- &#39;voluptatem&#39;: 30,
+ &#39;tempora&#39;: 37,
+ &#39;amet&#39;: 36,
+ &#39;eius&#39;: 35,
+ &#39;ipsum&#39;: 34,
+ &#39;labore&#39;: 34,
+ &#39;est&#39;: 31,
+ &#39;voluptatem&#39;: 31,
+ &#39;numquam&#39;: 30,
+ &#39;quiquia&#39;: 29,
  &#39;sit&#39;: 29,
- &#39;velit&#39;: 29,
- &#39;ipsum&#39;: 27,
- &#39;aliquam&#39;: 26}
+ &#39;dolore&#39;: 27,
+ &#39;sed&#39;: 27,
+ &#39;quaerat&#39;: 26}
 </pre></div>
 </div>
 </div>
@@ -1095,33 +1106,33 @@ bonjour
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;magnam&#39;: 54,
- &#39;labore&#39;: 48,
- &#39;quaerat&#39;: 46,
- &#39;non&#39;: 44,
- &#39;amet&#39;: 43,
- &#39;quisquam&#39;: 41,
- &#39;ut&#39;: 41,
- &#39;consectetur&#39;: 38,
- &#39;dolorem&#39;: 38,
- &#39;dolore&#39;: 37,
- &#39;eius&#39;: 37,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;consectetur&#39;: 49,
+ &#39;non&#39;: 49,
+ &#39;velit&#39;: 49,
+ &#39;neque&#39;: 43,
+ &#39;ut&#39;: 43,
+ &#39;dolor&#39;: 42,
+ &#39;dolorem&#39;: 42,
+ &#39;aliquam&#39;: 41,
+ &#39;etincidunt&#39;: 40,
+ &#39;magnam&#39;: 40,
+ &#39;modi&#39;: 38,
+ &#39;quisquam&#39;: 38,
+ &#39;adipisci&#39;: 37,
  &#39;porro&#39;: 37,
- &#39;numquam&#39;: 36,
- &#39;quiquia&#39;: 36,
- &#39;etincidunt&#39;: 35,
- &#39;modi&#39;: 35,
- &#39;neque&#39;: 34,
- &#39;sed&#39;: 34,
- &#39;dolor&#39;: 33,
- &#39;est&#39;: 33,
- &#39;tempora&#39;: 32,
- &#39;adipisci&#39;: 30,
- &#39;voluptatem&#39;: 30,
+ &#39;tempora&#39;: 37,
+ &#39;amet&#39;: 36,
+ &#39;eius&#39;: 35,
+ &#39;ipsum&#39;: 34,
+ &#39;labore&#39;: 34,
+ &#39;est&#39;: 31,
+ &#39;voluptatem&#39;: 31,
+ &#39;numquam&#39;: 30,
+ &#39;quiquia&#39;: 29,
  &#39;sit&#39;: 29,
- &#39;velit&#39;: 29,
- &#39;ipsum&#39;: 27,
- &#39;aliquam&#39;: 26}
+ &#39;dolore&#39;: 27,
+ &#39;sed&#39;: 27,
+ &#39;quaerat&#39;: 26}
 </pre></div>
 </div>
 </div>

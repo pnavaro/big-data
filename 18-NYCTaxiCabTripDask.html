@@ -85,6 +85,11 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
+  <a class="reference internal" href="01-GitBasics.html">
+   Git
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="02-Installation.html">
    Installation
   </a>
@@ -337,7 +342,7 @@
 #SBATCH --mem=15G
 #SBATCH -t 01:00:00
 
-/usr/share/miniconda3/envs/big-data/bin/python -m distributed.cli.dask_worker tcp://10.1.0.4:39727 --nthreads 4 --nprocs 4 --memory-limit 4.00GB --name name --nanny --death-timeout 60
+/usr/share/miniconda3/envs/big-data/bin/python -m distributed.cli.dask_worker tcp://10.1.0.4:33369 --nthreads 4 --nprocs 4 --memory-limit 4.00GB --name name --nanny --death-timeout 60
 </pre></div>
 </div>
 </div>
