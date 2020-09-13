@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Installation with conda &#8212; Python tools for Big data</title>
+    <title>Installation &#8212; Python tools for Big data</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -50,8 +50,8 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://pnavaro.github.io/big-data/02-Installation.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Installation with conda" />
-<meta property="og:description" content="Installation with conda  &lt;!-- #region {&#34;slideshow&#34;: {&#34;slide_type&#34;: &#34;slide&#34;}} --&gt;   Install Anaconda (large) or Miniconda (small)  Open a terminal (Linux/MacOSX)" />
+<meta property="og:title"       content="Installation" />
+<meta property="og:description" content="Installation  Conda is a powerful package manager and environment manager.  Ref: Getting started with conda  &lt;!-- #region {&#34;slideshow&#34;: {&#34;slide_type&#34;: &#34;slide&#34;}}" />
 <meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
 
 <meta name="twitter:card" content="summary" />
@@ -86,7 +86,7 @@
   <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Installation with conda
+   Installation
   </a>
  </li>
  <li class="toctree-l1">
@@ -298,14 +298,43 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-a-new-conda-environment-from-file">
-   Create a new conda environment from file
+  <a class="reference internal nav-link" href="#managing-environments">
+   Managing environments
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-new-environment-and-install-a-package-in-it">
+     Create a new environment and install a package in it.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#to-use-or-activate-the-new-environment-type-the-following">
+     To use, or “activate” the new environment, type the following:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#to-see-a-list-of-all-your-environments-type">
+     To see a list of all your environments, type:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-your-current-environment-back-to-the-default-base">
+     Change your current environment back to the default (base):
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#activate-the-new-environment-for-all-students">
-   Activate the new environment (for all students)
+  <a class="reference internal nav-link" href="#managing-packages">
+   Managing packages
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-new-conda-environment-from-file">
+     Create a new conda environment from file
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#install-the-kernel-for-jupyter">
@@ -322,26 +351,450 @@
         
               <div>
                 
-  <div class="section" id="installation-with-conda">
-<h1>Installation with conda<a class="headerlink" href="#installation-with-conda" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Conda is a powerful package manager and environment manager.</p>
+<p><a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">Ref: Getting started with conda</a></p>
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
 <div class="section" id="install-anaconda-large-or-miniconda-small">
 <h2>Install <a class="reference external" href="https://www.anaconda.com/downloads">Anaconda</a> (large) or <a class="reference external" href="https://conda.io/miniconda.html">Miniconda</a> (small)<a class="headerlink" href="#install-anaconda-large-or-miniconda-small" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="open-a-terminal-linux-macosx-or-a-anaconda-prompt-windows">
 <h2>Open a terminal (Linux/MacOSX) or a Anaconda prompt (Windows)<a class="headerlink" href="#open-a-terminal-linux-macosx-or-a-anaconda-prompt-windows" title="Permalink to this headline">¶</a></h2>
+<p>Verify that conda is installed and running on your system by typing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda --version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>conda 4.8.3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Conda displays the number of the version that you have installed.</p>
+<p>If you get an error message, make sure you closed and re-opened the
+terminal window after installing, or do it now.</p>
+<p>Update conda to the current version. Type the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda update -y conda -n base
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /usr/share/miniconda3
+
+  added / updated specs:
+    - conda
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    brotlipy-0.7.0             |py38h1e0a361_1000         346 KB  conda-forge
+    cffi-1.14.2                |   py38he30daa8_0         227 KB
+    chardet-3.0.4              |py38h32f6830_1006         170 KB  conda-forge
+    conda-4.8.4                |   py38h32f6830_2         3.0 MB  conda-forge
+    conda-package-handling-1.7.0|   py38h1e0a361_4         2.0 MB  conda-forge
+    cryptography-3.1           |   py38h766eaa4_0         617 KB  conda-forge
+    idna-2.10                  |     pyh9f0ad1d_0          52 KB  conda-forge
+    libffi-3.3                 |       he6710b0_2          50 KB
+    pycosat-0.6.3              |py38h1e0a361_1004         107 KB  conda-forge
+    pyopenssl-19.1.0           |             py_1          47 KB  conda-forge
+    pysocks-1.7.1              |   py38h32f6830_1          27 KB  conda-forge
+    requests-2.24.0            |     pyh9f0ad1d_0          47 KB  conda-forge
+    ruamel_yaml-0.15.80        |py38h1e0a361_1002         260 KB  conda-forge
+    urllib3-1.25.10            |             py_0          92 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:         7.0 MB
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-1_gnu
+  brotlipy           conda-forge/linux-64::brotlipy-0.7.0-py38h1e0a361_1000
+  libgomp            conda-forge/linux-64::libgomp-9.3.0-h24d8f2e_16
+  python_abi         conda-forge/linux-64::python_abi-3.8-1_cp38
+
+The following packages will be REMOVED:
+
+  libedit-3.1.20181209-hc058e9b_0
+
+The following packages will be UPDATED:
+
+  ca-certificates     pkgs/main::ca-certificates-2020.1.1-0 --&gt; conda-forge::ca-certificates-2020.6.20-hecda079_0
+  certifi              pkgs/main::certifi-2020.4.5.1-py38_0 --&gt; conda-forge::certifi-2020.6.20-py38h32f6830_0
+  cffi                                1.14.0-py38he30daa8_1 --&gt; 1.14.2-py38he30daa8_0
+  chardet                pkgs/main::chardet-3.0.4-py38_1003 --&gt; conda-forge::chardet-3.0.4-py38h32f6830_1006
+  conda                       pkgs/main::conda-4.8.3-py38_0 --&gt; conda-forge::conda-4.8.4-py38h32f6830_2
+  conda-package-han~ pkgs/main::conda-package-handling-1.6~ --&gt; conda-forge::conda-package-handling-1.7.0-py38h1e0a361_4
+  cryptography       pkgs/main::cryptography-2.9.2-py38h1b~ --&gt; conda-forge::cryptography-3.1-py38h766eaa4_0
+  idna                             pkgs/main::idna-2.9-py_1 --&gt; conda-forge::idna-2.10-pyh9f0ad1d_0
+  ld_impl_linux-64   pkgs/main::ld_impl_linux-64-2.33.1-h5~ --&gt; conda-forge::ld_impl_linux-64-2.34-hc38a660_9
+  libffi                                     3.3-he6710b0_1 --&gt; 3.3-he6710b0_2
+  libgcc-ng           pkgs/main::libgcc-ng-9.1.0-hdf63c60_0 --&gt; conda-forge::libgcc-ng-9.3.0-h24d8f2e_16
+  libstdcxx-ng       pkgs/main::libstdcxx-ng-9.1.0-hdf63c6~ --&gt; conda-forge::libstdcxx-ng-9.3.0-hdf63c60_16
+  openssl              pkgs/main::openssl-1.1.1g-h7b6447c_0 --&gt; conda-forge::openssl-1.1.1g-h516909a_1
+  pip                 pkgs/main/linux-64::pip-20.0.2-py38_3 --&gt; conda-forge/noarch::pip-20.2.3-py_0
+  pycosat            pkgs/main::pycosat-0.6.3-py38h7b6447c~ --&gt; conda-forge::pycosat-0.6.3-py38h1e0a361_1004
+  pycparser                  pkgs/main::pycparser-2.20-py_0 --&gt; conda-forge::pycparser-2.20-pyh9f0ad1d_2
+  pyopenssl          pkgs/main/linux-64::pyopenssl-19.1.0-~ --&gt; conda-forge/noarch::pyopenssl-19.1.0-py_1
+  pysocks                   pkgs/main::pysocks-1.7.1-py38_0 --&gt; conda-forge::pysocks-1.7.1-py38h32f6830_1
+  readline               pkgs/main::readline-8.0-h7b6447c_0 --&gt; conda-forge::readline-8.0-he28a2e2_2
+  requests           pkgs/main/linux-64::requests-2.23.0-p~ --&gt; conda-forge/noarch::requests-2.24.0-pyh9f0ad1d_0
+  setuptools            pkgs/main::setuptools-46.4.0-py38_0 --&gt; conda-forge::setuptools-49.6.0-py38h32f6830_0
+  six                 pkgs/main/linux-64::six-1.14.0-py38_0 --&gt; conda-forge/noarch::six-1.15.0-pyh9f0ad1d_0
+  sqlite                pkgs/main::sqlite-3.31.1-h62c20be_1 --&gt; conda-forge::sqlite-3.33.0-h4cf870e_0
+  tk                         pkgs/main::tk-8.6.8-hbc83047_0 --&gt; conda-forge::tk-8.6.10-hed695b0_0
+  tqdm                          pkgs/main::tqdm-4.46.0-py_0 --&gt; conda-forge::tqdm-4.49.0-pyh9f0ad1d_0
+  urllib3            pkgs/main/linux-64::urllib3-1.25.8-py~ --&gt; conda-forge/noarch::urllib3-1.25.10-py_0
+  wheel              pkgs/main/linux-64::wheel-0.34.2-py38~ --&gt; conda-forge/noarch::wheel-0.35.1-pyh9f0ad1d_0
+  xz                         pkgs/main::xz-5.2.5-h7b6447c_0 --&gt; conda-forge::xz-5.2.5-h516909a_1
+  yaml                     pkgs/main::yaml-0.1.7-had09818_2 --&gt; conda-forge::yaml-0.2.5-h516909a_0
+  zlib                    pkgs/main::zlib-1.2.11-h7b6447c_3 --&gt; conda-forge::zlib-1.2.11-h516909a_1009
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  _libgcc_mutex           pkgs/main::_libgcc_mutex-0.1-main --&gt; conda-forge::_libgcc_mutex-0.1-conda_forge
+  ncurses                 pkgs/main::ncurses-6.2-he6710b0_1 --&gt; conda-forge::ncurses-6.2-he1b5a44_1
+  ruamel_yaml        pkgs/main::ruamel_yaml-0.15.87-py38h7~ --&gt; conda-forge::ruamel_yaml-0.15.80-py38h1e0a361_1002
+
+
+
+Downloading and Extracting Packages
+
+pycosat-0.6.3        | 107 KB    |            |   0% 
+pycosat-0.6.3        | 107 KB    | ########## | 100% 
+
+conda-4.8.4          | 3.0 MB    |            |   0% 
+conda-4.8.4          | 3.0 MB    | ########## | 100% 
+
+libffi-3.3           | 50 KB     |            |   0% 
+libffi-3.3           | 50 KB     | ########## | 100% 
+
+cffi-1.14.2          | 227 KB    |            |   0% 
+cffi-1.14.2          | 227 KB    | ########## | 100% 
+
+chardet-3.0.4        | 170 KB    |            |   0% 
+chardet-3.0.4        | 170 KB    | ########## | 100% 
+
+conda-package-handli | 2.0 MB    |            |   0% 
+conda-package-handli | 2.0 MB    | ########## | 100% 
+
+idna-2.10            | 52 KB     |            |   0% 
+idna-2.10            | 52 KB     | ########## | 100% 
+
+urllib3-1.25.10      | 92 KB     |            |   0% 
+urllib3-1.25.10      | 92 KB     | ########## | 100% 
+
+cryptography-3.1     | 617 KB    |            |   0% 
+cryptography-3.1     | 617 KB    | ########## | 100% 
+
+pysocks-1.7.1        | 27 KB     |            |   0% 
+pysocks-1.7.1        | 27 KB     | ########## | 100% 
+
+ruamel_yaml-0.15.80  | 260 KB    |            |   0% 
+ruamel_yaml-0.15.80  | 260 KB    | ########## | 100% 
+
+requests-2.24.0      | 47 KB     |            |   0% 
+requests-2.24.0      | 47 KB     | ########## | 100% 
+
+pyopenssl-19.1.0     | 47 KB     |            |   0% 
+pyopenssl-19.1.0     | 47 KB     | ########## | 100% 
+
+brotlipy-0.7.0       | 346 KB    |            |   0% 
+brotlipy-0.7.0       | 346 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.8.3
+  latest version: 4.8.4
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="managing-environments">
+<h2>Managing environments<a class="headerlink" href="#managing-environments" title="Permalink to this headline">¶</a></h2>
+<p>Conda allows you to create separate environments containing files, packages,
+and their dependencies that will not interact with other environments.</p>
+<p>When you begin using conda, you already have a default environment named
+<code class="docutils literal notranslate"><span class="pre">base</span></code>. You don’t want to put programs into your base environment, though.
+Create separate environments to keep your programs isolated from each other.</p>
+<div class="section" id="create-a-new-environment-and-install-a-package-in-it">
+<h3>Create a new environment and install a package in it.<a class="headerlink" href="#create-a-new-environment-and-install-a-package-in-it" title="Permalink to this headline">¶</a></h3>
+<p>We will name the environment <code class="docutils literal notranslate"><span class="pre">testenv``</span> <span class="pre">and</span> <span class="pre">install</span> <span class="pre">the</span> <span class="pre">version</span> <span class="pre">3.8</span> <span class="pre">of</span> </code>python`. At the Anaconda Prompt or in your terminal window, type the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda create -y -n testenv python=3.8
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /usr/share/miniconda3/envs/testenv
+
+  added / updated specs:
+    - python=3.8
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge
+  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-1_gnu
+  ca-certificates    conda-forge/linux-64::ca-certificates-2020.6.20-hecda079_0
+  certifi            conda-forge/linux-64::certifi-2020.6.20-py38h32f6830_0
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.34-hc38a660_9
+  libffi             conda-forge/linux-64::libffi-3.2.1-he1b5a44_1007
+  libgcc-ng          conda-forge/linux-64::libgcc-ng-9.3.0-h24d8f2e_16
+  libgomp            conda-forge/linux-64::libgomp-9.3.0-h24d8f2e_16
+  libstdcxx-ng       conda-forge/linux-64::libstdcxx-ng-9.3.0-hdf63c60_16
+  ncurses            conda-forge/linux-64::ncurses-6.2-he1b5a44_1
+  openssl            conda-forge/linux-64::openssl-1.1.1g-h516909a_1
+  pip                conda-forge/noarch::pip-20.2.3-py_0
+  python             conda-forge/linux-64::python-3.8.5-h1103e12_7_cpython
+  python_abi         conda-forge/linux-64::python_abi-3.8-1_cp38
+  readline           conda-forge/linux-64::readline-8.0-he28a2e2_2
+  setuptools         conda-forge/linux-64::setuptools-49.6.0-py38h32f6830_0
+  sqlite             conda-forge/linux-64::sqlite-3.33.0-h4cf870e_0
+  tk                 conda-forge/linux-64::tk-8.6.10-hed695b0_0
+  wheel              conda-forge/noarch::wheel-0.35.1-pyh9f0ad1d_0
+  xz                 conda-forge/linux-64::xz-5.2.5-h516909a_1
+  zlib               conda-forge/linux-64::zlib-1.2.11-h516909a_1009
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate testenv
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="to-use-or-activate-the-new-environment-type-the-following">
+<h3>To use, or “activate” the new environment, type the following:<a class="headerlink" href="#to-use-or-activate-the-new-environment-type-the-following" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda init bash
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no change     /usr/share/miniconda3/condabin/conda
+no change     /usr/share/miniconda3/bin/conda
+no change     /usr/share/miniconda3/bin/conda-env
+no change     /usr/share/miniconda3/bin/activate
+no change     /usr/share/miniconda3/bin/deactivate
+no change     /usr/share/miniconda3/etc/profile.d/conda.sh
+no change     /usr/share/miniconda3/etc/fish/conf.d/conda.fish
+no change     /usr/share/miniconda3/shell/condabin/Conda.psm1
+modified      /usr/share/miniconda3/shell/condabin/conda-hook.ps1
+no change     /usr/share/miniconda3/lib/python3.8/site-packages/xontrib/conda.xsh
+no change     /usr/share/miniconda3/etc/profile.d/conda.csh
+modified      /home/runner/.bashrc
+
+==&gt; For changes to take effect, close and re-open your current shell. &lt;==
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.bash_profile
+conda activate testenv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bash: line 1: /home/runner/.bash_profile: No such file or directory
+
+CommandNotFoundError: Your shell has not been properly configured to use &#39;conda activate&#39;.
+To initialize your shell, run
+
+    $ conda init &lt;SHELL_NAME&gt;
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See &#39;conda init --help&#39; for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running &#39;conda init&#39;.
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CalledProcessError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mi">163</span><span class="n">a04e47b66</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s1">&#39;bash&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;source ~/.bash_profile</span><span class="se">\n</span><span class="s1">conda activate testenv</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/IPython/core/interactiveshell.py</span> in <span class="ni">run_cell_magic</span><span class="nt">(self, magic_name, line, cell)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2379</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2380</span>                 <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2381</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2382</span>             <span class="k">return</span> <span class="n">result</span>
+<span class="g g-Whitespace">   </span><span class="mi">2383</span> 
+
+<span class="nn">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/IPython/core/magics/script.py</span> in <span class="ni">named_script_magic</span><span class="nt">(line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>                 <span class="n">line</span> <span class="o">=</span> <span class="n">script</span>
+<span class="ne">--&gt; </span><span class="mi">142</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shebang</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span> 
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="c1"># write a basic docstring:</span>
+
+<span class="nn">&lt;decorator-gen-103&gt;</span> in <span class="ni">shebang</span><span class="nt">(self, line, cell)</span>
+
+<span class="nn">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/IPython/core/magic.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(f, *a, **k)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="c1"># but it&#39;s overkill for just that one bit of state.</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>     <span class="k">def</span> <span class="nf">magic_deco</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">187</span>         <span class="n">call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span> 
+<span class="g g-Whitespace">    </span><span class="mi">189</span>         <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+
+<span class="nn">/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/IPython/core/magics/script.py</span> in <span class="ni">shebang</span><span class="nt">(self, line, cell)</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span>             <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span>         <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">raise_error</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">245</span>             <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">err</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span> 
+<span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="k">def</span> <span class="nf">_run_script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">to_close</span><span class="p">):</span>
+
+<span class="ne">CalledProcessError</span>: Command &#39;b&#39;source ~/.bash_profile\nconda activate testenv\n&#39;&#39; returned non-zero exit status 1.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that you are in your <code class="docutils literal notranslate"><span class="pre">testenv</span></code> environment, any conda commands you type will go to that environment until you deactivate it.</p>
+<p>Verify which version of Python is in your current environment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda run -n testenv python --version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.8.5
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="to-see-a-list-of-all-your-environments-type">
+<h3>To see a list of all your environments, type:<a class="headerlink" href="#to-see-a-list-of-all-your-environments-type" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda info --envs
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># conda environments:
+#
+base                  *  /Users/navaro/miniconda3
+big-data                 /Users/navaro/miniconda3/envs/big-data
+conda_jl                 /Users/navaro/miniconda3/envs/conda_jl
+                         /Users/navaro/miniconda3/envs/conda_jl/envs/_ORCA_jl_
+finistR2020              /Users/navaro/miniconda3/envs/finistR2020
+nbcourse                 /Users/navaro/miniconda3/envs/nbcourse
+runenv                   /Users/navaro/miniconda3/envs/runenv
+smilesx                  /Users/navaro/miniconda3/envs/smilesx
+testenv                  /Users/navaro/miniconda3/envs/testenv
+</pre></div>
+</div>
+</div>
+</div>
+<p>The active environment is the one with an asterisk (*).</p>
+</div>
+<div class="section" id="change-your-current-environment-back-to-the-default-base">
+<h3>Change your current environment back to the default (base):<a class="headerlink" href="#change-your-current-environment-back-to-the-default-base" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="managing-packages">
+<h2>Managing packages<a class="headerlink" href="#managing-packages" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Check to see if a package you have not installed named “jupyter” is available from the Anaconda repository (must be connected to the Internet):</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda search jupyter
+</pre></div>
+</div>
+</div>
+</div>
+<p>Conda displays a list of all packages with that name on the Anaconda repository, so we know it is available.</p>
+<p>Install this package into the base environment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda activate
+conda install -y jupyter
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check to see if the newly installed program is in this environment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+conda list
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="create-a-new-conda-environment-from-file">
-<h2>Create a new conda environment from file<a class="headerlink" href="#create-a-new-conda-environment-from-file" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> big-data
+<h3>Create a new conda environment from file<a class="headerlink" href="#create-a-new-conda-environment-from-file" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cd big-data
 conda env create
 </pre></div>
 </div>
-<p><a class="reference external" href="https://conda.io/docs/using/envs.html">Conda envs documentation</a>.</p>
 </div>
-<div class="section" id="activate-the-new-environment-for-all-students">
-<h2>Activate the new environment (for all students)<a class="headerlink" href="#activate-the-new-environment-for-all-students" title="Permalink to this headline">¶</a></h2>
-<p>Activating the conda environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.</p>
+</div>
+<p>Packages list is contained in the file <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code></p>
+<p><a class="reference external" href="https://conda.io/docs/using/envs.html">Conda envs documentation</a>.</p>
+<!-- #endregion --><p>Activating the conda environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.</p>
 <pre>
 $ conda activate big-data
 (big-data) $ python
@@ -351,6 +804,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> quit()
 </pre>
 <p><strong>You must do this everytime you open a new terminal</strong></p>
+</div>
 </div>
 <div class="section" id="install-the-kernel-for-jupyter">
 <h2>Install the kernel for jupyter<a class="headerlink" href="#install-the-kernel-for-jupyter" title="Permalink to this headline">¶</a></h2>
