@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Git &#8212; Python tools for Big data</title>
+    <title>Git basics &#8212; Python tools for Big data</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -50,8 +50,8 @@
 <!-- Opengraph tags -->
 <meta property="og:url"         content="https://pnavaro.github.io/big-data/01-GitBasics.html" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Git" />
-<meta property="og:description" content="Git  Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency." />
+<meta property="og:title"       content="Git basics" />
+<meta property="og:description" content="Git basics  About Dropbox  Dropbox versioning is not free.  Only keep your edits over a period of 30 days.  Privacy and Security ?  No differences display.  The" />
 <meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
 
 <meta name="twitter:card" content="summary" />
@@ -86,7 +86,12 @@
   <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Git
+   Git basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#enable-github-pages">
+   Enable GitHub pages
   </a>
  </li>
  <li class="toctree-l1">
@@ -293,18 +298,28 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-dropbox">
+   About Dropbox
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-version-control">
+   About version control
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#centralized-version-control-systems">
+   Centralized Version Control Systems
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git">
+   Git
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#github">
    GitHub
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#about-scm">
-   About SCM
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#local-version-control-system">
-   Local Version Control System
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -313,13 +328,30 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git-bash">
+   Git bash
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#configure-git">
    Configure Git
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cloning-the-repository">
-   Cloning the repository
+  <a class="reference internal nav-link" href="#initialize-a-git-repository-in-a-directory">
+   Initialize a git repository in a directory
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-the-file-to-the-git-index">
+     Add the file to the git index
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#commit">
+   Commit
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -328,23 +360,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#git-workflow">
-   Git Workflow
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#locally-saving-your-modifications">
-   Locally saving your modifications
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-the-modified-file-to-the-index">
-   Add the modified file to the index
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ssh-key">
-   SSH key
+  <a class="reference internal nav-link" href="#github-account-and-ssh-key">
+   Github account and SSH key
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -355,63 +372,28 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#github-sign-up">
-   GitHub sign up
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#initialize-a-git-repository-in-a-directory">
-   Initialize a git repository in a directory
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ajouter-les-fichiers-au-depot-git">
-   Ajouter les fichiers au dépôt git
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#commit">
-   Commit
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pull">
-   Pull
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#push">
-   Push
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#merge-the-remote-branch-with-the-local-branch">
-   Merge the remote branch with the local branch
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solve-conflits">
-   Solve conflits
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#github-repository">
    GitHub repository
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   “Push”
+  <a class="reference internal nav-link" href="#git-workflow">
+   Git Workflow
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#display-all-branches">
-   Display all branches
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creer-une-branche">
-   Créer une branche
+  <a class="reference internal nav-link" href="#branches">
+   Branches
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-new-branch">
+   Create a new branch
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -425,286 +407,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   Commit
+  <a class="reference internal nav-link" href="#commit-or-fast-commit">
+   Commit or fast commit
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fast-commit">
-   Fast commit
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#share-your-modifications">
-   Share your modifications
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#option-1-merge-master-branch-and-push-it">
-     Option 1 : merge master branch and push it
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#share-your-contributions">
-   Share your contributions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#option-2-push-your-branch">
-   Option 2 : Push your branch
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#synchronize-the-repository">
-   Synchronize the repository
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cycle">
-   Cycle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#developpement-pour-garantir-la-stabibite">
-   Développement pour garantir la stabibité
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stash">
-   Stash
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#apply-last-stash">
-     Apply last
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       stash
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#delete-the-last-stash">
-     Delete the last
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       stash
-      </span>
-     </code>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pourquoi-git">
-   Pourquoi Git ?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pourquoi-pas">
-   Pourquoi pas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#quelques-commandes-utiles">
-   Quelques commandes utiles
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gitignore">
-   .gitignore
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ignorer-tous-les-changements-et-revenir-au-point-de-depart">
-   Ignorer tous les changements et revenir au point de départ
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#utiliser-git-plus-facilement">
-   Utiliser git plus facilement
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#updating-from-the-repository">
-   Updating from the Repository
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solve-conflicts">
-   Solve conflicts
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#git-through-ide">
-   Git through IDE
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#about-dropbox">
-   About Dropbox
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#new-products-based-on-a-git-server-for-collaborating-writing">
-   New products based on a git server for collaborating writing.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#about-version-control">
-   About Version Control
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#local-version-control-systems">
-   Local Version Control Systems
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#centralized-version-control-systems">
-   Centralized Version Control Systems
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   Distributed Version Control Systems
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   Configure Git
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   Four File status in the repository
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#initializing-a-repository-in-an-existing-directory">
-   Initializing a repository in an existing directory
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adding-files-in-your-repository">
-   Adding files in your repository
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cloning-a-existing-repository">
-   Cloning a existing repository
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-and-commit-your-files">
-   Add and commit your files.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#synchronizing-your-files-on-the-server">
-   Synchronizing your files on the server
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id6">
-   Git Workflow
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cloning-an-existing-directory">
-   Cloning an Existing Directory
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#display-and-create-a-branch">
-   Display and Create a Branch
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contributing">
-   Contributing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id7">
-   Locally saving your modifications
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id8">
-   Fast commit
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#share-your-work-and-make-it-available-on-the-server">
-   Share your work and make it available on the server
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#option-1-merge-to-the-main-branch-and-push">
-     Option 1 : Merge to the main branch and push
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id9">
-   Share your work and make it available on the server
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#option-2-push-your-branch-to-the-server">
-     Option 2 : Push your branch to the server
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
-   Updating from the Repository
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#merge-conflicts">
-   Merge conflicts
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#git-cycle-on-a-single-branch">
-   Git cycle on a single branch
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#progressive-stability-branching">
-   Progressive-stability branching
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
-   Stash
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-git">
-   Why Git?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-not">
-   Why not
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-useful-commands">
-   Some useful commands
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id12">
-   Git through IDE
+  <a class="reference internal nav-link" href="#merge-mybranch-with-the-master-branch">
+   Merge mybranch with the master branch
   </a>
  </li>
 </ul>
@@ -717,10 +426,52 @@
         
               <div>
                 
-  <div class="section" id="git">
-<h1>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="git-basics">
+<h1>Git basics<a class="headerlink" href="#git-basics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-dropbox">
+<h2>About Dropbox<a class="headerlink" href="#about-dropbox" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Dropbox versioning is not free.</p></li>
+<li><p>Only keep your edits over a period of 30 days.</p></li>
+<li><p>Privacy and Security ?</p></li>
+<li><p>No differences display.</p></li>
+<li><p>The service have the right to delete information from free and inactive accounts.</p></li>
+<li><p>Users are not allowed to perform encryption.</p></li>
+</ul>
+</div>
+<div class="section" id="about-version-control">
+<h2>About version control<a class="headerlink" href="#about-version-control" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Records changes to a file or set of files over time.</p></li>
+<li><p>You can recall specific versions later.</p></li>
+<li><p>You can use it with nearly any type of file on a computer.</p></li>
+<li><p>This is the better way to collaborate on the same document.</p></li>
+</ul>
+</div>
+<div class="section" id="centralized-version-control-systems">
+<h2>Centralized Version Control Systems<a class="headerlink" href="#centralized-version-control-systems" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/cvs.png"><img alt="_images/cvs.png" src="_images/cvs.png" style="width: 400px;" /></a>
+<ul class="simple">
+<li><p>Clients check out files from a central place.</p></li>
+<li><p>You know what everyone else on the project is doing</p></li>
+<li><p>A single server contains all the versioned files.</p></li>
+<li><p>For many years, this has been the standard (CVS, SVN).</p></li>
+<li><p>You always need network connection.</p></li>
+<li><p>If the server is corrupted, with no backup, you lose everything !</p></li>
+</ul>
+</div>
+<div class="section" id="git">
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
 <p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
 <p>Official website https://git-scm.com</p>
+<p><strong>New products based on a git server for collaborating writing.</strong></p>
+<ul class="simple">
+<li><p>ShareLaTeX (https://fr.sharelatex.com)</p></li>
+<li><p>Authorea (https://www.authorea.com)</p></li>
+<li><p>Overleaf (https://www.overleaf.com)</p></li>
+<li><p>PLMLateX (https://plmlatex.math.cnrs.fr/)</p></li>
+</ul>
+</div>
 <div class="section" id="github">
 <h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -733,25 +484,6 @@
 </ul>
 <p><a class="reference external" href="https://about.gitlab.com">Gitlab.com</a> and <a class="reference external" href="https://bitbucket.org">Bitbucket</a> offer similar services.</p>
 </div>
-<div class="section" id="about-scm">
-<h2>About SCM<a class="headerlink" href="#about-scm" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Records changes to a file or set of files over time.</p></li>
-<li><p>You can recall specific versions later.</p></li>
-<li><p>You can use it with nearly any type of file on a computer.</p></li>
-<li><p>This is the better way to collaborate on the same document.</p></li>
-<li><p>Every change is committed with an author and a date.</p></li>
-<li><p>Figures are downloaded from <a class="reference external" href="http://git-scm.com/book">Pro Git book</a>.</p></li>
-<li><p>“Become a git guru” tutorial (https://www.atlassian.com/git/tutorials).</p></li>
-</ul>
-</div>
-<div class="section" id="local-version-control-system">
-<h2>Local Version Control System<a class="headerlink" href="#local-version-control-system" title="Permalink to this headline">¶</a></h2>
-<a class="reference internal image-reference" href="_images/local.png"><img alt="rcs" src="_images/local.png" style="width: 400px;" /></a>
-<ul class="simple">
-<li><p>Collaboration is not really possible.</p></li>
-</ul>
-</div>
 <div class="section" id="distributed-version-control-systems">
 <h2>Distributed Version Control Systems<a class="headerlink" href="#distributed-version-control-systems" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/git.png"><img alt="git" src="_images/git.png" style="width: 300px;" /></a>
@@ -762,25 +494,79 @@
 <li><p>Multiple backups.</p></li>
 </ul>
 </div>
+<div class="section" id="git-bash">
+<h2>Git bash<a class="headerlink" href="#git-bash" title="Permalink to this headline">¶</a></h2>
+<p>I you want to try Git on windows, install <a class="reference external" href="https://gitforwindows.org">git bash</a>. On Linux and Mac just open a terminal.</p>
+<p><img alt="git bash" src="https://gitforwindows.org/img/gw1web_thumb.png" /></p>
+</div>
 <div class="section" id="configure-git">
 <h2>Configure Git<a class="headerlink" href="#configure-git" title="Permalink to this headline">¶</a></h2>
 <p>Settings are saved on the computer for all your git repositories.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git config --global user.name “Prenom Nom&quot;
-git config --global user.email “prenom.nom@univ-rennes2.fr&quot;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global user.name <span class="s2">&quot;Prenom Nom&quot;</span>
+$ git config --global user.email <span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
+$ git config --list
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">Prenom</span> <span class="n">Nom</span>
+<span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="o">=</span><span class="n">prenom</span><span class="o">.</span><span class="n">nom</span><span class="nd">@univ</span><span class="o">-</span><span class="n">rennes2</span><span class="o">.</span><span class="n">fr</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="cloning-the-repository">
-<h2>Cloning the repository<a class="headerlink" href="#cloning-the-repository" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone ssh://svmass2/git/big-data.git
+<div class="section" id="initialize-a-git-repository-in-a-directory">
+<h2>Initialize a git repository in a directory<a class="headerlink" href="#initialize-a-git-repository-in-a-directory" title="Permalink to this headline">¶</a></h2>
+<p>Create the directory <code class="docutils literal notranslate"><span class="pre">homepage</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir homepage                          <span class="c1"># Create directory homepage</span>
+$ <span class="nb">cd</span> homepage                             <span class="c1"># Change directory</span>
+$ touch index.md                          <span class="c1"># Create the index.md file</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;# John Smith &quot;</span> &gt;&gt; index.md        <span class="c1"># Write the string &quot;# Test&quot; in index.md</span>
+$ <span class="nb">echo</span> <span class="s2">&quot;Rennes&quot;</span> &gt;&gt; index.md               <span class="c1"># Append Rennes to index.md</span>
+$ cat index.md                            <span class="c1"># Display index.md content</span>
+<span class="c1"># John Smith</span>
+Rennes
 </pre></div>
 </div>
-<p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/pnavaro/big-data.git
+<p>To use git in this repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git init
+Initialized empty Git repository in /Users/navaro/homepage/.git/
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="o">)</span>
+	index.md
+
+nothing added to commit but untracked files present <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> to track<span class="o">)</span>
 </pre></div>
 </div>
-<p>To save your work locally create a branch</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b my_branch
+<div class="section" id="add-the-file-to-the-git-index">
+<h3>Add the file to the git index<a class="headerlink" href="#add-the-file-to-the-git-index" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add index.md
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+	new file:   index.md
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="commit">
+<h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s1">&#39;Create the file index.md&#39;</span>
+<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 63a5cee<span class="o">]</span> Create the file index.md
+ <span class="m">1</span> file changed, <span class="m">2</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> index.md
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+nothing to commit, working tree clean
 </pre></div>
 </div>
 </div>
@@ -788,146 +574,189 @@ git config --global user.email “prenom.nom@univ-rennes2.fr&quot;
 <h2>Four File status in the repository<a class="headerlink" href="#four-file-status-in-the-repository" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/18333fig0201-tn.png"><img alt="git" src="_images/18333fig0201-tn.png" style="width: 450px;" /></a>
 </div>
+<div class="section" id="github-account-and-ssh-key">
+<h2>Github account and SSH key<a class="headerlink" href="#github-account-and-ssh-key" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/join">Create your GitHub account</a></p>
+<div class="section" id="generating-public-private-rsa-key-pair">
+<h3>Generating public/private rsa key pair.<a class="headerlink" href="#generating-public-private-rsa-key-pair" title="Permalink to this headline">¶</a></h3>
+<p>Ref : <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">New ssh key on GitHub</a></p>
+<p>Open Terminal or Git bash.</p>
+<p>Paste the text below, substituting in your GitHub email address.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
+</pre></div>
+</div>
+<p>This creates a new ssh key, using the provided email as a label.</p>
+<p>When you’re prompted to “Enter a file in which to save the key,” press Enter. This accepts the default file location. Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+At the prompt, let it empty for no passphrase.</p>
+<p>This creates 2 files, the private key: <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>, and the public key <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>. Display and copy the SSH key to your clipboard.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat ~/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<p>In the upper-right corner of any page, click your profile photo, then click <code class="docutils literal notranslate"><span class="pre">Settings</span></code>.
+In the user settings sidebar, click <code class="docutils literal notranslate"><span class="pre">SSH</span> <span class="pre">and</span> <span class="pre">GPG</span> <span class="pre">keys</span></code>.  Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">key</span></code> or <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code>.</p>
+</div>
+</div>
+<div class="section" id="github-repository">
+<h2>GitHub repository<a class="headerlink" href="#github-repository" title="Permalink to this headline">¶</a></h2>
+<p><font color="red">In the following steps replace <strong>johnsmith</strong> by your own GitHub login</font></p>
+<p>Create the <code class="docutils literal notranslate"><span class="pre">johnsmith.github.io</span></code> repository on your GitHub account</p>
+<ul class="simple">
+<li><p>Click on ‘+’ on top right of the page and select “New repository”</p></li>
+<li><p>Repository name = “johnsmith.github.io”</p></li>
+<li><p>Don’t change default options</p></li>
+<li><p>Click on “Create repository”</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> sandbox
+$ git remote add origin git@github.com:johnsmith/sandbox.git
+$ git push -u origin master
+Enumerating objects: <span class="m">6</span>, <span class="k">done</span>.
+Counting objects: <span class="m">100</span>% <span class="o">(</span><span class="m">6</span>/6<span class="o">)</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">4</span> threads
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="m">449</span> bytes <span class="p">|</span> <span class="m">449</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">0</span>
+To github.com:johnsmith/johnsmith.github.io.git
+   fd6dace..c4488e6  master -&gt; master
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
+On branch master
+nothing to commit, working tree clean
+</pre></div>
+</div>
+</div>
 <div class="section" id="git-workflow">
 <h2>Git Workflow<a class="headerlink" href="#git-workflow" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/four_stages.png"><img alt="git" src="_images/four_stages.png" style="width: 150px;" /></a>
 </div>
-<div class="section" id="locally-saving-your-modifications">
-<h2>Locally saving your modifications<a class="headerlink" href="#locally-saving-your-modifications" title="Permalink to this headline">¶</a></h2>
-<p>Get your files status</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git status
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Modify the file README.md and do the procedure again.</p>
+</div>
+<div class="section" id="branches">
+<h2>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h2>
+<p><strong>Display all branches</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch -a
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">master</span>
+  <span class="n">remotes</span><span class="o">/</span><span class="n">origin</span><span class="o">/</span><span class="n">master</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>On branch master
-Your branch is up to date with &#39;origin/master&#39;.
+<div class="section" id="create-a-new-branch">
+<h2>Create a new branch<a class="headerlink" href="#create-a-new-branch" title="Permalink to this headline">¶</a></h2>
+<p>By creating a new branch you freeze the master branch and you can continue to work without modifying it.
+The branch created is the copy of the current branch (master).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch mybranch
+$ git checkout mybranch
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Switched</span> <span class="n">to</span> <span class="n">branch</span> <span class="s1">&#39;mybranch&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>master</p>
+<ul class="simple">
+<li><p>mybranch</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="n">Files</span> <span class="n">could</span> <span class="n">be</span> <span class="n">different</span> <span class="ow">or</span> <span class="n">non</span> <span class="n">existant</span> <span class="ow">in</span> <span class="n">two</span> <span class="n">branches</span> <span class="n">but</span> <span class="n">they</span> <span class="n">are</span> <span class="n">located</span> <span class="n">at</span> <span class="n">the</span> <span class="n">same</span> <span class="n">place</span> <span class="n">on</span> <span class="n">the</span> <span class="n">file</span> <span class="n">system</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="edit-and-modify-the-readme-file">
+<h2>Edit and modify the README file<a class="headerlink" href="#edit-and-modify-the-readme-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;coucou&quot;</span> &gt;&gt; README.md
+$ git status
+On branch mybranch
+Changes not staged <span class="k">for</span> commit:
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+	modified:   README.md
 
-Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
-	../spark-3.0.1-bin-hadoop2.7.tgz
-	../spark-3.0.1-bin-hadoop2.7/
+no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git diff
+diff --git a/README.md b/README.md
+index 87dde03..af6739c <span class="m">100644</span>
+--- a/README.md
++++ b/README.md
+@@ -3,3 +3,4 @@
+ Ven <span class="m">11</span> sep <span class="m">2020</span> <span class="m">16</span>:02:35 CEST
 
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)
++coucou
+</pre></div>
+</div>
+</div>
+<div class="section" id="commit-the-changes">
+<h2>Commit the changes<a class="headerlink" href="#commit-the-changes" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add README.md
+$ git status
+On branch mybranch
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+	modified:   README.md
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s1">&#39;Add a coucou in README&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="commit-or-fast-commit">
+<h2>Commit or fast commit<a class="headerlink" href="#commit-or-fast-commit" title="Permalink to this headline">¶</a></h2>
+<table><tr><td><img src="images/index1.png" width=400></td><td><img src="images/index2.png" width=400></td></tr></table></div>
+<div class="section" id="merge-mybranch-with-the-master-branch">
+<h2>Merge mybranch with the master branch<a class="headerlink" href="#merge-mybranch-with-the-master-branch" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git diff master
+diff --git a/README.md b/README.md
+index 9c4311a..af6739c <span class="m">100644</span>
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,5 @@
+
+ Ven <span class="m">11</span> sep <span class="m">2020</span> <span class="m">16</span>:02:35 CEST
+
++coucou
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout master
+Switched to branch <span class="s1">&#39;master&#39;</span>
+$ git merge mybranch
+Updating c4488e6..6dafcbd
+Fast-forward
+ README.md <span class="p">|</span> <span class="m">5</span> +----
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>, <span class="m">4</span> deletions<span class="o">(</span>-<span class="o">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="enable-github-pages">
+<h1>Enable GitHub pages<a class="headerlink" href="#enable-github-pages" title="Permalink to this headline">¶</a></h1>
+<p>Go to <a class="reference external" href="https://github.com/your_login/sandbox/settings">https://github.com/your_login/sandbox/settings</a></p>
+<p>In the section <strong>GitHub Pages</strong></p>
+<p>Select <code class="docutils literal notranslate"><span class="pre">master</span></code> for <strong>Source</strong> and <code class="docutils literal notranslate"><span class="pre">root</span></code></p>
+<p>Choose the <strong>minimal theme</strong> and validate, you can change it later.</p>
+<p>The website is available at <a class="reference external" href="https://*your_login*.github.io/sandbox">https://*your_login*.github.io/sandbox</a></p>
+<div class="section" id="collaborating-writing-with-a-git-repository">
+<h2>Collaborating writing with a git repository<a class="headerlink" href="#collaborating-writing-with-a-git-repository" title="Permalink to this headline">¶</a></h2>
+<p><img alt="Cycle" src="_images/git_cycle.png" /></p>
 </div>
-<div class="section" id="add-the-modified-file-to-the-index">
-<h2>Add the modified file to the index<a class="headerlink" href="#add-the-modified-file-to-the-index" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add your_notebook_copy.ipynb
+<div class="section" id="clone-the-remote-repository">
+<h2>Clone the remote repository<a class="headerlink" href="#clone-the-remote-repository" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone ssh://svmass2/git/atelier_git.git
 </pre></div>
 </div>
-</div>
-<div class="section" id="ssh-key">
-<h2>SSH key<a class="headerlink" href="#ssh-key" title="Permalink to this headline">¶</a></h2>
-<p>Ref : <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">New ssh key on GitHub</a></p>
-<p>Open Terminal or Git bash.</p>
-<p>Paste the text below, substituting in your GitHub email address.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;your_email@example.com&quot;</span>
-</pre></div>
-</div>
-<p>This creates a new ssh key, using the provided email as a label.</p>
-<div class="section" id="generating-public-private-rsa-key-pair">
-<h3>Generating public/private rsa key pair.<a class="headerlink" href="#generating-public-private-rsa-key-pair" title="Permalink to this headline">¶</a></h3>
-<p>When you’re prompted to “Enter a file in which to save the key,” press Enter. This accepts the default file location.
-Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
-At the prompt, let it empty for no passphrase.</p>
-<p>This creates 2 files, the private key: <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>, and the public key <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>.</p>
-</div>
-</div>
-<div class="section" id="github-sign-up">
-<h2>GitHub sign up<a class="headerlink" href="#github-sign-up" title="Permalink to this headline">¶</a></h2>
-<p>Copy the SSH key to your clipboard.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat ~/.ssh/id_rsa.pub
-</pre></div>
-</div>
-<p>In the upper-right corner of any page, click your profile photo, then click Settings.
-In the user settings sidebar, click SSH and GPG keys.  Click New SSH key or Add SSH key.</p>
-</div>
-<div class="section" id="initialize-a-git-repository-in-a-directory">
-<h2>Initialize a git repository in a directory<a class="headerlink" href="#initialize-a-git-repository-in-a-directory" title="Permalink to this headline">¶</a></h2>
-<p>Create the directory <code class="docutils literal notranslate"><span class="pre">/tmp/sandbox</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir /tmp/sandbox
-<span class="nb">cd</span> /tmp/sandbox
-touch README.md
-<span class="nb">echo</span> <span class="s2">&quot;# Test &quot;</span> &gt;&gt; README.md
-<span class="nb">echo</span> date &gt;&gt; README.md
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat README.md
-</pre></div>
-</div>
-<!-- #region -->
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git init
-git status
-</pre></div>
-</div>
-</div>
-<div class="section" id="ajouter-les-fichiers-au-depot-git">
-<h2>Ajouter les fichiers au dépôt git<a class="headerlink" href="#ajouter-les-fichiers-au-depot-git" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add README.md
-git status
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s1">&#39;Initial project version&#39;</span>
-</pre></div>
-</div>
-<p>You must use <code class="docutils literal notranslate"><span class="pre">add</span></code> command for a new file or amodified one.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add test.md
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
-</pre></div>
-</div>
-</div>
-<div class="section" id="commit">
-<h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s1">&#39;Create the file touch.md&#39;</span>
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
-</pre></div>
-</div>
-</div>
-<div class="section" id="pull">
-<h2>Pull<a class="headerlink" href="#pull" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git fetch origin
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch -a
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
-</pre></div>
-</div>
-</div>
-<div class="section" id="push">
-<h2>Push<a class="headerlink" href="#push" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push origin master
-</pre></div>
-</div>
-</div>
-<div class="section" id="merge-the-remote-branch-with-the-local-branch">
-<h2>Merge the remote branch with the local branch<a class="headerlink" href="#merge-the-remote-branch-with-the-local-branch" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git fetch origin
-git merge origin/master
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull origin master
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git diff origin/master
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:MMASSD/atelier_git.git
 </pre></div>
 </div>
 </div>
@@ -948,85 +777,6 @@ git merge origin/master
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git reset --hard
 </pre></div>
 </div>
-</div>
-<div class="section" id="github-repository">
-<h2>GitHub repository<a class="headerlink" href="#github-repository" title="Permalink to this headline">¶</a></h2>
-<p>Create the <code class="docutils literal notranslate"><span class="pre">sandox</span></code> repository on your GitHub account</p>
-<ul class="simple">
-<li><p>Click on ‘+’ on top right of the page and select “New repository”</p></li>
-<li><p>Repository name = “sandbox”</p></li>
-<li><p>Don’t change default options</p></li>
-<li><p>Click on “Create repository”</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add origin git@github.com:your_login/sandbox.git
-git fetch origin
-</pre></div>
-</div>
-<p><font color="red">Don’t forget to replace <code class="docutils literal notranslate"><span class="pre">your_login</span></code></font></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
-</pre></div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>“Push”<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>By default you begin to work on the master branch:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch
-</pre></div>
-</div>
-<p>“Push” your file on GitHub, option flag <code class="docutils literal notranslate"><span class="pre">-u</span></code> could be necessary for the first push.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push -u origin master
-</pre></div>
-</div>
-</div>
-<div class="section" id="display-all-branches">
-<h2>Display all branches<a class="headerlink" href="#display-all-branches" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch -a
-</pre></div>
-</div>
-</div>
-<div class="section" id="creer-une-branche">
-<h2>Créer une branche<a class="headerlink" href="#creer-une-branche" title="Permalink to this headline">¶</a></h2>
-<p>Permet de “figer” une version personnelle locale sur laquelle vous pouvez travailler sans modifier la branche principale “master”.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch mabranche
-git checkout mabranche
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch
-</pre></div>
-</div>
-<p>Des fichiers peuvent être différents ou meme inexsitants dans deux branches distinctes mais ils se trouveront au même endroit dans le système de fichiers.</p>
-</div>
-<div class="section" id="edit-and-modify-the-readme-file">
-<h2>Edit and modify the README file<a class="headerlink" href="#edit-and-modify-the-readme-file" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>date &gt;&gt; README.md
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git diff
-</pre></div>
-</div>
-</div>
-<div class="section" id="commit-the-changes">
-<h2>Commit the changes<a class="headerlink" href="#commit-the-changes" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add README.md
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git status
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s1">&#39;Add today date in README&#39;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="id2">
-<h2>Commit<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p><img alt="index1" src="_images/index1.png" /></p>
-</div>
-<div class="section" id="fast-commit">
-<h2>Fast commit<a class="headerlink" href="#fast-commit" title="Permalink to this headline">¶</a></h2>
-<p><img alt="index2" src="_images/index2.png" /></p>
 </div>
 <div class="section" id="share-your-modifications">
 <h2>Share your modifications<a class="headerlink" href="#share-your-modifications" title="Permalink to this headline">¶</a></h2>
@@ -1062,14 +812,6 @@ git merge master
 </div>
 <p>Si votre branche locale n’est pas présente sur le serveur, vous pouvez utiliser <code class="docutils literal notranslate"><span class="pre">rebase</span></code> à la place de <code class="docutils literal notranslate"><span class="pre">merge</span></code>. Cette opération permet de récrire l’historique en datant vos modifications postérieures à la dernière modification de la branche master.</p>
 </div>
-<div class="section" id="cycle">
-<h2>Cycle<a class="headerlink" href="#cycle" title="Permalink to this headline">¶</a></h2>
-<p><img alt="Cycle" src="_images/git_cycle.png" /></p>
-</div>
-<div class="section" id="developpement-pour-garantir-la-stabibite">
-<h2>Développement pour garantir la stabibité<a class="headerlink" href="#developpement-pour-garantir-la-stabibite" title="Permalink to this headline">¶</a></h2>
-<p><img alt="Branches" src="_images/lr-branches-2.png" /></p>
-</div>
 <div class="section" id="stash">
 <h2>Stash<a class="headerlink" href="#stash" title="Permalink to this headline">¶</a></h2>
 <p>Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.</p>
@@ -1088,106 +830,6 @@ git stash show
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git stash drop
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="pourquoi-git">
-<h2>Pourquoi Git ?<a class="headerlink" href="#pourquoi-git" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Tracer et controler les modifications dans un logiciel.</p></li>
-<li><p>Branches : Développement dédié pouvant fonctionner en paralléle.</p></li>
-<li><p>Tout est local : Git est rapide.</p></li>
-<li><p>Des sauvegardes trés nombreuses.</p></li>
-<li><p>Cette distinction local-distant offre plus de sécurité</p></li>
-<li><p>Le mécanisme des <code class="docutils literal notranslate"><span class="pre">pull</span> <span class="pre">request</span></code> favorise la relecture et est une garantie supplémentaire de stabilité.</p></li>
-</ul>
-</div>
-<div class="section" id="pourquoi-pas">
-<h2>Pourquoi pas<a class="headerlink" href="#pourquoi-pas" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Difficile à apprendre pour les utilisateurs de cvs et subversion qui sont moins puissants mais plus simples et souvent suffisants dans beaucoup de cas.</p></li>
-<li><p>Syntaxe en ligne de commande un peu folle et parfois confuse.</p></li>
-<li><p>Il faut parfois enchainer beaucoup d’instructions pour des opérations assez simples.</p></li>
-<li><p>L’historique créé par git est parfois étrange, certaines modifications peuvent changer d’auteur.</p></li>
-<li><p>On peut détruire le dépôt distant involontairement.</p></li>
-<li><p>Offre beaucoup de confort au responsable de la maintenance du code au détriment des contributeurs.</p></li>
-</ul>
-</div>
-<div class="section" id="quelques-commandes-utiles">
-<h2>Quelques commandes utiles<a class="headerlink" href="#quelques-commandes-utiles" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Quels fichiers différent dans deux branches distinctes ?</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git diff --name-status master..mabranche
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Comparer la version sur la branche principale avec une autre branche</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git diff mabranche master -- intro.md
-</pre></div>
-</div>
-</div>
-<div class="section" id="gitignore">
-<h2>.gitignore<a class="headerlink" href="#gitignore" title="Permalink to this headline">¶</a></h2>
-<p>Si votre dépôt contient un fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> avec une liste de fichiers, les modifications de ces fichiers seront ignorés par git. Je conseille de supprimer ces fichiers de l’historique avant de les ignorer.</p>
-<ul class="simple">
-<li><p>Pour effacer tous les fichiers ignorés (à faire après un commit)</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clean -xdf
-</pre></div>
-</div>
-</div>
-<div class="section" id="ignorer-tous-les-changements-et-revenir-au-point-de-depart">
-<h2>Ignorer tous les changements et revenir au point de départ<a class="headerlink" href="#ignorer-tous-les-changements-et-revenir-au-point-de-depart" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Sur un fichier</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout README.md
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Pour revenir au point de départ</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git reset --hard
-</pre></div>
-</div>
-</div>
-<div class="section" id="utiliser-git-plus-facilement">
-<h2>Utiliser git plus facilement<a class="headerlink" href="#utiliser-git-plus-facilement" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://desktop.github.com/">GitHub Desktop</a></p></li>
-<li><p><a class="reference external" href="https://fr.atlassian.com/software/sourcetree">Sourcetree</a></p></li>
-<li><p><a class="reference external" href="https://www.gitkraken.com/">GitKraken</a></p></li>
-<li><p><a class="reference external" href="https://git-fork.com">Fork</a></p></li>
-<li><p><a class="reference external" href="https://www.rstudio.com/">Plugin RStudio</a></p></li>
-<li><p><a class="reference external" href="https://www.eclipse.org/downloads/">Plugin Eclipse</a></p></li>
-<li><p><a class="reference external" href="https://www.jetbrains.com/">Produits JetBrains</a></p></li>
-</ul>
-<p>Checking which files are ready to be committed.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git status
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>On branch master
-Your branch is up to date with &#39;origin/master&#39;.
-
-Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
-	../spark-3.0.1-bin-hadoop2.7.tgz
-	../spark-3.0.1-bin-hadoop2.7/
-
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now save your work, the branch is local.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s1">&#39;Some modifications&#39;</span>
-</pre></div>
 </div>
 </div>
 <div class="section" id="updating-from-the-repository">
@@ -1241,257 +883,8 @@ From https://github.com/pnavaro/big-data
 </div>
 <p>Be careful with this last command, you remove uncommited changes.</p>
 </div>
-<div class="section" id="git-through-ide">
-<h2>Git through IDE<a class="headerlink" href="#git-through-ide" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Install bash-completion and source git-prompt.sh.</p></li>
-<li><p>Use Gui tools:</p>
-<ul>
-<li><p><a class="reference external" href="https://desktop.github.com/">GitHub Desktop</a></p></li>
-<li><p><a class="reference external" href="https://fr.atlassian.com/software/sourcetree">Sourcetree</a></p></li>
-<li><p><a class="reference external" href="https://www.gitkraken.com/">GitKraken</a></p></li>
-</ul>
-</li>
-<li><p>VCS plugin of IDE</p>
-<ul>
-<li><p><a class="reference external" href="https://www.rstudio.com/">RStudio</a></p></li>
-<li><p><a class="reference external" href="https://www.eclipse.org/downloads/">Eclipse</a></p></li>
-<li><p><a class="reference external" href="https://www.jetbrains.com/">JetBrains</a></p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="about-dropbox">
-<h2>About Dropbox<a class="headerlink" href="#about-dropbox" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Dropbox versioning is not free.</p></li>
-<li><p>Only keep your edits over a period of 30 days.</p></li>
-<li><p>Privacy and Security ?</p></li>
-<li><p>No differences display.</p></li>
-<li><p>The service have the right to delete information from free and inactive accounts.</p></li>
-<li><p>Users are not allowed to perform encryption.</p></li>
-</ul>
-</div>
-<div class="section" id="new-products-based-on-a-git-server-for-collaborating-writing">
-<h2>New products based on a git server for collaborating writing.<a class="headerlink" href="#new-products-based-on-a-git-server-for-collaborating-writing" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>ShareLaTeX (https://fr.sharelatex.com)</p></li>
-<li><p>Authorea (https://www.authorea.com)</p></li>
-<li><p>Overleaf (https://www.overleaf.com)</p></li>
-<li><p>PLMLateX (https://plmlatex.math.cnrs.fr/)</p></li>
-</ul>
-</div>
-<div class="section" id="about-version-control">
-<h2>About Version Control<a class="headerlink" href="#about-version-control" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Records changes to a file or set of files over time.</p></li>
-<li><p>You can recall specific versions later.</p></li>
-<li><p>You can use it with nearly any type of file on a computer.</p></li>
-<li><p>This is the better way to collaborate on the same document.</p></li>
-<li><p>Every change is committed with an author and a date.</p></li>
-<li><p>Figures are downloaded from <a class="reference external" href="http://git-scm.com/book">Pro Git book</a>.</p></li>
-<li><p>“Become a git guru” tutorial (https://www.atlassian.com/git/tutorials).</p></li>
-</ul>
-</div>
-<div class="section" id="local-version-control-systems">
-<h2>Local Version Control Systems<a class="headerlink" href="#local-version-control-systems" title="Permalink to this headline">¶</a></h2>
-<p><img alt="Local" src="_images/local.png" />{width=50%}</p>
-<ul class="simple">
-<li><p>One of the most saving popular was a system called RCS</p></li>
-<li><p>Available with the Developer Tools with Mac OS X</p></li>
-<li><p>Collaboration is not really possible.</p></li>
-</ul>
-</div>
-<div class="section" id="centralized-version-control-systems">
-<h2>Centralized Version Control Systems<a class="headerlink" href="#centralized-version-control-systems" title="Permalink to this headline">¶</a></h2>
-<p><img alt="CVS" src="_images/cvs.png" />{width=50%}</p>
-<ul class="simple">
-<li><p>Clients check out files from a central place.</p></li>
-<li><p>You know what everyone else on the project is doing</p></li>
-<li><p>A single server contains all the versioned files.</p></li>
-<li><p>For many years, this has been the standard (CVS, SVN).</p></li>
-<li><p>You always need network connection.</p></li>
-<li><p>If the server is corrupted, with no backup, you lose everything !</p></li>
-</ul>
-</div>
-<div class="section" id="id3">
-<h2>Distributed Version Control Systems<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p><img alt="Git" src="_images/git.png" />{width=30%}</p>
-<ul class="simple">
-<li><p>Clients fully mirror the repository.</p></li>
-<li><p>You can collaborate with different groups of people in different ways simultaneously within the same project.</p></li>
-<li><p>No need of network connection.</p></li>
-<li><p>Multiple backups.</p></li>
-</ul>
-</div>
-<div class="section" id="id4">
-<h2>Configure Git<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<p>Install git on windows https://gitforwindows.org</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global user.name <span class="s2">&quot;Pierre Navaro&quot;</span>
-$ git config --global user.email <span class="s2">&quot;pierre.navaro@univ-rennes1.fr&quot;</span>
-$ git config --global core.editor mvim
-$ git config --global merge.tool opendiff
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --list
-   user.name<span class="o">=</span>Pierre Navaro
-   user.email<span class="o">=</span>pierre.navaro@univ-rennes1.fr
-   core.editor<span class="o">=</span>mvim
-   merge.tool<span class="o">=</span>opendiff
-</pre></div>
-</div>
-<p>Settings are saved on the computer for all your git repositories.</p>
-</div>
-<div class="section" id="id5">
-<h2>Four File status in the repository<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p><img alt="Status" src="_images/18333fig0201-tn.png" />{width=50%}</p>
-</div>
-<div class="section" id="initializing-a-repository-in-an-existing-directory">
-<h2>Initializing a repository in an existing directory<a class="headerlink" href="#initializing-a-repository-in-an-existing-directory" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls article
-	document.tex	figure.png
-$ git init
-	Initialized empty Git repository in /Users/navaro/article/.git/
-$ git status
-	On branch master
-	Initial commit
-	Untracked files:
- 	 (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
-
-		document.tex
-		figure.png
-
-	nothing added to commit but untracked files present
-	(use &quot;git add&quot; to track)
-</pre></div>
-</div>
-</div>
-<div class="section" id="adding-files-in-your-repository">
-<h2>Adding files in your repository<a class="headerlink" href="#adding-files-in-your-repository" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add document.tex
-$ git add figure.png
-$ git status
-	On branch master
-	Initial commit
-	Changes to be committed:
- 	 (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
-
-		new file:   document.tex
-		new file:   figure.png
-
-$ git commit -m &#39;Initial project version&#39;}
-	[master (root-commit) 9d23b49] Initial project version
- 	2 files changed, 0 insertions(+), 0 deletions(-)
- 	create mode 100644 document.tex
- 	create mode 100644 figure.png
-</pre></div>
-</div>
-</div>
-<div class="section" id="cloning-a-existing-repository">
-<h2>Cloning a existing repository<a class="headerlink" href="#cloning-a-existing-repository" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone git@github.com:pnavaro/irmar-git-project.git
-	Cloning into &#39;projet&#39;...
-	Initialized empty Git repository in /git/repositories/plm/navaro/projet.git/
-	warning: You appear to have cloned an empty repository.
-	Checking connectivity... done.
-</pre></div>
-</div>
-</div>
-<div class="section" id="add-and-commit-your-files">
-<h2>Add and commit your files.<a class="headerlink" href="#add-and-commit-your-files" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd sandbox/your_name
-$ touch document.tex figure.png
-$ git add document.tex figure.png
-$ git commit -m &#39;Add my contribution to the project&#39;
-</pre></div>
-</div>
-<p>Your files are NOT present on the server!</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
-	On branch master
-	Your branch is ahead of &#39;origin/master&#39; by 1 commit.
-  	(use &quot;git push&quot; to publish your local commits)
-</pre></div>
-</div>
-</div>
-<div class="section" id="synchronizing-your-files-on-the-server">
-<h2>Synchronizing your files on the server<a class="headerlink" href="#synchronizing-your-files-on-the-server" title="Permalink to this headline">¶</a></h2>
-<p>By default you are on the “master” branch.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git branch
-	* master
-</pre></div>
-</div>
-<p>Upload your files to the server:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git push origin master
-	...
-	To https://github.com/pnavaro/irmar-git-project
-   		ae2ce3c..ed796ea  master -&gt; master
-</pre></div>
-</div>
-</div>
-<div class="section" id="id6">
-<h2>Git Workflow<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p><img alt="4-stages" src="_images/four_stages.png" /></p>
-</div>
-<div class="section" id="cloning-an-existing-directory">
-<h2>Cloning an Existing Directory<a class="headerlink" href="#cloning-an-existing-directory" title="Permalink to this headline">¶</a></h2>
-<p>Now i change my computer.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone git@github.com:pnavaro/irmar-git-project.git
-	Cloning into &#39;irmar-git-project&#39;...
-$ cd irmar-git-project
-$ git log
-	commit ed796ea1cbd15c8f7ec040b303c950569527012c (HEAD -&gt; master, origin/master, origin/HEAD)
-	Author: Pierre Navaro &lt;pierre.navaro@univ-rennes1.fr&gt;
-	Date:   Thu Apr 19 13:26:01 2018 +0200
-
-    	Add my contribution to the project
-</pre></div>
-</div>
-</div>
-<div class="section" id="display-and-create-a-branch">
-<h2>Display and Create a Branch<a class="headerlink" href="#display-and-create-a-branch" title="Permalink to this headline">¶</a></h2>
-<p>Display all branches :</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git branch -a
-	* master
-  		remotes/origin/HEAD -&gt; origin/master
-  		remotes/origin/master
-</pre></div>
-</div>
-<p>Create your own branch and switch:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git branch pierre-branch
-$ git checkout pierre-branch
-</pre></div>
-</div>
-<p>Switched to branch ‘pierre-branch’</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git branch
-  	master
-	* pierre-branch
-</pre></div>
-</div>
-<p>Files could be different or non existant between branches but are at the same place on the file system</p>
-</div>
-<div class="section" id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
-<p>Modify the file document.tex</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
-	On branch pierre-branch
-	Changes not staged for commit:
- 	 (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
- 	 (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-		modified:   document.tex
-	no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-
-$ git diff
-	diff --git a/document.tex b/document.tex
-	index a608114..e69de29 100644
-	--- a/document.tex
-	+++ b/document.tex
-	@@ -1,3 +0,0 @@
-	-Exemple Git pour la journee de rentree
-</pre></div>
-</div>
-</div>
-<div class="section" id="id7">
-<h2>Locally saving your modifications<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="locally-saving-your-modifications">
+<h2>Locally saving your modifications<a class="headerlink" href="#locally-saving-your-modifications" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add document.tex
 </pre></div>
 </div>
@@ -1509,12 +902,6 @@ Changes to be committed:
  1 file changed, 3 insertions(+)
 </pre></div>
 </div>
-</div>
-<div class="section" id="id8">
-<h2>Fast commit<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
-<p><img alt="index1" src="_images/index1.png" />{width=50%}
-<img alt="index2" src="_images/index2.png" />{width=50%}</p>
-<p>Use it carefully!</p>
 </div>
 <div class="section" id="share-your-work-and-make-it-available-on-the-server">
 <h2>Share your work and make it available on the server<a class="headerlink" href="#share-your-work-and-make-it-available-on-the-server" title="Permalink to this headline">¶</a></h2>
@@ -1540,8 +927,8 @@ $ git push origin master
 </div>
 </div>
 </div>
-<div class="section" id="id9">
-<h2>Share your work and make it available on the server<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>Share your work and make it available on the server<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="option-2-push-your-branch-to-the-server">
 <h3>Option 2 : Push your branch to the server<a class="headerlink" href="#option-2-push-your-branch-to-the-server" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout pierre-branch
@@ -1560,8 +947,8 @@ $ git branch -a
 </div>
 </div>
 </div>
-<div class="section" id="id10">
-<h2>Updating from the Repository<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>Updating from the Repository<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>The master branch has changed. To get all new updates :</p>
 <div class="highlight-git notranslate"><div class="highlight"><pre><span></span>$ git checkout master     
 	Switched to branch &#39;master&#39;
@@ -1592,16 +979,8 @@ $ git merge master
 </pre></div>
 </div>
 </div>
-<div class="section" id="git-cycle-on-a-single-branch">
-<h2>Git cycle on a single branch<a class="headerlink" href="#git-cycle-on-a-single-branch" title="Permalink to this headline">¶</a></h2>
-<p><img alt="Cycle" src="_images/git_cycle.png" /></p>
-</div>
-<div class="section" id="progressive-stability-branching">
-<h2>Progressive-stability branching<a class="headerlink" href="#progressive-stability-branching" title="Permalink to this headline">¶</a></h2>
-<p><img alt="Branches" src="_images/lr-branches-2.png" /></p>
-</div>
-<div class="section" id="id11">
-<h2>Stash<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>Stash<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>Use itwhen you want to record the current state of the working directory and the index.</p>
 <ul class="simple">
 <li><p>Modify a file in the repository and save it with</p></li>
@@ -1677,8 +1056,8 @@ $ git reset --hard
 </pre></div>
 </div>
 </div>
-<div class="section" id="id12">
-<h2>Git through IDE<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="git-through-ide">
+<h2>Git through IDE<a class="headerlink" href="#git-through-ide" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Install bash-completion and source git-prompt.sh.</p></li>
 <li><p>Use Gui tools:</p>
