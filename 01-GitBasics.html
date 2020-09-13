@@ -376,46 +376,6 @@
    GitHub repository
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#git-workflow">
-   Git Workflow
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise">
-   Exercise
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#branches">
-   Branches
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-a-new-branch">
-   Create a new branch
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#edit-and-modify-the-readme-file">
-   Edit and modify the README file
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#commit-the-changes">
-   Commit the changes
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#commit-or-fast-commit">
-   Commit or fast commit
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#merge-mybranch-with-the-master-branch">
-   Merge mybranch with the master branch
-  </a>
- </li>
 </ul>
 
         </nav>
@@ -598,16 +558,16 @@ In the user settings sidebar, click <code class="docutils literal notranslate"><
 </div>
 <div class="section" id="github-repository">
 <h2>GitHub repository<a class="headerlink" href="#github-repository" title="Permalink to this headline">¶</a></h2>
-<p><font color="red">In the following steps replace <strong>johnsmith</strong> by your own GitHub login</font></p>
-<p>Create the <code class="docutils literal notranslate"><span class="pre">johnsmith.github.io</span></code> repository on your GitHub account</p>
+<p><font color="red">In the following steps replace <strong>your_login</strong> by your own GitHub login</font></p>
+<p>Create the <code class="docutils literal notranslate"><span class="pre">your_login.github.io</span></code> repository on your GitHub account</p>
 <ul class="simple">
 <li><p>Click on ‘+’ on top right of the page and select “New repository”</p></li>
-<li><p>Repository name = “johnsmith.github.io”</p></li>
+<li><p>Repository name = “your_login.github.io”</p></li>
 <li><p>Don’t change default options</p></li>
 <li><p>Click on “Create repository”</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> sandbox
-$ git remote add origin git@github.com:johnsmith/sandbox.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> homnepage
+$ git remote add origin git@github.com:your_login/your_login.github.io.git
 $ git push -u origin master
 Enumerating objects: <span class="m">6</span>, <span class="k">done</span>.
 Counting objects: <span class="m">100</span>% <span class="o">(</span><span class="m">6</span>/6<span class="o">)</span>, <span class="k">done</span>.
@@ -615,7 +575,7 @@ Delta compression using up to <span class="m">4</span> threads
 Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>, <span class="k">done</span>.
 Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="m">449</span> bytes <span class="p">|</span> <span class="m">449</span>.00 KiB/s, <span class="k">done</span>.
 Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">0</span>
-To github.com:johnsmith/johnsmith.github.io.git
+To github.com:your_login/your_login.github.io.git
    fd6dace..c4488e6  master -&gt; master
 </pre></div>
 </div>
@@ -625,23 +585,33 @@ nothing to commit, working tree clean
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="enable-github-pages">
+<h1>Enable GitHub pages<a class="headerlink" href="#enable-github-pages" title="Permalink to this headline">¶</a></h1>
+<p>Go to <a class="reference external" href="https://github.com/your_login.github.io/settings">https://github.com/your_login.github.io/settings</a></p>
+<p>In the section <strong>GitHub Pages</strong></p>
+<p>Select <code class="docutils literal notranslate"><span class="pre">master</span></code> for <strong>Source</strong> and <code class="docutils literal notranslate"><span class="pre">root</span></code></p>
+<p>Choose the <strong>minimal theme</strong> and validate, you can change it later.</p>
+<p>The website is available at <a class="reference external" href="https://*your_login*.github.io">https://*your_login*.github.io</a></p>
 <div class="section" id="git-workflow">
 <h2>Git Workflow<a class="headerlink" href="#git-workflow" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/four_stages.png"><img alt="git" src="_images/four_stages.png" style="width: 150px;" /></a>
 </div>
 <div class="section" id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
-<p>Modify the file README.md and do the procedure again.</p>
+<p>Check the web page by visiting <a class="reference external" href="https://your_login.github.io">https://your_login.github.io</a></p>
+<p>Modify the file index.md and do the procedure again. Add the file <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> with the following content:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Page personnelle</span>
+<span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Exercice Git</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="branches">
 <h2>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h2>
 <p><strong>Display all branches</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch -a
-</pre></div>
-</div>
-<hr class="docutils" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">master</span>
-  <span class="n">remotes</span><span class="o">/</span><span class="n">origin</span><span class="o">/</span><span class="n">master</span>
+* master
+  remotes/origin/master
 </pre></div>
 </div>
 </div>
@@ -649,65 +619,55 @@ nothing to commit, working tree clean
 <h2>Create a new branch<a class="headerlink" href="#create-a-new-branch" title="Permalink to this headline">¶</a></h2>
 <p>By creating a new branch you freeze the master branch and you can continue to work without modifying it.
 The branch created is the copy of the current branch (master).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch mybranch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch mybranch
 $ git checkout mybranch
+Switched to branch <span class="s1">&#39;mybranch&#39;</span>
 </pre></div>
 </div>
-<hr class="docutils" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Switched</span> <span class="n">to</span> <span class="n">branch</span> <span class="s1">&#39;mybranch&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch
+master
+* mybranch
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch
-</pre></div>
+<p>Files could be different or not existing in two branches but they are located at the same place on the file system. When you use the <code class="docutils literal notranslate"><span class="pre">checkout</span></code> command, git applies the changes.</p>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<p>master</p>
-<ul class="simple">
-<li><p>mybranch</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-<span class="n">Files</span> <span class="n">could</span> <span class="n">be</span> <span class="n">different</span> <span class="ow">or</span> <span class="n">non</span> <span class="n">existant</span> <span class="ow">in</span> <span class="n">two</span> <span class="n">branches</span> <span class="n">but</span> <span class="n">they</span> <span class="n">are</span> <span class="n">located</span> <span class="n">at</span> <span class="n">the</span> <span class="n">same</span> <span class="n">place</span> <span class="n">on</span> <span class="n">the</span> <span class="n">file</span> <span class="n">system</span><span class="o">.</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="edit-and-modify-the-readme-file">
-<h2>Edit and modify the README file<a class="headerlink" href="#edit-and-modify-the-readme-file" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;coucou&quot;</span> &gt;&gt; README.md
+<div class="section" id="edit-and-modify-the-index-md-file">
+<h2>Edit and modify the index.md file<a class="headerlink" href="#edit-and-modify-the-index-md-file" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)&#39;</span> &gt;&gt; index.md
 $ git status
 On branch mybranch
 Changes not staged <span class="k">for</span> commit:
   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
   <span class="o">(</span>use <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
-	modified:   README.md
+	modified:   index.md
 
 no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
 </pre></div>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git diff
-diff --git a/README.md b/README.md
+diff --git a/index.md b/index.md
 index 87dde03..af6739c <span class="m">100644</span>
---- a/README.md
-+++ b/README.md
+--- a/index.md
++++ b/index.md
 @@ -3,3 +3,4 @@
- Ven <span class="m">11</span> sep <span class="m">2020</span> <span class="m">16</span>:02:35 CEST
 
-+coucou
++!<span class="o">[</span>logo<span class="o">](</span>https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png<span class="o">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="commit-the-changes">
 <h2>Commit the changes<a class="headerlink" href="#commit-the-changes" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add README.md
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add index.md
 $ git status
 On branch mybranch
 Changes to be committed:
   <span class="o">(</span>use <span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
-	modified:   README.md
+	modified:   index.md
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s1">&#39;Add a coucou in README&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s1">&#39;Add logo&#39;</span>
+<span class="o">[</span>mybranch 30a8912<span class="o">]</span> Add logo
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
 </pre></div>
 </div>
 </div>
@@ -717,35 +677,39 @@ Changes to be committed:
 <div class="section" id="merge-mybranch-with-the-master-branch">
 <h2>Merge mybranch with the master branch<a class="headerlink" href="#merge-mybranch-with-the-master-branch" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git diff master
-diff --git a/README.md b/README.md
-index 9c4311a..af6739c <span class="m">100644</span>
---- a/README.md
-+++ b/README.md
-@@ -2,7 +2,5 @@
-
- Ven <span class="m">11</span> sep <span class="m">2020</span> <span class="m">16</span>:02:35 CEST
-
-+coucou
+diff --git a/index.md b/index.md
+index c744020..4d833d1 <span class="m">100644</span>
+--- a/index.md
++++ b/index.md
+@@ -1,2 +1,3 @@
+ <span class="c1"># Prenom Nom</span>
+ Rennes
++!<span class="o">[</span>logo<span class="o">](</span>https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png<span class="o">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="push-master-branch">
+<h2>Push master branch<a class="headerlink" href="#push-master-branch" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout master
 Switched to branch <span class="s1">&#39;master&#39;</span>
 $ git merge mybranch
-Updating c4488e6..6dafcbd
+Updating 63a5cee..30a8912
 Fast-forward
- README.md <span class="p">|</span> <span class="m">5</span> +----
- <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>, <span class="m">4</span> deletions<span class="o">(</span>-<span class="o">)</span>
+ index.md <span class="p">|</span> <span class="m">1</span> +
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+$ git push origin master
+Enumerating objects: <span class="m">9</span>, <span class="k">done</span>.
+Counting objects: <span class="m">100</span>% <span class="o">(</span><span class="m">9</span>/9<span class="o">)</span>, <span class="k">done</span>.
+Delta compression using up to <span class="m">4</span> threads
+Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>, <span class="k">done</span>.
+Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">8</span>/8<span class="o">)</span>, <span class="m">869</span> bytes <span class="p">|</span> <span class="m">869</span>.00 KiB/s, <span class="k">done</span>.
+Total <span class="m">8</span> <span class="o">(</span>delta <span class="m">1</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">0</span>
+remote: Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>, completed with <span class="m">1</span> <span class="nb">local</span> object.
+To github.com:your_login/your_login.github.io.git
+   6dafcbd..340d3dc  master -&gt; master
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="enable-github-pages">
-<h1>Enable GitHub pages<a class="headerlink" href="#enable-github-pages" title="Permalink to this headline">¶</a></h1>
-<p>Go to <a class="reference external" href="https://github.com/your_login/sandbox/settings">https://github.com/your_login/sandbox/settings</a></p>
-<p>In the section <strong>GitHub Pages</strong></p>
-<p>Select <code class="docutils literal notranslate"><span class="pre">master</span></code> for <strong>Source</strong> and <code class="docutils literal notranslate"><span class="pre">root</span></code></p>
-<p>Choose the <strong>minimal theme</strong> and validate, you can change it later.</p>
-<p>The website is available at <a class="reference external" href="https://*your_login*.github.io/sandbox">https://*your_login*.github.io/sandbox</a></p>
 <div class="section" id="collaborating-writing-with-a-git-repository">
 <h2>Collaborating writing with a git repository<a class="headerlink" href="#collaborating-writing-with-a-git-repository" title="Permalink to this headline">¶</a></h2>
 <p><img alt="Cycle" src="_images/git_cycle.png" /></p>
@@ -760,248 +724,152 @@ Fast-forward
 </pre></div>
 </div>
 </div>
-<div class="section" id="solve-conflits">
-<h2>Solve conflits<a class="headerlink" href="#solve-conflits" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git mergetool
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Cancel uncommited modifications on a file</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout mon_fichier_modif
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Call all modification</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git reset --hard
-</pre></div>
-</div>
-</div>
 <div class="section" id="share-your-modifications">
 <h2>Share your modifications<a class="headerlink" href="#share-your-modifications" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="option-1-merge-master-branch-and-push-it">
 <h3>Option 1 : merge master branch and push it<a class="headerlink" href="#option-1-merge-master-branch-and-push-it" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
-git merge mabranche
-git push origin master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout master
+$ git merge mybranch
+$ git push origin master
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="share-your-contributions">
-<h2>Share your contributions<a class="headerlink" href="#share-your-contributions" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="option-2-push-your-branch">
-<h2>Option 2 : Push your branch<a class="headerlink" href="#option-2-push-your-branch" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout mabranche
-git push origin mabranche
+<h3>Option 2 : Push your branch<a class="headerlink" href="#option-2-push-your-branch" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout mybranch
+$ git push origin mybranch
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="synchronize-the-repository">
 <h2>Synchronize the repository<a class="headerlink" href="#synchronize-the-repository" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
-git fetch origin
-git merge origin/master
+<div class="section" id="update-master-branch">
+<h3>Update master branch<a class="headerlink" href="#update-master-branch" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout master
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout mabranche
-git merge master
+<p>You can use <code class="docutils literal notranslate"><span class="pre">pull</span></code> which is a <code class="docutils literal notranslate"><span class="pre">fetch</span> <span class="pre">and</span> <span class="pre">merge</span></code> command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git pull origin master
 </pre></div>
 </div>
-<p>Si votre branche locale n’est pas présente sur le serveur, vous pouvez utiliser <code class="docutils literal notranslate"><span class="pre">rebase</span></code> à la place de <code class="docutils literal notranslate"><span class="pre">merge</span></code>. Cette opération permet de récrire l’historique en datant vos modifications postérieures à la dernière modification de la branche master.</p>
+<p><code class="docutils literal notranslate"><span class="pre">origin</span></code> is the repository and <code class="docutils literal notranslate"><span class="pre">master</span></code> the <strong>remote</strong> branch from you want to update.</p>
+<p>In some cases, it could be safer to check the differences between your local and the remote branch with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git fetch origin
+$ git diff origin/master
+</pre></div>
+</div>
+<p>and merge</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git merge origin master
+</pre></div>
+</div>
+</div>
+<div class="section" id="update-personal-branch">
+<h3>Update personal branch<a class="headerlink" href="#update-personal-branch" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout mybranch
+$ git merge master
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rebase">
+<h2>Rebase<a class="headerlink" href="#rebase" title="Permalink to this headline">¶</a></h2>
+<p>If the branch named <code class="docutils literal notranslate"><span class="pre">mybranch</span></code> is local and never pushed to the repository. It is possible to use <strong>rebase</strong> instead of merge. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span></code> reapply commits on top of another base tip.</p>
+<p>Exercise:</p>
+<ul class="simple">
+<li><p>Create a new branch called <code class="docutils literal notranslate"><span class="pre">test_rebase</span></code> from master.</p></li>
+<li><p>Do some modifications on the remote master branch by editing file in your browser on GitHub.</p></li>
+<li><p>On your <code class="docutils literal notranslate"><span class="pre">test_rebase</span></code> do also some modifications. Type</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git log -n <span class="m">2</span>
+</pre></div>
+</div>
+<p>It displays the last two commits</p>
+<ul class="simple">
+<li><p>Switch and update your master branch</p></li>
+<li><p>Switch back to <code class="docutils literal notranslate"><span class="pre">test_rebase</span></code> and rebase the local branch with:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git rebase master
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Displays the last two commits and check how the history was changed</p></li>
+</ul>
 </div>
 <div class="section" id="stash">
 <h2>Stash<a class="headerlink" href="#stash" title="Permalink to this headline">¶</a></h2>
 <p>Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git stash
-git stash show
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ date &gt;&gt; index.md    <span class="c1"># Modify the index.md file</span>
+
+$ git diff
+diff --git a/index.md b/index.md
+index 4d833d1..a7bc91d <span class="m">100644</span>
+--- a/index.md
++++ b/index.md
+@@ -1,3 +1,4 @@
+ <span class="c1"># Prenom Nom</span>
+ Rennes
+ !<span class="o">[</span>logo<span class="o">](</span>https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png<span class="o">)</span>
++Sun Sep <span class="m">13</span> <span class="m">21</span>:45:41 CEST <span class="m">2020</span>
+
+$ git stash
+Saved working directory and index state WIP on master: 0fc9d7d Merge remote-tracking branch <span class="s1">&#39;origin/master&#39;</span> into master
+
+$ git stash show
+ index.md <span class="p">|</span> <span class="m">1</span> +
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+ 
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+$ git stash pop
+On branch master
+Changes not staged <span class="k">for</span> commit:
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+	modified:   index.md
+
+no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+Dropped refs/stash@<span class="o">{</span><span class="m">0</span><span class="o">}</span> <span class="o">(</span>3de29586d5e0b9ceeb3c23e03a9aeb045c4096b8<span class="o">)</span>
+
+$ git status
+On branch master
+Changes not staged <span class="k">for</span> commit:
+  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+	modified:   index.md
+
+no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
 </pre></div>
 </div>
 <div class="section" id="apply-last-stash">
 <h3>Apply last <code class="docutils literal notranslate"><span class="pre">stash</span></code><a class="headerlink" href="#apply-last-stash" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git stash pop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git stash apply
 </pre></div>
 </div>
 </div>
 <div class="section" id="delete-the-last-stash">
 <h3>Delete the last <code class="docutils literal notranslate"><span class="pre">stash</span></code><a class="headerlink" href="#delete-the-last-stash" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git stash drop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git stash drop
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="updating-from-the-repository">
-<h2>Updating from the Repository<a class="headerlink" href="#updating-from-the-repository" title="Permalink to this headline">¶</a></h2>
-<p>If the master branch has changed. To get all new updates :</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-git pull origin master
+<div class="section" id="apply-last-stash-and-drop">
+<h3>Apply last <code class="docutils literal notranslate"><span class="pre">stash</span></code> and drop<a class="headerlink" href="#apply-last-stash-and-drop" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git stash pop
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Already up to date.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>warning: Pulling without specifying how to reconcile divergent branches is
-discouraged. You can squelch this message by running one of the following
-commands sometime before your next pull:
-
-  git config pull.rebase false  # merge (the default strategy)
-  git config pull.rebase true   # rebase
-  git config pull.ff only       # fast-forward only
-
-You can replace &quot;git config&quot; with &quot;git config --global&quot; to set a default
-preference for all repositories. You can also pass --rebase, --no-rebase,
-or --ff-only on the command line to override the configured default per
-invocation.
-
-From https://github.com/pnavaro/big-data
- * branch            master     -&gt; FETCH_HEAD
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="solve-conflicts">
-<h2>Solve conflicts<a class="headerlink" href="#solve-conflicts" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>If you have some conflicts, no problem just do :</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">notebook</span><span class="o">.</span><span class="n">ipynb</span>
-</pre></div>
-</div>
-<p>It will give you back the original version of notebook.ipynb</p>
-<ul class="simple">
-<li><p>If you have big troubles, you can do</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span>
-</pre></div>
-</div>
-<p>Be careful with this last command, you remove uncommited changes.</p>
-</div>
-<div class="section" id="locally-saving-your-modifications">
-<h2>Locally saving your modifications<a class="headerlink" href="#locally-saving-your-modifications" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git add document.tex
-</pre></div>
-</div>
-<p>Checking which files are ready to be committed.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git status
-On branch pierre-branch
-Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
-	modified:   document.tex
-</pre></div>
-</div>
-<p>Now save your work, the branch is local.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git commit -m &#39;Some modifications&#39;
-[pierre-branch 8c6bf81] Some modification is available
- 1 file changed, 3 insertions(+)
-</pre></div>
-</div>
-</div>
-<div class="section" id="share-your-work-and-make-it-available-on-the-server">
-<h2>Share your work and make it available on the server<a class="headerlink" href="#share-your-work-and-make-it-available-on-the-server" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="option-1-merge-to-the-main-branch-and-push">
-<h3>Option 1 : Merge to the main branch and push<a class="headerlink" href="#option-1-merge-to-the-main-branch-and-push" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout master
-
-	Switched to branch &#39;master&#39;
-	Your branch is up-to-date with &#39;origin/master&#39;.
-
-$ git merge pierre-branch
-
-	Updating 7cef21a..8c6bf81
-	Fast-forward
- 	document.tex | 3 +++
- 	1 file changed, 3 insertions(+)
-
-$ git push origin master
-
-	Counting objects: 3, done.
-	...
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>Share your work and make it available on the server<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="option-2-push-your-branch-to-the-server">
-<h3>Option 2 : Push your branch to the server<a class="headerlink" href="#option-2-push-your-branch-to-the-server" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout pierre-branch
-
-	Switched to branch &#39;pierre-branch&#39;
-
-$ git push origin pierre-branch
-
-$ git branch -a
-  	master
-	* pierre-branch
-  	remotes/origin/HEAD -&gt; origin/master
-  	remotes/origin/master
-  	remotes/origin/pierre-branch
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id2">
-<h2>Updating from the Repository<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>The master branch has changed. To get all new updates :</p>
-<div class="highlight-git notranslate"><div class="highlight"><pre><span></span>$ git checkout master     
-	Switched to branch &#39;master&#39;
-
-$ git fetch origin         
-	download changes from repository
-
-$ git merge origin/master  
-	update local branch master
-
-$ git checkout pierre-branch
-	Switched to branch &#39;pierre-branch&#39;
-
-$ git merge master          
-	update your branch
-</pre></div>
-</div>
-<p>If you did not push your branch, use <code class="docutils literal notranslate"><span class="pre">rebase</span></code> instead of <code class="docutils literal notranslate"><span class="pre">merge</span></code></p>
 </div>
 <div class="section" id="merge-conflicts">
 <h2>Merge conflicts<a class="headerlink" href="#merge-conflicts" title="Permalink to this headline">¶</a></h2>
-<p>If you have conflict, no problem just do :</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git mergetool
+<p>If you have conflict, try :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git mergetool
 </pre></div>
 </div>
 <p>A nice editor helps you to choose the right version. Close and :</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git commit -m &#39;Update and fixed conflicts&#39;
-</pre></div>
-</div>
-</div>
-<div class="section" id="id3">
-<h2>Stash<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>Use itwhen you want to record the current state of the working directory and the index.</p>
-<ul class="simple">
-<li><p>Modify a file in the repository and save it with</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git stash
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>You can display saved changes with</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git stash show
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Apply the modifications with</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">stash</span> <span class="n">pop</span> <span class="p">(</span><span class="ow">or</span> <span class="n">apply</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>or drop them with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git stash drop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s1">&#39;Update and fixed conflicts&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1039,7 +907,7 @@ $ git merge master
 <ul class="simple">
 <li><p>Compare the master version of a file to my current branch version</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git diff mybranch master -- myfile.F90
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git diff mybranch master -- myfile
 </pre></div>
 </div>
 <ul class="simple">
@@ -1048,11 +916,37 @@ $ git merge master
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clean -xdf
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>To revert to a previous commit, ignoring any changes:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout myfile.cpp
-$ git reset --hard
+</div>
+<div class="section" id="revert-the-last-commit">
+<h2>Revert the last commit<a class="headerlink" href="#revert-the-last-commit" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ date &gt;&gt; index.md <span class="c1">## modify index.md</span>
+
+$ git commit -a -m <span class="s1">&#39;Add date in index.md&#39;</span>
+<span class="o">[</span>master cbfb502<span class="o">]</span> Add date in index.md
+ <span class="m">3</span> files changed, <span class="m">18</span> insertions<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> .gitignore
+ create mode <span class="m">100644</span> sandbox.Rproj
+
+$ git reset HEAD~1
+Unstaged changes after reset:
+M	index.md
+
+$ git diff
+diff --git a/index.md b/index.md
+index c744020..5d9bd58 <span class="m">100644</span>
+--- a/index.md
++++ b/index.md
+@@ -1,2 +1,3 @@
+ <span class="c1"># Prenom Nom</span>
+ Rennes
++Sun Sep <span class="m">13</span> <span class="m">22</span>:17:05 CEST <span class="m">2020</span>
+
+$ git checkout index.md
+Updated <span class="m">1</span> path from the index
+
+$ cat index.md
+<span class="c1"># Prenom Nom</span>
+Rennes
 </pre></div>
 </div>
 </div>
