@@ -28,8 +28,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -443,8 +441,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 17.1 ms, sys: 13.7 ms, total: 30.8 ms
-Wall time: 4.37 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 12.7 ms, sys: 15.3 ms, total: 28 ms
+Wall time: 4.41 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 1, 2, 2, 3, 3, 4]
@@ -718,9 +716,16 @@ data/daily-stock/hp.json
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "204b363e378349deae25d1bac5d5899e"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="mi">0</span><span class="n">bbe2af9d7b7</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;tqdm&#39;
 </pre></div>
 </div>
 </div>
@@ -733,27 +738,27 @@ data/daily-stock/hp.json
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aet.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/afl.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aig.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/al.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/amgn.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/avy.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/b.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/bwa.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/ge.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hal.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hp.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hpq.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/ibm.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/jbl.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/jpm.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/luv.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/met.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/pcg.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/tgt.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/usb.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/xom.h5&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/afl.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aig.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/al.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/amgn.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/avy.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/b.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/bwa.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/ge.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hal.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hp.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hpq.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/ibm.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/jbl.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/jpm.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/luv.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/met.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/pcg.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/tgt.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/usb.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/xom.h5&#39;]
 </pre></div>
 </div>
 </div>
@@ -779,8 +784,8 @@ data/daily-stock/hp.json
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 979 ms, sys: 77.8 ms, total: 1.06 s
-Wall time: 1.06 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 773 ms, sys: 63.2 ms, total: 836 ms
+Wall time: 835 ms
 </pre></div>
 </div>
 </div>
@@ -792,8 +797,8 @@ Wall time: 1.06 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aet.h5&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/luv.h5&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.h5&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/luv.h5&#39;,
  0.9413176064560879)
 </pre></div>
 </div>
@@ -826,8 +831,8 @@ Wall time: 1.06 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.64 ms, sys: 2.81 ms, total: 8.45 ms
-Wall time: 8.02 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.92 ms, sys: 7.48 ms, total: 12.4 ms
+Wall time: 12 ms
 </pre></div>
 </div>
 </div>
@@ -841,8 +846,8 @@ Wall time: 8.02 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.65 s, sys: 588 ms, total: 2.23 s
-Wall time: 3.95 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.1 s, sys: 1.76 s, total: 3.86 s
+Wall time: 6.41 s
 </pre></div>
 </div>
 </div>
@@ -870,7 +875,7 @@ Wall time: 3.95 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Quaerat magnam magnam neque numquam. Ipsum quisquam etincidunt velit dolore etincidunt. Adipisci quisquam aliquam numquam consectetur. Non sed est numquam adipisci adipisci. Dolor velit dolore amet sed. Dolor quisquam est est sit. Eius voluptatem sit labore adipisci. Labore est sed ipsum non. Voluptatem sit labore magnam voluptatem adipisci.\n\nDolor sed voluptatem tempora dolor amet porro consectetur. Adipisci labore sit modi modi. Eius velit tempora labore. Porro tempora modi quisquam tempora. Adipisci amet dolor quaerat est non. Adipisci eius magnam adipisci modi consectetur amet dolorem. Modi modi labore adipisci magnam ipsum. Porro est magnam non.\n\nQuisquam neque ut numquam eius labore. Aliquam quisquam eius neque labore dolor. Ipsum consectetur dolorem labore ut modi etincidunt. Dolore quaerat aliquam adipisci. Adipisci velit neque ut dolorem porro. Adipisci voluptatem sit numquam aliquam modi etincidunt modi. Dolore modi ipsum dolorem amet ut aliquam quisquam.\n\nNon eius numquam eius consectetur numquam porro. Adipisci porro dolor quaerat consectetur quaerat. Eius consectetur amet voluptatem voluptatem dolore. Voluptatem non ut modi voluptatem. Labore non est velit sed dolor numquam modi. Dolor quisquam modi magnam. Labore porro quiquia quiquia eius tempora tempora eius. Est quiquia ut quaerat.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Quiquia porro amet non. Dolor eius dolore quaerat. Numquam modi quaerat quiquia porro tempora. Consectetur adipisci numquam dolore neque numquam. Labore ut labore dolore ut ut. Numquam est labore etincidunt numquam dolorem modi.\n\nQuiquia aliquam voluptatem sit ut. Sed velit sit ipsum etincidunt porro magnam. Dolore aliquam non velit numquam dolor quiquia. Aliquam quisquam adipisci sed adipisci dolor. Quaerat dolore dolorem adipisci neque quiquia consectetur. Sed labore dolore voluptatem neque est.\n\nEst aliquam labore etincidunt dolorem. Voluptatem ut ipsum porro velit neque sit voluptatem. Non dolor porro dolore ut. Voluptatem ipsum eius quaerat dolore amet porro consectetur. Dolor neque dolorem voluptatem labore neque porro porro. Dolor quiquia quiquia voluptatem non. Sit tempora dolor modi consectetur neque velit.&#39;
 </pre></div>
 </div>
 </div>
@@ -893,11 +898,11 @@ Wall time: 3.95 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample.txt    sample04.txt  sample09.txt  sample14.txt  sample19.txt
-sample00.txt  sample05.txt  sample10.txt  sample15.txt
-sample01.txt  sample06.txt  sample11.txt  sample16.txt
-sample02.txt  sample07.txt  sample12.txt  sample17.txt
-sample03.txt  sample08.txt  sample13.txt  sample18.txt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file_list.txt  sample02.txt   sample07.txt   sample12.txt   sample17.txt
+output.txt     sample03.txt   sample08.txt   sample13.txt   sample18.txt
+sample.txt     sample04.txt   sample09.txt   sample14.txt   sample19.txt
+sample00.txt   sample05.txt   sample10.txt   sample15.txt   user.txt
+sample01.txt   sample06.txt   sample11.txt   sample16.txt
 </pre></div>
 </div>
 </div>
@@ -910,27 +915,27 @@ sample03.txt  sample08.txt  sample13.txt  sample18.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sample13.txt&#39;,
- &#39;sample00.txt&#39;,
- &#39;sample06.txt&#39;,
- &#39;sample09.txt&#39;,
- &#39;sample15.txt&#39;,
- &#39;sample.txt&#39;,
- &#39;sample08.txt&#39;,
- &#39;sample03.txt&#39;,
- &#39;sample14.txt&#39;,
- &#39;sample17.txt&#39;,
- &#39;sample04.txt&#39;,
- &#39;sample18.txt&#39;,
- &#39;sample07.txt&#39;,
- &#39;sample01.txt&#39;,
- &#39;sample19.txt&#39;,
- &#39;sample16.txt&#39;,
- &#39;sample10.txt&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sample06.txt&#39;,
  &#39;sample12.txt&#39;,
+ &#39;sample13.txt&#39;,
+ &#39;sample07.txt&#39;,
+ &#39;sample11.txt&#39;,
  &#39;sample05.txt&#39;,
+ &#39;sample04.txt&#39;,
+ &#39;sample10.txt&#39;,
+ &#39;sample14.txt&#39;,
+ &#39;sample00.txt&#39;,
+ &#39;sample01.txt&#39;,
+ &#39;sample15.txt&#39;,
+ &#39;sample03.txt&#39;,
+ &#39;sample17.txt&#39;,
+ &#39;sample16.txt&#39;,
  &#39;sample02.txt&#39;,
- &#39;sample11.txt&#39;]
+ &#39;sample18.txt&#39;,
+ &#39;sample19.txt&#39;,
+ &#39;sample09.txt&#39;,
+ &#39;sample08.txt&#39;,
+ &#39;sample.txt&#39;]
 </pre></div>
 </div>
 </div>
@@ -955,16 +960,16 @@ sample03.txt  sample08.txt  sample13.txt  sample18.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;magnam&#39;, 192),
- (&#39;porro&#39;, 186),
- (&#39;dolorem&#39;, 185),
- (&#39;eius&#39;, 177),
- (&#39;quiquia&#39;, 175),
- (&#39;numquam&#39;, 173),
- (&#39;non&#39;, 170),
- (&#39;est&#39;, 170),
- (&#39;sed&#39;, 169),
- (&#39;quaerat&#39;, 168)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;dolor&#39;, 183),
+ (&#39;quisquam&#39;, 171),
+ (&#39;dolorem&#39;, 168),
+ (&#39;numquam&#39;, 168),
+ (&#39;aliquam&#39;, 161),
+ (&#39;amet&#39;, 159),
+ (&#39;etincidunt&#39;, 158),
+ (&#39;ipsum&#39;, 156),
+ (&#39;labore&#39;, 153),
+ (&#39;magnam&#39;, 152)]
 </pre></div>
 </div>
 </div>
@@ -1155,13 +1160,18 @@ klmno
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Blue">daily-stock</span>/     genome04.txt    monthly.land.90S.90N.df_1901-2000mean.dat.txt
-daily-stock.tgz  genome05.txt    nucleotide-sample.txt
-genome.txt       genome06.txt    nycflights.tar.gz
-genome00.txt     genome07.txt    people.json
-genome01.txt     irmar.csv       philadelphia-crime-data-2015-ytd.csv
-genome02.txt     irmar.json
-genome03.txt     latinbooks.tgz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">daily-stock</span>/
+daily-stock.tgz
+genome.txt
+irmar.csv
+irmar.json
+latinbooks.tgz
+monthly.land.90S.90N.df_1901-2000mean.dat.txt
+nucleotide-sample.txt
+<span class=" -Color -Color-Blue">nycflights</span>/
+nycflights.tar.gz
+people.json
+philadelphia-crime-data-2015-ytd.csv
 </pre></div>
 </div>
 </div>
@@ -1185,13 +1195,13 @@ genome03.txt     latinbooks.tgz
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;data/genome01.txt&#39;,
- &#39;data/genome07.txt&#39;,
- &#39;data/genome05.txt&#39;,
  &#39;data/genome00.txt&#39;,
+ &#39;data/genome02.txt&#39;,
+ &#39;data/genome03.txt&#39;,
+ &#39;data/genome07.txt&#39;,
  &#39;data/genome06.txt&#39;,
  &#39;data/genome04.txt&#39;,
- &#39;data/genome03.txt&#39;,
- &#39;data/genome02.txt&#39;]
+ &#39;data/genome05.txt&#39;]
 </pre></div>
 </div>
 </div>
@@ -1275,12 +1285,6 @@ same way that Python tends to be slower than NumPy/Pandas</p></li>
 </ol>
 </div>
 </div>
-
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"6713474fc78045f18ef8d64b895e5eff": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f4e6fc3115d24a7bbc8a8cb249c2eeb6": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "870e098a6cc54ba8997ee3d96789c7d8": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_6713474fc78045f18ef8d64b895e5eff", "max": 21.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_f4e6fc3115d24a7bbc8a8cb249c2eeb6", "value": 21.0}}, "b96f30cce5314e469435409117db8b90": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "695fff0e025548238672246631de5a1f": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "d7571c553b3f40139b37b4db44f3e104": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_b96f30cce5314e469435409117db8b90", "placeholder": "\u200b", "style": "IPY_MODEL_695fff0e025548238672246631de5a1f", "value": " 21/21 [00:10&lt;00:00,  2.00it/s]"}}, "626c8eb74e3b44eeb568434e0d9a9172": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "204b363e378349deae25d1bac5d5899e": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_870e098a6cc54ba8997ee3d96789c7d8", "IPY_MODEL_d7571c553b3f40139b37b4db44f3e104"], "layout": "IPY_MODEL_626c8eb74e3b44eeb568434e0d9a9172"}}}, "version_major": 2, "version_minor": 0}
-</script>
-
 
     <script type="text/x-thebe-config">
     {

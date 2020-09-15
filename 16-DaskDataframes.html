@@ -28,8 +28,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -884,29 +882,29 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
   File &quot;&lt;ipython-input-7-7cb27b738c02&gt;&quot;, line 4, in &lt;module&gt;
     df.tail() # Get the last 5 rows
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dataframe/core.py&quot;, line 1054, in tail
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/dataframe/core.py&quot;, line 1054, in tail
     result = result.compute()
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/base.py&quot;, line 167, in compute
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/base.py&quot;, line 167, in compute
     (result,) = compute(self, traverse=False, **kwargs)
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/base.py&quot;, line 452, in compute
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/base.py&quot;, line 452, in compute
     results = schedule(dsk, keys, **kwargs)
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/threaded.py&quot;, line 76, in get
-    results = get_async(
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/local.py&quot;, line 486, in get_async
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/threaded.py&quot;, line 84, in get
+    **kwargs
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 486, in get_async
     raise_exception(exc, tb)
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/local.py&quot;, line 316, in reraise
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 316, in reraise
     raise exc
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/local.py&quot;, line 222, in execute_task
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 222, in execute_task
     result = _execute_task(task, data)
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/core.py&quot;, line 121, in _execute_task
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in _execute_task
     return func(*(_execute_task(a, cache) for a in args))
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/core.py&quot;, line 121, in &lt;genexpr&gt;
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in &lt;genexpr&gt;
     return func(*(_execute_task(a, cache) for a in args))
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/core.py&quot;, line 121, in _execute_task
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in _execute_task
     return func(*(_execute_task(a, cache) for a in args))
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dataframe/io/csv.py&quot;, line 152, in pandas_read_text
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/dataframe/io/csv.py&quot;, line 152, in pandas_read_text
     coerce_dtypes(df, dtypes)
-  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.8/site-packages/dask/dataframe/io/csv.py&quot;, line 256, in coerce_dtypes
+  File &quot;/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/dask/dataframe/io/csv.py&quot;, line 256, in coerce_dtypes
     raise ValueError(msg)
 ValueError: Mismatched dtypes found in `pd.read_csv`/`pd.read_table`.
 
@@ -1196,8 +1194,8 @@ Length: 21, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.92 s, sys: 416 ms, total: 4.33 s
-Wall time: 2.94 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.02 s, sys: 306 ms, total: 5.33 s
+Wall time: 3.63 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1435.0
@@ -1243,8 +1241,8 @@ Wall time: 2.94 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.02 s, sys: 367 ms, total: 4.38 s
-Wall time: 2.95 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.03 s, sys: 242 ms, total: 5.27 s
+Wall time: 3.61 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.206602541321965
@@ -1459,8 +1457,8 @@ Wall time: 2.95 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 138 ms, sys: 24.3 ms, total: 163 ms
-Wall time: 108 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 131 ms, sys: 25 ms, total: 156 ms
+Wall time: 104 ms
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.206602541321965
@@ -2620,8 +2618,8 @@ Name: DepDelay, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.77 s, sys: 182 ms, total: 2.96 s
-Wall time: 2.01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.91 s, sys: 259 ms, total: 3.17 s
+Wall time: 2.02 s
 </pre></div>
 </div>
 </div>
@@ -2637,8 +2635,8 @@ Wall time: 2.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.4 s, sys: 104 ms, total: 1.5 s
-Wall time: 1.01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.48 s, sys: 79.7 ms, total: 1.56 s
+Wall time: 1.08 s
 </pre></div>
 </div>
 </div>

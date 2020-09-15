@@ -35,7 +35,7 @@ print(*months)
 [0m[1;32m      5[0m [0;34m[0m[0m
 [1;32m      6[0m [0mmonths[0m [0;34m=[0m [0mcalendar[0m[0;34m.[0m[0mmonth_abbr[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/usr/share/miniconda3/envs/big-data/lib/python3.8/locale.py[0m in [0;36msetlocale[0;34m(category, locale)[0m
+[0;32m/usr/share/miniconda3/envs/big-data/lib/python3.7/locale.py[0m in [0;36msetlocale[0;34m(category, locale)[0m
 [1;32m    606[0m         [0;31m# convert to string[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
 [1;32m    607[0m         [0mlocale[0m [0;34m=[0m [0mnormalize[0m[0;34m([0m[0m_build_localename[0m[0;34m([0m[0mlocale[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0;32m--> 608[0;31m     [0;32mreturn[0m [0m_setlocale[0m[0;34m([0m[0mcategory[0m[0;34m,[0m [0mlocale[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m

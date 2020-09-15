@@ -28,8 +28,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -472,8 +470,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-3-579d6b723cc5&gt;:1: DeprecationWarning: The default dtype for empty Series will be &#39;object&#39; instead of &#39;float64&#39; in a future version. Specify a dtype explicitly to silence this warning.
-  pd.Series(index=pd.period_range(&#39;09/11/2017&#39;, &#39;09/18/2017&#39;, freq=&quot;D&quot;))
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/ipykernel_launcher.py:1: DeprecationWarning: The default dtype for empty Series will be &#39;object&#39; instead of &#39;float64&#39; in a future version. Specify a dtype explicitly to silence this warning.
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2017-09-11   NaN
@@ -507,33 +505,33 @@ Freq: D, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;dolorem&#39;: 8,
- &#39;dolor&#39;: 8,
- &#39;quaerat&#39;: 7,
- &#39;dolore&#39;: 7,
- &#39;porro&#39;: 7,
- &#39;aliquam&#39;: 6,
- &#39;adipisci&#39;: 6,
- &#39;ut&#39;: 5,
- &#39;sed&#39;: 5,
- &#39;etincidunt&#39;: 5,
- &#39;ipsum&#39;: 5,
- &#39;modi&#39;: 4,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;numquam&#39;: 12,
+ &#39;magnam&#39;: 12,
+ &#39;dolorem&#39;: 12,
+ &#39;quiquia&#39;: 11,
+ &#39;non&#39;: 11,
+ &#39;modi&#39;: 10,
+ &#39;sed&#39;: 10,
+ &#39;aliquam&#39;: 10,
+ &#39;etincidunt&#39;: 9,
+ &#39;neque&#39;: 9,
+ &#39;labore&#39;: 8,
+ &#39;voluptatem&#39;: 8,
+ &#39;ut&#39;: 8,
+ &#39;sit&#39;: 8,
+ &#39;eius&#39;: 6,
+ &#39;ipsum&#39;: 6,
+ &#39;velit&#39;: 6,
+ &#39;est&#39;: 5,
+ &#39;adipisci&#39;: 5,
+ &#39;consectetur&#39;: 5,
+ &#39;dolore&#39;: 5,
+ &#39;dolor&#39;: 4,
+ &#39;quaerat&#39;: 4,
+ &#39;amet&#39;: 4,
  &#39;quisquam&#39;: 4,
- &#39;consectetur&#39;: 4,
- &#39;quiquia&#39;: 4,
- &#39;labore&#39;: 4,
- &#39;sit&#39;: 4,
- &#39;eius&#39;: 4,
- &#39;voluptatem&#39;: 3,
- &#39;neque&#39;: 3,
- &#39;magnam&#39;: 3,
- &#39;non&#39;: 3,
- &#39;tempora&#39;: 3,
- &#39;velit&#39;: 2,
- &#39;numquam&#39;: 1,
- &#39;amet&#39;: 1,
- &#39;est&#39;: 1}
+ &#39;porro&#39;: 4,
+ &#39;tempora&#39;: 3}
 </pre></div>
 </div>
 </div>
@@ -552,15 +550,15 @@ Freq: D, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dolorem    8
-dolor      8
-quaerat    7
-dolore     7
-          ..
-velit      2
-numquam    1
-amet       1
-est        1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numquam     12
+magnam      12
+dolorem     12
+quiquia     11
+            ..
+amet         4
+quisquam     4
+porro        4
+tempora      3
 Length: 27, dtype: int64
 </pre></div>
 </div>
@@ -603,7 +601,7 @@ Length: 27, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
 </div>
@@ -615,7 +613,7 @@ Length: 27, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
