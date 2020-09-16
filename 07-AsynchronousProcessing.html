@@ -28,6 +28,8 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -406,7 +408,7 @@ which does not return until the results are available.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.66 ms, sys: 0 ns, total: 1.66 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.3 ms, sys: 134 µs, total: 1.44 ms
 Wall time: 1 s
 </pre></div>
 </div>
@@ -426,7 +428,7 @@ Wall time: 1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Future at 0x7ff02e0b9c10 state=running&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Future at 0x7f1c2e895210 state=running&gt;
 </pre></div>
 </div>
 </div>
@@ -457,7 +459,7 @@ Wall time: 1 s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14]
-CPU times: user 0 ns, sys: 3.2 ms, total: 3.2 ms
+CPU times: user 2.94 ms, sys: 284 µs, total: 3.22 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -475,8 +477,8 @@ Wall time: 8.01 s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14]
-CPU times: user 4.41 ms, sys: 84 µs, total: 4.49 ms
-Wall time: 1 s
+CPU times: user 2.38 ms, sys: 4.05 ms, total: 6.43 ms
+Wall time: 1.01 s
 </pre></div>
 </div>
 </div>
@@ -523,7 +525,7 @@ Wall time: 1 s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 1, 3, 4, 2, 1, 5, 3, 2, 1]
-CPU times: user 1.19 ms, sys: 3.28 ms, total: 4.47 ms
+CPU times: user 0 ns, sys: 5.27 ms, total: 5.27 ms
 Wall time: 12 s
 </pre></div>
 </div>
@@ -687,8 +689,8 @@ Wall time: 12 s
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished : xom.h5
-CPU times: user 9.8 s, sys: 937 ms, total: 10.7 s
-Wall time: 10.4 s
+CPU times: user 9.61 s, sys: 834 ms, total: 10.4 s
+Wall time: 10.3 s
 </pre></div>
 </div>
 </div>
@@ -733,8 +735,8 @@ Wall time: 10.4 s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5 matches with data/daily-stock/luv.h5 with correlation 0.941318
-CPU times: user 501 ms, sys: 0 ns, total: 501 ms
-Wall time: 500 ms
+CPU times: user 508 ms, sys: 3.23 ms, total: 511 ms
+Wall time: 510 ms
 </pre></div>
 </div>
 </div>
@@ -807,8 +809,8 @@ Wall time: 500 ms
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5 matches with data/daily-stock/luv.h5 with correlation 0.941318
-CPU times: user 725 ms, sys: 88.8 ms, total: 813 ms
-Wall time: 489 ms
+CPU times: user 679 ms, sys: 92.1 ms, total: 771 ms
+Wall time: 449 ms
 </pre></div>
 </div>
 </div>

@@ -28,6 +28,8 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -441,7 +443,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 12.7 ms, sys: 15.3 ms, total: 28 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14.1 ms, sys: 16.9 ms, total: 31 ms
 Wall time: 4.41 s
 </pre></div>
 </div>
@@ -703,6 +705,236 @@ data/daily-stock/hp.json
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">conda</span> install tqdm
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting package metadata (current_repodata.json): - 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+Solving environment: / 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.8.3
+  latest version: 4.8.4
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+
+# All requested packages already installed.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -716,16 +948,9 @@ data/daily-stock/hp.json
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="mi">0</span><span class="n">bbe2af9d7b7</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;tqdm&#39;
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "b9c32926af764abf8f4cee1bae018d81"}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -738,27 +963,27 @@ data/daily-stock/hp.json
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/afl.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aig.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/al.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/amgn.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/avy.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/b.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/bwa.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/ge.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hal.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hp.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hpq.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/ibm.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/jbl.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/jpm.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/luv.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/met.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/pcg.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/tgt.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/usb.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/xom.h5&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aet.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/afl.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aig.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/al.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/amgn.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/avy.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/b.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/bwa.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/ge.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hal.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hp.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hpq.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/ibm.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/jbl.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/jpm.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/luv.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/met.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/pcg.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/tgt.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/usb.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/xom.h5&#39;]
 </pre></div>
 </div>
 </div>
@@ -784,8 +1009,8 @@ data/daily-stock/hp.json
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 773 ms, sys: 63.2 ms, total: 836 ms
-Wall time: 835 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 994 ms, sys: 70 ms, total: 1.06 s
+Wall time: 1.06 s
 </pre></div>
 </div>
 </div>
@@ -797,8 +1022,8 @@ Wall time: 835 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.h5&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/luv.h5&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aet.h5&#39;,
+ &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/luv.h5&#39;,
  0.9413176064560879)
 </pre></div>
 </div>
@@ -831,8 +1056,8 @@ Wall time: 835 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.92 ms, sys: 7.48 ms, total: 12.4 ms
-Wall time: 12 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 53.1 ms, sys: 0 ns, total: 53.1 ms
+Wall time: 52.6 ms
 </pre></div>
 </div>
 </div>
@@ -846,8 +1071,8 @@ Wall time: 12 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.1 s, sys: 1.76 s, total: 3.86 s
-Wall time: 6.41 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.55 s, sys: 1.46 s, total: 4.01 s
+Wall time: 6.38 s
 </pre></div>
 </div>
 </div>
@@ -875,7 +1100,7 @@ Wall time: 6.41 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Quiquia porro amet non. Dolor eius dolore quaerat. Numquam modi quaerat quiquia porro tempora. Consectetur adipisci numquam dolore neque numquam. Labore ut labore dolore ut ut. Numquam est labore etincidunt numquam dolorem modi.\n\nQuiquia aliquam voluptatem sit ut. Sed velit sit ipsum etincidunt porro magnam. Dolore aliquam non velit numquam dolor quiquia. Aliquam quisquam adipisci sed adipisci dolor. Quaerat dolore dolorem adipisci neque quiquia consectetur. Sed labore dolore voluptatem neque est.\n\nEst aliquam labore etincidunt dolorem. Voluptatem ut ipsum porro velit neque sit voluptatem. Non dolor porro dolore ut. Voluptatem ipsum eius quaerat dolore amet porro consectetur. Dolor neque dolorem voluptatem labore neque porro porro. Dolor quiquia quiquia voluptatem non. Sit tempora dolor modi consectetur neque velit.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Tempora sed quisquam amet quaerat labore quisquam consectetur. Velit consectetur tempora consectetur magnam labore dolore neque. Ipsum quiquia numquam quaerat voluptatem est dolore. Voluptatem magnam quaerat numquam ipsum amet ipsum. Est labore ut ipsum numquam labore quiquia amet. Dolore est modi etincidunt. Eius dolorem quiquia numquam voluptatem quisquam. Tempora dolor porro sit dolore neque eius.\n\nEius eius non consectetur. Neque magnam numquam dolore adipisci. Etincidunt eius velit quisquam. Labore quisquam ut aliquam consectetur. Tempora dolore adipisci quiquia ut. Numquam tempora sit porro aliquam. Labore amet sit tempora sed quisquam. Sit dolor tempora amet ipsum. Ipsum quiquia porro quisquam sit velit voluptatem porro.\n\nNon sit quisquam velit quisquam. Aliquam velit ipsum quaerat aliquam dolorem ut. Labore dolor est sed quaerat. Modi velit dolorem quisquam modi. Consectetur labore labore sit. Porro non voluptatem est. Sit dolore magnam magnam eius sed. Eius amet dolore velit quaerat dolore ipsum ut.\n\nVoluptatem amet quisquam velit sit dolore non modi. Quaerat voluptatem adipisci sit. Modi velit quiquia ut. Dolorem sit magnam consectetur etincidunt adipisci voluptatem. Dolore porro aliquam consectetur amet modi quaerat. Etincidunt numquam tempora quaerat.\n\nNumquam etincidunt non ut dolor sit consectetur neque. Aliquam ipsum sit quiquia ipsum quaerat aliquam aliquam. Quisquam voluptatem est dolorem. Dolore eius labore ut tempora modi voluptatem velit. Dolore dolore voluptatem eius magnam quiquia velit dolorem. Dolore neque amet modi.&#39;
 </pre></div>
 </div>
 </div>
@@ -898,11 +1123,11 @@ Wall time: 6.41 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>file_list.txt  sample02.txt   sample07.txt   sample12.txt   sample17.txt
-output.txt     sample03.txt   sample08.txt   sample13.txt   sample18.txt
-sample.txt     sample04.txt   sample09.txt   sample14.txt   sample19.txt
-sample00.txt   sample05.txt   sample10.txt   sample15.txt   user.txt
-sample01.txt   sample06.txt   sample11.txt   sample16.txt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sample.txt    sample04.txt  sample09.txt  sample14.txt  sample19.txt
+sample00.txt  sample05.txt  sample10.txt  sample15.txt
+sample01.txt  sample06.txt  sample11.txt  sample16.txt
+sample02.txt  sample07.txt  sample12.txt  sample17.txt
+sample03.txt  sample08.txt  sample13.txt  sample18.txt
 </pre></div>
 </div>
 </div>
@@ -915,27 +1140,27 @@ sample01.txt   sample06.txt   sample11.txt   sample16.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sample06.txt&#39;,
- &#39;sample12.txt&#39;,
- &#39;sample13.txt&#39;,
- &#39;sample07.txt&#39;,
- &#39;sample11.txt&#39;,
- &#39;sample05.txt&#39;,
- &#39;sample04.txt&#39;,
- &#39;sample10.txt&#39;,
- &#39;sample14.txt&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sample13.txt&#39;,
  &#39;sample00.txt&#39;,
- &#39;sample01.txt&#39;,
- &#39;sample15.txt&#39;,
- &#39;sample03.txt&#39;,
- &#39;sample17.txt&#39;,
- &#39;sample16.txt&#39;,
- &#39;sample02.txt&#39;,
- &#39;sample18.txt&#39;,
- &#39;sample19.txt&#39;,
+ &#39;sample06.txt&#39;,
  &#39;sample09.txt&#39;,
+ &#39;sample15.txt&#39;,
+ &#39;sample.txt&#39;,
  &#39;sample08.txt&#39;,
- &#39;sample.txt&#39;]
+ &#39;sample03.txt&#39;,
+ &#39;sample14.txt&#39;,
+ &#39;sample17.txt&#39;,
+ &#39;sample04.txt&#39;,
+ &#39;sample18.txt&#39;,
+ &#39;sample07.txt&#39;,
+ &#39;sample01.txt&#39;,
+ &#39;sample19.txt&#39;,
+ &#39;sample16.txt&#39;,
+ &#39;sample10.txt&#39;,
+ &#39;sample12.txt&#39;,
+ &#39;sample05.txt&#39;,
+ &#39;sample02.txt&#39;,
+ &#39;sample11.txt&#39;]
 </pre></div>
 </div>
 </div>
@@ -960,16 +1185,16 @@ sample01.txt   sample06.txt   sample11.txt   sample16.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;dolor&#39;, 183),
- (&#39;quisquam&#39;, 171),
- (&#39;dolorem&#39;, 168),
- (&#39;numquam&#39;, 168),
- (&#39;aliquam&#39;, 161),
- (&#39;amet&#39;, 159),
- (&#39;etincidunt&#39;, 158),
- (&#39;ipsum&#39;, 156),
- (&#39;labore&#39;, 153),
- (&#39;magnam&#39;, 152)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;consectetur&#39;, 198),
+ (&#39;voluptatem&#39;, 195),
+ (&#39;amet&#39;, 192),
+ (&#39;velit&#39;, 192),
+ (&#39;dolorem&#39;, 190),
+ (&#39;dolore&#39;, 187),
+ (&#39;sit&#39;, 184),
+ (&#39;dolor&#39;, 177),
+ (&#39;sed&#39;, 174),
+ (&#39;ut&#39;, 173)]
 </pre></div>
 </div>
 </div>
@@ -1160,18 +1385,13 @@ klmno
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">daily-stock</span>/
-daily-stock.tgz
-genome.txt
-irmar.csv
-irmar.json
-latinbooks.tgz
-monthly.land.90S.90N.df_1901-2000mean.dat.txt
-nucleotide-sample.txt
-<span class=" -Color -Color-Blue">nycflights</span>/
-nycflights.tar.gz
-people.json
-philadelphia-crime-data-2015-ytd.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Blue">daily-stock</span>/     genome04.txt    monthly.land.90S.90N.df_1901-2000mean.dat.txt
+daily-stock.tgz  genome05.txt    nucleotide-sample.txt
+genome.txt       genome06.txt    nycflights.tar.gz
+genome00.txt     genome07.txt    people.json
+genome01.txt     irmar.csv       philadelphia-crime-data-2015-ytd.csv
+genome02.txt     irmar.json
+genome03.txt     latinbooks.tgz
 </pre></div>
 </div>
 </div>
@@ -1195,13 +1415,13 @@ philadelphia-crime-data-2015-ytd.csv
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;data/genome01.txt&#39;,
- &#39;data/genome00.txt&#39;,
- &#39;data/genome02.txt&#39;,
- &#39;data/genome03.txt&#39;,
  &#39;data/genome07.txt&#39;,
+ &#39;data/genome05.txt&#39;,
+ &#39;data/genome00.txt&#39;,
  &#39;data/genome06.txt&#39;,
  &#39;data/genome04.txt&#39;,
- &#39;data/genome05.txt&#39;]
+ &#39;data/genome03.txt&#39;,
+ &#39;data/genome02.txt&#39;]
 </pre></div>
 </div>
 </div>
@@ -1231,7 +1451,7 @@ philadelphia-crime-data-2015-ytd.csv
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/09-DaskBag_51_0.png" src="_images/09-DaskBag_51_0.png" />
+<img alt="_images/09-DaskBag_53_0.png" src="_images/09-DaskBag_53_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1285,6 +1505,12 @@ same way that Python tends to be slower than NumPy/Pandas</p></li>
 </ol>
 </div>
 </div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"b009b2b0e2a14524b8dbabe3bfc4bb77": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7128140580e542a9bfa6595b9ea60f30": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "eb3fddd0ca8742c6842a5e81d76ab240": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_b009b2b0e2a14524b8dbabe3bfc4bb77", "max": 21.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_7128140580e542a9bfa6595b9ea60f30", "value": 21.0}}, "16c8d15cf4e54685835669b3e12a380c": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "81983699d9d24a7fbb8d674050fbe784": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "c1d60a798b4b413aa4a910c86c9e0c90": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_16c8d15cf4e54685835669b3e12a380c", "placeholder": "\u200b", "style": "IPY_MODEL_81983699d9d24a7fbb8d674050fbe784", "value": " 21/21 [00:11&lt;00:00,  1.80it/s]"}}, "2d085916985f4fbbb118acb1601efacd": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b9c32926af764abf8f4cee1bae018d81": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_eb3fddd0ca8742c6842a5e81d76ab240", "IPY_MODEL_c1d60a798b4b413aa4a910c86c9e0c90"], "layout": "IPY_MODEL_2d085916985f4fbbb118acb1601efacd"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
 
     <script type="text/x-thebe-config">
     {
