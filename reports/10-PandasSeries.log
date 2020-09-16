@@ -17,24 +17,16 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from dask_jobqueue import SLURMCluster
-
-cluster = SLURMCluster(cores=16,
-                       queue='test',
-                       project='myproject',
-                       memory="16GB",
-                       walltime="01:00:00")
+df = pd.Series(result)
+df
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-1-05aaf65026ec>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mfrom[0m [0mdask_jobqueue[0m [0;32mimport[0m [0mSLURMCluster[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;34m[0m[0m
-[1;32m      3[0m cluster = SLURMCluster(cores=16,
-[1;32m      4[0m                        [0mqueue[0m[0;34m=[0m[0;34m'test'[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m                        [0mproject[0m[0;34m=[0m[0;34m'myproject'[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-4-4bbb868e95fe>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mdf[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mSeries[0m[0;34m([0m[0mresult[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mdf[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'dask_jobqueue'
-ModuleNotFoundError: No module named 'dask_jobqueue'
+[0;31mNameError[0m: name 'result' is not defined
+NameError: name 'result' is not defined
 

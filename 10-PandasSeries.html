@@ -28,8 +28,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -449,7 +447,7 @@ and data analysis tools in Python</em>”</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -467,24 +465,20 @@ dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="s1">&#39;09/11/2017&#39;</span><span class="p">,</span> <span class="s1">&#39;09/18/2017&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="s1">&#39;09/11/2017&#39;</span><span class="p">,</span> <span class="s1">&#39;09/18/2017&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/ipykernel_launcher.py:1: DeprecationWarning: The default dtype for empty Series will be &#39;object&#39; instead of &#39;float64&#39; in a future version. Specify a dtype explicitly to silence this warning.
-  &quot;&quot;&quot;Entry point for launching an IPython kernel.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2017-09-11   NaN
-2017-09-12   NaN
-2017-09-13   NaN
-2017-09-14   NaN
-2017-09-15   NaN
-2017-09-16   NaN
-2017-09-17   NaN
-2017-09-18   NaN
-Freq: D, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2017-09-11    0
+2017-09-12    0
+2017-09-13    0
+2017-09-14    0
+2017-09-15    0
+2017-09-16    0
+2017-09-17    0
+2017-09-18    0
+Freq: D, dtype: int8
 </pre></div>
 </div>
 </div>
@@ -494,50 +488,6 @@ Freq: D, dtype: float64
 <ul class="simple">
 <li><p>Create a text with <code class="docutils literal notranslate"><span class="pre">lorem</span></code> and count word occurences with a <code class="docutils literal notranslate"><span class="pre">collection.Counter</span></code>. Put the result in a <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lorem</span> <span class="kn">import</span> <span class="n">text</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">import</span> <span class="nn">operator</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)))</span>
-<span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">most_common</span><span class="p">(),</span><span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="n">result</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;etincidunt&#39;: 12,
- &#39;consectetur&#39;: 11,
- &#39;numquam&#39;: 10,
- &#39;sed&#39;: 10,
- &#39;aliquam&#39;: 9,
- &#39;dolore&#39;: 8,
- &#39;labore&#39;: 8,
- &#39;ipsum&#39;: 8,
- &#39;eius&#39;: 7,
- &#39;modi&#39;: 7,
- &#39;quiquia&#39;: 7,
- &#39;magnam&#39;: 6,
- &#39;adipisci&#39;: 6,
- &#39;ut&#39;: 6,
- &#39;porro&#39;: 5,
- &#39;non&#39;: 5,
- &#39;voluptatem&#39;: 5,
- &#39;dolor&#39;: 5,
- &#39;neque&#39;: 5,
- &#39;quaerat&#39;: 5,
- &#39;quisquam&#39;: 5,
- &#39;velit&#39;: 4,
- &#39;amet&#39;: 4,
- &#39;dolorem&#39;: 3,
- &#39;est&#39;: 3,
- &#39;tempora&#39;: 2,
- &#39;sit&#39;: 2}
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="id1">
 <h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
@@ -552,16 +502,13 @@ Freq: D, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>etincidunt     12
-consectetur    11
-numquam        10
-sed            10
-               ..
-dolorem         3
-est             3
-tempora         2
-sit             2
-Length: 27, dtype: int64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="mi">4</span><span class="n">bbb868e95fe</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span>
+
+<span class="ne">NameError</span>: name &#39;result&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -572,19 +519,6 @@ Length: 27, dtype: int64
 <ul class="simple">
 <li><p>Plot the series using ‘bar’ kind.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
-</pre></div>
-</div>
-<img alt="_images/10-PandasSeries_11_1.png" src="_images/10-PandasSeries_11_1.png" />
-</div>
-</div>
 </div>
 <div class="section" id="id3">
 <h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -596,30 +530,6 @@ Length: 27, dtype: int64
 </ul>
 </li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;dolore&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="id4">
 <h3>Exercise<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
@@ -627,20 +537,6 @@ Length: 27, dtype: int64
 <li><p>Sort words by number of occurrences.</p></li>
 <li><p>Plot the Series.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
-</pre></div>
-</div>
-<img alt="_images/10-PandasSeries_16_1.png" src="_images/10-PandasSeries_16_1.png" />
-</div>
-</div>
 </div>
 <div class="section" id="full-globe-temperature-between-1901-and-2000">
 <h3>Full globe temperature between 1901 and 2000.<a class="headerlink" href="#full-globe-temperature-between-1901-and-2000" title="Permalink to this headline">¶</a></h3>
@@ -751,288 +647,18 @@ In cells below you need to clean the data and convert the dataframe to a time se
 <li><p>convert df index to datetime with <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> function.</p></li>
 <li><p>convert df to Series containing only “mean temp” column.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
-<span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>day</th>
-      <th>mean temp</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1880</td>
-      <td>1</td>
-      <td>1.0</td>
-      <td>-0.0235</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1880</td>
-      <td>2</td>
-      <td>1.0</td>
-      <td>-0.4936</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1880</td>
-      <td>3</td>
-      <td>1.0</td>
-      <td>-0.6785</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1880</td>
-      <td>4</td>
-      <td>1.0</td>
-      <td>-0.2829</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1580</th>
-      <td>2011</td>
-      <td>9</td>
-      <td>1.0</td>
-      <td>-999.0000</td>
-    </tr>
-    <tr>
-      <th>1581</th>
-      <td>2011</td>
-      <td>10</td>
-      <td>1.0</td>
-      <td>-999.0000</td>
-    </tr>
-    <tr>
-      <th>1582</th>
-      <td>2011</td>
-      <td>11</td>
-      <td>1.0</td>
-      <td>-999.0000</td>
-    </tr>
-    <tr>
-      <th>1583</th>
-      <td>2011</td>
-      <td>12</td>
-      <td>1.0</td>
-      <td>-999.0000</td>
-    </tr>
-  </tbody>
-</table>
-<p>1584 rows × 4 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;month&#39;</span><span class="p">,</span><span class="s1">&#39;day&#39;</span><span class="p">]])</span>
-<span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>day</th>
-      <th>mean temp</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1880-01-01</th>
-      <td>1880</td>
-      <td>1</td>
-      <td>1.0</td>
-      <td>-0.0235</td>
-    </tr>
-    <tr>
-      <th>1880-02-01</th>
-      <td>1880</td>
-      <td>2</td>
-      <td>1.0</td>
-      <td>-0.4936</td>
-    </tr>
-    <tr>
-      <th>1880-03-01</th>
-      <td>1880</td>
-      <td>3</td>
-      <td>1.0</td>
-      <td>-0.6785</td>
-    </tr>
-    <tr>
-      <th>1880-04-01</th>
-      <td>1880</td>
-      <td>4</td>
-      <td>1.0</td>
-      <td>-0.2829</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2011-09-01</th>
-      <td>2011</td>
-      <td>9</td>
-      <td>1.0</td>
-      <td>-999.0000</td>
-    </tr>
-    <tr>
-      <th>2011-10-01</th>
-      <td>2011</td>
-      <td>10</td>
-      <td>1.0</td>
-      <td>-999.0000</td>
-    </tr>
-    <tr>
-      <th>2011-11-01</th>
-      <td>2011</td>
-      <td>11</td>
-      <td>1.0</td>
-      <td>-999.0000</td>
-    </tr>
-    <tr>
-      <th>2011-12-01</th>
-      <td>2011</td>
-      <td>12</td>
-      <td>1.0</td>
-      <td>-999.0000</td>
-    </tr>
-  </tbody>
-</table>
-<p>1584 rows × 4 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;mean temp&#39;</span><span class="p">]</span>
-<span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1880-01-01     -0.0235
-1880-02-01     -0.4936
-1880-03-01     -0.6785
-1880-04-01     -0.2829
-                ...   
-2011-09-01   -999.0000
-2011-10-01   -999.0000
-2011-11-01   -999.0000
-2011-12-01   -999.0000
-Name: mean temp, Length: 1584, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="id6">
 <h3>Exercise<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Display the beginning of the file with <code class="docutils literal notranslate"><span class="pre">.head</span></code>.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1880-01-01   -0.0235
-1880-02-01   -0.4936
-1880-03-01   -0.6785
-1880-04-01   -0.2829
-1880-05-01   -0.1261
-Name: mean temp, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="id7">
 <h3>Exercise<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Display the end of the file with <code class="docutils literal notranslate"><span class="pre">.tail</span></code>.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2011-08-01   -999.0
-2011-09-01   -999.0
-2011-10-01   -999.0
-2011-11-01   -999.0
-2011-12-01   -999.0
-Name: mean temp, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
 <p>In the dataset, -999.00 was used to indicate that there was no value for that year.</p>
 </div>
 <div class="section" id="id8">
@@ -1041,43 +667,6 @@ Name: mean temp, dtype: float64
 <li><p>Display values equal to -999 with <code class="docutils literal notranslate"><span class="pre">.values</span></code>.</p></li>
 <li><p>Replace the missing value (-999.000) by <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="o">-</span><span class="mi">999</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2011-07-01   -999.0
-2011-08-01   -999.0
-2011-09-01   -999.0
-2011-10-01   -999.0
-2011-11-01   -999.0
-2011-12-01   -999.0
-Name: mean temp, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">df2</span><span class="p">[</span><span class="n">df</span> <span class="o">==</span> <span class="o">-</span><span class="mf">999.0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>  <span class="c1"># For this indexing we need a copy</span>
-<span class="n">df2</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2011-08-01   NaN
-2011-09-01   NaN
-2011-10-01   NaN
-2011-11-01   NaN
-2011-12-01   NaN
-Name: mean temp, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
 <p>Once they have been converted to np.nan, missing values can be removed (dropped).</p>
 </div>
 <div class="section" id="id9">
@@ -1085,69 +674,16 @@ Name: mean temp, dtype: float64
 <ul class="simple">
 <li><p>Remove missing values with <code class="docutils literal notranslate"><span class="pre">.dropna</span></code>.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2011-02-01    0.5113
-2011-03-01    0.8618
-2011-04-01    1.0897
-2011-05-01    0.7247
-2011-06-01    0.8550
-Name: mean temp, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="id10">
 <h3>Exercise<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Generate a basic visualization using <code class="docutils literal notranslate"><span class="pre">.plot</span></code>.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
-</pre></div>
-</div>
-<img alt="_images/10-PandasSeries_34_1.png" src="_images/10-PandasSeries_34_1.png" />
-</div>
-</div>
 </div>
 <div class="section" id="id11">
 <h3>Exercise<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>Convert df index from timestamp to period is more meaningfull since it was measured and averaged over the month. Use <code class="docutils literal notranslate"><span class="pre">to_period</span></code> method.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span>
-<span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1880-01   -0.0235
-1880-02   -0.4936
-1880-03   -0.6785
-1880-04   -0.2829
-            ...  
-2011-03    0.8618
-2011-04    1.0897
-2011-05    0.7247
-2011-06    0.8550
-Freq: M, Name: mean temp, Length: 1578, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="resampling">
@@ -1162,27 +698,6 @@ Freq: M, Name: mean temp, Length: 1578, dtype: float64
 <ul class="simple">
 <li><p>With <code class="docutils literal notranslate"><span class="pre">resample</span></code> method, convert df Series to 10 year blocks:</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10A&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1880   -0.386485
-1890   -0.316798
-1900   -0.256431
-1910   -0.247673
-          ...   
-1980    0.188519
-1990    0.463572
-2000    0.785452
-2010    0.884700
-Freq: 10A-DEC, Name: mean temp, Length: 14, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="saving-work">
 <h3>Saving Work<a class="headerlink" href="#saving-work" title="Permalink to this headline">¶</a></h3>

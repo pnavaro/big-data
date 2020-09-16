@@ -28,8 +28,6 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -1196,8 +1194,8 @@ Length: 21, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.95 s, sys: 385 ms, total: 5.34 s
-Wall time: 3.63 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.55 s, sys: 345 ms, total: 4.9 s
+Wall time: 3.37 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1435.0
@@ -1243,8 +1241,8 @@ Wall time: 3.63 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.07 s, sys: 436 ms, total: 5.5 s
-Wall time: 3.77 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.44 s, sys: 349 ms, total: 4.79 s
+Wall time: 3.32 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.206602541321965
@@ -1459,8 +1457,8 @@ Wall time: 3.77 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 158 ms, sys: 28.7 ms, total: 186 ms
-Wall time: 127 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 132 ms, sys: 25.2 ms, total: 157 ms
+Wall time: 98.1 ms
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.206602541321965
@@ -1488,336 +1486,6 @@ Wall time: 127 ms
 <li><p>Use selections <code class="docutils literal notranslate"><span class="pre">df[...]</span></code> to find how many positive (late) and negative (early) departure times there are</p></li>
 <li><p>In total, how many non-cancelled flights were taken? (To invert a boolean pandas Series s, use ~s).</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>DayOfWeek</th>
-      <th>DepTime</th>
-      <th>CRSDepTime</th>
-      <th>ArrTime</th>
-      <th>CRSArrTime</th>
-      <th>UniqueCarrier</th>
-      <th>FlightNum</th>
-      <th>ActualElapsedTime</th>
-      <th>CRSElapsedTime</th>
-      <th>AirTime</th>
-      <th>ArrDelay</th>
-      <th>DepDelay</th>
-      <th>Origin</th>
-      <th>Dest</th>
-      <th>Distance</th>
-      <th>TaxiIn</th>
-      <th>TaxiOut</th>
-      <th>Cancelled</th>
-      <th>Diverted</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1990-01-01</td>
-      <td>1</td>
-      <td>1621.0</td>
-      <td>1540</td>
-      <td>1747.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>86.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>46.0</td>
-      <td>41.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1990-01-02</td>
-      <td>2</td>
-      <td>1547.0</td>
-      <td>1540</td>
-      <td>1700.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>73.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>-1.0</td>
-      <td>7.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1990-01-03</td>
-      <td>3</td>
-      <td>1546.0</td>
-      <td>1540</td>
-      <td>1710.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>84.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>9.0</td>
-      <td>6.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1990-01-04</td>
-      <td>4</td>
-      <td>1542.0</td>
-      <td>1540</td>
-      <td>1710.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>88.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>9.0</td>
-      <td>2.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1990-01-05</td>
-      <td>5</td>
-      <td>1549.0</td>
-      <td>1540</td>
-      <td>1706.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>77.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>9.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>1990-01-06</td>
-      <td>6</td>
-      <td>1539.0</td>
-      <td>1540</td>
-      <td>1653.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>74.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>-8.0</td>
-      <td>-1.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>1990-01-07</td>
-      <td>7</td>
-      <td>1553.0</td>
-      <td>1540</td>
-      <td>1713.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>80.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>12.0</td>
-      <td>13.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1990-01-08</td>
-      <td>1</td>
-      <td>1543.0</td>
-      <td>1540</td>
-      <td>1656.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>73.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>-5.0</td>
-      <td>3.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1990-01-09</td>
-      <td>2</td>
-      <td>1540.0</td>
-      <td>1540</td>
-      <td>1704.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>84.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1990-01-10</td>
-      <td>3</td>
-      <td>1608.0</td>
-      <td>1540</td>
-      <td>1740.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>92.0</td>
-      <td>81.0</td>
-      <td>NaN</td>
-      <td>39.0</td>
-      <td>28.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2611892
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1187146
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>840942
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2540961
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="divisions-and-the-index">
@@ -2555,45 +2223,6 @@ Wall time: 127 ms
 <ul class="simple">
 <li><p>What day of the week has the worst average departure delay?</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;nycflights/&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origin
-EWR    1139451
-JFK     427243
-LGA     974267
-Name: Origin, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origin
-EWR    1139451
-JFK     427243
-LGA     974267
-Name: DepDelay, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="sharing-intermediate-results">
@@ -2620,8 +2249,8 @@ Name: DepDelay, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.23 s, sys: 258 ms, total: 3.49 s
-Wall time: 2.37 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.49 s, sys: 315 ms, total: 7.81 s
+Wall time: 4.77 s
 </pre></div>
 </div>
 </div>
@@ -2637,8 +2266,8 @@ Wall time: 2.37 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.61 s, sys: 194 ms, total: 1.8 s
-Wall time: 1.18 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.78 s, sys: 151 ms, total: 3.93 s
+Wall time: 2.37 s
 </pre></div>
 </div>
 </div>
@@ -2657,7 +2286,7 @@ Wall time: 1.18 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-DaskDataframes_64_0.png" src="_images/16-DaskDataframes_64_0.png" />
+<img alt="_images/16-DaskDataframes_56_0.png" src="_images/16-DaskDataframes_56_0.png" />
 </div>
 </div>
 </div>
