@@ -408,7 +408,7 @@ which does not return until the results are available.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.3 ms, sys: 134 µs, total: 1.44 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.23 ms, sys: 154 µs, total: 1.39 ms
 Wall time: 1 s
 </pre></div>
 </div>
@@ -428,7 +428,7 @@ Wall time: 1 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Future at 0x7f1c2e895210 state=running&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Future at 0x7f55cf7fea50 state=running&gt;
 </pre></div>
 </div>
 </div>
@@ -459,7 +459,7 @@ Wall time: 1 s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14]
-CPU times: user 2.94 ms, sys: 284 µs, total: 3.22 ms
+CPU times: user 3.74 ms, sys: 0 ns, total: 3.74 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -477,7 +477,7 @@ Wall time: 8.01 s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14]
-CPU times: user 2.38 ms, sys: 4.05 ms, total: 6.43 ms
+CPU times: user 1.16 ms, sys: 3.98 ms, total: 5.15 ms
 Wall time: 1.01 s
 </pre></div>
 </div>
@@ -498,39 +498,6 @@ Wall time: 1.01 s
 <li><p>Replace calls to <code class="docutils literal notranslate"><span class="pre">slowadd</span></code> and <code class="docutils literal notranslate"><span class="pre">slowsub</span></code> with <code class="docutils literal notranslate"><span class="pre">e.submit</span></code> calls on those functions</p></li>
 <li><p>At the end, block on the computation by recreating the <code class="docutils literal notranslate"><span class="pre">results</span></code> list by calling <code class="docutils literal notranslate"><span class="pre">.result()</span></code> on each future in the <code class="docutils literal notranslate"><span class="pre">futures</span></code> list.</p></li>
 </ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
-
-<span class="k">def</span> <span class="nf">slowadd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-
-<span class="k">def</span> <span class="nf">slowsub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
-
-<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">:</span>
-            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">slowadd</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">:</span>
-            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">slowsub</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
-            
-<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 1, 3, 4, 2, 1, 5, 3, 2, 1]
-CPU times: user 0 ns, sys: 5.27 ms, total: 5.27 ms
-Wall time: 12 s
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="extract-daily-stock-data-from-google">
 <h2>Extract daily stock data from google<a class="headerlink" href="#extract-daily-stock-data-from-google" title="Permalink to this headline">¶</a></h2>
@@ -689,8 +656,8 @@ Wall time: 12 s
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished : xom.h5
-CPU times: user 9.61 s, sys: 834 ms, total: 10.4 s
-Wall time: 10.3 s
+CPU times: user 10.2 s, sys: 1.08 s, total: 11.2 s
+Wall time: 10.9 s
 </pre></div>
 </div>
 </div>
@@ -735,8 +702,8 @@ Wall time: 10.3 s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5 matches with data/daily-stock/luv.h5 with correlation 0.941318
-CPU times: user 508 ms, sys: 3.23 ms, total: 511 ms
-Wall time: 510 ms
+CPU times: user 550 ms, sys: 2.99 ms, total: 553 ms
+Wall time: 554 ms
 </pre></div>
 </div>
 </div>
@@ -754,7 +721,10 @@ Wall time: 510 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07-AsynchronousProcessing_23_0.png" src="_images/07-AsynchronousProcessing_23_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib is building the font cache; this may take a moment.
+</pre></div>
+</div>
+<img alt="_images/07-AsynchronousProcessing_22_1.png" src="_images/07-AsynchronousProcessing_22_1.png" />
 </div>
 </div>
 </div>
@@ -778,42 +748,6 @@ Wall time: 510 ms
 <p>It finishes with a reduction on small data.  This part is fast enough.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">corr</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span> <span class="k">as</span> <span class="n">PoolExecutor</span>
-
-
-<span class="n">e</span> <span class="o">=</span> <span class="n">PoolExecutor</span><span class="p">()</span>
-
-<span class="k">def</span> <span class="nf">corr</span><span class="p">(</span> <span class="n">serie_a</span><span class="p">,</span> <span class="n">serie_b</span><span class="p">):</span>
-    
-    <span class="k">return</span> <span class="n">serie_a</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">serie_b</span><span class="p">)</span>
-
-<span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
-
-<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
-            <span class="n">futures</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span> <span class="n">corr</span><span class="p">,</span> <span class="n">series</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">series</span><span class="p">[</span><span class="n">b</span><span class="p">])</span>
-            
-<span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span> <span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">futures</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>            
-
-            
-<span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">corr</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> matches with </span><span class="si">%s</span><span class="s2"> with correlation </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">corr</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5 matches with data/daily-stock/luv.h5 with correlation 0.941318
-CPU times: user 679 ms, sys: 92.1 ms, total: 771 ms
-Wall time: 449 ms
-</pre></div>
-</div>
-</div>
 </div>
 <div class="section" id="exercise-7-3">
 <h3>Exercise 7.3<a class="headerlink" href="#exercise-7-3" title="Permalink to this headline">¶</a></h3>

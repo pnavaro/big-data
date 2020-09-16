@@ -418,59 +418,8 @@ Create separate environments to keep your programs isolated from each other.</p>
 <div class="section" id="create-a-new-environment-and-install-a-package-in-it">
 <h3>Create a new environment and install a package in it.<a class="headerlink" href="#create-a-new-environment-and-install-a-package-in-it" title="Permalink to this headline">¶</a></h3>
 <p>We will name the environment <code class="docutils literal notranslate"><span class="pre">testenv</span></code> and install the version 3.8 of <code class="docutils literal notranslate"><span class="pre">python</span></code>. At the Anaconda Prompt or in your terminal window, type the following:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-conda create -y -n testenv python=3.8
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -y -n testenv <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting package metadata (current_repodata.json): ...working... done
-Solving environment: ...working... done
-
-## Package Plan ##
-
-  environment location: /Users/navaro/miniconda3/envs/testenv
-
-  added / updated specs:
-    - python=3.8
-
-
-The following NEW packages will be INSTALLED:
-
-  ca-certificates    conda-forge/osx-64::ca-certificates-2020.6.20-hecda079_0
-  certifi            conda-forge/osx-64::certifi-2020.6.20-py38h32f6830_0
-  libcxx             conda-forge/osx-64::libcxx-10.0.1-h5f48129_0
-  libffi             conda-forge/osx-64::libffi-3.2.1-hb1e8313_1007
-  ncurses            conda-forge/osx-64::ncurses-6.2-hb1e8313_1
-  openssl            conda-forge/osx-64::openssl-1.1.1g-haf1e3a3_1
-  pip                conda-forge/noarch::pip-20.2.3-py_0
-  python             conda-forge/osx-64::python-3.8.5-hfc71d35_7_cpython
-  python_abi         conda-forge/osx-64::python_abi-3.8-1_cp38
-  readline           conda-forge/osx-64::readline-8.0-h0678c8f_2
-  setuptools         conda-forge/osx-64::setuptools-49.6.0-py38h32f6830_0
-  sqlite             conda-forge/osx-64::sqlite-3.33.0-h960bd1c_0
-  tk                 conda-forge/osx-64::tk-8.6.10-hb0a8c7a_0
-  wheel              conda-forge/noarch::wheel-0.35.1-pyh9f0ad1d_0
-  xz                 conda-forge/osx-64::xz-5.2.5-haf1e3a3_1
-  zlib               conda-forge/osx-64::zlib-1.2.11-h7795811_1009
-
-
-Preparing transaction: ...working... done
-Verifying transaction: ...working... done
-Executing transaction: ...working... done
-#
-# To activate this environment, use
-#
-#     $ conda activate testenv
-#
-# To deactivate an active environment, use
-#
-#     $ conda deactivate
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="to-use-or-activate-the-new-environment-type-the-following">
@@ -497,13 +446,21 @@ conda info --envs
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># conda environments:
 #
 base                  *  /Users/navaro/miniconda3
+agrocampus               /Users/navaro/miniconda3/envs/agrocampus
+apprentissage            /Users/navaro/miniconda3/envs/apprentissage
 big-data                 /Users/navaro/miniconda3/envs/big-data
+calcul                   /Users/navaro/miniconda3/envs/calcul
 conda_jl                 /Users/navaro/miniconda3/envs/conda_jl
                          /Users/navaro/miniconda3/envs/conda_jl/envs/_ORCA_jl_
+covid-uk                 /Users/navaro/miniconda3/envs/covid-uk
+dask-tutorial            /Users/navaro/miniconda3/envs/dask-tutorial
 finistR2020              /Users/navaro/miniconda3/envs/finistR2020
+mkdocs                   /Users/navaro/miniconda3/envs/mkdocs
 nbcourse                 /Users/navaro/miniconda3/envs/nbcourse
-runenv                   /Users/navaro/miniconda3/envs/runenv
-smilesx                  /Users/navaro/miniconda3/envs/smilesx
+pelican                  /Users/navaro/miniconda3/envs/pelican
+piscine                  /Users/navaro/miniconda3/envs/piscine
+python-fortran           /Users/navaro/miniconda3/envs/python-fortran
+test                     /Users/navaro/miniconda3/envs/test
 testenv                  /Users/navaro/miniconda3/envs/testenv
 </pre></div>
 </div>
@@ -556,13 +513,12 @@ conda list | grep jupyter
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>jupyter                   1.0.0                    pypi_0    pypi
-jupyter-book              0.8.1                    pypi_0    pypi
-jupyter-cache             0.4.1                    pypi_0    pypi
-jupyter-sphinx            0.3.1                    pypi_0    pypi
+jupyter-book              0.7.4                    pypi_0    pypi
+jupyter-cache             0.3.0                    pypi_0    pypi
+jupyter-console           6.2.0                    pypi_0    pypi
+jupyter-sphinx            0.2.4                    pypi_0    pypi
 jupyter_client            6.1.7                      py_0    conda-forge
-jupyter_console           6.2.0                      py_0    conda-forge
-jupyter_core              4.6.3            py36h9f0ad1d_1    conda-forge
-jupyterlab_pygments       0.1.1              pyh9f0ad1d_0    conda-forge
+jupyter_core              4.6.3            py37hc8dfbb8_1    conda-forge
 </pre></div>
 </div>
 </div>
@@ -575,6 +531,10 @@ This file contains the packages list for this course.</p>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://conda.io/docs/using/envs.html">Conda envs documentation</a>.</p>
+<p>If you don’t have rights to to iy, you can install the new environment on your home directory by using the prefix option</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml -p ~/conda/envs/big-data
+</pre></div>
+</div>
 <p>Activating the conda environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.</p>
 <pre>
 $ conda activate big-data
@@ -616,14 +576,24 @@ jupyter-kernelspec list
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available kernels:
-  ir                    /Users/navaro/Library/Jupyter/kernels/ir
-  julia-1.5             /Users/navaro/Library/Jupyter/kernels/julia-1.5
-  smilesx               /Users/navaro/Library/Jupyter/kernels/smilesx
-  apache_toree_scala    /usr/local/share/jupyter/kernels/apache_toree_scala
-  big-data              /usr/local/share/jupyter/kernels/big-data
-  python2               /usr/local/share/jupyter/kernels/python2
-  python3               /usr/local/share/jupyter/kernels/python3
-  sagemath              /usr/local/share/jupyter/kernels/sagemath
+  apprentissage      /Users/navaro/Library/Jupyter/kernels/apprentissage
+  bash               /Users/navaro/Library/Jupyter/kernels/bash
+  deep_learning      /Users/navaro/Library/Jupyter/kernels/deep_learning
+  finistr            /Users/navaro/Library/Jupyter/kernels/finistr
+  ir                 /Users/navaro/Library/Jupyter/kernels/ir
+  javascript         /Users/navaro/Library/Jupyter/kernels/javascript
+  julia-1.4          /Users/navaro/Library/Jupyter/kernels/julia-1.4
+  julia-1.5          /Users/navaro/Library/Jupyter/kernels/julia-1.5
+  python-fortran     /Users/navaro/Library/Jupyter/kernels/python-fortran
+  python2            /Users/navaro/Library/Jupyter/kernels/python2
+  python3            /Users/navaro/Library/Jupyter/kernels/python3
+  r-apprentissage    /Users/navaro/Library/Jupyter/kernels/r-apprentissage
+  rpy                /Users/navaro/Library/Jupyter/kernels/rpy
+  scala              /Users/navaro/Library/Jupyter/kernels/scala
+  smilesx            /Users/navaro/Library/Jupyter/kernels/smilesx
+  big-data           /usr/local/share/jupyter/kernels/big-data
+  coarray-fortran    /usr/local/share/jupyter/kernels/coarray-fortran
+  sagemath           /usr/local/share/jupyter/kernels/sagemath
 </pre></div>
 </div>
 </div>

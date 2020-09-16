@@ -393,7 +393,7 @@
 <li><p><em>Don’t google too much, ask me or use the python documentation through <code class="docutils literal notranslate"><span class="pre">help</span></code> function.</em></p></li>
 <li><p><em>Do not try to find a clever or optimized solution, do something that works before.</em></p></li>
 <li><p><em>Please don’t get the solution from your colleagues</em></p></li>
-<li><p><em>Notebooks will be updated next week with solutions</em></p></li>
+<li><p><em>Notebooks will be updated every week with solutions</em></p></li>
 </ul>
 <div class="section" id="create-sample-text-file">
 <h2>Create sample text file<a class="headerlink" href="#create-sample-text-file" title="Permalink to this headline">¶</a></h2>
@@ -410,7 +410,7 @@
 </div>
 <div class="section" id="exercise-4-1">
 <h3>Exercise 4.1<a class="headerlink" href="#exercise-4-1" title="Permalink to this headline">¶</a></h3>
-<p>Write a python program that counts the number of lines, words and characters in that file.</p>
+<p>Write a python program that counts the number of lines, different words and characters in that file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -420,97 +420,8 @@ du -h sample.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   70022  2015177 14236168 sample.txt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   69788  2015088 14237857 sample.txt
 14M	sample.txt
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>Compute number of lines</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-
-<span class="n">nlines</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
-<span class="n">nlines</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70023
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>Compute number of words</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nwords</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">])</span>
-<span class="n">nwords</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2015177
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nchars</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="n">nchars</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
-        
-<span class="n">nchars</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12185981
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">set</span></code> gives the list of unique elements from words list.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
-<span class="n">s</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Aliquam&#39;,
- &#39;Est&#39;,
- &#39;Numquam&#39;,
- &#39;Quaerat&#39;,
- &#39;Tempora&#39;,
- &#39;adipisci&#39;,
- &#39;aliquam&#39;,
- &#39;aliquam.&#39;,
- &#39;amet&#39;,
- &#39;dolor&#39;,
- &#39;eius&#39;,
- &#39;eius.&#39;,
- &#39;ipsum&#39;,
- &#39;magnam.&#39;,
- &#39;numquam&#39;,
- &#39;quaerat&#39;,
- &#39;quiquia&#39;,
- &#39;quisquam&#39;,
- &#39;sit&#39;,
- &#39;tempora&#39;,
- &#39;tempora.&#39;,
- &#39;velit&#39;}
 </pre></div>
 </div>
 </div>
@@ -522,27 +433,6 @@ du -h sample.txt
 <div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="x">map_words(&quot;sample.txt&quot;)[:5] # first five words</span>
 <span class="x">[&#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;]</span>
 </pre></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">map_words</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; take a file name as argument and return a </span>
-<span class="sd">    lists containing all words as item</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-
-<span class="n">map_words</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -586,110 +476,6 @@ Return a callable object that fetches item from its operand using the operand’
 {&#39;tempora&#39;: 2, &#39;non&#39;: 1, &#39;quisquam&#39;: 1, &#39;amet&#39;: 1, &#39;sit&#39;: 1}
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="n">sorted_words</span><span class="p">):</span>
-    <span class="s2">&quot; Compute word occurences from sorted list of words&quot;</span>
-    
-    <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">current_word</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sorted_words</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">word</span> <span class="o">==</span> <span class="n">current_word</span><span class="p">:</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="n">current_word</span> <span class="o">=</span> <span class="n">word</span>
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-
-<span class="n">reduce</span><span class="p">(</span><span class="n">map_words</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;quiquia&#39;: 75662,
- &#39;non&#39;: 75611,
- &#39;sed&#39;: 75457,
- &#39;dolor&#39;: 75316,
- &#39;etincidunt&#39;: 75315,
- &#39;consectetur&#39;: 75265,
- &#39;neque&#39;: 75249,
- &#39;est&#39;: 75193,
- &#39;ut&#39;: 75180,
- &#39;dolorem&#39;: 75170,
- &#39;modi&#39;: 75121,
- &#39;velit&#39;: 75108,
- &#39;dolore&#39;: 75092,
- &#39;adipisci&#39;: 75013,
- &#39;amet&#39;: 74975,
- &#39;porro&#39;: 74903,
- &#39;labore&#39;: 74883,
- &#39;ipsum&#39;: 74869,
- &#39;tempora&#39;: 74840,
- &#39;aliquam&#39;: 74825,
- &#39;magnam&#39;: 74756,
- &#39;numquam&#39;: 74721,
- &#39;quaerat&#39;: 74680,
- &#39;quisquam&#39;: 74560,
- &#39;voluptatem&#39;: 74544,
- &#39;sit&#39;: 74493,
- &#39;eius&#39;: 74375}
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">reduce</span></code> function using python exception KeyError</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="n">sorted_words</span><span class="p">):</span>
-    <span class="s2">&quot; Compute word occurences from sorted list of words&quot;</span>
-
-    <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sorted_words</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="n">res</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-            
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-
-<span class="n">reduce</span><span class="p">(</span><span class="n">map_words</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;quiquia&#39;: 75662,
- &#39;non&#39;: 75611,
- &#39;sed&#39;: 75457,
- &#39;dolor&#39;: 75316,
- &#39;etincidunt&#39;: 75315,
- &#39;consectetur&#39;: 75265,
- &#39;neque&#39;: 75249,
- &#39;est&#39;: 75193,
- &#39;ut&#39;: 75180,
- &#39;dolorem&#39;: 75170,
- &#39;modi&#39;: 75121,
- &#39;velit&#39;: 75108,
- &#39;dolore&#39;: 75092,
- &#39;adipisci&#39;: 75013,
- &#39;amet&#39;: 74975,
- &#39;porro&#39;: 74903,
- &#39;labore&#39;: 74883,
- &#39;ipsum&#39;: 74869,
- &#39;tempora&#39;: 74840,
- &#39;aliquam&#39;: 74825,
- &#39;magnam&#39;: 74756,
- &#39;numquam&#39;: 74721,
- &#39;quaerat&#39;: 74680,
- &#39;quisquam&#39;: 74560,
- &#39;voluptatem&#39;: 74544,
- &#39;sit&#39;: 74493,
- &#39;eius&#39;: 74375}
-</pre></div>
-</div>
-</div>
-</div>
 <p>You probably notice that this simple function is not easy to implement. Python standard library provides some features that can help.</p>
 </div>
 </div>
@@ -730,54 +516,6 @@ For example, using list as the default_factory, it is easy to group a sequence o
 <ul class="simple">
 <li><p>Modify the <code class="docutils literal notranslate"><span class="pre">reduce</span></code> function you wrote above by using a defaultdict with the most suitable factory.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-
-<span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="n">sorted_words</span><span class="p">):</span>
-    <span class="s2">&quot; Reduce version using defaultdict, we use factory `int`&quot;</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sorted_words</span><span class="p">:</span>
-        <span class="n">res</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-            
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-
-<span class="n">reduce</span><span class="p">(</span><span class="n">map_words</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;quiquia&#39;: 75662,
- &#39;non&#39;: 75611,
- &#39;sed&#39;: 75457,
- &#39;dolor&#39;: 75316,
- &#39;etincidunt&#39;: 75315,
- &#39;consectetur&#39;: 75265,
- &#39;neque&#39;: 75249,
- &#39;est&#39;: 75193,
- &#39;ut&#39;: 75180,
- &#39;dolorem&#39;: 75170,
- &#39;modi&#39;: 75121,
- &#39;velit&#39;: 75108,
- &#39;dolore&#39;: 75092,
- &#39;adipisci&#39;: 75013,
- &#39;amet&#39;: 74975,
- &#39;porro&#39;: 74903,
- &#39;labore&#39;: 74883,
- &#39;ipsum&#39;: 74869,
- &#39;tempora&#39;: 74840,
- &#39;aliquam&#39;: 74825,
- &#39;magnam&#39;: 74756,
- &#39;numquam&#39;: 74721,
- &#39;quaerat&#39;: 74680,
- &#39;quisquam&#39;: 74560,
- &#39;voluptatem&#39;: 74544,
- &#39;sit&#39;: 74493,
- &#39;eius&#39;: 74375}
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="counter">
 <h3>Counter<a class="headerlink" href="#counter" title="Permalink to this headline">¶</a></h3>
@@ -843,56 +581,6 @@ For example, using list as the default_factory, it is easy to group a sequence o
 <div class="section" id="exercise-4-5">
 <h3>Exercise 4.5<a class="headerlink" href="#exercise-4-5" title="Permalink to this headline">¶</a></h3>
 <p>Use a <code class="docutils literal notranslate"><span class="pre">Counter</span></code> object to count words occurences in the sample text file.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-
-<span class="k">def</span> <span class="nf">wordcounter</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    
-    <span class="s2">&quot; Wordcount function using the Counter type from collections&quot;</span>
-    
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    
-    <span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">most_common</span><span class="p">())</span>
-
-<span class="n">wordcounter</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;quiquia&#39;: 75662,
- &#39;non&#39;: 75611,
- &#39;sed&#39;: 75457,
- &#39;dolor&#39;: 75316,
- &#39;etincidunt&#39;: 75315,
- &#39;consectetur&#39;: 75265,
- &#39;neque&#39;: 75249,
- &#39;est&#39;: 75193,
- &#39;ut&#39;: 75180,
- &#39;dolorem&#39;: 75170,
- &#39;modi&#39;: 75121,
- &#39;velit&#39;: 75108,
- &#39;dolore&#39;: 75092,
- &#39;adipisci&#39;: 75013,
- &#39;amet&#39;: 74975,
- &#39;porro&#39;: 74903,
- &#39;labore&#39;: 74883,
- &#39;ipsum&#39;: 74869,
- &#39;tempora&#39;: 74840,
- &#39;aliquam&#39;: 74825,
- &#39;magnam&#39;: 74756,
- &#39;numquam&#39;: 74721,
- &#39;quaerat&#39;: 74680,
- &#39;quisquam&#39;: 74560,
- &#39;voluptatem&#39;: 74544,
- &#39;sit&#39;: 74493,
- &#39;eius&#39;: 74375}
-</pre></div>
-</div>
-</div>
-</div>
 <p>The Counter class is similar to bags or multisets in some Python libraries or other languages. We will see later how to use Counter-like objects in a parallel context.</p>
 </div>
 </div>
@@ -932,113 +620,6 @@ For example, using list as the default_factory, it is easy to group a sequence o
 <ul class="simple">
 <li><p>Write the program that creates files, processes and use <code class="docutils literal notranslate"><span class="pre">itertools.chain</span></code> to get the merged word count dictionary.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lorem</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span> <span class="c1"># write 4 sample text files</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sample</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">lorem</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-
-<span class="n">samples</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.txt&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
-
-<span class="n">words1</span> <span class="o">=</span> <span class="n">map_words</span><span class="p">(</span><span class="s2">&quot;sample01.txt&quot;</span><span class="p">)</span>
-<span class="n">words2</span> <span class="o">=</span> <span class="n">map_words</span><span class="p">(</span><span class="s2">&quot;sample02.txt&quot;</span><span class="p">)</span>
-
-<span class="n">reduce</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">words1</span><span class="p">,</span><span class="n">words2</span><span class="p">))</span> <span class="c1"># word count on two files</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;quaerat&#39;: 23,
- &#39;labore&#39;: 22,
- &#39;adipisci&#39;: 21,
- &#39;ipsum&#39;: 19,
- &#39;quiquia&#39;: 18,
- &#39;quisquam&#39;: 18,
- &#39;dolor&#39;: 17,
- &#39;amet&#39;: 16,
- &#39;modi&#39;: 16,
- &#39;neque&#39;: 16,
- &#39;velit&#39;: 16,
- &#39;voluptatem&#39;: 16,
- &#39;aliquam&#39;: 15,
- &#39;consectetur&#39;: 15,
- &#39;eius&#39;: 15,
- &#39;sit&#39;: 15,
- &#39;dolore&#39;: 14,
- &#39;est&#39;: 14,
- &#39;magnam&#39;: 14,
- &#39;numquam&#39;: 14,
- &#39;dolorem&#39;: 12,
- &#39;etincidunt&#39;: 12,
- &#39;non&#39;: 12,
- &#39;porro&#39;: 11,
- &#39;sed&#39;: 11,
- &#39;ut&#39;: 11,
- &#39;tempora&#39;: 10}
-</pre></div>
-</div>
-</div>
-</div>
-<ul class="simple">
-<li><p>wordcount on a list of files</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-
-<span class="n">reduce</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">map_words</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="s2">&quot;sample0*.txt&quot;</span><span class="p">)]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;labore&#39;: 35,
- &#39;amet&#39;: 33,
- &#39;dolor&#39;: 30,
- &#39;ipsum&#39;: 29,
- &#39;quaerat&#39;: 29,
- &#39;voluptatem&#39;: 29,
- &#39;neque&#39;: 28,
- &#39;quisquam&#39;: 28,
- &#39;adipisci&#39;: 27,
- &#39;velit&#39;: 27,
- &#39;dolorem&#39;: 26,
- &#39;modi&#39;: 26,
- &#39;sit&#39;: 26,
- &#39;consectetur&#39;: 24,
- &#39;dolore&#39;: 23,
- &#39;non&#39;: 23,
- &#39;quiquia&#39;: 23,
- &#39;magnam&#39;: 22,
- &#39;etincidunt&#39;: 21,
- &#39;ut&#39;: 21,
- &#39;aliquam&#39;: 20,
- &#39;eius&#39;: 20,
- &#39;est&#39;: 19,
- &#39;numquam&#39;: 19,
- &#39;porro&#39;: 19,
- &#39;tempora&#39;: 16,
- &#39;sed&#39;: 15}
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="exercise-4-7">
 <h3>Exercise 4.7<a class="headerlink" href="#exercise-4-7" title="Permalink to this headline">¶</a></h3>
@@ -1070,60 +651,6 @@ return the result dict.</p></li>
 [1, 2]
 bonjour
 {&#39;x&#39;: 4, &#39;y&#39;: &#39;y&#39;}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-
-<span class="k">def</span> <span class="nf">wordcount</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span> <span class="c1"># arbitrary argument list</span>
-    
-    <span class="c1"># MAP </span>
-    <span class="n">mapped_values</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="n">words</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-        <span class="n">mapped_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
-    
-    <span class="c1"># REDUCE </span>
-    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">mapped_values</span><span class="p">))</span>
-
-<span class="n">wordcount</span><span class="p">(</span><span class="o">*</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;sample0*.txt&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;labore&#39;: 35,
- &#39;amet&#39;: 33,
- &#39;dolor&#39;: 30,
- &#39;ipsum&#39;: 29,
- &#39;quaerat&#39;: 29,
- &#39;voluptatem&#39;: 29,
- &#39;neque&#39;: 28,
- &#39;quisquam&#39;: 28,
- &#39;adipisci&#39;: 27,
- &#39;velit&#39;: 27,
- &#39;dolorem&#39;: 26,
- &#39;modi&#39;: 26,
- &#39;sit&#39;: 26,
- &#39;consectetur&#39;: 24,
- &#39;dolore&#39;: 23,
- &#39;non&#39;: 23,
- &#39;quiquia&#39;: 23,
- &#39;magnam&#39;: 22,
- &#39;etincidunt&#39;: 21,
- &#39;ut&#39;: 21,
- &#39;aliquam&#39;: 20,
- &#39;eius&#39;: 20,
- &#39;est&#39;: 19,
- &#39;numquam&#39;: 19,
- &#39;porro&#39;: 19,
- &#39;tempora&#39;: 16,
- &#39;sed&#39;: 15}
 </pre></div>
 </div>
 </div>

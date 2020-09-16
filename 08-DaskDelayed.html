@@ -346,6 +346,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-multiple-files-with-dask-arrays">
+   Read multiple files with Dask Arrays
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -400,7 +405,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.26 ms, sys: 209 µs, total: 1.47 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 1.96 ms, total: 1.96 ms
 Wall time: 3 s
 </pre></div>
 </div>
@@ -437,7 +442,7 @@ Wall time: 3 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.83 ms, sys: 3.26 ms, total: 7.09 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.3 ms, sys: 569 µs, total: 8.87 ms
 Wall time: 2.01 s
 </pre></div>
 </div>
@@ -483,7 +488,7 @@ Wall time: 2.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.18 ms, sys: 4.09 ms, total: 9.27 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.56 ms, sys: 4.36 ms, total: 10.9 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -499,47 +504,6 @@ Wall time: 8.01 s
 <li><p>Display the graph of <code class="docutils literal notranslate"><span class="pre">total</span></code> computation</p></li>
 <li><p>Compute time elapsed for the computation.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask</span> <span class="kn">import</span> <span class="n">delayed</span>
-
-<span class="n">futures</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">slowinc</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">futures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-
-<span class="n">total</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="nb">sum</span><span class="p">)(</span><span class="n">futures</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/08-DaskDelayed_16_0.png" src="_images/08-DaskDelayed_16_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> total.compute()
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.65 ms, sys: 129 µs, total: 8.78 ms
-Wall time: 4.01 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="decorator">
@@ -567,7 +531,7 @@ Wall time: 4.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.37 ms, sys: 696 µs, total: 5.07 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.85 ms, sys: 257 µs, total: 6.11 ms
 Wall time: 2 s
 </pre></div>
 </div>
@@ -588,12 +552,10 @@ Wall time: 2 s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 <span class="kn">import</span> <span class="nn">dask.delayed</span>
 
-<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
 <span class="k">def</span> <span class="nf">half</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">//</span> <span class="mi">2</span>
 
-<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
 <span class="k">def</span> <span class="nf">odd_process</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
@@ -607,7 +569,7 @@ Wall time: 2 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 16, 68, 15, 16, 23, 72, 84]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[31, 64, 32, 91, 1, 47, 92, 68]
 </pre></div>
 </div>
 </div>
@@ -619,25 +581,6 @@ Wall time: 2 s
 <li><p>You will need to delay some functions, but not all</p></li>
 <li><p>Visualize and check the computed result</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">half</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">odd_process</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    
-<span class="n">total</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="nb">sum</span><span class="p">)(</span><span class="n">results</span><span class="p">)</span>
-<span class="n">total</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/08-DaskDelayed_23_0.png" src="_images/08-DaskDelayed_23_0.png" />
-</div>
-</div>
 </div>
 <div class="section" id="exercise-8-3">
 <h3>Exercise 8.3<a class="headerlink" href="#exercise-8-3" title="Permalink to this headline">¶</a></h3>
@@ -724,64 +667,2415 @@ data/daily-stock/b.h5     data/daily-stock/jbl.h5  data/daily-stock/xom.h5
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="read-multiple-files-with-dask-arrays">
+<h2>Read multiple files with Dask Arrays<a class="headerlink" href="#read-multiple-files-with-dask-arrays" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
-<span class="k">def</span> <span class="nf">read</span><span class="p">(</span> <span class="n">fn</span> <span class="p">):</span>
-    <span class="s2">&quot; read json file &quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
-    
-<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
-<span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
-    <span class="s2">&quot; convert json file to hdf5 file&quot;</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">out_filename</span> <span class="o">=</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.h5&#39;</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="n">out_filename</span><span class="p">,</span> <span class="s1">&#39;/data&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
-
-<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">dask</span>
+<span class="kn">import</span> <span class="nn">dask.delayed</span> <span class="k">as</span> <span class="nn">delayed</span>
+<span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span> <span class="nn">h5py</span> <span class="k">as</span> <span class="nn">h5</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Download the file from https://github.com/MMAS/https://github.com/MMASSD/datasets</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> dask.compute(*results)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extract_data</span><span class="p">(</span><span class="s1">&#39;fvalues&#39;</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10.8 s, sys: 1.11 s, total: 11.9 s
-Wall time: 11.3 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data...
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aet&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/afl&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aig&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/al&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/amgn&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/avy&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/b&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/bwa&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/ge&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hal&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hp&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/hpq&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/ibm&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/jbl&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/jpm&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/luv&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/met&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/pcg&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/tgt&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/usb&#39;,
- &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/xom&#39;)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">16</span><span class="o">-</span><span class="n">c98a34e98eae</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">extract_data</span><span class="p">(</span><span class="s1">&#39;fvalues&#39;</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-11-c92d4a860b06&gt;</span> in <span class="ni">extract_data</span><span class="nt">(name, where)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracting data...&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>        <span class="n">tar_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">where</span><span class="p">,</span> <span class="n">name</span><span class="o">+</span><span class="s1">&#39;.tgz&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">9</span>        <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tar_path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r:gz&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>           <span class="n">data</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">where</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> 
+
+<span class="nn">/usr/share/miniconda3/envs/big-data/lib/python3.7/tarfile.py</span> in <span class="ni">open</span><span class="nt">(cls, name, mode, fileobj, bufsize, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1589</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1590</span>                 <span class="k">raise</span> <span class="n">CompressionError</span><span class="p">(</span><span class="s2">&quot;unknown compression type </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">comptype</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1591</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">filemode</span><span class="p">,</span> <span class="n">fileobj</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1592</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1593</span>         <span class="k">elif</span> <span class="s2">&quot;|&quot;</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+
+<span class="nn">/usr/share/miniconda3/envs/big-data/lib/python3.7/tarfile.py</span> in <span class="ni">gzopen</span><span class="nt">(cls, name, mode, fileobj, compresslevel, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1635</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1636</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1637</span>             <span class="n">fileobj</span> <span class="o">=</span> <span class="n">GzipFile</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mode</span> <span class="o">+</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">compresslevel</span><span class="p">,</span> <span class="n">fileobj</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1638</span>         <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1639</span>             <span class="k">if</span> <span class="n">fileobj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span>
+
+<span class="nn">/usr/share/miniconda3/envs/big-data/lib/python3.7/gzip.py</span> in <span class="ni">__init__</span><span class="nt">(self, filename, mode, compresslevel, fileobj, mtime)</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>             <span class="n">mode</span> <span class="o">+=</span> <span class="s1">&#39;b&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="k">if</span> <span class="n">fileobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">168</span>             <span class="n">fileobj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">myfileobj</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span> <span class="ow">or</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>             <span class="n">filename</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fileobj</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/fvalues.tgz&#39;
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;data/*.h5&quot;</span><span class="p">))</span>
+<span class="n">filenames</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&#39;data/f0001-values.h5&#39;,
+  &#39;data/f0002-values.h5&#39;,
+  &#39;data/f0003-values.h5&#39;,
+  &#39;data/f0004-values.h5&#39;,
+  &#39;data/f0005-values.h5&#39;],
+ 1000)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">:</span>
+    <span class="s2">&quot;Scale field to 0-255 levels&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="mi">255</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_frame</span><span class="p">(</span> <span class="n">filepath</span> <span class="p">):</span>
+    <span class="s2">&quot; Create image from the `dataset` of h5 file `filepath` &quot;</span>
+    <span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">scale</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">serial_frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">read_frame</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.08 s, sys: 634 ms, total: 2.71 s
+Wall time: 3.58 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_image</span><span class="p">(</span> <span class="n">frame</span> <span class="p">):</span>
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+<span class="n">display_image</span><span class="p">(</span><span class="n">read_frame</span><span class="p">(</span><span class="n">filenames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-DaskDelayed_33_0.png" src="_images/08-DaskDelayed_33_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
+
+<span class="k">def</span> <span class="nf">display_sequence</span><span class="p">(</span><span class="n">iframe</span><span class="p">):</span>
+    
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">serial_frames</span><span class="p">[</span><span class="n">iframe</span><span class="p">])</span>
+    
+<span class="n">interact</span><span class="p">(</span><span class="n">display_sequence</span><span class="p">,</span> 
+         <span class="n">iframe</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                          <span class="nb">max</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">serial_frames</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                          <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "bb957c411d4d4410bf97e834acf3d1bf", "version_major": 2, "version_minor": 0}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.display_sequence(iframe)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lazy_read</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">read_frame</span><span class="p">)</span>
+<span class="n">lazy_frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">lazy_read</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">lazy_frames</span><span class="p">[</span><span class="mi">500</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_image</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-DaskDelayed_37_0.png" src="_images/08-DaskDelayed_37_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="n">parallel_frames</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">lazy_frames</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.1 s, sys: 763 ms, total: 2.86 s
+Wall time: 3.44 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
+
+<span class="k">def</span> <span class="nf">display_sequence</span><span class="p">(</span><span class="n">iframe</span><span class="p">):</span>
+    
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">parallel_frames</span><span class="p">[</span><span class="n">iframe</span><span class="p">])</span>
+    
+<span class="n">interact</span><span class="p">(</span><span class="n">display_sequence</span><span class="p">,</span> 
+         <span class="n">iframe</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                          <span class="nb">max</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">parallel_frames</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                          <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1203729395ca46ec8ac1050d4060a1bd", "version_major": 2, "version_minor": 0}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.display_sequence(iframe)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arrays</span> <span class="o">=</span> <span class="p">[</span><span class="n">da</span><span class="o">.</span><span class="n">from_delayed</span><span class="p">(</span><span class="n">lazy_read</span><span class="p">,</span><span class="c1"># Construct a small Dask array</span>
+                          <span class="n">dtype</span><span class="o">=</span><span class="n">sample</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>   <span class="c1"># for every lazy value</span>
+                          <span class="n">shape</span><span class="o">=</span><span class="n">sample</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+          <span class="k">for</span> <span class="n">lazy_read</span> <span class="ow">in</span> <span class="n">lazy_frames</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dask_frames</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># concatenate arrays along first axis </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dask_frames</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<table>
+  <thead>
+    <tr><td> </td><th> Array </th><th> Chunk </th></tr>
+  </thead>
+  <tbody>
+    <tr><th> Bytes </th><td> 66.05 MB </td> <td> 66.05 kB </td></tr>
+    <tr><th> Shape </th><td> (1000, 257, 257) </td> <td> (1, 257, 257) </td></tr>
+    <tr><th> Count </th><td> 3000 Tasks </td><td> 1000 Chunks </td></tr>
+    <tr><th> Type </th><td> uint8 </td><td> numpy.ndarray </td></tr>
+  </tbody>
+</table>
+</td>
+<td>
+<svg width="173" height="163" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="10" y1="43" x2="80" y2="113" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="10" y2="43" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="10" y1="0" x2="10" y2="43" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="11" y1="1" x2="11" y2="44" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="12" y1="2" x2="12" y2="45" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="13" y1="3" x2="13" y2="46" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="14" y1="4" x2="14" y2="47" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="15" y1="5" x2="15" y2="48" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="16" y1="6" x2="16" y2="49" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="17" y1="7" x2="17" y2="50" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="18" y1="8" x2="18" y2="51" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="19" y1="9" x2="19" y2="52" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="20" y1="10" x2="20" y2="53" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="21" y1="11" x2="21" y2="54" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="22" y1="12" x2="22" y2="55" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="23" y1="13" x2="23" y2="56" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="24" y1="14" x2="24" y2="57" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="25" y1="15" x2="25" y2="58" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="26" y1="16" x2="26" y2="59" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="27" y1="17" x2="27" y2="60" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="28" y1="18" x2="28" y2="61" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="29" y1="19" x2="29" y2="62" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="30" y1="20" x2="30" y2="63" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="31" y1="21" x2="31" y2="64" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="32" y1="22" x2="32" y2="65" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="33" y1="23" x2="33" y2="66" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="34" y1="24" x2="34" y2="67" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="35" y1="25" x2="35" y2="68" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="36" y1="26" x2="36" y2="69" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="37" y1="27" x2="37" y2="70" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="38" y1="28" x2="38" y2="71" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="39" y1="29" x2="39" y2="72" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="40" y1="30" x2="40" y2="73" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="41" y1="31" x2="41" y2="74" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="42" y1="32" x2="42" y2="75" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="43" y1="33" x2="43" y2="76" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="44" y1="34" x2="44" y2="77" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="45" y1="35" x2="45" y2="78" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="46" y1="36" x2="46" y2="79" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="47" y1="37" x2="47" y2="80" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="48" y1="38" x2="48" y2="81" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="49" y1="39" x2="49" y2="82" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="50" y1="40" x2="50" y2="83" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="51" y1="41" x2="51" y2="84" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="52" y1="42" x2="52" y2="85" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="53" y1="43" x2="53" y2="86" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="54" y1="44" x2="54" y2="87" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="55" y1="45" x2="55" y2="88" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="56" y1="46" x2="56" y2="89" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="57" y1="47" x2="57" y2="90" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="58" y1="48" x2="58" y2="91" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="59" y1="49" x2="59" y2="92" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="60" y1="50" x2="60" y2="93" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="61" y1="51" x2="61" y2="94" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="62" y1="52" x2="62" y2="95" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="63" y1="53" x2="63" y2="96" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="64" y1="54" x2="64" y2="97" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="65" y1="55" x2="65" y2="98" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="66" y1="56" x2="66" y2="99" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="67" y1="57" x2="67" y2="100" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="68" y1="58" x2="68" y2="101" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="69" y1="59" x2="69" y2="102" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="70" y1="60" x2="70" y2="103" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="71" y1="61" x2="71" y2="104" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="72" y1="62" x2="72" y2="105" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="73" y1="63" x2="73" y2="106" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="74" y1="64" x2="74" y2="107" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="75" y1="65" x2="75" y2="108" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="76" y1="66" x2="76" y2="109" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="77" y1="67" x2="77" y2="110" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="78" y1="68" x2="78" y2="111" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="79" y1="69" x2="79" y2="112" />
+  <line x1="80" y1="70" x2="80" y2="113" />
+  <line x1="80" y1="70" x2="80" y2="113" />
+  <line x1="80" y1="70" x2="80" y2="113" />
+  <line x1="80" y1="70" x2="80" y2="113" />
+  <line x1="80" y1="70" x2="80" y2="113" />
+  <line x1="80" y1="70" x2="80" y2="113" />
+  <line x1="80" y1="70" x2="80" y2="113" />
+  <line x1="80" y1="70" x2="80" y2="113" />
+  <line x1="80" y1="70" x2="80" y2="113" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.000000,0.000000 80.588235,70.588235 80.588235,113.589495 10.000000,43.001260" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="10" y1="0" x2="53" y2="0" style="stroke-width:2" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="10" y1="0" x2="53" y2="0" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="11" y1="1" x2="54" y2="1" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="12" y1="2" x2="55" y2="2" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="13" y1="3" x2="56" y2="3" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="14" y1="4" x2="57" y2="4" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="15" y1="5" x2="58" y2="5" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="16" y1="6" x2="59" y2="6" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="17" y1="7" x2="60" y2="7" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="18" y1="8" x2="61" y2="8" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="19" y1="9" x2="62" y2="9" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="20" y1="10" x2="63" y2="10" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="21" y1="11" x2="64" y2="11" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="22" y1="12" x2="65" y2="12" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="23" y1="13" x2="66" y2="13" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="24" y1="14" x2="67" y2="14" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="25" y1="15" x2="68" y2="15" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="26" y1="16" x2="69" y2="16" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="27" y1="17" x2="70" y2="17" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="28" y1="18" x2="71" y2="18" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="29" y1="19" x2="72" y2="19" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="30" y1="20" x2="73" y2="20" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="31" y1="21" x2="74" y2="21" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="32" y1="22" x2="75" y2="22" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="33" y1="23" x2="76" y2="23" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="34" y1="24" x2="77" y2="24" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="35" y1="25" x2="78" y2="25" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="36" y1="26" x2="79" y2="26" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="37" y1="27" x2="80" y2="27" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="38" y1="28" x2="81" y2="28" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="39" y1="29" x2="82" y2="29" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="40" y1="30" x2="83" y2="30" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="41" y1="31" x2="84" y2="31" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="42" y1="32" x2="85" y2="32" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="43" y1="33" x2="86" y2="33" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="44" y1="34" x2="87" y2="34" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="45" y1="35" x2="88" y2="35" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="46" y1="36" x2="89" y2="36" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="47" y1="37" x2="90" y2="37" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="48" y1="38" x2="91" y2="38" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="49" y1="39" x2="92" y2="39" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="50" y1="40" x2="93" y2="40" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="51" y1="41" x2="94" y2="41" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="52" y1="42" x2="95" y2="42" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="53" y1="43" x2="96" y2="43" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="54" y1="44" x2="97" y2="44" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="55" y1="45" x2="98" y2="45" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="56" y1="46" x2="99" y2="46" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="57" y1="47" x2="100" y2="47" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="58" y1="48" x2="101" y2="48" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="59" y1="49" x2="102" y2="49" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="60" y1="50" x2="103" y2="50" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="61" y1="51" x2="104" y2="51" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="62" y1="52" x2="105" y2="52" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="63" y1="53" x2="106" y2="53" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="64" y1="54" x2="107" y2="54" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="65" y1="55" x2="108" y2="55" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="66" y1="56" x2="109" y2="56" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="67" y1="57" x2="110" y2="57" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="68" y1="58" x2="111" y2="58" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="69" y1="59" x2="112" y2="59" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="70" y1="60" x2="113" y2="60" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="71" y1="61" x2="114" y2="61" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="72" y1="62" x2="115" y2="62" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="73" y1="63" x2="116" y2="63" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="74" y1="64" x2="117" y2="64" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="75" y1="65" x2="118" y2="65" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="76" y1="66" x2="119" y2="66" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="77" y1="67" x2="120" y2="67" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="78" y1="68" x2="121" y2="68" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="79" y1="69" x2="122" y2="69" />
+  <line x1="80" y1="70" x2="123" y2="70" />
+  <line x1="80" y1="70" x2="123" y2="70" />
+  <line x1="80" y1="70" x2="123" y2="70" />
+  <line x1="80" y1="70" x2="123" y2="70" />
+  <line x1="80" y1="70" x2="123" y2="70" />
+  <line x1="80" y1="70" x2="123" y2="70" />
+  <line x1="80" y1="70" x2="123" y2="70" />
+  <line x1="80" y1="70" x2="123" y2="70" />
+  <line x1="80" y1="70" x2="123" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="10" y1="0" x2="80" y2="70" style="stroke-width:2" />
+  <line x1="53" y1="0" x2="123" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="10.000000,0.000000 53.001260,0.000000 123.589495,70.588235 80.588235,70.588235" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="80" y1="70" x2="123" y2="70" style="stroke-width:2" />
+  <line x1="80" y1="113" x2="123" y2="113" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="80" y1="70" x2="80" y2="113" style="stroke-width:2" />
+  <line x1="123" y1="70" x2="123" y2="113" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="80.588235,70.588235 123.589495,70.588235 123.589495,113.589495 80.588235,113.589495" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="102.088865" y="133.589495" font-size="1.0rem" font-weight="100" text-anchor="middle" >257</text>
+  <text x="143.589495" y="92.088865" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,143.589495,92.088865)">257</text>
+  <text x="35.294118" y="98.295377" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,35.294118,98.295377)">1000</text>
+</svg>
+</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dask_frames</span> <span class="o">=</span> <span class="n">dask_frames</span><span class="o">.</span><span class="n">rechunk</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">257</span><span class="p">,</span> <span class="mi">257</span><span class="p">))</span>   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">dask_frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:]</span>
+<span class="n">sample</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<table>
+  <thead>
+    <tr><td> </td><th> Array </th><th> Chunk </th></tr>
+  </thead>
+  <tbody>
+    <tr><th> Bytes </th><td> 66.05 kB </td> <td> 66.05 kB </td></tr>
+    <tr><th> Shape </th><td> (257, 257) </td> <td> (257, 257) </td></tr>
+    <tr><th> Count </th><td> 3011 Tasks </td><td> 1 Chunks </td></tr>
+    <tr><th> Type </th><td> uint8 </td><td> numpy.ndarray </td></tr>
+  </tbody>
+</table>
+</td>
+<td>
+<svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.000000,0.000000 120.000000,0.000000 120.000000,120.000000 0.000000,120.000000" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >257</text>
+  <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">257</text>
+</svg>
+</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_image</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">compute</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-DaskDelayed_45_0.png" src="_images/08-DaskDelayed_45_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
+
+<span class="k">def</span> <span class="nf">display_sequence</span><span class="p">(</span><span class="n">iframe</span><span class="p">):</span>
+    
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">dask_frames</span><span class="p">[</span><span class="n">iframe</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">compute</span><span class="p">())</span>
+    
+<span class="n">interact</span><span class="p">(</span><span class="n">display_sequence</span><span class="p">,</span> 
+         <span class="n">iframe</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                          <span class="nb">max</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dask_frames</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                          <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "55b099b940da47e48b697837b578dd59", "version_major": 2, "version_minor": 0}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.display_sequence(iframe)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Everytime you move the slider, it will read the corresponding file and load the frame. That’s why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">display_sequence</span><span class="p">,</span> 
+<span class="n">iframe</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="nb">max</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dask_frames</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+<span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5b2d43c432ea460fbaa960f9dfb26679", "version_major": 2, "version_minor": 0}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.display_sequence(iframe)&gt;
+</pre></div>
 </div>
 </div>
 </div>

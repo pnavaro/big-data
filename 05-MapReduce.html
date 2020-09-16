@@ -51,7 +51,7 @@
 <meta property="og:url"         content="https://pnavaro.github.io/big-data/05-MapReduce.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Map Reduce" />
-<meta property="og:description" content="Map Reduce  domain decomposition  credits: https://computing.llnl.gov/tutorials/parallel_comp  map function example  The map(func, seq) Python function applies " />
+<meta property="og:description" content="Map Reduce  This notebook objective is to code in Python language a wordcount application using map-reduce process. A java version is well explained on this pag" />
 <meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
 
 <meta name="twitter:card" content="summary" />
@@ -409,6 +409,7 @@
                 
   <div class="section" id="map-reduce">
 <h1>Map Reduce<a class="headerlink" href="#map-reduce" title="Permalink to this headline">¶</a></h1>
+<p>This notebook objective is to code in Python language a wordcount application using map-reduce process. A java version is well explained on <a class="reference external" href="https://www.dezyre.com/hadoop-tutorial/hadoop-mapreduce-wordcount-tutorial">this page</a></p>
 <p><img alt="domain decomposition" src="_images/domain_decomp.png" /></p>
 <p>credits: https://computing.llnl.gov/tutorials/parallel_comp</p>
 <div class="section" id="map-function-example">
@@ -426,7 +427,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;map at 0x7f39cc735390&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;map at 0x7fe9b0641390&gt;
 </pre></div>
 </div>
 </div>
@@ -606,77 +607,12 @@
 <ul class="simple">
 <li><p>Write functions to compute the average value and variance using for loops</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_mean</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">*</span><span class="n">p</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">)])</span>
-
-<span class="n">weighted_mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">weighted_mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">p</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">)])</span> <span class="o">-</span> <span class="n">mu</span><span class="o">**</span><span class="mi">2</span>
-
-<span class="n">variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9600000000000017
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="exercise-5-2">
 <h3>Exercise 5.2<a class="headerlink" href="#exercise-5-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Write functions to compute the average value and variance using <code class="docutils literal notranslate"><span class="pre">map</span></code> and <code class="docutils literal notranslate"><span class="pre">reduce</span></code></p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">mul</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
-
-<span class="k">def</span> <span class="nf">weighted_mean</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span><span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">))</span>
-
-<span class="n">weighted_mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">weighted_mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="p">:</span><span class="n">p</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">))</span> <span class="o">-</span> <span class="n">mu</span><span class="o">**</span><span class="mi">2</span>
-
-<span class="n">variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9600000000000017
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="examples-with-filter">
 <h3>Examples with filter<a class="headerlink" href="#examples-with-filter" title="Permalink to this headline">¶</a></h3>
@@ -726,176 +662,6 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 [(&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;amet&#39;, 1), (&#39;amet&#39;, 1), (&#39;amet&#39;, 1)...
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lorem</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">lorem</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mapper</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        
-    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-        
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">([(</span><span class="n">w</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
-
-<span class="n">mapper</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;adipisci&#39;, 1),
- (&#39;adipisci&#39;, 1),
- (&#39;adipisci&#39;, 1),
- (&#39;adipisci&#39;, 1),
- (&#39;adipisci&#39;, 1),
- (&#39;aliquam&#39;, 1),
- (&#39;aliquam&#39;, 1),
- (&#39;aliquam&#39;, 1),
- (&#39;aliquam&#39;, 1),
- (&#39;aliquam&#39;, 1),
- (&#39;aliquam&#39;, 1),
- (&#39;aliquam&#39;, 1),
- (&#39;aliquam&#39;, 1),
- (&#39;amet&#39;, 1),
- (&#39;amet&#39;, 1),
- (&#39;amet&#39;, 1),
- (&#39;amet&#39;, 1),
- (&#39;amet&#39;, 1),
- (&#39;amet&#39;, 1),
- (&#39;amet&#39;, 1),
- (&#39;consectetur&#39;, 1),
- (&#39;consectetur&#39;, 1),
- (&#39;consectetur&#39;, 1),
- (&#39;consectetur&#39;, 1),
- (&#39;dolor&#39;, 1),
- (&#39;dolor&#39;, 1),
- (&#39;dolor&#39;, 1),
- (&#39;dolore&#39;, 1),
- (&#39;dolore&#39;, 1),
- (&#39;dolore&#39;, 1),
- (&#39;dolore&#39;, 1),
- (&#39;dolore&#39;, 1),
- (&#39;dolore&#39;, 1),
- (&#39;dolore&#39;, 1),
- (&#39;dolore&#39;, 1),
- (&#39;dolorem&#39;, 1),
- (&#39;dolorem&#39;, 1),
- (&#39;dolorem&#39;, 1),
- (&#39;dolorem&#39;, 1),
- (&#39;dolorem&#39;, 1),
- (&#39;dolorem&#39;, 1),
- (&#39;eius&#39;, 1),
- (&#39;eius&#39;, 1),
- (&#39;eius&#39;, 1),
- (&#39;eius&#39;, 1),
- (&#39;eius&#39;, 1),
- (&#39;eius&#39;, 1),
- (&#39;eius&#39;, 1),
- (&#39;est&#39;, 1),
- (&#39;est&#39;, 1),
- (&#39;est&#39;, 1),
- (&#39;est&#39;, 1),
- (&#39;est&#39;, 1),
- (&#39;est&#39;, 1),
- (&#39;etincidunt&#39;, 1),
- (&#39;etincidunt&#39;, 1),
- (&#39;etincidunt&#39;, 1),
- (&#39;etincidunt&#39;, 1),
- (&#39;ipsum&#39;, 1),
- (&#39;ipsum&#39;, 1),
- (&#39;ipsum&#39;, 1),
- (&#39;ipsum&#39;, 1),
- (&#39;ipsum&#39;, 1),
- (&#39;ipsum&#39;, 1),
- (&#39;labore&#39;, 1),
- (&#39;labore&#39;, 1),
- (&#39;labore&#39;, 1),
- (&#39;labore&#39;, 1),
- (&#39;labore&#39;, 1),
- (&#39;labore&#39;, 1),
- (&#39;magnam&#39;, 1),
- (&#39;magnam&#39;, 1),
- (&#39;magnam&#39;, 1),
- (&#39;magnam&#39;, 1),
- (&#39;magnam&#39;, 1),
- (&#39;magnam&#39;, 1),
- (&#39;modi&#39;, 1),
- (&#39;modi&#39;, 1),
- (&#39;modi&#39;, 1),
- (&#39;modi&#39;, 1),
- (&#39;neque&#39;, 1),
- (&#39;neque&#39;, 1),
- (&#39;neque&#39;, 1),
- (&#39;neque&#39;, 1),
- (&#39;neque&#39;, 1),
- (&#39;neque&#39;, 1),
- (&#39;non&#39;, 1),
- (&#39;non&#39;, 1),
- (&#39;non&#39;, 1),
- (&#39;non&#39;, 1),
- (&#39;non&#39;, 1),
- (&#39;non&#39;, 1),
- (&#39;numquam&#39;, 1),
- (&#39;numquam&#39;, 1),
- (&#39;numquam&#39;, 1),
- (&#39;numquam&#39;, 1),
- (&#39;numquam&#39;, 1),
- (&#39;porro&#39;, 1),
- (&#39;porro&#39;, 1),
- (&#39;porro&#39;, 1),
- (&#39;porro&#39;, 1),
- (&#39;quaerat&#39;, 1),
- (&#39;quaerat&#39;, 1),
- (&#39;quaerat&#39;, 1),
- (&#39;quiquia&#39;, 1),
- (&#39;quiquia&#39;, 1),
- (&#39;quiquia&#39;, 1),
- (&#39;quiquia&#39;, 1),
- (&#39;quiquia&#39;, 1),
- (&#39;quiquia&#39;, 1),
- (&#39;quiquia&#39;, 1),
- (&#39;quiquia&#39;, 1),
- (&#39;quisquam&#39;, 1),
- (&#39;quisquam&#39;, 1),
- (&#39;quisquam&#39;, 1),
- (&#39;sed&#39;, 1),
- (&#39;sed&#39;, 1),
- (&#39;sit&#39;, 1),
- (&#39;tempora&#39;, 1),
- (&#39;tempora&#39;, 1),
- (&#39;tempora&#39;, 1),
- (&#39;tempora&#39;, 1),
- (&#39;ut&#39;, 1),
- (&#39;ut&#39;, 1),
- (&#39;ut&#39;, 1),
- (&#39;ut&#39;, 1),
- (&#39;ut&#39;, 1),
- (&#39;ut&#39;, 1),
- (&#39;velit&#39;, 1),
- (&#39;velit&#39;, 1),
- (&#39;velit&#39;, 1),
- (&#39;velit&#39;, 1),
- (&#39;velit&#39;, 1),
- (&#39;velit&#39;, 1),
- (&#39;velit&#39;, 1),
- (&#39;voluptatem&#39;, 1),
- (&#39;voluptatem&#39;, 1),
- (&#39;voluptatem&#39;, 1),
- (&#39;voluptatem&#39;, 1),
- (&#39;voluptatem&#39;, 1),
- (&#39;voluptatem&#39;, 1),
- (&#39;voluptatem&#39;, 1)]
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="partition">
@@ -907,30 +673,6 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 <span class="p">[(</span><span class="s1">&#39;adipisci&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;aliquam&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;amet&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-
-
-<span class="k">def</span> <span class="nf">partitioner</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">):</span>
-    
-    <span class="n">res</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">mapped_values</span><span class="p">:</span>
-        <span class="n">res</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-        
-    <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-
-
-<span class="n">partitioner</span><span class="p">(</span><span class="n">mapper</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;adipisci&#39;, [1, 1, 1, 1, 1]), (&#39;aliquam&#39;, [1, 1, 1, 1, 1, 1, 1, 1]), (&#39;amet&#39;, [1, 1, 1, 1, 1, 1, 1]), (&#39;consectetur&#39;, [1, 1, 1, 1]), (&#39;dolor&#39;, [1, 1, 1]), (&#39;dolore&#39;, [1, 1, 1, 1, 1, 1, 1, 1]), (&#39;dolorem&#39;, [1, 1, 1, 1, 1, 1]), (&#39;eius&#39;, [1, 1, 1, 1, 1, 1, 1]), (&#39;est&#39;, [1, 1, 1, 1, 1, 1]), (&#39;etincidunt&#39;, [1, 1, 1, 1]), (&#39;ipsum&#39;, [1, 1, 1, 1, 1, 1]), (&#39;labore&#39;, [1, 1, 1, 1, 1, 1]), (&#39;magnam&#39;, [1, 1, 1, 1, 1, 1]), (&#39;modi&#39;, [1, 1, 1, 1]), (&#39;neque&#39;, [1, 1, 1, 1, 1, 1]), (&#39;non&#39;, [1, 1, 1, 1, 1, 1]), (&#39;numquam&#39;, [1, 1, 1, 1, 1]), (&#39;porro&#39;, [1, 1, 1, 1]), (&#39;quaerat&#39;, [1, 1, 1]), (&#39;quiquia&#39;, [1, 1, 1, 1, 1, 1, 1, 1]), (&#39;quisquam&#39;, [1, 1, 1]), (&#39;sed&#39;, [1, 1]), (&#39;sit&#39;, [1]), (&#39;tempora&#39;, [1, 1, 1, 1]), (&#39;ut&#39;, [1, 1, 1, 1, 1, 1]), (&#39;velit&#39;, [1, 1, 1, 1, 1, 1, 1]), (&#39;voluptatem&#39;, [1, 1, 1, 1, 1, 1, 1])])
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="reduce-sums-the-counts-and-returns-a-single-key-value-word-sum">
@@ -941,25 +683,6 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">reducer</span><span class="p">((</span><span class="s1">&#39;hello&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
-
-
-<span class="k">def</span> <span class="nf">reducer</span><span class="p">(</span> <span class="n">item</span> <span class="p">):</span>
-    <span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">item</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
-
-<span class="n">reducer</span><span class="p">((</span><span class="s1">&#39;hello&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;hello&#39;, 5)
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1002,110 +725,12 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 <ul class="simple">
 <li><p>Use functions implemented above to count (word, occurences) by using a for loops over files and partitioned data.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
-
-<span class="k">def</span> <span class="nf">wordcount</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
-    
-    <span class="n">mapped_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">mapper</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
-    
-    <span class="n">partioned_values</span> <span class="o">=</span> <span class="n">partitioner</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">mapped_values</span><span class="p">))</span>
-            
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">reducer</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">partioned_values</span><span class="p">],</span>
-                  <span class="n">key</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-                  <span class="n">reverse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-
-<span class="n">wordcount</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;tempora&#39;, 71),
- (&#39;dolorem&#39;, 70),
- (&#39;porro&#39;, 69),
- (&#39;est&#39;, 68),
- (&#39;adipisci&#39;, 67),
- (&#39;quaerat&#39;, 67),
- (&#39;amet&#39;, 66),
- (&#39;ipsum&#39;, 64),
- (&#39;modi&#39;, 64),
- (&#39;non&#39;, 64),
- (&#39;sit&#39;, 64),
- (&#39;aliquam&#39;, 63),
- (&#39;dolor&#39;, 63),
- (&#39;consectetur&#39;, 62),
- (&#39;etincidunt&#39;, 61),
- (&#39;eius&#39;, 60),
- (&#39;sed&#39;, 60),
- (&#39;quiquia&#39;, 59),
- (&#39;voluptatem&#39;, 58),
- (&#39;dolore&#39;, 57),
- (&#39;ut&#39;, 57),
- (&#39;quisquam&#39;, 56),
- (&#39;neque&#39;, 53),
- (&#39;numquam&#39;, 53),
- (&#39;labore&#39;, 50),
- (&#39;magnam&#39;, 44),
- (&#39;velit&#39;, 41)]
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="exercise-5-7">
 <h3>Exercise 5.7<a class="headerlink" href="#exercise-5-7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>This time use <code class="docutils literal notranslate"><span class="pre">map</span></code> function to apply mapper and reducer.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wordcount</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
-    
-    <span class="n">mapped_values</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
-    <span class="n">partioned_values</span> <span class="o">=</span> <span class="n">partitioner</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">mapped_values</span><span class="p">))</span>
-    
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span> <span class="nb">map</span><span class="p">(</span><span class="n">reducer</span><span class="p">,</span> <span class="n">partioned_values</span><span class="p">),</span>
-                 <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-                 <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-    
-<span class="n">wordcount</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>    
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;tempora&#39;, 71),
- (&#39;dolorem&#39;, 70),
- (&#39;porro&#39;, 69),
- (&#39;est&#39;, 68),
- (&#39;adipisci&#39;, 67),
- (&#39;quaerat&#39;, 67),
- (&#39;amet&#39;, 66),
- (&#39;ipsum&#39;, 64),
- (&#39;modi&#39;, 64),
- (&#39;non&#39;, 64),
- (&#39;sit&#39;, 64),
- (&#39;aliquam&#39;, 63),
- (&#39;dolor&#39;, 63),
- (&#39;consectetur&#39;, 62),
- (&#39;etincidunt&#39;, 61),
- (&#39;eius&#39;, 60),
- (&#39;sed&#39;, 60),
- (&#39;quiquia&#39;, 59),
- (&#39;voluptatem&#39;, 58),
- (&#39;dolore&#39;, 57),
- (&#39;ut&#39;, 57),
- (&#39;quisquam&#39;, 56),
- (&#39;neque&#39;, 53),
- (&#39;numquam&#39;, 53),
- (&#39;labore&#39;, 50),
- (&#39;magnam&#39;, 44),
- (&#39;velit&#39;, 41)]
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

@@ -337,6 +337,11 @@
      Install a conda package in the current Jupyter kernel
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-a-pip-package-in-the-current-jupyter-kernel">
+     Install a pip package in the current Jupyter kernel
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -432,83 +437,16 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01-Installation.ipynb            book-057.dat
-02-GitBasics.ipynb               book-058.dat
-03-JupyterQuickStart.ipynb       book-059.dat
-04-WordCount.ipynb               book-060.dat
-05-MapReduce.ipynb               book-061.dat
-06-ParallelComputation.ipynb     book-062.dat
-07-AsynchronousProcessing.ipynb  book-063.dat
-08-DaskDelayed.ipynb             book-064.dat
-09-DaskBag.ipynb                 book-065.dat
-10-PandasSeries.ipynb            book-066.dat
-11-PandaDataframes.ipynb         book-067.dat
-12-PySpark.ipynb                 book-068.dat
-13-UnixCommands.ipynb            book-069.dat
-14-Hadoop.ipynb                  book-070.dat
-15-HadoopFileFormats.ipynb       book-071.dat
-16-DaskDataframes.ipynb          book-072.dat
-17-SparkDataFrames.ipynb         book-073.dat
-18-NYCTaxiCabTripDask.ipynb      book-074.dat
-19-NYCTaxiCabTripSpark.ipynb     book-075.dat
-Makefile                         book-076.dat
-book-000.dat                     book-077.dat
-book-001.dat                     book-078.dat
-book-002.dat                     book-079.dat
-book-003.dat                     book-080.dat
-book-004.dat                     book-081.dat
-book-005.dat                     book-082.dat
-book-006.dat                     book-083.dat
-book-007.dat                     book-084.dat
-book-008.dat                     book-085.dat
-book-009.dat                     book-086.dat
-book-010.dat                     book-087.dat
-book-011.dat                     book-088.dat
-book-012.dat                     book-089.dat
-book-013.dat                     book-090.dat
-book-014.dat                     book-091.dat
-book-015.dat                     book-092.dat
-book-016.dat                     book-093.dat
-book-017.dat                     book-094.dat
-book-018.dat                     book-095.dat
-book-019.dat                     book-096.dat
-book-020.dat                     book-097.dat
-book-021.dat                     book-098.dat
-book-022.dat                     book-099.dat
-book-023.dat                     <span class=" -Color -Color-Blue">data</span>/
-book-024.dat                     example.parquet
-book-025.dat                     fibonacci.py
-book-026.dat                     <span class=" -Color -Color-Blue">images</span>/
-book-027.dat                     log
-book-028.dat                     <span class=" -Color -Color-Red">mapper.py</span>*
-book-029.dat                     mydask.png
-book-030.dat                     <span class=" -Color -Color-Blue">nycflights</span>/
-book-031.dat                     pmap.py
-book-032.dat                     <span class=" -Color -Color-Red">reducer.py</span>*
-book-033.dat                     sample.txt
-book-034.dat                     sample00.txt
-book-035.dat                     sample01.txt
-book-036.dat                     sample02.txt
-book-037.dat                     sample03.txt
-book-038.dat                     sample04.txt
-book-039.dat                     sample05.txt
-book-040.dat                     sample06.txt
-book-041.dat                     sample07.txt
-book-042.dat                     sample08.txt
-book-043.dat                     sample09.txt
-book-044.dat                     sample10.txt
-book-045.dat                     sample11.txt
-book-046.dat                     sample12.txt
-book-047.dat                     sample13.txt
-book-048.dat                     sample14.txt
-book-049.dat                     sample15.txt
-book-050.dat                     sample16.txt
-book-051.dat                     sample17.txt
-book-052.dat                     sample18.txt
-book-053.dat                     sample19.txt
-book-054.dat                     test.feather
-book-055.dat                     test_stdin.py
-book-056.dat
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>01-GitBasics.ipynb               11-PandaDataframes.ipynb
+02-Installation.ipynb            12-PySpark.ipynb
+03-JupyterQuickStart.ipynb       13-UnixCommands.ipynb
+04-WordCount.ipynb               14-Hadoop.ipynb
+05-MapReduce.ipynb               15-HadoopFileFormats.ipynb
+06-ParallelComputation.ipynb     16-DaskDataframes.ipynb
+07-AsynchronousProcessing.ipynb  17-SparkDataFrames.ipynb
+08-DaskDelayed.ipynb             18-NYCTaxiCabTripDask.ipynb
+09-DaskBag.ipynb                 19-NYCTaxiCabTripSpark.ipynb
+10-PandasSeries.ipynb
 </pre></div>
 </div>
 </div>
@@ -523,7 +461,7 @@ book-056.dat
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting sample.txt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing sample.txt
 </pre></div>
 </div>
 </div>
@@ -599,9 +537,12 @@ The file is created when you run this cell.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1,1,2,3,5,8,13,21,34,55,
-CPU times: user 399 µs, sys: 183 µs, total: 582 µs
-Wall time: 492 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1,1,2,3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>,5,8,13,21,34,55,
+CPU times: user 630 µs, sys: 111 µs, total: 741 µs
+Wall time: 667 µs
 </pre></div>
 </div>
 </div>
@@ -612,7 +553,13 @@ Wall time: 492 µs
 <div class="section" id="install-a-conda-package-in-the-current-jupyter-kernel">
 <h3>Install a conda package in the current Jupyter kernel<a class="headerlink" href="#install-a-conda-package-in-the-current-jupyter-kernel" title="Permalink to this headline">¶</a></h3>
 <p>Example with package <code class="docutils literal notranslate"><span class="pre">numpy</span></code> from <em>conda-forge</em></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">lorem</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-a-pip-package-in-the-current-jupyter-kernel">
+<h3>Install a pip package in the current Jupyter kernel<a class="headerlink" href="#install-a-pip-package-in-the-current-jupyter-kernel" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
 </div>
 </div>

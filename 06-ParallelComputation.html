@@ -51,7 +51,7 @@
 <meta property="og:url"         content="https://pnavaro.github.io/big-data/06-ParallelComputation.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Parallel Computation" />
-<meta property="og:description" content="Parallel Computation  Parallel computers  Multiprocessor/multicore: several processors work on data stored in shared memory  Cluster: several processor/memory u" />
+<meta property="og:description" content="Parallel Computation  This notebook objective is to learn how to parallelize application with Python  Parallel computers  Multiprocessor/multicore: several proc" />
 <meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
 
 <meta name="twitter:card" content="summary" />
@@ -333,8 +333,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#weighted-mean-and-variance">
-   Weighted mean and Variance
+  <a class="reference internal nav-link" href="#parallelize-text-files-downloads">
+   Parallelize text files downloads
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -432,6 +432,7 @@
                 
   <div class="section" id="parallel-computation">
 <h1>Parallel Computation<a class="headerlink" href="#parallel-computation" title="Permalink to this headline">¶</a></h1>
+<p>This notebook objective is to learn how to parallelize application with Python</p>
 <div class="section" id="parallel-computers">
 <h2>Parallel computers<a class="headerlink" href="#parallel-computers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -476,7 +477,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.57 ms, sys: 283 µs, total: 2.86 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.76 ms, sys: 383 µs, total: 3.14 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -492,7 +493,7 @@ Wall time: 8.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 3.16 ms, total: 3.16 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.35 ms, sys: 0 ns, total: 3.35 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -570,7 +571,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result = 140 and time = 4.0137939453125
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result = 140 and time = 4.01317834854126
 </pre></div>
 </div>
 </div>
@@ -596,7 +597,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140
-CPU times: user 5.26 ms, sys: 842 µs, total: 6.1 ms
+CPU times: user 6.62 ms, sys: 1.16 ms, total: 7.77 ms
 Wall time: 1.01 s
 </pre></div>
 </div>
@@ -626,84 +627,37 @@ Wall time: 1.01 s
 <li><p>The price to pay: serialization of tasks, arguments, and results.</p></li>
 </ul>
 </div>
-<div class="section" id="weighted-mean-and-variance">
-<h2>Weighted mean and Variance<a class="headerlink" href="#weighted-mean-and-variance" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="parallelize-text-files-downloads">
+<h2>Parallelize text files downloads<a class="headerlink" href="#parallelize-text-files-downloads" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Victor Hugo http://www.gutenberg.org/files/135/135-0.txt</p></li>
+<li><p>Marcel Proust http://www.gutenberg.org/files/7178/7178-8.txt</p></li>
+<li><p>Emile Zola http://www.gutenberg.org/files/1069/1069-0.txt</p></li>
+<li><p>Stendhal http://www.gutenberg.org/files/44747/44747-0.txt</p></li>
+</ul>
 <div class="section" id="exercise-6-1">
 <h3>Exercise 6.1<a class="headerlink" href="#exercise-6-1" title="Permalink to this headline">¶</a></h3>
-<p>Use <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code> to parallelized functions written in notebook 05</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code> to parallelize the code above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">mkdir</span> books
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">mul</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span> <span class="k">as</span> <span class="n">pool</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span> <span class="k">as</span> <span class="nn">url</span>
 
-<span class="k">def</span> <span class="nf">weighted_mean</span><span class="p">(</span> <span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
-    
-    <span class="k">with</span> <span class="n">pool</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
-        <span class="n">w1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span><span class="n">w1</span><span class="p">)</span>
-
-<span class="n">weighted_mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
+<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://mmassd.github.io/books/hugo.txt&quot;</span><span class="p">,</span>     <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/hugo.txt&quot;</span><span class="p">)</span>
+<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://mmassd.github.io/books/proust.txt&quot;</span><span class="p">,</span>   <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/proust.txt&quot;</span><span class="p">)</span>
+<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://mmassd.github.io/books/zola.txt&quot;</span><span class="p">,</span>     <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/zola.txt&quot;</span><span class="p">)</span>
+<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://mmassd.github.io/books/stendhal.txt&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/stendhal.txt&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">weighted_mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">pool</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
-        <span class="n">w2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="p">:</span><span class="n">p</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span><span class="n">w2</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu</span><span class="o">**</span><span class="mi">2</span>
-
-<span class="n">variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9600000000000017
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
-<span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span> <span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">p</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">var</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9600000000000017
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;books/stendhal.txt&#39;, &lt;http.client.HTTPMessage at 0x7f9762f2b210&gt;)
 </pre></div>
 </div>
 </div>
@@ -720,7 +674,6 @@ Wall time: 1.01 s
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 <span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
 
-
 <span class="k">def</span> <span class="nf">mapper</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="s2">&quot; split text to list of key/value pairs (word,1)&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -729,7 +682,6 @@ Wall time: 1.01 s
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
         
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">([(</span><span class="n">w</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
-
 
 <span class="k">def</span> <span class="nf">partitioner</span><span class="p">(</span><span class="n">mapped_values</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; get lists from mapper and create a dict with</span>
@@ -740,7 +692,6 @@ Wall time: 1.01 s
         <span class="n">res</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-
 
 <span class="k">def</span> <span class="nf">reducer</span><span class="p">(</span> <span class="n">item</span> <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Compute words occurences from dict computed</span>
@@ -763,7 +714,7 @@ Wall time: 1.01 s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
 <span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
-<span class="c1">#from loky import ProcessPoolExecutor </span>
+
 <span class="k">def</span> <span class="nf">process_name</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="s2">&quot; prints out the current process name &quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -776,7 +727,7 @@ Wall time: 1.01 s
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">14</span><span class="o">-</span><span class="mi">2096</span><span class="n">cf4534b5</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="n">adc83b5e978a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="nb">print</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> 
 <span class="ne">----&gt; </span><span class="mi">8</span> <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -792,22 +743,6 @@ Wall time: 1.01 s
 <ul class="simple">
 <li><p>Modify the mapper function by adding this print.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mapper</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="s2">&quot; split text to list of key/value pairs (word,1)&quot;</span>
-    
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mp</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        
-    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-        
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">([(</span><span class="n">w</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="parallel-reduce">
@@ -818,71 +753,6 @@ Wall time: 1.01 s
 <div class="section" id="exercise-6-3">
 <h3>Exercise 6.3<a class="headerlink" href="#exercise-6-3" title="Permalink to this headline">¶</a></h3>
 <p>Write a parallel program that uses the three functions above using <code class="docutils literal notranslate"><span class="pre">ProcessPoolExecutor</span></code>. It reads all the “sample*.txt” files. Map and reduce steps are parallel.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
-
-<span class="k">def</span> <span class="nf">wordcount</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
-    
-    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    
-        <span class="n">mapped_values</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
-        <span class="n">partioned_values</span> <span class="o">=</span> <span class="n">partitioner</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">mapped_values</span><span class="p">))</span>
-        <span class="n">occurences</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">reducer</span><span class="p">,</span> <span class="n">partioned_values</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">occurences</span><span class="p">,</span>
-                 <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
-                 <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-<span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="s2">&quot;sample*.txt&quot;</span><span class="p">)</span>  
-<span class="n">wordcount</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>    
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MainProcess : sample06.txt
-MainProcess : sample07.txtMainProcess : sample05.txt
-
-MainProcess : sample04.txt
-MainProcess : sample00.txt
-MainProcess : sample01.txtMainProcess : sample03.txt
-MainProcess : sample02.txtMainProcess : sample09.txt
-
-MainProcess : sample08.txt
-MainProcess : sample.txt
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;velit&#39;, 114),
- (&#39;non&#39;, 109),
- (&#39;sed&#39;, 106),
- (&#39;modi&#39;, 104),
- (&#39;labore&#39;, 103),
- (&#39;tempora&#39;, 103),
- (&#39;dolore&#39;, 100),
- (&#39;numquam&#39;, 99),
- (&#39;eius&#39;, 98),
- (&#39;etincidunt&#39;, 98),
- (&#39;ipsum&#39;, 98),
- (&#39;quaerat&#39;, 98),
- (&#39;aliquam&#39;, 97),
- (&#39;adipisci&#39;, 96),
- (&#39;voluptatem&#39;, 96),
- (&#39;neque&#39;, 95),
- (&#39;quiquia&#39;, 95),
- (&#39;sit&#39;, 95),
- (&#39;ut&#39;, 93),
- (&#39;magnam&#39;, 91),
- (&#39;quisquam&#39;, 91),
- (&#39;consectetur&#39;, 89),
- (&#39;dolor&#39;, 88),
- (&#39;dolorem&#39;, 88),
- (&#39;amet&#39;, 87),
- (&#39;porro&#39;, 79),
- (&#39;est&#39;, 76)]
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="increase-volume-of-data">
@@ -1021,8 +891,8 @@ MainProcess : sample.txt
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equisones opilionesque etiam busequae fuit charite nobis fuit misella et quidem casu gravissimo nec vero incomitata manis adivit
 
-CPU times: user 1.63 s, sys: 63 ms, total: 1.69 s
-Wall time: 1.69 s
+CPU times: user 1.66 s, sys: 67.4 ms, total: 1.73 s
+Wall time: 1.74 s
 </pre></div>
 </div>
 </div>
@@ -1031,45 +901,6 @@ Wall time: 1.69 s
 <div class="section" id="exercise-6-4">
 <h3>Exercise 6.4<a class="headerlink" href="#exercise-6-4" title="Permalink to this headline">¶</a></h3>
 <p>Parallelize this last process using <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span> <span class="k">as</span> <span class="n">pool</span>
-
-<span class="k">def</span> <span class="nf">sentence_mapper</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">sentences</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="n">textSoup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;lxml&quot;</span><span class="p">)</span>
-    <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">textSoup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">})</span>
-    <span class="n">prepared</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prepared</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">):</span>
-        <span class="n">part</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span> <span class="ow">or</span> <span class="n">c</span><span class="o">.</span><span class="n">isspace</span><span class="p">()])</span>
-        <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-    <span class="k">return</span> <span class="n">sentences</span>
-
-<span class="c1"># parallel map</span>
-<span class="k">with</span> <span class="n">pool</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
-    
-    <span class="n">mapped_sentences</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sentence_mapper</span><span class="p">,</span> <span class="n">texts</span><span class="p">)</span>
-
-<span class="c1"># reduce</span>
-<span class="n">sentences</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">mapped_sentences</span> <span class="p">)</span>
-
-<span class="c1"># print first and last sentence to check the results</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sentences</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>equisones opilionesque etiam busequae fuit charite nobis fuit misella et quidem casu gravissimo nec vero incomitata manis adivit
-
-CPU times: user 1.99 s, sys: 581 ms, total: 2.57 s
-Wall time: 1.97 s
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="references">

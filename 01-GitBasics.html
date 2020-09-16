@@ -417,7 +417,7 @@
 <li><p>A single server contains all the versioned files.</p></li>
 <li><p>For many years, this has been the standard (CVS, SVN).</p></li>
 <li><p>You always need network connection.</p></li>
-<li><p>If the server is corrupted, with no backup, you lose everything !</p></li>
+<li><p>If the server is corrupted, with no backup, you could lose everything !</p></li>
 </ul>
 </div>
 <div class="section" id="git">
@@ -822,8 +822,9 @@ $ git stash show
 $ git status
 On branch master
 nothing to commit, working tree clean
-
-$ git stash pop
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git stash pop
 On branch master
 Changes not staged <span class="k">for</span> commit:
   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>

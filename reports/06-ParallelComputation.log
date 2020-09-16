@@ -19,7 +19,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 ------------------
 import multiprocessing as mp
 from concurrent.futures import ThreadPoolExecutor
-#from loky import ProcessPoolExecutor 
+
 def process_name(n):
     " prints out the current process name "
     print(mp.current_process().name)
@@ -30,7 +30,7 @@ with ProcessPoolExecutor() as e:
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-14-2096cf4534b5>[0m in [0;36m<module>[0;34m[0m
+[0;32m<ipython-input-11-adc83b5e978a>[0m in [0;36m<module>[0;34m[0m
 [1;32m      6[0m     [0mprint[0m[0;34m([0m[0mmp[0m[0;34m.[0m[0mcurrent_process[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      7[0m [0;34m[0m[0m
 [0;32m----> 8[0;31m [0;32mwith[0m [0mProcessPoolExecutor[0m[0;34m([0m[0;34m)[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
