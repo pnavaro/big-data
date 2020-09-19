@@ -1,0 +1,38 @@
+name: big-data
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  - asyncssh
+  - bokeh=2.0
+  - dask
+  - dask-ml
+  - feather-format
+  - findspark
+  - h5py
+  - ipykernel
+  - ipywidgets
+  - jupyterlab
+  - jupytext
+  - lorem
+  - lxml
+  - matplotlib
+  - nbserverproxy
+  - nodejs
+  - nomkl
+  - numba
+  - numpy
+  - pandas
+  - pip
+  - pip:
+    - dask_labextension
+    - mimesis
+  - pyarrow
+  - pytables
+  - python-graphviz
+  - requests
+  - scikit-learn
+  - seaborn
+  - tornado
+  - tqdm
+  - xarray

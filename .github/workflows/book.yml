@@ -1,0 +1,49 @@
+name: book
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install pandoc
+      run: |
+        sudo apt-get -yq update
+        sudo apt-get install -yq pandoc texlive-xetex texlive-fonts-extra graphviz
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Download Apache Spark
+      uses: wei/wget@v1
+      with:
+        args: https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz
+    - name: Install Apache Spark
+      run: tar zxf spark-3.0.1-bin-hadoop2.7.tgz
+    - uses: Actions-R-Us/default-env@v1
+      env:
+        SPARK_HOME: '/home/runner/spark-3.0.0-bin-hadoop2.7'
+    - name: Install Miniconda and dependencies
+      uses: goanpeca/setup-miniconda@v1
+      with:
+        miniconda-version: "latest"
+        activate-environment: big-data
+        environment-file: environment.yml
+    - name: Install jupyter-book
+      shell: bash -l {0}
+      run: |
+        conda run -n big-data python -m ipykernel install --user --name big-data
+        conda run -n base python -m pip install jupyter-book
+    - name: Build the book
+      shell: bash -l {0}
+      run: conda run -n base jupyter-book build notebooks
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./notebooks/_build/html

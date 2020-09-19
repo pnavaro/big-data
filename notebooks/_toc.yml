@@ -1,0 +1,21 @@
+- file: intro.md
+
+- file: 01-GitBasics.ipynb
+- file: 02-Installation.ipynb
+- file: 03-JupyterQuickStart.ipynb
+- file: 04-WordCount.ipynb
+- file: 05-MapReduce.ipynb
+- file: 06-ParallelComputation.ipynb
+- file: 07-AsynchronousProcessing.ipynb
+- file: 08-DaskDelayed.ipynb
+- file: 09-DaskBag.ipynb
+- file: 10-PandasSeries.ipynb
+- file: 11-PandaDataframes.ipynb
+- file: 12-PySpark.ipynb
+- file: 13-UnixCommands.ipynb
+- file: 14-Hadoop.ipynb
+- file: 15-HadoopFileFormats.ipynb
+- file: 16-DaskDataframes.ipynb
+- file: 17-SparkDataFrames.ipynb
+- file: 18-NYCTaxiCabTripDask.ipynb
+- file: 19-NYCTaxiCabTripSpark.ipynb

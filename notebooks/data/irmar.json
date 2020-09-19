@@ -1,0 +1,244 @@
+{"name": "Alphonse Paul", "phone": "+33223235223", "office": "214", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "EDP", "team2": "NA"}
+{"name": "Ammari Zied", "phone": "+33223235811", "office": "209", "organization": "R1", "position": "MC", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Andr\u00e9 Simon", "phone": "+33223237555", "office": "301", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Angst Jurgen", "phone": "+33223236519", "office": "320", "organization": "R1", "position": "MC", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Bailleul Isma\u00ebl", "phone": "+33223236369", "office": "302", "organization": "R1", "position": "MC", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Baker Mark", "phone": "+33223236028", "office": "835", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAN", "team2": "NA"}
+{"name": "Balac Stephane", "phone": "+33223236274", "office": "110", "organization": "R1", "position": "MC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Bauer Max", "phone": "+33223236675", "office": "734", "organization": "R1", "position": "MC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Bavard Juliette", "phone": "+33223236724", "office": "331", "organization": "R1", "position": "CR", "hdr": "False", "team1": "GAN", "team2": "THEO-ERG"}
+{"name": "Beauchard Karine", "phone": "+33223236164", "office": "235", "organization": "R1", "position": "PR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Bekka Bachir", "phone": "+33223235779", "office": "307", "organization": "R1", "position": "PR", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Bekka Karim", "phone": "+33223236180", "office": "615", "organization": "R1", "position": "MC", "hdr": "False", "team1": "G&S", "team2": "NA"}
+{"name": "Belgacem Maher", "phone": "+33223236670", "office": "NA", "organization": "EXT", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Bellis Alexandre", "phone": "+33223236696", "office": "634", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Belmiloudi Aziz", "phone": "+33223238646", "office": "NA", "organization": "INSA", "position": "MC", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Ben Elouefi Rim", "phone": "+33223236670", "office": "NA", "organization": "EXT", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Benasseni Jacques", "phone": "+33299141822", "office": "NA", "organization": "R2", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Bennani-Dosse Mohammed", "phone": "+33299141796", "office": "NA", "organization": "R2", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Bernier Joachim", "phone": "+33223237558", "office": "214", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Berthelot Pierre", "phone": "+33223236043", "office": "601", "organization": "R1", "position": "PE", "hdr": "True", "team1": "GA", "team2": "NA"}
+{"name": "Bidel Youenn", "phone": "+33223236647", "office": "610", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "G&S", "team2": "NA"}
+{"name": "Boil Gregory", "phone": "+33223235740", "office": "202", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "EDP", "team2": "NA"}
+{"name": "Bonthonneau Yannick", "phone": "+33223237546", "office": "211", "organization": "R1", "position": "CR", "hdr": "False", "team1": "EDP", "team2": "NA"}
+{"name": "Boucher Delphine", "phone": "+33223236685", "office": "612", "organization": "R1", "position": "MC", "hdr": "False", "team1": "GAE", "team2": "NA"}
+{"name": "Bourqui David", "phone": "+33223235775", "office": "614", "organization": "R1", "position": "MC", "hdr": "True", "team1": "G&S", "team2": "NA"}
+{"name": "Boutin Benjamin", "phone": "+33223235883", "office": "109", "organization": "R1", "position": "MC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Brard Margot", "phone": "+33223236670", "office": "NA", "organization": "AGRO", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Breton Jean-Christophe", "phone": "+33223236258", "office": "308", "organization": "R1", "position": "PR", "hdr": "True", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Briane Marc", "phone": "+33223238539", "office": "NA", "organization": "INSA", "position": "PR", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Cadre Beno\u00eet", "phone": "+33299055266", "office": "NA", "organization": "ENS", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Caloz Gabriel", "phone": "+33223236053", "office": "110", "organization": "R1", "position": "PR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Calvez Adrien", "phone": "+33223235403", "office": "212", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Camar-Eddine Mohamed", "phone": "+33223238233", "office": "NA", "organization": "INSA", "position": "MC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Cantat Serge", "phone": "+33223236680", "office": "306", "organization": "R1", "position": "DR", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Caruso Xavier", "phone": "+33223235892", "office": "618", "organization": "R1", "position": "CR", "hdr": "True", "team1": "GAE", "team2": "GA"}
+{"name": "Casale Guy", "phone": "+33223236063", "office": "832", "organization": "R1", "position": "MC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Castella Francois", "phone": "+33223235836", "office": "119", "organization": "R1", "position": "PR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Cauchois Victor", "phone": "+33223236672", "office": "634", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAE", "team2": "NA"}
+{"name": "Causeur David", "phone": "+33223485884", "office": "NA", "organization": "AGRO", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Celik Turku Ozlum", "phone": "+33223236469", "office": "434", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAE", "team2": "NA"}
+{"name": "C\u00e9rou Fr\u00e9d\u00e9ric", "phone": "+33299847229", "office": "NA", "organization": "INRIA", "position": "CR", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Cerveau Dominique", "phone": "+33223236029", "office": "831", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAN", "team2": "NA"}
+{"name": "Chagneau Pierrette", "phone": "+33223238528", "office": "NA", "organization": "INSA", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Chandramouli Pranav", "phone": "+33223236670", "office": "NA", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Chartier Philippe", "phone": "+33299847400", "office": "115", "organization": "R1", "position": "DR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Chau Thi Tuyet Trang", "phone": "+33223236391", "office": "301", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Chauvet Guillaume", "phone": "+33299053233", "office": "NA", "organization": "R1", "position": "MC", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Cheverry Christophe", "phone": "+33223235870", "office": "207/1", "organization": "R1", "position": "PR", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Clarenne Adrien", "phone": "+33223237547", "office": "201", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Claudon Beno\u00eet", "phone": "+33223236663", "office": "731", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAN", "team2": "G&S"}
+{"name": "Clolus Priscilia", "phone": "+33223235890", "office": "215/1", "organization": "R1", "position": "LOG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Collin Maryse", "phone": "+33223236502", "office": "704", "organization": "CNRS", "position": "IR", "hdr": "False", "team1": "BIBLI", "team2": "NA"}
+{"name": "Conze Jean-Pierre", "phone": "+33223236032", "office": "317", "organization": "R1", "position": "PE", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Coquet Francois", "phone": "+33223236935", "office": "120", "organization": "R1", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Cornaggia Remi", "phone": "+33223237538", "office": "201", "organization": "R1", "position": "PDOC", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Cornillon Pierre-Andr\u00e9", "phone": "+33299141819", "office": "NA", "organization": "R2", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Corre Samuel", "phone": "+33223236670", "office": "NA", "organization": "INSA", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Costabel Martin", "phone": "+33223236049", "office": "104", "organization": "R1", "position": "PE", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Coste Michel", "phone": "+33223236016", "office": "615", "organization": "R1", "position": "PE", "hdr": "True", "team1": "G&S", "team2": "NA"}
+{"name": "Coulon R\u00e9mi", "phone": "+33223235090", "office": "335", "organization": "R1", "position": "CR", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Crouseilles Nicolas", "phone": "+33299847100", "office": "117", "organization": "R1", "position": "CR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Crouzeix Michel", "phone": "+33223236046", "office": "118", "organization": "R1", "position": "PE", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Cui Peiyi", "phone": "+33223236648", "office": "620", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GA", "team2": "NA"}
+{"name": "Cumplido Cabello Maria", "phone": "+33223234342", "office": "634", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Dal'bo Francoise", "phone": "+33223236012", "office": "735", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAN", "team2": "NA"}
+{"name": "Dang Nguyen-Thi", "phone": "+33223237552", "office": "334", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Dao Manh Khang", "phone": "+33223235422", "office": "212", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "EDP"}
+{"name": "Darrigrand Eric", "phone": "+33223235083", "office": "106", "organization": "R1", "position": "MC", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Dauge Monique", "phone": "+33223236051", "office": "104", "organization": "R1", "position": "DR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Debussche Arnaud", "phone": "+33299059311", "office": "235", "organization": "R1", "position": "PR", "hdr": "True", "team1": "ANANUM", "team2": "PROC-STOC"}
+{"name": "Dehay Dominique", "phone": "+33299141826", "office": "120", "organization": "R1", "position": "PE", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Deheuvels Thibaut", "phone": "+33223236668", "office": "235", "organization": "R1", "position": "AGPREP", "hdr": "True", "team1": "ANANUM", "team2": "EDP"}
+{"name": "Delyon Bernard", "phone": "+33223235850", "office": "333", "organization": "R1", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Demni Nizar", "phone": "+33223236523", "office": "312", "organization": "R1", "position": "MC", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Dhondt Julien", "phone": "+33223236652", "office": "621", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GA", "team2": "NA"}
+{"name": "Diallo Alpha Oumar", "phone": "+33223236670", "office": "NA", "organization": "INSA", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Diaw Adjaratou Arame", "phone": "+33223237561", "office": "634", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Diaz Arboleda Juan Sebastian", "phone": "+33223237560", "office": "732", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Doli Valentin", "phone": "+33223235223", "office": "214", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Duchene Vincent", "phone": "+33223236592", "office": "205", "organization": "R1", "position": "CR", "hdr": "False", "team1": "EDP", "team2": "NA"}
+{"name": "Dupont Christophe", "phone": "+33223233054", "office": "733", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAN", "team2": "THEO-ERG"}
+{"name": "Dupuy Jean-Fran\u00e7ois", "phone": "+33223238632", "office": "NA", "organization": "INSA", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Duquesne Sylvain", "phone": "+33223236014", "office": "613", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAE", "team2": "NA"}
+{"name": "Emily Mathieu", "phone": "+33299141807", "office": "121", "organization": "R1", "position": "MC", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Erhel Jocelyne", "phone": "+33299847339", "office": "NA", "organization": "R1", "position": "DR", "hdr": "True", "team1": "MECA", "team2": "NA"}
+{"name": "Etienne Marie-Pierre", "phone": "+33223485874", "office": "NA", "organization": "R1", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Faou Erwan", "phone": "+33299055281", "office": "118", "organization": "R1", "position": "DR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Fernandez Vargas Nestor", "phone": "+33223236717", "office": "732", "organization": "R1", "position": "ATER,D", "hdr": "False", "team1": "GAN", "team2": "GA"}
+{"name": "Fichou Goulwen", "phone": "+33223236505", "office": "609", "organization": "R1", "position": "MC", "hdr": "True", "team1": "G&S", "team2": "NA"}
+{"name": "Fontaine Marine", "phone": "+33223235831", "office": "203", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Fourquaux Lionel", "phone": "+33223235862", "office": "619", "organization": "R1", "position": "MC", "hdr": "False", "team1": "GA", "team2": "NA"}
+{"name": "Francini Camille", "phone": "+33223237173", "office": "332", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Fromont Magalie", "phone": "+33299053264", "office": "NA", "organization": "R2", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Gares Val\u00e9rie", "phone": "+33223238948", "office": "NA", "organization": "INSA", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Garo Olivier", "phone": "+33223233957", "office": "135", "organization": "CNRS", "position": "IE", "hdr": "False", "team1": "INFO", "team2": "NA"}
+{"name": "Gelein Brigitte", "phone": "+33299053265", "office": "NA", "organization": "AGRO", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Giacofci Joyce Madison", "phone": "+33299141800", "office": "NA", "organization": "R2", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Gordenko Anna", "phone": "+33223236870", "office": "634", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Gradinaru Mihai", "phone": "+33223236923", "office": "319", "organization": "R1", "position": "PR", "hdr": "True", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Gros Michel", "phone": "+33223235830", "office": "618", "organization": "R1", "position": "CR", "hdr": "True", "team1": "GA", "team2": "NA"}
+{"name": "Gruais Isabelle", "phone": "+33223236050", "office": "102", "organization": "R1", "position": "MC", "hdr": "True", "team1": "MECA", "team2": "NA"}
+{"name": "Guerin Helene", "phone": "+33223235090", "office": "335", "organization": "R1", "position": "MC", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Gueudet Ghislaine", "phone": "+33223235293", "office": "232", "organization": "R1", "position": "MC", "hdr": "False", "team1": "IREM", "team2": "NA"}
+{"name": "Guillemer Marie-Annick", "phone": "+33223236662", "office": "704", "organization": "CNRS", "position": "AI", "hdr": "False", "team1": "BIBLI", "team2": "NA"}
+{"name": "Guiny Aude", "phone": "+33223233148", "office": "132", "organization": "CNRS", "position": "TC", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Guiot Emmanuelle", "phone": "+33223236078", "office": "032", "organization": "R1", "position": "ADMG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Guirardel Vincent", "phone": "+33223235795", "office": "310", "organization": "R1", "position": "PR", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Guivarc'h Yves", "phone": "+33223236031", "office": "304", "organization": "R1", "position": "PE", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Haddou Mounir", "phone": "+33223238530", "office": "NA", "organization": "INSA", "position": "PR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Halet Chantal", "phone": "+33223235041", "office": "133", "organization": "R1", "position": "IE", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Haugomat Tristan", "phone": "+33223236074", "office": "334", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "H\u00e9as Patrick", "phone": "+33223236670", "office": "NA", "organization": "R1", "position": "CR", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Herreman Alain", "phone": "+33223235260", "office": "435", "organization": "R1", "position": "MC", "hdr": "True", "team1": "G&S", "team2": "NA"}
+{"name": "Herve Loic", "phone": "+33223238237", "office": "NA", "organization": "INSA", "position": "PR", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Herve Dominique", "phone": "+33223236673", "office": "704", "organization": "R1", "position": "TC", "hdr": "False", "team1": "BIBLI", "team2": "NA"}
+{"name": "Herzet Cedric", "phone": "+33223236670", "office": "NA", "organization": "R1", "position": "CR", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Hibon H\u00e9l\u00e8ne", "phone": "+33223236207", "office": "332", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Hmidi Taoufik", "phone": "+33223235020", "office": "204", "organization": "R1", "position": "MC", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Horsin Romain", "phone": "+33223235388", "office": "212", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Hu Ying", "phone": "+33223235820", "office": "314", "organization": "R1", "position": "PR", "hdr": "True", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Huang Yuliang", "phone": "+33223237553", "office": "620", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GA", "team2": "NA"}
+{"name": "Husson Francois", "phone": "+33223485886", "office": "NA", "organization": "AGRO", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Iglesia Nicole", "phone": "+33223233161", "office": "002", "organization": "R1", "position": "ADMG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Innocenti Crystelle", "phone": "+33223233995", "office": "33/1", "organization": "R1", "position": "ADM-UF", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Ivorra Florian", "phone": "+33223236013", "office": "606", "organization": "R1", "position": "MC", "hdr": "True", "team1": "G&S", "team2": "NA"}
+{"name": "Joannopoulos Emilie", "phone": "+33223236670", "office": "NA", "organization": "INSA", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Jourdain Eric", "phone": "+33223235839", "office": "432", "organization": "R1", "position": "PRAG", "hdr": "True", "team1": "IREM", "team2": "NA"}
+{"name": "Kammerer Jean-Gabriel", "phone": "+33223235418", "office": "619", "organization": "R1", "position": "CH", "hdr": "False", "team1": "GAE", "team2": "NA"}
+{"name": "Keraval Pierig", "phone": "+33223236097", "office": "202/1", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "EDP", "team2": "NA"}
+{"name": "Kleptsyn Victor", "phone": "+33223235844", "office": "732", "organization": "R1", "position": "CR", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Klutchnikoff Nicolas", "phone": "+33299141819", "office": "NA", "organization": "R2", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Krell Nathalie", "phone": "+33223236000", "office": "305", "organization": "R1", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Lachambre Xhensila", "phone": "+33223235365", "office": "031", "organization": "R1", "position": "ADMG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Lacoste Cyril", "phone": "+33223236395", "office": "301", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAN", "team2": "THEO-ERG"}
+{"name": "Lafranche Yvon", "phone": "+33223236688", "office": "103", "organization": "R1", "position": "MC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Le S\u00e9bastien", "phone": "+33223485887", "office": "NA", "organization": "AGRO", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Le Balc'h Kevin", "phone": "+33223237549", "office": "201", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Le Borgne Stephane", "phone": "+33223235825", "office": "331", "organization": "R1", "position": "MC", "hdr": "True", "team1": "PROC-STOC", "team2": "THEO-ERG"}
+{"name": "Le Borgne Jeremy", "phone": "+33223236043", "office": "601", "organization": "R1", "position": "AGPREP", "hdr": "True", "team1": "GA", "team2": "NA"}
+{"name": "Le Gland Fran\u00e7ois", "phone": "+33299847362", "office": "NA", "organization": "INRIA", "position": "DR", "hdr": "True", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Le Goff Veronique", "phone": "+33223236003", "office": "020", "organization": "R1", "position": "ADMP", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Le Gruyer Erwan", "phone": "+33223238238", "office": "NA", "organization": "INSA", "position": "MC", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Le Guevel Ronan", "phone": "+33299141800", "office": "NA", "organization": "R2", "position": "MC", "hdr": "False", "team1": "PROC-STOC", "team2": "STAT"}
+{"name": "Le Marrec Loic", "phone": "+33223236396", "office": "105", "organization": "R1", "position": "MC", "hdr": "True", "team1": "MECA", "team2": "NA"}
+{"name": "Le Meur Alexandre", "phone": "+33223236465", "office": "434", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAE", "team2": "NA"}
+{"name": "Le Stum Bernard", "phone": "+33223235841", "office": "603", "organization": "R1", "position": "MC", "hdr": "True", "team1": "GA", "team2": "NA"}
+{"name": "Lebaud Marie-Pierre", "phone": "+33223236036", "office": "232", "organization": "R1", "position": "PRAG", "hdr": "True", "team1": "IREM", "team2": "NA"}
+{"name": "Lebreton Maxime", "phone": "+33223236489", "office": "433", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAE", "team2": "NA"}
+{"name": "Ledoux James", "phone": "+33223238398", "office": "NA", "organization": "INSA", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Lemonnier Florian", "phone": "+33223237130", "office": "332", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Lemou Mohammed", "phone": "+33223236128", "office": "108", "organization": "R1", "position": "DR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Lenzhen Anna", "phone": "+33223235024", "office": "302", "organization": "R1", "position": "MC", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Lequoc Elodie", "phone": "+33299059300", "office": "NA", "organization": "ENS", "position": "ADMG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Lercier Reynald", "phone": "+33299429751", "office": "617", "organization": "R1", "position": "CH", "hdr": "True", "team1": "GAE", "team2": "NA"}
+{"name": "Lewandowski Roger", "phone": "+33223235864", "office": "114", "organization": "R1", "position": "PR", "hdr": "True", "team1": "MECA", "team2": "NA"}
+{"name": "Ley Olivier", "phone": "+33223238232", "office": "NA", "organization": "INSA", "position": "PR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Li Long", "phone": "+33299847515", "office": "NA", "organization": "INRIA", "position": "DOC", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Lion Jean-Marie", "phone": "+33223236008", "office": "635/35", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAN", "team2": "NA"}
+{"name": "Loidreau Pierre", "phone": "+33299426626", "office": "612", "organization": "R1", "position": "CH", "hdr": "True", "team1": "GAE", "team2": "NA"}
+{"name": "Loray Frank", "phone": "+33223236010", "office": "833", "organization": "R1", "position": "DR", "hdr": "True", "team1": "GAN", "team2": "NA"}
+{"name": "Lorenzo Garcia Elisa", "phone": "+33223237543", "office": "602", "organization": "R1", "position": "MC", "hdr": "False", "team1": "GAE", "team2": "NA"}
+{"name": "Loton Nelly", "phone": "+33223235331", "office": "132", "organization": "R1", "position": "ADMG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Lubicz David", "phone": "+33299429751", "office": "613", "organization": "R1", "position": "CH", "hdr": "True", "team1": "GAE", "team2": "NA"}
+{"name": "Maatouk Hassan", "phone": "+33223236670", "office": "NA", "organization": "INRIA", "position": "ATER", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Mahe Fabrice", "phone": "+33223236048", "office": "116", "organization": "R1", "position": "MC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Marquis Ludovic", "phone": "+33223236697", "office": "309", "organization": "R1", "position": "MC", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Maucourant Francois", "phone": "+33223235291", "office": "316", "organization": "R1", "position": "MC", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Mehats Florian", "phone": "+33223235266", "office": "107", "organization": "R1", "position": "PR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Memin Etienne", "phone": "+33299847515", "office": "NA", "organization": "INRIA", "position": "DR", "hdr": "True", "team1": "MECA", "team2": "NA"}
+{"name": "Merrien Jean-louis", "phone": "+33223238613", "office": "NA", "organization": "INSA", "position": "MC", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Mineo Kleiner Vincent", "phone": "+33223235778", "office": "610", "organization": "R1", "position": "ATER,D", "hdr": "False", "team1": "GA", "team2": "NA"}
+{"name": "Moitier Zo\u00efs", "phone": "+33223237559", "office": "202", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Mom Alain", "phone": "+33299141808", "office": "NA", "organization": "R2", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Monbet Val\u00e9rie", "phone": "+33223235955", "office": "303", "organization": "R1", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "Monier Laurent", "phone": "+33223238423", "office": "NA", "organization": "INSA", "position": "MC", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Moran-Canon Mario", "phone": "+33223235778", "office": "610", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "G&S", "team2": "NA"}
+{"name": "Moret-Bailly Laurent", "phone": "+33223236727", "office": "602", "organization": "R1", "position": "PE", "hdr": "True", "team1": "GA", "team2": "NA"}
+{"name": "Morvan Marie", "phone": "+33223236670", "office": "NA", "organization": "R2", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Mourougane Christophe", "phone": "+33223236067", "office": "605", "organization": "R1", "position": "PR", "hdr": "True", "team1": "G&S", "team2": "NA"}
+{"name": "Nacry Florent", "phone": "+33223238723", "office": "NA", "organization": "INSA", "position": "ATER", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Navaro Pierre", "phone": "+33223234308", "office": "112", "organization": "CNRS", "position": "IR", "hdr": "False", "team1": "INFO", "team2": "NA"}
+{"name": "Nguepedja Nankep Mac Jugal", "phone": "+33223236494", "office": "431", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Nguyen Dinh Duong", "phone": "+33223234911", "office": "215", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Nguyen Duc Tho", "phone": "+33223237548", "office": "202", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "EDP", "team2": "NA"}
+{"name": "Nguyen Van Trinh", "phone": "+33223238632", "office": "NA", "organization": "INSA", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Nguyen Thi-Hoai-Thuong", "phone": "+33223235488", "office": "213", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Omer Jeremy", "phone": "+33299238837", "office": "NA", "organization": "INSA", "position": "MC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Paulmier Marie-Annick", "phone": "+33223235217", "office": "034", "organization": "R1", "position": "ADMP", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Pelletier Bruno", "phone": "+33299141807", "office": "NA", "organization": "R2", "position": "PR", "hdr": "True", "team1": "STAT", "team2": "NA"}
+{"name": "P\u00e9rez Patrick", "phone": "+33223235944", "office": "001", "organization": "R1", "position": "AI", "hdr": "False", "team1": "INFO", "team2": "NA"}
+{"name": "Perruchaud Pierre", "phone": "+33223237550", "office": "313", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "PROC-STOC", "team2": "THEO-ERG"}
+{"name": "Petritis Dimitri", "phone": "+33223236035", "office": "315", "organization": "R1", "position": "PR", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Pierre Michel", "phone": "+33223236668", "office": "112", "organization": "R1", "position": "PE", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Pineda-Escobar Jesus David", "phone": "+33223236207", "office": "332", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Pinier Beno\u00eet", "phone": "+33223234911", "office": "215", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Poinas Arnaud", "phone": "+33223237554", "office": "334", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Poly Guillaume", "phone": "+33223236527", "office": "320", "organization": "R1", "position": "MC", "hdr": "False", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Poterie Audrey", "phone": "+33223235339", "office": "301", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Pravda-Starov Karel", "phone": "+33223235221", "office": "211/1", "organization": "R1", "position": "PR", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Quarez Ronan", "phone": "+33223235851", "office": "608", "organization": "R1", "position": "MC", "hdr": "True", "team1": "G&S", "team2": "NA"}
+{"name": "Rahmouni Adib", "phone": "+33223236048", "office": "116", "organization": "R1", "position": "MC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Rakotomanana Lalaonirina", "phone": "+33223235918", "office": "113", "organization": "R1", "position": "PR", "hdr": "True", "team1": "MECA", "team2": "NA"}
+{"name": "Ramirez Valente", "phone": "+33223236063", "office": "832", "organization": "R1", "position": "PDOC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Ramos Elise", "phone": "+33223235331", "office": "131", "organization": "R1", "position": "ADMG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Raymond Nicolas", "phone": "+33223236221", "office": "210", "organization": "R1", "position": "MC", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Razafimahery Fulgence", "phone": "+33223236683", "office": "105", "organization": "R1", "position": "MC", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Renault Coralie", "phone": "+33223236452", "office": "203", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "EDP", "team2": "NA"}
+{"name": "Rittemard Nathalie", "phone": "+33223236684", "office": "102", "organization": "R1", "position": "MC", "hdr": "False", "team1": "MECA", "team2": "NA"}
+{"name": "Ritzenthaler Christophe", "phone": "+33223233391", "office": "617", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAE", "team2": "NA"}
+{"name": "Rodrigues Luis Miguel", "phone": "+33223233775", "office": "204/1", "organization": "R1", "position": "PR", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Rodriguez Migueles Jose", "phone": "+33223236517", "office": "431", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAN", "team2": "THEO-ERG"}
+{"name": "Rogowski Florian", "phone": "+33223236790", "office": "32", "organization": "R1", "position": "ADMG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Romagny Matthieu", "phone": "+33223235347", "office": "616", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GA", "team2": "NA"}
+{"name": "Romaskevich Olga", "phone": "+33223236469", "office": "434", "organization": "R1", "position": "PDOC", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Rosello Angelo", "phone": "+33299059311", "office": "NA", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "PROC-STOC"}
+{"name": "Rouffort Cl\u00e9ment", "phone": "+33223236456", "office": "202/1", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "EDP", "team2": "NA"}
+{"name": "Rousseaux H\u00e9l\u00e8ne", "phone": "+33223236004", "office": "131", "organization": "CNRS", "position": "TC", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Rousset Mathias", "phone": "+33223236670", "office": "NA", "organization": "R1", "position": "CR", "hdr": "True", "team1": "PROC-STOC", "team2": "NA"}
+{"name": "Rouviere Laurent", "phone": "+33299141804", "office": "NA", "organization": "R2", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Roy Marie-Francoise", "phone": "+33223236020", "office": "633", "organization": "R1", "position": "PE", "hdr": "True", "team1": "GAE", "team2": "NA"}
+{"name": "Schapira Barbara", "phone": "+33223236000", "office": "305", "organization": "R1", "position": "MC", "hdr": "True", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Schmidt Tobias", "phone": "+33223234443", "office": "604", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GA", "team2": "NA"}
+{"name": "Sebag Julien", "phone": "+33223235871", "office": "607", "organization": "R1", "position": "PR", "hdr": "True", "team1": "G&S", "team2": "NA"}
+{"name": "Seguin Nicolas", "phone": "+33223237544", "office": "109", "organization": "R1", "position": "PR", "hdr": "True", "team1": "ANANUM", "team2": "NA"}
+{"name": "Shih Jizhuang", "phone": "+33223235837", "office": "432", "organization": "ENS", "position": "PRAG", "hdr": "True", "team1": "ADM", "team2": "NA"}
+{"name": "Souto Juan", "phone": "+33223236509", "office": "318", "organization": "R1", "position": "DR", "hdr": "True", "team1": "GAN", "team2": "THEO-ERG"}
+{"name": "Tchou Nicoletta", "phone": "+33223235842", "office": "207", "organization": "R1", "position": "MC", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Texier-Picard Rozenn", "phone": "+33299059333", "office": "106", "organization": "R1", "position": "MC", "hdr": "False", "team1": "ANANUM", "team2": "NA"}
+{"name": "Thakur Mainak", "phone": "+33223237550", "office": "313", "organization": "R1", "position": "PDOC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Thom Olivier", "phone": "+33223236870", "office": "634", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Touzet Frederic", "phone": "+33223235873", "office": "834", "organization": "R1", "position": "MC", "hdr": "False", "team1": "GAN", "team2": "NA"}
+{"name": "Truquet Lionel", "phone": "+33223236670", "office": "NA", "organization": "R1", "position": "MC", "hdr": "False", "team1": "STAT", "team2": "NA"}
+{"name": "Tusseau Maxime", "phone": "+33223235987", "office": "206", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "ANANUM", "team2": "PROC-STOC"}
+{"name": "Ulmer Felix", "phone": "+33223236044", "office": "606", "organization": "R1", "position": "PR", "hdr": "True", "team1": "GAE", "team2": "NA"}
+{"name": "Vauvan Marie", "phone": "+33223235890", "office": "215/1", "organization": "R1", "position": "LOG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Verger Marie-Aude", "phone": "+33223236040", "office": "033", "organization": "R1", "position": "ADMG", "hdr": "False", "team1": "ADM", "team2": "NA"}
+{"name": "Virrion Anne", "phone": "+33223235840", "office": "231", "organization": "R1", "position": "MC", "hdr": "False", "team1": "IREM", "team2": "NA"}
+{"name": "Vu Thi Minh Phuong", "phone": "+33223236650", "office": "621", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "GA", "team2": "NA"}
+{"name": "Vu Ngoc San", "phone": "+33223236039", "office": "210/1", "organization": "R1", "position": "PR", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Wiest Bertold", "phone": "+33223235865", "office": "732", "organization": "R1", "position": "MC", "hdr": "True", "team1": "GAN", "team2": "NA"}
+{"name": "Xie Junyi", "phone": "+33223237545", "office": "309", "organization": "R1", "position": "CR", "hdr": "False", "team1": "THEO-ERG", "team2": "GA"}
+{"name": "Yafaev Dimitri", "phone": "+33223235832", "office": "211", "organization": "R1", "position": "PE", "hdr": "True", "team1": "EDP", "team2": "NA"}
+{"name": "Zhao Sheng Yuan", "phone": "+33223237550", "office": "313", "organization": "R1", "position": "DOC", "hdr": "False", "team1": "THEO-ERG", "team2": "NA"}
+{"name": "Ziegler Yvan", "phone": "+33223236624", "office": "610", "organization": "R1", "position": "ATER,D", "hdr": "False", "team1": "GAE", "team2": "GA"}
