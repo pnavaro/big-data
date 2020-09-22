@@ -15,7 +15,8 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <link rel="stylesheet" type="text/css" href="_static/spanels-index--0afa1ebdab0bb23b98b56d34c23d9f57.css" />
+    <link rel="stylesheet" type="text/css" href="_static/spanels-variables--ffc7f74dcb1b9eecba2dbcbc22818714.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -386,6 +387,13 @@
   <a class="reference internal nav-link" href="#groupby">
    groupby
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -450,45 +458,45 @@
   <tbody>
     <tr>
       <th>2013-01-01</th>
-      <td>-2.521052</td>
-      <td>-0.697389</td>
-      <td>0.032846</td>
-      <td>0.380572</td>
+      <td>-0.221455</td>
+      <td>0.786971</td>
+      <td>-1.552097</td>
+      <td>1.536484</td>
     </tr>
     <tr>
       <th>2013-01-02</th>
-      <td>-0.622697</td>
-      <td>-0.406331</td>
-      <td>-1.294622</td>
-      <td>-0.628438</td>
+      <td>1.603020</td>
+      <td>0.533061</td>
+      <td>0.766134</td>
+      <td>0.072500</td>
     </tr>
     <tr>
       <th>2013-01-03</th>
-      <td>0.847516</td>
-      <td>0.171010</td>
-      <td>-0.412199</td>
-      <td>-0.722891</td>
+      <td>0.123356</td>
+      <td>-0.011036</td>
+      <td>-1.647163</td>
+      <td>0.246150</td>
     </tr>
     <tr>
       <th>2013-01-04</th>
-      <td>1.353197</td>
-      <td>-0.816893</td>
-      <td>1.039580</td>
-      <td>0.139186</td>
+      <td>-1.104216</td>
+      <td>-0.964301</td>
+      <td>-1.478231</td>
+      <td>3.419348</td>
     </tr>
     <tr>
       <th>2013-01-05</th>
-      <td>0.790089</td>
-      <td>-0.356302</td>
-      <td>0.721933</td>
-      <td>-1.073195</td>
+      <td>-0.523166</td>
+      <td>-0.293444</td>
+      <td>-1.650314</td>
+      <td>0.261412</td>
     </tr>
     <tr>
       <th>2013-01-06</th>
-      <td>1.651834</td>
-      <td>-0.687492</td>
-      <td>-0.295872</td>
-      <td>-0.928226</td>
+      <td>-0.343289</td>
+      <td>0.552605</td>
+      <td>-2.122796</td>
+      <td>2.404268</td>
     </tr>
   </tbody>
 </table>
@@ -3241,6 +3249,27 @@ Toulouse  43.36  1.26  12.68  16.2     SO
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following dataset <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant">UCI Machine Learning Repository Combined Cycle Power Plant Data Set</a>.
+This dataset consists of records of measurements relating to peaker power plants of 10000 points over 6 years (2006-2011).</p>
+<p><strong>Variables</strong></p>
+<ul class="simple">
+<li><p>AT = Atmospheric Temperature in C</p></li>
+<li><p>V = Exhaust Vaccum Speed</p></li>
+<li><p>AP = Atmospheric Pressure</p></li>
+<li><p>RH = Relative Humidity</p></li>
+<li><p>PE = Power Output</p></li>
+</ul>
+<p>We want to model the power output as a function of the other parameters.</p>
+<p>Observations are in 5 excel sheets of about 10000 records in “Folds5x2_pp.xlsx”. These 5 sheets are same data shuffled.</p>
+<ul class="simple">
+<li><p>Read this file with the pandas function <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_excel.html">read_excel</a>. What is the type returned by this function?</p></li>
+<li><p>Implement a <code class="docutils literal notranslate"><span class="pre">select</span></code> function to regroup all observations in a pandas serie.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">select</span></code> function and <code class="docutils literal notranslate"><span class="pre">corr</span></code> to compute the maximum correlation.</p></li>
+<li><p>Parallelize this loop with <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>.</p></li>
+</ul>
 </div>
 </div>
 </div>
