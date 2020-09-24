@@ -89,11 +89,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="#enable-github-pages">
-   Enable GitHub pages
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="02-Installation.html">
    Installation
   </a>
@@ -375,6 +370,173 @@
    GitHub repository
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enable-github-pages">
+   Enable GitHub pages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git-workflow">
+   Git Workflow
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#branches">
+   Branches
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-new-branch">
+   Create a new branch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#edit-and-modify-the-index-md-file">
+   Edit and modify the index.md file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#commit-the-changes">
+   Commit the changes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#commit-or-fast-commit">
+   Commit or fast commit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge-mybranch-with-the-master-branch">
+   Merge mybranch with the master branch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#push-master-branch">
+   Push master branch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#collaborating-writing-with-a-git-repository">
+   Collaborating writing with a git repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clone-the-remote-repository">
+   Clone the remote repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#share-your-modifications">
+   Share your modifications
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#option-1-merge-master-branch-and-push-it">
+     Option 1 : merge master branch and push it
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#option-2-push-your-branch">
+     Option 2 : Push your branch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#synchronize-the-repository">
+   Synchronize the repository
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-master-branch">
+     Update master branch
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-personal-branch">
+     Update personal branch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rebase">
+   Rebase
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stash">
+   Stash
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-last-stash">
+     Apply last
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       stash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delete-the-last-stash">
+     Delete the last
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       stash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apply-last-stash-and-drop">
+     Apply last
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       stash
+      </span>
+     </code>
+     and drop
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge-conflicts">
+   Merge conflicts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-git">
+   Why Git?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-not">
+   Why not
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-useful-commands">
+   Some useful commands
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#revert-the-last-commit">
+   Revert the last commit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git-through-ide">
+   Git through IDE
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -584,14 +746,14 @@ nothing to commit, working tree clean
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="enable-github-pages">
-<h1>Enable GitHub pages<a class="headerlink" href="#enable-github-pages" title="Permalink to this headline">¶</a></h1>
+<h2>Enable GitHub pages<a class="headerlink" href="#enable-github-pages" title="Permalink to this headline">¶</a></h2>
 <p>Go to <a class="reference external" href="https://github.com/your_login.github.io/settings">https://github.com/your_login.github.io/settings</a></p>
 <p>In the section <strong>GitHub Pages</strong></p>
 <p>Select <code class="docutils literal notranslate"><span class="pre">master</span></code> for <strong>Source</strong> and <code class="docutils literal notranslate"><span class="pre">root</span></code></p>
 <p>Choose the <strong>minimal theme</strong> and validate, you can change it later.</p>
 <p>The website is available at <a class="reference external" href="https://*your_login*.github.io">https://*your_login*.github.io</a></p>
+</div>
 <div class="section" id="git-workflow">
 <h2>Git Workflow<a class="headerlink" href="#git-workflow" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/four_stages.png"><img alt="git" src="_images/four_stages.png" style="width: 150px;" /></a>
