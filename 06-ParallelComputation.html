@@ -471,7 +471,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.07 ms, sys: 303 µs, total: 3.37 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.78 ms, sys: 516 µs, total: 3.3 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -487,7 +487,7 @@ Wall time: 8.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.44 ms, sys: 334 µs, total: 3.77 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.78 ms, sys: 0 ns, total: 3.78 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -565,7 +565,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result = 140 and time = 4.013736248016357
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result = 140 and time = 4.0134148597717285
 </pre></div>
 </div>
 </div>
@@ -591,7 +591,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140
-CPU times: user 2.87 ms, sys: 3.57 ms, total: 6.44 ms
+CPU times: user 6.47 ms, sys: 385 µs, total: 6.85 ms
 Wall time: 1.01 s
 </pre></div>
 </div>
@@ -642,16 +642,16 @@ Wall time: 1.01 s
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span> <span class="k">as</span> <span class="nn">url</span>
-
-<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://mmassd.github.io/books/hugo.txt&quot;</span><span class="p">,</span>     <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/hugo.txt&quot;</span><span class="p">)</span>
-<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://mmassd.github.io/books/proust.txt&quot;</span><span class="p">,</span>   <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/proust.txt&quot;</span><span class="p">)</span>
-<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://mmassd.github.io/books/zola.txt&quot;</span><span class="p">,</span>     <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/zola.txt&quot;</span><span class="p">)</span>
-<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://mmassd.github.io/books/stendhal.txt&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/stendhal.txt&quot;</span><span class="p">)</span>
+<span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;https://mmassd.github.io/&quot;</span>  <span class="c1"># &quot;http://svmass2.mass.uhb.fr/hub/static/datasets/&quot;</span>
+<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">source</span><span class="o">+</span><span class="s2">&quot;books/hugo.txt&quot;</span><span class="p">,</span>     <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/hugo.txt&quot;</span><span class="p">)</span>
+<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">source</span><span class="o">+</span><span class="s2">&quot;books/proust.txt&quot;</span><span class="p">,</span>   <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/proust.txt&quot;</span><span class="p">)</span>
+<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">source</span><span class="o">+</span><span class="s2">&quot;books/zola.txt&quot;</span><span class="p">,</span>     <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/zola.txt&quot;</span><span class="p">)</span>
+<span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">source</span><span class="o">+</span><span class="s2">&quot;books/stendhal.txt&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/stendhal.txt&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;books/stendhal.txt&#39;, &lt;http.client.HTTPMessage at 0x7f09f02100d0&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;books/stendhal.txt&#39;, &lt;http.client.HTTPMessage at 0x7fb0746dcfd0&gt;)
 </pre></div>
 </div>
 </div>
