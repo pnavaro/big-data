@@ -21,3 +21,7 @@ notebooks/book-*.dat
 .doit.db
 build
 notebooks/_build/
+notebooks/books/hugo.txt
+notebooks/books/proust.txt
+notebooks/books/stendhal.txt
+notebooks/books/zola.txt
