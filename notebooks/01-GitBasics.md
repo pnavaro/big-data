@@ -295,7 +295,7 @@ You will display the new file _config.yml
 
 Check the web page by visiting <https://your_login.github.io>
 
-    Modify the file index.md and do the procedure again. Modify also the file `_config.yml` by appending the following content:
+Modify the file index.md and do the procedure again. Modify also the file `_config.yml` by appending the following content:
 
 ```yaml
 title: Page personnelle
