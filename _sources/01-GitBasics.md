@@ -385,7 +385,12 @@ $ git commit -m 'Add logo'
 
 ## Commit or fast commit
 
-<table><tr><td><img src="images/index1.png" width=400></td><td><img src="images/index2.png" width=400></td></tr></table>
+```{image} images/index1.png
+:width: 400px
+```
+```{image} images/index2.png
+:width: 400px
+```
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
