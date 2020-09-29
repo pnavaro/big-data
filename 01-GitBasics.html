@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 <html>
@@ -7,9 +6,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Git basics &#8212; Python tools for Big data</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    
+  <link rel="stylesheet" href="_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -17,6 +33,9 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.30270b6e4c972e43c488.js">
+
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -25,8 +44,8 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -42,8 +61,8 @@
     <link rel="next" title="Installation" href="02-Installation.html" />
     <link rel="prev" title="Python tools for Big data" href="intro.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
@@ -218,11 +237,14 @@
     
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/01-GitBasics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+        <a class="dropdown-buttons"
+            href="_sources/01-GitBasics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/01-GitBasics.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -243,7 +265,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F01-GitBasics.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/01-GitBasics.ipynb"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/01-GitBasics.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -262,18 +284,13 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/01-GitBasics.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/01-GitBasics.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/01-GitBasics.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -286,6 +303,7 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
         <div class="tocsection onthispage pt-5 pb-3">
             <i class="fas fa-list"></i> Contents
         </div>
@@ -540,6 +558,7 @@
 </ul>
 
         </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -727,7 +746,7 @@ In the user settings sidebar, click <code class="docutils literal notranslate"><
 <li><p>Don’t change default options</p></li>
 <li><p>Click on “Create repository”</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> homnepage
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> homepage
 $ git remote add origin git@github.com:your_login/your_login.github.io.git
 $ git push -u origin master
 Enumerating objects: <span class="m">6</span>, <span class="k">done</span>.
@@ -752,16 +771,28 @@ nothing to commit, working tree clean
 <p>In the section <strong>GitHub Pages</strong></p>
 <p>Select <code class="docutils literal notranslate"><span class="pre">master</span></code> for <strong>Source</strong> and <code class="docutils literal notranslate"><span class="pre">root</span></code></p>
 <p>Choose the <strong>minimal theme</strong> and validate, you can change it later.</p>
-<p>The website is available at <a class="reference external" href="https://*your_login*.github.io">https://*your_login*.github.io</a></p>
+<p>The website is available at <a class="reference external" href="https://your_login.github.io">https://your_login.github.io</a></p>
 </div>
 <div class="section" id="git-workflow">
 <h2>Git Workflow<a class="headerlink" href="#git-workflow" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/four_stages.png"><img alt="git" src="_images/four_stages.png" style="width: 150px;" /></a>
+<p>By choosing a theme, you create on GitHub a file named “_config.yml”. You need to update your local version with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull --no-edit
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--no-edit</span></code> function avoid spawning a text editor, and asking for a merge commit message.
+If you do</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls
+</pre></div>
+</div>
+<p>You will display the new file _config.yml</p>
 </div>
 <div class="section" id="exercise">
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
 <p>Check the web page by visiting <a class="reference external" href="https://your_login.github.io">https://your_login.github.io</a></p>
-<p>Modify the file index.md and do the procedure again. Add the file <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> with the following content:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Modify the file index.md and do the procedure again. Modify also the file `_config.yml` by appending the following content:
+</pre></div>
+</div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Page personnelle</span>
 <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Exercice Git</span>
 </pre></div>
@@ -1183,7 +1214,10 @@ Rennes
       </div>
     </div>
 
-    <script src="_static/js/index.js"></script>
+    
+  <script src="_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
     
   </body>
 </html>

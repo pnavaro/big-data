@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 <html>
@@ -7,9 +6,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dask bag &#8212; Python tools for Big data</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    
+  <link rel="stylesheet" href="_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -17,6 +33,9 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.30270b6e4c972e43c488.js">
+
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -25,8 +44,8 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -42,8 +61,8 @@
     <link rel="next" title="Pandas Series" href="10-PandasSeries.html" />
     <link rel="prev" title="Dask" href="08-DaskDelayed.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
@@ -218,11 +237,14 @@
     
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/09-DaskBag.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+        <a class="dropdown-buttons"
+            href="_sources/09-DaskBag.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/09-DaskBag.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -243,7 +265,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F09-DaskBag.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/09-DaskBag.ipynb"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/09-DaskBag.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -262,18 +284,13 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/09-DaskBag.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/09-DaskBag.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/09-DaskBag.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -286,6 +303,7 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
         <div class="tocsection onthispage pt-5 pb-3">
             <i class="fas fa-list"></i> Contents
         </div>
@@ -345,6 +363,7 @@
 </ul>
 
         </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -437,8 +456,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 18.5 ms, sys: 13.6 ms, total: 32.1 ms
-Wall time: 4.38 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 26.3 ms, sys: 9.84 ms, total: 36.1 ms
+Wall time: 4.47 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 1, 2, 2, 3, 3, 4]
@@ -713,7 +732,7 @@ data/daily-stock/hp.json
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f311ebb5dbc54482a6f87fdb9887ece2"}
+{"version_major": 2, "version_minor": 0, "model_id": "77c8b2139e1b4eb98bf3c16939d9aae4"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
@@ -773,8 +792,8 @@ data/daily-stock/hp.json
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 873 ms, sys: 63.4 ms, total: 936 ms
-Wall time: 936 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.22 s, sys: 68.2 ms, total: 1.29 s
+Wall time: 1.29 s
 </pre></div>
 </div>
 </div>
@@ -788,7 +807,7 @@ Wall time: 936 ms
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/aet.h5&#39;,
  &#39;/home/runner/work/big-data/big-data/notebooks/data/daily-stock/luv.h5&#39;,
- 0.9413176064560881)
+ 0.9413176064560879)
 </pre></div>
 </div>
 </div>
@@ -820,8 +839,8 @@ Wall time: 936 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.41 ms, sys: 4.07 ms, total: 7.49 ms
-Wall time: 7.26 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.1 ms, sys: 4.2 ms, total: 8.3 ms
+Wall time: 7.76 ms
 </pre></div>
 </div>
 </div>
@@ -835,8 +854,8 @@ Wall time: 7.26 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.28 s, sys: 2.02 s, total: 4.3 s
-Wall time: 6.48 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.37 s, sys: 833 ms, total: 3.21 s
+Wall time: 5.65 s
 </pre></div>
 </div>
 </div>
@@ -848,7 +867,7 @@ Wall time: 6.48 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9413176064560881
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9413176064560879
 </pre></div>
 </div>
 </div>
@@ -864,7 +883,7 @@ Wall time: 6.48 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Porro dolorem sed sit sed adipisci neque. Dolor neque dolor dolorem labore eius. Numquam ut dolorem numquam amet velit adipisci. Adipisci ipsum voluptatem non ut labore. Adipisci quaerat amet neque neque etincidunt dolor. Ut neque dolor consectetur tempora consectetur quaerat sed.\n\nSed amet ut sit tempora. Non etincidunt dolor aliquam etincidunt velit. Aliquam etincidunt amet quiquia non aliquam ipsum. Etincidunt velit amet velit quisquam neque etincidunt. Dolore dolorem est eius eius tempora tempora dolor. Tempora dolorem quaerat aliquam tempora modi dolore eius.\n\nModi amet sit ut. Magnam tempora dolor ut dolorem. Ut adipisci tempora porro. Porro amet ipsum numquam quiquia eius dolorem ut. Neque aliquam amet porro quisquam labore amet ut. Consectetur dolore ut quaerat consectetur dolore voluptatem eius.\n\nNumquam etincidunt voluptatem dolore. Dolore sed porro numquam quaerat quisquam. Amet numquam labore magnam dolor. Numquam neque quiquia etincidunt voluptatem dolor. Non est dolor modi ipsum dolor quiquia tempora.&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Adipisci neque porro dolor quaerat numquam voluptatem quaerat. Dolore dolore modi quiquia eius voluptatem. Ipsum dolor consectetur tempora. Porro aliquam dolore labore ut est. Quisquam non quisquam numquam. Sed amet ut tempora aliquam velit. Aliquam neque consectetur non. Sed velit amet porro magnam porro dolor. Sed modi porro amet. Est numquam sed dolor amet aliquam dolore numquam.\n\nVoluptatem quiquia velit quisquam. Adipisci porro dolor amet quisquam neque eius quisquam. Amet quaerat tempora velit ut magnam. Dolorem magnam adipisci magnam voluptatem velit dolorem. Tempora quisquam quaerat modi. Est porro numquam quisquam labore. Dolor dolor non quiquia est. Etincidunt dolorem aliquam etincidunt velit ut labore non. Neque numquam aliquam ipsum numquam ipsum. Porro porro consectetur quisquam amet aliquam.\n\nSed dolore voluptatem dolore tempora. Neque labore etincidunt dolor modi quiquia est sed. Adipisci numquam quaerat adipisci modi porro aliquam. Tempora quaerat est etincidunt dolor quiquia ipsum. Non dolorem est quisquam voluptatem magnam adipisci quisquam. Numquam est non sit quisquam adipisci. Ut adipisci amet non porro.\n\nVoluptatem eius neque quiquia quisquam dolor modi magnam. Porro sed amet eius quiquia amet sit. Sit est est sed voluptatem quisquam magnam. Ut ipsum neque modi porro aliquam sed. Dolor numquam ipsum labore amet est ut. Eius dolorem etincidunt est. Dolore dolorem dolorem modi porro ipsum quisquam non. Amet quaerat etincidunt consectetur eius labore est. Porro ipsum etincidunt dolorem. Voluptatem labore tempora est est dolorem sit.\n\nUt non tempora dolor aliquam amet. Ut consectetur eius quisquam amet sit magnam. Amet tempora est modi. Dolorem quaerat quaerat ut ipsum non etincidunt. Eius velit adipisci amet sit quisquam est aliquam. Sit quisquam velit quaerat. Porro dolor ipsum magnam porro neque. Porro dolore quiquia labore quaerat sed ipsum. Numquam adipisci est consectetur ipsum dolor magnam.&#39;
 </pre></div>
 </div>
 </div>
@@ -949,16 +968,16 @@ sample03.txt  sample08.txt  sample13.txt  sample18.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;porro&#39;, 75034),
- (&#39;ipsum&#39;, 74907),
- (&#39;velit&#39;, 74855),
- (&#39;consectetur&#39;, 74846),
- (&#39;voluptatem&#39;, 74613),
- (&#39;amet&#39;, 74603),
- (&#39;quisquam&#39;, 74600),
- (&#39;numquam&#39;, 74596),
- (&#39;quaerat&#39;, 74563),
- (&#39;quiquia&#39;, 74510)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;magnam&#39;, 75375),
+ (&#39;voluptatem&#39;, 75094),
+ (&#39;labore&#39;, 74870),
+ (&#39;etincidunt&#39;, 74727),
+ (&#39;dolor&#39;, 74717),
+ (&#39;aliquam&#39;, 74681),
+ (&#39;adipisci&#39;, 74672),
+ (&#39;dolorem&#39;, 74631),
+ (&#39;quisquam&#39;, 74617),
+ (&#39;ipsum&#39;, 74598)]
 </pre></div>
 </div>
 </div>
@@ -1030,18 +1049,6 @@ sample03.txt  sample08.txt  sample13.txt  sample18.txt
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="n">glob</span><span class="p">(</span><span class="s2">&quot;data/genome0*.txt&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;data/genome01.txt&#39;,
- &#39;data/genome00.txt&#39;,
- &#39;data/genome02.txt&#39;,
- &#39;data/genome03.txt&#39;,
- &#39;data/genome07.txt&#39;,
- &#39;data/genome06.txt&#39;,
- &#39;data/genome04.txt&#39;,
- &#39;data/genome05.txt&#39;]
 </pre></div>
 </div>
 </div>
@@ -1125,7 +1132,10 @@ same way that Python tends to be slower than NumPy/Pandas</p></li>
       </div>
     </div>
 
-    <script src="_static/js/index.js"></script>
+    
+  <script src="_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
     
   </body>
 </html>

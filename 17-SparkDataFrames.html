@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 <html>
@@ -7,9 +6,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spark DataFrames &#8212; Python tools for Big data</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    
+  <link rel="stylesheet" href="_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -17,6 +33,9 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.30270b6e4c972e43c488.js">
+
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -25,8 +44,8 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -42,8 +61,8 @@
     <link rel="next" title="Dask dataframes on HDFS" href="18-NYCTaxiCabTripDask.html" />
     <link rel="prev" title="Dask Dataframes" href="16-DaskDataframes.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
@@ -218,11 +237,14 @@
     
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/17-SparkDataFrames.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+        <a class="dropdown-buttons"
+            href="_sources/17-SparkDataFrames.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/17-SparkDataFrames.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -243,7 +265,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F17-SparkDataFrames.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/17-SparkDataFrames.ipynb"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/17-SparkDataFrames.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -262,18 +284,13 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/17-SparkDataFrames.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/17-SparkDataFrames.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/17-SparkDataFrames.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -286,6 +303,7 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
         <div class="tocsection onthispage pt-5 pb-3">
             <i class="fas fa-list"></i> Contents
         </div>
@@ -405,6 +423,7 @@
 </ul>
 
         </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -587,36 +606,6 @@ Actions cause the execution of the query.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+----------+---------+-----------+
-| firstname| lastname|      login|
-+----------+---------+-----------+
-|     Simon|     Uzel|     uzel_s|
-|   Perrine|   Moreau|   moreau_p|
-|     Elise|    Negri|    negri_e|
-|   Camille|   Cochet|   cochet_c|
-|   Nolwenn| Giguelay| giguelay_n|
-|     Youen|    Meyer|    meyer_y|
-|    Emilie|  Lacoste|  lacoste_e|
-|       Pia|  LeBihan|  lebihan_p|
-|      Yann|    Evain|    evain_y|
-|   Camille|    Guyon|    guyon_c|
-|  Mathilde|  LeMener|  lemener_m|
-|    Gildas| LeGuilly| liguilly_g|
-|    Pierre| Gardelle| gardelle_p|
-|Christophe|Boulineau|boulineau_c|
-|      Omar| Aitichou| aitichou_o|
-|     Lijun|      Chi|      chi_l|
-|    Jiawei|      Liu|      lin_j|
-|     Irvin|Keraudren|keraudren_i|
-|     Bryan|    Jacob|    jacob_b|
-|   Raphael| Guillerm| guillerm_r|
-|     Bruno|Queguiner|queguiner_b|
-|   Yingshi|     Zeng|     zeng_y|
-+----------+---------+-----------+
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="schema-inference">
@@ -627,20 +616,6 @@ Actions cause the execution of the query.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="p">(</span><span class="s2">&quot;data/irmar.csv&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">rdd</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alphonse Paul;+33223235223;214;R1;DOC;False;EDP;NA
-Ammari Zied;+33223235811;209;R1;MC;True;EDP;NA
-André Simon;+33223237555;301;R1;DOC;False;THEO-ERG;NA
-Angst Jurgen;+33223236519;320;R1;MC;False;PROC-STOC;NA
-Bailleul Ismaël;+33223236369;302;R1;MC;True;THEO-ERG;NA
-Baker Mark;+33223236028;835;R1;PR;True;GAN;NA
-Balac Stephane;+33223236274;110;R1;MC;False;ANANUM;NA
-Bauer Max;+33223236675;734;R1;MC;False;GAN;NA
-Bavard Juliette;+33223236724;331;CNRS;CR;False;GAN;THEO-ERG
-Beauchard Karine;+33223236164;235;R1;PR;True;ANANUM;NA
 </pre></div>
 </div>
 </div>
@@ -696,54 +671,12 @@ of the same information about a person:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------------------+------------+------+------------+--------+-----+---------+--------+
-|                name|       phone|office|organization|position|  hdr|    team1|   team2|
-+--------------------+------------+------+------------+--------+-----+---------+--------+
-|       Alphonse Paul|+33223235223|   214|          R1|     DOC|false|      EDP|      NA|
-|         Ammari Zied|+33223235811|   209|          R1|      MC| true|      EDP|      NA|
-|         André Simon|+33223237555|   301|          R1|     DOC|false| THEO-ERG|      NA|
-|        Angst Jurgen|+33223236519|   320|          R1|      MC|false|PROC-STOC|      NA|
-|     Bailleul Ismaël|+33223236369|   302|          R1|      MC| true| THEO-ERG|      NA|
-|          Baker Mark|+33223236028|   835|          R1|      PR| true|      GAN|      NA|
-|      Balac Stephane|+33223236274|   110|          R1|      MC|false|   ANANUM|      NA|
-|           Bauer Max|+33223236675|   734|          R1|      MC|false|      GAN|      NA|
-|     Bavard Juliette|+33223236724|   331|        CNRS|      CR|false|      GAN|THEO-ERG|
-|    Beauchard Karine|+33223236164|   235|          R1|      PR| true|   ANANUM|      NA|
-|        Bekka Bachir|+33223235779|   307|          R1|      PR| true| THEO-ERG|      NA|
-|         Bekka Karim|+33223236180|   615|          R1|      MC|false|      G&amp;S|      NA|
-|      Belgacem Maher|+33223236670|    NA|         EXT|     DOC|false|   ANANUM|      NA|
-|    Bellis Alexandre|+33223236696|   634|          R1|     DOC|false|      GAN|      NA|
-|     Belmiloudi Aziz|+33223238646|    NA|        INSA|      MC| true|   ANANUM|      NA|
-|     Ben Elouefi Rim|+33223236670|    NA|         EXT|     DOC|false|     STAT|      NA|
-|   Benasseni Jacques|+33299141822|    NA|          R2|      PR| true|     STAT|      NA|
-|Bennani-Dosse Moh...|+33299141796|    NA|          R2|      MC|false|     STAT|      NA|
-|     Bernier Joachim|+33223237558|   214|          R1|     DOC|false|   ANANUM|      NA|
-|    Berthelot Pierre|+33223236043|   601|          R1|      PE| true|       GA|      NA|
-+--------------------+------------+------+------------+--------+-----+---------+--------+
-only showing top 20 rows
-</pre></div>
-</div>
-</div>
 </div>
 <div class="section" id="schema">
 <h3>Schema<a class="headerlink" href="#schema" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root
- |-- name: string (nullable = true)
- |-- phone: string (nullable = true)
- |-- office: string (nullable = true)
- |-- organization: string (nullable = true)
- |-- position: string (nullable = true)
- |-- hdr: boolean (nullable = true)
- |-- team1: string (nullable = true)
- |-- team2: string (nullable = true)
 </pre></div>
 </div>
 </div>
@@ -757,11 +690,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DataFrame[name: string, phone: string, office: string, organization: string, position: string, hdr: boolean, team1: string, team2: string]
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="select">
@@ -772,44 +700,10 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DataFrame[name: string, position: string, organization: string]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------------------+--------+------------+
-|                name|position|organization|
-+--------------------+--------+------------+
-|       Alphonse Paul|     DOC|          R1|
-|         Ammari Zied|      MC|          R1|
-|         André Simon|     DOC|          R1|
-|        Angst Jurgen|      MC|          R1|
-|     Bailleul Ismaël|      MC|          R1|
-|          Baker Mark|      PR|          R1|
-|      Balac Stephane|      MC|          R1|
-|           Bauer Max|      MC|          R1|
-|     Bavard Juliette|      CR|        CNRS|
-|    Beauchard Karine|      PR|          R1|
-|        Bekka Bachir|      PR|          R1|
-|         Bekka Karim|      MC|          R1|
-|      Belgacem Maher|     DOC|         EXT|
-|    Bellis Alexandre|     DOC|          R1|
-|     Belmiloudi Aziz|      MC|        INSA|
-|     Ben Elouefi Rim|     DOC|         EXT|
-|   Benasseni Jacques|      PR|          R2|
-|Bennani-Dosse Moh...|      MC|          R2|
-|     Bernier Joachim|     DOC|          R1|
-|    Berthelot Pierre|      PE|          R1|
-+--------------------+--------+------------+
-only showing top 20 rows
 </pre></div>
 </div>
 </div>
@@ -820,25 +714,6 @@ only showing top 20 rows
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------------------+------------+------+------------+--------+-----+---------+-----+
-|                name|       phone|office|organization|position|  hdr|    team1|team2|
-+--------------------+------------+------+------------+--------+-----+---------+-----+
-|   Benasseni Jacques|+33299141822|    NA|          R2|      PR| true|     STAT|   NA|
-|Bennani-Dosse Moh...|+33299141796|    NA|          R2|      MC|false|     STAT|   NA|
-|Cornillon Pierre-...|+33299141819|    NA|          R2|      MC|false|     STAT|   NA|
-|     Fromont Magalie|+33299053264|    NA|          R2|      PR| true|     STAT|   NA|
-|Giacofci Joyce Ma...|+33299141800|    NA|          R2|      MC|false|     STAT|   NA|
-|Klutchnikoff Nicolas|+33299141819|    NA|          R2|      MC|false|     STAT|   NA|
-|     Le Guevel Ronan|+33299141800|    NA|          R2|      MC|false|PROC-STOC| STAT|
-|           Mom Alain|+33299141808|    NA|          R2|      MC|false|     STAT|   NA|
-|        Morvan Marie|+33223236670|    NA|          R2|     DOC|false|     STAT|   NA|
-|     Pelletier Bruno|+33299141807|    NA|          R2|      PR| true|     STAT|   NA|
-|    Rouviere Laurent|+33299141804|    NA|          R2|      MC|false|     STAT|   NA|
-+--------------------+------------+------+------------+--------+-----+---------+-----+
 </pre></div>
 </div>
 </div>
@@ -859,25 +734,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------------------+---------+
-|                name|    team1|
-+--------------------+---------+
-|   Benasseni Jacques|     STAT|
-|Bennani-Dosse Moh...|     STAT|
-|Cornillon Pierre-...|     STAT|
-|     Fromont Magalie|     STAT|
-|Giacofci Joyce Ma...|     STAT|
-|Klutchnikoff Nicolas|     STAT|
-|     Le Guevel Ronan|PROC-STOC|
-|           Mom Alain|     STAT|
-|        Morvan Marie|     STAT|
-|     Pelletier Bruno|     STAT|
-|    Rouviere Laurent|     STAT|
-+--------------------+---------+
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="orderby">
@@ -887,25 +743,6 @@ only showing top 20 rows
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span>
    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">])</span>
    <span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;position&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------------------+--------+
-|                name|position|
-+--------------------+--------+
-|        Morvan Marie|     DOC|
-|Cornillon Pierre-...|      MC|
-|Bennani-Dosse Moh...|      MC|
-|Giacofci Joyce Ma...|      MC|
-|           Mom Alain|      MC|
-|Klutchnikoff Nicolas|      MC|
-|    Rouviere Laurent|      MC|
-|     Le Guevel Ronan|      MC|
-|   Benasseni Jacques|      PR|
-|     Fromont Magalie|      PR|
-|     Pelletier Bruno|      PR|
-+--------------------+--------+
 </pre></div>
 </div>
 </div>
@@ -919,25 +756,10 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyspark.sql.group.GroupedData at 0x7f863a6d9610&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;hdr&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-----+-----+
-|  hdr|count|
-+-----+-----+
-| true|  103|
-|false|  141|
-+-----+-----+
 </pre></div>
 </div>
 </div>
@@ -949,11 +771,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>103
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -961,55 +778,10 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------------------+
-|                name|
-+--------------------+
-|         Ammari Zied|
-|     Bailleul Ismaël|
-|          Baker Mark|
-|    Beauchard Karine|
-|        Bekka Bachir|
-|     Belmiloudi Aziz|
-|   Benasseni Jacques|
-|    Berthelot Pierre|
-|       Bourqui David|
-|Breton Jean-Chris...|
-|         Briane Marc|
-|        Cadre Benoît|
-|       Caloz Gabriel|
-|        Cantat Serge|
-|       Caruso Xavier|
-|   Castella Francois|
-|       Causeur David|
-|   Cerveau Dominique|
-|   Chartier Philippe|
-|   Chauvet Guillaume|
-+--------------------+
-only showing top 20 rows
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------------+-----+
-|organization|count|
-+------------+-----+
-|         ENS|    3|
-|        CNRS|   19|
-|        INSA|   19|
-|          R2|   11|
-|       INRIA|    9|
-|        AGRO|    5|
-|         EXT|    2|
-|          R1|  176|
-+------------+-----+
 </pre></div>
 </div>
 </div>
@@ -1088,7 +860,10 @@ only showing top 20 rows
       </div>
     </div>
 
-    <script src="_static/js/index.js"></script>
+    
+  <script src="_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
     
   </body>
 </html>
