@@ -67,7 +67,7 @@ du -h sample.txt
 
 ### Exercise 4.2
 
-Create a function called `map_words` that take a file name as argument and return a lists containing all words as items.
+Create a function called `map_words` that take a file name as argument and return a sorted list containing all words as items.
 
 ```pytb
 map_words("sample.txt")[:5] # first five words
