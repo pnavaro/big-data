@@ -18,4 +18,6 @@ RUN conda env create --quiet -f environment.yml && \
     fix-permissions /home/$NB_USER
 
 RUN jupyter labextension install dask-labextension && \
-    jupyter serverextension enable dask_labextension
+    jupyter serverextension enable dask_labextension && \
+    jupyter nbextension install --py jupytext --user && \
+    jupyter lab build
