@@ -362,25 +362,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parallel-map">
-   Parallel map
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-6-2">
-     Exercise 6.2
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parallel-reduce">
    Parallel reduce
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-6-3">
-     Exercise 6.3
+    <a class="reference internal nav-link" href="#exercise-6-2">
+     Exercise 6.2
     </a>
    </li>
   </ul>
@@ -421,8 +409,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-6-4">
-     Exercise 6.4
+    <a class="reference internal nav-link" href="#exercise-6-3">
+     Exercise 6.3
     </a>
    </li>
   </ul>
@@ -469,11 +457,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
-<span class="n">L</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
-<span class="n">L</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -485,12 +473,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> sum(f(x) for x in L)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> sum(process(x) for x in data)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.15 ms, sys: 365 µs, total: 3.51 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.78 ms, sys: 522 µs, total: 3.3 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -501,12 +489,12 @@ Wall time: 8.01 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> sum(map(f,L))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> sum(map(process,data))
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 3.91 ms, total: 3.91 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.43 ms, sys: 2.99 ms, total: 4.42 ms
 Wall time: 8.01 s
 </pre></div>
 </div>
@@ -552,18 +540,18 @@ Both implement the same interface, which is defined by the abstract Executor cla
 <span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">time</span>
 
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
 
-<span class="n">L</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     
     <span class="n">begin</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
     <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
 
-        <span class="n">result</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
     
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;result = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2"> and time = </span><span class="si">{</span><span class="n">end</span><span class="o">-</span><span class="n">begin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -584,7 +572,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result = 140 and time = 4.012935638427734
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result = 140 and time = 4.013516187667847
 </pre></div>
 </div>
 </div>
@@ -602,7 +590,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 
 <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
 
-    <span class="n">results</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
     
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
@@ -610,7 +598,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140
-CPU times: user 6.04 ms, sys: 998 µs, total: 7.04 ms
+CPU times: user 4.1 ms, sys: 4.98 ms, total: 9.08 ms
 Wall time: 1.01 s
 </pre></div>
 </div>
@@ -660,7 +648,8 @@ Wall time: 1.01 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span> <span class="k">as</span> <span class="nn">url</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span> <span class="k">as</span> <span class="nn">url</span>
 <span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;https://mmassd.github.io/&quot;</span>  <span class="c1"># &quot;http://svmass2.mass.uhb.fr/hub/static/datasets/&quot;</span>
 <span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">source</span><span class="o">+</span><span class="s2">&quot;books/hugo.txt&quot;</span><span class="p">,</span>     <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/hugo.txt&quot;</span><span class="p">)</span>
 <span class="n">url</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">source</span><span class="o">+</span><span class="s2">&quot;books/proust.txt&quot;</span><span class="p">,</span>   <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;books/proust.txt&quot;</span><span class="p">)</span>
@@ -670,7 +659,11 @@ Wall time: 1.01 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;books/stendhal.txt&#39;, &lt;http.client.HTTPMessage at 0x7f040658c410&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 76.2 ms, sys: 22.1 ms, total: 98.3 ms
+Wall time: 1.17 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;books/stendhal.txt&#39;, &lt;http.client.HTTPMessage at 0x7fd5a81efe10&gt;)
 </pre></div>
 </div>
 </div>
@@ -717,55 +710,14 @@ Wall time: 1.01 s
 </div>
 </div>
 </div>
-<div class="section" id="parallel-map">
-<h2>Parallel map<a class="headerlink" href="#parallel-map" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Let’s improve the <code class="docutils literal notranslate"><span class="pre">mapper</span></code> function by print out inside the function the current process name.</p></li>
-</ul>
-<p><em>Example</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
-
-<span class="k">def</span> <span class="nf">process_name</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="s2">&quot; prints out the current process name &quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">_</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process_name</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="n">adc83b5e978a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="nb">print</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> 
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">_</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process_name</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()))</span>
-
-<span class="ne">NameError</span>: name &#39;ProcessPoolExecutor&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="exercise-6-2">
-<h3>Exercise 6.2<a class="headerlink" href="#exercise-6-2" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Modify the mapper function by adding this print.</p></li>
-</ul>
-</div>
-</div>
 <div class="section" id="parallel-reduce">
 <h2>Parallel reduce<a class="headerlink" href="#parallel-reduce" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>For parallel reduce operation, data must be aligned in a container. We already created a <code class="docutils literal notranslate"><span class="pre">partitioner</span></code> function that returns this container.</p></li>
 </ul>
-<div class="section" id="exercise-6-3">
-<h3>Exercise 6.3<a class="headerlink" href="#exercise-6-3" title="Permalink to this headline">¶</a></h3>
-<p>Write a parallel program that uses the three functions above using <code class="docutils literal notranslate"><span class="pre">ProcessPoolExecutor</span></code>. It reads all the “sample*.txt” files. Map and reduce steps are parallel.</p>
+<div class="section" id="exercise-6-2">
+<h3>Exercise 6.2<a class="headerlink" href="#exercise-6-2" title="Permalink to this headline">¶</a></h3>
+<p>Write a parallel program that uses the three functions above using <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code>. It reads all the “sample*.txt” files. Map and reduce steps are parallel.</p>
 </div>
 </div>
 <div class="section" id="increase-volume-of-data">
@@ -787,6 +739,20 @@ Wall time: 1.01 s
 <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">home_content</span><span class="p">,</span> <span class="s2">&quot;lxml&quot;</span><span class="p">)</span>
 <span class="n">author_page_links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
 <span class="n">author_pages</span> <span class="o">=</span> <span class="p">[</span><span class="n">ap</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ap</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">author_page_links</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">49</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="n">f06aa1e7b766</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>  <span class="c1"># web scraping library</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;http://www.thelatinlibrary.com/&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">home_content</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;bs4&#39;
 </pre></div>
 </div>
 </div>
@@ -898,8 +864,8 @@ Wall time: 1.01 s
 </div>
 </div>
 </div>
-<div class="section" id="exercise-6-4">
-<h3>Exercise 6.4<a class="headerlink" href="#exercise-6-4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-6-3">
+<h3>Exercise 6.3<a class="headerlink" href="#exercise-6-3" title="Permalink to this headline">¶</a></h3>
 <p>Parallelize this last process using <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>.</p>
 </div>
 </div>

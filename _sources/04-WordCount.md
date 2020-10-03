@@ -2,11 +2,12 @@
 jupytext:
   cell_metadata_json: true
   encoding: '# -*- coding: utf-8 -*-'
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -209,11 +210,11 @@ cnt.values()
 
 ### Exercise 4.5
 
-Use a `Counter` object to count words occurences in the sample text file. 
+Use a `Counter` object to count words occurences in the sample text file.
 
 +++ {"slideshow": {"slide_type": "fragment"}}
 
-The Counter class is similar to bags or multisets in some Python libraries or other languages. We will see later how to use Counter-like objects in a parallel context. 
+The Counter class is similar to bags or multisets in some Python libraries or other languages. We will see later how to use Counter-like objects in a parallel context.
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -222,7 +223,7 @@ The Counter class is similar to bags or multisets in some Python libraries or ot
 - Create several files containing `lorem` text named 'sample01.txt', 'sample02.txt'...
 - If you process these files you return multiple dictionaries.
 - You have to loop over them to sum occurences and return the resulted dict. To iterate on specific mappings, Python standard library provides some useful features in `itertools` module.
-- [itertools.chain(*mapped_values)](https://docs.python.org/3.6/library/itertools.html#itertools.chain) could be used for treating consecutive sequences as a single sequence. 
+- [itertools.chain(*mapped_values)](https://docs.python.org/3.6/library/itertools.html#itertools.chain) could be used for treating consecutive sequences as a single sequence.
 
 ```{code-cell} ipython3
 ---
@@ -258,17 +259,3 @@ wordcount(file1, file2, file3, ...)
 +++ {"slideshow": {"slide_type": "slide"}}
 
 - Example of use of arbitrary argument list and arbitrary named arguments.
-
-```{code-cell} ipython3
----
-slideshow:
-  slide_type: fragment
----
-def func( *args, **kwargs):
-    for arg in args:
-        print(arg)
-        
-    print(kwargs)
-        
-func( "3", [1,2], "bonjour", x = 4, y = "y")
-```

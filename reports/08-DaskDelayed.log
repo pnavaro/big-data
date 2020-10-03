@@ -17,13 +17,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-extract_data('fvalues','data') 
+extract_data('fvalues','.') 
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m<ipython-input-16-c98a34e98eae>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mextract_data[0m[0;34m([0m[0;34m'fvalues'[0m[0;34m,[0m[0;34m'data'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m<ipython-input-16-0386f9499817>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mextract_data[0m[0;34m([0m[0;34m'fvalues'[0m[0;34m,[0m[0;34m'.'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m<ipython-input-11-c92d4a860b06>[0m in [0;36mextract_data[0;34m(name, where)[0m
 [1;32m      7[0m        [0mprint[0m[0;34m([0m[0;34m"Extracting data..."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
@@ -53,6 +53,6 @@ extract_data('fvalues','data')
 [0m[1;32m    169[0m         [0;32mif[0m [0mfilename[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [1;32m    170[0m             [0mfilename[0m [0;34m=[0m [0mgetattr[0m[0;34m([0m[0mfileobj[0m[0;34m,[0m [0;34m'name'[0m[0;34m,[0m [0;34m''[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'data/fvalues.tgz'
-FileNotFoundError: [Errno 2] No such file or directory: 'data/fvalues.tgz'
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: './fvalues.tgz'
+FileNotFoundError: [Errno 2] No such file or directory: './fvalues.tgz'
 

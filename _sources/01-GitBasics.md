@@ -6,8 +6,8 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -87,8 +87,6 @@ Official website https://git-scm.com
 - You can collaborate with different groups of people in different ways simultaneously within the same project.
 - No need of network connection.
 - Multiple backups.
- 
- 
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -203,25 +201,23 @@ Open Terminal or Git bash.
 
 Paste the text below, substituting in your GitHub email address.
 ```bash
-ssh-keygen -t rsa -b 4096 -C "prenom.nom@univ-rennes2.fr"
+ssh-keygen -t rsa -b 4096 -C "prenom.nom@univ-rennes2.fr" -N ""
 ```
 This creates a new ssh key, using the provided email as a label.
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-
-
 When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location. Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
 At the prompt, let it empty for no passphrase.
 
-This creates 2 files, the private key: `id_rsa`, and the public key `id_rsa.pub`. Display and copy the SSH key to your clipboard.
+This creates 2 files, the private key: `id_rsa`, and the public key `id_rsa.pub`. Copy the SSH key to your clipboard.
 
 ```bash
-cat ~/.ssh/id_rsa.pub
+pbcopy < ~/.ssh/id_rsa.pub
 ```
 
 In the upper-right corner of any page, click your profile photo, then click `Settings`.
-In the user settings sidebar, click `SSH and GPG keys`.  Click `New SSH key` or `Add SSH key`.
+In the user settings sidebar, click `SSH and GPG keys`.  Click `New SSH key` or `Add SSH key` and paste the key.
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -443,10 +439,6 @@ To github.com:your_login/your_login.github.io.git
 
 ## Clone the remote repository
 
-```bash
-git clone ssh://svmass2/git/atelier_git.git
-```
-or
 ```bash
 git clone git@github.com:MMASSD/atelier_git.git
 ```

@@ -17,25 +17,26 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import multiprocessing as mp
-from concurrent.futures import ThreadPoolExecutor
+from bs4 import BeautifulSoup  # web scraping library
+from urllib.request import *
 
-def process_name(n):
-    " prints out the current process name "
-    print(mp.current_process().name)
+base_url = "http://www.thelatinlibrary.com/"
+home_content = urlopen(base_url)
 
-with ProcessPoolExecutor() as e:
-    _ = e.map(process_name, range(mp.cpu_count()))
+soup = BeautifulSoup(home_content, "lxml")
+author_page_links = soup.find_all("a")
+author_pages = [ap["href"] for i, ap in enumerate(author_page_links) if i < 49]
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-11-adc83b5e978a>[0m in [0;36m<module>[0;34m[0m
-[1;32m      6[0m     [0mprint[0m[0;34m([0m[0mmp[0m[0;34m.[0m[0mcurrent_process[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      7[0m [0;34m[0m[0m
-[0;32m----> 8[0;31m [0;32mwith[0m [0mProcessPoolExecutor[0m[0;34m([0m[0;34m)[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      9[0m     [0m_[0m [0;34m=[0m [0me[0m[0;34m.[0m[0mmap[0m[0;34m([0m[0mprocess_name[0m[0;34m,[0m [0mrange[0m[0;34m([0m[0mmp[0m[0;34m.[0m[0mcpu_count[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m<ipython-input-11-f06aa1e7b766>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0mbs4[0m [0;32mimport[0m [0mBeautifulSoup[0m  [0;31m# web scraping library[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0murllib[0m[0;34m.[0m[0mrequest[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0mbase_url[0m [0;34m=[0m [0;34m"http://www.thelatinlibrary.com/"[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mhome_content[0m [0;34m=[0m [0murlopen[0m[0;34m([0m[0mbase_url[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mNameError[0m: name 'ProcessPoolExecutor' is not defined
-NameError: name 'ProcessPoolExecutor' is not defined
+[0;31mModuleNotFoundError[0m: No module named 'bs4'
+ModuleNotFoundError: No module named 'bs4'
 

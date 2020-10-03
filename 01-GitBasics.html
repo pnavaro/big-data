@@ -722,18 +722,18 @@ nothing to commit, working tree clean
 <p>Ref : <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">New ssh key on GitHub</a></p>
 <p>Open Terminal or Git bash.</p>
 <p>Paste the text below, substituting in your GitHub email address.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span> -N <span class="s2">&quot;&quot;</span>
 </pre></div>
 </div>
 <p>This creates a new ssh key, using the provided email as a label.</p>
 <p>When you’re prompted to “Enter a file in which to save the key,” press Enter. This accepts the default file location. Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
 At the prompt, let it empty for no passphrase.</p>
-<p>This creates 2 files, the private key: <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>, and the public key <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>. Display and copy the SSH key to your clipboard.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat ~/.ssh/id_rsa.pub
+<p>This creates 2 files, the private key: <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>, and the public key <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>. Copy the SSH key to your clipboard.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pbcopy &lt; ~/.ssh/id_rsa.pub
 </pre></div>
 </div>
 <p>In the upper-right corner of any page, click your profile photo, then click <code class="docutils literal notranslate"><span class="pre">Settings</span></code>.
-In the user settings sidebar, click <code class="docutils literal notranslate"><span class="pre">SSH</span> <span class="pre">and</span> <span class="pre">GPG</span> <span class="pre">keys</span></code>.  Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">key</span></code> or <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code>.</p>
+In the user settings sidebar, click <code class="docutils literal notranslate"><span class="pre">SSH</span> <span class="pre">and</span> <span class="pre">GPG</span> <span class="pre">keys</span></code>.  Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">key</span></code> or <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code> and paste the key.</p>
 </div>
 </div>
 <div class="section" id="github-repository">
@@ -908,10 +908,6 @@ To github.com:your_login/your_login.github.io.git
 </div>
 <div class="section" id="clone-the-remote-repository">
 <h2>Clone the remote repository<a class="headerlink" href="#clone-the-remote-repository" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone ssh://svmass2/git/atelier_git.git
-</pre></div>
-</div>
-<p>or</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:MMASSD/atelier_git.git
 </pre></div>
 </div>

@@ -433,7 +433,7 @@ du -h sample.txt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   70082  2014666 14238580 sample.txt
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   69930  2008765 14197422 sample.txt
 14M	sample.txt
 </pre></div>
 </div>
@@ -647,27 +647,6 @@ return the result dict.</p></li>
 <ul class="simple">
 <li><p>Example of use of arbitrary argument list and arbitrary named arguments.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-        
-    <span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-        
-<span class="n">func</span><span class="p">(</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;bonjour&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-[1, 2]
-bonjour
-{&#39;x&#39;: 4, &#39;y&#39;: &#39;y&#39;}
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>

@@ -357,8 +357,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#create-a-new-conda-environment-from-file">
-     Create a new conda environment from file
+    <a class="reference internal nav-link" href="#update-a-new-conda-environment-from-file">
+     Update a new conda environment from file
     </a>
    </li>
   </ul>
@@ -435,17 +435,17 @@ and their dependencies that will not interact with other environments.</p>
 Create separate environments to keep your programs isolated from each other.</p>
 <div class="section" id="create-a-new-environment-and-install-a-package-in-it">
 <h3>Create a new environment and install a package in it.<a class="headerlink" href="#create-a-new-environment-and-install-a-package-in-it" title="Permalink to this headline">¶</a></h3>
-<p>We will name the environment <code class="docutils literal notranslate"><span class="pre">testenv</span></code> and install the version 3.8 of <code class="docutils literal notranslate"><span class="pre">python</span></code>. At the Anaconda Prompt or in your terminal window, type the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -y -n testenv <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
+<p>We will name the environment <code class="docutils literal notranslate"><span class="pre">big-data</span></code> and install the version 3.8 of <code class="docutils literal notranslate"><span class="pre">python</span></code>. At the Anaconda Prompt or in your terminal window, type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -y -n big-data <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
 </pre></div>
 </div>
 </div>
 <div class="section" id="to-use-or-activate-the-new-environment-type-the-following">
 <h3>To use, or “activate” the new environment, type the following:<a class="headerlink" href="#to-use-or-activate-the-new-environment-type-the-following" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate testenv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate big-data
 </pre></div>
 </div>
-<p>Now that you are in your <code class="docutils literal notranslate"><span class="pre">testenv</span></code> environment, any conda commands you type will go to that environment until you deactivate it.</p>
+<p>Now that you are in your <code class="docutils literal notranslate"><span class="pre">big-data</span></code> environment, any conda commands you type will go to that environment until you deactivate it.</p>
 <p>Verify which version of Python is in your current environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python --version
 </pre></div>
@@ -503,7 +503,7 @@ jupyter                        1.0.0            py_2  conda-forge
 <p>Conda displays a list of all packages with that name on conda-forge repository, so we know it is available.</p>
 <p>Install this package into the base environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate
-conda install -y jupyter -c conda-forge
+conda install -y jupyter -c conda-forge -n base
 </pre></div>
 </div>
 <p>Check to see if the newly installed program is in this environment:</p>
@@ -527,18 +527,14 @@ jupyter-sphinx            0.3.2                    pypi_0    pypi
 </div>
 </div>
 </div>
-<div class="section" id="create-a-new-conda-environment-from-file">
-<h3>Create a new conda environment from file<a class="headerlink" href="#create-a-new-conda-environment-from-file" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="update-a-new-conda-environment-from-file">
+<h3>Update a new conda environment from file<a class="headerlink" href="#update-a-new-conda-environment-from-file" title="Permalink to this headline">¶</a></h3>
 <p>Download the file <a class="reference external" href="https://raw.githubusercontent.com/pnavaro/big-data/master/environment.yml">environment.yml</a>.
-This file contains the packages list for this course.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml -n big-data
+This file contains the packages list for this course. Be aware that it takes time to download and install all packages.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env update -f environment.yml -n big-data
 </pre></div>
 </div>
 <p><a class="reference external" href="https://conda.io/docs/using/envs.html">Conda envs documentation</a>.</p>
-<p>If you don’t have rights to to iy, you can install the new environment on your home directory by using the prefix option</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml -p ~/.conda/envs/big-data
-</pre></div>
-</div>
 <p>Activating the conda environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.</p>
 <pre>
 $ conda activate big-data

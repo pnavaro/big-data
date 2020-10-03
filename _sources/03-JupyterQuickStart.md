@@ -2,11 +2,12 @@
 jupytext:
   cell_metadata_json: true
   encoding: '# -*- coding: utf-8 -*-'
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -26,7 +27,6 @@ kernelspec:
 ```bash
 jupyter notebook
 ```
-
 
 - Go to notebooks folder
 - Open the file 03.JupyterQuickStart.ipynb
@@ -60,7 +60,6 @@ The name Jupyter is an indirect acronyum of the three core languages it was desi
    - M to change the current cell to Markdown, Y to change it back to code
    - D + D (press the key twice) to delete the current cell
 
-
 +++ {"slideshow": {"slide_type": "slide"}}
 
 ## Easy links to documentation
@@ -78,7 +77,6 @@ dict
 +++ {"slideshow": {"slide_type": "slide"}}
 
 ## Magic commands
-
 
 ```{code-cell} ipython3
 ---
