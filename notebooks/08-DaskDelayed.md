@@ -1,7 +1,7 @@
 ---
 jupytext:
   cell_metadata_json: true
-  formats: md:myst,ipynb
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
@@ -32,7 +32,7 @@ http://dask.pydata.org/en/latest/
 slideshow:
   slide_type: fragment
 ---
-import dask
+import dask-
 import dask.multiprocessing
 ```
 
@@ -318,6 +318,7 @@ filenames[:5], len(filenames)
 In order to plot these fields, we will scale them between 0 to 255 grey levels.
 
 ```{code-cell} ipython3
+import numpy as np
 def scale(x) :
     "Scale field to 0-255 levels"
     return np.uint8(255*(x-np.min(x)) / (np.max(x)-np.min(x)))
@@ -326,6 +327,7 @@ def scale(x) :
 Let's create a function that read the file and return the scaled field.
 
 ```{code-cell} ipython3
+import h5py as h5
 def read_frame( filepath ):
     " Create image from the `dataset` of h5 file `filepath` "
     with h5.File(filepath, "r") as f:
@@ -333,28 +335,40 @@ def read_frame( filepath ):
         return scale(z)
 ```
 
-We now have a list a on thousand frames we can plot
+```{code-cell} ipython3
+image = read_frame( filenames[0])
+image.shape
+```
+
+```{code-cell} ipython3
+from PIL import Image 
+Image.fromarray(image)
+```
+
+With NumPy we might allocate a big array and then iteratively load images and place them into this array `serial_frames`.
 
 ```{code-cell} ipython3
 %%time
-serial_frames = [read_frame(fn) for fn in filenames]
+serial_frames = np.empty((1000,*image.shape), dtype=np.uint8)
+for i, fn in enumerate(filenames):
+    serial_frames[i, :, :] = read_frame(fn)
 ```
 
 ```{code-cell} ipython3
 from ipywidgets import interact, IntSlider
 
 def display_sequence(iframe):
-    return Image.fromarray(serial_frames[iframe])
+    return Image.fromarray(serial_frames[iframe,:,:])
     
 interact(display_sequence, 
          iframe=IntSlider(min=0,
-                          max=len(serial_frames)-1,
+                          max=np.shape(serial_frames)[0]-1,
                           step=1,
                           value=0, 
                           continuous_update=True));
 ```
 
-In the code above, we read all images and store them in memory. If you have more plots or bigger images it won't fit everything in your computer memory. You have two options:
+In the code above, we read all images and store them in memory. If you have more plots or bigger images it won't fit in your computer memory. You have two options:
 - Use a bigger computer
 - Not store all files in memory and read only the file that contains the field you want to display.
 
@@ -366,19 +380,22 @@ We can delayed the read function
 
 ```{code-cell} ipython3
 lazy_read = delayed(read_frame)
+lazy_frames = [lazy_read(fn) for fn in filenames]
 ```
 
 Instead of `serial_frames`, we create an array of delayed tasks.
 
 ```{code-cell} ipython3
-arrays = [da.from_delayed(lazy_read,# Construct a small Dask array
-                          dtype=sample.dtype,   # for every lazy value
-                          shape=sample.shape)
+import dask.array as da
+lazy_frames = [da.from_delayed(lazy_read,# Construct a small Dask array
+                          dtype=image.dtype,   # for every lazy value
+                          shape=image.shape)
           for lazy_read in lazy_frames]
+lazy_frames[0]
 ```
 
 ```{code-cell} ipython3
-dask_frames = da.stack(arrays, axis=0)  # concatenate arrays along first axis 
+dask_frames = da.stack(lazy_frames[:10], axis=0)  # concatenate arrays along first axis 
 ```
 
 ```{code-cell} ipython3
@@ -387,6 +404,11 @@ dask_frames
 
 ```{code-cell} ipython3
 dask_frames = dask_frames.rechunk((10, 257, 257))   
+dask_frames
+```
+
+```{code-cell} ipython3
+Image.fromarray(scale(dask_frames.sum(axis=0).compute()))
 ```
 
 ```{code-cell} ipython3
