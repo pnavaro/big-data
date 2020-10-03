@@ -405,3 +405,9 @@ interact(display_sequence,
 ```
 
 Everytime you move the slider, it will read the corresponding file and load the frame. That's why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.
+
+[Delayed best practices](https://docs.dask.org/en/latest/delayed-best-practices.html)
+
+```{code-cell} ipython3
+
+```
