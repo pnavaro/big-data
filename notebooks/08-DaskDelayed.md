@@ -1,11 +1,12 @@
 ---
 jupytext:
   cell_metadata_json: true
+  formats: md:myst,ipynb
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -19,7 +20,6 @@ kernelspec:
 <img src="images/dask_logo.jpg">
 
 +++ {"slideshow": {"slide_type": "slide"}}
-
 
 - process data that doesn't fit into memory by breaking it into blocks and specifying task chains
 - parallelize execution of tasks across cores and even nodes of a cluster
@@ -261,7 +261,6 @@ def read( fn ):
     
 def convert(data):
     df = pd.DataFrame(data)
-    
     out_filename = fn[:-5] + '.h5'
     df.to_hdf(out_filename, os.path.join(here,'data'))
     return
@@ -289,22 +288,42 @@ import h5py as h5
 import numpy as np
 ```
 
-Download the file from https://github.com/MMAS/https://github.com/MMASSD/datasets
+In this dataset we have two dimensional field records along time. Every h5 file contains a matrix.
 
-```{code-cell} ipython3
-extract_data('fvalues','data') 
++++
+
+Download the file from [https://github.com/MMASSD/datasets](https://github.com/MMASSD/datasets/blob/master/fvalues.tgz)
+
++++
+
+```bash
+wget https://github.com/MMASSD/datasets/raw/master/fvalues.tgz
 ```
 
++++
+
+This file is a zip archive we need to uncompress and extract.
+
 ```{code-cell} ipython3
-filenames = sorted(glob("data/*.h5"))
+extract_data('fvalues','.') 
+```
+
+You get 1000 h5 files
+
+```{code-cell} ipython3
+filenames = sorted(glob("*.h5"))
 filenames[:5], len(filenames)
 ```
+
+In order to plot these fields, we will scale them between 0 to 255 grey levels.
 
 ```{code-cell} ipython3
 def scale(x) :
     "Scale field to 0-255 levels"
     return np.uint8(255*(x-np.min(x)) / (np.max(x)-np.min(x)))
 ```
+
+Let's create a function that read the file and return the scaled field.
 
 ```{code-cell} ipython3
 def read_frame( filepath ):
@@ -314,24 +333,17 @@ def read_frame( filepath ):
         return scale(z)
 ```
 
+We now have a list a on thousand frames we can plot
+
 ```{code-cell} ipython3
 %%time
-
 serial_frames = [read_frame(fn) for fn in filenames]
-```
-
-```{code-cell} ipython3
-def display_image( frame ):
-    return Image.fromarray(frame)
-
-display_image(read_frame(filenames[-1]))
 ```
 
 ```{code-cell} ipython3
 from ipywidgets import interact, IntSlider
 
 def display_sequence(iframe):
-    
     return Image.fromarray(serial_frames[iframe])
     
 interact(display_sequence, 
@@ -339,42 +351,24 @@ interact(display_sequence,
                           max=len(serial_frames)-1,
                           step=1,
                           value=0, 
-                          continuous_update=True))
+                          continuous_update=True));
 ```
+
+In the code above, we read all images and store them in memory. If you have more plots or bigger images it won't fit everything in your computer memory. You have two options:
+- Use a bigger computer
+- Not store all files in memory and read only the file that contains the field you want to display.
+
++++
+
+## Use dask to read and display images
+
+We can delayed the read function
 
 ```{code-cell} ipython3
 lazy_read = delayed(read_frame)
-lazy_frames = [lazy_read(fn) for fn in filenames]
 ```
 
-```{code-cell} ipython3
-sample = lazy_frames[500].compute() 
-```
-
-```{code-cell} ipython3
-display_image(sample) 
-```
-
-```{code-cell} ipython3
-%%time
-
-parallel_frames = dask.compute(*lazy_frames)
-```
-
-```{code-cell} ipython3
-from ipywidgets import interact, IntSlider
-
-def display_sequence(iframe):
-    
-    return Image.fromarray(parallel_frames[iframe])
-    
-interact(display_sequence, 
-         iframe=IntSlider(min=0,
-                          max=len(parallel_frames)-1,
-                          step=1,
-                          value=0, 
-                          continuous_update=True))
-```
+Instead of `serial_frames`, we create an array of delayed tasks.
 
 ```{code-cell} ipython3
 arrays = [da.from_delayed(lazy_read,# Construct a small Dask array
@@ -392,16 +386,7 @@ dask_frames
 ```
 
 ```{code-cell} ipython3
-dask_frames = dask_frames.rechunk((100, 257, 257))   
-```
-
-```{code-cell} ipython3
-sample = dask_frames[-1,:,:]
-sample 
-```
-
-```{code-cell} ipython3
-display_image(sample.compute())
+dask_frames = dask_frames.rechunk((10, 257, 257))   
 ```
 
 ```{code-cell} ipython3
@@ -420,16 +405,3 @@ interact(display_sequence,
 ```
 
 Everytime you move the slider, it will read the corresponding file and load the frame. That's why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.
-
-```{code-cell} ipython3
-interact(display_sequence, 
-iframe=IntSlider(min=0,
-max=len(dask_frames)-1,
-step=1,
-value=0,
-continuous_update=True))
-```
-
-```{code-cell} ipython3
-
-```

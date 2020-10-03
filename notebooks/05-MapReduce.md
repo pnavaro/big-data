@@ -1,11 +1,12 @@
 ---
 jupytext:
   cell_metadata_json: true
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -23,7 +24,6 @@ This notebook objective is to code in Python language a wordcount application us
 credits: https://computing.llnl.gov/tutorials/parallel_comp
 
 +++ {"slideshow": {"slide_type": "slide"}}
-
 
 ## `map` function example
 

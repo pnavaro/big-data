@@ -1,11 +1,12 @@
 ---
 jupytext:
   cell_metadata_json: true
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -42,11 +43,11 @@ slideshow:
   slide_type: fragment
 ---
 from time import sleep
-def f(x):
+def process(x):
     sleep(1)
     return x*x
-L = list(range(8))
-L
+data = list(range(8))
+data
 ```
 
 ```{code-cell} ipython3
@@ -54,7 +55,7 @@ L
 slideshow:
   slide_type: fragment
 ---
-%time sum(f(x) for x in L)
+%time sum(process(x) for x in data)
 ```
 
 ```{code-cell} ipython3
@@ -62,7 +63,7 @@ slideshow:
 slideshow:
   slide_type: fragment
 ---
-%time sum(map(f,L))
+%time sum(map(process,data))
 ```
 
 +++ {"slideshow": {"slide_type": "slide"}}
@@ -106,18 +107,18 @@ slideshow:
 from concurrent.futures import ProcessPoolExecutor
 from time import sleep, time
 
-def f(x):
+def process(x):
     sleep(1)
     return x*x
 
-L = list(range(8))
+data = list(range(8))
 
 if __name__ == '__main__':
     
     begin = time()
     with ProcessPoolExecutor() as pool:
 
-        result = sum(pool.map(f, L))
+        result = sum(pool.map(process, data))
     end = time()
     
     print(f"result = {result} and time = {end-begin}")
@@ -145,7 +146,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 with ThreadPoolExecutor() as pool:
 
-    results = sum(pool.map(f, L))
+    results = sum(pool.map(process, data))
     
 print(results)
 ```
@@ -163,8 +164,6 @@ print(results)
 - A **thread** is made of and exist within a **process**; every **process** has at least one **thread**. 
 - Multiple **threads** in a **process** share resources, which helps in efficient communication between **threads**.
 - **Threads** can be concurrent on a multi-core system, with every core executing the separate **threads** simultaneously.
-
-
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -187,13 +186,14 @@ print(results)
 
 ### Exercise 6.1
 
-Use `ThreadPoolExecutor` to parallelize the code above. 
+Use `ThreadPoolExecutor` to parallelize the code above.
 
 ```{code-cell} ipython3
 %mkdir books
 ```
 
 ```{code-cell} ipython3
+%%time
 import urllib.request as url
 source = "https://mmassd.github.io/"  # "http://svmass2.mass.uhb.fr/hub/static/datasets/"
 url.urlretrieve(source+"books/hugo.txt",     filename="books/hugo.txt")
@@ -240,47 +240,15 @@ def reducer( item ):
     return (w,len(v))
 ```
 
-+++ {"slideshow": {"slide_type": "fragment"}}
-
-
-## Parallel map
-
-
-- Let's improve the `mapper` function by print out inside the function the current process name. 
-
-*Example*
-
-```{code-cell} ipython3
----
-slideshow:
-  slide_type: fragment
----
-import multiprocessing as mp
-from concurrent.futures import ThreadPoolExecutor
-
-def process_name(n):
-    " prints out the current process name "
-    print(mp.current_process().name)
-
-with ProcessPoolExecutor() as e:
-    _ = e.map(process_name, range(mp.cpu_count()))
-```
-
-+++ {"slideshow": {"slide_type": "slide"}}
-
-### Exercise 6.2
-
-- Modify the mapper function by adding this print.
-
 +++ {"slideshow": {"slide_type": "slide"}}
 
 ## Parallel reduce
 
 - For parallel reduce operation, data must be aligned in a container. We already created a `partitioner` function that returns this container.
 
-### Exercise 6.3
+### Exercise 6.2
 
-Write a parallel program that uses the three functions above using `ProcessPoolExecutor`. It reads all the "sample\*.txt" files. Map and reduce steps are parallel.
+Write a parallel program that uses the three functions above using `ThreadPoolExecutor`. It reads all the "sample\*.txt" files. Map and reduce steps are parallel.
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
@@ -426,7 +394,7 @@ print(sentences[-1])
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-### Exercise 6.4
+### Exercise 6.3
 
 Parallelize this last process using `concurrent.futures`.
 

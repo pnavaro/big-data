@@ -2,11 +2,12 @@
 jupytext:
   cell_metadata_json: true
   encoding: '# -*- coding: utf-8 -*-'
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -81,9 +82,9 @@ Create separate environments to keep your programs isolated from each other.
 
 ### Create a new environment and install a package in it.
 
-We will name the environment `testenv` and install the version 3.8 of `python`. At the Anaconda Prompt or in your terminal window, type the following:
+We will name the environment `big-data` and install the version 3.8 of `python`. At the Anaconda Prompt or in your terminal window, type the following:
 ```bash
-conda create -y -n testenv python=3.8
+conda create -y -n big-data python=3.8
 ```
 
 +++ {"slideshow": {"slide_type": "slide"}}
@@ -91,12 +92,12 @@ conda create -y -n testenv python=3.8
 ### To use, or "activate" the new environment, type the following:
 
 ```bash
-conda activate testenv
+conda activate big-data
 ```
 
 +++ {"slideshow": {"slide_type": "fragment"}}
 
-Now that you are in your ``testenv`` environment, any conda commands you type will go to that environment until you deactivate it.
+Now that you are in your ``big-data`` environment, any conda commands you type will go to that environment until you deactivate it.
 
 Verify which version of Python is in your current environment:
 
@@ -150,7 +151,7 @@ Install this package into the base environment:
 
 ```bash
 conda activate
-conda install -y jupyter -c conda-forge
+conda install -y jupyter -c conda-forge -n base
 ```
 
 +++ {"slideshow": {"slide_type": "slide"}}
@@ -168,24 +169,18 @@ conda list jupyter
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-### Create a new conda environment from file
+### Update a new conda environment from file
 
 Download the file [environment.yml](https://raw.githubusercontent.com/pnavaro/big-data/master/environment.yml).
-This file contains the packages list for this course.
+This file contains the packages list for this course. Be aware that it takes time to download and install all packages.
 
 ```bash
-conda env create -f environment.yml -n big-data
+conda env update -f environment.yml -n big-data
 ```
 
 [Conda envs documentation](https://conda.io/docs/using/envs.html).
 
-If you don't have rights to to iy, you can install the new environment on your home directory by using the prefix option
-```bash
-conda env create -f environment.yml -p ~/.conda/envs/big-data
-````
-
 +++ {"slideshow": {"slide_type": "slide"}}
-
 
 Activating the conda environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python. 
 <pre>

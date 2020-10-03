@@ -1,12 +1,12 @@
 ---
 jupytext:
   cell_metadata_json: true
-  formats: ipynb
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -301,7 +301,7 @@ from concurrent.futures import ProcessPoolExecutor
 e = ProcessPoolExecutor(4)
 ```
 
-- How does performance vary? 
+- How does performance vary?
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
