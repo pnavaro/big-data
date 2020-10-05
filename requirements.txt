@@ -9,8 +9,6 @@ jupytext
 lorem
 lxml
 matplotlib
-nomkl
-numba
 numpy
 pandas
 pyarrow
@@ -19,6 +17,5 @@ graphviz
 requests
 scikit-learn
 seaborn
-tornado
 tqdm
 xarray
