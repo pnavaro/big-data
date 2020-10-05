@@ -4,6 +4,8 @@ Notebooks for [Master of Data Science Rennes](https://www.sites.univ-rennes2.fr/
 
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/pnavaro/big-data/master)
 [![Book](https://github.com/pnavaro/big-data//workflows/book/badge.svg)](https://pnavaro.github.io/big-data)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/pnavaro/big-data)
+
 
 A [website](https://pnavaro.github.io/big-data) generated with [jupyterbook](https://jupyterbook.org) is available.
 
