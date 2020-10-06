@@ -428,7 +428,6 @@ interact(display_sequence,
 
 Everytime you move the slider, it will read the corresponding file and load the frame. That's why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.
 
-
 ```{code-cell} ipython3
 z
 ```
@@ -583,12 +582,15 @@ First, run this code to prep some data.  You don't need to understand this code.
 
 This extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from [here](http://stat-computing.org/dataexpo/2009/the-data.html). This should only take a few seconds to run.
 
-```{code-cell} ipython3
-from prep import extract_flight
-extract_flight()
-```
++++
 
 ### Inspect data
+
+Data are in the file `data/nycflights.tar.gz`. You can extract them with the command
+```bash
+tar zxvf nycflights.tar.gz
+```
+According to your operating system, double click on the file could do the job.
 
 ```{code-cell} ipython3
 import os
@@ -659,7 +661,7 @@ mean = total_delays / n_flights
 mean
 ```
 
-### Parallelize the code above
+### Exercise : Parallelize the code above
 
 Use `dask.delayed` to parallelize the code above.  Some extra things you will need to know.
 
@@ -682,84 +684,10 @@ Use `dask.delayed` to parallelize the code above.  Some extra things you will ne
     
 So your goal is to parallelize the code above (which has been copied below) using `dask.delayed`.  You may also want to visualize a bit of the computation to see if you're doing it correctly.
 
-```{code-cell} ipython3
-from dask import compute
-```
-
-```{code-cell} ipython3
-%%time
-
-sums = []
-counts = []
-for fn in filenames:
-    # Read in file
-    df = pd.read_csv(fn)
-    
-    # Groupby origin airport
-    by_origin = df.groupby('Origin')
-    
-    # Sum of all departure delays by origin
-    total = by_origin.DepDelay.sum()
-    
-    # Number of flights by origin
-    count = by_origin.DepDelay.count()
-    
-    # Save the intermediates
-    sums.append(total)
-    counts.append(count)
-
-# Combine intermediates to get total mean-delay-per-origin
-total_delays = sum(sums)
-n_flights = sum(counts)
-mean = total_delays / n_flights
-```
-
-```{code-cell} ipython3
-mean
-```
-
-<button data-toggle="collapse" data-target="#sol3" class='btn btn-primary'>Solution</button>
-<div id="sol3" class="collapse">
-```python
-# This is just one possible solution, there are
-# several ways to do this using `delayed`
-
-sums = []
-counts = []
-for fn in filenames:
-    # Read in file
-    df = delayed(pd.read_csv)(fn)
-
-    # Groupby origin airport
-    by_origin = df.groupby('Origin')
-
-    # Sum of all departure delays by origin
-    total = by_origin.DepDelay.sum()
-
-    # Number of flights by origin
-    count = by_origin.DepDelay.count()
-
-    # Save the intermediates
-    sums.append(total)
-    counts.append(count)
-
-# Compute the intermediates
-sums, counts = compute(sums, counts)
-
-# Combine intermediates to get total mean-delay-per-origin
-total_delays = sum(sums)
-n_flights = sum(counts)
-mean = total_delays / n_flights
-```
-
 +++
-
-### Some questions to consider:
-
-- How much speedup did you get? Is this how much speedup you'd expect?
-- Experiment with where to call `compute`. What happens when you call it on `sums` and `counts`? What happens if you wait and call it on `mean`?
-- Experiment with delaying the call to `sum`. What does the graph look like if `sum` is delayed? What does the graph look like if it isn't?
-- Can you think of any reason why you'd want to do the reduction one way over the other?
 
 [Delayed best practices](https://docs.dask.org/en/latest/delayed-best-practices.html)
 
+```{code-cell} ipython3
+
+```
