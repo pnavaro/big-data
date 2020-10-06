@@ -32,7 +32,7 @@ http://dask.pydata.org/en/latest/
 slideshow:
   slide_type: fragment
 ---
-import dask-
+import dask
 import dask.multiprocessing
 ```
 
@@ -305,14 +305,14 @@ wget https://github.com/MMASSD/datasets/raw/master/fvalues.tgz
 This file is a zip archive we need to uncompress and extract.
 
 ```{code-cell} ipython3
-extract_data('fvalues','.') 
+# extract_data('fvalues','.') 
 ```
 
 You get 1000 h5 files
 
 ```{code-cell} ipython3
-filenames = sorted(glob("*.h5"))
-filenames[:5], len(filenames)
+# filenames = sorted(glob("*.h5"))
+# filenames[:5], len(filenames)
 ```
 
 In order to plot these fields, we will scale them between 0 to 255 grey levels.
@@ -336,36 +336,36 @@ def read_frame( filepath ):
 ```
 
 ```{code-cell} ipython3
-image = read_frame( filenames[0])
-image.shape
+# image = read_frame( filenames[0])
+# image.shape
 ```
 
 ```{code-cell} ipython3
-from PIL import Image 
-Image.fromarray(image)
+# from PIL import Image 
+# Image.fromarray(image)
 ```
 
 With NumPy we might allocate a big array and then iteratively load images and place them into this array `serial_frames`.
 
 ```{code-cell} ipython3
-%%time
-serial_frames = np.empty((1000,*image.shape), dtype=np.uint8)
-for i, fn in enumerate(filenames):
-    serial_frames[i, :, :] = read_frame(fn)
+# %%time
+# serial_frames = np.empty((1000,*image.shape), dtype=np.uint8)
+# for i, fn in enumerate(filenames):
+#    serial_frames[i, :, :] = read_frame(fn)
 ```
 
 ```{code-cell} ipython3
-from ipywidgets import interact, IntSlider
-
-def display_sequence(iframe):
-    return Image.fromarray(serial_frames[iframe,:,:])
-    
-interact(display_sequence, 
-         iframe=IntSlider(min=0,
-                          max=np.shape(serial_frames)[0]-1,
-                          step=1,
-                          value=0, 
-                          continuous_update=True));
+# from ipywidgets import interact, IntSlider
+# 
+# def display_sequence(iframe):
+#     return Image.fromarray(serial_frames[iframe,:,:])
+#     
+# interact(display_sequence, 
+#          iframe=IntSlider(min=0,
+#                           max=np.shape(serial_frames)[0]-1,
+#                           step=1,
+#                           value=0, 
+#                           continuous_update=True));
 ```
 
 In the code above, we read all images and store them in memory. If you have more plots or bigger images it won't fit in your computer memory. You have two options:
@@ -379,62 +379,62 @@ In the code above, we read all images and store them in memory. If you have more
 We can delayed the read function
 
 ```{code-cell} ipython3
-lazy_read = delayed(read_frame)
-lazy_frames = [lazy_read(fn) for fn in filenames]
+# lazy_read = delayed(read_frame)
+# lazy_frames = [lazy_read(fn) for fn in filenames]
 ```
 
 Instead of `serial_frames`, we create an array of delayed tasks.
 
 ```{code-cell} ipython3
-import dask.array as da
-lazy_frames = [da.from_delayed(lazy_read,# Construct a small Dask array
-                          dtype=image.dtype,   # for every lazy value
-                          shape=image.shape)
-          for lazy_read in lazy_frames]
-lazy_frames[0]
+# import dask.array as da
+# lazy_frames = [da.from_delayed(lazy_read,# Construct a small Dask array
+#                           dtype=image.dtype,   # for every lazy value
+#                           shape=image.shape)
+#          for lazy_read in lazy_frames]
+# lazy_frames[0]
 ```
 
 ```{code-cell} ipython3
-dask_frames = da.stack(lazy_frames[:10], axis=0)  # concatenate arrays along first axis 
+# dask_frames = da.stack(lazy_frames[:10], axis=0)  # concatenate arrays along first axis 
 ```
 
 ```{code-cell} ipython3
-dask_frames 
+# dask_frames 
 ```
 
 ```{code-cell} ipython3
-dask_frames = dask_frames.rechunk((10, 257, 257))   
-dask_frames
+# dask_frames = dask_frames.rechunk((10, 257, 257))   
+# dask_frames
 ```
 
 ```{code-cell} ipython3
-Image.fromarray(scale(dask_frames.sum(axis=0).compute()))
+# Image.fromarray(scale(dask_frames.sum(axis=0).compute()))
 ```
 
 ```{code-cell} ipython3
-from ipywidgets import interact, IntSlider
-
-def display_sequence(iframe):
-    
-    return Image.fromarray(dask_frames[iframe,:,:].compute())
-    
-interact(display_sequence, 
-         iframe=IntSlider(min=0,
-                          max=len(dask_frames)-1,
-                          step=1,
-                          value=0, 
-                          continuous_update=True))
+# from ipywidgets import interact, IntSlider
+# 
+# def display_sequence(iframe):
+#     
+#     return Image.fromarray(dask_frames[iframe,:,:].compute())
+#     
+# interact(display_sequence, 
+#          iframe=IntSlider(min=0,
+#                           max=len(dask_frames)-1,
+#                           step=1,
+#                           value=0, 
+#                           continuous_update=True))
 ```
 
 Everytime you move the slider, it will read the corresponding file and load the frame. That's why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.
 
 ```{code-cell} ipython3
-z
+# z
 ```
 
 ```{code-cell} ipython3
 # Look at the task graph for `z`
-z.visualize()
+# z.visualize()
 ```
 
 ### Some questions to consider:
@@ -442,129 +442,6 @@ z.visualize()
 -  Why did we go from 3s to 2s?  Why weren't we able to parallelize down to 1s?
 -  What would have happened if the inc and add functions didn't include the `sleep(1)`?  Would Dask still be able to speed up this code?
 -  What if we have multiple outputs or also want to get access to x or y?
-
-+++
-
-## Exercise: Parallelize a for loop
-
-For loops are one of the most common things that we want to parallelize.  Use `dask.delayed` on `inc` and `sum` to parallelize the computation below:
-
-```{code-cell} ipython3
-data = [1, 2, 3, 4, 5, 6, 7, 8]
-```
-
-```{code-cell} ipython3
-%%time
-# Sequential code
-
-results = []
-for x in data:
-    y = inc(x)
-    results.append(y)
-    
-total = sum(results)
-```
-
-```{code-cell} ipython3
-total
-```
-
-```{code-cell} ipython3
-%%time
-# Your parallel code here...
-results = []
-for x in data:
-    # TODO
-```
-
-```{code-cell} ipython3
-total
-```
-
-<button data-toggle="collapse" data-target="#sol1" class='btn btn-primary'>Solution</button>
-<div id="sol1" class="collapse">
-```python
-%%time
-results = []
-for x in data:
-    y = delayed(inc)(x)
-    results.append(y)
-
-total = delayed(sum)(results)
-print(total)   # Let's see what type of thing total is
-total = total.compute()
-print(total)   # After it is computed...
-```
-
-+++
-
-## Exercise: Parallelizing a for-loop code with control flow
-
-Often we want to delay only *some* functions, running a few of them immediately.  This is especially helpful when those functions are fast and help us to determine what other slower functions we should call.  This decision, to delay or not to delay, is usually where we need to be thoughtful when using `dask.delayed`.
-
-In the example below we iterate through a list of inputs.  If that input is even then we want to call `inc`.  If the input is odd then we want to call `double`.  This `iseven` decision to call `inc` or `double` has to be made immediately (not lazily) in order for our graph-building Python code to proceed.
-
-```{code-cell} ipython3
-def double(x):
-    sleep(1)
-    return 2 * x
-
-def is_even(x):
-    return not x % 2
-
-data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-```
-
-```{code-cell} ipython3
-%%time
-# Sequential code
-
-results = []
-for x in data:
-    if is_even(x):
-        y = double(x)
-    else:
-        y = inc(x)
-    results.append(y)
-    
-total = sum(results)
-print(total)
-```
-
-```{code-cell} ipython3
-%%time
-# Your parallel code here...
-# TODO: parallelize the sequential code above using dask.delayed
-# You will need to delay some functions, but not all
-```
-
-<button data-toggle="collapse" data-target="#sol2" class='btn btn-primary'>Solution</button>
-<div id="sol2" class="collapse">
-```python
-results = []
-for x in data:
-    if is_even(x):  # even
-        y = delayed(double)(x)
-    else:          # odd
-        y = delayed(inc)(x)
-    results.append(y)
-    
-total = delayed(sum)(results)
-```
-
-```{code-cell} ipython3
-%time total.compute()
-```
-
-```{code-cell} ipython3
-total.visualize()
-```
-
-### Some questions to consider:
-
--  What are other examples of control flow where we can't use delayed?
--  What would have happened if we had delayed the evaluation of `is_even(x)` in the example above?
--  What are your thoughts on delaying `sum`?  This function is both computational but also fast to run.
 
 +++
 
@@ -591,6 +468,10 @@ Data are in the file `data/nycflights.tar.gz`. You can extract them with the com
 tar zxvf nycflights.tar.gz
 ```
 According to your operating system, double click on the file could do the job.
+
+```{code-cell} ipython3
+extract_data('nycflights','data')
+```
 
 ```{code-cell} ipython3
 import os
@@ -687,7 +568,3 @@ So your goal is to parallelize the code above (which has been copied below) usin
 +++
 
 [Delayed best practices](https://docs.dask.org/en/latest/delayed-best-practices.html)
-
-```{code-cell} ipython3
-
-```
