@@ -24,7 +24,7 @@ This is useful for when your computations don't fit a regular pattern.
 
 +++ {"slideshow": {"slide_type": "fragment"}}
 
-### Executor.submit
+## Executor.submit
 
 The `submit` method starts a computation in a separate thread or process and immediately gives us a `Future` object that refers to the result.  At first, the future is pending.  Once the function completes the future is finished. 
 
@@ -68,7 +68,7 @@ future.result()
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-### Submit many tasks, receive many futures
+## Submit many tasks, receive many futures
 
 Because submit returns immediately we can submit many tasks all at once and they will execute in parallel.
 
@@ -103,7 +103,7 @@ print(results)
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-### Exercise 7.1
+## Exercise 7.1
 
 Parallelize the following code with e.submit
 

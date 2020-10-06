@@ -424,7 +424,7 @@ std_delay = non_cancelled.DepDelay.std()
 
 +++ {"slideshow": {"slide_type": "fragment"}}
 
-#### Using two calls to `.compute`:
+## Using two calls to `.compute`:
 
 ```{code-cell} ipython3
 ---
@@ -438,7 +438,7 @@ std_delay_res = std_delay.compute()
 
 +++ {"slideshow": {"slide_type": "fragment"}}
 
-#### Using one call to `dask.compute`:
+## Using one call to `dask.compute`:
 
 ```{code-cell} ipython3
 ---

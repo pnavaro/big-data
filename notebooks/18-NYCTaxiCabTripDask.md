@@ -57,7 +57,7 @@ progress(nyc2014)
 
 +++
 
-### Exercises 
+## Exercises 
 
 - Display head of the dataframe
 - Display number of rows of this dataframe.
