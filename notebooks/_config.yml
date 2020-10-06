@@ -9,8 +9,6 @@ latex:
 parse:
   myst_extended_syntax: true
 
-execute:
-  execute_notebooks: 'off'
 
 html:
   home_page_in_navbar: false
@@ -32,3 +30,4 @@ launch_buttons:
 
 execute:
   timeout: 300
+  execute_notebooks: 'off'
