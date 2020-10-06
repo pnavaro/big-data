@@ -169,6 +169,8 @@ from concurrent.futures import ProcessPoolExecutor
 import json
 import pandas as pd
 
+%rm data/daily-stock/*.h5
+
 def load_parse_store(fn):
     
     with open(fn) as f:
