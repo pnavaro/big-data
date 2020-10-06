@@ -428,8 +428,338 @@ interact(display_sequence,
 
 Everytime you move the slider, it will read the corresponding file and load the frame. That's why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.
 
-[Delayed best practices](https://docs.dask.org/en/latest/delayed-best-practices.html)
 
 ```{code-cell} ipython3
-
+z
 ```
+
+```{code-cell} ipython3
+# Look at the task graph for `z`
+z.visualize()
+```
+
+### Some questions to consider:
+
+-  Why did we go from 3s to 2s?  Why weren't we able to parallelize down to 1s?
+-  What would have happened if the inc and add functions didn't include the `sleep(1)`?  Would Dask still be able to speed up this code?
+-  What if we have multiple outputs or also want to get access to x or y?
+
++++
+
+## Exercise: Parallelize a for loop
+
+For loops are one of the most common things that we want to parallelize.  Use `dask.delayed` on `inc` and `sum` to parallelize the computation below:
+
+```{code-cell} ipython3
+data = [1, 2, 3, 4, 5, 6, 7, 8]
+```
+
+```{code-cell} ipython3
+%%time
+# Sequential code
+
+results = []
+for x in data:
+    y = inc(x)
+    results.append(y)
+    
+total = sum(results)
+```
+
+```{code-cell} ipython3
+total
+```
+
+```{code-cell} ipython3
+%%time
+# Your parallel code here...
+results = []
+for x in data:
+    # TODO
+```
+
+```{code-cell} ipython3
+total
+```
+
+<button data-toggle="collapse" data-target="#sol1" class='btn btn-primary'>Solution</button>
+<div id="sol1" class="collapse">
+```python
+%%time
+results = []
+for x in data:
+    y = delayed(inc)(x)
+    results.append(y)
+
+total = delayed(sum)(results)
+print(total)   # Let's see what type of thing total is
+total = total.compute()
+print(total)   # After it is computed...
+```
+
++++
+
+## Exercise: Parallelizing a for-loop code with control flow
+
+Often we want to delay only *some* functions, running a few of them immediately.  This is especially helpful when those functions are fast and help us to determine what other slower functions we should call.  This decision, to delay or not to delay, is usually where we need to be thoughtful when using `dask.delayed`.
+
+In the example below we iterate through a list of inputs.  If that input is even then we want to call `inc`.  If the input is odd then we want to call `double`.  This `iseven` decision to call `inc` or `double` has to be made immediately (not lazily) in order for our graph-building Python code to proceed.
+
+```{code-cell} ipython3
+def double(x):
+    sleep(1)
+    return 2 * x
+
+def is_even(x):
+    return not x % 2
+
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
+```{code-cell} ipython3
+%%time
+# Sequential code
+
+results = []
+for x in data:
+    if is_even(x):
+        y = double(x)
+    else:
+        y = inc(x)
+    results.append(y)
+    
+total = sum(results)
+print(total)
+```
+
+```{code-cell} ipython3
+%%time
+# Your parallel code here...
+# TODO: parallelize the sequential code above using dask.delayed
+# You will need to delay some functions, but not all
+```
+
+<button data-toggle="collapse" data-target="#sol2" class='btn btn-primary'>Solution</button>
+<div id="sol2" class="collapse">
+```python
+results = []
+for x in data:
+    if is_even(x):  # even
+        y = delayed(double)(x)
+    else:          # odd
+        y = delayed(inc)(x)
+    results.append(y)
+    
+total = delayed(sum)(results)
+```
+
+```{code-cell} ipython3
+%time total.compute()
+```
+
+```{code-cell} ipython3
+total.visualize()
+```
+
+### Some questions to consider:
+
+-  What are other examples of control flow where we can't use delayed?
+-  What would have happened if we had delayed the evaluation of `is_even(x)` in the example above?
+-  What are your thoughts on delaying `sum`?  This function is both computational but also fast to run.
+
++++
+
+## Exercise: Parallelizing a Pandas Groupby Reduction
+
+In this exercise we read several CSV files and perform a groupby operation in parallel.  We are given sequential code to do this and parallelize it with `dask.delayed`.
+
+The computation we will parallelize is to compute the mean departure delay per airport from some historical flight data.  We will do this by using `dask.delayed` together with `pandas`.  In a future section we will do this same exercise with `dask.dataframe`.
+
++++
+
+### Prep data
+
+First, run this code to prep some data.  You don't need to understand this code.
+
+This extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from [here](http://stat-computing.org/dataexpo/2009/the-data.html). This should only take a few seconds to run.
+
+```{code-cell} ipython3
+from prep import extract_flight
+extract_flight()
+```
+
+### Inspect data
+
+```{code-cell} ipython3
+import os
+sorted(os.listdir(os.path.join('data', 'nycflights')))
+```
+
+### Read one file with `pandas.read_csv` and compute mean departure delay
+
+```{code-cell} ipython3
+import pandas as pd
+df = pd.read_csv(os.path.join('data', 'nycflights', '1990.csv'))
+df.head()
+```
+
+```{code-cell} ipython3
+# What is the schema?
+df.dtypes
+```
+
+```{code-cell} ipython3
+# What originating airports are in the data?
+df.Origin.unique()
+```
+
+```{code-cell} ipython3
+# Mean departure delay per-airport for one year
+df.groupby('Origin').DepDelay.mean()
+```
+
+### Sequential code: Mean Departure Delay Per Airport
+
+The above cell computes the mean departure delay per-airport for one year. Here we expand that to all years using a sequential for loop.
+
+```{code-cell} ipython3
+from glob import glob
+filenames = sorted(glob(os.path.join('data', 'nycflights', '*.csv')))
+```
+
+```{code-cell} ipython3
+%%time
+
+sums = []
+counts = []
+for fn in filenames:
+    # Read in file
+    df = pd.read_csv(fn)
+    
+    # Groupby origin airport
+    by_origin = df.groupby('Origin')
+    
+    # Sum of all departure delays by origin
+    total = by_origin.DepDelay.sum()
+    
+    # Number of flights by origin
+    count = by_origin.DepDelay.count()
+    
+    # Save the intermediates
+    sums.append(total)
+    counts.append(count)
+
+# Combine intermediates to get total mean-delay-per-origin
+total_delays = sum(sums)
+n_flights = sum(counts)
+mean = total_delays / n_flights
+```
+
+```{code-cell} ipython3
+mean
+```
+
+### Parallelize the code above
+
+Use `dask.delayed` to parallelize the code above.  Some extra things you will need to know.
+
+1.  Methods and attribute access on delayed objects work automatically, so if you have a delayed object you can perform normal arithmetic, slicing, and method calls on it and it will produce the correct delayed calls.
+
+    ```python
+    x = delayed(np.arange)(10)
+    y = (x + 1)[::2].sum()  # everything here was delayed
+    ```
+2.  Calling the `.compute()` method works well when you have a single output.  When you have multiple outputs you might want to use the `dask.compute` function:
+
+    ```python
+    >>> x = delayed(np.arange)(10)
+    >>> y = x ** 2
+    >>> min, max = compute(y.min(), y.max())
+    (0, 81)
+    ```
+    
+    This way Dask can share the intermediate values (like `y = x**2`)
+    
+So your goal is to parallelize the code above (which has been copied below) using `dask.delayed`.  You may also want to visualize a bit of the computation to see if you're doing it correctly.
+
+```{code-cell} ipython3
+from dask import compute
+```
+
+```{code-cell} ipython3
+%%time
+
+sums = []
+counts = []
+for fn in filenames:
+    # Read in file
+    df = pd.read_csv(fn)
+    
+    # Groupby origin airport
+    by_origin = df.groupby('Origin')
+    
+    # Sum of all departure delays by origin
+    total = by_origin.DepDelay.sum()
+    
+    # Number of flights by origin
+    count = by_origin.DepDelay.count()
+    
+    # Save the intermediates
+    sums.append(total)
+    counts.append(count)
+
+# Combine intermediates to get total mean-delay-per-origin
+total_delays = sum(sums)
+n_flights = sum(counts)
+mean = total_delays / n_flights
+```
+
+```{code-cell} ipython3
+mean
+```
+
+<button data-toggle="collapse" data-target="#sol3" class='btn btn-primary'>Solution</button>
+<div id="sol3" class="collapse">
+```python
+# This is just one possible solution, there are
+# several ways to do this using `delayed`
+
+sums = []
+counts = []
+for fn in filenames:
+    # Read in file
+    df = delayed(pd.read_csv)(fn)
+
+    # Groupby origin airport
+    by_origin = df.groupby('Origin')
+
+    # Sum of all departure delays by origin
+    total = by_origin.DepDelay.sum()
+
+    # Number of flights by origin
+    count = by_origin.DepDelay.count()
+
+    # Save the intermediates
+    sums.append(total)
+    counts.append(count)
+
+# Compute the intermediates
+sums, counts = compute(sums, counts)
+
+# Combine intermediates to get total mean-delay-per-origin
+total_delays = sum(sums)
+n_flights = sum(counts)
+mean = total_delays / n_flights
+```
+
++++
+
+### Some questions to consider:
+
+- How much speedup did you get? Is this how much speedup you'd expect?
+- Experiment with where to call `compute`. What happens when you call it on `sums` and `counts`? What happens if you wait and call it on `mean`?
+- Experiment with delaying the call to `sum`. What does the graph look like if `sum` is delayed? What does the graph look like if it isn't?
+- Can you think of any reason why you'd want to do the reduction one way over the other?
+
+[Delayed best practices](https://docs.dask.org/en/latest/delayed-best-practices.html)
+

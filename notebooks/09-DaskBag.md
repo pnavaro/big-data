@@ -1,11 +1,12 @@
 ---
 jupytext:
   cell_metadata_json: true
+  formats: ipynb,md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.6.0
+    format_version: '0.9'
+    jupytext_version: 1.5.2
 kernelspec:
   display_name: big-data
   language: python
@@ -323,7 +324,7 @@ import dask.bag as db
 import glob
 b = db.read_text(glob.glob('sample*.txt'))
 
-wordcount = (b.str.replace(".","")  # remove dots
+wordcount = (b.str.replace("."," ")  # remove dots
              .str.lower()           # lower text
              .str.strip()           # remove \n and trailing spaces
              .str.split()           # split into words
@@ -366,12 +367,6 @@ We will use a Dask bag to calculate the frequencies of sequences of five bases, 
 ```
 
 - Use the dask bag to compute  the frequencies of sequences of five bases.
-
-```{code-cell} ipython3
-line = "abcdefghijklmno"
-for seq in group_character(line, 5):
-    print(seq)
-```
 
 ```{code-cell} ipython3
 import os
