@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spark dataframes on HDFS &#8212; Python tools for Big data</title>
+    
+  <link rel="stylesheet" href="_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pnavaro.github.io/big-data/19-NYCTaxiCabTripSpark.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Dask dataframes on HDFS" href="18-NYCTaxiCabTripDask.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://pnavaro.github.io/big-data/19-NYCTaxiCabTripSpark.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Spark dataframes on HDFS" />
+<meta property="og:description" content="Spark dataframes on HDFS  New York City Taxi Cab Trip  We look at the New York City Taxi Cab dataset. This includes every ride made in the city of New York sinc" />
+<meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logoR2-Noir.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python tools for Big data</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-GitBasics.html">
+   Git basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-JupyterQuickStart.html">
+   Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-WordCount.html">
+   Wordcount
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-MapReduce.html">
+   Map Reduce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-ParallelComputation.html">
+   Parallel Computation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-AsynchronousProcessing.html">
+   Asynchronous Processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-DaskDelayed.html">
+   Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-DaskBag.html">
+   Dask bag
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-PandasSeries.html">
+   Pandas Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-PandaDataframes.html">
+   Pandas Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-PySpark.html">
+   PySpark
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-UnixCommands.html">
+   Basic Commands in the Unix Shell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Hadoop.html">
+   Hadoop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-HadoopFileFormats.html">
+   Hadoop File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-DaskDataframes.html">
+   Dask Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-SparkDataFrames.html">
+   Spark DataFrames
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-NYCTaxiCabTripDask.html">
+   Dask dataframes on HDFS
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Spark dataframes on HDFS
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/19-NYCTaxiCabTripSpark.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/19-NYCTaxiCabTripSpark.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pnavaro/big-data"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F19-NYCTaxiCabTripSpark.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/19-NYCTaxiCabTripSpark.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/19-NYCTaxiCabTripSpark.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-the-data">
+   Loading the data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spark-cluster">
+   Spark Cluster
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-examples-that-can-be-run-on-the-cluster">
+   Some examples that can be run on the cluster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Exercise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cheat-sheets-and-documentation">
+     Cheat Sheets and documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hints">
+   Hints
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercices">
+     Exercices
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="spark-dataframes-on-hdfs">
+<h1>Spark dataframes on HDFS<a class="headerlink" href="#spark-dataframes-on-hdfs" title="Permalink to this headline">¶</a></h1>
+<p>New York City Taxi Cab Trip</p>
+<p>We look at <a class="reference external" href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">the New York City Taxi Cab dataset</a>. This includes every ride made in the city of New York since 2009.</p>
+<p>On <a class="reference external" href="http://chriswhong.github.io/nyctaxi/">this website</a> you can see the data for one random NYC yellow taxi on a single day.</p>
+<p>On <a class="reference external" href="http://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/">this post</a>, you can see an analysis of this dataset. Postgres and R scripts are available on <a class="reference external" href="https://github.com/toddwschneider/nyc-taxi-data">GitHub</a>.</p>
+<div class="section" id="loading-the-data">
+<h2>Loading the data<a class="headerlink" href="#loading-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Normally we would read and load this data into memory as a Pandas dataframe.  However in this case that would be unwise because this data is too large to fit in RAM.</p>
+<p>The data can stay in the hdfs filesystem but for performance reason we can’t use the csv format. The file is large (32Go) and text formatted. Data Access is very slow.</p>
+<p>You can convert csv file to parquet with Spark.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+        <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;spark://svmass2.mass.uhb.fr:7077&quot;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s1">&#39;spark.hadoop.parquet.enable.summary-metadata&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.cores.max&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span>
+<span class="s2">&quot;hdfs://svmass2.mass.uhb.fr:54310/user/datasets/nyc-tlc/2009/yellow_tripdata_2009-01.csv&quot;</span><span class="p">,</span> 
+                    <span class="n">header</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;hdfs://svmass2.mass.uhb.fr:54310/user/navaro_p/nyc-taxi/2019-01.parquet&quot;</span><span class="p">)</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To read multiple files</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../Downloads/*.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="spark-cluster">
+<h2>Spark Cluster<a class="headerlink" href="#spark-cluster" title="Permalink to this headline">¶</a></h2>
+<p>A Spark cluster is available and described on this <a class="reference external" href="http://svmass2.mass.uhb.fr:8080">web interface</a></p>
+<p><img alt="" src="_images/cluster-overview.png" /></p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+        <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s1">&#39;spark://svmass2.mass.uhb.fr:7077&#39;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="n">spark</span>
+</pre></div>
+</div>
+<p>The SparkSession is connected to the Spark’s own standalone cluster manager (It is also possible to use YARN). The manager allocate resources across applications. Once connected, Spark acquires executors on nodes in the cluster, which are processes that run computations and store data for your application. Next, it sends your application code (Python file) to the executors. Finally, tasks are sent to the executors to run.</p>
+<p>Spark can access to files located on hdfs and it is also possible to access to local files. Example:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s1">&#39;file:///home/navaro_p/nyc-taxi/2016.parquet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Pick a year and read and convert csv files to parquet in your hdfs homedirectory.</p></li>
+<li><p><strong>Don’t run the python code inside a notebook cell</strong>. Save a python script and launch it from a terminal instead.
+In Jupyter notebook you won’t see any progress or information if error occurs.</p></li>
+<li><p>Use the <a class="reference external" href="https://spark.apache.org/docs/latest/submitting-applications.html"><code class="docutils literal notranslate"><span class="pre">spark-submit</span></code></a> command shell to run your script on the cluster.</p></li>
+<li><p>You can control the log with</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">sparkContext</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN</p>
+<p><strong>Try your script with a single file before to do it for a whole year.</strong></p>
+<p><strong>Read carefully the script given above, don’t submit it as is. You have to change some
+part of this code</strong></p>
+</div>
+</div>
+<div class="section" id="some-examples-that-can-be-run-on-the-cluster">
+<h2>Some examples that can be run on the cluster<a class="headerlink" href="#some-examples-that-can-be-run-on-the-cluster" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Here we read the NYC taxi data files of year 2016 and select some variables.</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tpep_pickup_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;passenger_count&#39;</span><span class="p">,</span> <span class="s1">&#39;pickup_longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;pickup_latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;dropoff_longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;dropoff_latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;payment_type&#39;</span><span class="p">,</span> <span class="s1">&#39;fare_amount&#39;</span><span class="p">,</span> <span class="s1">&#39;tip_amount&#39;</span><span class="p">,</span> <span class="s1">&#39;total_amount&#39;</span><span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s1">&#39;hdfs://svmass2.mass.uhb.fr:54310/user/navaro/nyc-taxi/2016.parquet&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="o">*</span><span class="n">columns</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Sum the total number of passengers</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;passenger_count&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Average number of passenger per trip`</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;passenger_count&#39;</span><span class="p">:</span> <span class="s1">&#39;avg&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>How many trip with 0,1,2,3,…,9 passenger`</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;passenger_count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;*&#39;</span><span class="p">:</span> <span class="s1">&#39;count&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>How well people tip based on the number of passengers in a cab.  To do this you have to:</p>
+<ol class="simple">
+<li><p>Remove rides with zero fare</p></li>
+<li><p>Add a new column <code class="docutils literal notranslate"><span class="pre">tip_fraction</span></code> that is equal to the ratio of the tip to the fare</p></li>
+<li><p>Group by the <code class="docutils literal notranslate"><span class="pre">passenger_count</span></code> column and take the mean of the <code class="docutils literal notranslate"><span class="pre">tip_fraction</span></code> column.</p></li>
+</ol>
+<div class="section" id="cheat-sheets-and-documentation">
+<h3>Cheat Sheets and documentation<a class="headerlink" href="#cheat-sheets-and-documentation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/PySpark_SQL_Cheat_Sheet_Python.pdf">Spark DataFrames in Python</a></p></li>
+<li><p><a class="reference external" href="http://datacamp-community.s3.amazonaws.com/4d91fcbc-820d-4ae2-891b-f7a436ebefd4">Spark in Python</a></p></li>
+<li><p>https://spark.apache.org/docs/latest/api/python/pyspark.sql.html</p></li>
+</ul>
+<p>Use the <a class="reference external" href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark API</a>.</p>
+<ul class="simple">
+<li><p><strong>Write a python program and use <code class="docutils literal notranslate"><span class="pre">spark-submit</span></code></strong></p></li>
+<li><p><strong>Read the parquet files instead of csv files</strong></p></li>
+<li><p><strong>Don’t forget spark.stop() at the end of the script</strong></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="hints">
+<h2>Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>How to remove rows</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;expression&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>How to make new columns</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;var2&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">var0</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">var1</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>How to do groupby-aggregations</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;column-name&#39;</span><span class="p">:</span> <span class="s1">&#39;avg&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>When you want to collect the result of your computation, finish with the <code class="docutils literal notranslate"><span class="pre">.collect()</span></code> method.</p>
+<div class="section" id="exercices">
+<h3>Exercices<a class="headerlink" href="#exercices" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Plot the tip as a function of the hour of day and the day of the week?</p></li>
+<li><p>Investigate the <code class="docutils literal notranslate"><span class="pre">payment_type</span></code> column.  See how well each of the payment types correlate with the <code class="docutils literal notranslate"><span class="pre">tip_fraction</span></code>.  Did you find anything interesting?  Any guesses on what the different payment types might be?  If you’re interested you may be able to find more information on the <a class="reference external" href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">NYC TLC’s website</a></p></li>
+<li><p>How quickly can you get a taxi cab for a particular day of the year?  How about for a particular hour of that day?</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "pnavaro/big-data",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "big-data"
+        },
+        kernelOptions: {
+            kernelName: "big-data",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'big-data'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="18-NYCTaxiCabTripDask.html" title="previous page">Dask dataframes on HDFS</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pierre Navaro<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

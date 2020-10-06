@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pandas Series &#8212; Python tools for Big data</title>
+    
+  <link rel="stylesheet" href="_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pnavaro.github.io/big-data/10-PandasSeries.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pandas Dataframes" href="11-PandaDataframes.html" />
+    <link rel="prev" title="Dask bag" href="09-DaskBag.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://pnavaro.github.io/big-data/10-PandasSeries.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Pandas Series" />
+<meta property="og:description" content="Pandas Series  pandas  Started by Wes MacKinney with a first release in 2011.  Based on NumPy, it is the most used library for all things data.  Motivated by th" />
+<meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logoR2-Noir.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python tools for Big data</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-GitBasics.html">
+   Git basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-JupyterQuickStart.html">
+   Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-WordCount.html">
+   Wordcount
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-MapReduce.html">
+   Map Reduce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-ParallelComputation.html">
+   Parallel Computation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-AsynchronousProcessing.html">
+   Asynchronous Processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-DaskDelayed.html">
+   Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-DaskBag.html">
+   Dask bag
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Pandas Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-PandaDataframes.html">
+   Pandas Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-PySpark.html">
+   PySpark
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-UnixCommands.html">
+   Basic Commands in the Unix Shell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Hadoop.html">
+   Hadoop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-HadoopFileFormats.html">
+   Hadoop File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-DaskDataframes.html">
+   Dask Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-SparkDataFrames.html">
+   Spark DataFrames
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-NYCTaxiCabTripDask.html">
+   Dask dataframes on HDFS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
+   Spark dataframes on HDFS
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/10-PandasSeries.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/10-PandasSeries.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pnavaro/big-data"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F10-PandasSeries.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/10-PandasSeries.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/10-PandasSeries.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#series">
+   Series
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#full-globe-temperature-between-1901-and-2000">
+     Full globe temperature between 1901 and 2000.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resampling">
+   Resampling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#saving-work">
+     Saving Work
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reloading-data">
+     Reloading data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="pandas-series">
+<h1>Pandas Series<a class="headerlink" href="#pandas-series" title="Permalink to this headline">¶</a></h1>
+<p><img alt="pandas" src="_images/pandas.png" /></p>
+<ul class="simple">
+<li><p>Started by Wes MacKinney with a first release in 2011.</p></li>
+<li><p>Based on NumPy, it is the most used library for all things data.</p></li>
+<li><p>Motivated by the toolbox in R for manipulating data easily.</p></li>
+<li><p>A lot of names in Pandas come from R world.</p></li>
+<li><p>It is Open source (BSD)</p></li>
+</ul>
+<p>https://pandas.pydata.org/</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+<p>“<em>Pandas provides high-performance, easy-to-use data structures
+and data analysis tools in Python</em>”</p>
+<ul class="simple">
+<li><p>Self-describing data structures</p></li>
+<li><p>Data loaders to/from common file formats</p></li>
+<li><p>Plotting functions</p></li>
+<li><p>Basic statistical tools.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="series">
+<h2><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#series">Series</a><a class="headerlink" href="#series" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>A Series contains a one-dimensional array of data, <em>and</em> an associated sequence of labels called the <em>index</em>.</p></li>
+<li><p>The index can contain numeric, string, or date/time values.</p></li>
+<li><p>When the index is a time value, the series is a <a class="reference external" href="https://en.wikipedia.org/wiki/Time_series">time series</a>.</p></li>
+<li><p>The index must be the same length as the data.</p></li>
+<li><p>If no index is supplied it is automatically generated as <code class="docutils literal notranslate"><span class="pre">range(len(data))</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="s1">&#39;09/11/2017&#39;</span><span class="p">,</span> <span class="s1">&#39;09/18/2017&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Create a text with <code class="docutils literal notranslate"><span class="pre">lorem</span></code> and count word occurences with a <code class="docutils literal notranslate"><span class="pre">collection.Counter</span></code>. Put the result in a <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>From the results create a Pandas series name latin_series with words in alphabetical order as index.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Plot the series using ‘bar’ kind.</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Pandas provides explicit functions for indexing <code class="docutils literal notranslate"><span class="pre">loc</span></code> and <code class="docutils literal notranslate"><span class="pre">iloc</span></code>.</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">loc</span></code> to display the number of occurrences of ‘dolore’.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">iloc</span></code> to diplay the number of occurrences of the last word in index.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>Exercise<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Sort words by number of occurrences.</p></li>
+<li><p>Plot the Series.</p></li>
+</ul>
+</div>
+<div class="section" id="full-globe-temperature-between-1901-and-2000">
+<h3>Full globe temperature between 1901 and 2000.<a class="headerlink" href="#full-globe-temperature-between-1901-and-2000" title="Permalink to this headline">¶</a></h3>
+<p>We read the text file and load the results in a pandas dataframe.
+In cells below you need to clean the data and convert the dataframe to a time series.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">here</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="s2">&quot;data&quot;</span><span class="p">,</span><span class="s2">&quot;monthly.land.90S.90N.df_1901-2000mean.dat.txt&quot;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> 
+                   <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;mean temp&quot;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Exercise<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Insert a third column with value one named “day” with <code class="docutils literal notranslate"><span class="pre">.insert</span></code>.</p></li>
+<li><p>convert df index to datetime with <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> function.</p></li>
+<li><p>convert df to Series containing only “mean temp” column.</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>Exercise<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Display the beginning of the file with <code class="docutils literal notranslate"><span class="pre">.head</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>Exercise<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Display the end of the file with <code class="docutils literal notranslate"><span class="pre">.tail</span></code>.</p></li>
+</ul>
+<p>In the dataset, -999.00 was used to indicate that there was no value for that year.</p>
+</div>
+<div class="section" id="id8">
+<h3>Exercise<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Display values equal to -999 with <code class="docutils literal notranslate"><span class="pre">.values</span></code>.</p></li>
+<li><p>Replace the missing value (-999.000) by <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></li>
+</ul>
+<p>Once they have been converted to np.nan, missing values can be removed (dropped).</p>
+</div>
+<div class="section" id="id9">
+<h3>Exercise<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Remove missing values with <code class="docutils literal notranslate"><span class="pre">.dropna</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3>Exercise<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Generate a basic visualization using <code class="docutils literal notranslate"><span class="pre">.plot</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>Exercise<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Convert df index from timestamp to period is more meaningfull since it was measured and averaged over the month. Use <code class="docutils literal notranslate"><span class="pre">to_period</span></code> method.</p>
+</div>
+</div>
+<div class="section" id="resampling">
+<h2>Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">¶</a></h2>
+<p>Series can be resample, downsample or upsample.</p>
+<ul class="simple">
+<li><p>Frequencies can be specified as strings: “us”, “ms”, “S”, “T”, “H”, “D”, “B”, “W”, “M”, “A”, “3min”, “2h20”, …</p></li>
+<li><p>More aliases at http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases</p></li>
+</ul>
+<div class="section" id="id12">
+<h3>Exercise<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>With <code class="docutils literal notranslate"><span class="pre">resample</span></code> method, convert df Series to 10 year blocks:</p></li>
+</ul>
+</div>
+<div class="section" id="saving-work">
+<h3>Saving Work<a class="headerlink" href="#saving-work" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://support.hdfgroup.org/HDF5/">HDF5</a> is widely used and one of the most powerful file format to store binary data. It allows to store both Series and DataFrames.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">&quot;data/pandas_series.h5&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="s2">&quot;/temperatures/full_globe&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reloading-data">
+<h3>Reloading data<a class="headerlink" href="#reloading-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">&quot;data/pandas_series.h5&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">store</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="s2">&quot;/temperatures/full_globe&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "pnavaro/big-data",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "big-data"
+        },
+        kernelOptions: {
+            kernelName: "big-data",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'big-data'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="09-DaskBag.html" title="previous page">Dask bag</a>
+    <a class='right-next' id="next-link" href="11-PandaDataframes.html" title="next page">Pandas Dataframes</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pierre Navaro<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

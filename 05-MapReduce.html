@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map Reduce &#8212; Python tools for Big data</title>
+    
+  <link rel="stylesheet" href="_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pnavaro.github.io/big-data/05-MapReduce.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parallel Computation" href="06-ParallelComputation.html" />
+    <link rel="prev" title="Wordcount" href="04-WordCount.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://pnavaro.github.io/big-data/05-MapReduce.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Map Reduce" />
+<meta property="og:description" content="Map Reduce  This notebook objective is to code in Python language a wordcount application using map-reduce process. A java version is well explained on this pag" />
+<meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logoR2-Noir.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python tools for Big data</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-GitBasics.html">
+   Git basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-JupyterQuickStart.html">
+   Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-WordCount.html">
+   Wordcount
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Map Reduce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-ParallelComputation.html">
+   Parallel Computation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-AsynchronousProcessing.html">
+   Asynchronous Processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-DaskDelayed.html">
+   Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-DaskBag.html">
+   Dask bag
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-PandasSeries.html">
+   Pandas Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-PandaDataframes.html">
+   Pandas Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-PySpark.html">
+   PySpark
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-UnixCommands.html">
+   Basic Commands in the Unix Shell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Hadoop.html">
+   Hadoop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-HadoopFileFormats.html">
+   Hadoop File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-DaskDataframes.html">
+   Dask Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-SparkDataFrames.html">
+   Spark DataFrames
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-NYCTaxiCabTripDask.html">
+   Dask dataframes on HDFS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
+   Spark dataframes on HDFS
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/05-MapReduce.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/05-MapReduce.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pnavaro/big-data"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F05-MapReduce.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/05-MapReduce.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/05-MapReduce.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map-function-example">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     map
+    </span>
+   </code>
+   function example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functools-reduce-example">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     functools.reduce
+    </span>
+   </code>
+   example
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#weighted-mean-and-variance">
+   Weighted mean and Variance
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-5-1">
+     Exercise 5.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-5-2">
+     Exercise 5.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples-with-filter">
+     Examples with filter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wordcount">
+   Wordcount
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#map-read-file-and-return-a-key-value-pairs">
+   Map - Read file and return a key/value pairs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-5-3">
+     Exercise 5.3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partition">
+   Partition
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-5-4">
+     Exercise 5.4
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reduce-sums-the-counts-and-returns-a-single-key-value-word-sum">
+   Reduce - Sums the counts and returns a single key/value (word, sum).
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercice-5-5">
+     Exercice 5.5
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#process-several-files">
+   Process several files
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-5-6">
+     Exercise 5.6
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-5-7">
+     Exercise 5.7
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="map-reduce">
+<h1>Map Reduce<a class="headerlink" href="#map-reduce" title="Permalink to this headline">¶</a></h1>
+<p>This notebook objective is to code in Python language a wordcount application using map-reduce process. A java version is well explained on <a class="reference external" href="https://www.dezyre.com/hadoop-tutorial/hadoop-mapreduce-wordcount-tutorial">this page</a></p>
+<p><img alt="domain decomposition" src="_images/domain_decomp.png" /></p>
+<p>credits: https://computing.llnl.gov/tutorials/parallel_comp</p>
+<div class="section" id="map-function-example">
+<h2><code class="docutils literal notranslate"><span class="pre">map</span></code> function example<a class="headerlink" href="#map-function-example" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">map(func,</span> <span class="pre">seq)</span></code> Python function applies the function func to all the elements of the sequence seq. It returns a new list with the elements changed by func</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="n">rdd</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">rdd</span> <span class="p">)</span>
+<span class="n">res</span>  <span class="c1"># Res is an iterator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">mul</span>
+<span class="n">rdd1</span><span class="p">,</span> <span class="n">rdd2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">rdd1</span><span class="p">,</span> <span class="n">rdd2</span> <span class="p">)</span> <span class="c1"># element wise sum of rdd1 and rdd2 </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="MapReduce" src="_images/mapreduce.jpg" /></p>
+</div>
+<div class="section" id="functools-reduce-example">
+<h2><code class="docutils literal notranslate"><span class="pre">functools.reduce</span></code> example<a class="headerlink" href="#functools-reduce-example" title="Permalink to this headline">¶</a></h2>
+<p>The function <code class="docutils literal notranslate"><span class="pre">reduce(func,</span> <span class="pre">seq)</span></code> continually applies the function func() to the sequence seq and return a single value. For example, reduce(f, [1, 2, 3, 4, 5]) calculates f(f(f(f(1,2),3),4),5).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
+
+<span class="n">reduce</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">rdd</span><span class="p">)</span> <span class="c1"># computes ((((1+2)+3)+4)+5)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rdd</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">*=</span> <span class="n">x</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+
+<span class="n">reduce</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">rdd</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rdd</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">*=</span> <span class="n">x</span>
+<span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="weighted-mean-and-variance">
+<h2>Weighted mean and Variance<a class="headerlink" href="#weighted-mean-and-variance" title="Permalink to this headline">¶</a></h2>
+<p>If the generator of random variable <span class="math notranslate nohighlight">\(X\)</span> is discrete with probability mass function <span class="math notranslate nohighlight">\(x_1 \mapsto p_1, x_2 \mapsto p_2, \ldots, x_n \mapsto p_n\)</span> then</p>
+<div class="math notranslate nohighlight">
+\[\operatorname{Var}(X) = \left(\sum_{i=1}^n p_i x_i ^2\right) - \mu^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu\)</span> is the average value, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\mu = \sum_{i=1}^n p_i x_i. \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Example of <code class="docutils literal notranslate"><span class="pre">zip</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; x = </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> ..... p = </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">zip_longest</span>
+
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">zip_longest</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">],</span> <span class="n">fillvalue</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; x = </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> ..... p = </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-5-1">
+<h3>Exercise 5.1<a class="headerlink" href="#exercise-5-1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Write functions to compute the average value and variance using for loops</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-5-2">
+<h3>Exercise 5.2<a class="headerlink" href="#exercise-5-2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Write functions to compute the average value and variance using <code class="docutils literal notranslate"><span class="pre">map</span></code> and <code class="docutils literal notranslate"><span class="pre">reduce</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="examples-with-filter">
+<h3>Examples with filter<a class="headerlink" href="#examples-with-filter" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>  <span class="c1"># select p &gt; 0.1</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span> <span class="c1"># select integer that can be divided by 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>NB: Exercises above are just made to help to understand map-reduce process.
+This is a bad way to code a variance in Python. You should use <a class="reference external" href="http://www.numpy.org">Numpy</a> instead.</em></p>
+</div>
+</div>
+<div class="section" id="wordcount">
+<h2>Wordcount<a class="headerlink" href="#wordcount" title="Permalink to this headline">¶</a></h2>
+<p>We will modify the <code class="docutils literal notranslate"><span class="pre">wordcount</span></code> application into a map-reduce process.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">map</span></code> process takes text files as input and breaks it into words. The <code class="docutils literal notranslate"><span class="pre">reduce</span></code>  process sums the counts for each word and emits a single key/value with the word and sum.</p>
+<p>We need to split the wordcount function we wrote in notebook 04 in order to use map and reduce.</p>
+<p>In the following exercices we will implement in Python the Java example described in <a class="reference external" href="https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html#Example:_WordCount_v1.0">Hadoop documentation</a>.</p>
+</div>
+<div class="section" id="map-read-file-and-return-a-key-value-pairs">
+<h2>Map - Read file and return a key/value pairs<a class="headerlink" href="#map-read-file-and-return-a-key-value-pairs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-5-3">
+<h3>Exercise 5.3<a class="headerlink" href="#exercise-5-3" title="Permalink to this headline">¶</a></h3>
+<p>Write a function <code class="docutils literal notranslate"><span class="pre">mapper</span></code> with a single file name as input that returns a sorted sequence of tuples (word, 1) values.</p>
+<div class="highlight-pybt notranslate"><div class="highlight"><pre><span></span>mapper(&#39;sample.txt&#39;)
+[(&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;amet&#39;, 1), (&#39;amet&#39;, 1), (&#39;amet&#39;, 1)...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="partition">
+<h2>Partition<a class="headerlink" href="#partition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-5-4">
+<h3>Exercise 5.4<a class="headerlink" href="#exercise-5-4" title="Permalink to this headline">¶</a></h3>
+<p>Create a function named <code class="docutils literal notranslate"><span class="pre">partitioner</span></code> that stores the key/value pairs from <code class="docutils literal notranslate"><span class="pre">mapper</span></code>  that group (word, 1) pairs into a list as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">partitioner</span><span class="p">(</span><span class="n">mapper</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">))</span>
+<span class="p">[(</span><span class="s1">&#39;adipisci&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;aliquam&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;amet&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reduce-sums-the-counts-and-returns-a-single-key-value-word-sum">
+<h2>Reduce - Sums the counts and returns a single key/value (word, sum).<a class="headerlink" href="#reduce-sums-the-counts-and-returns-a-single-key-value-word-sum" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercice-5-5">
+<h3>Exercice 5.5<a class="headerlink" href="#exercice-5-5" title="Permalink to this headline">¶</a></h3>
+<p>Write the function <code class="docutils literal notranslate"><span class="pre">reducer</span></code> that read a tuple (word,[1,1,1,..,1]) and sum the occurrences of word to a final count, and then output the tuple (word,occurences).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">reducer</span><span class="p">((</span><span class="s1">&#39;hello&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="process-several-files">
+<h2>Process several files<a class="headerlink" href="#process-several-files" title="Permalink to this headline">¶</a></h2>
+<p>Let’s create 8 files <code class="docutils literal notranslate"><span class="pre">sample[0-7].txt</span></code>. Set most common words at the top of the output list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lorem</span> <span class="kn">import</span> <span class="n">text</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sample</span><span class="si">{0:02d}</span><span class="s2">.txt&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;sample0*.txt&#39;</span><span class="p">))</span>
+<span class="n">files</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exercise-5-6">
+<h3>Exercise 5.6<a class="headerlink" href="#exercise-5-6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use functions implemented above to count (word, occurences) by using a for loops over files and partitioned data.</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-5-7">
+<h3>Exercise 5.7<a class="headerlink" href="#exercise-5-7" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>This time use <code class="docutils literal notranslate"><span class="pre">map</span></code> function to apply mapper and reducer.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "pnavaro/big-data",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "big-data"
+        },
+        kernelOptions: {
+            kernelName: "big-data",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'big-data'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-WordCount.html" title="previous page">Wordcount</a>
+    <a class='right-next' id="next-link" href="06-ParallelComputation.html" title="next page">Parallel Computation</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pierre Navaro<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>

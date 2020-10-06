@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jupyter &#8212; Python tools for Big data</title>
+    
+  <link rel="stylesheet" href="_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.30270b6e4c972e43c488.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pnavaro.github.io/big-data/03-JupyterQuickStart.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Wordcount" href="04-WordCount.html" />
+    <link rel="prev" title="Installation" href="02-Installation.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://pnavaro.github.io/big-data/03-JupyterQuickStart.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Jupyter" />
+<meta property="og:description" content="Jupyter  jupyter  Launch Jupyter server  jupyter notebook   Go to notebooks folder  Open the file 03.JupyterQuickStart.ipynb  Make a Copy  Before modifying the " />
+<meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logoR2-Noir.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Python tools for Big data</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-GitBasics.html">
+   Git basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-WordCount.html">
+   Wordcount
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-MapReduce.html">
+   Map Reduce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-ParallelComputation.html">
+   Parallel Computation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-AsynchronousProcessing.html">
+   Asynchronous Processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-DaskDelayed.html">
+   Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-DaskBag.html">
+   Dask bag
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-PandasSeries.html">
+   Pandas Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-PandaDataframes.html">
+   Pandas Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-PySpark.html">
+   PySpark
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-UnixCommands.html">
+   Basic Commands in the Unix Shell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Hadoop.html">
+   Hadoop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-HadoopFileFormats.html">
+   Hadoop File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-DaskDataframes.html">
+   Dask Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-SparkDataFrames.html">
+   Spark DataFrames
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-NYCTaxiCabTripDask.html">
+   Dask dataframes on HDFS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
+   Spark dataframes on HDFS
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/03-JupyterQuickStart.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/03-JupyterQuickStart.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/pnavaro/big-data"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F03-JupyterQuickStart.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/03-JupyterQuickStart.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/03-JupyterQuickStart.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#launch-jupyter-server">
+   Launch Jupyter server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-a-copy">
+   Make a Copy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-notebook">
+   Jupyter Notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keyboard-shortcuts">
+   Keyboard Shortcuts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#easy-links-to-documentation">
+   Easy links to documentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#magic-commands">
+   Magic commands
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-python-packages-from-a-jupyter-notebook">
+   Installing Python Packages from a Jupyter Notebook
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-a-conda-package-in-the-current-jupyter-kernel">
+     Install a conda package in the current Jupyter kernel
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-a-pip-package-in-the-current-jupyter-kernel">
+     Install a pip package in the current Jupyter kernel
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="jupyter">
+<h1>Jupyter<a class="headerlink" href="#jupyter" title="Permalink to this headline">¶</a></h1>
+<p><img alt="jupyter" src="_images/jupyter-logo.png" /></p>
+<div class="section" id="launch-jupyter-server">
+<h2>Launch Jupyter server<a class="headerlink" href="#launch-jupyter-server" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Go to notebooks folder</p></li>
+<li><p>Open the file 03.JupyterQuickStart.ipynb</p></li>
+</ul>
+</div>
+<div class="section" id="make-a-copy">
+<h2>Make a Copy<a class="headerlink" href="#make-a-copy" title="Permalink to this headline">¶</a></h2>
+<p>Before modifying the notebook, make a copy of it. Go to to <code class="docutils literal notranslate"><span class="pre">File</span></code> menu
+on the top left of the notebook and click on <code class="docutils literal notranslate"><span class="pre">Make</span> <span class="pre">a</span> <span class="pre">Copy...</span></code></p>
+</div>
+<div class="section" id="jupyter-notebook">
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<p>Jupyter notebook, formerly known as the IPython notebook, is a flexible tool that helps you create readable analyses, as you can keep code, images, comments, formulae and plots together.</p>
+<p>Jupyter is quite extensible, supports many programming languages and is easily hosted on your computer or on almost any server — you only need to have ssh or http access. Best of all, it’s completely free.</p>
+<p>The name Jupyter is an indirect acronyum of the three core languages it was designed for: <strong>JU</strong>lia, <strong>PYT</strong>hon, and <strong>R</strong></p>
+</div>
+<div class="section" id="keyboard-shortcuts">
+<h2>Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>To access keyboard shortcuts, use the command palette: <code class="docutils literal notranslate"><span class="pre">Cmd</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">P</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Esc</span></code> will take you into command mode where you can navigate around your notebook with arrow keys.</p></li>
+<li><p>While in command mode:</p>
+<ul>
+<li><p>A to insert a new cell above the current cell, B to insert a new cell below.</p></li>
+<li><p>M to change the current cell to Markdown, Y to change it back to code</p></li>
+<li><p>D + D (press the key twice) to delete the current cell</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="easy-links-to-documentation">
+<h2>Easy links to documentation<a class="headerlink" href="#easy-links-to-documentation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Shift + Tab will also show you the Docstring</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="magic-commands">
+<h2>Magic commands<a class="headerlink" href="#magic-commands" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">lsmagic</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">ls</span> <span class="o">*.</span><span class="n">ipynb</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">sample</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="n">write</span> <span class="n">the</span> <span class="n">cell</span> <span class="n">content</span> <span class="n">to</span> <span class="n">the</span> <span class="n">file</span> <span class="n">sample</span><span class="o">.</span><span class="n">txt</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">created</span> <span class="n">when</span> <span class="n">you</span> <span class="n">run</span> <span class="n">this</span> <span class="n">cell</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cat</span> <span class="n">sample</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">fibonacci</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f1</span><span class="o">+</span><span class="n">f2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">fibonacci</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load fibonacci.py</span>
+
+<span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f1</span><span class="o">+</span><span class="n">f2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f1</span><span class="o">+</span><span class="n">f2</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="installing-python-packages-from-a-jupyter-notebook">
+<h2>Installing Python Packages from a Jupyter Notebook<a class="headerlink" href="#installing-python-packages-from-a-jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-a-conda-package-in-the-current-jupyter-kernel">
+<h3>Install a conda package in the current Jupyter kernel<a class="headerlink" href="#install-a-conda-package-in-the-current-jupyter-kernel" title="Permalink to this headline">¶</a></h3>
+<p>Example with package <code class="docutils literal notranslate"><span class="pre">numpy</span></code> from <em>conda-forge</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-a-pip-package-in-the-current-jupyter-kernel">
+<h3>Install a pip package in the current Jupyter kernel<a class="headerlink" href="#install-a-pip-package-in-the-current-jupyter-kernel" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "pnavaro/big-data",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "big-data"
+        },
+        kernelOptions: {
+            kernelName: "big-data",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'big-data'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="02-Installation.html" title="previous page">Installation</a>
+    <a class='right-next' id="next-link" href="04-WordCount.html" title="next page">Wordcount</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Pierre Navaro<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
+    
+  </body>
+</html>
