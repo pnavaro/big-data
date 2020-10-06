@@ -5,8 +5,8 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: '0.9'
-    jupytext_version: 1.5.2
+    format_version: 0.12
+    jupytext_version: 1.6.0
 kernelspec:
   display_name: big-data
   language: python
@@ -189,7 +189,7 @@ print(results)
 Use `ThreadPoolExecutor` to parallelize the code above.
 
 ```{code-cell} ipython3
-%mkdir books
+%mkdir -p books
 ```
 
 ```{code-cell} ipython3

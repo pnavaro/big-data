@@ -5,6 +5,7 @@ dependencies:
   - python=3.7
   - asyncssh
   - bokeh=2.0
+  - bs4
   - dask
   - dask-ml
   - feather-format
@@ -28,6 +29,7 @@ dependencies:
     - dask_labextension
     - mimesis
   - pyarrow
+  - pyspark=2.3.1
   - pytables
   - python-graphviz
   - requests
