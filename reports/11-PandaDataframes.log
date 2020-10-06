@@ -23,9 +23,9 @@ french_cities.loc['Rennes', "Sep"]
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mKeyError[0m                                  Traceback (most recent call last)
 [0;32m/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/pandas/core/indexes/base.py[0m in [0;36mget_loc[0;34m(self, key, method, tolerance)[0m
-[1;32m   2890[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 2891[0;31m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_engine[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mcasted_key[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   2892[0m             [0;32mexcept[0m [0mKeyError[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2894[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2895[0;31m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_engine[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mcasted_key[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2896[0m             [0;32mexcept[0m [0mKeyError[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32mpandas/_libs/index.pyx[0m in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
 
@@ -86,18 +86,18 @@ The above exception was the direct cause of the following exception:
 [1;32m   1061[0m     [0;32mdef[0m [0m_handle_lowerdim_multi_index_axis0[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mtup[0m[0;34m:[0m [0mTuple[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/pandas/core/generic.py[0m in [0;36mxs[0;34m(self, key, axis, level, drop_level)[0m
-[1;32m   3486[0m             [0mloc[0m[0;34m,[0m [0mnew_index[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mindex[0m[0;34m.[0m[0mget_loc_level[0m[0;34m([0m[0mkey[0m[0;34m,[0m [0mdrop_level[0m[0;34m=[0m[0mdrop_level[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   3487[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 3488[0;31m             [0mloc[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mindex[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   3489[0m [0;34m[0m[0m
-[1;32m   3490[0m             [0;32mif[0m [0misinstance[0m[0;34m([0m[0mloc[0m[0;34m,[0m [0mnp[0m[0;34m.[0m[0mndarray[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3489[0m             [0mloc[0m[0;34m,[0m [0mnew_index[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mindex[0m[0;34m.[0m[0mget_loc_level[0m[0;34m([0m[0mkey[0m[0;34m,[0m [0mdrop_level[0m[0;34m=[0m[0mdrop_level[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3490[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3491[0;31m             [0mloc[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mindex[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3492[0m [0;34m[0m[0m
+[1;32m   3493[0m             [0;32mif[0m [0misinstance[0m[0;34m([0m[0mloc[0m[0;34m,[0m [0mnp[0m[0;34m.[0m[0mndarray[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m/usr/share/miniconda3/envs/big-data/lib/python3.7/site-packages/pandas/core/indexes/base.py[0m in [0;36mget_loc[0;34m(self, key, method, tolerance)[0m
-[1;32m   2891[0m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_engine[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mcasted_key[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   2892[0m             [0;32mexcept[0m [0mKeyError[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 2893[0;31m                 [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0mkey[0m[0;34m)[0m [0;32mfrom[0m [0merr[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   2894[0m [0;34m[0m[0m
-[1;32m   2895[0m         [0;32mif[0m [0mtolerance[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2895[0m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_engine[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mcasted_key[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2896[0m             [0;32mexcept[0m [0mKeyError[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2897[0;31m                 [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0mkey[0m[0;34m)[0m [0;32mfrom[0m [0merr[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2898[0m [0;34m[0m[0m
+[1;32m   2899[0m         [0;32mif[0m [0mtolerance[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
 [0;31mKeyError[0m: 'Sep'
 KeyError: 'Sep'
