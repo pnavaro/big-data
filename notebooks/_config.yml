@@ -10,7 +10,7 @@ parse:
   myst_extended_syntax: true
 
 execute:
-  execute_notebooks: force
+  execute_notebooks: 'off'
 
 html:
   home_page_in_navbar: false
