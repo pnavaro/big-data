@@ -290,6 +290,8 @@ import numpy as np
 
 In this dataset we have two dimensional field records along time. Every h5 file contains a matrix.
 
+**Don't download the files if you work on svmass2 server, you can find them in** `datasets/fvalues`.
+
 +++
 
 Download the file from [https://github.com/MMASSD/datasets](https://github.com/MMASSD/datasets/blob/master/fvalues.tgz)
