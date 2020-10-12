@@ -68,7 +68,7 @@
 <meta property="og:url"         content="https://pnavaro.github.io/big-data/intro.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Python tools for Big data" />
-<meta property="og:description" content="Python tools for Big data  This course is being taught at as part of Master Datascience Rennes II  Open in Gitpod View on Deepnote  " />
+<meta property="og:description" content="Python tools for Big data  This course is being taught at as part of Master Datascience Rennes II  Open in Gitpod  View on Deepnote  Binder  Run Jupyter noteboo" />
 <meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
 
 <meta name="twitter:card" content="summary" />
@@ -281,6 +281,59 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-jupyter-notebooks-with-docker">
+   Run Jupyter notebooks with docker
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#get-docker-app">
+     Get docker app
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#books">
+     Books
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-documentation">
+     Software documentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tutorials">
+     Tutorials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#blog-posts">
+     Blog posts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#online-courses">
+     Online courses
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -291,9 +344,107 @@
   <div class="section" id="python-tools-for-big-data">
 <h1>Python tools for Big data<a class="headerlink" href="#python-tools-for-big-data" title="Permalink to this headline">¶</a></h1>
 <p>This course is being taught at as part of Master Datascience Rennes II</p>
-<p><a class="reference external" href="https://gitpod.io/#https://github.com/pnavaro/big-data"><img alt="Open in Gitpod" src="https://gitpod.io/button/open-in-gitpod.svg" /></a>
-<a class="reference external" href="https://deepnote.com/project/d285d66f-0462-4909-bf37-8a1a2f3c6200"><img alt="View on Deepnote" src="https://beta.deepnote.com/buttons/launch-in-deepnote.svg" /></a></p>
+<p><a class="reference external" href="https://gitpod.io/#https://github.com/pnavaro/big-data"><img alt="Open in Gitpod" src="https://gitpod.io/button/open-in-gitpod.svg" /></a></p>
+<p><a class="reference external" href="https://deepnote.com/project/d285d66f-0462-4909-bf37-8a1a2f3c6200"><img alt="View on Deepnote" src="https://beta.deepnote.com/buttons/launch-in-deepnote.svg" /></a></p>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/pnavaro/big-data/master"><img alt="Binder" src="https://mybinder.org/badge.svg" /></a></p>
+<div class="section" id="run-jupyter-notebooks-with-docker">
+<h2>Run Jupyter notebooks with docker<a class="headerlink" href="#run-jupyter-notebooks-with-docker" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get-docker-app">
+<h3>Get docker app<a class="headerlink" href="#get-docker-app" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.docker.com/docker-mac">Mac</a></p></li>
+<li><p><a class="reference external" href="https://www.docker.com/docker-windows">Windows</a></p></li>
+<li><p><a class="reference external" href="https://runnable.com/docker/install-docker-on-linux">Linux</a></p></li>
+</ul>
+<p>You can run these notebooks with Docker. The following command starts a container with the Notebook
+server listening for HTTP connections on port 8888 and 4040 without authentication configured.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/pnavaro/big-data.git
+docker run --rm -v $PWD/big-data:/home/jovyan/ -p 8888:8888 -p 4040:4040 pnavaro/big-data
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="books">
+<h3>Books<a class="headerlink" href="#books" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/wesm/pydata-book">Python for Data Analysis</a> by Wes McKinney.</p></li>
+<li><p><a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook">Python Data Science Handbook</a> by Jake VanderPlas</p></li>
+</ul>
+</div>
+<div class="section" id="software-documentation">
+<h3>Software documentation<a class="headerlink" href="#software-documentation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="http://pandas.pydata.org">Pandas</a>.</p></li>
+<li><p><a class="reference external" href="https://dask.pydata.org/">Dask</a></p></li>
+<li><p><a class="reference external" href="http://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></p></li>
+<li><p><a class="reference external" href="https://arrow.apache.org/docs/python/index.html">Apache Arrow</a></p></li>
+<li><p><a class="reference external" href="https://parquet.apache.org">Parquet</a></p></li>
+<li><p><a class="reference external" href="http://gcsfs.readthedocs.io/en/latest/">GCSFS</a></p></li>
+<li><p><a class="reference external" href="https://distributed.readthedocs.io/en/latest/">Dask.distributed</a></p></li>
+<li><p><a class="reference external" href="https://fastparquet.readthedocs.io/en/latest/">fastparquet</a></p></li>
+</ul>
+</div>
+<div class="section" id="tutorials">
+<h3>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Python</p>
+<ul>
+<li><p><a class="reference external" href="https://youtu.be/6ohWS7J1hVA">Analyzing and Manipulating Data with Pandas Beginner</a>: SciPy 2016 Tutorial by Jonathan Rocher.</p></li>
+</ul>
+</li>
+<li><p>Dask</p>
+<ul>
+<li><p><a class="reference external" href="https://examples.dask.org">Dask Examples</a></p></li>
+<li><p><a class="reference external" href="https://github.com/TomAugspurger/dask-tutorial-pycon-2018">Parallel Data Analysis with Dask</a>  Dask tutorial at PyCon 2018 by Tom Augspurger.</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=mqdglv9GnM8">Parallelizing Scientific Python with Dask</a> SciPy 2018 Tutorial by James Crist and Martin Durant</p></li>
+<li><p><a class="reference external" href="https://youtu.be/mbfsog3e5DA">Parallelizing Scientific Python with Dask</a>, SciPy 2017 Tutorial by James Crist.</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=5Md_sSsN51k">Parallel Python: Analyzing Large Datasets Intermediate</a>, SciPy 2016 Tutorial by Matthew Rocklin.</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=a8gpcnmggiU">Parallel Data Analysis in Python</a>, SciPy 2017 Tutorial by Matthew Rocklin, Ben Zaitlen &amp; Aron Ahmadia.</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=yI_yZoUaz60">Matthew Rocklin - Streaming Processing with Dask</a></p></li>
+<li><p><a class="reference external" href="https://github.com/jacobtomlinson/dask-video-tutorial-2020">Jacob Tomlinson - Dask Video Tutorial 2020</a></p></li>
+</ul>
+</li>
+<li><p>Hadoop</p>
+<ul>
+<li><p><a class="reference external" href="http://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-python/">Writing an Hadoop MapReduce Program in Python</a> by Michael G. Noll.</p></li>
+</ul>
+</li>
+<li><p>Spark</p>
+<ul>
+<li><p><a class="reference external" href="https://databricks.com/product/getting-started-guide">GetOting Started with Apache Spark Tutorial - Databricks</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hortonworks/data-tutorials">Hortonworks Data Tutorials</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="blog-posts">
+<h3>Blog posts<a class="headerlink" href="#blog-posts" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.chrisstucchio.com/blog/2013/hadoop_hatred.html">Don’t use Hadoop - your data isn’t that big</a></p></li>
+<li><p><a class="reference external" href="http://www.svds.com/dataformats/">Format Wars: From VHS and Beta to Avro and Parquet</a>  overview of Hadoop File formats.</p></li>
+<li><p><a class="reference external" href="http://veekaybee.github.io/2017/03/20/hadoop-or-laptop/">Should you replace Hadoop with your laptop?</a> by Vicki Boykis.</p></li>
+<li><p><a class="reference external" href="https://pymotw.com/2/multiprocessing/mapreduce.html">Implementing MapReduce with multiprocessing</a> by Doug Hellmann.</p></li>
+<li><p><a class="reference external" href="https://jcrist.github.io/dask-on-yarn">Deploying Dask on YARN</a> by Jim Crist.</p></li>
+<li><p><a class="reference external" href="http://wesmckinney.com/blog/python-hdfs-interfaces/">Native Hadoop file system (HDFS) connectivity in Python</a> by Wes McKinney.</p></li>
+<li><p><a class="reference external" href="http://matthewrocklin.com/blog">Working Notes from Matthew Rocklin</a> (must read)</p></li>
+<li><p><a class="reference external" href="https://t.co/6IBXNwyfbI">Large SVDs with Dask</a></p></li>
+<li><p><a class="reference external" href="https://blog.octo.com/machine-learning-7-astuces-pour-scaler-python-sur-de-grands-datasets/">Machine Learning – 7 astuces pour scaler Python sur de grands datasets</a></p></li>
+</ul>
+</div>
+<div class="section" id="online-courses">
+<h3>Online courses<a class="headerlink" href="#online-courses" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.datacamp.com/community/data-science-cheatsheets">DataCamp Cheat Sheets</a></p></li>
+<li><p><a class="reference external" href="https://perso.univ-rennes1.fr/pierre.nerzic/Hadoop/">Outils pour le Big Data</a> by Pierre Nerzic. 🇫🇷</p></li>
+<li><p><a class="reference external" href="https://github.com/wikistat/Ateliers-Big-Data">wikistat - Ateliers Big Data</a> by Philippe Besse. 🇫🇷</p></li>
+<li><p><a class="reference external" href="https://github.com/phelps-sg/python-bigdata">Data Science and Big Data with Python</a> by Steve Phelps.</p></li>
+</ul>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>
 <div class="toctree-wrapper compound">
+</div>
+</div>
 </div>
 </div>
 
