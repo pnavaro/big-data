@@ -63,6 +63,7 @@ docker run --rm -v $PWD/big-data:/home/jovyan/ -p 8888:8888 -p 4040:4040 pnavaro
   * [Working Notes from Matthew Rocklin](http://matthewrocklin.com/blog) (must read)
   * [Large SVDs with Dask](https://t.co/6IBXNwyfbI)
   * [Machine Learning – 7 astuces pour scaler Python sur de grands datasets](https://blog.octo.com/machine-learning-7-astuces-pour-scaler-python-sur-de-grands-datasets/)
+  * [The Best Format to Save Pandas Data](https://towardsdatascience.com/the-best-format-to-save-pandas-data-414dca023e0d)
 
 ### Online courses
   * [DataCamp Cheat Sheets](https://www.datacamp.com/community/data-science-cheatsheets)
