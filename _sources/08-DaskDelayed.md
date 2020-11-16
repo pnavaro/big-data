@@ -5,8 +5,8 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-    format_version: '0.9'
-    jupytext_version: 1.5.2
+    format_version: 0.12
+    jupytext_version: 1.6.0
 kernelspec:
   display_name: big-data
   language: python
@@ -251,24 +251,51 @@ filenames = sorted(glob(os.path.join(here,'data', 'daily-stock', '*.json')))
 ```
 
 ```{code-cell} ipython3
+%%time
+def read( fn ):
+    " read json file "
+    with open(fn) as f:
+        return [json.loads(line) for line in f]
+    
+def convert(data, fn):
+    " convert json file to hdf5 file"
+    df = pd.DataFrame(data)
+    out_filename = fn[:-5] + '.h5'
+    df.to_hdf(out_filename, '/data')
+    return fn[:-5]
+ 
+results = []
+for filename in filenames:
+    data = read(filename)
+    results.append(convert(data, filename))
+ 
+```
+
+```{code-cell} ipython3
 ---
 slideshow:
   slide_type: slide
 ---
+@dask.delayed
 def read( fn ):
+    " read json file "
     with open(fn) as f:
         return [json.loads(line) for line in f]
     
-def convert(data):
+@dask.delayed
+def convert(data, fn):
+    " convert json file to hdf5 file"
     df = pd.DataFrame(data)
     out_filename = fn[:-5] + '.h5'
-    df.to_hdf(out_filename, os.path.join(here,'data'))
-    return
-
-for fn in filenames:  
-    data = read( fn)
-    convert(data)
-    
+    df.to_hdf(out_filename, '/data')
+    return fn[:-5]
+ 
+results = []
+for filename in filenames:
+    data = read(filename)
+    results.append(convert(data, filename))
+ 
+%time dask.compute(*results)
 ```
 
 ```{code-cell} ipython3
@@ -307,14 +334,14 @@ wget https://github.com/MMASSD/datasets/raw/master/fvalues.tgz
 This file is a zip archive we need to uncompress and extract.
 
 ```{code-cell} ipython3
-# extract_data('fvalues','.') 
+extract_data('fvalues','.') 
 ```
 
 You get 1000 h5 files
 
 ```{code-cell} ipython3
-# filenames = sorted(glob("*.h5"))
-# filenames[:5], len(filenames)
+filenames = sorted(glob("*.h5"))
+filenames[:5], len(filenames)
 ```
 
 In order to plot these fields, we will scale them between 0 to 255 grey levels.
@@ -338,36 +365,36 @@ def read_frame( filepath ):
 ```
 
 ```{code-cell} ipython3
-# image = read_frame( filenames[0])
-# image.shape
+image = read_frame( filenames[0])
+image.shape
 ```
 
 ```{code-cell} ipython3
-# from PIL import Image 
-# Image.fromarray(image)
+from PIL import Image 
+Image.fromarray(image)
 ```
 
 With NumPy we might allocate a big array and then iteratively load images and place them into this array `serial_frames`.
 
 ```{code-cell} ipython3
-# %%time
-# serial_frames = np.empty((1000,*image.shape), dtype=np.uint8)
-# for i, fn in enumerate(filenames):
-#    serial_frames[i, :, :] = read_frame(fn)
+%%time
+serial_frames = np.empty((1000,*image.shape), dtype=np.uint8)
+for i, fn in enumerate(filenames):
+    serial_frames[i, :, :] = read_frame(fn)
 ```
 
 ```{code-cell} ipython3
-# from ipywidgets import interact, IntSlider
-# 
-# def display_sequence(iframe):
-#     return Image.fromarray(serial_frames[iframe,:,:])
-#     
-# interact(display_sequence, 
-#          iframe=IntSlider(min=0,
-#                           max=np.shape(serial_frames)[0]-1,
-#                           step=1,
-#                           value=0, 
-#                           continuous_update=True));
+from ipywidgets import interact, IntSlider
+ 
+def display_sequence(iframe):
+     return Image.fromarray(serial_frames[iframe,:,:])
+     
+interact(display_sequence, 
+          iframe=IntSlider(min=0,
+                           max=np.shape(serial_frames)[0]-1,
+                           step=1,
+                           value=0, 
+                           continuous_update=True));
 ```
 
 In the code above, we read all images and store them in memory. If you have more plots or bigger images it won't fit in your computer memory. You have two options:
@@ -381,63 +408,60 @@ In the code above, we read all images and store them in memory. If you have more
 We can delayed the read function
 
 ```{code-cell} ipython3
-# lazy_read = delayed(read_frame)
-# lazy_frames = [lazy_read(fn) for fn in filenames]
+lazy_read = delayed(read_frame)
+lazy_frames = [lazy_read(fn) for fn in filenames]
 ```
 
 Instead of `serial_frames`, we create an array of delayed tasks.
 
 ```{code-cell} ipython3
-# import dask.array as da
-# lazy_frames = [da.from_delayed(lazy_read,# Construct a small Dask array
-#                           dtype=image.dtype,   # for every lazy value
-#                           shape=image.shape)
-#          for lazy_read in lazy_frames]
-# lazy_frames[0]
+import dask.array as da
+lazy_frames = [da.from_delayed(lazy_read,# Construct a small Dask array
+                           dtype=image.dtype,   # for every lazy value
+                           shape=image.shape)
+          for lazy_read in lazy_frames]
+lazy_frames[0]
 ```
 
 ```{code-cell} ipython3
-# dask_frames = da.stack(lazy_frames[:10], axis=0)  # concatenate arrays along first axis 
+dask_frames = da.stack(lazy_frames, axis=0)  # concatenate arrays along first axis 
 ```
 
 ```{code-cell} ipython3
-# dask_frames 
+dask_frames 
 ```
 
 ```{code-cell} ipython3
-# dask_frames = dask_frames.rechunk((10, 257, 257))   
-# dask_frames
+dask_frames = dask_frames.rechunk((10, 257, 257))   
+dask_frames
 ```
 
 ```{code-cell} ipython3
-# Image.fromarray(scale(dask_frames.sum(axis=0).compute()))
+Image.fromarray(scale(dask_frames.sum(axis=0).compute()))
 ```
 
 ```{code-cell} ipython3
-# from ipywidgets import interact, IntSlider
-# 
-# def display_sequence(iframe):
-#     
-#     return Image.fromarray(dask_frames[iframe,:,:].compute())
-#     
-# interact(display_sequence, 
-#          iframe=IntSlider(min=0,
-#                           max=len(dask_frames)-1,
-#                           step=1,
-#                           value=0, 
-#                           continuous_update=True))
+
+```
+
+```{code-cell} ipython3
+from ipywidgets import interact, IntSlider
+
+def display_sequence(iframe):
+    
+    return Image.fromarray(dask_frames[iframe,:,:].compute())
+    
+interact(display_sequence, 
+         iframe=IntSlider(min=0,
+                          max=len(dask_frames)-1,
+                          step=1,
+                          value=0, 
+                          continuous_update=True))
 ```
 
 Everytime you move the slider, it will read the corresponding file and load the frame. That's why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.
 
-```{code-cell} ipython3
-# z
-```
-
-```{code-cell} ipython3
-# Look at the task graph for `z`
-# z.visualize()
-```
++++
 
 ### Some questions to consider:
 
