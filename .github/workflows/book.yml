@@ -25,9 +25,8 @@ jobs:
         args: https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz
     - name: Install Apache Spark
       run: tar zxf spark-3.0.1-bin-hadoop2.7.tgz
-    - uses: Actions-R-Us/default-env@v1
-      env:
-        SPARK_HOME: '/home/runner/spark-3.0.0-bin-hadoop2.7'
+    - name: Set SPARK_HOME
+      run: echo "SPARK_HOME=/home/runner/spark-3.0.0-bin-hadoop2.7" >> $GITHUB_ENV
     - name: Install Miniconda and dependencies
       uses: goanpeca/setup-miniconda@v1
       with:
