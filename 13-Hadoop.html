@@ -55,18 +55,18 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://pnavaro.github.io/big-data/14-Hadoop.html" />
+    <link rel="canonical" href="https://pnavaro.github.io/big-data/13-Hadoop.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Hadoop File Formats" href="15-HadoopFileFormats.html" />
-    <link rel="prev" title="Basic Commands in the Unix Shell" href="13-UnixCommands.html" />
+    <link rel="next" title="File Formats" href="14-FileFormats.html" />
+    <link rel="prev" title="Basic Commands in the Unix Shell" href="12-UnixCommands.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
-<meta property="og:url"         content="https://pnavaro.github.io/big-data/14-Hadoop.html" />
+<meta property="og:url"         content="https://pnavaro.github.io/big-data/13-Hadoop.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Hadoop" />
 <meta property="og:description" content="Hadoop  Data sets that are so large or complex that traditional data processing application software is inadequate to deal with them.  Data analysis requires ma" />
@@ -155,12 +155,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-PySpark.html">
-   PySpark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-UnixCommands.html">
+  <a class="reference internal" href="12-UnixCommands.html">
    Basic Commands in the Unix Shell
   </a>
  </li>
@@ -170,8 +165,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/14-Hadoop.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/14-Hadoop.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/13-Hadoop.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -257,10 +254,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F14-Hadoop.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F13-Hadoop.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/14-Hadoop.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/13-Hadoop.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/14-Hadoop.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/13-Hadoop.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/13-Hadoop.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -441,8 +443,8 @@
 <li><p>HDFS exposes a file system namespace and allows user data to be stored in files.</p>
 <ol class="simple">
 <li><p>A file is split by the NameNode into blocks stored in DataNodes.</p></li>
-<li><p>The <strong>NameNode</strong> executes operations like opening, closing, and renaming files and directories.</p></li>
-<li><p>The <strong>Secondary NameNode</strong> stores information from <strong>NameNode</strong>.</p></li>
+<li><p>The <a class="reference external" href="http://svmass2.mass.uhb.fr:50070">NameNode</a> executes operations like opening, closing, and renaming files and directories.</p></li>
+<li><p>The <a class="reference external" href="http://svmass2.mass.uhb.fr:50090/status.html">Secondary NameNode</a> stores information from <strong>NameNode</strong>.</p></li>
 <li><p>The <strong>DataNodes</strong> manage perform block creation, deletion, and replication upon instruction from the NameNode.</p></li>
 <li><p>The placement of replicas is optimized for data reliability, availability, and network bandwidth utilization.</p></li>
 <li><p>User data never flows through the NameNode.</p></li>
@@ -654,7 +656,8 @@ Source: http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_a
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sample</span><span class="si">{0:02d}</span><span class="s1">.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -696,14 +699,12 @@ Source: http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_a
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">mapper</span><span class="o">.</span><span class="n">py</span>
-
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span> <span class="c1"># for python2 compatibility</span>
-<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">string</span>
-<span class="n">translator</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+<span class="c1">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="c1"># input comes from standard input</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="c1"># remove leading and trailing whitespace</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span>   <span class="c1"># strip punctuation </span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>   <span class="c1"># strip punctuation </span>
     <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">():</span> <span class="c1"># split the line into words</span>
         <span class="c1"># write the results to standard output;</span>
         <span class="c1"># what we output here will be the input for the</span>
@@ -713,14 +714,8 @@ Source: http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_a
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mapper.py&quot;</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> 
-    <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;#!&quot;</span><span class="o">+</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting mapper.py
 </pre></div>
 </div>
 </div>
@@ -754,7 +749,7 @@ Remember that Hadoop sorts map output so it is easier to count words.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">reducer</span><span class="o">.</span><span class="n">py</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="c1">#!/usr/bin/env python</span>
 <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
@@ -792,14 +787,8 @@ Remember that Hadoop sorts map output so it is easier to count words.</p>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;reducer.py&quot;</span><span class="p">,</span> <span class="s2">&quot;r+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> 
-    <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;#!&quot;</span><span class="o">+</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting reducer.py
 </pre></div>
 </div>
 </div>
@@ -832,6 +821,40 @@ Remember that Hadoop sorts map output so it is easier to count words.</p>
 <li><p>Copy all files to HDFS cluster</p></li>
 <li><p>Run the WordCount MapReduce</p></li>
 </ul>
+<p>Before to run the following command you need to replace the path to the python executable. To print this path you can use the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">which</span> <span class="n">python</span>
+</pre></div>
+</div>
+<p>You should get</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">tljh</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span>
+</pre></div>
+</div>
+<p>So replace the line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+</pre></div>
+</div>
+<p>by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/opt/tljh/user/bin/python</span>
+</pre></div>
+</div>
+<p>in both files mapper.py and reducer.py</p>
+<p>Ensure that the output directory does not exist by removing it</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hdfs</span> <span class="n">dfs</span> <span class="o">-</span><span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="n">output</span>
+</pre></div>
+</div>
+<p>Use the hadoop streaming library to read files on hdfs and redirect data to standard input, use your python scripts
+to process the data and write the result on hdfs directory named output :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>hadoop jar /export/hadoop-2.7.6/share/hadoop/tools/lib/hadoop-streaming-2.7.6.jar \
+-input input/*.txt -output output \
+-file ${PWD}/mapper.py -mapper ${PWD}/mapper.py \
+-file ${PWD}/reducer.py -reducer ${PWD}/reducer.py
+</pre></div>
+</div>
+<p>Check the results with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hdfs</span> <span class="n">dfs</span> <span class="o">-</span><span class="n">cat</span> <span class="n">output</span><span class="o">/*</span>
+</pre></div>
+</div>
+<p>You can avoid these long lines commands by editing a Makefile</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%file Makefile
@@ -865,9 +888,9 @@ run_with_yarn:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%bash</span>
-<span class="c1"># hdfs dfs -rm -r input</span>
-<span class="c1"># make copy_to_hdfs</span>
-<span class="c1"># hdfs dfs -ls input</span>
+<span class="c1"># hdfs dfs -rm -r input  # remove input directory</span>
+<span class="c1"># make copy_to_hdfs # copy sample files to hdfs</span>
+<span class="c1"># hdfs dfs -ls input # list files on hdfs</span>
 </pre></div>
 </div>
 </div>
@@ -875,9 +898,9 @@ run_with_yarn:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%bash</span>
-<span class="c1"># hdfs dfs -rm -r -f output-hadoop</span>
-<span class="c1"># make run_with_hadoop</span>
-<span class="c1"># hdfs dfs -cat output-hadoop/*</span>
+<span class="c1"># hdfs dfs -rm -r -f output-hadoop # Remove output directory on hdfs</span>
+<span class="c1"># make run_with_hadoop  # Run the hadoop streaming map reduce process</span>
+<span class="c1"># hdfs dfs -cat output-hadoop/*  # Display results</span>
 </pre></div>
 </div>
 </div>
@@ -913,8 +936,8 @@ run_with_yarn:
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="13-UnixCommands.html" title="previous page">Basic Commands in the Unix Shell</a>
-    <a class='right-next' id="next-link" href="15-HadoopFileFormats.html" title="next page">Hadoop File Formats</a>
+    <a class='left-prev' id="prev-link" href="12-UnixCommands.html" title="previous page">Basic Commands in the Unix Shell</a>
+    <a class='right-next' id="next-link" href="14-FileFormats.html" title="next page">File Formats</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

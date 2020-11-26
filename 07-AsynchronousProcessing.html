@@ -155,23 +155,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-PySpark.html">
-   PySpark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-UnixCommands.html">
+  <a class="reference internal" href="12-UnixCommands.html">
    Basic Commands in the Unix Shell
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-Hadoop.html">
+  <a class="reference internal" href="13-Hadoop.html">
    Hadoop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/07-AsynchronousProcessing.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/07-AsynchronousProcessing.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/07-AsynchronousProcessing.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -260,7 +257,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F07-AsynchronousProcessing.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/07-AsynchronousProcessing.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/07-AsynchronousProcessing.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/07-AsynchronousProcessing.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/07-AsynchronousProcessing.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/07-AsynchronousProcessing.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -319,60 +321,60 @@
   <a class="reference internal nav-link" href="#exercise-7-1">
    Exercise 7.1
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extract-daily-stock-data-from-google">
-   Extract daily stock data from google
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files">
-   Convert data to pandas DataFrames and save it in hdf5 files
-  </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-daily-stock-data-from-google">
+     Extract daily stock data from google
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files">
+     Convert data to pandas DataFrames and save it in hdf5 files
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sequential-version">
      Sequential version
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-7-2">
+   Exercise 7.2
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-7-2">
-     Exercise 7.2
+    <a class="reference internal nav-link" href="#read-files-and-load-dataframes">
+     Read files and load dataframes.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application">
+     Application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysis">
+     Analysis
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-files-and-load-dataframes">
-   Read files and load dataframes.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application">
-   Application
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analysis">
-   Analysis
+  <a class="reference internal nav-link" href="#exercise-7-3">
+   Exercise 7.3
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercise-7-3">
-     Exercise 7.3
+    <a class="reference internal nav-link" href="#threads">
+     Threads
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#threads">
-       Threads
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#processes">
-       Processes
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#processes">
+     Processes
+    </a>
    </li>
   </ul>
  </li>
@@ -416,21 +418,28 @@ which does not return until the results are available.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.16 ms, sys: 1.34 ms, total: 4.5 ms
+Wall time: 1 s
+</pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
-
-<span class="n">e</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">()</span>
-<span class="n">future</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">slowadd</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">future</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">future</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">slowadd</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
@@ -447,6 +456,13 @@ which does not return until the results are available.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14]
+CPU times: user 1.66 ms, sys: 2.47 ms, total: 4.14 ms
+Wall time: 8.01 s
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -455,6 +471,13 @@ which does not return until the results are available.</p>
 <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">slowadd</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
 <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">futures</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14]
+CPU times: user 6.32 ms, sys: 5.09 ms, total: 11.4 ms
+Wall time: 1.02 s
 </pre></div>
 </div>
 </div>
@@ -474,9 +497,15 @@ which does not return until the results are available.</p>
 <li><p>Replace calls to <code class="docutils literal notranslate"><span class="pre">slowadd</span></code> and <code class="docutils literal notranslate"><span class="pre">slowsub</span></code> with <code class="docutils literal notranslate"><span class="pre">e.submit</span></code> calls on those functions</p></li>
 <li><p>At the end, block on the computation by recreating the <code class="docutils literal notranslate"><span class="pre">results</span></code> list by calling <code class="docutils literal notranslate"><span class="pre">.result()</span></code> on each future in the <code class="docutils literal notranslate"><span class="pre">futures</span></code> list.</p></li>
 </ol>
-</div>
 <div class="section" id="extract-daily-stock-data-from-google">
-<h2>Extract daily stock data from google<a class="headerlink" href="#extract-daily-stock-data-from-google" title="Permalink to this headline">¶</a></h2>
+<h3>Extract daily stock data from google<a class="headerlink" href="#extract-daily-stock-data-from-google" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!rm -rf data/daily-stock
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># library to get directory and file paths</span>
@@ -494,10 +523,15 @@ which does not return until the results are available.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data...
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files">
-<h2>Convert data to pandas DataFrames and save it in hdf5 files<a class="headerlink" href="#convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files" title="Permalink to this headline">¶</a></h2>
+<h3>Convert data to pandas DataFrames and save it in hdf5 files<a class="headerlink" href="#convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://portal.hdfgroup.org/display/support">HDF5</a> is a data model, library, and file format for storing and managing data. This format is widely used and is supported by many languages and platforms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -512,19 +546,51 @@ which does not return until the results are available.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/jovyan/work/data/daily-stock/aet.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/afl.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/aig.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/al.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/amgn.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/avy.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/b.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/bwa.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/ge.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hal.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hp.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hpq.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/ibm.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/jbl.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/jpm.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/luv.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/met.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/pcg.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/tgt.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/usb.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/xom.json&#39;]
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="sequential-version">
 <h3>Sequential version<a class="headerlink" href="#sequential-version" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!rm -f data/daily-stock/*.h5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
-<span class="o">%</span><span class="n">rm</span> <span class="n">data</span><span class="o">/</span><span class="n">daily</span><span class="o">-</span><span class="n">stock</span><span class="o">/*.</span><span class="n">h5</span>
 
-<span class="k">def</span> <span class="nf">load_parse_store</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
     
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span> <span class="c1"># load </span>
@@ -533,27 +599,90 @@ which does not return until the results are available.</p>
     
     <span class="n">out_filename</span> <span class="o">=</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.h5&#39;</span>
     <span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="n">out_filename</span><span class="p">,</span> <span class="s1">&#39;/data&#39;</span><span class="p">)</span> <span class="c1"># store</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">out_filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 21/21 [00:28&lt;00:00,  1.35s/it]CPU times: user 21.2 s, sys: 6.15 s, total: 27.3 s
+Wall time: 28.3 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!rm -f data/daily-stock/*.h5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span>
+
+<span class="n">here</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">datadir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="s1">&#39;daily-stock&#39;</span><span class="p">)</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span> <span class="s1">&#39;*.json&#39;</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">load_parse_store</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span> <span class="c1"># load </span>
+        
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># parse </span>
+    <span class="n">out_filename</span> <span class="o">=</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.h5&#39;</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="n">out_filename</span><span class="p">,</span> <span class="s1">&#39;/data&#39;</span><span class="p">)</span> <span class="c1"># store</span>
     
     <span class="k">return</span> <span class="kc">True</span>
 
-    
-<span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">load_parse_store</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span> 
+
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span><span class="n">pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">load_parse_store</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">futures</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 23.5 s, sys: 4.17 s, total: 27.7 s
+Wall time: 28.3 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!ls data/daily-stock/*.h5
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5   data/daily-stock/bwa.h5  data/daily-stock/jpm.h5
+data/daily-stock/afl.h5   data/daily-stock/ge.h5   data/daily-stock/luv.h5
+data/daily-stock/aig.h5   data/daily-stock/hal.h5  data/daily-stock/met.h5
+data/daily-stock/al.h5	  data/daily-stock/hp.h5   data/daily-stock/pcg.h5
+data/daily-stock/amgn.h5  data/daily-stock/hpq.h5  data/daily-stock/tgt.h5
+data/daily-stock/avy.h5   data/daily-stock/ibm.h5  data/daily-stock/usb.h5
+data/daily-stock/b.h5	  data/daily-stock/jbl.h5  data/daily-stock/xom.h5
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="exercise-7-2">
-<h3>Exercise 7.2<a class="headerlink" href="#exercise-7-2" title="Permalink to this headline">¶</a></h3>
+<h2>Exercise 7.2<a class="headerlink" href="#exercise-7-2" title="Permalink to this headline">¶</a></h2>
 <p>Parallelize the loop above using <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code> and <code class="docutils literal notranslate"><span class="pre">map</span></code>.</p>
-</div>
-</div>
 <div class="section" id="read-files-and-load-dataframes">
-<h2>Read files and load dataframes.<a class="headerlink" href="#read-files-and-load-dataframes" title="Permalink to this headline">¶</a></h2>
+<h3>Read files and load dataframes.<a class="headerlink" href="#read-files-and-load-dataframes" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;daily-stock&#39;</span><span class="p">,</span> <span class="s1">&#39;*.h5&#39;</span><span class="p">)))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;daily-stock&#39;</span><span class="p">,</span> <span class="s1">&#39;*.h5&#39;</span><span class="p">)))</span>
 <span class="n">series</span> <span class="o">=</span><span class="p">{}</span>
 <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
     <span class="n">series</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="n">fn</span><span class="p">)[</span><span class="s1">&#39;close&#39;</span><span class="p">]</span>
@@ -563,21 +692,38 @@ which does not return until the results are available.</p>
 </div>
 </div>
 <div class="section" id="application">
-<h2>Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
+<h3>Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h3>
 <p>Given our HDF5 files from the last section we want to find the two datasets with the greatest pair-wise correlation.  This forces us to consider all <span class="math notranslate nohighlight">\(n\times(n-1)\)</span> possibilities.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span> <span class="k">as</span> <span class="n">PoolExecutor</span>
+<span class="c1">#from concurrent.futures import ProcessPoolExecutor as PoolExecutor</span>
+
 
 <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
-            <span class="n">results</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">series</span><span class="p">[</span><span class="n">b</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">corr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">PoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
+                <span class="n">futures</span><span class="p">[(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)]</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">series</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">series</span><span class="p">[</span><span class="n">b</span><span class="p">])</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span> <span class="n">k</span><span class="p">:</span><span class="n">v</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">futures</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
             
 <span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">corr</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> matches with </span><span class="si">%s</span><span class="s2"> with correlation </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">corr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5 matches with data/daily-stock/luv.h5 with correlation 0.941318
+CPU times: user 1.14 s, sys: 87.2 ms, total: 1.23 s
+Wall time: 834 ms
 </pre></div>
 </div>
 </div>
@@ -594,10 +740,13 @@ which does not return until the results are available.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/07-AsynchronousProcessing_26_0.png" src="_images/07-AsynchronousProcessing_26_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="analysis">
-<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
+<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h3>
 <p>This computation starts out by loading data from disk. We already know how to parallelize it:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">series</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
@@ -617,21 +766,23 @@ which does not return until the results are available.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">corr</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+</div>
 <div class="section" id="exercise-7-3">
-<h3>Exercise 7.3<a class="headerlink" href="#exercise-7-3" title="Permalink to this headline">¶</a></h3>
+<h2>Exercise 7.3<a class="headerlink" href="#exercise-7-3" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Parallelize pair-wise correlations with <code class="docutils literal notranslate"><span class="pre">e.submit</span></code></p></li>
 <li><p>Implement two versions one using Processes, another with Threads by replacing <code class="docutils literal notranslate"><span class="pre">e</span></code> with a ProcessPoolExecutor:</p></li>
 </ul>
 <div class="section" id="threads">
-<h4>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h4>
+<h3>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="processes">
-<h4>Processes<a class="headerlink" href="#processes" title="Permalink to this headline">¶</a></h4>
+<h3>Processes<a class="headerlink" href="#processes" title="Permalink to this headline">¶</a></h3>
 <p>Be careful, a <code class="docutils literal notranslate"><span class="pre">ProcessPoolExecutor</span></code> does not run in the jupyter notebook cell.
 You must run your file in a terminal.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
@@ -641,7 +792,6 @@ You must run your file in a terminal.</p>
 <ul class="simple">
 <li><p>How does performance vary?</p></li>
 </ul>
-</div>
 </div>
 </div>
 <div class="section" id="some-conclusions-about-futures">

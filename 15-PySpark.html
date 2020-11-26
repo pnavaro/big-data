@@ -55,18 +55,18 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://pnavaro.github.io/big-data/12-PySpark.html" />
+    <link rel="canonical" href="https://pnavaro.github.io/big-data/15-PySpark.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Basic Commands in the Unix Shell" href="13-UnixCommands.html" />
-    <link rel="prev" title="Pandas Dataframes" href="11-PandaDataframes.html" />
+    <link rel="next" title="Dask Dataframes" href="16-DaskDataframes.html" />
+    <link rel="prev" title="File Formats" href="14-FileFormats.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
-<meta property="og:url"         content="https://pnavaro.github.io/big-data/12-PySpark.html" />
+<meta property="og:url"         content="https://pnavaro.github.io/big-data/15-PySpark.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="PySpark" />
 <meta property="og:description" content="PySpark  Logo  Apache Spark was first released in 2014.  It was originally developed by Matei Zaharia as a class project, and later a PhD dissertation, at Unive" />
@@ -154,24 +154,24 @@
    Pandas Dataframes
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   PySpark
-  </a>
- </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="13-UnixCommands.html">
+  <a class="reference internal" href="12-UnixCommands.html">
    Basic Commands in the Unix Shell
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-Hadoop.html">
+  <a class="reference internal" href="13-Hadoop.html">
    Hadoop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/12-PySpark.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/12-PySpark.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/15-PySpark.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -257,10 +254,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F12-PySpark.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F15-PySpark.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/12-PySpark.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/15-PySpark.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/12-PySpark.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/15-PySpark.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/15-PySpark.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -610,30 +612,22 @@
 <h2>First example<a class="headerlink" href="#first-example" title="Permalink to this headline">¶</a></h2>
 <p>PySpark isn’t on sys.path by default, but that doesn’t mean it can’t be used as a regular library. You can address this by either symlinking pyspark into your site-packages, or adding pyspark to sys.path at runtime. <a class="reference external" href="https://github.com/minrk/findspark">findspark</a> does the latter.</p>
 <p>We have a spark context sc to use with a tiny local spark cluster with 4 nodes (will work just fine on a multicore machine).</p>
-<p>If you use the workstation in room A111 run the code below before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">findspark</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;JAVA_HOME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/usr/lib/jvm/java-8-openjdk-amd64&quot;</span><span class="p">,</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPARK_HOME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/home/work/spark-3.1.0-bin-hadoop2.7&quot;</span>
-
-<span class="n">findspark</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/opt/venv/bin/python&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPARK_HOME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/opt/spark-3.0.1-bin-hadoop2.7&quot;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYSPARK_PYTHON&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span>
 </pre></div>
 </div>
@@ -655,15 +649,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SparkContext master=local[*] appName=FirstExample&gt;
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="create-your-first-rdd">
 <h2>Create your first RDD<a class="headerlink" href="#create-your-first-rdd" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span> <span class="c1"># create collection</span>
-
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># create collection</span>
 <span class="n">rdd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ParallelCollectionRDD[0] at readRDDFromFile at PythonRDD.scala:262
 </pre></div>
 </div>
 </div>
@@ -673,10 +677,12 @@
 <p>Create a file <code class="docutils literal notranslate"><span class="pre">sample.txt</span></code>with lorem package. Read and load it into a RDD with the <code class="docutils literal notranslate"><span class="pre">textFile</span></code> spark function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lorem</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">faker</span> <span class="kn">import</span> <span class="n">Faker</span>
+<span class="n">fake</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+<span class="n">Faker</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">lorem</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">max_nb_chars</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
     
 <span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">)</span>
 </pre></div>
@@ -703,6 +709,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span>
 <span class="n">rdd</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span> <span class="c1"># Square each element</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 9, 16, 25, 36, 49]
 </pre></div>
 </div>
 </div>
@@ -734,6 +745,11 @@ Source: http://i.imgur.com/GFyji4U.png</p>
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">rdd</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">42</span><span class="p">))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 100, 42, 2, 200, 42, 3, 300, 42]
 </pre></div>
 </div>
 </div>
@@ -1069,7 +1085,7 @@ You can check your result with numpy</p>
 <h3>Exercise 9.4 Fasta file example<a class="headerlink" href="#exercise-9-4-fasta-file-example" title="Permalink to this headline">¶</a></h3>
 <p>Use a RDD to calculate the GC content of fasta file nucleotide-sample.txt:</p>
 <div class="math notranslate nohighlight">
-\[\cfrac{G+C}{A+T+G+C}\times100 \% \]</div>
+\[\frac{G+C}{A+T+G+C}\times100 \% \]</div>
 <p>Create a rdd from fasta file genome.txt in data directory and count ‘G’ and ‘C’ then divide by the total number of bases.</p>
 </div>
 <div class="section" id="another-example">
@@ -1107,8 +1123,8 @@ You can check your result with numpy</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="11-PandaDataframes.html" title="previous page">Pandas Dataframes</a>
-    <a class='right-next' id="next-link" href="13-UnixCommands.html" title="next page">Basic Commands in the Unix Shell</a>
+    <a class='left-prev' id="prev-link" href="14-FileFormats.html" title="previous page">File Formats</a>
+    <a class='right-next' id="next-link" href="16-DaskDataframes.html" title="next page">Dask Dataframes</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

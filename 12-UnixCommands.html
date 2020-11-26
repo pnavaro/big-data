@@ -55,18 +55,18 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://pnavaro.github.io/big-data/13-UnixCommands.html" />
+    <link rel="canonical" href="https://pnavaro.github.io/big-data/12-UnixCommands.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Hadoop" href="14-Hadoop.html" />
-    <link rel="prev" title="PySpark" href="12-PySpark.html" />
+    <link rel="next" title="Hadoop" href="13-Hadoop.html" />
+    <link rel="prev" title="Pandas Dataframes" href="11-PandaDataframes.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
 
 
 <!-- Opengraph tags -->
-<meta property="og:url"         content="https://pnavaro.github.io/big-data/13-UnixCommands.html" />
+<meta property="og:url"         content="https://pnavaro.github.io/big-data/12-UnixCommands.html" />
 <meta property="og:type"        content="article" />
 <meta property="og:title"       content="Basic Commands in the Unix Shell" />
 <meta property="og:description" content="Basic Commands in the Unix Shell  Unix Shell  The shell is a command programming language that provides an interface to the UNIX operating system. Documentation" />
@@ -154,24 +154,24 @@
    Pandas Dataframes
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="12-PySpark.html">
-   PySpark
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Basic Commands in the Unix Shell
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-Hadoop.html">
+  <a class="reference internal" href="13-Hadoop.html">
    Hadoop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/13-UnixCommands.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/13-UnixCommands.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/12-UnixCommands.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -257,10 +254,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F13-UnixCommands.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F12-UnixCommands.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/13-UnixCommands.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/12-UnixCommands.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/13-UnixCommands.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/12-UnixCommands.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/12-UnixCommands.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -941,6 +943,45 @@ ls -l
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!cat sample.txt | tr [:upper:] [:lower:] | tr -d &quot;.&quot; | fmt -1 | sort | uniq -c | sort -r
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      9 quisquam
+      9 porro
+      9 labore
+      9 eius
+      8 velit
+      8 tempora
+      8 sed
+      8 non
+      8 neque
+      8 dolorem
+      8 amet
+      8 adipisci
+      7 numquam
+      7 modi
+      7 magnam
+      7 dolor
+      6 etincidunt
+      6 consectetur
+      4 aliquam
+      4 
+     16 ipsum
+     15 voluptatem
+     14 dolore
+     10 ut
+     10 sit
+     10 quiquia
+     10 quaerat
+     10 est
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="exercice-11-3">
 <h3>Exercice 11.3<a class="headerlink" href="#exercice-11-3" title="Permalink to this headline">¶</a></h3>
@@ -953,11 +994,208 @@ quiquia	1
 sit	1
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">mapper</span><span class="o">.</span><span class="n">py</span>
+<span class="c1">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">string</span>
+<span class="n">translator</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+<span class="c1"># input comes from standard input</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="c1"># remove leading and trailing whitespace</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span>   <span class="c1"># strip punctuation</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="c1"># split the line into words</span>
+    <span class="c1"># increase counters</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="c1"># write the results to standard output;</span>
+        <span class="c1"># what we output here will be the input for the</span>
+        <span class="c1"># Reduce step, i.e. the input for reducer.py</span>
+        <span class="c1"># tab-delimited; the trivial word count is 1</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mapper.py
+</pre></div>
+</div>
+</div>
+</div>
 <p>File <code class="docutils literal notranslate"><span class="pre">mapper.py</span></code> must be executable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%bash</span>
-<span class="c1"># chmod +x mapper.py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!chmod +x mapper.py
+!./mapper.py &lt; sample.txt | sort 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adipisci	1
+adipisci	1
+adipisci	1
+adipisci	1
+adipisci	1
+adipisci	1
+aliquam	1
+aliquam	1
+aliquam	1
+aliquam	1
+amet	1
+amet	1
+amet	1
+amet	1
+amet	1
+amet	1
+consectetur	1
+consectetur	1
+consectetur	1
+consectetur	1
+consectetur	1
+consectetur	1
+consectetur	1
+dolor	1
+dolor	1
+dolor	1
+dolor	1
+dolor	1
+dolor	1
+dolor	1
+dolore	1
+dolore	1
+dolore	1
+dolore	1
+dolore	1
+dolore	1
+dolore	1
+dolore	1
+dolorem	1
+dolorem	1
+dolorem	1
+dolorem	1
+dolorem	1
+dolorem	1
+eius	1
+eius	1
+eius	1
+eius	1
+est	1
+est	1
+est	1
+est	1
+est	1
+est	1
+etincidunt	1
+etincidunt	1
+etincidunt	1
+etincidunt	1
+etincidunt	1
+etincidunt	1
+etincidunt	1
+etincidunt	1
+etincidunt	1
+etincidunt	1
+ipsum	1
+ipsum	1
+ipsum	1
+labore	1
+labore	1
+labore	1
+labore	1
+labore	1
+labore	1
+labore	1
+labore	1
+labore	1
+labore	1
+labore	1
+magnam	1
+magnam	1
+magnam	1
+magnam	1
+magnam	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+modi	1
+neque	1
+neque	1
+neque	1
+neque	1
+non	1
+non	1
+non	1
+numquam	1
+numquam	1
+numquam	1
+numquam	1
+numquam	1
+numquam	1
+numquam	1
+porro	1
+porro	1
+porro	1
+porro	1
+porro	1
+porro	1
+quaerat	1
+quaerat	1
+quaerat	1
+quiquia	1
+quiquia	1
+quiquia	1
+quiquia	1
+quiquia	1
+quiquia	1
+quisquam	1
+quisquam	1
+quisquam	1
+quisquam	1
+quisquam	1
+sed	1
+sed	1
+sed	1
+sed	1
+sed	1
+sed	1
+sed	1
+sit	1
+sit	1
+sit	1
+sit	1
+sit	1
+sit	1
+tempora	1
+tempora	1
+tempora	1
+ut	1
+ut	1
+ut	1
+ut	1
+ut	1
+ut	1
+ut	1
+velit	1
+velit	1
+velit	1
+velit	1
+velit	1
+velit	1
+velit	1
+voluptatem	1
+voluptatem	1
+voluptatem	1
+voluptatem	1
+voluptatem	1
+voluptatem	1
 </pre></div>
 </div>
 </div>
@@ -979,8 +1217,92 @@ sit	1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%bash</span>
-<span class="c1"># chmod +x ./reducer.py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">reducer</span><span class="o">.</span><span class="n">py</span>
+<span class="c1">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">current_word</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">current_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">word</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
+    
+    <span class="c1"># parse the input we got from mapper.py</span>
+    <span class="n">word</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># convert count (currently a string) to int</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="c1"># count was not a number, so silently</span>
+        <span class="c1"># ignore/discard this line</span>
+        <span class="k">continue</span>
+
+    <span class="c1"># this IF-switch only works because Hadoop sorts map output</span>
+    <span class="c1"># by key (here: word) before it is passed to the reducer</span>
+    <span class="k">if</span> <span class="n">current_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
+        <span class="n">current_count</span> <span class="o">+=</span> <span class="n">count</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current_word</span><span class="p">:</span>
+            <span class="c1"># write result to sys.stdout</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">current_count</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">current_word</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">current_count</span> <span class="o">=</span> <span class="n">count</span>
+        <span class="n">current_word</span> <span class="o">=</span> <span class="n">word</span>
+
+<span class="c1"># do not forget to output the last word if needed!</span>
+<span class="k">if</span> <span class="n">current_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">current_count</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">current_word</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing reducer.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!chmod +x ./reducer.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!cat sample.txt | ./mapper.py | sort | ./reducer.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8	adipisci
+4	aliquam
+8	amet
+6	consectetur
+7	dolor
+14	dolore
+8	dolorem
+9	eius
+10	est
+6	etincidunt
+16	ipsum
+9	labore
+7	magnam
+7	modi
+8	neque
+8	non
+7	numquam
+9	porro
+10	quaerat
+10	quiquia
+9	quisquam
+8	sed
+10	sit
+8	tempora
+10	ut
+8	velit
+15	voluptatem
 </pre></div>
 </div>
 </div>
@@ -1017,8 +1339,8 @@ sit	1
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="12-PySpark.html" title="previous page">PySpark</a>
-    <a class='right-next' id="next-link" href="14-Hadoop.html" title="next page">Hadoop</a>
+    <a class='left-prev' id="prev-link" href="11-PandaDataframes.html" title="previous page">Pandas Dataframes</a>
+    <a class='right-next' id="next-link" href="13-Hadoop.html" title="next page">Hadoop</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

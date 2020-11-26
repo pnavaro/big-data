@@ -155,23 +155,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-PySpark.html">
-   PySpark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-UnixCommands.html">
+  <a class="reference internal" href="12-UnixCommands.html">
    Basic Commands in the Unix Shell
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-Hadoop.html">
+  <a class="reference internal" href="13-Hadoop.html">
    Hadoop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/01-GitBasics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/01-GitBasics.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/01-GitBasics.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -260,7 +257,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F01-GitBasics.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/01-GitBasics.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/01-GitBasics.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/01-GitBasics.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/01-GitBasics.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/01-GitBasics.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -718,18 +720,18 @@ nothing to commit, working tree clean
 <p>Ref : <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">New ssh key on GitHub</a></p>
 <p>Open Terminal or Git bash.</p>
 <p>Paste the text below, substituting in your GitHub email address.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span> -N <span class="s2">&quot;&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
 </pre></div>
 </div>
 <p>This creates a new ssh key, using the provided email as a label.</p>
 <p>When you’re prompted to “Enter a file in which to save the key,” press Enter. This accepts the default file location. Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
 At the prompt, let it empty for no passphrase.</p>
-<p>This creates 2 files, the private key: <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>, and the public key <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>. Copy the SSH key to your clipboard.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pbcopy &lt; ~/.ssh/id_rsa.pub
+<p>This creates 2 files, the private key: <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>, and the public key <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>. Display and copy the SSH key to your clipboard.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat ~/.ssh/id_rsa.pub
 </pre></div>
 </div>
 <p>In the upper-right corner of any page, click your profile photo, then click <code class="docutils literal notranslate"><span class="pre">Settings</span></code>.
-In the user settings sidebar, click <code class="docutils literal notranslate"><span class="pre">SSH</span> <span class="pre">and</span> <span class="pre">GPG</span> <span class="pre">keys</span></code>.  Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">key</span></code> or <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code> and paste the key.</p>
+In the user settings sidebar, click <code class="docutils literal notranslate"><span class="pre">SSH</span> <span class="pre">and</span> <span class="pre">GPG</span> <span class="pre">keys</span></code>.  Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">key</span></code> or <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">SSH</span> <span class="pre">key</span></code>.</p>
 </div>
 </div>
 <div class="section" id="github-repository">
@@ -904,6 +906,10 @@ To github.com:your_login/your_login.github.io.git
 </div>
 <div class="section" id="clone-the-remote-repository">
 <h2>Clone the remote repository<a class="headerlink" href="#clone-the-remote-repository" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone ssh://svmass2/git/atelier_git.git
+</pre></div>
+</div>
+<p>or</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:MMASSD/atelier_git.git
 </pre></div>
 </div>

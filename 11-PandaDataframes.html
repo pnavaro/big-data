@@ -58,7 +58,7 @@
     <link rel="canonical" href="https://pnavaro.github.io/big-data/11-PandaDataframes.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="PySpark" href="12-PySpark.html" />
+    <link rel="next" title="Basic Commands in the Unix Shell" href="12-UnixCommands.html" />
     <link rel="prev" title="Pandas Series" href="10-PandasSeries.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -155,23 +155,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-PySpark.html">
-   PySpark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-UnixCommands.html">
+  <a class="reference internal" href="12-UnixCommands.html">
    Basic Commands in the Unix Shell
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-Hadoop.html">
+  <a class="reference internal" href="13-Hadoop.html">
    Hadoop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/11-PandaDataframes.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/11-PandaDataframes.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/11-PandaDataframes.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -260,7 +257,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F11-PandaDataframes.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/11-PandaDataframes.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/11-PandaDataframes.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/11-PandaDataframes.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/11-PandaDataframes.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/11-PandaDataframes.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -440,6 +442,77 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>2.600151</td>
+      <td>0.132765</td>
+      <td>1.707829</td>
+      <td>-0.295911</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-2.798453</td>
+      <td>1.746394</td>
+      <td>-0.352617</td>
+      <td>0.418689</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-0.358990</td>
+      <td>-1.091402</td>
+      <td>-0.343609</td>
+      <td>0.781971</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.050239</td>
+      <td>0.183915</td>
+      <td>0.527889</td>
+      <td>-0.689375</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>1.106096</td>
+      <td>-1.017711</td>
+      <td>0.385552</td>
+      <td>-0.405261</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>-0.422660</td>
+      <td>0.877695</td>
+      <td>-0.643301</td>
+      <td>-0.884874</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -452,6 +525,73 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="load-data-from-csv-file">
@@ -464,6 +604,229 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Janv</th>
+      <th>Févr</th>
+      <th>Mars</th>
+      <th>Avri</th>
+      <th>Mai</th>
+      <th>Juin</th>
+      <th>juil</th>
+      <th>Août</th>
+      <th>Sept</th>
+      <th>Octo</th>
+      <th>Nove</th>
+      <th>Déce</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Moye</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bordeaux</th>
+      <td>5.6</td>
+      <td>6.6</td>
+      <td>10.3</td>
+      <td>12.8</td>
+      <td>15.8</td>
+      <td>19.3</td>
+      <td>20.9</td>
+      <td>21.0</td>
+      <td>18.6</td>
+      <td>13.8</td>
+      <td>9.1</td>
+      <td>6.2</td>
+      <td>44.50</td>
+      <td>-0.34</td>
+      <td>13.33</td>
+      <td>15.4</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Clermont</th>
+      <td>2.6</td>
+      <td>3.7</td>
+      <td>7.5</td>
+      <td>10.3</td>
+      <td>13.8</td>
+      <td>17.3</td>
+      <td>19.4</td>
+      <td>19.1</td>
+      <td>16.2</td>
+      <td>11.2</td>
+      <td>6.6</td>
+      <td>3.6</td>
+      <td>45.47</td>
+      <td>3.05</td>
+      <td>10.94</td>
+      <td>16.8</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Grenoble</th>
+      <td>1.5</td>
+      <td>3.2</td>
+      <td>7.7</td>
+      <td>10.6</td>
+      <td>14.5</td>
+      <td>17.8</td>
+      <td>20.1</td>
+      <td>19.5</td>
+      <td>16.7</td>
+      <td>11.4</td>
+      <td>6.5</td>
+      <td>2.3</td>
+      <td>45.10</td>
+      <td>5.43</td>
+      <td>10.98</td>
+      <td>18.6</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Rennes</th>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>7.9</td>
+      <td>10.1</td>
+      <td>13.1</td>
+      <td>16.2</td>
+      <td>17.9</td>
+      <td>17.8</td>
+      <td>15.7</td>
+      <td>11.6</td>
+      <td>7.8</td>
+      <td>5.4</td>
+      <td>48.05</td>
+      <td>-1.41</td>
+      <td>11.13</td>
+      <td>13.1</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Strasbourg</th>
+      <td>0.4</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>9.8</td>
+      <td>14.0</td>
+      <td>17.2</td>
+      <td>19.0</td>
+      <td>18.3</td>
+      <td>15.1</td>
+      <td>9.5</td>
+      <td>4.9</td>
+      <td>1.3</td>
+      <td>48.35</td>
+      <td>7.45</td>
+      <td>9.72</td>
+      <td>18.6</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Toulouse</th>
+      <td>4.7</td>
+      <td>5.6</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.9</td>
+      <td>18.7</td>
+      <td>20.9</td>
+      <td>20.9</td>
+      <td>18.3</td>
+      <td>13.3</td>
+      <td>8.6</td>
+      <td>5.5</td>
+      <td>43.36</td>
+      <td>1.26</td>
+      <td>12.68</td>
+      <td>16.2</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Vichy</th>
+      <td>2.4</td>
+      <td>3.4</td>
+      <td>7.1</td>
+      <td>9.9</td>
+      <td>13.6</td>
+      <td>17.1</td>
+      <td>19.3</td>
+      <td>18.8</td>
+      <td>16.0</td>
+      <td>11.0</td>
+      <td>6.6</td>
+      <td>3.4</td>
+      <td>46.08</td>
+      <td>3.26</td>
+      <td>10.72</td>
+      <td>16.9</td>
+      <td>SE</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 17 columns</p>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="viewing-data">
@@ -474,6 +837,148 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Janv</th>
+      <th>Févr</th>
+      <th>Mars</th>
+      <th>Avri</th>
+      <th>Mai</th>
+      <th>Juin</th>
+      <th>juil</th>
+      <th>Août</th>
+      <th>Sept</th>
+      <th>Octo</th>
+      <th>Nove</th>
+      <th>Déce</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Moye</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bordeaux</th>
+      <td>5.6</td>
+      <td>6.6</td>
+      <td>10.3</td>
+      <td>12.8</td>
+      <td>15.8</td>
+      <td>19.3</td>
+      <td>20.9</td>
+      <td>21.0</td>
+      <td>18.6</td>
+      <td>13.8</td>
+      <td>9.1</td>
+      <td>6.2</td>
+      <td>44.50</td>
+      <td>-0.34</td>
+      <td>13.33</td>
+      <td>15.4</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Clermont</th>
+      <td>2.6</td>
+      <td>3.7</td>
+      <td>7.5</td>
+      <td>10.3</td>
+      <td>13.8</td>
+      <td>17.3</td>
+      <td>19.4</td>
+      <td>19.1</td>
+      <td>16.2</td>
+      <td>11.2</td>
+      <td>6.6</td>
+      <td>3.6</td>
+      <td>45.47</td>
+      <td>3.05</td>
+      <td>10.94</td>
+      <td>16.8</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Grenoble</th>
+      <td>1.5</td>
+      <td>3.2</td>
+      <td>7.7</td>
+      <td>10.6</td>
+      <td>14.5</td>
+      <td>17.8</td>
+      <td>20.1</td>
+      <td>19.5</td>
+      <td>16.7</td>
+      <td>11.4</td>
+      <td>6.5</td>
+      <td>2.3</td>
+      <td>45.10</td>
+      <td>5.43</td>
+      <td>10.98</td>
+      <td>18.6</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Lille</th>
+      <td>2.4</td>
+      <td>2.9</td>
+      <td>6.0</td>
+      <td>8.9</td>
+      <td>12.4</td>
+      <td>15.3</td>
+      <td>17.1</td>
+      <td>17.1</td>
+      <td>14.7</td>
+      <td>10.4</td>
+      <td>6.1</td>
+      <td>3.5</td>
+      <td>50.38</td>
+      <td>3.04</td>
+      <td>9.73</td>
+      <td>14.7</td>
+      <td>NE</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -481,6 +986,148 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Janv</th>
+      <th>Févr</th>
+      <th>Mars</th>
+      <th>Avri</th>
+      <th>Mai</th>
+      <th>Juin</th>
+      <th>juil</th>
+      <th>Août</th>
+      <th>Sept</th>
+      <th>Octo</th>
+      <th>Nove</th>
+      <th>Déce</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Moye</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Paris</th>
+      <td>3.4</td>
+      <td>4.1</td>
+      <td>7.6</td>
+      <td>10.7</td>
+      <td>14.3</td>
+      <td>17.5</td>
+      <td>19.1</td>
+      <td>18.7</td>
+      <td>16.0</td>
+      <td>11.4</td>
+      <td>7.1</td>
+      <td>4.3</td>
+      <td>48.52</td>
+      <td>2.20</td>
+      <td>11.18</td>
+      <td>15.7</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Rennes</th>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>7.9</td>
+      <td>10.1</td>
+      <td>13.1</td>
+      <td>16.2</td>
+      <td>17.9</td>
+      <td>17.8</td>
+      <td>15.7</td>
+      <td>11.6</td>
+      <td>7.8</td>
+      <td>5.4</td>
+      <td>48.05</td>
+      <td>-1.41</td>
+      <td>11.13</td>
+      <td>13.1</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Strasbourg</th>
+      <td>0.4</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>9.8</td>
+      <td>14.0</td>
+      <td>17.2</td>
+      <td>19.0</td>
+      <td>18.3</td>
+      <td>15.1</td>
+      <td>9.5</td>
+      <td>4.9</td>
+      <td>1.3</td>
+      <td>48.35</td>
+      <td>7.45</td>
+      <td>9.72</td>
+      <td>18.6</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Toulouse</th>
+      <td>4.7</td>
+      <td>5.6</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.9</td>
+      <td>18.7</td>
+      <td>20.9</td>
+      <td>20.9</td>
+      <td>18.3</td>
+      <td>13.3</td>
+      <td>8.6</td>
+      <td>5.5</td>
+      <td>43.36</td>
+      <td>1.26</td>
+      <td>12.68</td>
+      <td>16.2</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Vichy</th>
+      <td>2.4</td>
+      <td>3.4</td>
+      <td>7.1</td>
+      <td>9.9</td>
+      <td>13.6</td>
+      <td>17.1</td>
+      <td>19.3</td>
+      <td>18.8</td>
+      <td>16.0</td>
+      <td>11.0</td>
+      <td>6.6</td>
+      <td>3.4</td>
+      <td>46.08</td>
+      <td>3.26</td>
+      <td>10.72</td>
+      <td>16.9</td>
+      <td>SE</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="index">
@@ -488,6 +1135,14 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Bordeaux&#39;, &#39;Brest&#39;, &#39;Clermont&#39;, &#39;Grenoble&#39;, &#39;Lille&#39;, &#39;Lyon&#39;,
+       &#39;Marseille&#39;, &#39;Montpellier&#39;, &#39;Nantes&#39;, &#39;Nice&#39;, &#39;Paris&#39;, &#39;Rennes&#39;,
+       &#39;Strasbourg&#39;, &#39;Toulouse&#39;, &#39;Vichy&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -500,6 +1155,436 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Janv</th>
+      <th>Févr</th>
+      <th>Mars</th>
+      <th>Avri</th>
+      <th>Mai</th>
+      <th>Juin</th>
+      <th>juil</th>
+      <th>Août</th>
+      <th>Sept</th>
+      <th>Octo</th>
+      <th>Nove</th>
+      <th>Déce</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Moye</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bordeaux</th>
+      <td>5.6</td>
+      <td>6.6</td>
+      <td>10.3</td>
+      <td>12.8</td>
+      <td>15.8</td>
+      <td>19.3</td>
+      <td>20.9</td>
+      <td>21.0</td>
+      <td>18.6</td>
+      <td>13.8</td>
+      <td>9.1</td>
+      <td>6.2</td>
+      <td>44.50</td>
+      <td>-0.34</td>
+      <td>13.33</td>
+      <td>15.4</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Clermont</th>
+      <td>2.6</td>
+      <td>3.7</td>
+      <td>7.5</td>
+      <td>10.3</td>
+      <td>13.8</td>
+      <td>17.3</td>
+      <td>19.4</td>
+      <td>19.1</td>
+      <td>16.2</td>
+      <td>11.2</td>
+      <td>6.6</td>
+      <td>3.6</td>
+      <td>45.47</td>
+      <td>3.05</td>
+      <td>10.94</td>
+      <td>16.8</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Grenoble</th>
+      <td>1.5</td>
+      <td>3.2</td>
+      <td>7.7</td>
+      <td>10.6</td>
+      <td>14.5</td>
+      <td>17.8</td>
+      <td>20.1</td>
+      <td>19.5</td>
+      <td>16.7</td>
+      <td>11.4</td>
+      <td>6.5</td>
+      <td>2.3</td>
+      <td>45.10</td>
+      <td>5.43</td>
+      <td>10.98</td>
+      <td>18.6</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Lille</th>
+      <td>2.4</td>
+      <td>2.9</td>
+      <td>6.0</td>
+      <td>8.9</td>
+      <td>12.4</td>
+      <td>15.3</td>
+      <td>17.1</td>
+      <td>17.1</td>
+      <td>14.7</td>
+      <td>10.4</td>
+      <td>6.1</td>
+      <td>3.5</td>
+      <td>50.38</td>
+      <td>3.04</td>
+      <td>9.73</td>
+      <td>14.7</td>
+      <td>NE</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">locale</span>
+<span class="kn">import</span> <span class="nn">calendar</span>
+ 
+<span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+ 
+<span class="n">months</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">month_abbr</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">months</span><span class="p">)</span>
+ 
+<span class="n">french_cities</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+  <span class="n">columns</span><span class="o">=</span><span class="p">{</span> <span class="n">old</span> <span class="p">:</span> <span class="n">new</span> 
+           <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">french_cities</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">12</span><span class="p">],</span> <span class="n">months</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+          <span class="k">if</span> <span class="n">old</span> <span class="o">!=</span> <span class="n">new</span> <span class="p">},</span>
+  <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ 
+<span class="n">french_cities</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Moye&#39;</span><span class="p">:</span><span class="s1">&#39;Mean&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">french_cities</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Mean</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bordeaux</th>
+      <td>5.6</td>
+      <td>6.6</td>
+      <td>10.3</td>
+      <td>12.8</td>
+      <td>15.8</td>
+      <td>19.3</td>
+      <td>20.9</td>
+      <td>21.0</td>
+      <td>18.6</td>
+      <td>13.8</td>
+      <td>9.1</td>
+      <td>6.2</td>
+      <td>44.50</td>
+      <td>-0.34</td>
+      <td>13.33</td>
+      <td>15.4</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Clermont</th>
+      <td>2.6</td>
+      <td>3.7</td>
+      <td>7.5</td>
+      <td>10.3</td>
+      <td>13.8</td>
+      <td>17.3</td>
+      <td>19.4</td>
+      <td>19.1</td>
+      <td>16.2</td>
+      <td>11.2</td>
+      <td>6.6</td>
+      <td>3.6</td>
+      <td>45.47</td>
+      <td>3.05</td>
+      <td>10.94</td>
+      <td>16.8</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Grenoble</th>
+      <td>1.5</td>
+      <td>3.2</td>
+      <td>7.7</td>
+      <td>10.6</td>
+      <td>14.5</td>
+      <td>17.8</td>
+      <td>20.1</td>
+      <td>19.5</td>
+      <td>16.7</td>
+      <td>11.4</td>
+      <td>6.5</td>
+      <td>2.3</td>
+      <td>45.10</td>
+      <td>5.43</td>
+      <td>10.98</td>
+      <td>18.6</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Rennes</th>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>7.9</td>
+      <td>10.1</td>
+      <td>13.1</td>
+      <td>16.2</td>
+      <td>17.9</td>
+      <td>17.8</td>
+      <td>15.7</td>
+      <td>11.6</td>
+      <td>7.8</td>
+      <td>5.4</td>
+      <td>48.05</td>
+      <td>-1.41</td>
+      <td>11.13</td>
+      <td>13.1</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Strasbourg</th>
+      <td>0.4</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>9.8</td>
+      <td>14.0</td>
+      <td>17.2</td>
+      <td>19.0</td>
+      <td>18.3</td>
+      <td>15.1</td>
+      <td>9.5</td>
+      <td>4.9</td>
+      <td>1.3</td>
+      <td>48.35</td>
+      <td>7.45</td>
+      <td>9.72</td>
+      <td>18.6</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Toulouse</th>
+      <td>4.7</td>
+      <td>5.6</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.9</td>
+      <td>18.7</td>
+      <td>20.9</td>
+      <td>20.9</td>
+      <td>18.3</td>
+      <td>13.3</td>
+      <td>8.6</td>
+      <td>5.5</td>
+      <td>43.36</td>
+      <td>1.26</td>
+      <td>12.68</td>
+      <td>16.2</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Vichy</th>
+      <td>2.4</td>
+      <td>3.4</td>
+      <td>7.1</td>
+      <td>9.9</td>
+      <td>13.6</td>
+      <td>17.1</td>
+      <td>19.3</td>
+      <td>18.8</td>
+      <td>16.0</td>
+      <td>11.0</td>
+      <td>6.6</td>
+      <td>3.4</td>
+      <td>46.08</td>
+      <td>3.26</td>
+      <td>10.72</td>
+      <td>16.9</td>
+      <td>SE</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 17 columns</p>
+</div></div></div>
 </div>
 <div class="section" id="exercise-rename-dataframe-months-in-english">
 <h3>Exercise: Rename DataFrame Months in English<a class="headerlink" href="#exercise-rename-dataframe-months-in-english" title="Permalink to this headline">¶</a></h3>
@@ -525,6 +1610,149 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Station Name</th>
+      <th>ID</th>
+      <th>Lat.</th>
+      <th>Lon.</th>
+      <th>GLOSS ID</th>
+      <th>Country</th>
+      <th>Date</th>
+      <th>Coastline</th>
+      <th>Station</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>BREST</td>
+      <td>1</td>
+      <td>48.383</td>
+      <td>-4.495</td>
+      <td>242.0</td>
+      <td>FRA</td>
+      <td>07/08/2019</td>
+      <td>190</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>SWINOUJSCIE</td>
+      <td>2</td>
+      <td>53.917</td>
+      <td>14.233</td>
+      <td>NaN</td>
+      <td>POL</td>
+      <td>19/10/2001</td>
+      <td>110</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>SHEERNESS</td>
+      <td>3</td>
+      <td>51.446</td>
+      <td>0.743</td>
+      <td>NaN</td>
+      <td>GBR</td>
+      <td>06/06/2019</td>
+      <td>170</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>HOLYHEAD</td>
+      <td>5</td>
+      <td>53.314</td>
+      <td>-4.620</td>
+      <td>NaN</td>
+      <td>GBR</td>
+      <td>13/08/2020</td>
+      <td>170</td>
+      <td>191</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1544</th>
+      <td>SUVA-B</td>
+      <td>2356</td>
+      <td>-18.133</td>
+      <td>178.428</td>
+      <td>NaN</td>
+      <td>FJI</td>
+      <td>28/01/2020</td>
+      <td>742</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>1545</th>
+      <td>SYDNEY PORT JACKSON</td>
+      <td>2358</td>
+      <td>-33.826</td>
+      <td>151.259</td>
+      <td>NaN</td>
+      <td>AUS</td>
+      <td>13/06/2019</td>
+      <td>680</td>
+      <td>138</td>
+    </tr>
+    <tr>
+      <th>1546</th>
+      <td>ARKO</td>
+      <td>2359</td>
+      <td>58.484</td>
+      <td>16.961</td>
+      <td>NaN</td>
+      <td>SWE</td>
+      <td>25/08/2020</td>
+      <td>50</td>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>1547</th>
+      <td>UDDEVALLA</td>
+      <td>2360</td>
+      <td>58.348</td>
+      <td>11.895</td>
+      <td>NaN</td>
+      <td>SWE</td>
+      <td>25/08/2020</td>
+      <td>50</td>
+      <td>22</td>
+    </tr>
+  </tbody>
+</table>
+<p>1548 rows × 9 columns</p>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="indexing-on-dataframes">
@@ -532,6 +1760,21 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="p">[</span><span class="s1">&#39;Lati&#39;</span><span class="p">]</span>  <span class="c1"># DF [] accesses columns (Series)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>City
+Bordeaux      44.50
+Brest         48.24
+Clermont      45.47
+Grenoble      45.10
+              ...  
+Rennes        48.05
+Strasbourg    48.35
+Toulouse      43.36
+Vichy         46.08
+Name: Lati, Length: 15, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -543,6 +1786,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.7
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -550,10 +1798,26 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sep    15.7
+Dec     5.4
+Name: Rennes, dtype: object
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Rennes&#39;</span><span class="p">,</span> <span class="s2">&quot;Sep&quot;</span><span class="p">:</span><span class="s2">&quot;Dec&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sep    15.7
+Oct    11.6
+Nov     7.8
+Dec     5.4
+Name: Rennes, dtype: object
 </pre></div>
 </div>
 </div>
@@ -568,10 +1832,38 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Jan   Mar   May   Jul   Sep  Nov
+City                                        
+Bordeaux    5.6  10.3  15.8  20.9  18.6  9.1
+Brest       6.1   7.8  11.6  15.6  14.7  9.0
+Clermont    2.6   7.5  13.8  19.4  16.2  6.6
+Grenoble    1.5   7.7  14.5  20.1  16.7  6.5
+...         ...   ...   ...   ...   ...  ...
+Rennes      4.8   7.9  13.1  17.9  15.7  7.8
+Strasbourg  0.4   5.6  14.0  19.0  15.1  4.9
+Toulouse    4.7   9.2  14.9  20.9  18.3  8.6
+Vichy       2.4   7.1  13.6  19.3  16.0  6.6
+
+[15 rows x 6 columns]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">french_cities</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Rennes&quot;</span><span class="p">,</span> <span class="n">mask</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jan     4.8
+Mar     7.9
+May    13.1
+Jul    17.9
+Sep    15.7
+Nov     7.8
+Name: Rennes, dtype: object
 </pre></div>
 </div>
 </div>
@@ -586,6 +1878,260 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Mean</th>
+      <th>Ampl</th>
+      <th>Région</th>
+      <th>std</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bordeaux</th>
+      <td>5.6</td>
+      <td>6.6</td>
+      <td>10.3</td>
+      <td>12.8</td>
+      <td>15.8</td>
+      <td>19.3</td>
+      <td>20.9</td>
+      <td>21.0</td>
+      <td>18.6</td>
+      <td>13.8</td>
+      <td>9.1</td>
+      <td>6.2</td>
+      <td>44.50</td>
+      <td>-0.34</td>
+      <td>13.33</td>
+      <td>15.4</td>
+      <td>SO</td>
+      <td>5.792681</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+      <td>3.773673</td>
+    </tr>
+    <tr>
+      <th>Clermont</th>
+      <td>2.6</td>
+      <td>3.7</td>
+      <td>7.5</td>
+      <td>10.3</td>
+      <td>13.8</td>
+      <td>17.3</td>
+      <td>19.4</td>
+      <td>19.1</td>
+      <td>16.2</td>
+      <td>11.2</td>
+      <td>6.6</td>
+      <td>3.6</td>
+      <td>45.47</td>
+      <td>3.05</td>
+      <td>10.94</td>
+      <td>16.8</td>
+      <td>SE</td>
+      <td>6.189795</td>
+    </tr>
+    <tr>
+      <th>Grenoble</th>
+      <td>1.5</td>
+      <td>3.2</td>
+      <td>7.7</td>
+      <td>10.6</td>
+      <td>14.5</td>
+      <td>17.8</td>
+      <td>20.1</td>
+      <td>19.5</td>
+      <td>16.7</td>
+      <td>11.4</td>
+      <td>6.5</td>
+      <td>2.3</td>
+      <td>45.10</td>
+      <td>5.43</td>
+      <td>10.98</td>
+      <td>18.6</td>
+      <td>SE</td>
+      <td>6.770771</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Rennes</th>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>7.9</td>
+      <td>10.1</td>
+      <td>13.1</td>
+      <td>16.2</td>
+      <td>17.9</td>
+      <td>17.8</td>
+      <td>15.7</td>
+      <td>11.6</td>
+      <td>7.8</td>
+      <td>5.4</td>
+      <td>48.05</td>
+      <td>-1.41</td>
+      <td>11.13</td>
+      <td>13.1</td>
+      <td>NO</td>
+      <td>4.958800</td>
+    </tr>
+    <tr>
+      <th>Strasbourg</th>
+      <td>0.4</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>9.8</td>
+      <td>14.0</td>
+      <td>17.2</td>
+      <td>19.0</td>
+      <td>18.3</td>
+      <td>15.1</td>
+      <td>9.5</td>
+      <td>4.9</td>
+      <td>1.3</td>
+      <td>48.35</td>
+      <td>7.45</td>
+      <td>9.72</td>
+      <td>18.6</td>
+      <td>NE</td>
+      <td>6.931723</td>
+    </tr>
+    <tr>
+      <th>Toulouse</th>
+      <td>4.7</td>
+      <td>5.6</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.9</td>
+      <td>18.7</td>
+      <td>20.9</td>
+      <td>20.9</td>
+      <td>18.3</td>
+      <td>13.3</td>
+      <td>8.6</td>
+      <td>5.5</td>
+      <td>43.36</td>
+      <td>1.26</td>
+      <td>12.68</td>
+      <td>16.2</td>
+      <td>SO</td>
+      <td>6.056977</td>
+    </tr>
+    <tr>
+      <th>Vichy</th>
+      <td>2.4</td>
+      <td>3.4</td>
+      <td>7.1</td>
+      <td>9.9</td>
+      <td>13.6</td>
+      <td>17.1</td>
+      <td>19.3</td>
+      <td>18.8</td>
+      <td>16.0</td>
+      <td>11.0</td>
+      <td>6.6</td>
+      <td>3.4</td>
+      <td>46.08</td>
+      <td>3.26</td>
+      <td>10.72</td>
+      <td>16.9</td>
+      <td>SE</td>
+      <td>6.201148</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 18 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -600,6 +2146,249 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Mean</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bordeaux</th>
+      <td>5.6</td>
+      <td>6.6</td>
+      <td>10.3</td>
+      <td>12.8</td>
+      <td>15.8</td>
+      <td>19.3</td>
+      <td>20.9</td>
+      <td>21.0</td>
+      <td>18.6</td>
+      <td>13.8</td>
+      <td>9.1</td>
+      <td>6.2</td>
+      <td>44.50</td>
+      <td>-0.34</td>
+      <td>13.33</td>
+      <td>15.4</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Clermont</th>
+      <td>2.6</td>
+      <td>3.7</td>
+      <td>7.5</td>
+      <td>10.3</td>
+      <td>13.8</td>
+      <td>17.3</td>
+      <td>19.4</td>
+      <td>19.1</td>
+      <td>16.2</td>
+      <td>11.2</td>
+      <td>6.6</td>
+      <td>3.6</td>
+      <td>45.47</td>
+      <td>3.05</td>
+      <td>10.94</td>
+      <td>16.8</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Grenoble</th>
+      <td>1.5</td>
+      <td>3.2</td>
+      <td>7.7</td>
+      <td>10.6</td>
+      <td>14.5</td>
+      <td>17.8</td>
+      <td>20.1</td>
+      <td>19.5</td>
+      <td>16.7</td>
+      <td>11.4</td>
+      <td>6.5</td>
+      <td>2.3</td>
+      <td>45.10</td>
+      <td>5.43</td>
+      <td>10.98</td>
+      <td>18.6</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Rennes</th>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>7.9</td>
+      <td>10.1</td>
+      <td>13.1</td>
+      <td>16.2</td>
+      <td>17.9</td>
+      <td>17.8</td>
+      <td>15.7</td>
+      <td>11.6</td>
+      <td>7.8</td>
+      <td>5.4</td>
+      <td>48.05</td>
+      <td>-1.41</td>
+      <td>11.13</td>
+      <td>13.1</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Strasbourg</th>
+      <td>0.4</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>9.8</td>
+      <td>14.0</td>
+      <td>17.2</td>
+      <td>19.0</td>
+      <td>18.3</td>
+      <td>15.1</td>
+      <td>9.5</td>
+      <td>4.9</td>
+      <td>1.3</td>
+      <td>48.35</td>
+      <td>7.45</td>
+      <td>9.72</td>
+      <td>18.6</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Toulouse</th>
+      <td>4.7</td>
+      <td>5.6</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.9</td>
+      <td>18.7</td>
+      <td>20.9</td>
+      <td>20.9</td>
+      <td>18.3</td>
+      <td>13.3</td>
+      <td>8.6</td>
+      <td>5.5</td>
+      <td>43.36</td>
+      <td>1.26</td>
+      <td>12.68</td>
+      <td>16.2</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Vichy</th>
+      <td>2.4</td>
+      <td>3.4</td>
+      <td>7.1</td>
+      <td>9.9</td>
+      <td>13.6</td>
+      <td>17.1</td>
+      <td>19.3</td>
+      <td>18.8</td>
+      <td>16.0</td>
+      <td>11.0</td>
+      <td>6.6</td>
+      <td>3.4</td>
+      <td>46.08</td>
+      <td>3.26</td>
+      <td>10.72</td>
+      <td>16.9</td>
+      <td>SE</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 17 columns</p>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="modifying-a-dataframe-with-multiple-indexing">
@@ -611,6 +2400,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.7
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,6 +2412,249 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Mean</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Bordeaux</th>
+      <td>5.6</td>
+      <td>6.6</td>
+      <td>10.3</td>
+      <td>12.8</td>
+      <td>15.8</td>
+      <td>19.3</td>
+      <td>20.9</td>
+      <td>21.0</td>
+      <td>18.6</td>
+      <td>13.8</td>
+      <td>9.1</td>
+      <td>6.2</td>
+      <td>44.50</td>
+      <td>-0.34</td>
+      <td>13.33</td>
+      <td>15.4</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Clermont</th>
+      <td>2.6</td>
+      <td>3.7</td>
+      <td>7.5</td>
+      <td>10.3</td>
+      <td>13.8</td>
+      <td>17.3</td>
+      <td>19.4</td>
+      <td>19.1</td>
+      <td>16.2</td>
+      <td>11.2</td>
+      <td>6.6</td>
+      <td>3.6</td>
+      <td>45.47</td>
+      <td>3.05</td>
+      <td>10.94</td>
+      <td>16.8</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Grenoble</th>
+      <td>1.5</td>
+      <td>3.2</td>
+      <td>7.7</td>
+      <td>10.6</td>
+      <td>14.5</td>
+      <td>17.8</td>
+      <td>20.1</td>
+      <td>19.5</td>
+      <td>16.7</td>
+      <td>11.4</td>
+      <td>6.5</td>
+      <td>2.3</td>
+      <td>45.10</td>
+      <td>5.43</td>
+      <td>10.98</td>
+      <td>18.6</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Rennes</th>
+      <td>4.8</td>
+      <td>5.3</td>
+      <td>7.9</td>
+      <td>10.1</td>
+      <td>13.1</td>
+      <td>16.2</td>
+      <td>17.9</td>
+      <td>17.8</td>
+      <td>15.7</td>
+      <td>11.6</td>
+      <td>7.8</td>
+      <td>5.4</td>
+      <td>48.05</td>
+      <td>-1.41</td>
+      <td>11.13</td>
+      <td>13.1</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Strasbourg</th>
+      <td>0.4</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>9.8</td>
+      <td>14.0</td>
+      <td>17.2</td>
+      <td>19.0</td>
+      <td>18.3</td>
+      <td>15.1</td>
+      <td>9.5</td>
+      <td>4.9</td>
+      <td>1.3</td>
+      <td>48.35</td>
+      <td>7.45</td>
+      <td>9.72</td>
+      <td>18.6</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Toulouse</th>
+      <td>4.7</td>
+      <td>5.6</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.9</td>
+      <td>18.7</td>
+      <td>20.9</td>
+      <td>20.9</td>
+      <td>18.3</td>
+      <td>13.3</td>
+      <td>8.6</td>
+      <td>5.5</td>
+      <td>43.36</td>
+      <td>1.26</td>
+      <td>12.68</td>
+      <td>16.2</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Vichy</th>
+      <td>2.4</td>
+      <td>3.4</td>
+      <td>7.1</td>
+      <td>9.9</td>
+      <td>13.6</td>
+      <td>17.1</td>
+      <td>19.3</td>
+      <td>18.8</td>
+      <td>16.0</td>
+      <td>11.0</td>
+      <td>6.6</td>
+      <td>3.4</td>
+      <td>46.08</td>
+      <td>3.26</td>
+      <td>10.72</td>
+      <td>16.9</td>
+      <td>SE</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 17 columns</p>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="transforming-datasets">
@@ -625,6 +2662,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">french_cities</span><span class="p">[</span><span class="s1">&#39;Ampl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9.72, 18.6)
 </pre></div>
 </div>
 </div>
@@ -640,6 +2682,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>City
+Bordeaux      55.994
+Brest         51.386
+Clermont      51.692
+Grenoble      51.764
+               ...  
+Rennes        52.034
+Strasbourg    49.496
+Toulouse      54.824
+Vichy         51.296
+Name: Mean, Length: 15, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="sort">
@@ -650,6 +2707,249 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Mean</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Marseille</th>
+      <td>5.5</td>
+      <td>6.6</td>
+      <td>10.0</td>
+      <td>13.0</td>
+      <td>16.8</td>
+      <td>20.8</td>
+      <td>23.3</td>
+      <td>22.8</td>
+      <td>19.9</td>
+      <td>15.0</td>
+      <td>10.2</td>
+      <td>6.9</td>
+      <td>43.18</td>
+      <td>5.24</td>
+      <td>14.23</td>
+      <td>17.8</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Montpellier</th>
+      <td>5.6</td>
+      <td>6.7</td>
+      <td>9.9</td>
+      <td>12.8</td>
+      <td>16.2</td>
+      <td>20.1</td>
+      <td>22.7</td>
+      <td>22.3</td>
+      <td>19.3</td>
+      <td>14.6</td>
+      <td>10.0</td>
+      <td>6.5</td>
+      <td>43.36</td>
+      <td>3.53</td>
+      <td>13.89</td>
+      <td>17.1</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Toulouse</th>
+      <td>4.7</td>
+      <td>5.6</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.9</td>
+      <td>18.7</td>
+      <td>20.9</td>
+      <td>20.9</td>
+      <td>18.3</td>
+      <td>13.3</td>
+      <td>8.6</td>
+      <td>5.5</td>
+      <td>43.36</td>
+      <td>1.26</td>
+      <td>12.68</td>
+      <td>16.2</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Nice</th>
+      <td>7.5</td>
+      <td>8.5</td>
+      <td>10.8</td>
+      <td>13.3</td>
+      <td>16.7</td>
+      <td>20.1</td>
+      <td>22.7</td>
+      <td>22.5</td>
+      <td>20.3</td>
+      <td>16.0</td>
+      <td>11.5</td>
+      <td>8.2</td>
+      <td>43.42</td>
+      <td>7.15</td>
+      <td>14.84</td>
+      <td>15.2</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>Strasbourg</th>
+      <td>0.4</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>9.8</td>
+      <td>14.0</td>
+      <td>17.2</td>
+      <td>19.0</td>
+      <td>18.3</td>
+      <td>15.1</td>
+      <td>9.5</td>
+      <td>4.9</td>
+      <td>1.3</td>
+      <td>48.35</td>
+      <td>7.45</td>
+      <td>9.72</td>
+      <td>18.6</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Paris</th>
+      <td>3.4</td>
+      <td>4.1</td>
+      <td>7.6</td>
+      <td>10.7</td>
+      <td>14.3</td>
+      <td>17.5</td>
+      <td>19.1</td>
+      <td>18.7</td>
+      <td>16.0</td>
+      <td>11.4</td>
+      <td>7.1</td>
+      <td>4.3</td>
+      <td>48.52</td>
+      <td>2.20</td>
+      <td>11.18</td>
+      <td>15.7</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Lille</th>
+      <td>2.4</td>
+      <td>2.9</td>
+      <td>6.0</td>
+      <td>8.9</td>
+      <td>12.4</td>
+      <td>15.3</td>
+      <td>17.1</td>
+      <td>17.1</td>
+      <td>14.7</td>
+      <td>10.4</td>
+      <td>6.1</td>
+      <td>3.5</td>
+      <td>50.38</td>
+      <td>3.04</td>
+      <td>9.73</td>
+      <td>14.7</td>
+      <td>NE</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 17 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -658,6 +2958,249 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Lati</th>
+      <th>Long</th>
+      <th>Mean</th>
+      <th>Ampl</th>
+      <th>Région</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Lille</th>
+      <td>2.4</td>
+      <td>2.9</td>
+      <td>6.0</td>
+      <td>8.9</td>
+      <td>12.4</td>
+      <td>15.3</td>
+      <td>17.1</td>
+      <td>17.1</td>
+      <td>14.7</td>
+      <td>10.4</td>
+      <td>6.1</td>
+      <td>3.5</td>
+      <td>50.38</td>
+      <td>3.04</td>
+      <td>9.73</td>
+      <td>14.7</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Paris</th>
+      <td>3.4</td>
+      <td>4.1</td>
+      <td>7.6</td>
+      <td>10.7</td>
+      <td>14.3</td>
+      <td>17.5</td>
+      <td>19.1</td>
+      <td>18.7</td>
+      <td>16.0</td>
+      <td>11.4</td>
+      <td>7.1</td>
+      <td>4.3</td>
+      <td>48.52</td>
+      <td>2.20</td>
+      <td>11.18</td>
+      <td>15.7</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Strasbourg</th>
+      <td>0.4</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>9.8</td>
+      <td>14.0</td>
+      <td>17.2</td>
+      <td>19.0</td>
+      <td>18.3</td>
+      <td>15.1</td>
+      <td>9.5</td>
+      <td>4.9</td>
+      <td>1.3</td>
+      <td>48.35</td>
+      <td>7.45</td>
+      <td>9.72</td>
+      <td>18.6</td>
+      <td>NE</td>
+    </tr>
+    <tr>
+      <th>Brest</th>
+      <td>6.1</td>
+      <td>5.8</td>
+      <td>7.8</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.4</td>
+      <td>15.6</td>
+      <td>16.0</td>
+      <td>14.7</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>48.24</td>
+      <td>-4.29</td>
+      <td>10.77</td>
+      <td>10.2</td>
+      <td>NO</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Nice</th>
+      <td>7.5</td>
+      <td>8.5</td>
+      <td>10.8</td>
+      <td>13.3</td>
+      <td>16.7</td>
+      <td>20.1</td>
+      <td>22.7</td>
+      <td>22.5</td>
+      <td>20.3</td>
+      <td>16.0</td>
+      <td>11.5</td>
+      <td>8.2</td>
+      <td>43.42</td>
+      <td>7.15</td>
+      <td>14.84</td>
+      <td>15.2</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Montpellier</th>
+      <td>5.6</td>
+      <td>6.7</td>
+      <td>9.9</td>
+      <td>12.8</td>
+      <td>16.2</td>
+      <td>20.1</td>
+      <td>22.7</td>
+      <td>22.3</td>
+      <td>19.3</td>
+      <td>14.6</td>
+      <td>10.0</td>
+      <td>6.5</td>
+      <td>43.36</td>
+      <td>3.53</td>
+      <td>13.89</td>
+      <td>17.1</td>
+      <td>SE</td>
+    </tr>
+    <tr>
+      <th>Toulouse</th>
+      <td>4.7</td>
+      <td>5.6</td>
+      <td>9.2</td>
+      <td>11.6</td>
+      <td>14.9</td>
+      <td>18.7</td>
+      <td>20.9</td>
+      <td>20.9</td>
+      <td>18.3</td>
+      <td>13.3</td>
+      <td>8.6</td>
+      <td>5.5</td>
+      <td>43.36</td>
+      <td>1.26</td>
+      <td>12.68</td>
+      <td>16.2</td>
+      <td>SO</td>
+    </tr>
+    <tr>
+      <th>Marseille</th>
+      <td>5.5</td>
+      <td>6.6</td>
+      <td>10.0</td>
+      <td>13.0</td>
+      <td>16.8</td>
+      <td>20.8</td>
+      <td>23.3</td>
+      <td>22.8</td>
+      <td>19.9</td>
+      <td>15.0</td>
+      <td>10.2</td>
+      <td>6.9</td>
+      <td>43.18</td>
+      <td>5.24</td>
+      <td>14.23</td>
+      <td>17.8</td>
+      <td>SE</td>
+    </tr>
+  </tbody>
+</table>
+<p>15 rows × 17 columns</p>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="stack-and-unstack">
@@ -671,10 +3214,32 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     City       
+Jan  Lille          2.4
+     Paris          3.4
+     Strasbourg     0.4
+     Brest          6.1
+     Rennes         4.8
+                   ... 
+Dec  Bordeaux       6.2
+     Nice           8.2
+     Montpellier    6.5
+     Toulouse       5.5
+     Marseille      6.9
+Length: 180, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">unstacked</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
 </pre></div>
 </div>
 </div>
@@ -690,12 +3255,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/venv/lib/python3.7/site-packages/pandas/plotting/_matplotlib/core.py:1192: UserWarning: FixedFormatter should only be used together with FixedLocator
+  ax.set_xticklabels(xticklabels)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="_images/11-PandaDataframes_47_2.png" src="_images/11-PandaDataframes_47_2.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">city_temp</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">rot</span><span class="o">=</span><span class="mi">90</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/11-PandaDataframes_48_0.png" src="_images/11-PandaDataframes_48_0.png" />
 </div>
 </div>
 </div>
@@ -707,6 +3285,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count     15
+unique     4
+top       SE
+freq       7
+Name: Région, dtype: object
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -714,10 +3301,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;NE&#39;, &#39;NO&#39;, &#39;SE&#39;, &#39;SO&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="p">[</span><span class="s1">&#39;Région&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SE    7
+NE    3
+NO    3
+SO    2
+Name: Région, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -736,6 +3337,29 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index     760
+Jan       120
+Feb       120
+Mar       120
+Apr       120
+May       120
+Jun       120
+Jul       120
+Aug       120
+Sep       120
+Oct       120
+Nov       120
+Dec       120
+Lati      120
+Long      120
+Mean      120
+Ampl      120
+Région    207
+dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="data-aggregation-summarization">
@@ -750,6 +3374,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.groupby.generic.DataFrameGroupBy
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -757,6 +3386,67 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">subdf</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NE
+            Jan  Feb  Mar   Apr   May   Jun   Jul   Aug   Sep   Oct  Nov  Dec  \
+City                                                                            
+Lille       2.4  2.9  6.0   8.9  12.4  15.3  17.1  17.1  14.7  10.4  6.1  3.5   
+Paris       3.4  4.1  7.6  10.7  14.3  17.5  19.1  18.7  16.0  11.4  7.1  4.3   
+Strasbourg  0.4  1.5  5.6   9.8  14.0  17.2  19.0  18.3  15.1   9.5  4.9  1.3   
+
+             Lati  Long   Mean  Ampl Région  
+City                                         
+Lille       50.38  3.04   9.73  14.7     NE  
+Paris       48.52  2.20  11.18  15.7     NE  
+Strasbourg  48.35  7.45   9.72  18.6     NE  
+
+NO
+        Jan  Feb  Mar   Apr   May   Jun   Jul   Aug   Sep   Oct  Nov  Dec  \
+City                                                                        
+Brest   6.1  5.8  7.8   9.2  11.6  14.4  15.6  16.0  14.7  12.0  9.0  7.0   
+Rennes  4.8  5.3  7.9  10.1  13.1  16.2  17.9  17.8  15.7  11.6  7.8  5.4   
+Nantes  5.0  5.3  8.4  10.8  13.9  17.2  18.8  18.6  16.4  12.2  8.2  5.5   
+
+         Lati  Long   Mean  Ampl Région  
+City                                     
+Brest   48.24 -4.29  10.77  10.2     NO  
+Rennes  48.05 -1.41  11.13  13.1     NO  
+Nantes  47.13 -1.33  11.69  13.8     NO  
+
+SE
+             Jan  Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov  \
+City                                                                          
+Vichy        2.4  3.4   7.1   9.9  13.6  17.1  19.3  18.8  16.0  11.0   6.6   
+Clermont     2.6  3.7   7.5  10.3  13.8  17.3  19.4  19.1  16.2  11.2   6.6   
+Lyon         2.1  3.3   7.7  10.9  14.9  18.5  20.7  20.1  16.9  11.4   6.7   
+Grenoble     1.5  3.2   7.7  10.6  14.5  17.8  20.1  19.5  16.7  11.4   6.5   
+Nice         7.5  8.5  10.8  13.3  16.7  20.1  22.7  22.5  20.3  16.0  11.5   
+Montpellier  5.6  6.7   9.9  12.8  16.2  20.1  22.7  22.3  19.3  14.6  10.0   
+Marseille    5.5  6.6  10.0  13.0  16.8  20.8  23.3  22.8  19.9  15.0  10.2   
+
+             Dec   Lati  Long   Mean  Ampl Région  
+City                                               
+Vichy        3.4  46.08  3.26  10.72  16.9     SE  
+Clermont     3.6  45.47  3.05  10.94  16.8     SE  
+Lyon         3.1  45.45  4.51  11.36  18.6     SE  
+Grenoble     2.3  45.10  5.43  10.98  18.6     SE  
+Nice         8.2  43.42  7.15  14.84  15.2     SE  
+Montpellier  6.5  43.36  3.53  13.89  17.1     SE  
+Marseille    6.9  43.18  5.24  14.23  17.8     SE  
+
+SO
+          Jan  Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct  Nov  Dec  \
+City                                                                           
+Bordeaux  5.6  6.6  10.3  12.8  15.8  19.3  20.9  21.0  18.6  13.8  9.1  6.2   
+Toulouse  4.7  5.6   9.2  11.6  14.9  18.7  20.9  20.9  18.3  13.3  8.6  5.5   
+
+           Lati  Long   Mean  Ampl Région  
+City                                       
+Bordeaux  44.50 -0.34  13.33  15.4     SO  
+Toulouse  43.36  1.26  12.68  16.2     SO  
 </pre></div>
 </div>
 </div>
@@ -781,6 +3471,102 @@ This dataset consists of records of measurements relating to peaker power plants
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">select</span></code> function and <code class="docutils literal notranslate"><span class="pre">corr</span></code> to compute the maximum correlation.</p></li>
 <li><p>Parallelize this loop with <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ 
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/Folds5x2_pp.xlsx&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;AT&#39;, &#39;V&#39;, &#39;AP&#39;, &#39;RH&#39;, &#39;PE&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;AT&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       14.96
+1       25.18
+2        5.11
+3       20.86
+4       10.82
+        ...  
+9563    16.65
+9564    13.19
+9565    31.32
+9566    24.48
+9567    21.60
+Name: AT, Length: 9568, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+ 
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">results</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">b</span><span class="p">]))</span>
+ 
+<span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">corr</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> matches with </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> with correlation </span><span class="si">{</span><span class="n">corr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PE matches with AT with correlation 0.9481284704167594
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+ 
+<span class="n">e</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+ 
+<span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+ 
+<span class="k">def</span> <span class="nf">corr</span><span class="p">(</span> <span class="n">serie_a</span><span class="p">,</span> <span class="n">serie_b</span><span class="p">):</span>
+ 
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">serie_a</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">serie_b</span><span class="p">))</span>
+ 
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
+            <span class="n">futures</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span> <span class="n">corr</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">b</span><span class="p">])</span>
+ 
+<span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span> <span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">futures</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+ 
+ 
+<span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">corr</span><span class="p">)</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">corr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;PE&#39;, &#39;AT&#39;, 0.9481284704167594)
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -814,7 +3600,7 @@ This dataset consists of records of measurements relating to peaker power plants
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="10-PandasSeries.html" title="previous page">Pandas Series</a>
-    <a class='right-next' id="next-link" href="12-PySpark.html" title="next page">PySpark</a>
+    <a class='right-next' id="next-link" href="12-UnixCommands.html" title="next page">Basic Commands in the Unix Shell</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -59,7 +59,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Spark DataFrames" href="17-SparkDataFrames.html" />
-    <link rel="prev" title="Hadoop File Formats" href="15-HadoopFileFormats.html" />
+    <link rel="prev" title="PySpark" href="15-PySpark.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -155,23 +155,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-PySpark.html">
-   PySpark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-UnixCommands.html">
+  <a class="reference internal" href="12-UnixCommands.html">
    Basic Commands in the Unix Shell
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-Hadoop.html">
+  <a class="reference internal" href="13-Hadoop.html">
    Hadoop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/16-DaskDataframes.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/16-DaskDataframes.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/16-DaskDataframes.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -260,7 +257,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F16-DaskDataframes.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/16-DaskDataframes.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/16-DaskDataframes.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/16-DaskDataframes.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/16-DaskDataframes.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/16-DaskDataframes.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -375,28 +377,30 @@
   <a class="reference internal nav-link" href="#sharing-intermediate-results">
    Sharing Intermediate Results
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-two-calls-to-compute">
-   Using two calls to
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     .compute
-    </span>
-   </code>
-   :
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-one-call-to-dask-compute">
-   Using one call to
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     dask.compute
-    </span>
-   </code>
-   :
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-two-calls-to-compute">
+     Using two calls to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .compute
+      </span>
+     </code>
+     :
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-one-call-to-dask-compute">
+     Using one call to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dask.compute
+      </span>
+     </code>
+     :
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -773,9 +777,8 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="using-two-calls-to-compute">
-<h2>Using two calls to <code class="docutils literal notranslate"><span class="pre">.compute</span></code>:<a class="headerlink" href="#using-two-calls-to-compute" title="Permalink to this headline">¶</a></h2>
+<h3>Using two calls to <code class="docutils literal notranslate"><span class="pre">.compute</span></code>:<a class="headerlink" href="#using-two-calls-to-compute" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
@@ -787,7 +790,7 @@
 </div>
 </div>
 <div class="section" id="using-one-call-to-dask-compute">
-<h2>Using one call to <code class="docutils literal notranslate"><span class="pre">dask.compute</span></code>:<a class="headerlink" href="#using-one-call-to-dask-compute" title="Permalink to this headline">¶</a></h2>
+<h3>Using one call to <code class="docutils literal notranslate"><span class="pre">dask.compute</span></code>:<a class="headerlink" href="#using-one-call-to-dask-compute" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
@@ -807,6 +810,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dask</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">mean_delay</span><span class="p">,</span> <span class="n">std_delay</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -841,7 +845,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="15-HadoopFileFormats.html" title="previous page">Hadoop File Formats</a>
+    <a class='left-prev' id="prev-link" href="15-PySpark.html" title="previous page">PySpark</a>
     <a class='right-next' id="next-link" href="17-SparkDataFrames.html" title="next page">Spark DataFrames</a>
 
     </div>

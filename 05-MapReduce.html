@@ -155,23 +155,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-PySpark.html">
-   PySpark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-UnixCommands.html">
+  <a class="reference internal" href="12-UnixCommands.html">
    Basic Commands in the Unix Shell
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-Hadoop.html">
+  <a class="reference internal" href="13-Hadoop.html">
    Hadoop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/05-MapReduce.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/05-MapReduce.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/05-MapReduce.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -260,7 +257,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F05-MapReduce.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/05-MapReduce.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/05-MapReduce.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/05-MapReduce.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/05-MapReduce.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/05-MapReduce.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -435,10 +437,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;map at 0x7f59e24ffd50&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 36 9 49
 </pre></div>
 </div>
 </div>
@@ -458,6 +470,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 -24 -15 21
+</pre></div>
+</div>
+</div>
 </div>
 <p><img alt="MapReduce" src="_images/mapreduce.jpg" /></p>
 </div>
@@ -468,8 +485,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
 <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
-
-<span class="n">reduce</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">rdd</span><span class="p">)</span> <span class="c1"># computes ((((1+2)+3)+4)+5)</span>
+<span class="n">rdd</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">rdd</span><span class="p">)</span> <span class="c1"># computes ((((1+2)+3)+4)+5)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
 </pre></div>
 </div>
 </div>
@@ -480,6 +502,11 @@
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rdd</span><span class="p">:</span>
     <span class="n">p</span> <span class="o">*=</span> <span class="n">x</span>
 <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
 </pre></div>
 </div>
 </div>
@@ -493,6 +520,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -500,6 +532,11 @@
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rdd</span><span class="p">:</span>
     <span class="n">p</span> <span class="o">*=</span> <span class="n">x</span>
 <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
 </pre></div>
 </div>
 </div>
@@ -529,6 +566,18 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> x = 5 ..... p = 0.05
+ x = 1 ..... p = 0.05
+ x = 2 ..... p = 0.15
+ x = 3 ..... p = 0.05
+ x = 1 ..... p = 0.15
+ x = 2 ..... p = 0.2
+ x = 5 ..... p = 0.1
+ x = 4 ..... p = 0.25
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -539,10 +588,59 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> x = 5 ..... p = 0.1
+ x = 1 ..... p = 0.0
+ x = 2 ..... p = 0.0
+ x = 3 ..... p = 0.0
+ x = 1 ..... p = 0.0
+ x = 2 ..... p = 0.0
+ x = 5 ..... p = 0.0
+ x = 4 ..... p = 0.0
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>222 ms ± 23.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="nb">sum</span><span class="p">(</span> <span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span>  <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>190 ms ± 4.48 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -552,6 +650,43 @@
 <ul class="simple">
 <li><p>Write functions to compute the average value and variance using for loops</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">average_variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">x</span><span class="o">*</span><span class="n">p</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">))</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">p</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">))</span> <span class="o">-</span> <span class="n">mu</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span>
+
+<span class="n">average_variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.8000000000000003, 1.9599999999999993)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">mul</span>
+<span class="k">def</span> <span class="nf">average_variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">):</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span> <span class="n">mul</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span><span class="n">P</span><span class="p">))</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">p</span><span class="p">:</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="p">)</span> <span class="o">-</span> <span class="n">mu</span><span class="o">**</span><span class="mi">2</span> 
+    <span class="k">return</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span>
+<span class="n">average_variance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.8, 1.9600000000000017)
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="exercise-5-2">
 <h3>Exercise 5.2<a class="headerlink" href="#exercise-5-2" title="Permalink to this headline">¶</a></h3>
@@ -568,11 +703,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.15 0.15 0.2 0.25
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span> <span class="c1"># select integer that can be divided by 3</span>
 <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 3 6 9 12
 </pre></div>
 </div>
 </div>
@@ -597,6 +742,83 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 [(&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;amet&#39;, 1), (&#39;amet&#39;, 1), (&#39;amet&#39;, 1)...
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">poly</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">c</span> 
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">poly</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Poly</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">b</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Poly</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>       
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lorem</span> <span class="kn">import</span> <span class="n">text</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mapper</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:(</span><span class="n">w</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+
+<span class="n">mapper</span><span class="p">(</span><span class="s2">&quot;sample.txt&quot;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;adipisci&#39;, 1),
+ (&#39;adipisci&#39;, 1),
+ (&#39;adipisci&#39;, 1),
+ (&#39;adipisci&#39;, 1),
+ (&#39;adipisci&#39;, 1),
+ (&#39;adipisci&#39;, 1),
+ (&#39;adipisci&#39;, 1),
+ (&#39;aliquam&#39;, 1),
+ (&#39;aliquam&#39;, 1),
+ (&#39;aliquam&#39;, 1)]
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="partition">
@@ -608,16 +830,59 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 <span class="p">[(</span><span class="s1">&#39;adipisci&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;aliquam&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;amet&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="k">def</span> <span class="nf">partitioner</span><span class="p">(</span><span class="n">map_words</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">w</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="n">map_words</span><span class="p">:</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+<span class="n">partitioner</span><span class="p">(</span><span class="n">mapper</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">))[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;adipisci&#39;, [1, 1, 1, 1, 1, 1, 1]),
+ (&#39;aliquam&#39;, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+ (&#39;amet&#39;, [1, 1, 1, 1, 1, 1, 1]),
+ (&#39;consectetur&#39;, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+ (&#39;dolor&#39;, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+ (&#39;dolore&#39;, [1, 1, 1, 1, 1, 1]),
+ (&#39;dolorem&#39;, [1, 1, 1, 1, 1, 1, 1]),
+ (&#39;eius&#39;, [1, 1, 1, 1, 1, 1, 1, 1]),
+ (&#39;est&#39;, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+ (&#39;etincidunt&#39;, [1, 1, 1, 1, 1])]
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="reduce-sums-the-counts-and-returns-a-single-key-value-word-sum">
 <h2>Reduce - Sums the counts and returns a single key/value (word, sum).<a class="headerlink" href="#reduce-sums-the-counts-and-returns-a-single-key-value-word-sum" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="exercice-5-5">
 <h3>Exercice 5.5<a class="headerlink" href="#exercice-5-5" title="Permalink to this headline">¶</a></h3>
-<p>Write the function <code class="docutils literal notranslate"><span class="pre">reducer</span></code> that read a tuple (word,[1,1,1,..,1]) and sum the occurrences of word to a final count, and then output the tuple (word,occurences).</p>
+<p>Write the function <code class="docutils literal notranslate"><span class="pre">reducer</span></code> that read a tuple <code class="docutils literal notranslate"><span class="pre">(word,[1,1,1,..,1])</span></code> and sum the occurrences of word to a final count, and then output the tuple (word,occurences).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">reducer</span><span class="p">((</span><span class="s1">&#39;hello&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">reducer</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">reducer</span><span class="p">((</span><span class="s1">&#39;hello&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;hello&#39;, 5)
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -627,7 +892,7 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lorem</span> <span class="kn">import</span> <span class="n">text</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sample</span><span class="si">{0:02d}</span><span class="s2">.txt&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">())</span>
 </pre></div>
@@ -642,12 +907,113 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sample00.txt&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="exercise-5-6">
 <h3>Exercise 5.6<a class="headerlink" href="#exercise-5-6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Use functions implemented above to count (word, occurences) by using a for loops over files and partitioned data.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="n">map_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">mapper</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
+<span class="n">partitioned_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">partitioner</span><span class="p">(</span><span class="n">map_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">map_file</span> <span class="ow">in</span> <span class="n">map_files</span><span class="p">]</span>
+<span class="n">partitioned_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">reducer</span><span class="p">(</span><span class="n">keyvalue</span><span class="p">)</span> <span class="k">for</span> <span class="n">keyvalue</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">partitioned_data</span><span class="p">)]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">partitioned_results</span><span class="p">:</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;velit&#39;, 15),
+ (&#39;modi&#39;, 14),
+ (&#39;porro&#39;, 13),
+ (&#39;sed&#39;, 13),
+ (&#39;tempora&#39;, 13),
+ (&#39;voluptatem&#39;, 13),
+ (&#39;neque&#39;, 12),
+ (&#39;dolorem&#39;, 11),
+ (&#39;ipsum&#39;, 11),
+ (&#39;ut&#39;, 11),
+ (&#39;dolore&#39;, 10),
+ (&#39;etincidunt&#39;, 10),
+ (&#39;labore&#39;, 10),
+ (&#39;numquam&#39;, 10),
+ (&#39;dolor&#39;, 9),
+ (&#39;non&#39;, 9),
+ (&#39;quaerat&#39;, 9),
+ (&#39;quisquam&#39;, 9),
+ (&#39;aliquam&#39;, 8),
+ (&#39;est&#39;, 8),
+ (&#39;adipisci&#39;, 7),
+ (&#39;magnam&#39;, 7),
+ (&#39;quiquia&#39;, 7),
+ (&#39;consectetur&#39;, 6),
+ (&#39;eius&#39;, 6),
+ (&#39;sit&#39;, 6),
+ (&#39;amet&#39;, 5)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="n">map_files</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+<span class="n">partitioned_data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">partitioner</span><span class="p">,</span> <span class="n">map_files</span><span class="p">)</span>
+<span class="n">partitioned_results</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">reducer</span><span class="p">,</span> <span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">partitioned_data</span><span class="p">))</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">partitioned_results</span><span class="p">:</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+=</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;velit&#39;, 15),
+ (&#39;modi&#39;, 14),
+ (&#39;porro&#39;, 13),
+ (&#39;sed&#39;, 13),
+ (&#39;tempora&#39;, 13),
+ (&#39;voluptatem&#39;, 13),
+ (&#39;neque&#39;, 12),
+ (&#39;dolorem&#39;, 11),
+ (&#39;ipsum&#39;, 11),
+ (&#39;ut&#39;, 11),
+ (&#39;dolore&#39;, 10),
+ (&#39;etincidunt&#39;, 10),
+ (&#39;labore&#39;, 10),
+ (&#39;numquam&#39;, 10),
+ (&#39;dolor&#39;, 9),
+ (&#39;non&#39;, 9),
+ (&#39;quaerat&#39;, 9),
+ (&#39;quisquam&#39;, 9),
+ (&#39;aliquam&#39;, 8),
+ (&#39;est&#39;, 8),
+ (&#39;adipisci&#39;, 7),
+ (&#39;magnam&#39;, 7),
+ (&#39;quiquia&#39;, 7),
+ (&#39;consectetur&#39;, 6),
+ (&#39;eius&#39;, 6),
+ (&#39;sit&#39;, 6),
+ (&#39;amet&#39;, 5)]
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="exercise-5-7">
 <h3>Exercise 5.7<a class="headerlink" href="#exercise-5-7" title="Permalink to this headline">¶</a></h3>

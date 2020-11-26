@@ -155,23 +155,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="12-PySpark.html">
-   PySpark
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-UnixCommands.html">
+  <a class="reference internal" href="12-UnixCommands.html">
    Basic Commands in the Unix Shell
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="14-Hadoop.html">
+  <a class="reference internal" href="13-Hadoop.html">
    Hadoop
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="15-HadoopFileFormats.html">
-   Hadoop File Formats
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,14 +232,11 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/09-DaskBag.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+        
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/09-DaskBag.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/09-DaskBag.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -260,7 +257,7 @@
             href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F09-DaskBag.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/09-DaskBag.md"><button
+        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/09-DaskBag.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -280,13 +277,18 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/09-DaskBag.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/09-DaskBag.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
         
         
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/09-DaskBag.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
         
         <button type="button" class="btn btn-secondary topbarbtn"
             onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
@@ -386,6 +388,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -402,10 +409,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> <span class="c1"># compute length of each element and collect results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 1, 2, 2, 3, 3, 4]
 </pre></div>
 </div>
 </div>
@@ -423,11 +440,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dask.bag&lt;slow_half, npartitions=8&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 <span class="n">res</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 34.1 ms, sys: 21.2 ms, total: 55.3 ms
+Wall time: 5.14 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 1, 2, 2, 3, 3, 4]
 </pre></div>
 </div>
 </div>
@@ -438,18 +469,82 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">topk</span>
-</pre></div>
-</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-DaskBag_7_0.png" src="_images/09-DaskBag_7_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> <span class="c1"># Cartesian product of each pair </span>
 <span class="c1"># of elements in two sequences (or the same sequence in this case)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(1, 1),
+ (1, 2),
+ (1, 3),
+ (1, 4),
+ (1, 5),
+ (1, 6),
+ (1, 7),
+ (1, 8),
+ (2, 1),
+ (2, 2),
+ (2, 3),
+ (2, 4),
+ (2, 5),
+ (2, 6),
+ (2, 7),
+ (2, 8),
+ (3, 1),
+ (3, 2),
+ (3, 3),
+ (3, 4),
+ (3, 5),
+ (3, 6),
+ (3, 7),
+ (3, 8),
+ (4, 1),
+ (4, 2),
+ (4, 3),
+ (4, 4),
+ (4, 5),
+ (4, 6),
+ (4, 7),
+ (4, 8),
+ (5, 1),
+ (5, 2),
+ (5, 3),
+ (5, 4),
+ (5, 5),
+ (5, 6),
+ (5, 7),
+ (5, 8),
+ (6, 1),
+ (6, 2),
+ (6, 3),
+ (6, 4),
+ (6, 5),
+ (6, 6),
+ (6, 7),
+ (6, 8),
+ (7, 1),
+ (7, 2),
+ (7, 3),
+ (7, 4),
+ (7, 5),
+ (7, 6),
+ (7, 7),
+ (7, 8),
+ (8, 1),
+ (8, 2),
+ (8, 3),
+ (8, 4),
+ (8, 5),
+ (8, 6),
+ (8, 7),
+ (8, 8)]
 </pre></div>
 </div>
 </div>
@@ -461,6 +556,11 @@
   <span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
   <span class="o">.</span><span class="n">filter</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">v</span> <span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">%</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
   <span class="o">.</span><span class="n">compute</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(3, 1), (5, 1), (7, 1)]
 </pre></div>
 </div>
 </div>
@@ -501,6 +601,21 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.json   data/daily-stock/hpq.json
+data/daily-stock/afl.json   data/daily-stock/ibm.json
+data/daily-stock/aig.json   data/daily-stock/jbl.json
+data/daily-stock/al.json    data/daily-stock/jpm.json
+data/daily-stock/amgn.json  data/daily-stock/luv.json
+data/daily-stock/avy.json   data/daily-stock/met.json
+data/daily-stock/b.json     data/daily-stock/pcg.json
+data/daily-stock/bwa.json   data/daily-stock/tgt.json
+data/daily-stock/ge.json    data/daily-stock/usb.json
+data/daily-stock/hal.json   data/daily-stock/xom.json
+data/daily-stock/hp.json
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -517,12 +632,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stocks</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-DaskBag_16_0.png" src="_images/09-DaskBag_16_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -546,17 +669,42 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rm</span> <span class="n">data</span><span class="o">/</span><span class="n">daily</span><span class="o">-</span><span class="n">stock</span><span class="o">/*.</span><span class="n">h5</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/jovyan/work/data/daily-stock/aet.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/afl.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/aig.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/al.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/amgn.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/avy.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/b.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/bwa.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/ge.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hal.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hp.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hpq.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/ibm.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/jbl.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/jpm.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/luv.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/met.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/pcg.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/tgt.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/usb.json&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/xom.json&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!rm data/daily-stock/*.h5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
@@ -568,11 +716,43 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1d67e9934478490ab17e91d41f2e3585", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;daily-stock&#39;</span><span class="p">,</span> <span class="s1">&#39;*.h5&#39;</span><span class="p">)))</span>
 <span class="n">filenames</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/jovyan/work/data/daily-stock/aet.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/afl.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/aig.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/al.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/amgn.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/avy.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/b.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/bwa.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/ge.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hal.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hp.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/hpq.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/ibm.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/jbl.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/jpm.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/luv.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/met.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/pcg.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/tgt.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/usb.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/xom.h5&#39;]
 </pre></div>
 </div>
 </div>
@@ -597,10 +777,23 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.91 s, sys: 872 ms, total: 2.79 s
+Wall time: 2.96 s
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">corr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/home/jovyan/work/data/daily-stock/aet.h5&#39;,
+ &#39;/home/jovyan/work/data/daily-stock/luv.h5&#39;,
+ 0.9413176064560879)
 </pre></div>
 </div>
 </div>
@@ -631,12 +824,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10.4 ms, sys: 27.4 ms, total: 37.8 ms
+Wall time: 38.3 ms
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.81 s, sys: 9.62 s, total: 15.4 s
+Wall time: 31 s
 </pre></div>
 </div>
 </div>
@@ -647,18 +852,14 @@
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="wordcount-with-dask-bag">
-<h3>Wordcount with Dask bag<a class="headerlink" href="#wordcount-with-dask-bag" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lorem</span>
-
-<span class="n">lorem</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9413176064560879
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="wordcount-with-dask-bag">
+<h3>Wordcount with Dask bag<a class="headerlink" href="#wordcount-with-dask-bag" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lorem</span>
@@ -676,11 +877,45 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>requirements.txt  sample04.txt  sample09.txt  sample14.txt  sample19.txt
+sample00.txt      sample05.txt  sample10.txt  sample15.txt  sample.txt
+sample01.txt      sample06.txt  sample11.txt  sample16.txt
+sample02.txt      sample07.txt  sample12.txt  sample17.txt
+sample03.txt      sample08.txt  sample13.txt  sample18.txt
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
 <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;sample*.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sample.txt&#39;,
+ &#39;sample11.txt&#39;,
+ &#39;sample17.txt&#39;,
+ &#39;sample08.txt&#39;,
+ &#39;sample15.txt&#39;,
+ &#39;sample03.txt&#39;,
+ &#39;sample18.txt&#39;,
+ &#39;sample14.txt&#39;,
+ &#39;sample19.txt&#39;,
+ &#39;sample09.txt&#39;,
+ &#39;sample06.txt&#39;,
+ &#39;sample01.txt&#39;,
+ &#39;sample00.txt&#39;,
+ &#39;sample07.txt&#39;,
+ &#39;sample16.txt&#39;,
+ &#39;sample10.txt&#39;,
+ &#39;sample13.txt&#39;,
+ &#39;sample05.txt&#39;,
+ &#39;sample12.txt&#39;,
+ &#39;sample02.txt&#39;,
+ &#39;sample04.txt&#39;]
 </pre></div>
 </div>
 </div>
@@ -691,7 +926,7 @@
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;sample*.txt&#39;</span><span class="p">))</span>
 
-<span class="n">wordcount</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">)</span>  <span class="c1"># remove dots</span>
+<span class="n">wordcount</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># remove dots</span>
              <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>           <span class="c1"># lower text</span>
              <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>           <span class="c1"># remove \n and trailing spaces</span>
              <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>           <span class="c1"># split into words</span>
@@ -701,6 +936,20 @@
 
 
 <span class="n">wordcount</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> <span class="c1"># Run all tasks and return result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;dolor&#39;, 187),
+ (&#39;etincidunt&#39;, 186),
+ (&#39;adipisci&#39;, 179),
+ (&#39;tempora&#39;, 176),
+ (&#39;voluptatem&#39;, 176),
+ (&#39;non&#39;, 175),
+ (&#39;velit&#39;, 171),
+ (&#39;ut&#39;, 171),
+ (&#39;amet&#39;, 170),
+ (&#39;modi&#39;, 168)]
 </pre></div>
 </div>
 </div>
@@ -739,6 +988,55 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">group_character</span><span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">bases</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+        <span class="n">bases</span> <span class="o">+=</span> <span class="n">b</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">bases</span>
+            <span class="n">bases</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;abcdefghijklmno&quot;</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">group_character</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>abcde
+fghij
+klmno
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">group_and_split</span><span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">seq</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">group_character</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group_and_split</span><span class="p">(</span><span class="s1">&#39;abcdefghijklmno&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;abcde&#39;, &#39;fghij&#39;, &#39;klmno&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 
@@ -754,6 +1052,18 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;data/genome02.txt&#39;,
+ &#39;data/genome01.txt&#39;,
+ &#39;data/genome05.txt&#39;,
+ &#39;data/genome04.txt&#39;,
+ &#39;data/genome00.txt&#39;,
+ &#39;data/genome07.txt&#39;,
+ &#39;data/genome06.txt&#39;,
+ &#39;data/genome03.txt&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="exercise-9-2">
@@ -762,10 +1072,1126 @@
 <ul class="simple">
 <li><p>Create a function that can read a <span class="xref myst">FASTA file</span> and compute the frequencies for n = 5 of a given sequence.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+
+<span class="n">genome</span> <span class="o">=</span> <span class="s1">&#39;data/genome.txt&#39;</span>
+
+<span class="k">def</span> <span class="nf">read_fasta</span><span class="p">(</span><span class="n">genome</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">genome</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+ 
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">group_and_split</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="n">read_fasta</span><span class="p">(</span><span class="n">genome</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;CTGTG&#39;: 59,
+ &#39;CCCAG&#39;: 55,
+ &#39;CCTGG&#39;: 52,
+ &#39;AAAAA&#39;: 49,
+ &#39;TGCTG&#39;: 42,
+ &#39;TGTGT&#39;: 41,
+ &#39;CCACC&#39;: 39,
+ &#39;GGCTG&#39;: 38,
+ &#39;CACCA&#39;: 37,
+ &#39;GGTGG&#39;: 37}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">testset</span><span class="o">.</span><span class="n">fasta</span>
+
+<span class="o">&gt;</span><span class="n">SEQUENCE_1</span>
+<span class="n">MTEITAAMVKELRESTGAGMMDCKNALSETNGDFDKAVQLLREKGLGKAAKKADRLAAEG</span>
+<span class="n">LVSVKVSDDFTIAAMRPSYLSYEDLDMTFVENEYKALVAELEKENEERRRLKDPNKPEHK</span>
+<span class="n">IPQFASRKQLSDAILKEAEEKIKEELKAQGKPEKIWDNIIPGKMNSFIADNSQLDSKLTL</span>
+<span class="n">MGQFYVMDDKKTVEQVIAEKEKEFGGKIKIVEFICFEVGEGLEKKTEDFAAEVAAQL</span>
+<span class="o">&gt;</span><span class="n">SEQUENCE_2</span>
+<span class="n">SATVSEINSETDFVAKNDQFIALTKDTTAHIQSNSLQSVEELHSSTINGVKFEEYLKSQI</span>
+<span class="n">ATIGENLVVRRFATLKAGANGVVNGYIHTNGRVGVVIAAACDSAEVASKSRDLLRQICMH</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing testset.fasta
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="exercise-9-3">
 <h3>Exercise 9.3<a class="headerlink" href="#exercise-9-3" title="Permalink to this headline">¶</a></h3>
 <p>Write a program that uses the function implemented above to read several FASTA files stored in a Dask bag.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cat</span> <span class="n">data</span><span class="o">/</span><span class="n">genome</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GATCAATGAGGTGGACACCAGAGGCGGGGACTTGTAAATAACACTGGGCTGTAGGAGTGA
+TGGGGTTCACCTCTAATTCTAAGATGGCTAGATAATGCATCTTTCAGGGTTGTGCTTCTA
+TCTAGAAGGTAGAGCTGTGGTCGTTCAATAAAAGTCCTCAAGAGGTTGGTTAATACGCAT
+GTTTAATAGTACAGTATGGTGACTATAGTCAACAATAATTTATTGTACATTTTTAAATAG
+CTAGAAGAAAAGCATTGGGAAGTTTCCAACATGAAGAAAAGATAAATGGTCAAGGGAATG
+GATATCCTAATTACCCTGATTTGATCATTATGCATTATATACATGAATCAAAATATCACA
+CATACCTTCAAACTATGTACAAATATTATATACCAATAAAAAATCATCATCATCATCTCC
+ATCATCACCACCCTCCTCCTCATCACCACCAGCATCACCACCATCATCACCACCACCATC
+ATCACCACCACCACTGCCATCATCATCACCACCACTGTGCCATCATCATCACCACCACTG
+TCATTATCACCACCACCATCATCACCAACACCACTGCCATCGTCATCACCACCACTGTCA
+TTATCACCACCACCATCACCAACATCACCACCACCATTATCACCACCATCAACACCACCA
+CCCCCATCATCATCATCACTACTACCATCATTACCAGCACCACCACCACTATCACCACCA
+CCACCACAATCACCATCACCACTATCATCAACATCATCACTACCACCATCACCAACACCA
+CCATCATTATCACCACCACCACCATCACCAACATCACCACCATCATCATCACCACCATCA
+CCAAGACCATCATCATCACCATCACCACCAACATCACCACCATCACCAACACCACCATCA
+CCACCACCACCACCATCATCACCACCACCACCATCATCATCACCACCACCGCCATCATCA
+TCGCCACCACCATGACCACCACCATCACAACCATCACCACCATCACAACCACCATCATCA
+CTATCGCTATCACCACCATCACCATTACCACCACCATTACTACAACCATGACCATCACCA
+CCATCACCACCACCATCACAACGATCACCATCACAGCCACCATCATCACCACCACCACCA
+CCACCATCACCATCAAACCATCGGCATTATTATTTTTTTAGAATTTTGTTGGGATTCAGT
+ATCTGCCAAGATACCCATTCTTAAAACATGAAAAAGCAGCTGACCCTCCTGTGGCCCCCT
+TTTTGGGCAGTCATTGCAGGACCTCATCCCCAAGCAGCAGCTCTGGTGGCATACAGGCAA
+CCCACCACCAAGGTAGAGGGTAATTGAGCAGAAAAGCCACTTCCTCCAGCAGTTCCCTGT
+CTGAGCTGCTGTCCTTGGACTTGAAGAAGCTTCTGGAACATGCTGGGGAGGAAGGAAGAC
+ATTTCACTTATTGAGTGGCCTGATGCAGAACAGAGACCCAGCTGGTTCACTCTAGTTCGG
+ACTAAAACTCACCCCTGTCTATAAGCATCAGCCTCGGCAGGATGCATTTCACATTTGTGA
+TCTCATTTAACCTCCACAAAGACCCAGAAGGGTTGGTAACATTATCATACCTAGGCCTAC
+TATTTTAAAAATCTAACACCCATGCAGCCCGGGCACTGAAGTGGAGGCTGGCCACGGAGA
+GAGCCAGGCAATCACTGGCTTTTCCTTAGACAGAGAGCTGGTTCCTAGGAGAAGAAGCTC
+CAGGCTGGGGTCCAGGCTATGACCCAACTGTTCAGTTTTGCAACATCCAGCATGGCTGCC
+TGATCAGGGGTGCATATGTCAGAGGAGCCTTCAGCTGGGAAGTGCTGACAAATGACCCAG
+ACCTGACCTGCCCGATGCCAAGGCCTCCTTTAGTACATCCCATGGAGGACACTTGAGACA
+AAGTCACAGCTCAGCCCGTTGATTTCCCATGCTCTGACTGTGCGGTGCAGCAGGACCCCT
+AGCAGGCAGCATGTGTTCAAGGCAGCGATATCCAAATGCTATGAATTGCTGTCCTGATGG
+TTATTTTCCTGCATACAGTAGAGCTGATCCCTGTACAATGCTGGTCCTAAATCTCACCTT
+TGACAGTGCGCTGATGTGCAATGTTTGCTTTTGTTTTATTTGATGGAACATGGCTAATTG
+CTAAGAAGGTGACATGCTGCCCACTGACCACCCAATGTTCATTCTCCTCTTCTTCCTTAC
+TAACAAAACTGCGGTGGTGGTGGTGAGGAGAGGGAGGGGGTATAACAAATGTGCCAAGCC
+AAGAGTTTATATTTGCAAGCCTCTCTTATACCTAGAGTTGATCGTGACACAGCTCTGGCC
+AATGATGTGTAAGCAGAAGTTGCTTGATGTGACTTCTGGCAAAGCTCTTAAGGAGAGGAC
+TGACCTGTTTCCACATATCTTTTTCCTTTCCGTGTCCTTAGTCCTGGCTGGGATGCAGAT
+GAGATGCAAAAGGTGGAGCAGCCATGTTGTCATCAGGCAGTAACAGGTCTGAGGGTAGAA
+GCTGCATTCTGATAATACCAGGGAAAAATAATACAAGTAGTCTAGGGCCCAGAGATATCA
+CAGATGTCCATTTGAACCCCAAATTACCTGTCTCCAGATTTGCTATCAGGCAAGAAAAGG
+AAATCTTTCATTAGTTTAAGCTGTAGTTTACTCCAGTTTTCTATAACTTTCGGCCAGATA
+TAACCCTAAATTGACAAAGGGGGCAAGTGCTTAACTGCAAAGCAGTTAAAACTCAAACAC
+AGGCCTTCATTTCTTCAGGGTTTTAGTTTTTTCTAGGGAAGAATCTTAACTACTGCTACT
+AAAAGTTATAGTAGGCCAGGGATGGTGACTCACGCCTGTAATCTCAGCACTTTGGAAGCC
+CAGGCAGGTGGATCACCTGAGGTCAGGAGTTCAAGACCAGCCTGGCCAACGTGGTGAAAC
+CCCATCTCTACTAAAAATACAAAAATTAGCCAGGCATGATGGTGCATGCCTGTAGTCACA
+CCTACTCAGGAGGCTGAGTCAGGAGAATAGCTTGACCCAGGAGGCAGAGGTGGCAGTGAG
+CCAAGATCGCACCACTGCACTCCAGCCTGGGCGACAGAGCAAGACTCTGTCTCAAAAAAA
+AAAAAGTCATAATCAAAGAGGAAGACTGAGATAAATGTAGAGTCAAAGGGCTAAACAGAA
+ACATAACACATGGGTTTTAAGCTAAGCCTTCACATTATCCCTTATACAATTTTATCTACA
+CCGATTTCACCAAAGCTCAAAGTTATATTATTGGCTGAGATTGGCATTGGGATGGAGTGG
+TGAAGCTAAGAAATTCGTTATCCCTTTGTTCCAGTGCTGCTGGACTTTTCACTAAGTGAA
+GAGGTAAATGCTGAGTCTCCCAGGAGGCTGACTCCTCCTGGCTCTGGGTGTGCATTCTGA
+TGAAGGTTCTTTATTGTAGGCACCAACAGAAGGCTCATGAGAGGGCAACATGGATCTCCA
+TTTCTGAGCAGATGTTTAAACGCTGAATCAGGTCCAAGGCTTCCCAAATGAACTCAAGGA
+GTTTCTTTTTCCCAAGCCATAGAAAGTGGCGATAGCAATCCAGGGTCTGCACTGGGAAGG
+AGCACTGCCAGGACACGTCCCTCCCTGCCATTCCCCCACCCTCGCCCAGGAGACGTCCCT
+CCCTGCCACCACACAGGACACATCCCTCCTTGCCATCCCACCCCCCTTCCCAGGACACGT
+CCCTCCCTGCCATCCCATCCCATTCCCCCACAAGGACACGTCCCTCCCTGTCATCCCACC
+CCCCTTCTCAGGACACATCCTTCCCTGCCATCCCACACCCCCCCCAGGACACGTCCCTCC
+CTGCCATCCCACGCCTCCCCCCAGGACACATCCCTCCCTGCCATCCCACCCCGCCCCCCA
+GGACACACAGGTCCGTGAAATCAGTATAGACACTTGTATCAAGCAAGAAGAAGCATGTTA
+CTCAGAAGAACACAATTTTGTTGTTTTGTTTTTGTTTCTGGGTTTTGGTTGTTTTTTTTG
+TTTTTTTTTTTGGGGAATTAAACAAATAATTTCAAGTTCTACCTCCACCACCTACCAGCT
+GCATGATCTTAGACCATTGACATCACCTCCCTGACCGTGATTTTCACATCTAGAGAATGG
+GAGGGGAAGAACCATGCCTTGGGGGCCAGGCTGAGGATGAACTATGAAAACCCGTCCTAT
+TGGGCACTCTCGAACAGTCACCATTGTTGGTATGAGGCCCACTATCAGTGAAACTGATTG
+AAATTGGTGTACATCTGAGACCTGAGGACAGCCATCAAGTGTCTATTAACTTAAGCTTTA
+TGTAGCAAGCATTTATTGCACATGATCCTAGGTCCCAAGTATGCTTCGGTAAATTAAACA
+CCCTTGGTCCCTGCCCTCACAAGCCGTTCATAATCTAGACAGATACATAAGATATAAATG
+CACAATTGTTCATTGAAAATCTCCGAAGTCACTGGCTATTTTCTGTGGTTCTCGGCACCA
+TCACCACCCTTCCAAATTCTCTCCTGTTCTCAGGGGTTAGAAACCTGCAAACTACATTCC
+CTAGACTTCCTTGCCTGTAGGAGCAAAATGATCCCATGTATTACTGCGAAATGGTAGTGT
+CTGGGTCCCAGAAGACAGTTAGTAGAATCAGAATGTAGGAAAGTGTGTGCCACAGCCACA
+CATGTTCATGATAGTCATAACTTGTTCAGTAGGAATTTAGAGAAGACTGACTGTACACAA
+GGTATTGCTAAATGCTATGCGGGATACAGAGATGCCTGTGCCTCTAAGAAACTTGGTAGA
+AAAATAATAACCCACACATATTTGGCTTACCTTCTCTTTGAATAGAGCAATTGGCAGTTT
+AGATTCAGTCATTCTTCAATTCATTTAGCCAAAATTTATTCTGTGATGGCTGAATCCAAC
+AAATGAAGTCTCTACTCTCATATTATTTTCCATTTTGTTCCACTGAATTTCAGCAAACAT
+AGACCAGACAAGCATCCCTTTGAAACCTGGACTTGGGATGAGGGTCTGCTGAGATTGGGT
+TTTCTCCATGCCCAGATGCCTCTGATCAAATATCAAGTCCCAAAGATACAGATGAGAAAG
+TTATTAAGTGTTCTGGGATTGGGACATCGGAGATATTAATTAACCCTGGCTTGAGATGGG
+AAGAGGGGGCAGGTAGCTTTCTTTGTGTAGTGTTTAGGAAGGTGATTGCCAATCTAGGAG
+AAGTGAGTTCCCCAGAGGGAGGGGGGCTCTTGGCCAGCAGGGTGACCCATATGTTCTGGT
+CTGCCTGGAGCTGTGGTCCTTGGGTTCACAGCGGCCCCTTTGCACTCAAAGCACCCTAGC
+TTGGACAATAAATTCTACAGTCAGTTCTGCAGTGACGATCTTCAATTCCTAGGGCTGCCA
+TAAGAGAAGATCATAGACTAGGGGTGGTACACGACAGAAATTCATCTTCTCCCAGTTCTG
+GAGCCTGAAAATCCAAAACAAGGTGCTGTCAGGGTTGGATTCTCCTTGGGCCTCTCTTCT
+TGGCTTGCAGGTGGCTGTCTTCTGGCTGTGTCCTCGTGTGTCCCCAACATCCCCCTGTGT
+GTGTGTGCAACCCTTATGTCTCTTCCTCTGCTCATAAGAAAACAGTCCTATAGGACTAGG
+ACCACATTCTTATGGCCTCATTTAACCTTAATTACCTCCTTTAGGGCCCTGTCTCCAAAT
+ATGTTCAGTGGAGGTTTGGGGCTTTGGCATATGAGTCTTTGGAGGCCACAGTTCTGTCCA
+GAACACACTGACCCTATCCACCAGGTACTGCCACACCAATGGCTTTCAGCATTAGACAGA
+GCCCCCCTGGGCTCTGTAACCCCACCCAGGGTGTTAAGAATGAGGAGTGAAAGTCCACAC
+ATGTACACACATGTTAATAGCAGCATTATGCGCAACAGTCAAACAGTGGACACACCCAAA
+TGCCCATCAGTGGATGATGGATACATGCAAGGTGATTTATCCAGACAGTGGCATCATATT
+CTGTGGCCGGAAACAGGAGGGGAACGCTGACACTTGGCACAACACGGAAGACCTTTGAAA
+ACATATTGCAGCAGATTGAATGAAAAAACAGAGAGAAGAATCCAGCCGCCTCATATAATT
+TCTTTTTAACTTGCAAATGTTATTTTTAATCAAAATGTTATTTACATGGCACTGAGTGTA
+CGGACAACCTTTGAAAACATGGTGCTGAGTGTAAGAACCAAACAGGAAAGGCCACGTGTT
+GTTCATTGATAGGAAATGTCCAGAATAGGATGTTCTAAAGAGACTGAGAATGGATAAGTG
+GCTGCTTAAGTGGGGGGGTGGAAGGAGGATAGAAGAGTGATAGCTAAAGGGCACAGTTTC
+TTTCTGAGGTGATGGTATGTTCCAAAATTGACATTGGTGATGGTTGCACACACTGCAGAT
+ACACCAAAATCCACCAAGTTAAATTGAAATGCACACTTTACACTATTGAATTATATACTT
+TAAGTGGCTGAATTGTATAGCATATGAATTACATTTCAATAAAGCCTTTTAAATAAATCA
+TGCATGGGTAAAATGTCCACTCAAAGTAAGATAAACCAGCGCATTGTAATGTAATAGAGT
+ACAAAATGCATGGGTATGGAATTCCACTTACAACCCATCATTAATCAACCACTACTTATC
+AAAGAAACCCCAACTTGTCAAATTTCAGTGTGATGTCAAACAAGATACCCAGTGTTACCT
+GAGAAGGCTAGTAAGACACTCATCTCTTTTCAAACTACTTGGAAGTATGAGGCCAGGTTC
+TTTTCCTATTCTTCAACCAAAACAATGTATTGCAACAGATTGAATGAAAAAAACAGAGAG
+AAGAATCCAGCTGCCTCATGTAATTTCTTTTTAATTTGGAAATGGTATTTTTAATCAAAA
+TGTTATTTACATTAGCAATAATAATTTTTTTTAAAAAAGAATGAGGCTTGAGACGGAGAC
+TCAGTGGCTGTGTCTACCGGCCTCAGTTGTAAAACAAGCACTGTTCATCCCGAGCCGACA
+TAGCTGCTCATTCACTCATTCAAAAATAATCTTTGAACACCCGCTCTGTGATGAGGTGAT
+GATGATGATGACGATGATGATGGTATCAGTACTGGCTAATATAATAAACTAGCTACTATG
+TGCCAAATGGTTTCTCAATCTGAGCCATTTAACCCCCACAGCAGCCCTGGAAAGTAAGAA
+TCGTTACTAGCTCTAGGAGGCAGCCCCAGGGATAGGTCTGCGGTGCGTGTTCCAGAGTCG
+GGAGCCCTGGCCGAGGTCTGCGCTGGCTTTTTCCTCCCTGGGTGACCTGCACAAGAGGCA
+GGAGGTTAGCTGTCTGCTGCTACGGCTAACACACAGGCTCTCCTCATGGGGCTTGGGGAG
+GTGGATAAATTACTGTTCCTAATGTTTTTAGTGTGACTGAAGTGCTGGCCACTCAGTCAC
+TCGTTTGCCCTTTCACTCATTCATTCATTCCTTCATTCAGTGATATATGAAGTGCCCACC
+GTGAGCCAGAGTGAGACGCTTTCCTGAGATCCCAGGATTTCTTAAACAAAATACACAAAG
+CACTTACGTAAAAGATCGATACACTGATTGCATTAAAATTAAGAACTTCTGTTTATCAAA
+AATTCCTTCAAGAAAATGAAGACAAGCTACAAACTGGGAGAAGATATTTCCAACATGTGT
+AATTGAAAAAACATTAATATTAATTATATATATATATGTGTACGTATATAATGTGTATAT
+ATGTGTGTGTGTGTATGTATATTTTCATATTTAAAACCAGACATCATTAATGCAAAGATA
+AATGCACCAATCAGAAAGTGAACAAAAATATAGAAACAGACATTTCACAAGAGAGAAAAT
+ATAGCTGGCCAATAAACATTTGAAGAAAAACCCAACTTAATTAGTAATTAGGTTAAGTGA
+AAAAAAGCAAGTACCGGAAGACTACATGCAGCATGATATTCTTTCTCAAAATAAAGGCTA
+GAAAATCAGATAAGATAAATAATATGCTCTGAGGCATCCATGTAGATATAACACAGCTAT
+TTTCAGAGAAGGAATGATCAGCACTAACTTCTGTAGAAGTTTATAGGCACATGCAAGTTA
+GTTTGCTAGTTCCTGGGTGGCATGGTGGATTCATGGGAGTGCCTTGTGTTGTTAAAAATA
+AAGAAACTAGGCCTGGTTTGGTGGCTCATGCCTGAATCCCAACATTTTGGGAGGCTGAGA
+AGGAGGATTGCTTGAGCCCAGAAGTTTGAGACCAGCCTGGACAACGTGGTGAAACCCGTC
+TCTACAAAAATACAAAAATTAGCTGGGTGTGGTGGTGCACACCTGTGGTCCCAGCTACTT
+GGCAGCCTGAGGTGGGAGGTACACTTGAGGCCAGGAGGTCAAAGCTGCAATAAGCCGAGA
+TCACCCCACTGTACTCCAGTCTTGGTGATAGAGTGAGACCCTGTCTCAAAAAAATAAATA
+AATAAAATAAAGAAACTAAAAATAACAACAATGATGATAATAATAATAATAGACTAGGCA
+CAGTGGTTTACACCTGTATTCCCAGCACTTTGGGAGGCCGAGGCAGGCAGATCACTTGAG
+GTCAGGAGTTGAAGATCAGCCTGGCCAACATGGCGAAACCTCGCCTCTACTAAAAATACA
+AAATTAGGCCCGGTGCGGTGGCTCACACCTGTAATCCCTGCACTTTGGGAGGCGAGGTGG
+GTGGATCACCTGAGGTCAGGAGTTCGAGGCCAGCCTGGCCAACATGGCGAAACCCTGTCT
+CTACTAAAAAAAAAAGAAAAAGAAAAAATTAGCCAGACGTGGTGGCGGGTGCCAGTAATC
+CCAGCTACTTGGGAGGCTGAGGGAGGAGAATTGCTTAAACCCCGGTAGGCAGAAGTTGCA
+GCGAGCCGAGATCACACCACTGCACTCCAGCCTGGGTGAAACGCTCTCTCAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAGTCAGGAATGGTGGCATGCGCCTGTAATCCCAGCTACT
+TAGGAGGATGAGAATCACTTGAACCTGGGAGGCAGAGGCTGCAGTGAGCCAAGATAGTGC
+TACTGCACTCCAGCCTGGGCAACAGAGCTAGACTCTGTCTCAAAAAAATAGTAATAATAA
+TAGCAAAAGAGGGCCAGGCATGGCTGGCGAGTCATGAACCCAGGCGTGGCATTCCTCAAA
+TTATGTGCACCTAAAGTCTGCGAAGGGAAACAAACAAGAATTCAAAAAGCAAGACACCCC
+GGGGGTTCTCTGTCCTTCCTTCCCTGCACTCAGTCTGCGTCCTGAGCAGCAACAGTGCTG
+ACCCCATAAGCCTCGGCCAGCAGGTAAGGGTCACCTTCTCTTCCCTGCACTGAGGTTCCC
+AATGGAGACCAGGAAGTGAAGTGATTTCTAAGGGTTTCCTGTGAGGTCAGGAATCAAGAT
+GGAATCATTGCCTCATCCTCTGTTAACCAGAAAATTCTCTAAGCCAAACCCTCCCATAGC
+CTCTGGTCTCTTCACTCAGCCGAGGGTTCCCTTGTGTTTAGAGGGCAAGGTGGGCTCTGT
+TTCCTCCCACTGGGATGGAGGAGTCAGAAAACTCACCTTACCCCGTTTGCCCCCGACAGT
+GCCACGTTACAAAAGTTGCCCAACTTCCTTAAATAATCCTGTCACTTCCTCCTCATTTGC
+CTCTGACGCATGAGAGCCTGGGAAACCCCAAGTCGCTTGCTGTAGGGCCTGCAGGAGGGC
+CTCCACCCCGACCCTGCACAGGACAGGGGAAGGGAGAACACCCAGGGAACTGAATCTTGA
+AACGCACAAAGGGAACACCGTACGGCCGTCTTTTCAAGGCCATTTCCCACAGAGAGCGTG
+CAAAAATAAGTGTCCTGGCTGGAGAGCACATTCCAGCTCCAAAGGCTCTGTTCCTTTTAC
+TTTCTCCCGCGATTACTCTTATTTTTCTGCAGCTCAACAAGGACGGTCCGCTGATGTGAG
+CATCTTGTGATTTCTCCCCCAGCGCAGCCTGCCTGGCAGCTTCCTGTGCTCCCAGCACGA
+AGTGGAAGATGACCTTCAGCCGGAGGAGGGAGCGCAGCGCGGATTAGAAGGACATGGCGC
+GGGGACTGGCCTGGTTGTTGGGGCGGGGACAGAAATCCATTTCCCTCGTTTTCCTCCACG
+CCAGTGTGGGCCACTTCCTGAGTCTCCGCACACACCAGTGTCTGAGGTTCTCACTGACCT
+GCTCCAAGGTGAGGGATTCCCCGTATTTGGGGCAGAACAGACGTTCCCACCCCGCAAGGC
+TGCAGTGCGGGACAGACACGTGGCCCGGCCCCGAGATGCTGCAGAATGTTTGTCCTGGAT
+TTTAACACGTTTTCGTCCCTGGTGGTCCCAGCGGCTGCTGCCAGGGACTAAAACACCTTT
+GTCAGATTATCAGAAGGCCCCGGGAAGGGAGGGGAGAGCCCAAGATGAGAGCACTGCTTT
+ACCCGAGGCCCTATTTCCGCACGAGAAACTTTTCTCAGCCTGATCGCATCCCGGCTTCTA
+AGAAGGGCCTGGTTCAGGCTTTCAGCCTGAAGCCGGAGAGCACGAATGAGCCCTCCCCTG
+ACTTCAAAAATAAAATCCCGGTACAGTATGATCATCATGATTATTGTTACCATTATTACC
+AGCACTGCAATCATTTGTGCTCTGGCCCTTTCATCCCAGAATTTCAAAGCAGAATGCTTT
+ATAAGGAGATGGCTATTCATTTGTTCAGCGAGAGGCATCCTTTGAAAATGGAGCTTTCAG
+ACTCTTGATGAAAAAAAAAAAAAAAAAAAAACCTCTGATTTCCACTCAGCGTGATTAACC
+AGACAAGGGCTTTCCTGAGAATGAATGTGTCTGTTGAGTGGGGTCCAGACAATGAGGTCA
+GAGGCGAGCTCCCGAAACACTCCAGGAAGCAGCACCTCGGGTGTCCAAGCTTCTGAGACT
+CTCTGCAGCCCCCTCCCATGGTCACCGTCTTCTGAAGGGCTGTAGGATCGAAAGTCACAG
+GCGCACCGGCAGCAGAGCAGCATGGCTAAGCCACAGGTTCCGGCAGGTGGCTTGGGCTCA
+AACCCTGGCTTTGCATCTGAAATTCCAGCTGCATGTCCTCGGGCAAGTTACTTAACTGCT
+CTGTGCTTCAATTGCTGCTTCCATAAAATGGGGCTAATGATAGTTTCCACCTCTTGGTGG
+TTCTGTTAGCTGAGTCATCATAGGCCCTGCCCTGGAAGCAGCATTGGGCACAGAATAAGC
+TTTCAGTAAGTTACAGTGATGGGGGCCCTCCGCCGTGGGGATGCCACTCCCTGGCTTGAA
+ATGCAACAAGGGCTCCCTGTTGCTCTGATAGGACGCAGATCCTCCGCACAGCACCAGAGG
+CTCTCCAGGGCCTGGCTCCTCTTTCCTCCGGGCGTGCTCCTTGGTACTCACCATTACATC
+GCCCGCTCCTTCCTCAGCGCTGCCATTGCCTCGTGTGCTCGTCCCCGAAGTCCTCTGTCC
+ACCTCACTCACCCTTAGGCCCCTGCGTCGGCCAGCACTTCATCTTGGAGAGCTCCTCCTT
+GTACTCATGTCCCTTGGCCAACTTGCCCCAGTCCTTCAGGACTCCTGTGAGTGTCACCTC
+TCCTGAGAAGTTTCCCGACTTTCCTGTTTCGATTAGCTGGATCCCCTTCCAGTGCCACAG
+CCCATGGCAGGGTCTCCTCCTCCCCCTCTGCCGTCATCTTTCTTTTTCTCCTCCTCCTTC
+TTTTTCTGTTTCTCCCACTGGACCCCTCGTTCCCAGCAGGGCAGGCCTTGCCTCTGGCCA
+TCTCAGTGCCTGGTTCTTGCAGATGCCCAGAGGCTGCCTGGGAAGCCACTCCCGGCTCCA
+CGAGGGGTGCTGCAGCCTCAGCGTATACTTCGGTGTTTGAGAACAAGGTGATGTCCACAC
+TTGTCAAGGAAGCTCTTTCCCTTCTATTGGGTGTTTTCGGGGTCAGAGCAGAGACCACAG
+GGGAGTCACATGCTGCCTGGCTCACCAGAGGTGCTGAGTCCCTGGTTATGGAGCAGATGG
+ATGGGTGTGTGAGAAGGTGAATGGATGGGTGTGTGTGCAGGTGGGCAGCACGGTTCATTC
+CAGCTGAGGCTGAAATCCCTCTTTGTCCTGCAGGCGAGGCCCCCTGGTCACCTGGTAAAC
+TCATTCACCCGTGTCATCATAAAACCCTCCGACAAATTAACGGAAAACATAGTGACTTCT
+AGGGAGACCCCCAATGAGTAGACAGCTTTTTTCATTGTAGTTAAATATCGTAAGTAGCAA
+GTTCATTCTGGAAACATATTACATACAAAAACTGTATAGTGGTTCACAGTGATTCATGCC
+TGTAATCCCAGCACTTTGGGAGGCCGAAGCCAGTGGATCACTTGAGTTCAGGAATTCCAG
+ACCAGCCTGGCCAACATGTCTCTACTAAAAATACAAAATTTAGCCAGACATGGTGGTGCT
+CACCTGTAGTCCCAGCTACTCAGGAGACTGAAGCAGGAGAGTCAATTGAACCTGGGAGGT
+GGAGGTTGCAGTGAGCCGAGATTGCGACACTGCACTCCAGCCTGGGCAACAGAGTGAGAC
+TCTGTCTCCAGAAAAAAAAAAAAAAAAAAAAAGAATTGTACTCAACAGCAGGCCCTTGAC
+TGCATTTGAGGTTACCCGGCTGAGAACAAGAAGGTGCTTAAACCAAGGGAAGATATTGGG
+TAAGGACTGTGCACTGGTGTCACCTTCAAAGGTCAAGAAGCAGCAGGATGTCTTTGTTCT
+TCATATTATCCATTTATTAGCTGACATATGAATTCATTTCTTTCATAAAAACTACTGCGC
+CTCAGCTCTGCCGTGGGGTCACCCAGTCATATGAAAACATGAACTATGTAAGAGGAAAGA
+CATAGGCATATACTGAAAAGCTGTAAAAGAATCATGGTTTGGGATTGCACATGTCCTCTG
+GAGACTGCCTGGTCCCACTGCTGTTTTCAGTTACTGAACACTAGGTTGAGGCACAAGGGC
+ACAGAGCAGCCTAGACACTAGCTTGAGGTCACACAGCATCTGCACGTGATCACTGTGCTG
+TGCCGCAACCCAGTCCTGCAAACTCATTTCCCCGGTGAGCAAACCTAAGGCGCTCACCAG
+GCTGGGAAGACAGCCTGCAATACGCCAACTGTCAGGTCACTGGCCCTCCTGGCATCCAGT
+CTTATGCAAATGACCAGTTAACCCCTTTATAGTCTGTCCAGGTCCACCCAGTGCAGAAGC
+CCCAGTGTGCCGTTTAGTATTTGTGAGCAAGAAGACACATTCCGCTTCTTGGGGAAGGGC
+TTCCTTTCATCTTGGACGTTGGGGATTCACAGCAGTGGCTGTGTTGTACGTCCAAACAGG
+GAGGAGTGGCCCAGGCTTGCAGACAGGATCTCACGAGGTTCAGCCTTTCTGAAGTCGGTA
+CTGTAGAGACAGGCAGGTTCCCATACATTGCCTTTATGTGCCTGAAGAAGATTATGCTAT
+TTTGGGCTCTGGAGACTTTTAAAAACAAATTAGAGACAAAGCACAATAGCTCTGGATGTC
+TGACTCACTCAGAAGCAAAGCAGGCCCACCTTCCACGCAAGAAGAGACCGAGGATGCAGA
+CAGACAGGGTTCCCAGTGGGAGGACTCTGCCGCAGGAAGCAGGTGGCAACAGTTGTTTAT
+TTTGAGCTAACACAAGCTCATCCACTGATGTCCACGGTTCTTCCCAGCACAGGTCATGTG
+GGTGAGGGATGAACAATGAAGCCACACCTTCTGGAAGCTGAGAGGAGGCTGGTGGGATTG
+GAGGGGGTGGCACCCCCAAACGTCCAATGCTGCCTGAATGTAGCGGCACTCAAGTCCTGC
+TGTGAGTAGGCGGCGAGGGGCTGGGCATCCCCAAGGCCTGAGCATATCCCAGGGTCCCGG
+GTACCCGTGGACGGCATCGGAAGTTGCTGGTTGTTCTTTGTGGTTCACAGGTTCCTAGCT
+GGGACAGCATCCGTGTGGGAGGAGAGCTGGGGAGAAGGCAGAGCTCTGCAGGGACAGAGG
+TGGGGAACCAGCTCCATGGCTGCACTGCTGGCTTCCTGCAGCCTCCCACTCCGAACAGGA
+CTTTGACATGACAGAGATTCGTCACTTGAGCAAACTTGAGGCAGGCTCCTGATCCCCGCC
+TCCAGCAAGGCCCATGCCCACACTTCCCTATGAAATCCAGTTTTACCAAGAGCCCTGCTA
+AGTCGTTTTGGCCTGAAACCCCCACCTCCAATATCTGATTAGGTTCCTCATACCCCAGCA
+TCCCCCAGAGGAGTCTGACCACCCCGGCCTACCTTCAGCAAGAATCCTGTTAGGTGACTC
+GAGCCTGAATCCCCCAGCCCCTGATGTTTCCTCCTAGTCACTTTCCATCCGTGGACCCCG
+CCCTGCTCCTGGGCTGTGAATCTCCACTGCCTGTGGCGTGTTTGGAGTTGATCCCGGTTC
+TATACCTAGGTCTCTTTCTATTGTAATTGTTCCTGAATAACATCTGTTTTTATCGCTTCA
+GCTACCATCCACCATGGGTTTCTTTGACAGATGGGACTCCTTGGCCCGCACTGCTCAGCA
+CTGAGGTCCAGCCTCTGACAAGCGAAGTGCAGGCCCCCGGCGCGGGCTCCTGTGTGGATG
+CTTCTGCACCCTCTGCCGCACTGGGCACCCGGGGCCCAAGCCCACCTGCCCTCTGAACCA
+TTCTCCAGGTCAGGCAGGCAGCATGCAGCCTGTGAGCTCCCTGTGAGCTGAATTAATCCA
+CTACTTCACCACATGCATCAGGATGGACCCCCTGCTGTGGGCCGTAGGCTGTGTGCTGTG
+TGCTGTGTCCTGTGTGCTGTGTGCTGTGGGCTGTGGGCTGTGTGCTGTGTCCTGTGTGCT
+GTGTGCTGTGTGCTGTGGGCTGTGGGCTGTGTCCTGTGTGCTGTGTGCTGTGTGCTGTGG
+GCTGTGGGCTGTGTCCTGTGTGCTGTGTCCTGTGGGCTGTGGGCTGTGTCCTGTGGGCTG
+TGGGCTGTGTGCTGTGTGCTGTGTCCTGTGTGCTGTGTGCTGTGTCCTGTGTGCTGTGTG
+CTGTGTGCTGTGTGCTGTGGGCTGTGGGCTGTGGGCTGTGTCCTGTGGGCTGTGGGCTGT
+GGGCTGTGGGCTGTGTCCTGTGGGCTGTGGGCTGTGTGCTGTGTGCTGTGTGCTGTGTGC
+TGTGGGCTGTGGGCTGTGTCCTATGTGCTGTGTCCTGTGGGCTGTGGGCTGTGGGCTGTG
+TCCTGTGTGCTGTGTGCTGTGGGCTGTAGGCTATGGGCTGTGTCCTGTGTGTGTGCTGTG
+TGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCT
+GTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGT
+GCTGTGTGCTGTGTGCTGTGGGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGTGCTG
+TGGGCTGTGGGCTGTGGGCTGTGGGCTGTGTCCTGTGGGCTGTGGGCTGTGTGCTGTGTC
+CTGTGTGCTGTGTGCTGTGTGCTGTGTGCTGTGGGCTGTGGGCTGTGTCCTGTGTGCTGT
+GTCCTGTGGGCTGTGGGCTGTGGGCTGTGGGCTGTGTCCTGTGTGCTGTGTGCTGTGTCC
+TGTGTGCTGTGGGCTGTGGGCTGTGTCCTGTGTGCTGTGTCCTGTGTGCTGTGGGCTGTG
+GGCCATGGGTCATGGGGCTGTGGGCTGCATGCTATGGGCTGTGGGCTGCTTGCCAGGCAC
+TTAGGAACCGAGGCACAGCATGAGTGAGTCCCTGCCTTCAGGAAATGTCTGGTCTGGTGT
+GAGAACAGGCGCGTAGACACTCAGTCATAGTGCAGGCATTGTAGGGTTTGGCATAGCTAC
+GGATCATACAGAGATCATCTCCTCATGTGGCAGCATGAAAAATGTCCCCCAAAGATGTCC
+ACGTCCTCATCCCAGAGCCTCACATGGCATAGGGCCTTTTTGGGTGGGATTAATGTAAGG
+ATCTTGAGGTGTGGATTTATCCTGGAGTAGTCAGGGTTGTGGGGAGTGATGCCATCACAG
+AGGTCTTTGTAAGAGGCAGACGGGAGGGTCAGAGGCAGAGGGGGAGACAGAAGGAGGAAG
+CAGCGGTGAGGGAGAGAAGGAAAGATGCTGGACTGCTGGCTTTGAAGACGGAGGAGGGGG
+CCATGGGCCAAGGATTGCCGGCGGCCTCTGGCAGCTGGGAAAGGTAAAGAGAAGGAGGCT
+CCTCTGGACCCTCCAGGAGCCAGTGCTGCTGACACCAGAATTCTGGGACTTCTGGCCTCT
+AGAAATGTAAGAATACATTTGTGCCATGTTGAGTCTCTAAGTTTATGGAGACCCCAATTT
+TGATACAGCAGTCATAGGACACAAATACCTCATTCCCCGACCCCCACCAACAGTCTGTGG
+ATGAAAGAAAACAGGGTCATGAGCTGGAGAGCAAGCAGAAGAGGAGGGTGCACGTGGATA
+CTTTAAAATCTTTACTGGGTTGGAGGGGGTGACCTCTGAGCAGAGGCTTGATGGGTGAGG
+AGGGGCCAGCCCAGGGCCGTGGAGGTCTGAAAAGTCAGCGAGAGCCAAGGCTAGTGTGCA
+GTCAGCAGCACAGTCTGAGGCTGTGCCCAGAGCGACTGGCTCCACCCCCTGTCCTGGTTC
+AGGTGCTTTTGTTCTTCTTATGGTCCAGCACCAGATGTCATCCCATGACCCCCAGCCCAG
+AGCCCCGCCCCTGACTGCACAAAGCTCTTTCTTGGATTGCCCCAACCCCCTCCTAGCCTG
+GGTGGTGAGAGAGAGCTCCAAGGGTATGGTCTGGCCTTGGGAGTGGGGGGTCCAGCAGAG
+CTCCCCATGTAGTAAAGAATGTGGCCTGGCCTGCAGAGAGGTCTGCCCTTGTCCTCGGCT
+TCTGGGAGGGGCTTTGTTGAGACTGTGGCGGTGCCAGATCTTCAGGTGGGGTTGACCATG
+CCAGAAAGACCAGCCCCGTGGCTCAATCATCAATCAGTCTTGCACACGGAATGGAGCCCC
+GATGAAGCCCCGGACACTGGGACTCAGGGGAGCTCACCAGCTTGGTGGTGCTCCATGCCT
+CTTGTGACACCTCGATGCCAAGAATGTGACATATCCTGACTCCACAGGGAGAGGACACCG
+GCAGCCTCAGGTCTGGAGTCCCCGGCCCCAGCCCCGTTTCCTCCTTGGGTTGACTTGATC
+TGTGTCCTTTCCTGTGATAAACCATGGCTATGAGTAGAACAGCTTTCAGTGGACACTGAG
+TCTTTCTAGCAAGTTAGGAAACCTCAGGATGTTTGGGGAAATCCCCCAAGCTTTGCGCTT
+TGCAGTCCATGTCAGAAGTGCAGTTAATGGTCACCTGCATGAGACCAGGTCCCCTAAACT
+TTGCAGTTTGCCTAGCTCTGGGTAGACTTTTCCATCCTGGAGGGGTAACCCTGGGGTCTC
+GCAGGCCCAGCAATTCACTGCAGGCCCCAAGTGCTGACCTGCTTGGCTGGGTCTGACCGT
+GCTGGTTGTCCTCAGCTCTCCCACCCCAAGAAGGGCTCGAGAACTGAGGTAGCTGAACAA
+CCGCTTTCACGTTCCGGGTCCTTTGCTATTAGTTGTTATGGCTTTGAGTTTTCTATCAAA
+TGTGAGAAAGTCAGCTGCACTGGTTGACCACCTCAAAAATGCAAATTGGTGTAATTTCAG
+TCAATACATGCGCACTGGGCATTAAAAATGCAAATTTCCTGCTGTGCAGAGAGCAAGAAA
+GTACAGCACCTTGTTTAGGAACAAAACTCAGGATGGCAAGAGAACCTTTCCTCTTCCCCA
+AATGGATATTAGGTCCTTCTCTGGGACAGAGGACGAGGGTGTGGCCACAGCTCTAGGTAA
+GGGACCTCAGATGCATCTCATGGCCCCAGCTTAGTCTGTACTGTTATTAAAAAACAAACA
+GACAGATGCTGGCACTGTGGCCAGCCAAGCAGGCCAGCCCTGCAGCCCCTTTAAATCAGA
+GGGAAAGATAATCGCTTCCACACCCTAATTTCTTTCTTGATTCTCTTCCACTTTCCTTTC
+TCATCTGAGCCCACAGTGAGAACCGTTGTGCTGGGTGGGGCCTCCAACTCCCACATGGGA
+GCAGAAGTGAGAGGAGACCTTTGGGAAGGCTCTGGAAGCCACACCGCCAAGGTGCACCCA
+GTCGAGGCGAGGGGAGAGCTCGGAAGCCCAGGCCCAGACCTGTCCACACCTGGGTTGCGC
+TGAGGGCAGGTGCACATCTGTGCCTTCTGAGCCAGCACACCAAACCTAGGTCCTGAGTTT
+GGATCTGTGTGGGTTACAAATATCATGAGCACCTGGAGGTGACACTGATATTTCTCAACC
+AGCTTGTGTTTCCAGAAAGGTGCCCTCCACTTTCCTGGCCTGGTCTAACCCTCTGTCCCC
+CGCATTGCCACCAAGTGGTCTCCCTGCACCAAAAGCCTCAGTTTTGCAGCATAGTCCGGC
+TGACACATGTCAATGTGTGAATATCTGACCTTGTCCACCTGCGTCTCAGCTCCTGTGGGC
+AGGCGCCAACTCTGCTTTGCTTCAACCTGTGCCTTGCACAAAATGTGTTGCAATGAATGA
+ATGAATGAATGAATGATACCCATCTCCTAATCTGTTCAGAAACTCCGAATAATGATTTCT
+AGATTCCAAGGTCTAGTCTGACCTTTTACCTAGACAGGAAGTCCCTGTGCGGCACACCTG
+TGGGATGGGCACCCCGAGCTCCTGCAGGGACAGGACATGGGTGTCTGAGCCAGCTGTCTA
+TGGTGTGAAACAAATCACTACAGATTTAGAGGCTTAAGCCACACCCATTCATTATCTCAC
+AGCTGCTGGGGGTCAGGAGCCAGGCTGGGTCCTTCAAGTGGGTCTCACAGAGTCCATCAA
+AGAGTCAGCAGGGGCCGAGGTCTCATCTGAGCTCAGGGTCCTCTTCCAAGCTCCTAGGGT
+TGCTGGCAGAATCAAGTTCCTTGCCACTGTGGAGCTCATGGTGGCTTCCTTCCTCAAGGC
+CAGCAGAAGAGAGAGCCTGGGACTCTGGCCCCGGAGGGCCCTCACCTGATTAGGGCGGGC
+CCACCCAGGGGAACAGCCTTTTGGAGGAACTCAACATCAAATGATTAGGGACTTTAATGA
+TGCTTACAAAAGCCCTGCCCCTTTGCCATAGGCTACTGGCTTGGAGCAAATCACAGATCC
+AAACGTATGTGAGGGTGGACATGCCCACGGGGCCATCTGAGAACTCTGCTCGCTGCAGCG
+TCCACAAGGCAGCCCATCCTCAGCCTCCTGGGACACGAAGTTTTCCTTCCCATGGGGTGA
+ACCCCACGTCCTCCTTGGCCAGGCTACCTGGCCTGGCCCCTCCTCCACCCCTAACCCTAG
+CTGCCCCGGGACTGCCCGCACAGTTCTCTGCTCTCAGCTCTGTGCATCTCCCCCATGGCA
+CCCACCCAACCCAGGCTGCCTCTCTGCCTGGAAGGCCCCTCCCCCTCCCCCAGGGCCTTG
+TTCCTCCCCACTCCACATCCGAAAGCAAAACCATCCCAAATGTAGCTCCCTTCCTCCACT
+TCCATCCTGGCCACCAGCAGCCTTTTCTTCTCCGGACTCAGATTTTAGACTGTTCCTTGA
+CCCGACCTTTCTTTCAGAACCTGCATTTTTGCTGCGTGGCTCACATCTAGCCCTTCGCCT
+TCCTCCCAAAGCAGAGTCCTGGTCAGCCTGGCCCCATGGCCTTAGCAAACGGACACCACC
+CGTCGCTATCCTGTACCTGGCCCTGGGCGGCCGTCTGGCAGGACTTTCTGTTTGGTTCCT
+GTGTATCTGGGGAGGCCGGAAAGGACAAGCAACACTTGCTCACCTCAAGAGGAGGAAGGT
+CTGTGCTGGGCCGTGTGCTCACGCTACTTATCCGGAATCATCTTGCCTCCCAGGGTGGAT
+ATTGTTTCTCATTTTAGGGAAGAGCAAACTCAGGCTGCGAGAAGTTAAGACCTGCCCGGG
+TCTTAGCGCTGCAAGATGAAATACAGGATGTCCAGTGTAATTTAAATTTCAGATGAATGA
+ATGAATGAATGGTGCCTGTCTCCTAATCTGTCCAGAAACTCAGAATAATGGGTTCTAGAT
+TCCAAGGTCTAGTCTGCCCGTTTTATCTAGACAGGAAGTCTAGAACCTATCTCGTACCCA
+TCATTCCAGCCTGGGCTAGGTAGGTGACCTGGGGGAGCTGCACGGACCTGAGAGCAGAGG
+ACTGTGTGGGGGAGTCCCGGAGAGCAAGTGGCAGGGGTGGCAGAGGGAATAAATATAAAT
+GTAAGCTGAAGAATAGCTCAAATACAGCAAGGGCTATACTTACACTAACACAAGCTCGTT
+TATCTGCAATTCAGATGGAACTGGGCACCTGCCTCTATCTGCTAAATCCGGCCACTCTAC
+CTGGGTCACACAGCTAGTAACTGACACAAGAAAATGAAGCGGAGTCTACATCTGATGCCG
+GACATCAGGCTCTGGTCCTCTGGTTTGCTATCTGCCTGGTGATAGGGACCTGTCACCACC
+TCTCATTCTGCCTCGCTCCACTGGTGAGCAGGGCCTCCAGCAGCAGCCCTGGGCAGCCTG
+GTGGCAAACTGAATGCCTGTGCATGAGTCGGACGAGACAGCGGGTCCTTGCTGTTGCAGG
+GATGGCTTTCCTGCCGATGTTGTCCACACTGGCTCTCGCTCTGTAGTGCAGGCTCAGCTC
+CCTGCCTGCAGAGGCTGCCCCCGCTGGTCCTTTTTGGAAGGCCTCACCCCCACACCTGCA
+GCCCTTGTTCTCTGCCTTTGCTTTTTATCAATGCAGAGCGGGCCTGGTACATGAAACCCT
+CGAATTAAAAGTTATTCGGGGTAATGATTCCAGTGATCCATCTGCGCTGGAAGTGGGGCA
+GCTTTTCCTCCTTTGCACGTTACCGCCCATATTAAAGTGTCATATGTAAATGATTAAGCC
+GATGAACAGTTTTATTTCCTCCAGCAGCTGACAATTCCACAAAATGGAGAGATTTTAATT
+TAAAGGGGCACAATAAAGAAAACCCTTCTGGGTGCTCGGAGTCTCAGGAAGGAGGCGCTG
+AGGGATCCCTGGAAGCCTGTTGCTCAGTAGTTAAGGAAGCCTCCGCCCTTGGGTGGGGAC
+CAGTTCTGGCCATGGGTCACTTGTTTCTGTAGAGCCCATGCCAAGAGTCTCCTGGCTTGG
+GACAGCTGGCCAGTCCCCTGCACTGGAACATCTCAAACTCTGTGCTTAGAAGTTGGAGAC
+AAAGAGCTGCTCTGTTTTTCAGTCAGTTTTGGACTGTTTTTATGTCTTTGTGGGTGGTGA
+GAAGGTCTGGTCTTTACATTTGGAGTTGAGACACCTGTCAGAGCTCAGCTGTCCCCCAGC
+ACAGCCCTGGGCTCCTCTGTGGGGTCACTCGCCCTCTGTTCCCACAGAGGAAACCCCAGA
+GGGAGCTGCTCCCAGCTGTATCCCAGCAGCCTGCAGTTTGCCTGTACCTCGGTCCCTGCA
+GCCCTGCACCTGGGGCCGCTGGCAAAGGCGAGGCGGAGGCTGCTGCTCCCCCAGGAGCTG
+TCCAGGCCAGCCTCTCCATGCCCAGTCCCCTGTCCATCCCCTGCCCTCACCCTGAGACTT
+GCTGAGCAAACTGCACCTGGCTGCTGCACTCCACACCTGGCCTGCCCTTCCTTGTCTTAG
+TGCACTGCAAGCCTACTTACAGGAAAAAAAAAATCTGATACGGAGTCTCTGCCAATCCTC
+ATGGTGTAAATGCTCCCAGCTGGGCCAATTTAAGCCACTATCTGTGTAACAACCTGTTCA
+CAAAATTCCTGAACACCCAACAATCGGCTCTAGTGTGCCTGCCCACACCGGCTCCTGACC
+ACCACGGCACGTACCGCAAGTTGTCCACACCAAGGAGCTGGGTTGCTGTGCTCATGTCTG
+TTTTGTCTCTTCTGGACACTTCCTCCCAGAGGGCAGGGCAGGGCCCACATCTGCTCCATC
+GTGCTTGCATCTACAGGCCAGGCTCTTCGCACTCCACAAACATTGCCCACCTTGGTGATG
+CATGCTGGGACTGCCATCCCCAGGTCCAAGGGCTCACCTTGCCCACCCGCCCCTTCCACC
+TCCCACCTCCTCCTCGGGCCCCGGCAGCATAGAACCTGCGGCTCCTACTTGCCTGCACCC
+AGCCCTCCGCCTGGCCCCAGCTCCCAGCTGCCTCAGCACAGGTGTGCCGTCTCTTGCTCC
+AGGAATCTCTCCTTGGCCAGCCACCTCTTGGCCAGGTTAAGGATCCCCCAGCCCTGCACA
+GATCTCAGCATGTTCTCGGCACTTCATGTTATAATTATCTGCTGTGGTCCCTCTGCATGA
+GTGGCAAGTCTGAGGTCTCATTCAGACTTCAAAACATGCACCAAGAAGCACAGTGCCTAG
+AACACAAGGGTTGAGGGAACCTTGGCCGAATGAAAGAATGGAATCTGCCCAGGCTGCAAA
+CACGGCTTCAGGGGAGTGGGAGCCCATTGGTGGAAAACCCCAGAAGCGCTGCTTGATCCC
+AGCTCCTTGGAGTCAGGCCCTACCCTTCTGTTCACTCTTGGATCCACCTGGGCAGGCCCA
+GGAGACACTGACCACATGCTCAGCTCCACGGGCCACGGTAGGTGCTCAATAAAAGCATAA
+TTGGGGAATGAATGCAGGTGGTTCCTGGAAGACAGTGCCATTTATCAGCTCGTTACAGAC
+CCAATCACCGTCGAGGGGAGGGAGGGGCAGGTTTGCTCCGGGTTTGCAGCTCCTCCTGTC
+AGAAAACCTTTGGAATTAAGGCATTGGCATTAATTGCGATAGATCCTCTGAAAAGCCTTC
+CTGTTTATAATTTGGACAAATTGCCCCACATCCTCTCTCGCTGCGTGTCTGTGTGTGATG
+TGCCTCAGGGAGGTATTGATTTATTTTTGGTTATAAGTGAGAGTTAATACCGTGTTGGTG
+GCTGCTCCCTGTAGATGTGGGGACATGGCCTTCTCCTGGAGGCAGCAGAGATATTTCACA
+CCCAGAGCCTTCATCTCCAGGGAGACTCGGGCACTCTGTGAGTGCAGGAAAGAGCTTGGA
+TGGAGCTGCAGCCCAGACTTGTCTGTCACTCCTCGGGAGGCATGAGACAGGCGGTGGAGA
+TGCCACTCACTGTGGAGGACCACGGGCTGCAGCAAAGCTTTAAAGATACCCCAGGCCCCA
+GTCTCTGCTGCCCAGCCCAGGCCTGGAGCCACCTCAGAGTGAGCCACATGAAGGCAAATG
+CAGGTGGCACCCAGTGGTCACCTGGACGTGGATTCTGGAGTCAGACACATCCAGGTTCCA
+GCCTCCACTCTGCACATAGTAGCTGCGTGGCCTGGGCTGAGTTAGTGAGGGCCTCTGGGT
+TTCAATTTGCAAGAAACGGCGTGGGAGTCAGGGGTAGGAGTGGGGGGATGTTACCTGCCC
+TGGTAAGCATGGTGTTTGTACAGCGTCCCTCCCTGCGAGAGCCATGGCCTTCCTCTCTGT
+GGGTTCTTGCAAGAGTGTCCATTAGCTGCCCCATTTCACCCTGGCAGCTGCAGGCTGGCT
+CACAGGGAAGCCTCCCCAATTTCTCACTTGTAGTTCTCTCTTGTAGAATGTGCCAGAAAG
+TAACACCCTGAGATAGGGATGAACTGGCTGGAATAGCCCAGGCTCTATTCCAGGCCCACC
+GTCCCCCAGAAAGAGATGTCCTTTAGCTCAGTGGGGCCTGTGGCCCTAAGGTATGAAACC
+CAGGGCGGGCTACTTTCTAGGGTCCTTCAGCTGCGGTGCAGGTGGGGCCCGAGCCAGGCT
+GGGCAGCTTTCGTGAGCCTTGGGGAACCAGCTGGCCATGAACTTTCAGCTCTGCTGCCTC
+TCGATGCCCATCTAGGAGGTGTTGAGCTGCTTCATGTAACCTGTGTGAGTGTTCTATCTC
+ACCAGGCTCAGACACGTCGGTAACCAGTGCACAGGGAATCTGCTTCACAGCCGCCCCTCC
+CCTGCAGCAGGGAGGAGGTGTCACCAAAGCAGGGCCTGTCGGAGTCTCTGGCTGTGATAC
+AGACCTTGAGGATGAGAGCTGTGGGGGATGCTTCTACAGGTGCAGTGGCCCTCTTCCCCT
+TCCTCCTGATTTCCTGCTCCCCCTTCCCATCAGCCATGGCCATGCATCTGCCAGCAGCTG
+GACACTGGGCAGAAGCAGTGGATTCCACCTCCGGGCCTGGCCAACCAAACCCTCTCAGAG
+GACACCCCCATGGGCTTTTCTGTTTTGGTGGCAGGGATGGAGATGGCCTTCTGGGTGACC
+TTGGGAAAAGCCACACATGGAAGGAGTGTGGGCCCATGGATCAATGTCTTGGAAAACCCT
+GGAACAGTAACTCCTAGACAGGACCAGACACAAGCAGAAAATAAACTCTATTTTGTCAAG
+TCTCTGTGATTTGGGGTTAAACTGAGGAAAGCTGGCACAGGGAGCAGACGGCAATCCTGG
+CCTGCCTATGGCAATCTCGCCAGCCCATGCAGAGGCTGAGAAGAGTGAAGATCCCACGGA
+GAGGAGGCAAGCGAGAGGGAGAGCCCTGGCTGTGGGGTTTGGGCTCAAGGAGGTTTGGCC
+CCTATCAGGGGCCGGCTGCACCCCAGACCACCAGGCACTCTGGCAGGTGGATTTTCTCTC
+TCTTTTTTTTTTTTAGGGAGATTGGCTTGGTTTTCTGCCTCGTGGGTGCACCTTGTTGCA
+GGGATATGGGGAAAATTTGCCCCGATGGTGGAGGTGAAGCTCGCAGCACTATGAGGAGTT
+GGTTCTCATGGACATTATTCCCTGTCTTTTCCCATTGGCCTAGAGAAGCAGCATTCGTGC
+AAGTGAGAGTGACAGAAGGACGCTTACTCACGGCGTCCAGCCCGGCTCCCTAGGCAAAGC
+CACTGTGGGAGGGCATCTCTGCCAGGACCGGGCTGAAAGGCTCTCCTGAAGGACGCATGG
+GCCAGGGCCACTCACAGAATCTGGAGGAGCCATGTACAGCTATGGTCTCTGTAGAAATAG
+GTGGTGTGGGGGCAAAGCTGGGGACAGGAGGTGGGGAGGAAAGCAAACCAGGTGACTGTG
+CATGTGTGTCCCTCGGAACAGGGCGGGTGGAAGGAGAATCCGCTTTGGAGTCTGGAAGCA
+CTGGTTTGCTGCTCACCTGCGTGGGACTCACTTGTTGGAATGCATCTTCATGAGTTCCTG
+CCATGACAGATTCTAACTCAGTGGGTCTGGTAAGGGTTCAGGCATGTCTGTTGAGGCCCA
+GGCTGAAGATGGTTTGTAAGTGCAGTCGCGGCGGCCCCCAGGTGGTGCTGGGTCAGCTAC
+CCCGTATGGAGTGGCTGGATGAGGGGAGTGTCAGCTCTCTGTTCCTGGGGCTCATGGAAG
+ATGGGACACCCCTGGGCAGTGTTAGTCGGTCATCCCTGTAGGGTGACCATCATCTGGTGA
+CCTGTTGCCCCGGCACCTGGTCAGTTTGGCATGTGTGTCAGATTTTTCATTTTCTAAACA
+AGTTTACTGTGAACATTCATATTAAAATAAGCAGGACATGGTCTGGTAGACTCTACCTTG
+ACCCCTGGTTTCGGCAATGATCTTGTCCACTAGTGAATGAGACATGTGAGTGAGCAGTTT
+TTAATTTAACCTGTGGTTCCAGACCACTGGCAAGGACCAGTTAAGCTTGTTTTCAGCTCT
+TTCCAGACCCAACAGCCATGCCTCCCTATCCAGGACTGTACCTGGGCACCACGGAGGAAG
+CTACTCAGACATCAACCCAGGTAGAACTACCTCTTTCTGGCCCCAAGCAAGAAGGCAGAA
+ATGTCCCACGTTACTGCCCCCTGCCCACTGTGGCCAACACTGGGTGGACAACTCTGCTAT
+GGCCCACGCCACACCTGAAAGACGTCAAAGCCACCAGATACCAGTCTTGGGGTCCGTTGG
+ACATTACAGGGCAAACGTGTGAAATGCAATGAAGAAATAGAGGCTGGGTAACCCTAAACA
+CAGACAGGGAGCTGCTGCGCACTCTTGCTACAGGTGATCATCATTGTTTTGTGGGATGAA
+CATACAATAAGTTATTTATTTTCTTGCTTGCTAATGCTTTTAAAATTTTTTAATAAACTC
+ATTTGATAGCAATGAGCTAAAATAATGGAAGTACGTGTTTAACGAAAAAGCACAGAATTT
+CCACTGGCCATTAATATTGATGACAAAGGTGCAGCTTGCACAAAATACATATTGGCATTA
+TTTTGACCTCAGAAAAGCCAAAGAATCATCATCTGCTAGAGAAACAGCCACATCTACTTC
+CAAAGACGGTGGTCGAAGGCTTTGCTGAAGACAAGGGCATGCAGTGTGTGGCACCAGAAG
+GTCAGAGCATGGTTTTTCATTTAGATCAAATGCTGCTCTTCTACTCTCAGCTCACACTTG
+GCAGCTAAGCTTCCCTGTGCGTGTCTGTAAAGTCAAGCAGTTAACTGTTCATGTGCCAGC
+ACCACTAGCAGAAGAAAAACTCAGTAAACAGTCATTGAAGCCAGTTTCGAATGACAACAT
+CTGATACTTCATAGAGGAAGTCACTGAATTCCAGGAATAGGCCCTTGGTTTTCAATCACA
+TTTGTGAACTAAAAAAGCAACTTTTAGAATTTCATTCTGGCCTGCAATCCCAGCATTTTG
+GGAGGCCGAGGAAGGTGGATCACCTGAGGTCAGGGAGTTCAAGACAAGCCTGGCCAACAT
+GGTGAAACCCCATCTCTACTAGAAATGCAAACATTAGCTGGGTGTGGTGGTGCACGCCTG
+TAGCCCCAGCTACTTGGGGGGCTGAGGCACGAGAATTACTTGAACCCGTGAGGCAGAGGT
+TGCAGTGAGCTGAGATTGAGCCATTGCACTCCAGCCTAGGTGACGGAGTTGAGAATCTGT
+CTCCCAAAAAAAAAAAAATTTCATTCTGTCTGAGGGGAGATATTTGAGACTCTGATGAGG
+ACTACTGCAAATTCAGTTAAAAGGTTCCACACTGAGGCTGGGAGCAGTGGCTCACGCCTG
+TAATCCCAGCACTTTGGGAGGCTGAGGCAGGCGGGATCGCCTGAGGTCAGGAACTCGAGA
+CCAGCCCGGCCAACATGGTGAAACCCCGTCTCTACTAAAAATACAAAAATTAGCTGGGCT
+TGGTGGCGCACGCCTGTAATCTCAGCTACTTGGGAGGCTGAGGCAGGAGAATTGCTTGAA
+CCTGGGAGGCAGAGGTTGCAGTGAGCCAAGATCGTGCCATTGCACTCCAGCCTGGGCAAC
+AAGAGCGAAACTCCGTCTCAAAAAAAAAAGAAAAAAGAAAGGTTCCACACTCAATATGAA
+ATTCCTTGTTTCATTGTAGTGGTCACATATGGACATACTAGATAACAGTTTCTGGGTAGA
+AGTGATGTTCTTATTATATGAAGATACCTACGGAGCAAATATGAACCACGCATGGGTTAT
+AGGGCACCTTCATTCAAACTTGTGTCCAACAAGTTGGGATAATCTAACAATCGAACAATA
+TAAGTCGTAGTTGCACAAACTTACAAATATTTATATGCATACAGTTGGAGTAGCCGAATT
+ACAACACTTTGTGACAAAGCTGATTTTGTCTTTATTTTATTTTATTTTATTTTATTTTAT
+TTTTTTTGAGACGGAGTTTTCCTCTTGTCCCCCAGGCTGGCATGCGGTGGCGCAATCTCG
+TCTTACTGCAACCTCCGCCTCCCAGGTTTGAGTGATTCTCCTGTCTCAGTCTCCCGAGTA
+GTTGGGATTATAGCCATGTACCACCACACCTGGCTCATTTTTGTATTTTCAGTAGAGACA
+GAGTTTCACCATGTTGGCCAGGCTGGTCTCAAACTCCTGACCTCGGGTGATCTGCCCCCC
+TTGGCCTCCCAAAGTGCTAGGATTACAGGTGTGAGCCACCGCACCTGGCCACAAAGCTGA
+TTTTTAATTTTAAAAAGATCTCAGTGTGCGGCTATGCCCTCTCCCTGTGCCCATGCTGAG
+GGTGATTCTATAAACCAAGCCCATAGAAAGCTGCCTTGTAAGTCAACCCAAGGGTCCTAC
+ACTGCAGTGAGACCTTCTGTAAAGGAATCCTCTAAATTTTGGTTGCACCAAATAATTTAA
+TGAATTCGATAAATAGAGCAATGACAACAAACTTCAGCTTTTTTTTTTTTTTTTTTTTTT
+TTAGACAGGATCTTTTTCTGTCACTCAGGCTGGAGTGCAGTGGCACAATCACGGTTAACT
+GCAGCCTCAACCTTCTGGGTCCAATCAAACCTTCCACTTCAGCCTCCTAAGTAGCTGGAA
+CTACAGGTATGTTCCAGTTAATTTTTGTATTTTTTGTAGAGACAGAGTCCCAGTCTATTG
+CCCAGGCTGATCTCGAACTCCTGGGCTCAAATGATCCTCCTGCTTTGGCTCCCAAAGTGC
+TAGAGTACAGGCATAGGCCATCTTGCCTGGCCTCAAACTTCAGTTTTTAAAGCTTCTAGA
+AAATTGCAAATGTTGAAGACAAAGCTTGCAAACAGGAAGACATTAAATATACCCCTTACA
+AGTGAGGGAGGGATGAGATAAATTCAACAATGAGTGTCCTGACAGCATATAAGATTTAAT
+TTTGAAATTATGTAATTTTGCTTCAGAATATCTCAACGTATGGAAGGCATCTTTTAATGA
+AGCCCTATTTTTAATCAAACACATTTATAAACTGTACCAAAATGGGACAAAAATAAAAGA
+TGTACAAGTTTGCTGTATCTAAAATTTAAGAAACATTCAAGAGAAACTTACAGAGAAACA
+ACTCCAAGATAGACAACTTATTTAATGAATTTTCTCTTGTAAAGGTATCTGAATGGAGCC
+AAAAAACCAACATCTGGAAGTGCATTTGGGTGAAATAGTTTCACTTTTCAGTGTGGAAAA
+AAAAAAAAAAAAACAGTGAGCAGAATTTACTTTGAGCTCACCAGGTACCCCTGAACCTGC
+AGAGAGAAAATTGTCTTAATTAAAATGGTTACGGTCTAACAGAGAGGAGTCAGTTTAAGA
+TGTCAACAATTTCTAGCATACTAACCAAAAAAAAAAAAAAAGCAACTTTGAAGAAGGGCA
+TAGCAATTTTAAGAAAATATTTTTAAAATGTTAGGACTCTATTGAAAAGAAACTCCTTTA
+GAAAAATTTCAATGGATTCACCAATATATTAAAACCAACTTACCAGTCTCTCTCTATATT
+TATATATAATATATGTTATATATTATATATGAAGTAAATATATATCTAATTAAATAATAA
+ATTAAATATATATTCATTATATTTATTAAATATAATAAATAAATAATAGATCTAATTAAA
+TAATAAATATATTACATTTGTACAGGAGTAATTATGGCAGGCCAGGCGCGGTGGCTCATG
+CCTGTAATCCCAACACTTTGGGAGGCCTAGGCAGGTGGATCACCTGAGGTCAGGAGTTCG
+AAACCAGCCTGGCCAAAATGGTGAAACCCTGTCTCTACTAAAAATATAAAAAATTAGCTG
+GGTGTGGTGGCAGGAGCCTGTAATCCCAGCTACTCAGGAGGCTGAGGCAGTAGAATCACT
+TCAACCCGGGAGGCGGAGGTTGCAGTGACGCGAGATTGCACCATTGCACTCCAGCCTGGG
+CAACAAAAGTGAGACTCCACCTAAAAACTAAACAAACAAAAAAATAGAGTAATTATAGCA
+AAATCATGATTACTTTTGTACCAACTTCATATATTTTTTAATAAATTTATACAATAAATA
+TATATGCTGTACATATTATATAATATGTATATGTTACATATTTAATTATATAATAGTTAA
+ATATATAATATATTTTATGAAATATATATTTAATATATAATATGTATCTTATATATAAAT
+AAATAAATAAATATATATTCATTTATTTTCAGTGCCTGCTTCCCTCTATAAATTGTCCTC
+ATTTGGAGAACACTTGGACACAGGGTGGGGAACATCACACACCAGGGCCTGTTGTGGGGT
+GGGGGGAGGGGGGAGGGATAGCATTAGGAGAAATACCTAATGTGATAATAAAAAAAATAA
+AAAAATAATAAAAATAAATAATAATAATAAAGTGTCCTCATTTGGATGGCAGATTGAATG
+ATTATCCTACAGATTATCTAAGTGTGTCTAGAACAGACGTTTTCAAACTTTAGGTTTTCC
+AGGATGGTTTATTCCCTTCTGATGCATGTGGTCTAAGACCTTTTTTAAAAATCAAGGTAT
+AATTGAGAACACAGTAAGTGTACCCTCCAGTAAGTTTTGACATATGTATACATCCAGGTG
+ACCAGCACCCACTCAAGATAAGGAAGGTTCCCATCACTCTAAGAAGTGGTTTTGTGCCCC
+TTTTGCAACTAGTCCTGCCTGCAGAGGTCACCACCCTTCTGATTTCTGTGGCCGAAGACT
+ACGTTTGCCTATTGAGACCCACATTCTGAGAAGCTCAGGTCTCTGGTCTTTGGAGACCCT
+GGGATAGAAAGCGCAGGTTGTCTTGGACGGGCCGTGATTCTGGCCTGTTTATTGCAGGGT
+TCTGTGGGTGTAGCGGAGGCTGAGAGCCCCTTAACAGAGACCCTAGAGGCCTGGAGGGCA
+CCTTTGGATAGCACGGCAGAAAGTGTGCTGCTCCAGATGGGGGAGATCACAGGCAGGGGG
+GTCACAGGGGCTGGCCTCCCAGGGGCTCGGCCTCCCAGGGGCTCAGCCTCCCAGGCCTGA
+CACTGACCTGAGATCCAGCCCTGCCCCTGCCCCTGCCCTTCCCAAGTCAGACCTCAGCAC
+CCCTGGCCCCTCCACCCCAGGCTGACCTGGCTGCTCCTGCTCCTCAAGACTGTGTGACTC
+ATTCCACCTCAAAGGTGTGACTTCTGCTGTGGGCACGTGGCAAGACCTGGTGGGATGAGG
+AAAGATGCCCGGTGTTGGTCCTTCCCTTTAGAGACTGAGAAGTTTGAGGGTCTTTTCAAG
+AGGAGAAGGTCTGGGTATCAGAGCACTAAAGGTGCCCACCGAGTTTCCAGGGAGGACCAG
+GCAGCACTTTGGCCAGATGGCAGAGCCCAGCCCCTGCCCAGCCCCTGCACGAATGCATTG
+GTGTCCACCTTCCTGCCCCACTGCCTCGATTCCTGCAATGTAGAGGTTGAGATCCAGGTG
+AGGACAGCAGCACCGACACTCAAGCCAGTACAAACCGAGGCTGGGGCAAGAAATTCAGCA
+CACACCGAGCTGTGATAGGAGTACCAGGAAAGAAATCAGGCCTGGCAGTGGGGCTGGTGC
+CTCTAGCCTCAGCGGGGCCTGTCGCAAGTTCAAGGGTGGTCGGCATGTCCACTGTGAGGG
+GGGGACCTCTAGCCTCAGCGGGGCCCGTCACGAGTTCAAGGGCGGTCGGCCTGTCCACTG
+TGAGTGCTAACCATGACCATGACCCCAGTCAGGGCAAACGCCAACTCTGGGTGAGCAGCA
+AGTTGGAGGCGAGGGAAGGGATCACGACCCCACCAGATACTAAGGTATGGAGGAAACAGC
+TTGGGGTGACACCCCACTGTGGGAGCTCAGGAGGATGTGGGTCCGAGTCCTGGCTCACCA
+CAGACCAGCTGTGAGCATCCACTGGGCTAGCTGCTCATACTCTCCAAATGACAGCCCAGC
+CCAGGGTCACTGAAAGATACCAGGAGTTGATAAGGTGGTTGGCACAGGGTTGAGGATACA
+GTGAGCACTCAGTAAACAAGAGTGAGGGTGGAAATGATAAAGAATAGGGTCCCACTAGTG
+TGGGATTCTGTCTCCATGGAGGAACTGAGATGACACGATCTTATAGTCTGATCTGACAAG
+GCGTCCTTCTCTCCCCTTCCAGTCTACCAGGTGTCCTCCCTGCCTACCAGGTGCCCTAGC
+TGTATCAGAGGTGTCCTCTCTGCCTACCAGGTTCCCTAGCTGTATAAGAGGTATCCTACC
+TGCCTACCAGGTGCCCTAGCTGTATAAGAGATATCCTACATGTCTACTAGGTGTCCTAGC
+TGTACTTGTCTACCATGTGTCCCACCTGTCTGCTCAAGCTCCCTGCAATCTTCCTTCTTT
+AGACTGTGTGCACCCCATTGTCTGGAATTCTCTCTTCTCCCTGAAAACTCTTCTCCCTTC
+CTACTCCAAGAGGGCTGCATGCATTCCCGAGCACATGCCACCTACACACGTGTCCCACCC
+ATCTGGGGCCCTCAGCTCAGGTCTACCCCTCGATGACACACCAACATCCTCATTGTGTGC
+ACCGGGTTTAGCACCCAACACAACCCAAAACCTGCACAGGAGGCGAGCCTTGGAGCCTGG
+CAGCTGACACCTATGTGAGTCGGCAGCCCTCCTTCACTGTAATTAGTTACTAATGACATG
+ACGATTATGAGTCCCTGGGAAACGTCGTTTCACAAACTGAATGTTAGACACCCTGCATGG
+TAAGCCTCACTATACCCACTGGATAGGTGATATGGCTGAGGCTTGGATAAGTTAGACCAC
+CTGAACCTGTGAGAAAGCACTGGCCCCCCCTCTGCTCCACCCTGCTTCCCCAATGGAGGG
+GTGGGTGAGCCCAACCTGCCTGTGCCCCCTCCTCGACCGGACCTCAAGGCCACCTCGGCC
+CACTTCCAGAGGCCCCTGTGCAGCAGGCCTGGCCTGTTAGGAAGTTCCCAAGAGACTCTG
+ACACGAGGCCTACAGGGGCCCCCAGCCAGTGGGGCCAGCGTTCTCTACAGCCCCTGCACC
+TCCAGGGTGCAACCCCCCGGGTTGACACTCTGTTACCCTGAGGGGGACAGGAGGCCTCCG
+AGACCCTCCCTGGACCCAGCAGTGCCACTCCTACCCCTGCCCCTGCACATGGGGAGAGAT
+GAGGGGCCCACTGTGTCTCGCCAGAAATCAGCCTGGCTGGCATCTGCGCTCCACACTGCC
+AGCGCTGCAGGGATTATTTTTACCTGCGATCGCTTGTTGAATGTGTCTGATAATGTATTT
+ATAACGGCCCGAGTAACTCAGCTAGTAGCAACCGCCCTGAGAGACAAGGAAAATGGTTAG
+AAATTGTTCCCTGTAAAAATAATGAGCTCCGCTGAAATGAGCCAATCAAAACAGCCTCTG
+AGTGGCTCCCGCGCAGCCAGGTGTGGGGTGTGGAGGCGGGGCAGGTGCCGGCTGGCAGGG
+CCGCCTGGTCTGCTCTCGGTACGATTTCTGGGACAGGATCTGGGTGGCCGGGGGTCCCTG
+TCCATTCCTCGGGCCCTGCCAGCAGTCTGTCCCCAGGCACCACACTGGGGAAGCCCAGCT
+ATGACGGGGTGGCCCAGAGGACGATGCCAGCAGTTTGAACCATCCCCTGAGGAGTGACCC
+AAGCCCGTGTCTACATAGCAGCAGGAGCCTGAGTCTCGAGGCCAGCCCATGTGAGCGTCC
+CCCAGCCACCTGCCCATGGGCCCAGAACTCTCAGTCCCCTCCAACCCGTGCAGTGTGACC
+TGTCCCCTTCAGCCCTCATCCACCGCTCTGGAATGTCCCCCTCCTGCCCTCCCCATTGCT
+CTCTTTGCCAGGAACATTCCAGCATCTCCTTTCCCCAGTTCACCTTGTCTGTTCCCCCAG
+ACTCATTTCAAACAGCACTCCCCTCCACAGGGCCCGTCACTGCCCAGCTGGGAAGAGGCC
+TTTGCTCTGAGTCCCAAAGAGCCACAGGAGGGTGCCACCCGAACTCAGGGATGGGCTGGG
+TCTCTAGACACCCTTCTGCTTGTCTGTTTGCTCTACTAGAATGGGGACCTCCTGGGGCCT
+GAGGCCACACCTTCCTTTCCCAGGTAACTGAATTGTGTGAGGTTGAGAACAGGAGCCTGA
+ATCTGAATGAAGAGCGAGGAGCGGGAGTTTGCACAATTGCCTCATAGAATCTAGGGGACG
+CTTCGTTCCAGATCACAGATGGCCTGTTCTCCAGCACAGATCCTTATCTGCCTCATCCTG
+TCTCCTCCTCACCCTGATTCTCAGTGGCCAGCTCTGCAGATTTGCCCTCTAACTATATCT
+TCCTGTCTTCCTCGTCCCCACTTCCACCCCCTTGGCCTCGGCTCGGGGCTCATCAGCTCT
+TGCATTGGCCCAGTCTGTGGGCGGCCAACCGGTCTCCCTGCCTCCCACTTGCCCTCTTCA
+AAGCTTTCTTCCTTGGGGTCCAGTCTGACTCTGCTGCTGCTCTGTGTCTCACTCCTCCAT
+GGCTCCCCAGTGCCTGGACCGTGGAGGCTGAGCTCAGTCCCCGTGGTCACGCCGCCTCTC
+CCCTGCAGCCTAGGAAGTCCTCAGTCCCAGCTGCAGACCGGACACACTCCTACAACGAGT
+CACTGTTTCCCACTCAGAGGGCTTAACTCACATTGTCCCTTTTCCCCCATGCCTGCCCTC
+CCCAGCTGCCCTCAGGGCCCTCCGTCCTCCGTAGAGCCTGGTCACTCCTGGAGATCCTGC
+CCCTCTGCCACACCCGAGCCAGGCAGATGCTCTCGTCCGCATGCCCGGCGGAGCATGTGT
+TTTAAACGCGGGAATGCATGTCGCTGTGTTTGCACCTCCTGTGTCGCACCTGGATCGTCT
+CTTCATGGGGAGGCTTGCCCGTGAGCTTATGGAGTGAGGCAGAGGACCATGTTCCCTCTC
+TTTTGAACCCACACTTACAGGGGCCCTGCATTCCACAGGCCGGGGCTGAGTTCACACAGG
+AAGTAAAAATTGGTCCTGCAGAGTCAAAGTCAGAATGGCAAGAGCTTGTTTAAGCCTTGT
+TAAGTGATTGCGGGCACCTGCCCCCGTGTGCACATGGCCTGACCTCATCCCTAGGATGGC
+TTTGTGGGGTTTAGCGGTTATTCTCATTCTGCAGACAGGGAGCATGGTGGAGACCATGTC
+AGGCTCAGGTGCAACCAGGCACTAATGTTTCCAGGCCCCACTGTGCCTCTGCTGCACCCA
+AAAGCCCCCGCAAAAGTCCCAGGGTGGAACTGTGGCAGAAGGGGACTGAGGCAGATGGTC
+TAGAAACCGAGCCCCTATTGAAAGCTGGAAGGATGTGATGTTGCAAAGCCTGCCAATAAA
+AAGTTTGTCTGGGGGTTTTTCTCCTGCGTCCAGATAATTTGGTGTTTCTGTCAGGGCCCA
+ATCAGTGTAAAGGAAACACATGGTATATGAACAAGGAAAGACTAATTCAAAGCAAGGCTC
+ATGGTAACAAGGGACGGGACCAAGCAGGGCTTAGCCTGAGGACAGAGCCCCTGAGCAGGG
+AGGTCTTCTGAGGCTGCAGGCTCTGCCCAGAAGATCTGATGGGCCCAGTGCCAAGGGCTG
+GATGTGAATTCTGAGAGTCTCAGGCTGACTTCAGAATCTAACTACTCTACTGTTTAAGTG
+GATCGCAAACTTAGTGGAATAAAAGCCTTTTCTCTGCTGCTGCCAAATGGTGAGTGTAAA
+AGCGATGGTGTCTGTGTCAGCACTCGGTTCAAACCGAGTCGTGGATGAGGCAAATTGGAT
+CATTATTCATTTTATCGGTTACTTATTTTTAGAGCAATTTAACAATTACATGTAAAGTGC
+AAAGCACAGACCCGATTTACAGCGAAACTGTGAATTTACTGCCTCCACTTGGGCACCTGA
+CAATTTGTGTGTTTCCGTTTAGCATATTTTCCCCTTCCCTCAGGTGCCTGGGTTTAACAT
+TATCTTTCTATCAATTTATAGGAGAATCCTTCGGGAGGATGAAGGTGTAAAGAAGTCGGA
+ATGAAAGCCACTAGCACGTGGACTAGTCCATGTTCTAGAGTCCTGCGGATAACCAGGGCC
+TGTGTAGATGCCATGGAGCCCCACAATCCTTTGTGGGGCTGGTGGGGCAGGAGGCACAGG
+GAAAGACCCTCCCAGGAGAGACCCCAACCCCATCCCTGGACTCTGCAAGCTTCTCTGATG
+GTGATGGTGTGTCTAGGGGATGGGATCATCGTACTGAACCCTCAGAAAAGAAAGAGACAT
+CAGCCCAGGAGCCCTTTGCATCCTCAGGGGAAGCCTTCCTGATATGGGCTTCTGGACGGA
+GGTGTGCTCCTGACTGTTTCTGAAAAGCATACACACCCTGGCAGCCCAGGAATGCCCAGG
+AGCACCAGGCTCTGCTGAGAAGATTCTGACCTTGGTAGTCAAGGCGGCTGTCATGGTGTA
+CCGATCCTACAGAGAGATTAACAGAAAAGGGGAGAGGAGGCGGGGTGGCGAGGAGGGGAG
+GGAGAGGAAGCAGGAGAGGCACGGGGAGGGGCAGCCTCCTACCTGAACCCAGGCCGCAGG
+CCGCCTGGACTCCATGTCTGTCTTATCATGGACCCCATCAGGCCTGTGCCCGGGTGACCC
+TGGGAACCGTCTCTGGTTTCTCACTCACTGTGTCCTTGCAGGAGAGCCACTGTGGCTGGC
+TGAAGGGATCCAGGGCACATTTGTGTGGAGGAGCGGGAGGAGATTGCCCACCTCCCACCA
+CTGCTTTCCCTTCTAATTGAATGCTGGGGAAATGACAGGTCATTGCCTCCAGTTTTATTT
+GTTGGGAAAATGGAGGAAAGTGCTACAGATTGTGATCGGGAACAAAGCTGAGCAGATAAC
+AGGAGACCCGCCTTGGGCCTGCAGAAAGACAAAACCCGGTCCCTGATTAGACGCTGAGGG
+CAAGGCCGGGAGGGGGCAGTGGGCGGGACATGGAGTGTCATTTGATTGTCTCTGCTGGCA
+GCGCTCCCCGGAATTGCCATTTAAATTATTCAGCGTTTTTAAGCACCGTTGGACTTGGGG
+TATTGTCAGCTGCACAGGGAGGCCGAGTGTGGGGCTGCCTCAGCCCCGGCAGCTGGATGA
+CGCGTATTCTCCTGTCATGGTATTTCTAACAGTGACTCTCTCCCTCTCTGTAGCAGGCAC
+CATCTTCCCTCCTCCTTTAGGGAAAGGGCACCCACATCTCCTTTGGGGACCCCCACTTCA
+TTCTCTCTCGAGGAGCCTGGGGGCCTTCCTGGTTTCAGCTGATCAGCATTTCCCATGGCT
+GTGGCCCTGGCCCCAGGGATCCATGCACAGGAGGGCACATGGCCTATGTTGGCTCCACTC
+GAGGGACCTCTCACCACCTTCTGGGAGGGGTGAGACAGACCAGAGCTCAGTCTCTCCCAC
+AGGATGGGCAGGGGAAGAGAAGAGCACTGGCCCAGGGGGTCGATAGTCATTAGCACTGGT
+GAAAGGAGAGTCAGCCTCAGAATGAGACCTGAAAGCAGGAAGAAGCGGTCAAGCGCAATC
+AGGTGGAGTGGGGCATGAGTCAAATTGTGGGGCCTGAAATCCATGCCTACCTGGAACCTA
+GAATGTGAGGTCTTTGCAGAGGTCATTAGTTAAGACAAGGTCAGCCGGGGCAGTGGCTCA
+CACCTGTAATCCCAGCACTTTGGGAGGCCAAGACAAAAGAATTGCTTGAGCTCAGGAGAT
+TGGGACCAGCTTGGGCAACATAGTGAGACATCATCTCTACAAACAATAATAATTTAAAAA
+AAAGCTATGGTGGCACACACCTGTGGTCCTAGCTACACGGGAGGCCGAGGTGGGAGGATT
+GCTTGAGCCTAGGGTGTCGAAGCTGCAGTGAGCCAAGACCTTGCCACTGCACAACAGCCT
+GGGTAACACAGAAAGACCCTGTCTCCAAAAAAATGAGGTCATACTAGAATAGGGTGAGCT
+ATATGTGCAATATGACTGGAGTCCTTATGAGAATAAAAAGAACCTCAAAGAGGCTCACTG
+TAAAGACGGCCATGTGAAGAATGAGGCAGAGATGGGAGCAATACAGCCACAAGCCAAGGA
+ACAAGAAAGATTGCCAGGAGCCATGAGAAGCTATGAGAGAGACTCAGAGGGAGCCATCCC
+CAGGGCCTTTGGAGGAGGGATGGGCCTGCCCACAATTTGACTTCAGATCTCAGGCTTCCA
+GAACTGTGAGACAACACCTGTTGTTTCAAGCCAAACAATTGAGTTATGTTGTTACTGCAT
+TTAGGGAACTCATCAAGAAGTATAACTGGGCTGTGGGTGTTGAGGCTTTCCCACCCCTGG
+ACCAGACAGTGGAGTTAACTGGGCTTCCAAATGCCCTGCCTTGCTTCAGCCAGTTTAAAG
+TGGGTCATGGTGAATTGTGACCAGTGGATTCCTAATGGACACAGCCTCCACAACAAGCAA
+GGGAACACATCTGGCTGGGCAGGAGTACGAAATGTGCATGTCAGTGCAGAAAAATCTGTA
+CCTCAACCACTCAGTGAACACATCCCAGACCCCTCCCCAGGCTCCCTCACAGCTCAAATA
+GCCAAATATTTAGCCCCCTTTTGAAGTGCTCAAGTACTGCTGGAAAAAGAGAGATGCAAG
+CTACATAACTACAATTCAGCTTACTACAGAAAAGCCACTGCAGGAATTCACAGATGGCTT
+GATCCTGCCTGGCCAGTTTGATCATCAAAGGCTGCATTTAGAGGGCAGCATTTAAAATTA
+GACATTTCAATGCCTCATATTAATGGATTGGGGAATATAAATTATTTCTGAGTGACATTT
+TAATGTACTACATATCCCTTCAATCTAAATTACCAAAGTTTATAAACATTGAATTCCTAT
+TGATGAAGAAGCAAATATTTAGCTCCTTACTGCTAAGACCATGAAATCACTTTTCAAAGG
+GTGGAGCTGAACTTGACCTACTCACTTCTGTTGTTTAGTTCTTGGTCCCAGTCAGGAAAG
+GAGGAGAGAGCACTGTTTTTGAGTGCTTATGTGCCAGGGTTTAGACTATACATTTTCAGG
+TGTCTTTTCCCAATTTTCATAACAACCCAATGAGGAACATAGTATCTGTCTATTTCAGCT
+CAGGAACTAGGTTTAGAGTAGTTAAAAAAAACTTTCCCAAGATCACACGACTGGGTAGTG
+TTTCAATGTGATTCTGTTTGGTTCTAAAACTCATGCTTTTTCATTTCTACCAAACCATGC
+TTCATCGCTACAGGTTTAAAAGGACAAAAGGCCCAAAGTGGTTACAGCCTGGCCTAAGGT
+CACAAGGAGGGTCGGGGTAGAACTGAAGATGGAGTTGAAGACTTGCCTGGTTGGTTCTCA
+GCTCACCCTCTATGCATCCCTTACTCTTCCCTGTGTGTGCTAAAATGTTAGGTAAGACTC
+TTAATACTCAGAAGTAATCCTCAGAAAACTCATTTGCATTTTGTTTTCCTAACAAGGAAA
+ATGGGGCAAGCTTCACCTTGTCAGTCCTTCAGGGGAGCAAACATTCCAGAAGGAAGTAGG
+TTTGGATTGTTGAGGTCTGGTCCTCCTTACCCCTGGGTGGGGTAAACTGACTCATTTTAA
+AATATCTCTAATCTGGGCTTTTTTTTCCCTATGGACAGCCCATGCACATGCTAGCTGGAC
+CAGGAGGGAGGATGGGAGGAGGGAAAGTGGTACTCCGGGCCCTGAGATGTGGCTACCTGA
+GCCTCATGCTGACAACATGTGCCCAGGGACAGCAGAGGGAGCAGCAAGGGGGCTGGCCCT
+GGGAGGCCCGAGGCAGGGGCAGCTGTCACCTGTGTCTTCTCCCAGGCACCCACAGGTTAA
+CTGTGAGCTCACTGAAGAACTGCAGAGCATGTGTGCTGGTGGGGTGTGACAGGCAGGTTG
+GTTCACCCCACTGTGGAGATAGGGAGAAGAGGACCCTGTTTGGTTTCTCTCTGGGGCTTC
+ATGCCTCCTGGTTTCTATCCAACTGCTGGGCCCCTAAGGTCCTCTCCTTCATGCTCTTTT
+TTTTTTTTTTTTTTTGAATCCTGATCTCACCCTCATCTGGGGAAGTCTCACCACCCAGCA
+ACAGAGCCTCTGTAGTACAACCACTACCTCCCCTCCTCAAGCACAGAGGGCCGCTCTGTG
+CCACTCCTGCTCTGAAAGACAGAAGCATTATTTTCCCCACCAACGCCAAGGTCTTATCTT
+TTCATATTGAGAATATTCCTGTGACAAGCCGAAAAGCCACCTCAAATGTCATGCTGCTAT
+TATGGGCGGTTTTGCCCAGCCTGTGAGACAGGCAGAGGCTCTTCCCTTGATCTACACAAG
+AGATGGCACCTGTTTGTTTAAGAAACTCATAAAACAGTGTGGTGGGCTGACAGGTGGCCC
+CAGAGAGACAGGTTGCATCCTAATCCCCAGAACACAGGAATGCCACCTTATGTGACAGAA
+GAGAGAATGTTCCCTTTTATGGCAAAAAATGTGATTAGGCTAAGGATCTTGAAAAGAAGA
+GCTTATCCTAGATTATCTGGGCAGCCCCAAATGCAATCATGTGTATCTTTTTAAGAGAGA
+GGCAGAGGGAGTTTGGGGACAAACACATACAGAGGACAAGGCGATGTGATGATAGAGGCA
+GAGATTGGAGTGATGTGGCCATCTGTGAGGAATGTCAGGAGTCCGCTTTGGATGAAGCGG
+GGAAGGACCCTTTCCCCGAACCTTCAGAGGGAGTATGGCCCTGCCGATGCCTTGATTCTG
+GACTTCTTACCTCCAGAACTGTGGGAGAATAAATTTCTGCCGTTTAAAGCCATCAAGTAG
+GTGGTAGTTTTTGACAGCAGATAGAGGAGAGTCATTCACAGAGTAAACTTCTGCACTGAT
+CTGGCCGGGAGAGGATGCAGACAGCACAATTCCATTTCTGGATCTGATCCTTCTGAGGCT
+CCAGGGGCCCAGTGCCTCTAGGTCCTAATCCAGTTCTCAGTGTTCTGGACATTCTCAAGG
+TCTTCTCGCCCTCCTGGCTTTCTGGGCAGCAGCCCCTTTTCCATGTCCTGGACTAGGAGC
+CACCAGGGCTGGGCAGGTGGCCTTGTAAGAGTCTCACTCACGTCTGTTCTGCACAGGTGA
+CCAGGGATTTTTCTCCTTTGCCCAGAGCTTGAGAAGCAACAATGCCCATTCCTACAGGCA
+GGGACAGAAGAGGAGAAAGTGATGAGCTTTGGGTTCAGAATGGCCCACGTCTGGGCATCT
+CAGCGATTCTGGCCCTTGAGCCCTCCCCATCTTTTCCATGGGACTAATAATAACCAGAAC
+AGTTCCTCCTACTTTTCATCCTCTCCACTGAAATCCCCTCTCCTCTGGAACTTTCCCAAG
+TATTTGTAGAAGATGTCATTGCAGCCTCCATGGTATGGATGGTGAGGACTTGGCAAACTA
+GCAGAAAAGCCTCATAAAATGTCTATCCTAGCCAGGCATAGTGGCTCATGCCTGTAATCC
+CAGCACTTTGGGTGGCTGAGGTGAGTGGATCACCTGAGGTCAGGAGTTCAAGACCAGCCA
+GCCTGACCAACATGGTGAAACTCCGTCTCTATTAAAAATACAAAATTTTTAGCTGGGCAT
+GGTGGTGCCTGCTTATAATCCCAGCTACTTGGGAGGCTGAGGCAGGAGAATCACTTGAAC
+CTCCGAGGCAGAGGTTGCAGTGAGCTGAGATTGTGCCATTGCACTCTAGCCTGGGCAACA
+AGAGAGAAATTCTGTCTCAAAACAAACAAACAAACAAACAAGCAAACAAACAAAATATCC
+ATCCCGGGAGACAGCCAACAAAAAAGGTGAAAAAATAAAAAGAGAGCGAGGTCATTCTAA
+AACGTAGTGACTACTTAAGAGAAAGAAGCAGAGAGATGAGATGTGGAGGGTCAGGACAAT
+GTGGTCTGGGCTGTACCTCTTGTACCTGTTGGCATCCTAGACCCCAGGAGCTCAGAAAGT
+GGTATATTTGCAGACTGCATCTGTAAAGAAGCCATTAAGTTAAAATGAGGTCATTAGGGT
+GGGTCCTGACTGGCATCGTTATAAAAAGAGGACATGAGGATACAGACACACAGAGGGATG
+ACCATGTGAGGACAGAGAAAGGTGATGGTGTCTACAAGCCAAGGAAAGAAATGTTGGGAG
+GAACCAACCCTGCCAACCTTGGTCTCAGGTTCCAGCCTCCAGGGCAGTGGGAAAATAAGT
+TCTGTTGTTGAAGCCCTTTGGGCTAAGGTGCTTTGTTGTTGCATCCCAAGGAAACCAACG
+GGCAGGCACAGGTGTAAAACACCTTTAGAGAGGTGGACAGAAGGGGTGCCCTAGGGGCCG
+GTTGGTGAGACATGATGTGCTAAGGGTGGGGAAGAACCTACCAGGCAGAGGCATGACAAG
+GAAAATGCCCCAGCAGAGACCCATCCACATGGGGTCTTGTGGGCCACACTAAGGGGCTTA
+GGTTTTGCTCTAAGAACTCAGGAAATTATGGAAAGATTTTAAGGAGGAAAGCGATGGATT
+TGGTTTACACTAAAAACAAAGAAGCCAAACAGAAGCCACTCTGGCTCCTTGTCGAGAGCA
+GGCTCTGAGGCATGAAAAGCCGTGGGAAGATGGGTGGGAGCTACTGCAGGAATCCAGGAC
+TCTGATGGGCCCACGATGGGGGAAGTGCAGCAGATACAGCAGGTACAGGGATCTCGAGCC
+TTGCAGTGACCCAGCCAGAGAGCCACAGAGCTGGGTGAGGATTTGAGTGTGGGAGGAGAA
+GACAACACAGTATCTGGAATGATTTCCGAGTTTTGGGGTGGTCAGATTCATTGAAGGGTG
+GAAGAACAGTGAGGGACAATGCCAGGGCAGGCAGGAGACCAGGCTGTCCCTGGGACATGC
+TGAGCTTGAGATGTATGGTGCTTTTTCAAGTGGAGAAGTCAAGCAAGCAGCTGGATGTGT
+GAGACCAGAGCCACAGGGAGGAGAGAGACATTTGTGAATCATCAGTCCATGGGGTGATTT
+AAAACCATGGGGTTGGATGATGAAGTTAGAATGGGTGGAGATAGAGATGAGAAGGAGTCA
+GGAGGGAGATGGGGTGCTCTGATCTCTAAAGACTGAGCTGAGGAACAGGAGACAGCAAAG
+TAGTTTGGGGAGGAGCTGCCAGGGGGGTAGGAAGTGACCCAGGGAGGGGTGACATGAGAA
+AAGGATGACCTGCTGTGCTAAATACTGCAGAAAGGTTGAGCATGATGAGGACAGACACGT
+CCCTTAGATTCAGCCACGTGGAAGTCCTTGGTGACCTTGAAGAGGTTAGGTTTTAGTGAT
+GAGGATGGAATTGACCACATGCCAGGCAGGTTGCTGCTGCTGAGAATCAGGAACAATTCC
+TGGAATCCACTTAACCCACTGCTTGGCAGAGCATCAGTCATTTCAGCCCCCGTTTCTAAG
+AGCATGTTATTATCAGGTCATGCTTGAGATTCTTCCAGCCGTGAGGTCTGTTGTAAGCAC
+CGGTATGGGCAATGTGCAAAAGAACCTTGTTCTCCAAGGGCACGCGCCCTCAATTTTCCC
+AAGCAGTTGTTGGGTTCTTGCTCAGTAAATTCTCTGGGTAGCATGGGAGCTACATAATTA
+ACATTCCTGTTTTCTCCTTTTCAGTGGTCTGGTCAGCCTCTGGGACCAGGACAAAGGCTC
+CCGAAGAAATGTGATAGCCAGAGGGGTCACTTTCCCGATCACAGAGCCTCACCTCATCAT
+TAACATAGTCTAAACATGTTGGAATGGCTGGAGTCACCCCTTACGCCCCCAATAGCTATG
+TTACAGACTACAGAGGATGTCTGGAGGCTGCAGCCCAGAAGCAGGAGCCCAGAGTTTCAA
+AGTCCCCTTGCAATGCTCCTGAGGGTTATTACATTAAGTTTGGAAGGTAAACCAGCAGGC
+TCAAAGGTTTCTCCGACCTTTGCATCAACATAGATATTAAATATTATATTTTTGTATTAT
+GTTACTATAATTAGATATGTATACATACAGAGATTCCAAATTATGTTCCTGTGCATTTGT
+TAACTGCAAAACCAGAGCTGCCTGTTGTTCTCCTATGTGACTCCTCTAAACCTGAAAATC
+TTTGCAAACACCTGTTAGGGAGACACCCCCAAAATACAGCCAGAGTTGGACAATGAATTC
+TGCCATTTTTCTGTCGACAGAAGATGATTCAACTTTGAAAAACATGAAAGCAAACCCCTC
+CAGGGGTAGTACTTACTTGACCTTGAATGGGTACTAGGAATGTGGGGAGTTGTCCCCGGC
+GGGGCTCCGAATGGTCCCTTTCTGCAGTCAACTATAAAGTTCCCTGGAATGTCCCAGCTC
+CCAAGGCTGCATCTGATACCAAGCAAGACTGAGAATTGTTCCCAGACAAGAATCCTCATT
+GCACCTTTAGAAGTCCACCCACCCAACCTCTAACCAGAAAATAGATTCCTATAACATTGC
+TAATGGGTCATGGGCCGAACACGTCACTTGAGACCCTCCAGGTTGTGAGCTGTGCCCACC
+TCACATGGTGCTTCCAATCCTCTTCCTTGCTTGCACTGTAAGCATAGAGAATCAGGCAAC
+GAAGTGTGATTGGAGATCATGGCTGAAACCTTCCACCGGAGGCAAGTTTGGCTCTGACGC
+CAGAGATGCTGCTGACTCTATTTTTTGCCTTTTCCTGGTTGAAAATGTTTTGCAAGCCAC
+CAGCCAAGTTGGGGTTTCAGTATCAGAACAGTTGGCAATCCTGCCCTAATGGAAAATGAA
+GGGGAGCTAAACGTGGTGTTCACAGTTCACCTTTCATGGGAAACTTCTATTACCTGGTGG
+ACGGGCTAATGCCTGGCTGTCAGACCCATGAGCAGGCGTCCCTCATGGGGAACTTGGTCA
+TTCTGGTAGATGCCCGGGTGGCTTTTGTCTGAGCCGTGTCCAGTTTATGCCTGCCTGACT
+GTTGCTCGGGTGCTGGGAGCCTGGCTTTGCGTTCTCTCTGGCATCTCAGAGCCTGGGACA
+GCCCCTAGATCCTCCGATGGAAGGCAGAAATTCAATGCACACCACGGTAGGAAACAAGTT
+TGAAGACTTTTTACTTACAAATCCTGGGCAAGAAGGGAGCAGCGAGTTGGGGAGGGCAGT
+TCTCTGTCCTCCCAGGCAGAGACATAGTCAGGCAGAGAGAGAGCACGTGGCAACTGGCAG
+TATATATAAGGAACAGGGTGTGAGTCACTTTAAGATCATGGGCAAATGCTTGAATCGTCC
+GCTTAAGGGAAGCAAACAGGAAAGTGCTGGGCAGAAGAGATGCCTCCGGGTTCTTATCTC
+TGGGCACCAGCTTGAGCCATTTGGGTGTAGGGGAGAACTGGAAACTGTCCAGGGTGACTG
+AGCCCTGCTTCAAGCTACACCTGTATTCAACATTCTTACAAATTGATGTAAGAATTGACT
+ACAGAAGAATGCTAGACTCCCCTCAGGCCATGCATGCCTGCAGCCCAGCCACGCTCCTTG
+AAGGCAGGGCTGGCAACTTCCACCCTGGGTTGCCCAGGGCTTTGTATAGAAACTCCCATG
+CGAGAGGCACTTGGTAAATCATCCTTAGATGACTCAATTACTTAAAATAAAATTTGCAAA
+ACGAACTGATCTGGCCTGCTCAGTGCTCAGCCGTTTGTCAGAACACAGATGCCATCGAAA
+ACAAAGTGTTCTTTTTAAAGGTTTTCATGGGAGGTGTTTCCTTTCCCCGAGTTTTAGTAT
+TGGTTTCTCTGCCAAGGCCACCAGAAGGGCAGCTTCCACCAACCTTCATTCTCCTGTGCC
+CACGTTCACGAAAGCTATTTCACTCCATGAATCTCCCTCTTGCTGTCTGTATCTATGTGC
+TTCTTTCTGTTAAGGTTCTGCCATGAGCCATCTAGAAAATCATTCTCGGGTTTTAGAAGG
+AATTGCGTTTTGCCAGCTGATACGCGGGTTTTTATGACACTGTTGGGTGCAGCTCCTTTT
+CTTTCATACAGAAGACTGCTAAAAACAATTGGAAACCTACCAGGCTGACAAGTCTGAAAA
+CACATAAAGCAGAGAGACGAGCCGGCCGTAGGATACAGTGTCCATCAAGAACGCACTGGG
+CTGGTGCCCCCGTAGAGTCAAAGCACCTGCCTGGCCTGGCCTTAGGTGCCACGCCCTGAC
+TCCTGTCAGGGCCTCTACTCAGATGTCCACCTAAGGGAAAGAAAACCATTCGTCCTCAGG
+AGAGTTCTTTCATGGAGGCCTGGACTTATCCAGGATGATGCCTAGTTACAGCACAAAGGC
+TGGGGGCAGGGTGTAGGGCACTGTCTGACACTTAGTTTGCTTTTGCTGTGAAAGGGGAGT
+GGTGAGGTGGGGGAGCATGAGCTGGCAGCAGAGGCTGTCCCTTTGTTTCCAATCTCTATA
+GCCTCTTTGTCCTGTAGAAATTCTACTGTTTGTGTGGAATTAAGATACAGATGGAAATGC
+ATGCCTGTTTTGGGGTGATTGTTTGGTTACCTGGGAGCCCTTGTTTTCAGAAGGGGAGTG
+AGACTGCCTGGGGATCCTAGAACTCACTAAGGGAGAATAGTGTGTGTCTGTCAAGGTCCT
+GGGAGCTTAGAGTACACCTGCCTCAAGGTGAGACCAGGTCAGGCTGCCGTGCAGCAGCCG
+CTGCTCTCACTCAGGCATGGGTGCATTATTGGGCCTGCCAGGACAAAGCAGCCCCAGATG
+GGAAGATATTCTGACTGCAAATGGCCCAGAGAGAGGGTGTCACAGCCCCAAACACACTCA
+GCCCTGGGGCTGAACAGCTTTAGCCGAGACCCTTGAATCACCAGGCTGGGTGGGAGTAGG
+GAGTGCCACTCCTTTCTGCTGCTCCAGGTCACATCCTAGAAAGAGCCGACCCCTGATTCT
+CAGCTTCTTGGAGCTGTGTGTTGACAGTAACATCCACTGCATGTTTCCATCAGCAGCCAG
+TGAACCTGGCAGGAATATGATGGATGGGAACTGAACAGAAATCACTCCATTAGTGCCGGG
+GAATTTGGTTCATCAGAAAGCAGCAGGGTGTGATTTTGTCCATTTGTTTGAAGTCAGAAA
+GGAGAAGGCAGGGAAGGGGGTGAGCTGATTTTCCAGGGCAGCCGAGTCCAAAAGAAGACA
+GCATCGGGCTCCAGGTGGCATTTGTTTTCATTAATTGCAGGGACAGGAAGAAGGCAGTGG
+GTGTCCTTCAACAACCACAGGGATGGCAGTGCTGGGGCTTGAATCCAGAGGGACACTGGC
+TCGGGGAGGACACAATCTCACCACTCATGTGCCTGCATTCTCTTTGCATCTGTCCCCTCC
+CTTTTCATATTTCCAAGTGACTTCAGGACCCCACAGCCATCTTGATGCATGAAAATTATG
+ATTTGGGCAACAGCAAGGGTGGAGTGTTGTCCATTTACTTTTCTTTGCCTTTTCTCAACT
+TGGTTGGACCAACAGAGCTGTGCCCCACTCTCATGTCTGAGCTTGTTCTGAGAAAGGCTA
+TGAAAGATCACCAACCCAGCCTCCAAGTAGCCACGGACTCACCCACCCAGGACGGTGAGC
+ACTCACAGTCAGAAAGATCACCAACCCAGCCTCCAAGGAGCCACGGACTCACCCACCCAG
+GACGGCCAGCACCCACAGTCAGGAAAGATCACCAACCCAGCCTCCAAGGAGCCACGGACT
+CACCCACCCAGGACGGTGAGCACCCAGCAGCACGTGATTGACTGCAGGCTGGAAACAGGC
+TCCACTCCGAGTGTAGAGGGCGGAAGGGAAGAGATGACAGGTGGGCAGCTTGGAAGAAGA
+CAGAACTGAAGAGGGGCCGAGAGCCACGCTGCTGGTGCCAGAGAAACCTTTCCCTGGGCC
+AGAAGGGCTGGGAGGGGCAGAGCTCCCACCCATCCATCCTGAGCAGAGCCTGGGGGTGGG
+GAGCAGACTCAGTGTGCCCTGGAACCAGCAGGACCTGGGTTGGATGTGCCTGCTGTGCCA
+CCCTGGGCACATTTATCACCCTCTCTGAGCCCCAGTTTCCTTGTGGGCTTTTGTGAGGGT
+TGATAGAGTTAATGCTTGTGTGAGACCTGGTGAGTCTCAGCACCAGGTATCGCCGCAATA
+ATCACCCCCATGTTCTTTGCAGGCCCTGTGCAGGGCTCCGGGCTGAGGTGGGGGCTCTGG
+GGCTGGTGTCTGTGCCTCAGGCACTGGAGAACCGCCCGGGACATGGGAAGATCCCAGGAG
+CGGCTGTACCTCCTCTACCCAAGCCTGGCCCCAAGGGGAGGAGGAGACGTGTTCTTTCCT
+CTGTGAGAGTTTATCTTATGAGACGTCTTAATCATACCTAAGCAAGAGCCACACGATCTT
+AGAAATCCCCGGTGAAATGCTCCACACGCTGGCAAGCCCGGAAGCAGCGCATCTTCCGAG
+CTAGGCCCTGTGATGGGTCCTGGAATCCCAGGAGGGAGCTTCACTGTGGCTGAACTCCAG
+AGCTGCCGCCAGCCAAGCGACTCAGGCCGGGCCCCTGACCCTCGGTGGATCCGCGGATCT
+TGGCTTCATCACCTGCCATTCTGAAGCTGGTCCCAGGACAACAGAAGCCCCTTCCAGGTG
+GGGGCATTAGGATTGGGCTCTGGAGGCGCAGGGCTGATTCTATGCCGCGGATTCTGTCGG
+AACACAGTAGGTCCGGCATGGGGCCGCGCATTGTTAAGGAGCTCGCAGGTGGCCCACACC
+GCGCATTGTTAAGGAGCTCGCAGGCGTTGGTTCTGCTTGTGGGGCAGTGAGGCTGCACCC
+AGGCCCTCAGGCAGTGGGACCCGCCTCCAGCCTTCTCCCGGCTGGTCCTGCGGCTGGTAA
+GGGGCAGGCCGGCCGACCCTGCAGAGGCGGAAGCTGCCACGTCACCCTCACCAGCACCAA
+GCCTGCACCCACAGGCTGTTAGGGAGTCGCAGACACCGCTGAGGAGGCTTCATTAACAAT
+CACAAGCATCGTGCACACGCCTCGCTTCAGGCAAGTCCCAGAGGCAGAAACCCAAACCCA
+CCCCACAGATGCACTCAGCAGACCCCAGCTAAAGCCCCCGTCAAAAGTGACCTCTGTCTT
+CGTGTCCCACTCCTGTCCCCACGGTGCTGAGCTGGGCAGGGAAGAGGTGGGAGCGTTCCA
+GGACAAACACCCTGTGAGCATCTCCCTCCTGACACATCCTGTGCGAAAAGTCACGAATCA
+CTGTGCACGCCACACATCTCGTGGATAGCACAGGGATCGGAGAATCTGCCTGGTTCTCTT
+CACAGGGCACTGGTGAGAATAAAACGAGACGGTGGCACCCCAGCTTCATAAACGCTGAAG
+GGCACGTAAAACACAAGTCACCATAGACTCATCGCTCTATGCAGCCCCCTGCCCGAGGCA
+GCCCTTTCTAAACTATCTACCTTCAGAGCCTTTCATAATAGGGAATGGAGGATGAGCTCA
+AACTTTCTTTCTTTTTTTCTTTTTTTTTTGAGACGGAGTCTCGCTCTGTCGCCCAGGCTG
+GAGTGCAGTGGCGTGATCTCGGCTCACTGCAAGCTCCGCCTCCCGGGTTCACACCATTCT
+CCTGCCTCAGCCTCCCGAGTAGCTGGGACAACAGGCGCCCGTCACCACGCCCGGCTAATT
+TTTTTGTATTTTTAGTAGAGATGGGGTCTCACCGTGTTAGCCAGGATGGTCTCCATCTCC
+TGATCTCATGATCCGCCCACCTCGGCCTCCCAAAGTGCTGGGATTACAGGCGTGAGCCAC
+CGCACCCGGCCGGGCTCAAACTTTCTCTGTCCCTCTGCAATTCTCACAGAGCATACTGAC
+TCAGCCACCCGGAGGGCCTTGCGTTCCCGTGGGACTGCCGTTCCTTTGAGTGAGGTTTAT
+GGTTCTGTTGGGGATGATGTGGGACATGTTTCTTGAAGTTCTCCTTTTCGGGTGGGCTCA
+GAGGTGAAGCCATTGGTCCAGGATGTGCAGCTGGTGGTAGCACAACCTCCGTCTCTCTGG
+CTCCAGAGCCTCCCCTGCTTGCCCTGTCCCAGCCAAACTCAGCCAAATCTACCTCCAGCC
+CCCTGCCCTGGAGCTCAGGTGGCAGCTCTCTCCAGGCCTTTCCAACAGCGCCTTCAGCAA
+AAGATGAGATGTTCCCTCAGTTCCCAGGGCCTTGCTCCAGCTCATGGCCAGTCTTCCGTC
+TCCCCACTTTCTTGGCCCCTGCAGCCAGGCCACATAGCCTGTCTCCTCTGGGACACACTA
+TACCCTCCTTTGGAGCTCCTGACCATGTCTCTCTTCAGTCCCAAAGCTGTCCGTGGCAGC
+CCCTACTCTCTGCAACGCGACCTCTGCCTTCTCAGTGCTCAGCACAGCAGACCCATGGCA
+GATAGGAGTAAAGAACCCACGGGTTACTGACAGCTTCCTGCAATCACTGGAATTTTGTTA
+GGGCTTGGGTTTTCGTTATGGACAACAAGATGGGCGTAGGAAAGTGGATTAGTCAGTGGA
+GGAGGGGATCTACTGCACCGCCAAGCACCCACGTGTTTATAGCTTCTCCCATATTGCCTG
+GAGCCTGCAACTTACTAGGTGATGTGTAATTTACTAGGGACTAGGGAAGTAAATACCTAC
+TAGTCACTAGGTATTCAAATACCTAGGATTTCTTTTTTATAAAATTTATTTTTTAAAATT
+TTACTTTAATTTTACATGTGCTAATTTTACTTGTAATAATTTACAAGTAAAAATTTTTAA
+ATTTTACTTTAATTTTACATGTGCCAAACGTACAGGTTTGTTACATAAGCATACAAGTTC
+CATGGTGGTTTGAAGCACCTATCAACCCATCATCTAGGTTTTAAGCCCCACATGCATTAG
+GTATTTCTCCTAATGCTCTCCCTCCCCTTTGCCCCCACCCTCCGAAAGGCCCTGTTGTGT
+GATGTTCTCCTCCCTGTGTCCATGTGTTCTCATAGTTCAACTCTCACTTTTGAGTGAGAA
+CATGCAGTGTTTGGTTTTCTGTTCTTGTGTTAGTTTGCTGAGAATGATGGTTTCCAGCTT
+CATCCATGTCCCTGCAAAACACATGAACTCATCCTTTTTTATGGCTGCATAGTATTCCAT
+GGTGTATATGTGCTACATTTTCTTTATCCAATCTATCATTGATGGGCATTTGGGTTGGTT
+CCAAGTCTTTGCTATTGGAGATAGTGCTGCAATAAACTTAAGTGTGCATGTGTCTTTATA
+GTAAAATGATTTATAATCCTTTGGGTATATACCCAGTAATGAGATTGCTGGCTCAAATGT
+TATTTCTGGTTCTAGATCCTTTAGGAACCTCCACACTGTCTTCCACAATGGTTGAACTAA
+TTTACACTCCCACCAACAGTGTGAAAGCATTCCTATTTCTCCGCATCCTTGCCAGCATCT
+GTTGTTTCCAGACTTTTTAATGATCACCATTCTAACTGGCGTGAGATGGTCAAATACCTA
+GCGTTTCGTAAGTTTAAATTAAACACCTAATATTTAATAGCTAAGTTTAAATGTGAGGTA
+TAGATAGTATTGAAATAAGTAGGTATTCAGCTACCTAGGATTTGATAAGCAAGTTTAAAT
+ACCCAGTGTTTAATAAGTTTAAATATGAGGTACAGCTAGTATTTAGATAGCAGGTATTCA
+AATACCTACTATTTGATAAGTAAATATGTAGTGATTTACAAGGTCTTGCCTAGAAAATCT
+GATGACATAATTGTGAAATGGTGACTGTGAAAAAGGACTCTGGAAGGAAATCCACACACG
+TGTTACCCTGGTAGATGGGAAGGGGGAGATGCGTCTCTCCCAAATACAAGTCCCTGGGGA
+GGGGTTGTGCATGGACCTGTCCCTTCCCTCCTGCCGGTTCGGGAACACTCCAAAGGCAGG
+GTGCTTGGTGACCCCTGTGTTCTGGTGCCAGTCCCAGAGCTGGAGACGTTTAAGTCATTT
+CTAAATCAACAATACCCACCTGCAACATTTATTTAAATCATACGTCCCTCGGGGCAACTA
+AAGTATGATTTTATTAACAAACATTGCGATTTTATTAAGCAGTCCAAGAACTTTCCTAGC
+TTGAGCGAGGTTCTCTGTGGTCGGCACACAGCTGGGTTTCCTCCAAGGAGCCCTTGATGA
+GAAGGCCATGTGGGAACCTGCTGGGAGGGGCCCGGCCTTGTTGGTGCTGGAGCTCAGTCC
+CCAGGAGGCTCCTCTGTCTTCTGATGTTCCACAAGCCACGAGCCGCCTCTGCACCAGAGC
+TGACTTGTCTGGAGAGGATTCCGCACAGGTGGCTGACCCCACCGGGCTCTGATACCCTTC
+AAGAAGAAGGGAATCCTCAGAGTGCCCAGGACACAGCACCACAGTCGGGGAACAAGCAAT
+GCCAGGGCTGGCCGAGGGGGCTCCAGAGGGGATGGCCTGCTCATCACTGTGTAAAAGGCA
+GATTCTAAAGACCAAGACCCCAGGCCCAGTGACATGGGATGTGCAATGATGCAAGCCGGG
+CTCCAGCCCTGTTCTCAGAGGAAGCGCTGCTCAGTGAGAGCTTTCTGTGTCGTGGACCCT
+CTAGGACGCCACTCACAGTGTGCTTGCAACACTGGCAGCTTTTACTAAGTGTAGTAAGTC
+GGGGGCTTTTGAGTGATTTTCCTGGTAGTATCAATGTGGGCTACTTCAAGGCACTTTTGT
+GCCAGTGTCCTGTGGACCCTTCCTTAGCCATGTCCTCTGAGCCTGGGAGTGCCCACTGGC
+CCAGCTCAGACTGTAGTGGGTGGCTGGGACATCACAGTTGCAGGGTGACTTGCTGACCAC
+ACCTAGTTATCACATGCCTTGAGATGGGAGGAAGTCCAAGACCCCCACTCCAGATGGGGG
+ACGTTGAGGAATAAATGATGCGTTGAGCCTGCCCAGGACTCCACACCCAGCCGTGGCAGC
+CCTGGGCCCTGATGTTCAAAAGCCCCAGCAAAGGCCTCCAGCACCCCAGCTGTGTGGGGC
+CCAGCAAGTCTCACAGAGAGGACAGCCAGCCTCCATGCTCCCATGGAAATTACTCTGTCC
+TCAGCCGGCTCCTCTGGGCAGAGGCCTTGCCCAGATAGAGGGCTCCAGAGGGGACTGCCT
+GTACATCACTGTATAAATGGTAGATTCTCAAGATCAGGACCCCAGGCCCAGCGTCATGGG
+AAGTGCAATGGTGCAAGTTGGCTCCAGCCCTGTTCTCGGAGGACCCGCTGCTCACAGCAC
+CAGCTTTGAACTTCAAGAAACATGTTCATACCATCCCCAACATAACCATTAACCTCACTC
+AAAGGAACGGCAGTCCCACTGGAACGCAAGCCCCTCAGGGTGGCCAAGTCAGTATGCTCT
+GTCCCCGGCCCCTAGAAGGTGGCCTGGCTTACAGCAGGTCCTCCATAAATACCTGTGGAA
+TGAATATTCCATGCACTCCGGAGAAGCCTGCAGCACACAGGTGGCTGGGGTTTATGGAAA
+TCCTGGAATCTCTGACTGGAATCTCTGTCTGGAATCCCTGCCTGGGGAGTCACCATCGCA
+CACACGTGAAGGCACCGAAGGAGCAAACGCAGCCGCTGGTGCTAAGATGTGGCACTGCTC
+ACTTGGTGCCGTAAGCTAGAATCTTGTTAATTGGCACCCAGAATTTCTTAAACATCTGGT
+AACTCCTTTTGCAAACACAAGCATGTTCGTGAGTGTAAGCTCCATTTTGCAGAAGGAAAA
+TTGGAGGCCCAGAGATCCATGGGAAGAGGTGGGGTGGCTGACAAATGCTGGAGAATCCCA
+AGGTTGGATTCCAGATGATGTTTATGGAGGACCTGCTGCAAGCCAGGCCTCCTTCTAGGA
+GCTGGAGACAGAGCACACTGACTCAGCCACCCGGAGGGCCTTGCGTTCCAGTGGGACTGC
+CATTCCTTTGAGTGAGGTTTATGGTTATGTTGGGGATGATGTGGGACATGTTTCTTGAAG
+TTTGATTTTGGAAAACCGCCTGTTATTCTCCGAATTGCAAAATATGCAGGTGACTGCATG
+TGCACGAGCTTGTTGAGTTTTAATTTAATTTTTAATTTTATTTTATTCTGAATGGACATC
+TTGCCACCCAGTGAGACTGTGTCCCCAAGGGTCATCAGGCCTGCAACAGTGTCAAAACTG
+AGAGAGAGCCTGGGCCCGGCCACAGTGTTTCCGCATATGCTTGGGTCCCTACTCCATGCA
+AGGAGGGCGTCACCCGGGGCTGGGACCCATCAGGGCATGGGTGCCCAGGGCGGGTTCTGG
+CATTTGGAAGGGACGGTGAGATGCCAGGGCTCTGTCTGCACAGGGTTGGGAAACAGTTGT
+TGGGCTCACTCCTCCCCACTGAGCCTGGGCGTGCAGGCAGAACCCAGGCGTGGGGGCGGC
+CTGGAGGGGCAGGCTGTGCAGACAACAACAGGAGGGACCAGGTGCCTGCAGAGGCCTGAT
+GGCCGATGGCTGCTGTTTCCACTAGAGGGCTCAGGCTCGTGCAGGTGTCCCTGTCTTCCC
+AGGAGGGCAAGGCTACCTGGTCGGCACAGCTCTGCTACCTGTTGTGAGCTGAGCTGAGCT
+GAGTGAGGGTCCCAGCTGGGGGCTGCCTCAGGGGCCTGCAGTGCCTGAGGCTATTTGCAA
+AGAGACAGGGCCACCTAAGAGTTCTCCCCTTCAGTGCTCAGTGGATACATCCAAATTGGG
+CTCCTTTTAATACTTCTCTGCCCTTTTTCTCCTTCTGCAAATACCGGAGGTTGCTTGTAA
+CCCCCAGAGCAGTCTGGAACTCACTGCCTCAGTGGGAGCAGCAGGGGAGAGTGAGCTATA
+GAGCAAGATGTGCAAAACTCCCCCCTTCCAGCTGGGGAGGGCCAGAGGCTGGTCCTGCTG
+CGCGTTCAGCCTCAGACCAGGCCCCCACACCTATGACACATCAACACCAGGATGGACCCT
+CAGATGTCGCCCCTAAGATGCTCACAAACTCGCAGTGGAGGATCAGGAGATGAGCTGTTC
+ATGGTTTCTGACATCATGAAAGCCTTTATCAGAATGGATGGGGGATCAACAGTGGGTCCC
+CCAGTGGCTGTGGTCAGCTGAACAGAGGTGTCTGTGTCCTAATTCCCAGAACCTGGGACC
+GTGTCACCTTCTATAGGAAGAGGGGGGTCTTCGCAGATGTGATTAAAGGCTTGGGCTGGG
+GAGATGATCCTGGACCTTCTGGATGGGCCATGCATGCATCACGAGTGTCCTCCTTCCCAG
+AATTCCTCTTACTCCTTGGAATGCCCACCCTGGAATTCCCATCCTGGAATGCCCCATTCT
+CTTTCCCCCGAGGCCTAGTTGAGACCATGGGAGTTGACATGTGAGAGAGACATTCTCTCC
+CTGTGTGCCCCAGCCTTGCACTGCTAGGGGGAAAGAAATGATGGGAAAATTCGCTTGGAA
+TTCATTCTCAGAAGTGTGTGTCCACCCACTTCCCAGCAGTGCAGGGTTTCCAGGAAGGGC
+CAAGAACTCTTAACTGGCCTCAAAGTGGCAGTCACCTCTAGTCCCCAGGATGAGAGGAAA
+TGGCTCAGACCTGTTAACTGGGTGGCTTTTCTACAACGGCTGAATTAGTGAAGGAATGAC
+CAAGCTCTGCCAAATTCCCTGCAGAGACTCCAGCAGAGGAGCTGGGCAGAGGCTGGACGT
+GTCAGCGTGAGCCGGCCTGCCCCACCCTACATGTATGCATGGATTCTGGGCCTTGGGGTG
+AGCGCGGGAGAACCACTGAGCCTGTTTGCAAAGGATGGGGCCACCTAAGAGTCCTCCCCT
+TCAGTGCTCAGTGGGTGCATCCAAACGGGGCTCCTTTTCATACTTCTCTGTCCTTTTGCT
+CCTTCTTCAAAGACCAGAGGTTGCTTGTAACCTCTGGGCCTTTCTGTGGCCCAGAGGTGG
+CCACAGAAAGCAGAAATCTGTTCACTCCATCATCAGGCATTGACTGAGCAGCAGGCACTG
+TTCTGGGCACAGGAAAAACAGCGAGAACAAGAGTCATTCATACTCTACCCTCACGGAGCT
+CACATTCCAGGGGGAGCCCGAGGAGACCAGCAAACAAAACCTGAGTCAACACAAAGCATG
+GACGACAGGCTAACAGGTGCTGAGCGGAAAATAAATCACAGAGTAGGGGCATTGGGGTGT
+GGACGATGCGGTGGCACTGAGGGAAGCTGCCATTTAAATAGGGCCACGGGGAGGTCTCAC
+TGGAGCAGAGACCAGAGGGAGCGTCTCCAGGTGGGAGTTACAGAGAAGCTTGGGTGACAG
+CATCTAGGCAGAGGAAGCAGCCGGTGTGAAGGCTGCCTCACCCGGCAGTGAGAGATTACT
+CCCTAGAATGCCCGCCCTGGAATTCCCATCATGGATTGCCCCATTCTCTTTCCCCCTCTT
+TCCCTGGAGGCCTAGTTTTACCCCTCTTTCATTGCCCTGTGGTGAGAGATCCCTCAGTGA
+CAAGGACAGGGCACCTGGAGTCAAGTGGAGAGAAAATGCTTCCTTGGTAACATGAAGCTT
+GGGGCTCTGAAACTGTCCTTGTCAGAGCAAAACTGGAGGACTGGAGACACAAGCTTTCAT
+TACAAGCAGGTGACTGGCTGGCTCTGCTTTCAGGACCTAACAGGCAGAGGGAGGGGTCAG
+GGCAGCTTTCAGAGAGCAGCCCCTCTGCAGGGCCGTGCAGCACTCAGGACCCAACAGCCC
+GCATGAGACTCAGCGGCTTCCCAGTGCTGCTGAGGAGCAGGGCGGCATCAACGGAATCCC
+AAACCCACGTGAAAGCTCCCCAAGAATGGGTGCCAATTTCAGGCCCATCGTCACGCGTTG
+GCCCCACCTCTACTGCTCCCCGTTTTCGGAGGATTTACTCAAGGCTACTTGGTGCCTGTG
+GATGGCAGAACCACTGATCTTGGTCAACCAAGACAGCATGCGTGTTTCTAGTGCCGCATC
+TCCAAGAGTCCTTGTTCAGAGATGAAAGTGGCCAGGACTGGTTCTGGGGAAAGAGGCCCC
+CTTGGTTCAGTAGAAAACCTGACACGGTTTTGCTGAAACGCAGGAGATGCTGTTGGGAAC
+TGGGTGCCTACTGCATGCTTGTTTTGTCCTGGTTGCAAGCATGGATCACCTTGCTGGGTG
+ACTGTGGAGGAAAAGTGAAATATTAAATTTGAACTCAATTGAACATGGACACAAACAATG
+GTCCCAAGTCCTAGAACAGGTTGTGTGAGCCACTTGAGGCATCCATCCAGTGCTGTTTCG
+GAGAAATCTCTATTTCAGTCTATTCCTATACATTAGTTATTGAAAAACAATAGACAATCG
+CAAAAACAAGCTGACATTTTGTGTTCCCTGAGCCCAGTCTCGAAGGGCCCTCGTGACTGG
+GCCTCATGCCAAACAACTTGTTACAAAAAGAGCGAGGGTCCCAGACCGCACCAAAACTTC
+ATGAGACCTCTCCTTGTCTGTGCAAGGAAGAGTGGCCAACTCTGTAGCTCGGGCTGTTCC
+TTCCCACTCTGGCGGTGAATCCTCCATAGTCTGGTGAGTGTAAATATCTTTTCCCTTTTC
+CCCTTCTCATTGCAATTTGCTTATTATATCAATCTGCTTATTATTATATCATTTGCTTAT
+TACAGCTCCATTGCCATTTACGTGGGATAAAGCTTGTTTACCCTTAAAGGTATTGTGTGT
+GTGTCTTTTCTTCTCCCCTCACGCGTTTCCCACAGAACATTTTTGGCATCAGGAACAGGA
+TCCGAAAGCGAATGCATGCCATTTTTCGGCTGCAAGGACCGGGCTGGGAGCTTGTGGACT
+TCCCATATCCTGGGATGGGAACTCCCCTGGTTCTCCCTTTTGGCCATTGAGTGATCCAAG
+GGAACTGGCCTTTGGGAAAATTGTGGGTGTAAATTAGTGCATTTTGAACCATTGGCTGTG
+TGTGAGGCTCTGCAGGGAATCCCGTTGGTAAAGGGGACGCTGAGGGAATTTCCTGGCATG
+GAAGGTGCTTGCTTACTGCTTATGAGTTGATATGTCAAGATAGAAACTGGTTGCTTCAAG
+AGAAATGTAAGCTGGAAAAGGAAAACGTGAATCTGACTTCCAGACTGGCCCTGGCCCAAT
+GCCAGGCCTATGTCTTGACTGATCAAGCTCAAAGCTGTCAGCCTATTGCTGAAGAAAGCA
+GCTGTCCAAGTGGCCTAGTCAGGGTAGAACTGAAGAACTAGTCAACCGGGGCTTGGAGCA
+GGTAAAAACCCAGCTCCTATCTCAAGGATAAGAAATTAACCCTAGTAAAATTCAAGGACC
+TGCACAAACTGTAAAATTCTTTGGCATTCTATGGAATGCAGGGAAATAGTTTACTTTACC
+AAAGGCTAAGGCTAAAATACTAGAATTTGCAACCCCTACCACTAAAAAGGAGGCCCAAAC
+ATTTGTTGGCTTGTTTGGATTCTGGAGACATCATATTCCCGACTTGGGTAACATTTTACA
+ACCTCTGCATGCTGTCACTAGAAAACGCTACGACTTTCGCTGGGGAGAGAAAGAGAGCAC
+GGCTTTTAACAGGCTAAACAAGCAGTGCAACCGGCCCTGGATCTATGGCCCTTACGGGAT
+GGGCCAGTAGAACTGCAAGTAACGGCCGGGCGCGGTGGCTCACACCTGTAATCCCAGCAC
+TTTGGGAGGCTGAGGCGGGCAGATCACGAGGTCAGGAGATTGAGACCATCCTGGCCAACA
+TGGTGAAGCCCCGTCTCTACTAAAAAAAATACAAAAATTAGCCGGGCATGGTGGCGGGTG
+CCTGTAGTTCCAGCTATCGGGAGGCTGAGGCAGGAGAATGGTGTGAACCCAGGAGGTGGA
+GCTTGCAGTGAGCCGAGATTGTGCCACTGCACTCCAGCCTGGGCAACAGAGTGAGACTCC
+GTCTCAAAAAAAAAAAAAAAAAAAAAAAAAAAGAACTGCAAGTAACTGTCCTAGATCAAT
+ATGCTAACAAGAGCCTTAGGCAGAAACAAGATGGGAATAAGCTATCTTTGGAATTTTGGA
+ACCAGAAGATGTCAGAGGCCGGCAAAGCTTATACCCCTTTCAAAAATCAACTGTTAGCTT
+GCTATTGGGCCTTGCTGGAAACAGAGCACCTTGCTTCAACCATGATGTCTTTTTGATTAT
+GACTTGGATCCTGAGTTCCCCTAGAACTCACTGGTTCTGACGAAGGAAGCGGTGGGAGCA
+CCAGCTGGCTGAATTGGTAGCCGTCCTCCAAGCTATTTAGGAGGAGGCCAGAGGGATTTG
+TCACATGTCTACCAACTCTTGGTCAGTAGCAAATGGTCTTACTACCTGGATGCCCCAATG
+GCAATGAAACAAATGGTTAATTGGGAATAAAGAGGTTTGGGGAAAACAATACTGGGAAGA
+TATCTGGATCCTGGCGCACACCACCATTATCACTGTTCTCCATGCTGATGCTCAAGCATC
+TCTGCTTTCTCTTAACAGACTATTTAATCAGCAGGCAGATCAACAGACCAACACTTCCAC
+CATAACTGCAAATTTGAATGCGGATGAATGGATTACAACACGTTCAAGCCTTACAATGAG
+AGGCATTATAAGGTATGGTGGTATAATTGATAGTGATTACTGGGGAGAGTTAAAGCTCAT
+TTTATACAATACCACTCCAGATTCTTTTGCTATAAATCCGCAGATGTGGGTTGCTCAATT
+GTTAGTGGTACCTTGTCAACAATTAACCCCTGAGGAAATTTCTGCCCCAATAGAAACAAC
+ATATAGAACCGGAAAATTTGGGTCCATCGGAGTGGGTGGGCAACTTAAAACCTTGAGCCA
+AAATATGGGTGCAGTGTCCATCAGGTCCCGCCCCTAAGGCTGGTGACCTTGTAGCTATAG
+GAGCAAAAAATGAAGGCATAATACAGTTTCCTAAAGATGAAAAACAATGTCATGTTCCCC
+TCCAGTTTTGTTATTACGAATAATCTGTCTGCTAGAAATCAGTACTTGGGTCATCATGTC
+TGAGGCTGGGAATGAGTTCAACAACTGGGTAGCCACTGCTGCAACGGAAGCCAACTGCAG
+TCGGCACTGGCTATGCATCAAGCTGCCGGAGGCCGCCAGGAATGGGCTACCTCGGAGAAT
+CATCCCTGCTAACATTTCTGAATGGATATGCCAATGCCAATGGGTACAGGATAATAACAT
+TTGTAATCCAACCTGGACTTTTTTAACCAAACTAAACTGTCTATTTTTTCCTAAGCCCAA
+ATGAGACACAGCACTCTTGTTACTTAAATTACACATTACAGCAATACAATTGTAGTAGAA
+CTCTTCCTATTCCCTGGGGGACCCGCTGGGTATGTGGATCCTACAGGTGGTGATACCTGC
+CTCCACATTGGTCGGGAAGATGCACTTGGGGGTGGCCATTAATTCCATTCACCATCTGGG
+ATAATATTCCCCTCCCCAGTAATCTAGATGCTTACAAACACCGCTGGTTGCGGATGTGCC
+AGACTCCCTGGTGGTGGTACCCTATCACAATATTCTCCCCTGCCGCCGGTGCAATCCTGT
+TTCAGCAACAAATTTAAATATTAAGTTTTCACGTAGAAAAGGCTCTTAATGATAGTAGCA
+CTGGACTTACATTGTTATCAGATGAATTTGCTCAGCTGCATACTGTTGTGTTGCAACATG
+GAATGGCATTAGATATGCTTACCGCCGTCCAAGGAGGGGTTTGCACCTTACTGCATACTG
+AATGTTGTGTGTATATCCCTGACAATTCTCACAATATGACTCTCCTTGCAAAGCCATGCT
+GGGTGTGGTTTTTATTAATTGTGTTTTTAATTCTGTGCTTATACTGCATCTGTAACCTAT
+ATCAACTATGCCTTCCCCATGTATCTGTAAGGGTATTTTCCTATAACTGAGTATTAAATG
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+ 
+<span class="kn">import</span> <span class="nn">dask.bag</span> <span class="k">as</span> <span class="nn">db</span>
+ 
+<span class="n">b</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="s2">&quot;data/genome0*.txt&quot;</span><span class="p">)</span>
+ 
+<span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+  <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">line</span> <span class="p">:</span> <span class="n">group_and_split</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">frequencies</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="k">lambda</span> <span class="n">v</span> <span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+
+<span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;CTGTG&#39;, 472),
+ (&#39;CCCAG&#39;, 440),
+ (&#39;CCTGG&#39;, 416),
+ (&#39;AAAAA&#39;, 392),
+ (&#39;TGCTG&#39;, 336),
+ (&#39;TGTGT&#39;, 328),
+ (&#39;CCACC&#39;, 312),
+ (&#39;GGCTG&#39;, 304),
+ (&#39;CACCA&#39;, 296),
+ (&#39;GGTGG&#39;, 296)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09-DaskBag_47_0.png" src="_images/09-DaskBag_47_0.png" />
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="some-remarks-about-bag">
