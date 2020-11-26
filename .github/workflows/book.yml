@@ -28,7 +28,7 @@ jobs:
     - name: Set SPARK_HOME
       run: echo "SPARK_HOME=/home/runner/spark-3.0.0-bin-hadoop2.7" >> $GITHUB_ENV
     - name: Install Miniconda and dependencies
-      uses: goanpeca/setup-miniconda@v1
+      uses: conda-incubator/setup-miniconda@v2
       with:
         miniconda-version: "latest"
         activate-environment: big-data
