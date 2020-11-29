@@ -12,7 +12,7 @@ USER $NB_USER
 
 RUN conda env create --quiet -f environment.yml && \
     conda run -n big-data python -m ipykernel install --user --name big-data && \
-    conda install -y -n base -c conda-forge dask-labextension && \
+    conda install -y -n base -c conda-forge dask-labextension jupytext && \
     conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
