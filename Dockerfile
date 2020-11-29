@@ -4,6 +4,8 @@ MAINTAINER Pierre Navaro <pierre.navaro@univ-rennes2.fr>
 
 USER root
 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -qq install graphviz
+
 COPY . ${HOME}
 
 RUN chown -R ${NB_USER} ${HOME}
