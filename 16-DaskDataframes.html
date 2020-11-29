@@ -435,21 +435,59 @@
 </ul>
 <p>In this notebook, we will extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from <a class="reference external" href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>. This should only take a few seconds to run.</p>
 <p>We will use <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code> construct our computations for us.  The <code class="docutils literal notranslate"><span class="pre">dask.dataframe.read_csv</span></code> function can take a globstring like <code class="docutils literal notranslate"><span class="pre">&quot;data/nycflights/*.csv&quot;</span></code> and build parallel computations on all of our data at once.</p>
+<p><strong>Variable descriptions</strong></p>
+<p>Name	Description</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Year</span></code> 1987-2008</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Month</span></code> 1-12</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DayofMonth</span></code> 1-31</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DayOfWee</span></code> 1 (Monday) - 7 (Sunday)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DepTime</span></code> actual departure time (local, hhmm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CRSDepTime</span></code> scheduled departure time (local, hhmm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrTime</span></code> actual arrival time (local, hhmm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CRSArrTime</span></code> scheduled arrival time (local, hhmm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UniqueCarrier</span></code> unique carrier code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FlightNum</span></code> flight number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TailNu</span></code> plane tail number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ActualElapsedTime</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CRSElapsedTime</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AirTime</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrDelay</span></code> arrival delay, in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DepDelay</span></code> departure delay, in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Origin</span></code> origin IATA airport code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dest</span></code> destination IATA airport code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Distance</span></code> in miles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TaxiIn</span></code> taxi in time, in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TaxiOut</span></code> taxi out time in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cancelled</span></code> was the flight cancelled?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CancellationCode</span></code> reason for cancellation (A = carrier, B = weather, C = NAS, D = security)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diverted</span></code> 1 = yes, 0 = no</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CarrierDelay</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WeatherDelay</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NASDelay</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SecurityDelay</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LateAircraftDelay</span></code> in minutes</p></li>
+</ol>
 <div class="section" id="prep-the-data">
 <h3>Prep the Data<a class="headerlink" href="#prep-the-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;max.rows&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/jovyan/notebooks&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># library to get directory and file paths</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># library to get directory and file paths</span>
 <span class="kn">import</span> <span class="nn">tarfile</span> <span class="c1"># this module makes possible to read and write tar archives</span>
 
 <span class="k">def</span> <span class="nf">extract_flight</span><span class="p">():</span>
@@ -471,20 +509,25 @@
 <h3>Load Data from CSVs in Dask Dataframes<a class="headerlink" href="#load-data-from-csvs-in-dask-dataframes" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="n">here</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">here</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;nycflights&#39;</span><span class="p">,</span> <span class="s1">&#39;*.csv&#39;</span><span class="p">)</span>
-<span class="n">filename</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">here</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;nycflights&#39;</span><span class="p">,</span> <span class="s1">&#39;*.csv&#39;</span><span class="p">)</span>
+<span class="n">filenames</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/jovyan/notebooks/data/nycflights/*.csv&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
 <span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span>
                  <span class="n">parse_dates</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
 </pre></div>
 </div>
@@ -493,27 +536,438 @@
 <p>Let’s take a look to the dataframe</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><strong>Dask DataFrame Structure:</strong></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>TailNum</th>
+      <th>ActualElapsedTime</th>
+      <th>CRSElapsedTime</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+    <tr>
+      <th>npartitions=10</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th></th>
+      <td>datetime64[ns]</td>
+      <td>int64</td>
+      <td>float64</td>
+      <td>int64</td>
+      <td>float64</td>
+      <td>int64</td>
+      <td>object</td>
+      <td>int64</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>int64</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>object</td>
+      <td>object</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>int64</td>
+      <td>int64</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div>Dask Name: read-csv, 10 tasks</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">### Get the first 5 rows</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Get the first 5 rows</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>TailNum</th>
+      <th>ActualElapsedTime</th>
+      <th>...</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1990-01-01</td>
+      <td>1</td>
+      <td>1621.0</td>
+      <td>1540</td>
+      <td>1747.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>86.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>46.0</td>
+      <td>41.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1990-01-02</td>
+      <td>2</td>
+      <td>1547.0</td>
+      <td>1540</td>
+      <td>1700.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>73.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>7.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1990-01-03</td>
+      <td>3</td>
+      <td>1546.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>84.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>6.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1990-01-04</td>
+      <td>4</td>
+      <td>1542.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>88.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1990-01-05</td>
+      <td>5</td>
+      <td>1549.0</td>
+      <td>1540</td>
+      <td>1706.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>77.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>9.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">traceback</span> <span class="c1"># we use traceback because we except an error.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">traceback</span> <span class="c1"># we use traceback because we expect an error.</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span> <span class="c1"># Get the last 5 rows</span>
 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
     <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;&lt;ipython-input-7-9efc84b7d1ff&gt;&quot;, line 4, in &lt;module&gt;
+    df.tail() # Get the last 5 rows
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/dataframe/core.py&quot;, line 1054, in tail
+    result = result.compute()
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/base.py&quot;, line 167, in compute
+    (result,) = compute(self, traverse=False, **kwargs)
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/base.py&quot;, line 452, in compute
+    results = schedule(dsk, keys, **kwargs)
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/threaded.py&quot;, line 84, in get
+    **kwargs
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 486, in get_async
+    raise_exception(exc, tb)
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 316, in reraise
+    raise exc
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 222, in execute_task
+    result = _execute_task(task, data)
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in _execute_task
+    return func(*(_execute_task(a, cache) for a in args))
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in &lt;genexpr&gt;
+    return func(*(_execute_task(a, cache) for a in args))
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in _execute_task
+    return func(*(_execute_task(a, cache) for a in args))
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/dataframe/io/csv.py&quot;, line 152, in pandas_read_text
+    coerce_dtypes(df, dtypes)
+  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/dataframe/io/csv.py&quot;, line 256, in coerce_dtypes
+    raise ValueError(msg)
+ValueError: Mismatched dtypes found in `pd.read_csv`/`pd.read_table`.
+
++----------------+---------+----------+
+| Column         | Found   | Expected |
++----------------+---------+----------+
+| CRSElapsedTime | float64 | int64    |
+| TailNum        | object  | float64  |
++----------------+---------+----------+
+
+The following columns also raised exceptions on conversion:
+
+- TailNum
+  ValueError(&quot;could not convert string to float: &#39;N54711&#39;&quot;)
+
+Usually this is due to dask&#39;s dtype inference failing, and
+*may* be fixed by specifying dtypes manually by adding:
+
+dtype={&#39;CRSElapsedTime&#39;: &#39;float64&#39;,
+       &#39;TailNum&#39;: &#39;object&#39;}
+
+to the call to `read_csv`/`read_table`.
 </pre></div>
 </div>
 </div>
@@ -531,14 +985,30 @@
 <p>In our case we’ll use the first option and directly specify the <code class="docutils literal notranslate"><span class="pre">dtypes</span></code> of the offending columns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date          datetime64[ns]
+DayOfWeek              int64
+DepTime              float64
+CRSDepTime             int64
+ArrTime              float64
+                   ...      
+Distance             float64
+TaxiIn               float64
+TaxiOut              float64
+Cancelled              int64
+Diverted               int64
+Length: 21, dtype: object
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span>
                  <span class="n">parse_dates</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]},</span>
                  <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;TailNum&#39;</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
                         <span class="s1">&#39;CRSElapsedTime&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -549,15 +1019,187 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>TailNum</th>
+      <th>ActualElapsedTime</th>
+      <th>...</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>269176</th>
+      <td>1999-12-27</td>
+      <td>1</td>
+      <td>1645.0</td>
+      <td>1645</td>
+      <td>1830.0</td>
+      <td>1901</td>
+      <td>UA</td>
+      <td>1753</td>
+      <td>N516UA</td>
+      <td>225.0</td>
+      <td>...</td>
+      <td>205.0</td>
+      <td>-31.0</td>
+      <td>0.0</td>
+      <td>LGA</td>
+      <td>DEN</td>
+      <td>1619.0</td>
+      <td>7.0</td>
+      <td>13.0</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>269177</th>
+      <td>1999-12-28</td>
+      <td>2</td>
+      <td>1726.0</td>
+      <td>1645</td>
+      <td>1928.0</td>
+      <td>1901</td>
+      <td>UA</td>
+      <td>1753</td>
+      <td>N504UA</td>
+      <td>242.0</td>
+      <td>...</td>
+      <td>214.0</td>
+      <td>27.0</td>
+      <td>41.0</td>
+      <td>LGA</td>
+      <td>DEN</td>
+      <td>1619.0</td>
+      <td>5.0</td>
+      <td>23.0</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>269178</th>
+      <td>1999-12-29</td>
+      <td>3</td>
+      <td>1646.0</td>
+      <td>1645</td>
+      <td>1846.0</td>
+      <td>1901</td>
+      <td>UA</td>
+      <td>1753</td>
+      <td>N592UA</td>
+      <td>240.0</td>
+      <td>...</td>
+      <td>220.0</td>
+      <td>-15.0</td>
+      <td>1.0</td>
+      <td>LGA</td>
+      <td>DEN</td>
+      <td>1619.0</td>
+      <td>5.0</td>
+      <td>15.0</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>269179</th>
+      <td>1999-12-30</td>
+      <td>4</td>
+      <td>1651.0</td>
+      <td>1645</td>
+      <td>1908.0</td>
+      <td>1901</td>
+      <td>UA</td>
+      <td>1753</td>
+      <td>N575UA</td>
+      <td>257.0</td>
+      <td>...</td>
+      <td>233.0</td>
+      <td>7.0</td>
+      <td>6.0</td>
+      <td>LGA</td>
+      <td>DEN</td>
+      <td>1619.0</td>
+      <td>5.0</td>
+      <td>19.0</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>269180</th>
+      <td>1999-12-31</td>
+      <td>5</td>
+      <td>1642.0</td>
+      <td>1645</td>
+      <td>1851.0</td>
+      <td>1901</td>
+      <td>UA</td>
+      <td>1753</td>
+      <td>N539UA</td>
+      <td>249.0</td>
+      <td>...</td>
+      <td>232.0</td>
+      <td>-10.0</td>
+      <td>-3.0</td>
+      <td>LGA</td>
+      <td>DEN</td>
+      <td>1619.0</td>
+      <td>6.0</td>
+      <td>11.0</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
 </div>
 <p>Let’s take a look at one more example to fix ideas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2611892
 </pre></div>
 </div>
 </div>
@@ -588,7 +1230,16 @@
 <p>Now we just use the normal Pandas syntax as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> df.DepDelay.max().compute()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.69 s, sys: 734 ms, total: 9.42 s
+Wall time: 4.72 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1435.0
 </pre></div>
 </div>
 </div>
@@ -607,23 +1258,35 @@
 <p>As with <code class="docutils literal notranslate"><span class="pre">Delayed</span></code> objects, you can view the underlying task graph using the <code class="docutils literal notranslate"><span class="pre">.visualize</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-DaskDataframes_24_0.png" src="_images/16-DaskDataframes_24_0.png" />
 </div>
 </div>
 <p>If you are already familiar with the Pandas API then know how to use <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code>.  There are a couple of small changes.</p>
 <p>As noted above, computations on dask <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects don’t perform work, instead they build up a dask graph.  We can evaluate this dask graph at any time using the <code class="docutils literal notranslate"><span class="pre">.compute()</span></code> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># create the tasks graph</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># create the tasks graph</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>           <span class="c1"># perform actual computation</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> result.compute()           # perform actual computation
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.04 s, sys: 924 ms, total: 9.97 s
+Wall time: 4.98 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.206602541321965
 </pre></div>
 </div>
 </div>
@@ -631,10 +1294,10 @@
 </div>
 <div class="section" id="store-data-in-apache-parquet-format">
 <h2>Store Data in Apache Parquet Format<a class="headerlink" href="#store-data-in-apache-parquet-format" title="Permalink to this headline">¶</a></h2>
-<p>Dask encourage dataframe users to store and load data using Parquet instead. <a class="reference external" href="http://parquet.apache.org/">Apache Parquet</a> is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than HDF5 (from the Dask library’s perspective). It is also a common format used by other big data systems like <a class="reference external" href="http://spark.apache.org/">Apache Spark</a> and <a class="reference external" href="http://impala.apache.org/">Apache Impala</a> and so is useful to interchange with other systems.</p>
+<p>Dask encourage dataframe users to store and load data using Parquet instead of csv. <a class="reference external" href="http://parquet.apache.org/">Apache Parquet</a> is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than HDF5 (from the Dask library’s perspective). It is also a common format used by other big data systems like <a class="reference external" href="http://spark.apache.org/">Apache Spark</a> and <a class="reference external" href="http://impala.apache.org/">Apache Impala</a> and so is useful to interchange with other systems.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;TailNum&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;nycflights/&quot;</span><span class="p">)</span>  <span class="c1"># save csv files using parquet format</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;TailNum&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;nycflights/&quot;</span><span class="p">)</span>  <span class="c1"># save csv files using parquet format</span>
 </pre></div>
 </div>
 </div>
@@ -642,30 +1305,204 @@
 <p>It is possible to specify dtypes and compression when converting. This can definitely help give you significantly greater speedups, but just using the default settings will still be a large improvement.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">size</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>54849732
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;nycflights/&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>ActualElapsedTime</th>
+      <th>CRSElapsedTime</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1990-01-01</td>
+      <td>1</td>
+      <td>1621.0</td>
+      <td>1540</td>
+      <td>1747.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>86.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>46.0</td>
+      <td>41.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1990-01-02</td>
+      <td>2</td>
+      <td>1547.0</td>
+      <td>1540</td>
+      <td>1700.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>73.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>7.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1990-01-03</td>
+      <td>3</td>
+      <td>1546.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>84.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>6.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1990-01-04</td>
+      <td>4</td>
+      <td>1542.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>88.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1990-01-05</td>
+      <td>5</td>
+      <td>1549.0</td>
+      <td>1540</td>
+      <td>1706.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>77.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>9.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> result.compute() 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 201 ms, sys: 96.5 ms, total: 298 ms
+Wall time: 308 ms
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.206602541321965
 </pre></div>
 </div>
 </div>
@@ -700,7 +1537,7 @@
 <p>Partitioning your data can greatly improve efficiency.  Operations like <code class="docutils literal notranslate"><span class="pre">loc</span></code>, <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, and <code class="docutils literal notranslate"><span class="pre">merge/join</span></code> along the index are <em>much more efficient</em> than operations along other columns.  You can see how your dataset is partitioned with the <code class="docutils literal notranslate"><span class="pre">.divisions</span></code> attribute.  Note that data that comes out of simple data sources like CSV files aren’t intelligently indexed by default.  In these cases the values for <code class="docutils literal notranslate"><span class="pre">.divisions</span></code> will be <code class="docutils literal notranslate"><span class="pre">None.</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span>
                  <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;TailNum&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
                         <span class="s1">&#39;CRSElapsedTime&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                         <span class="s1">&#39;Cancelled&#39;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">})</span>
@@ -708,12 +1545,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(None, None, None, None, None, None, None, None, None, None, None)
+</pre></div>
+</div>
+</div>
 </div>
 <p>However if we set the index to some new column then dask will divide our data roughly evenly along that column and create new divisions for us.  Warning, <code class="docutils literal notranslate"><span class="pre">set_index</span></code> triggers immediate computation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
 <span class="n">df2</span><span class="o">.</span><span class="n">divisions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 1999)
 </pre></div>
 </div>
 </div>
@@ -721,32 +1568,687 @@
 <p>We see here the minimum and maximum values (1990 and 1999) as well as the intermediate values that separate our data well.  This dataset has ten partitions, as the final value is assumed to be the inclusive right-side for the last bin.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">npartitions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">npartitions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Month</th>
+      <th>DayofMonth</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>TailNum</th>
+      <th>...</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1990</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1621.0</td>
+      <td>1540</td>
+      <td>1747.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>46.0</td>
+      <td>41.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1547.0</td>
+      <td>1540</td>
+      <td>1700.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>7.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>1</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1546.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>6.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>1</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1542.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>1</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1549.0</td>
+      <td>1540</td>
+      <td>1706.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>9.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div></div></div>
 </div>
 <p>One of the benefits of this is that operations like <code class="docutils literal notranslate"><span class="pre">loc</span></code> only need to load the relevant partitions</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1991</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1991</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><strong>Dask DataFrame Structure:</strong></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Month</th>
+      <th>DayofMonth</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>TailNum</th>
+      <th>ActualElapsedTime</th>
+      <th>CRSElapsedTime</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+    <tr>
+      <th>npartitions=1</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1991</th>
+      <td>int64</td>
+      <td>int64</td>
+      <td>int64</td>
+      <td>float64</td>
+      <td>int64</td>
+      <td>float64</td>
+      <td>int64</td>
+      <td>object</td>
+      <td>int64</td>
+      <td>object</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>object</td>
+      <td>object</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>float64</td>
+      <td>bool</td>
+      <td>int64</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div>Dask Name: loc, 31 tasks</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1991</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1991</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Month</th>
+      <th>DayofMonth</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>TailNum</th>
+      <th>...</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1991</th>
+      <td>1</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1215.0</td>
+      <td>1215</td>
+      <td>1340.0</td>
+      <td>1336</td>
+      <td>US</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>4.0</td>
+      <td>0.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>1</td>
+      <td>9</td>
+      <td>3</td>
+      <td>1215.0</td>
+      <td>1215</td>
+      <td>1353.0</td>
+      <td>1336</td>
+      <td>US</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>17.0</td>
+      <td>0.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>1</td>
+      <td>10</td>
+      <td>4</td>
+      <td>1216.0</td>
+      <td>1215</td>
+      <td>1332.0</td>
+      <td>1336</td>
+      <td>US</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-4.0</td>
+      <td>1.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>1</td>
+      <td>11</td>
+      <td>5</td>
+      <td>1303.0</td>
+      <td>1215</td>
+      <td>1439.0</td>
+      <td>1336</td>
+      <td>US</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>63.0</td>
+      <td>48.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>1</td>
+      <td>12</td>
+      <td>6</td>
+      <td>1215.0</td>
+      <td>1215</td>
+      <td>1352.0</td>
+      <td>1336</td>
+      <td>US</td>
+      <td>121</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>16.0</td>
+      <td>0.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>12</td>
+      <td>26</td>
+      <td>4</td>
+      <td>1600.0</td>
+      <td>1600</td>
+      <td>1857.0</td>
+      <td>1906</td>
+      <td>CO</td>
+      <td>1539</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-9.0</td>
+      <td>0.0</td>
+      <td>LGA</td>
+      <td>FLL</td>
+      <td>1076.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>12</td>
+      <td>27</td>
+      <td>5</td>
+      <td>1600.0</td>
+      <td>1600</td>
+      <td>1853.0</td>
+      <td>1906</td>
+      <td>CO</td>
+      <td>1539</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-13.0</td>
+      <td>0.0</td>
+      <td>LGA</td>
+      <td>FLL</td>
+      <td>1076.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>12</td>
+      <td>28</td>
+      <td>6</td>
+      <td>1600.0</td>
+      <td>1600</td>
+      <td>1856.0</td>
+      <td>1906</td>
+      <td>CO</td>
+      <td>1539</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-10.0</td>
+      <td>0.0</td>
+      <td>LGA</td>
+      <td>FLL</td>
+      <td>1076.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>12</td>
+      <td>29</td>
+      <td>7</td>
+      <td>1601.0</td>
+      <td>1600</td>
+      <td>1851.0</td>
+      <td>1906</td>
+      <td>CO</td>
+      <td>1539</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-15.0</td>
+      <td>1.0</td>
+      <td>LGA</td>
+      <td>FLL</td>
+      <td>1076.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>12</td>
+      <td>31</td>
+      <td>2</td>
+      <td>1558.0</td>
+      <td>1600</td>
+      <td>1851.0</td>
+      <td>1906</td>
+      <td>CO</td>
+      <td>1539</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-15.0</td>
+      <td>-2.0</td>
+      <td>LGA</td>
+      <td>FLL</td>
+      <td>1076.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>258274 rows × 22 columns</p>
+</div></div></div>
 </div>
 <div class="section" id="exercises-15-2">
 <h3>Exercises 15.2<a class="headerlink" href="#exercises-15-2" title="Permalink to this headline">¶</a></h3>
@@ -770,7 +2272,7 @@
 <p>For example, lets compute the mean and standard deviation for departure delay of all non-cancelled flights:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">non_cancelled</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">non_cancelled</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]</span>
 <span class="n">mean_delay</span> <span class="o">=</span> <span class="n">non_cancelled</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">std_delay</span> <span class="o">=</span> <span class="n">non_cancelled</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
@@ -781,9 +2283,19 @@
 <h3>Using two calls to <code class="docutils literal notranslate"><span class="pre">.compute</span></code>:<a class="headerlink" href="#using-two-calls-to-compute" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">mean_delay_res</span> <span class="o">=</span> <span class="n">mean_delay</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
 <span class="n">std_delay_res</span> <span class="o">=</span> <span class="n">std_delay</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="n">mean_delay_res</span><span class="p">,</span> <span class="n">std_delay_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.6 s, sys: 1.61 s, total: 17.2 s
+Wall time: 6.68 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9.206602541321965, 28.974539774551456)
 </pre></div>
 </div>
 </div>
@@ -793,8 +2305,18 @@
 <h3>Using one call to <code class="docutils literal notranslate"><span class="pre">dask.compute</span></code>:<a class="headerlink" href="#using-one-call-to-dask-compute" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">mean_delay_res</span><span class="p">,</span> <span class="n">std_delay_res</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">mean_delay</span><span class="p">,</span> <span class="n">std_delay</span><span class="p">)</span>
+<span class="n">mean_delay_res</span><span class="p">,</span> <span class="n">std_delay_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.23 s, sys: 556 ms, total: 8.79 s
+Wall time: 3.54 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9.206602541321965, 28.974539774551456)
 </pre></div>
 </div>
 </div>
@@ -808,9 +2330,12 @@
 <p>To see what the merged task graphs between multiple results look like (and what’s shared), you can use the <code class="docutils literal notranslate"><span class="pre">dask.visualize</span></code> function (we might want to use <code class="docutils literal notranslate"><span class="pre">filename='graph.pdf'</span></code> to zoom in on the graph better):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dask</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">mean_delay</span><span class="p">,</span> <span class="n">std_delay</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dask</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">mean_delay</span><span class="p">,</span> <span class="n">std_delay</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16-DaskDataframes_57_0.png" src="_images/16-DaskDataframes_57_0.png" />
 </div>
 </div>
 </div>
