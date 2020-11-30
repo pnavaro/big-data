@@ -8,9 +8,11 @@ dependencies:
   - bs4
   - dask
   - dask-ml
+  - dask_labextension
   - faker
   - feather-format
   - findspark
+  - graphviz
   - h5py
   - ipykernel
   - ipywidgets
@@ -27,7 +29,6 @@ dependencies:
   - pandas
   - pip
   - pip:
-    - dask_labextension
     - mimesis
   - pyarrow
   - pyspark=2.3.1
