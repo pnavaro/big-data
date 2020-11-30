@@ -2,6 +2,7 @@ name: big-data
 channels:
   - conda-forge
 dependencies:
+  - python=3.7
   - asyncssh
   - bokeh=2.0
   - bs4
