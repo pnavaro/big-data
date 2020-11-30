@@ -10,8 +10,9 @@ RUN chown -R ${NB_USER} ${HOME}
 
 USER $NB_USER
 
-RUN conda env create --quiet -f environment.yml && \
-    conda install -y -n base -c conda-forge dask-labextension jupytext graphviz && \
+RUN conda install --yes --quiet -c conda-forge mamba && \
+    mamba install --yes --quiet dask-labextension jupytext graphviz && \
+    mamba env create --quiet -f environment.yml && \
     conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
