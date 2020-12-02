@@ -480,7 +480,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/jovyan/notebooks&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/jovyan/work/big-data/notebooks&#39;
 </pre></div>
 </div>
 </div>
@@ -517,7 +517,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/jovyan/notebooks/data/nycflights/*.csv&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/jovyan/work/big-data/notebooks/data/nycflights/*.csv&#39;
 </pre></div>
 </div>
 </div>
@@ -913,7 +913,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">traceback</span> <span class="c1"># we use traceback because we expect an error.</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span> <span class="c1"># Get the last 5 rows</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># Get the last 5 rows</span>
 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
     <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
 </pre></div>
@@ -921,31 +921,31 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;&lt;ipython-input-7-9efc84b7d1ff&gt;&quot;, line 4, in &lt;module&gt;
-    df.tail() # Get the last 5 rows
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/dataframe/core.py&quot;, line 1054, in tail
+  File &quot;&lt;ipython-input-19-311266a47959&gt;&quot;, line 4, in &lt;module&gt;
+    df.tail(5) # Get the last 5 rows
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/dataframe/core.py&quot;, line 1054, in tail
     result = result.compute()
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/base.py&quot;, line 167, in compute
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/base.py&quot;, line 167, in compute
     (result,) = compute(self, traverse=False, **kwargs)
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/base.py&quot;, line 452, in compute
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/base.py&quot;, line 452, in compute
     results = schedule(dsk, keys, **kwargs)
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/threaded.py&quot;, line 84, in get
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/threaded.py&quot;, line 84, in get
     **kwargs
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 486, in get_async
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/local.py&quot;, line 486, in get_async
     raise_exception(exc, tb)
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 316, in reraise
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/local.py&quot;, line 316, in reraise
     raise exc
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/local.py&quot;, line 222, in execute_task
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/local.py&quot;, line 222, in execute_task
     result = _execute_task(task, data)
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in _execute_task
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in _execute_task
     return func(*(_execute_task(a, cache) for a in args))
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in &lt;genexpr&gt;
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in &lt;genexpr&gt;
     return func(*(_execute_task(a, cache) for a in args))
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in _execute_task
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/core.py&quot;, line 121, in _execute_task
     return func(*(_execute_task(a, cache) for a in args))
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/dataframe/io/csv.py&quot;, line 152, in pandas_read_text
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/dataframe/io/csv.py&quot;, line 152, in pandas_read_text
     coerce_dtypes(df, dtypes)
-  File &quot;/opt/conda/envs/big-data/lib/python3.7/site-packages/dask/dataframe/io/csv.py&quot;, line 256, in coerce_dtypes
+  File &quot;/opt/venv/lib/python3.7/site-packages/dask/dataframe/io/csv.py&quot;, line 256, in coerce_dtypes
     raise ValueError(msg)
 ValueError: Mismatched dtypes found in `pd.read_csv`/`pd.read_table`.
 
@@ -1019,7 +1019,7 @@ Length: 21, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1235,8 +1235,8 @@ Length: 21, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.69 s, sys: 734 ms, total: 9.42 s
-Wall time: 4.72 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7 s, sys: 190 ms, total: 7.19 s
+Wall time: 6.82 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1435.0
@@ -1282,8 +1282,8 @@ Wall time: 4.72 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.04 s, sys: 924 ms, total: 9.97 s
-Wall time: 4.98 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.95 s, sys: 194 ms, total: 7.14 s
+Wall time: 6.58 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.206602541321965
@@ -1493,13 +1493,13 @@ Wall time: 4.98 s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> result.compute() 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> result.compute()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 201 ms, sys: 96.5 ms, total: 298 ms
-Wall time: 308 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 201 ms, sys: 19.4 ms, total: 221 ms
+Wall time: 278 ms
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.206602541321965
@@ -1527,6 +1527,324 @@ Wall time: 308 ms
 <li><p>Use selections <code class="docutils literal notranslate"><span class="pre">df[...]</span></code> to find how many positive (late) and negative (early) departure times there are</p></li>
 <li><p>In total, how many non-cancelled flights were taken? (To invert a boolean pandas Series s, use ~s).</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>ActualElapsedTime</th>
+      <th>CRSElapsedTime</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1990-01-01</td>
+      <td>1</td>
+      <td>1621.0</td>
+      <td>1540</td>
+      <td>1747.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>86.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>46.0</td>
+      <td>41.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1990-01-02</td>
+      <td>2</td>
+      <td>1547.0</td>
+      <td>1540</td>
+      <td>1700.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>73.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>7.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1990-01-03</td>
+      <td>3</td>
+      <td>1546.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>84.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>6.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1990-01-04</td>
+      <td>4</td>
+      <td>1542.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>88.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1990-01-05</td>
+      <td>5</td>
+      <td>1549.0</td>
+      <td>1540</td>
+      <td>1706.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>77.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>9.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1990-01-06</td>
+      <td>6</td>
+      <td>1539.0</td>
+      <td>1540</td>
+      <td>1653.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>74.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>-8.0</td>
+      <td>-1.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1990-01-07</td>
+      <td>7</td>
+      <td>1553.0</td>
+      <td>1540</td>
+      <td>1713.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>80.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>12.0</td>
+      <td>13.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1990-01-08</td>
+      <td>1</td>
+      <td>1543.0</td>
+      <td>1540</td>
+      <td>1656.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>73.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>-5.0</td>
+      <td>3.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1990-01-09</td>
+      <td>2</td>
+      <td>1540.0</td>
+      <td>1540</td>
+      <td>1704.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>84.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1990-01-10</td>
+      <td>3</td>
+      <td>1608.0</td>
+      <td>1540</td>
+      <td>1740.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>92.0</td>
+      <td>81.0</td>
+      <td>NaN</td>
+      <td>39.0</td>
+      <td>28.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2611892
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(840942, 1187146)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2540961, 2611892)
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="divisions-and-the-index">
@@ -2264,6 +2582,38 @@ Wall time: 308 ms
 <ul class="simple">
 <li><p>What day of the week has the worst average departure delay?</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="o">~</span><span class="n">df2</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origin
+EWR    1139451
+JFK     427243
+LGA     974267
+Name: Origin, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="o">~</span><span class="n">df2</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origin
+EWR    10.295469
+JFK    10.351299
+LGA     7.431142
+Name: DepDelay, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="sharing-intermediate-results">
@@ -2291,8 +2641,8 @@ Wall time: 308 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.6 s, sys: 1.61 s, total: 17.2 s
-Wall time: 6.68 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 12 s, sys: 409 ms, total: 12.4 s
+Wall time: 14.4 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9.206602541321965, 28.974539774551456)
@@ -2312,8 +2662,8 @@ Wall time: 6.68 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.23 s, sys: 556 ms, total: 8.79 s
-Wall time: 3.54 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.98 s, sys: 201 ms, total: 6.18 s
+Wall time: 5.35 s
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9.206602541321965, 28.974539774551456)
@@ -2335,8 +2685,40 @@ Wall time: 3.54 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-DaskDataframes_57_0.png" src="_images/16-DaskDataframes_57_0.png" />
+<img alt="_images/16-DaskDataframes_64_0.png" src="_images/16-DaskDataframes_64_0.png" />
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+ 
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">threads_per_worker</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="s1">&#39;1GB&#39;</span><span class="p">)</span>
+ 
+<span class="n">client</span>
+ 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table style="border: 2px solid white;">
+<tr>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Client</h3>
+<ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
+  <li><b>Scheduler: </b>tcp://127.0.0.1:41345</li>
+  <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a></li>
+</ul>
+</td>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Cluster</h3>
+<ul style="text-align: left; list-style:none; margin: 0; padding: 0;">
+  <li><b>Workers: </b>2</li>
+  <li><b>Cores: </b>2</li>
+  <li><b>Memory: </b>2.00 GB</li>
+</ul>
+</td>
+</tr>
+</table></div></div>
 </div>
 </div>
 </div>
