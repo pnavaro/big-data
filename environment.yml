@@ -7,7 +7,9 @@ dependencies:
   - bokeh=2.0
   - bs4
   - dask
+  - dask-jobqueue
   - dask-ml
+  - dask-xgboost
   - faker
   - feather-format
   - findspark
