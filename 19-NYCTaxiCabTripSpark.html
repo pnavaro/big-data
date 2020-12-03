@@ -374,22 +374,26 @@
 <p>Normally we would read and load this data into memory as a Pandas dataframe.  However in this case that would be unwise because this data is too large to fit in RAM.</p>
 <p>The data can stay in the hdfs filesystem but for performance reason we can’t use the csv format. The file is large (32Go) and text formatted. Data Access is very slow.</p>
 <p>You can convert csv file to parquet with Spark.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span> 
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+
 <span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+        <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;Convert CSV to parquet&quot;</span><span class="p">)</span> \
         <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;spark://svmass2.mass.uhb.fr:7077&quot;</span><span class="p">)</span> \
         <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s1">&#39;spark.hadoop.parquet.enable.summary-metadata&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span> \
-        <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.cores.max&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">)</span> \
         <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span>
-<span class="s2">&quot;hdfs://svmass2.mass.uhb.fr:54310/user/datasets/nyc-tlc/2009/yellow_tripdata_2009-01.csv&quot;</span><span class="p">,</span> 
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;hdfs://svmass2.mass.uhb.fr:54310/data/nyc-taxi-csv/2009/yellow*.csv&quot;</span><span class="p">,</span> 
                     <span class="n">header</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;hdfs://svmass2.mass.uhb.fr:54310/user/navaro_p/nyc-taxi/2019-01.parquet&quot;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;hdfs://svmass2.mass.uhb.fr:54310/user/navaro_p/2009-yellow.parquet&quot;</span><span class="p">)</span>
+
 <span class="n">spark</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>To read multiple files</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="s2">&quot;true&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../Downloads/*.csv&quot;</span><span class="p">)</span>
-</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="spark-cluster">
