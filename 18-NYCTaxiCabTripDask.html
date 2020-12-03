@@ -308,9 +308,36 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercises">
-   Exercises
+  <a class="reference internal nav-link" href="#local-cluster">
+   Local cluster
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remote-clusters-via-ssh">
+   Remote clusters via SSH
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#yarn-cluster">
+   Yarn cluster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#slurm-cluster">
+   SLURM Cluster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#new-york-city-taxi-cab-trip">
+   New York City Taxi Cab Trip
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -326,72 +353,118 @@
   <div class="section" id="dask-dataframes-on-hdfs">
 <h1>Dask dataframes on HDFS<a class="headerlink" href="#dask-dataframes-on-hdfs" title="Permalink to this headline">¶</a></h1>
 <p>To use Dask dataframes in parallel across an HDFS cluster to read CSV data. We can coordinate these computations with <a class="reference external" href="http://distributed.dask.org/en/latest/">distributed</a> and dask.dataframe.</p>
-<p>As Spark, Dask can work in cluster mode. You can use the dask module <a class="reference external" href="https://jobqueue.dask.org/en/latest/">dask_jobqueue</a> to launch a Dask cluster with the job manager SLURM.</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask_jobqueue</span> <span class="kn">import</span> <span class="n">SLURMCluster</span>
-
-<span class="n">cluster</span> <span class="o">=</span> <span class="n">SLURMCluster</span><span class="p">(</span><span class="n">cores</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
-                       <span class="n">queue</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
-                       <span class="n">project</span><span class="o">=</span><span class="s1">&#39;myproject&#39;</span><span class="p">,</span>
-                       <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;16GB&quot;</span><span class="p">,</span>
-                       <span class="n">walltime</span><span class="o">=</span><span class="s2">&quot;01:00:00&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The cluster generates a traditional job script and submits that an appropriate number of times to the job queue. You can see the job script that it will generate as follows:</p>
+<p>As Spark, Dask can work in cluster mode. There is several ways to launch a cluster.</p>
+<div class="section" id="local-cluster">
+<h2>Local cluster<a class="headerlink" href="#local-cluster" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">job_script</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Access to the cluster using following lines:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
-<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">nyc2014</span></code> is a dask.dataframe objects which present a subset of the Pandas API to the user, but farm out all of the work to the many Pandas dataframes they control across the network.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nyc2014</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/opt/datasets/nyc-data/2014/yellow*.csv&#39;</span><span class="p">,</span>
-<span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pickup_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;dropoff_datetime&#39;</span><span class="p">],</span>
-<span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">nyc2014</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">persist</span><span class="p">(</span><span class="n">nyc2014</span><span class="p">)</span>
-<span class="n">progress</span><span class="p">(</span><span class="n">nyc2014</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
-
-<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">threads_per_worker</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="s1">&#39;1GB&#39;</span><span class="p">)</span>
-
-<span class="n">client</span>
-
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">LocalCluster</span><span class="p">,</span> <span class="n">Client</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCluster</span><span class="p">()</span>
+<span class="n">cluster</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table style="border: 2px solid white;">
-<tr>
-<td style="vertical-align: top; border: 0px solid white">
-<h3 style="text-align: left;">Client</h3>
-<ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
-  <li><b>Scheduler: </b>tcp://127.0.0.1:46077</li>
-  <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a></li>
-</ul>
-</td>
-<td style="vertical-align: top; border: 0px solid white">
-<h3 style="text-align: left;">Cluster</h3>
-<ul style="text-align: left; list-style:none; margin: 0; padding: 0;">
-  <li><b>Workers: </b>2</li>
-  <li><b>Cores: </b>2</li>
-  <li><b>Memory: </b>2.00 GB</li>
-</ul>
-</td>
-</tr>
-</table></div></div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/venv/lib/python3.7/site-packages/distributed/node.py:155: UserWarning: Port 8787 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 41037 instead
+  http_address[&quot;port&quot;], self.http_server.port
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "6987a31124ae45e587bf1135a56b41b8"}
+</script></div>
+</div>
+</div>
+<div class="section" id="remote-clusters-via-ssh">
+<h2>Remote clusters via SSH<a class="headerlink" href="#remote-clusters-via-ssh" title="Permalink to this headline">¶</a></h2>
+<p>Code below can be used to launch a Dask SSH cluster on svmass2 server.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">SSHCluster</span>
+
+<span class="n">svpes</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;svpe</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">1d</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">svpes</span><span class="p">)</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">SSHCluster</span><span class="p">([</span><span class="s2">&quot;localhost&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">svpes</span><span class="p">)</span>
+<span class="n">cluster</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="yarn-cluster">
+<h2>Yarn cluster<a class="headerlink" href="#yarn-cluster" title="Permalink to this headline">¶</a></h2>
+<p>Follow these <a class="reference external" href="https://yarn.dask.org/en/latest/environments.html">instructions</a> to create the environment file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask_yarn</span> <span class="kn">import</span> <span class="n">YarnCluster</span>
+<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+
+<span class="c1"># Create a cluster where each worker has two cores and eight GiB of memory</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">YarnCluster</span><span class="p">(</span><span class="n">environment</span><span class="o">=</span><span class="s1">&#39;environment.tar.gz&#39;</span><span class="p">,</span>
+                      <span class="n">worker_vcores</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                      <span class="n">worker_memory</span><span class="o">=</span><span class="s2">&quot;8GiB&quot;</span><span class="p">)</span>
+<span class="c1"># Scale out to ten such workers</span>
+<span class="n">cluster</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Connect to the cluster</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="slurm-cluster">
+<h2>SLURM Cluster<a class="headerlink" href="#slurm-cluster" title="Permalink to this headline">¶</a></h2>
+<p>You can use the dask module <a class="reference external" href="https://jobqueue.dask.org/en/latest/">dask_jobqueue</a>
+to launch a Dask cluster with the job manager SLURM.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask_jobqueue</span> <span class="kn">import</span> <span class="n">SLURMCluster</span>
+
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">SLURMCluster</span><span class="p">(</span><span class="n">cores</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+             <span class="n">queue</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
+             <span class="n">project</span><span class="o">=</span><span class="s1">&#39;myproject&#39;</span><span class="p">,</span>
+             <span class="n">memory</span><span class="o">=</span><span class="s2">&quot;16GB&quot;</span><span class="p">,</span>
+             <span class="n">walltime</span><span class="o">=</span><span class="s2">&quot;01:00:00&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The cluster generates a traditional job script and submits that an appropriate number of times to the job queue. You can see the job script that it will generate as follows:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">job_script</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="c1">#SBATCH -J dask-worker</span>
+<span class="c1">#SBATCH -p test</span>
+<span class="c1">#SBATCH -A myproject</span>
+<span class="c1">#SBATCH -n 1</span>
+<span class="c1">#SBATCH --cpus-per-task=16</span>
+<span class="c1">#SBATCH --mem=15G</span>
+<span class="c1">#SBATCH -t 01:00:00</span>
+
+/opt/tljh/user/envs/big-data/bin/python -m distributed.cli.dask_worker tcp://192.168.2.54:40623 --nthreads <span class="m">4</span> --nprocs <span class="m">4</span> --memory-limit <span class="m">4</span>.00GB --name name --nanny --death-timeout <span class="m">60</span>
+</pre></div>
+</div>
+<p>Use the script above to submit your dask pipeline to the HPC server of your insttitution.</p>
+</div>
+<div class="section" id="new-york-city-taxi-cab-trip">
+<h2>New York City Taxi Cab Trip<a class="headerlink" href="#new-york-city-taxi-cab-trip" title="Permalink to this headline">¶</a></h2>
+<p>We look at <a class="reference external" href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">the New York City Taxi Cab dataset</a>. This includes every ride made in the city of New York since 2009.</p>
+<p>On <a class="reference external" href="http://chriswhong.github.io/nyctaxi/">this website</a> you can see the data for one random NYC yellow taxi on a single day.</p>
+<p>On <a class="reference external" href="http://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/">this post</a>, you can see an analysis of this dataset. Postgres and R scripts are available on <a class="reference external" href="https://github.com/toddwschneider/nyc-taxi-data">GitHub</a>. There is also a dashboard available <a class="reference external" href="https://toddwschneider.com/dashboards/nyc-taxi-ridehailing-uber-lyft-data/">here</a> that updates monthly with the latest taxi, Uber, and Lyft aggregate stats.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```python
+
+from dask.distributed import Client
+
+client = Client(n_workers=2, threads_per_worker=1, memory_limit=&#39;1GB&#39;)
+
+`nyc2014` is a dask.dataframe objects which present a subset of the Pandas API to the user, but farm out all of the work to the many Pandas dataframes they control across the network.
+
+nyc2014 = dd.read_csv(&#39;/opt/datasets/nyc-data/2014/yellow*.csv&#39;,
+parse_dates=[&#39;pickup_datetime&#39;, &#39;dropoff_datetime&#39;],
+skipinitialspace=True)
+nyc2014 = c.persist(nyc2014)
+progress(nyc2014)
+```
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Display head of the dataframe</p></li>
 <li><p>Display number of rows of this dataframe.</p></li>
@@ -402,6 +475,7 @@
 <li><p>Plot the average of the new column tip_fraction grouped by hour of day.</p></li>
 </ul>
 <p><a class="reference external" href="http://docs.dask.org/en/latest/dataframe.html">Dask dataframe documentation</a></p>
+</div>
 </div>
 </div>
 
