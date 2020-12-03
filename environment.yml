@@ -8,6 +8,7 @@ dependencies:
   - bs4
   - dask
   - dask-ml
+  - dask-xgboost
   - faker
   - feather-format
   - findspark
