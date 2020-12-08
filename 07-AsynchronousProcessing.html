@@ -418,15 +418,6 @@ which does not return until the results are available.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.16 ms, sys: 1.34 ms, total: 4.5 ms
-Wall time: 1 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -435,11 +426,6 @@ Wall time: 1 s
 <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="n">future</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">slowadd</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
@@ -456,13 +442,6 @@ Wall time: 1 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14]
-CPU times: user 1.66 ms, sys: 2.47 ms, total: 4.14 ms
-Wall time: 8.01 s
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -471,13 +450,6 @@ Wall time: 8.01 s
 <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">slowadd</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
 <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">futures</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 2, 4, 6, 8, 10, 12, 14]
-CPU times: user 6.32 ms, sys: 5.09 ms, total: 11.4 ms
-Wall time: 1.02 s
 </pre></div>
 </div>
 </div>
@@ -523,11 +495,6 @@ Wall time: 1.02 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data...
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files">
@@ -543,31 +510,6 @@ Wall time: 1.02 s
 <span class="n">datadir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="s1">&#39;daily-stock&#39;</span><span class="p">)</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span> <span class="s1">&#39;*.json&#39;</span><span class="p">)))</span>
 <span class="n">filenames</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/home/jovyan/work/data/daily-stock/aet.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/afl.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/aig.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/al.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/amgn.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/avy.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/b.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/bwa.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/ge.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/hal.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/hp.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/hpq.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/ibm.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/jbl.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/jpm.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/luv.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/met.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/pcg.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/tgt.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/usb.json&#39;,
- &#39;/home/jovyan/work/data/daily-stock/xom.json&#39;]
 </pre></div>
 </div>
 </div>
@@ -600,12 +542,6 @@ Wall time: 1.02 s
     <span class="n">out_filename</span> <span class="o">=</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.h5&#39;</span>
     <span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="n">out_filename</span><span class="p">,</span> <span class="s1">&#39;/data&#39;</span><span class="p">)</span> <span class="c1"># store</span>
     
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 21/21 [00:28&lt;00:00,  1.35s/it]CPU times: user 21.2 s, sys: 6.15 s, total: 27.3 s
-Wall time: 28.3 s
 </pre></div>
 </div>
 </div>
@@ -647,27 +583,10 @@ Wall time: 28.3 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 23.5 s, sys: 4.17 s, total: 27.7 s
-Wall time: 28.3 s
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!ls data/daily-stock/*.h5
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5   data/daily-stock/bwa.h5  data/daily-stock/jpm.h5
-data/daily-stock/afl.h5   data/daily-stock/ge.h5   data/daily-stock/luv.h5
-data/daily-stock/aig.h5   data/daily-stock/hal.h5  data/daily-stock/met.h5
-data/daily-stock/al.h5	  data/daily-stock/hp.h5   data/daily-stock/pcg.h5
-data/daily-stock/amgn.h5  data/daily-stock/hpq.h5  data/daily-stock/tgt.h5
-data/daily-stock/avy.h5   data/daily-stock/ibm.h5  data/daily-stock/usb.h5
-data/daily-stock/b.h5	  data/daily-stock/jbl.h5  data/daily-stock/xom.h5
 </pre></div>
 </div>
 </div>
@@ -720,13 +639,6 @@ data/daily-stock/b.h5	  data/daily-stock/jbl.h5  data/daily-stock/xom.h5
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5 matches with data/daily-stock/luv.h5 with correlation 0.941318
-CPU times: user 1.14 s, sys: 87.2 ms, total: 1.23 s
-Wall time: 834 ms
-</pre></div>
-</div>
-</div>
 </div>
 <p>We use matplotlib to visually inspect the highly correlated timeseries</p>
 <div class="cell docutils container">
@@ -739,9 +651,6 @@ Wall time: 834 ms
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/07-AsynchronousProcessing_26_0.png" src="_images/07-AsynchronousProcessing_26_0.png" />
 </div>
 </div>
 </div>

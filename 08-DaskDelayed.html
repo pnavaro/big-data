@@ -465,12 +465,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 627 µs, sys: 956 µs, total: 1.58 ms
-Wall time: 3 s
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="parallelize-with-dask-delayed">
@@ -502,15 +496,6 @@ Wall time: 3 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.58 ms, sys: 7.68 ms, total: 15.3 ms
-Wall time: 2.02 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="dask-graph">
@@ -524,9 +509,6 @@ Wall time: 2.02 s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/08-DaskDelayed_11_0.png" src="_images/08-DaskDelayed_11_0.png" />
 </div>
 </div>
 </div>
@@ -548,15 +530,6 @@ Wall time: 2.02 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 995 µs, sys: 398 µs, total: 1.39 ms
-Wall time: 1.14 ms
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Delayed(&#39;sum-4b82fe5a-d7ee-4f9d-b5d4-a3327504db7c&#39;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -564,18 +537,10 @@ Wall time: 1.14 ms
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/08-DaskDelayed_14_0.png" src="_images/08-DaskDelayed_14_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
 </pre></div>
 </div>
 </div>
@@ -613,24 +578,12 @@ Wall time: 1.14 ms
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.68 ms, sys: 2.28 ms, total: 5.96 ms
-Wall time: 2.01 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/08-DaskDelayed_19_0.png" src="_images/08-DaskDelayed_19_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -648,11 +601,6 @@ Wall time: 2.01 s
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
 <span class="n">r</span><span class="o">.</span><span class="n">area</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.0
 </pre></div>
 </div>
 </div>
@@ -702,18 +650,10 @@ Wall time: 2.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/08-DaskDelayed_23_0.png" src="_images/08-DaskDelayed_23_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>855
 </pre></div>
 </div>
 </div>
@@ -773,15 +713,6 @@ Wall time: 2.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.json&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/afl.json&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aig.json&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/al.json&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/amgn.json&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -815,50 +746,10 @@ Wall time: 2.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.13 s, sys: 935 ms, total: 9.07 s
-Wall time: 12.3 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/afl&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aig&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/al&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/amgn&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/avy&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/b&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/bwa&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/ge&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hal&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hp&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/hpq&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/ibm&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/jbl&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/jpm&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/luv&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/met&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/pcg&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/tgt&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/usb&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/xom&#39;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">ls</span> data/daily-stock/*.h5
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data/daily-stock/aet.h5   data/daily-stock/bwa.h5   data/daily-stock/jpm.h5
-data/daily-stock/afl.h5   data/daily-stock/ge.h5    data/daily-stock/luv.h5
-data/daily-stock/aig.h5   data/daily-stock/hal.h5   data/daily-stock/met.h5
-data/daily-stock/al.h5    data/daily-stock/hp.h5    data/daily-stock/pcg.h5
-data/daily-stock/amgn.h5  data/daily-stock/hpq.h5   data/daily-stock/tgt.h5
-data/daily-stock/avy.h5   data/daily-stock/ibm.h5   data/daily-stock/usb.h5
-data/daily-stock/b.h5     data/daily-stock/jbl.h5   data/daily-stock/xom.h5
 </pre></div>
 </div>
 </div>
@@ -900,11 +791,6 @@ data/daily-stock/b.h5     data/daily-stock/jbl.h5   data/daily-stock/xom.h5
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([], 0)
-</pre></div>
-</div>
-</div>
 </div>
 <p>In order to plot these fields, we will scale them between 0 to 255 grey levels.</p>
 <div class="cell docutils container">
@@ -934,17 +820,6 @@ data/daily-stock/b.h5     data/daily-stock/jbl.h5   data/daily-stock/xom.h5
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">read_frame</span><span class="p">(</span> <span class="n">filenames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">28</span><span class="o">-</span><span class="n">b8623a3035f5</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">image</span> <span class="o">=</span> <span class="n">read_frame</span><span class="p">(</span> <span class="n">filenames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
-
-<span class="ne">IndexError</span>: list index out of range
 </pre></div>
 </div>
 </div>

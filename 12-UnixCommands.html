@@ -949,38 +949,6 @@ ls -l
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      9 quisquam
-      9 porro
-      9 labore
-      9 eius
-      8 velit
-      8 tempora
-      8 sed
-      8 non
-      8 neque
-      8 dolorem
-      8 amet
-      8 adipisci
-      7 numquam
-      7 modi
-      7 magnam
-      7 dolor
-      6 etincidunt
-      6 consectetur
-      4 aliquam
-      4 
-     16 ipsum
-     15 voluptatem
-     14 dolore
-     10 ut
-     10 sit
-     10 quiquia
-     10 quaerat
-     10 est
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="exercice-11-3">
@@ -1015,187 +983,12 @@ sit	1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mapper.py
-</pre></div>
-</div>
-</div>
 </div>
 <p>File <code class="docutils literal notranslate"><span class="pre">mapper.py</span></code> must be executable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!chmod +x mapper.py
 !./mapper.py &lt; sample.txt | sort 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>adipisci	1
-adipisci	1
-adipisci	1
-adipisci	1
-adipisci	1
-adipisci	1
-aliquam	1
-aliquam	1
-aliquam	1
-aliquam	1
-amet	1
-amet	1
-amet	1
-amet	1
-amet	1
-amet	1
-consectetur	1
-consectetur	1
-consectetur	1
-consectetur	1
-consectetur	1
-consectetur	1
-consectetur	1
-dolor	1
-dolor	1
-dolor	1
-dolor	1
-dolor	1
-dolor	1
-dolor	1
-dolore	1
-dolore	1
-dolore	1
-dolore	1
-dolore	1
-dolore	1
-dolore	1
-dolore	1
-dolorem	1
-dolorem	1
-dolorem	1
-dolorem	1
-dolorem	1
-dolorem	1
-eius	1
-eius	1
-eius	1
-eius	1
-est	1
-est	1
-est	1
-est	1
-est	1
-est	1
-etincidunt	1
-etincidunt	1
-etincidunt	1
-etincidunt	1
-etincidunt	1
-etincidunt	1
-etincidunt	1
-etincidunt	1
-etincidunt	1
-etincidunt	1
-ipsum	1
-ipsum	1
-ipsum	1
-labore	1
-labore	1
-labore	1
-labore	1
-labore	1
-labore	1
-labore	1
-labore	1
-labore	1
-labore	1
-labore	1
-magnam	1
-magnam	1
-magnam	1
-magnam	1
-magnam	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-modi	1
-neque	1
-neque	1
-neque	1
-neque	1
-non	1
-non	1
-non	1
-numquam	1
-numquam	1
-numquam	1
-numquam	1
-numquam	1
-numquam	1
-numquam	1
-porro	1
-porro	1
-porro	1
-porro	1
-porro	1
-porro	1
-quaerat	1
-quaerat	1
-quaerat	1
-quiquia	1
-quiquia	1
-quiquia	1
-quiquia	1
-quiquia	1
-quiquia	1
-quisquam	1
-quisquam	1
-quisquam	1
-quisquam	1
-quisquam	1
-sed	1
-sed	1
-sed	1
-sed	1
-sed	1
-sed	1
-sed	1
-sit	1
-sit	1
-sit	1
-sit	1
-sit	1
-sit	1
-tempora	1
-tempora	1
-tempora	1
-ut	1
-ut	1
-ut	1
-ut	1
-ut	1
-ut	1
-ut	1
-velit	1
-velit	1
-velit	1
-velit	1
-velit	1
-velit	1
-velit	1
-voluptatem	1
-voluptatem	1
-voluptatem	1
-voluptatem	1
-voluptatem	1
-voluptatem	1
 </pre></div>
 </div>
 </div>
@@ -1256,11 +1049,6 @@ voluptatem	1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing reducer.py
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1272,37 +1060,6 @@ voluptatem	1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!cat sample.txt | ./mapper.py | sort | ./reducer.py
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8	adipisci
-4	aliquam
-8	amet
-6	consectetur
-7	dolor
-14	dolore
-8	dolorem
-9	eius
-10	est
-6	etincidunt
-16	ipsum
-9	labore
-7	magnam
-7	modi
-8	neque
-8	non
-7	numquam
-9	porro
-10	quaerat
-10	quiquia
-9	quisquam
-8	sed
-10	sit
-8	tempora
-10	ut
-8	velit
-15	voluptatem
 </pre></div>
 </div>
 </div>
