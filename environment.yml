@@ -9,7 +9,6 @@ dependencies:
   - dask
   - dask-jobqueue
   - dask-ml
-  - dask-xgboost
   - faker
   - feather-format
   - findspark
