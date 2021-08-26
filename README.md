@@ -3,7 +3,8 @@
 Notebooks for [Master of Data Science Rennes](https://www.sites.univ-rennes2.fr/master-mas/index.html)
 
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/pnavaro/big-data/master)
-[![Book](https://github.com/pnavaro/big-data//workflows/book/badge.svg)](https://pnavaro.github.io/big-data)
+[![JupyterBook](https://github.com/pnavaro/big-data//workflows/book/badge.svg)](https://pnavaro.github.io/big-data)
+[![Quarto](https://github.com/pnavaro/big-data//workflows/book/badge.svg)](https://pnavaro.github.io/big-data/quarto)
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/pnavaro/big-data)
 
 
