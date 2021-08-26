@@ -46,7 +46,7 @@ jobs:
         curl -s https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | 
         grep "browser_download_url.*deb" | 
         cut -d '"' -f 4 |
-        wget -i -O quarto.deb -
+        wget -O quarto.deb -i -
         sudo dpkg -i quarto.deb
     - name: Render quarto book
       shell: bash -l {0}
