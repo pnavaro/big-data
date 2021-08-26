@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hadoop &#8212; Python tools for Big data</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -44,10 +41,8 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -59,23 +54,14 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="File Formats" href="14-FileFormats.html" />
     <link rel="prev" title="Basic Commands in the Unix Shell" href="12-UnixCommands.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-<!-- Opengraph tags -->
-<meta property="og:url"         content="https://pnavaro.github.io/big-data/13-Hadoop.html" />
-<meta property="og:type"        content="article" />
-<meta property="og:title"       content="Hadoop" />
-<meta property="og:description" content="Hadoop  Data sets that are so large or complex that traditional data processing application software is inadequate to deal with them.  Data analysis requires ma" />
-<meta property="og:image"       content="https://pnavaro.github.io/big-data/_static/logoR2-Noir.png" />
-
-<meta name="twitter:card" content="summary" />
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -84,20 +70,20 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/logoR2-Noir.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Python tools for Big data</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logoR2-Noir.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Python tools for Big data</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="current nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01-GitBasics.html">
    Git basics
@@ -195,6 +181,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -210,21 +197,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -242,7 +229,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -262,14 +249,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -296,16 +283,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#hdfs">
    HDFS
@@ -406,8 +393,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -505,24 +492,24 @@ hdfs fs -put -f localfile1 localfile2 /user/hadoop/hadoopdir
 </ul>
 <div class="section" id="namenode-web-interface-hdfs-layer">
 <h3>NameNode Web Interface (HDFS layer)<a class="headerlink" href="#namenode-web-interface-hdfs-layer" title="Permalink to this headline">¶</a></h3>
-<p>http://svmass2.mass.uhb.fr:50070</p>
+<p><a class="reference external" href="http://svmass2.mass.uhb.fr:50070">http://svmass2.mass.uhb.fr:50070</a></p>
 <p>The name node web UI shows you a cluster summary including information about total/remaining capacity, live and dead nodes. Additionally, it allows you to browse the HDFS namespace and view the contents of its files in the web browser. It also gives access to the local machine’s Hadoop log files.</p>
 </div>
 <div class="section" id="secondary-namenode-information">
 <h3>Secondary Namenode Information.<a class="headerlink" href="#secondary-namenode-information" title="Permalink to this headline">¶</a></h3>
-<p>http://svmass2.mass.uhb.fr:50090/</p>
+<p><a class="reference external" href="http://svmass2.mass.uhb.fr:50090/">http://svmass2.mass.uhb.fr:50090/</a></p>
 </div>
 <div class="section" id="datanode-information">
 <h3>Datanode Information.<a class="headerlink" href="#datanode-information" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>http://svpe1.mass.uhb.fr:50075/</p></li>
-<li><p>http://svpe2.mass.uhb.fr:50075/</p></li>
+<li><p><a class="reference external" href="http://svpe1.mass.uhb.fr:50075/">http://svpe1.mass.uhb.fr:50075/</a></p></li>
+<li><p><a class="reference external" href="http://svpe2.mass.uhb.fr:50075/">http://svpe2.mass.uhb.fr:50075/</a></p></li>
 <li><p>…</p></li>
-<li><p>http://svpe8.mass.uhb.fr:50075/</p></li>
-<li><p>http://svpe9.mass.uhb.fr:50075/</p></li>
+<li><p><a class="reference external" href="http://svpe8.mass.uhb.fr:50075/">http://svpe8.mass.uhb.fr:50075/</a></p></li>
+<li><p><a class="reference external" href="http://svpe9.mass.uhb.fr:50075/">http://svpe9.mass.uhb.fr:50075/</a></p></li>
 </ul>
 <p>To do following hands on you can switch to <a class="reference external" href="https://jupyterlab.readthedocs.io">JupyterLab</a>.</p>
-<p>Just go to this following address http://localhost:9000/lab</p>
+<p>Just go to this following address <a class="reference external" href="http://localhost:9000/lab">http://localhost:9000/lab</a></p>
 <ul class="simple">
 <li><p>Check that your HDFS home directory required to execute MapReduce jobs exists:</p></li>
 </ul>
@@ -636,12 +623,12 @@ whoami &gt;&gt; today.txt
 <li><p>The <strong>ApplicationsManager</strong> is responsible for accepting job-submissions, tracking their status and monitoring for progress.</p></li>
 </ul>
 <p><img alt="Yarn in Hadoop documentation" src="_images/yarn_architecture.png" />
-Source: http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_architecture.gif</p>
+Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_architecture.gif">http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_architecture.gif</a></p>
 <div class="section" id="yarn-web-interface">
 <h3>Yarn Web Interface<a class="headerlink" href="#yarn-web-interface" title="Permalink to this headline">¶</a></h3>
 <p>The JobTracker web UI provides information about general job statistics of the Hadoop cluster, running/completed/failed jobs and a job history log file. It also gives access to the ‘‘local machine’s’’ Hadoop log files (the machine on which the web UI is running on).</p>
 <ul class="simple">
-<li><p>All Applications http://svmass2.mass.uhb.fr:8088</p></li>
+<li><p>All Applications <a class="reference external" href="http://svmass2.mass.uhb.fr:8088">http://svmass2.mass.uhb.fr:8088</a></p></li>
 </ul>
 </div>
 </div>
@@ -738,7 +725,7 @@ Source: http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_a
 </div>
 <div class="section" id="reduce">
 <h2>Reduce<a class="headerlink" href="#reduce" title="Permalink to this headline">¶</a></h2>
-<p>The following code reads the results of mapper.py and sum the occurrences of each word to a final count, and then output its results to sys.stdout.
+<p>The following code reads the results of <a class="reference external" href="http://mapper.py">mapper.py</a> and sum the occurrences of each word to a final count, and then output its results to sys.stdout.
 Remember that Hadoop sorts map output so it is easier to count words.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -826,7 +813,7 @@ Remember that Hadoop sorts map output so it is easier to count words.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/opt/tljh/user/bin/python</span>
 </pre></div>
 </div>
-<p>in both files mapper.py and reducer.py</p>
+<p>in both files <a class="reference external" href="http://mapper.py">mapper.py</a> and <a class="reference external" href="http://reducer.py">reducer.py</a></p>
 <p>Ensure that the output directory does not exist by removing it</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hdfs</span> <span class="n">dfs</span> <span class="o">-</span><span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="n">output</span>
 </pre></div>
@@ -919,15 +906,35 @@ run_with_yarn:
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="12-UnixCommands.html" title="previous page">Basic Commands in the Unix Shell</a>
-    <a class='right-next' id="next-link" href="14-FileFormats.html" title="next page">File Formats</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="12-UnixCommands.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Basic Commands in the Unix Shell</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="14-FileFormats.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">File Formats</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -935,7 +942,7 @@ run_with_yarn:
         
           By Pierre Navaro<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -944,11 +951,9 @@ run_with_yarn:
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

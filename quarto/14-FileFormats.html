@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.94">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Python tools for Big Data – fileformats</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.min.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/clipboard.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+<header id="quarto-header" class="headroom fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fluid">
+  <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Python tools for Big Data</span>
+  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./intro.html">Home</a>
+  </li>  
+</ul>
+      </div> <!-- /navcollapse -->
+  </div> <!-- /container-fluid -->
+</nav>
+<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <div class="container-fluid d-flex justify-content-between">
+    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
+    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+</nav>
+</header>
+ <!-- /navbar/sidebar -->
+<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
+<div class="row flex-fill" id="quarto-content">
+  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
+    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
+      <div class="sidebar-search">
+      <form class="d-flex mb-0">
+  <input id="quarto-search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+      </div>
+    </div>
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1 px-3">
+      <ul class="list-unstyled sidebar-section depth1">
+    <li class="">
+        <div class="me-auto ">
+            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
+              <div class="me-auto  sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+            </a>
+        </div>
+      <div class="collapse  show" id="notebooks-collapse">
+        <ul class="list-unstyled sidebar-item-contents">
+          <li class="sidebar-item">
+  <a href="./01-GitBasics.html" class="">Git basics</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./02-Installation.html" class="">Installation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./04-WordCount.html" class="">Wordcount</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./05-MapReduce.html" class="">Map Reduce</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./06-ParallelComputation.html" class="">Parallel Computation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./08-DaskDelayed.html" class="">Dask</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./09-DaskBag.html" class="">Dask bag</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./11-PandaDataframes.html" class="">Pandas Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./12-UnixCommands.html" class="">Basic Commands in the Unix Shell</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./13-Hadoop.html" class="">Hadoop</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./14-FileFormats.html" class="active">File Formats</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./15-PySpark.html" class="">PySpark</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
+</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  </ul>
+  </div>
+</nav>
+  </div>
+  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#file-formats" class="nav-link active" data-scroll-target="#file-formats">File Formats</a>
+<ul class="collapse">
+<li><a href="#feather" class="nav-link" data-scroll-target="#feather">Feather</a></li>
+<li><a href="#parquet-file-format" class="nav-link" data-scroll-target="#parquet-file-format">Parquet file format</a></li>
+<li><a href="#hierarchical-data-format" class="nav-link" data-scroll-target="#hierarchical-data-format">Hierarchical Data Format</a></li>
+<li><a href="#feather-or-parquet" class="nav-link" data-scroll-target="#feather-or-parquet">Feather or Parquet</a></li>
+<li><a href="#apache-arrow" class="nav-link" data-scroll-target="#apache-arrow">Apache Arrow</a>
+<ul class="collapse">
+<li><a href="#read-csv-from-hdfs" class="nav-link" data-scroll-target="#read-csv-from-hdfs">Read CSV from HDFS</a></li>
+<li><a href="#read-parquet-file-from-hdfs-with-pandas" class="nav-link" data-scroll-target="#read-parquet-file-from-hdfs-with-pandas">Read Parquet File from HDFS with pandas</a></li>
+<li><a href="#read-parquet-file-with-pyarrow" class="nav-link" data-scroll-target="#read-parquet-file-with-pyarrow">Read Parquet File with pyarrow</a></li>
+<li><a href="#writing-a-parquet-file-from-apache-arrow" class="nav-link" data-scroll-target="#writing-a-parquet-file-from-apache-arrow">Writing a parquet file from Apache Arrow</a></li>
+<li><a href="#check-metadata" class="nav-link" data-scroll-target="#check-metadata">Check metadata</a></li>
+<li><a href="#see-schema" class="nav-link" data-scroll-target="#see-schema">See schema</a></li>
+<li><a href="#connect-to-the-hadoop-file-system" class="nav-link" data-scroll-target="#connect-to-the-hadoop-file-system">Connect to the Hadoop file system</a></li>
+<li><a href="#exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav></div>
+  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
+<main>
+
+<section id="file-formats" class="level1">
+<h1>File Formats</h1>
+<p>I present three data formats, feather, parquet and hdf but it exists several more like <a href="http://avro.apache.org/docs/current/">Apache Avro</a> or <a href="https://orc.apache.org">Apache ORC</a>.</p>
+<p>These data formats may be more appropriate in certain situations. However, the software needed to handle them is either more difficult to install, incomplete, or more difficult to use because less documentation is provided. For ORC and AVRO the python libraries offered are less well maintained than the formats we will see. You can find many on the web but it is hard to know which one is the most stable. - <a href="https://github.com/noirello/pyorc">pyorc</a> - <a href="https://avro.apache.org/docs/1.10.0/gettingstartedpython.html">avro</a> and <a href="https://github.com/fastavro/fastavro">fastavro</a> The following formats are supported by pandas and apache arrow. These softwares are supported by very strong communities.</p>
+<section id="feather" class="level2">
+<h2 class="anchored" data-anchor-id="feather">Feather</h2>
+<p>For light data, it is recommanded to use <a href="https://github.com/wesm/feather">Feather</a>. It is a fast, interoperable data frame storage that comes with bindings for python and R.</p>
+<p>Feather uses also the Apache Arrow columnar memory specification to represent binary data on disk. This makes read and write operations very fast.</p>
+</section>
+<section id="parquet-file-format" class="level2">
+<h2 class="anchored" data-anchor-id="parquet-file-format">Parquet file format</h2>
+<p><a href="https://github.com/apache/parquet-format">Parquet format</a> is a common binary data store, used particularly in the Hadoop/big-data sphere. It provides several advantages relevant to big-data processing:</p>
+<p>The Apache Parquet project provides a standardized open-source columnar storage format for use in data analysis systems. It was created originally for use in Apache Hadoop with systems like Apache Drill, Apache Hive, Apache Impala, and Apache Spark adopting it as a shared standard for high performance data IO.</p>
+</section>
+<section id="hierarchical-data-format" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-data-format">Hierarchical Data Format</h2>
+<p><a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF</a> is a self-describing data format allowing an application to interpret the structure and contents of a file with no outside information. One HDF file can hold a mix of related objects which can be accessed as a group or as individual objects.</p>
+<p>Let’s create some big dataframe with consitent data (Floats) and 10% of missing values:</p>
+<div class="cell" data-cell_id="00002-86f06cb5-60f9-4b76-8b28-d8be6216d31c" data-deepnote_cell_type="code" data-execution_millis="365" data-execution_start="1605607212760" data-source_hash="2148f3e9">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> feather</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.random.randn(<span class="dv">500000</span>) <span class="co"># 10% nulls</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>arr[::<span class="dv">10</span>] <span class="op">=</span> np.nan</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'column_</span><span class="sc">{0}</span><span class="st">'</span>.<span class="bu">format</span>(i): arr <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00003-6c3102ae-966b-4c76-863d-02e663356c24" data-deepnote_cell_type="code" data-execution_millis="9969" data-execution_start="1605607226298" data-source_hash="601b1750">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time df.to_csv(<span class="st">'test.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00007-eebd2468-f5fd-4c69-83c1-1c7680da818a" data-deepnote_cell_type="code" data-execution_millis="904" data-execution_start="1605607570330" data-source_hash="648965ca">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>rm test.h5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00003-3efe272e-e2c6-4f92-a559-d1a7e7cc422e" data-deepnote_cell_type="code" data-execution_millis="3074" data-execution_start="1605607572677" data-source_hash="9511287b">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time df.to_hdf(<span class="st">"test.h5"</span>, key<span class="op">=</span><span class="st">"test"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00003-e32d9d18-f251-4149-a739-083b7e98905c" data-deepnote_cell_type="code" data-execution_millis="1258" data-execution_start="1605607364857" data-source_hash="3658418d">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time df.to_parquet(<span class="st">'test.parquet'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00003-3d58cd78-c520-45a8-aee0-c9786b4ee486" data-deepnote_cell_type="code" data-execution_millis="524" data-execution_start="1605607390362" data-source_hash="8a260d4f">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time df.to_feather(<span class="st">'test.feather'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00011-ea9189a2-035b-4a8e-84cc-1c71a317ef88" data-deepnote_cell_type="code" data-execution_millis="51" data-execution_start="1605607453945" data-source_hash="48eefa13">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>du <span class="op">-</span>sh test.<span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00008-48514262-1c39-4f50-8244-d1e3f75760d8" data-deepnote_cell_type="code" data-execution_millis="2122" data-execution_start="1605607494359" data-source_hash="5e7e15ac">
+<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"test.csv"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00009-fb4d1486-9047-47fd-804b-d8498e9234ce" data-deepnote_cell_type="code" data-execution_millis="1400" data-execution_start="1605607580459" data-source_hash="71468c8a">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_hdf(<span class="st">"test.h5"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00010-34278fa4-4bee-4496-a023-b02519d5e310" data-deepnote_cell_type="code" data-execution_millis="871" data-execution_start="1605607590036" data-source_hash="afb15a98">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"test.parquet"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00003-304f31cd-09e7-4629-8bcd-29d0d3de97a8" data-deepnote_cell_type="code" data-execution_millis="504" data-execution_start="1605607599396" data-source_hash="5110928f">
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">"test.feather"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00012-200d2d6f-7b4f-4739-87e5-ee1d535d3eea" data-deepnote_cell_type="code" data-execution_start="1605607647672" data-source_hash="83688577">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we create a new big dataframe with a column of strings</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00004-9d559345-404e-4d73-bbe0-ab773d5e751b" data-deepnote_cell_type="code" data-execution_millis="29715" data-execution_start="1605607754053" data-source_hash="11d4259f">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> sentence</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> np.array(sentence().strip().lower().replace(<span class="st">"."</span>, <span class="st">" "</span>).split())</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the seed so that the numbers can be reproduced.</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)  </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1000000</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.c_[np.random.randn(n, <span class="dv">5</span>),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                  np.random.randint(<span class="dv">0</span>,<span class="dv">10</span>,(n, <span class="dv">2</span>)),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                  np.random.randint(<span class="dv">0</span>,<span class="dv">1</span>,(n, <span class="dv">2</span>)),</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>np.array([np.random.choice(words) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)])] , </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'ABCDEFGHIJ'</span>))</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"A"</span>][::<span class="dv">10</span>] <span class="op">=</span> np.nan</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00006-dbb81bcb-1dae-4e78-b88f-7261409341b8" data-deepnote_cell_type="code" data-execution_millis="6742" data-execution_start="1605607804335" data-source_hash="86969307">
+<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'test.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00015-4af8fb60-2e45-41a8-8173-c03959c65112" data-deepnote_cell_type="code" data-execution_millis="10808" data-execution_start="1605607849621" data-source_hash="60cee7f2">
+<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df.to_hdf(<span class="st">'test.h5'</span>, key<span class="op">=</span><span class="st">"test"</span>, mode<span class="op">=</span><span class="st">"w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00007-169983f0-f35d-4d2d-a62d-dac421509f03" data-deepnote_cell_type="code" data-execution_millis="2654" data-execution_start="1605607878875" data-source_hash="a5d7fbf1">
+<div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df.to_feather(<span class="st">'test.feather'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00017-a8112e1b-2c08-47ac-b740-059f6cb840b2" data-deepnote_cell_type="code" data-execution_millis="2305" data-execution_start="1605607913541" data-source_hash="ad143313">
+<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df.to_parquet(<span class="st">'test.parquet'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00018-2b95458f-c287-4419-86e5-c617a63ef1ef" data-deepnote_cell_type="code" data-execution_millis="8728" data-execution_start="1605607923868" data-source_hash="bdf7d1af">
+<div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"test.csv"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00019-ee4b525b-cc49-49a1-85c0-c79bbb36d662" data-deepnote_cell_type="code" data-execution_millis="13601" data-execution_start="1605607936800" data-source_hash="771dceb3">
+<div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_hdf(<span class="st">"test.h5"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00020-7e533430-03e7-4486-9512-4a5e3fdc7fca" data-deepnote_cell_type="code" data-execution_millis="9103" data-execution_start="1605607954950" data-source_hash="a1e5a992">
+<div class="sourceCode" id="cb20"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">'test.feather'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00005-c284124d-89af-4ee1-9c47-60d6d5a0241c" data-deepnote_cell_type="code" data-execution_millis="10083" data-execution_start="1605607999155" data-source_hash="f37bbfe5">
+<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_parquet(<span class="st">'test.parquet'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00027-c22ed092-a58d-4375-affd-da5887c25b6d" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1605608063341" data-source_hash="f30f989a">
+<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00011-8618020c-4639-4a88-b9f2-0e1212e9c7cf" data-deepnote_cell_type="code" data-execution_millis="470" data-execution_start="1605608091018" data-source_hash="d56ddf52">
+<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'J'</span>] <span class="op">=</span> pd.Categorical(df.J)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00023-cf2defbc-03c8-4b43-becd-82bc3e39cdee" data-deepnote_cell_type="code" data-execution_millis="1959" data-execution_start="1605608105636" data-source_hash="1ddaec9a">
+<div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time df.to_feather(<span class="st">'test.feather'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00024-8c3f3bc6-d8b5-4915-a22e-89d77df8f8a3" data-deepnote_cell_type="code" data-execution_millis="2699" data-execution_start="1605608134600" data-source_hash="3658418d">
+<div class="sourceCode" id="cb25"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time df.to_parquet(<span class="st">'test.parquet'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00012-7c986385-4bc6-4c82-8079-36a53df467ef" data-deepnote_cell_type="code" data-execution_millis="6995" data-execution_start="1605608145002" data-source_hash="a1e5a992">
+<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_feather(<span class="st">'test.feather'</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00024-245a1c05-2399-4d6c-95f0-195be6f23e3e" data-deepnote_cell_type="code" data-execution_millis="10342" data-execution_start="1605608190354" data-source_hash="f37bbfe5">
+<div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_parquet(<span class="st">'test.parquet'</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="feather-or-parquet" class="level2">
+<h2 class="anchored" data-anchor-id="feather-or-parquet">Feather or Parquet</h2>
+<ul>
+<li>Parquet format is designed for long-term storage, where Arrow is more intended for short term or ephemeral storage because files volume are larger.</li>
+<li>Parquet is usually more expensive to write than Feather as it features more layers of encoding and compression.</li>
+<li>Feather is unmodified raw columnar Arrow memory. We will probably add simple compression to Feather in the future.</li>
+<li>Due to dictionary encoding, RLE encoding, and data page compression, Parquet files will often be much smaller than Feather files</li>
+<li>Parquet is a standard storage format for analytics that’s supported by Spark. So if you are doing analytics, Parquet is a good option as a reference storage format for query by multiple systems</li>
+</ul>
+<p><a href="https://stackoverflow.com/questions/48083405/what-are-the-differences-between-feather-and-parquet">source stackoverflow</a></p>
+</section>
+<section id="apache-arrow" class="level2">
+<h2 class="anchored" data-anchor-id="apache-arrow">Apache Arrow</h2>
+<p><a href="https://arrow.apache.org/docs/python/">Arrow</a> is a columnar in-memory analytics layer designed to accelerate big data. It houses a set of canonical in-memory representations of hierarchical data along with multiple language-bindings for structure manipulation. Arrow offers an unified way to be able to share the same data representation among languages and it will certainly be the next standard to store dataframes in all languages.</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/arrow/index.html">R package</a></li>
+<li><a href="https://github.com/JuliaData/Arrow.jl">Julia package</a></li>
+<li><a href="https://github.com/apache/arrow">GitHub project</a></li>
+</ul>
+<p><img src="images/arrow_ecosystem.png" class="img-fluid"></p>
+<p>Apache Arrow is an ideal in-memory transport layer for data that is being read or written with Parquet files. <a href="https://arrow.apache.org/docs/python/">PyArrow</a> includes Python bindings to read and write Parquet files with pandas.</p>
+<ul>
+<li>columnar storage, only read the data of interest</li>
+<li>efficient binary packing</li>
+<li>choice of compression algorithms and encoding</li>
+<li>split data into files, allowing for parallel processing</li>
+<li>range of logical types</li>
+<li>statistics stored in metadata allow for skipping unneeded chunks</li>
+<li>data partitioning using the directory structure</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/arrow.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">arrow</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>https://arrow.apache.org/docs/python/csv.html</li>
+<li>https://arrow.apache.org/docs/python/feather.html</li>
+<li>https://arrow.apache.org/docs/python/parquet.html</li>
+</ul>
+<p>Example:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyarrow <span class="im">as</span> pa</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.random.randn(<span class="dv">500000</span>) <span class="co"># 10% nulls</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>arr[::<span class="dv">10</span>] <span class="op">=</span> np.nan</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'column_</span><span class="sc">{0}</span><span class="st">'</span>.<span class="bu">format</span>(i): arr <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)})</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>hdfs <span class="op">=</span> pa.hdfs.<span class="ex">connect</span>()</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pa.Table.from_pandas(df)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>pq.write_to_dataset(table, root_path<span class="op">=</span><span class="st">"test"</span>, filesystem<span class="op">=</span>hdfs)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>hdfs.ls(<span class="st">"test"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="read-csv-from-hdfs" class="level3">
+<h3 class="anchored" data-anchor-id="read-csv-from-hdfs">Read CSV from HDFS</h3>
+<p>Put the file test.csv on hdfs system</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyarrow <span class="im">import</span> csv</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> hdfs.<span class="bu">open</span>(<span class="st">"/data/nycflights/1999.csv"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a> df <span class="op">=</span> pd.read_csv(f, nrows <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="read-parquet-file-from-hdfs-with-pandas" class="level3">
+<h3 class="anchored" data-anchor-id="read-parquet-file-from-hdfs-with-pandas">Read Parquet File from HDFS with pandas</h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>wikipedia <span class="op">=</span> pd.read_parquet(<span class="st">"hdfs://svmass2.mass.uhb.fr:54310/data/pagecounts-parquet/part-00007-8575060f-6b57-45ea-bf1d-cd77b6141f70.snappy.parquet"</span>, engine<span class="op">=</span>’pyarrow’)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(wikipedia.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="read-parquet-file-with-pyarrow" class="level3">
+<h3 class="anchored" data-anchor-id="read-parquet-file-with-pyarrow">Read Parquet File with pyarrow</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pq.read_table(<span class="st">"example.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="writing-a-parquet-file-from-apache-arrow" class="level3">
+<h3 class="anchored" data-anchor-id="writing-a-parquet-file-from-apache-arrow">Writing a parquet file from Apache Arrow</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pq.write_table(table, <span class="st">"example.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="check-metadata" class="level3">
+<h3 class="anchored" data-anchor-id="check-metadata">Check metadata</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>parquet_file <span class="op">=</span> pq.ParquetFile(<span class="st">"example.parquet"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parquet_file.metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="see-schema" class="level3">
+<h3 class="anchored" data-anchor-id="see-schema">See schema</h3>
+<div class="sourceCode" id="cb34"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parquet_file.schema)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="connect-to-the-hadoop-file-system" class="level3">
+<h3 class="anchored" data-anchor-id="connect-to-the-hadoop-file-system">Connect to the Hadoop file system</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>hdfs <span class="op">=</span> pa.hdfs.<span class="ex">connect</span>()</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># copy to local</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> hdfs.<span class="bu">open</span>(<span class="st">"user.txt"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    f.download(<span class="st">"user.text"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># write parquet file on hdfs</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"example.parquet"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    pa.HadoopFileSystem.upload(hdfs, <span class="st">"example.parquet"</span>, f)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co"># List files</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> hdfs.ls(<span class="st">"/user/navaro_p"</span>):</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="co"># create a small dataframe and write it to hadoop file system</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>small_df <span class="op">=</span> pd.DataFrame(np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]]), columns<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pa.Table.from_pandas(small_df)</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>pq.write_table(table, <span class="st">"small_df.parquet"</span>, filesystem<span class="op">=</span>hdfs)</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Read files from Hadoop with pandas</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> hdfs.<span class="bu">open</span>(<span class="st">"/data/irmar.csv"</span>) <span class="im">as</span> f:</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(f)</span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Read parquet file from Hadoop with pandas</span></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>server <span class="op">=</span> <span class="st">"hdfs://svmass2.mass.uhb.fr:54310"</span></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"data/pagecounts-parquet/part-00007-8575060f-6b57-45ea-bf1d-cd77b6141f70.snappy.parquet"</span></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>pagecount <span class="op">=</span> pd.read_parquet(os.path.join(server, path), engine<span class="op">=</span><span class="st">"pyarrow"</span>)</span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pagecount.head())</span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Read parquet file from Hadoop with pyarrow</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pq.read_table(os.path.join(server,path))</span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table.schema)</span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> table.to_pandas()</span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<ul>
+<li>Take the second dataframe with string as last column</li>
+<li>Create an arrow table from pandas dataframe</li>
+<li>Write the file test.parquet from arrow table</li>
+<li>Print metadata from this parquet file</li>
+<li>Print schema</li>
+<li>Upload the file to hadoop file system</li>
+<li>Read this file from hadoop file system and print dataframe head</li>
+</ul>
+<p>Hint: check the doc https://arrow.apache.org/docs/python/parquet.html</p>
+<div class="cell" data-cell_id="00037-3784ae35-78ff-46a4-ab34-c9c075b05220" data-deepnote_cell_type="code" data-execution_millis="1093" data-execution_start="1605608783188" data-source_hash="313d4d07">
+<div class="sourceCode" id="cb36"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyarrow <span class="im">as</span> pa</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyarrow.parquet <span class="im">as</span> pq</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.random.randn(<span class="dv">500000</span>) <span class="co"># 10% nulls</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>arr[::<span class="dv">10</span>] <span class="op">=</span> np.nan</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'column_</span><span class="sc">{0}</span><span class="st">'</span>.<span class="bu">format</span>(i): arr <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)})</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># hdfs = pa.hdfs.connect()</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pa.Table.from_pandas(df)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>pq.write_to_dataset(table, root_path<span class="op">=</span><span class="st">"test"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00038-1f977a10-b43e-45c5-b7d2-163bc2d57241" data-deepnote_cell_type="code" data-execution_millis="147" data-execution_start="1605608797709" data-source_hash="cd45f8b2">
+<div class="sourceCode" id="cb37"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>ls test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyarrow <span class="im">as</span> pa</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyarrow.parquet <span class="im">as</span> pq</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> sentence</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> time</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="st">1 Creation de la dataframe avec des chaines en derniere colonne</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> np.array(sentence().strip().lower().replace(<span class="st">"."</span>, <span class="st">" "</span>).split())</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1000000</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.c_[np.random.randn(n, <span class="dv">5</span>),</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>                  np.random.randint(<span class="dv">0</span>,<span class="dv">10</span>,(n, <span class="dv">2</span>)),</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>                  np.random.randint(<span class="dv">0</span>,<span class="dv">1</span>,(n, <span class="dv">2</span>)),</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>np.array([np.random.choice(words) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)])] ,</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'ABCDEFGHIJ'</span>))</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"A"</span>][::<span class="dv">10</span>] <span class="op">=</span> np.nan</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(df))</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a><span class="st">2 Creation de la table Arrow</span></span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pa.Table.from_pandas(df)</span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a><span class="st">2 Creation du fichier test.parquet depuis la table arrow</span></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>pq.write_table(table, <span class="st">"test.parquet"</span>)</span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a><span class="st">3 Visualiser les metadata</span></span>
+<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>parquet_file <span class="op">=</span> pq.ParquetFile(<span class="st">"test.parquet"</span>)</span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parquet_file.metadata)</span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" Autre maniere de faire "</span>)</span>
+<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pq.read_metadata(<span class="st">"test.parquet"</span>))</span>
+<span id="cb38-47"><a href="#cb38-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-48"><a href="#cb38-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
+<span id="cb38-49"><a href="#cb38-49" aria-hidden="true" tabindex="-1"></a><span class="st">4 Afficher le schema</span></span>
+<span id="cb38-50"><a href="#cb38-50" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb38-51"><a href="#cb38-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-52"><a href="#cb38-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parquet_file.schema)</span>
+<span id="cb38-53"><a href="#cb38-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-54"><a href="#cb38-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
+<span id="cb38-55"><a href="#cb38-55" aria-hidden="true" tabindex="-1"></a><span class="st">5 copier le ficher parquet sur le systeme hadoop (atention c'est long)</span></span>
+<span id="cb38-56"><a href="#cb38-56" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb38-57"><a href="#cb38-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-58"><a href="#cb38-58" aria-hidden="true" tabindex="-1"></a>hdfs <span class="op">=</span> pa.hdfs.<span class="ex">connect</span>()</span>
+<span id="cb38-59"><a href="#cb38-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-60"><a href="#cb38-60" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test.parquet"</span>, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb38-61"><a href="#cb38-61" aria-hidden="true" tabindex="-1"></a>    pa.HadoopFileSystem.upload(hdfs, <span class="st">"test.parquet"</span>, f)</span>
+<span id="cb38-62"><a href="#cb38-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-63"><a href="#cb38-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> hdfs.ls(<span class="st">"/user/navaro_p"</span>):</span>
+<span id="cb38-64"><a href="#cb38-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f)</span>
+<span id="cb38-65"><a href="#cb38-65" aria-hidden="true" tabindex="-1"></a>server <span class="op">=</span> <span class="st">"hdfs://svmass2.mass.uhb.fr:54310"</span></span>
+<span id="cb38-66"><a href="#cb38-66" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"user/navaro_p/test.parquet"</span></span>
+<span id="cb38-67"><a href="#cb38-67" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pq.read_table(os.path.join(server,path))</span>
+<span id="cb38-68"><a href="#cb38-68" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table.schema)</span>
+<span id="cb38-69"><a href="#cb38-69" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> table.to_pandas()</span>
+<span id="cb38-70"><a href="#cb38-70" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<!-- -->
+</section>
+</section>
+</section>
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    window.tippy(el, {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    }); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</main>
+<div class="page-navigation page-navigation-docked">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</div>
+</div> <!-- /main column -->
+</div> <!-- /row -->
+</div> <!-- /container fluid -->
+
+
+</body></html>

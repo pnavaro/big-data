@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.94">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Python tools for Big Data – unixcommands</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.min.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/clipboard.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+<header id="quarto-header" class="headroom fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fluid">
+  <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Python tools for Big Data</span>
+  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./intro.html">Home</a>
+  </li>  
+</ul>
+      </div> <!-- /navcollapse -->
+  </div> <!-- /container-fluid -->
+</nav>
+<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <div class="container-fluid d-flex justify-content-between">
+    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
+    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+</nav>
+</header>
+ <!-- /navbar/sidebar -->
+<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
+<div class="row flex-fill" id="quarto-content">
+  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
+    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
+      <div class="sidebar-search">
+      <form class="d-flex mb-0">
+  <input id="quarto-search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+      </div>
+    </div>
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1 px-3">
+      <ul class="list-unstyled sidebar-section depth1">
+    <li class="">
+        <div class="me-auto ">
+            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
+              <div class="me-auto  sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+            </a>
+        </div>
+      <div class="collapse  show" id="notebooks-collapse">
+        <ul class="list-unstyled sidebar-item-contents">
+          <li class="sidebar-item">
+  <a href="./01-GitBasics.html" class="">Git basics</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./02-Installation.html" class="">Installation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./04-WordCount.html" class="">Wordcount</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./05-MapReduce.html" class="">Map Reduce</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./06-ParallelComputation.html" class="">Parallel Computation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./08-DaskDelayed.html" class="">Dask</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./09-DaskBag.html" class="">Dask bag</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./11-PandaDataframes.html" class="">Pandas Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./12-UnixCommands.html" class="active">Basic Commands in the Unix Shell</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./13-Hadoop.html" class="">Hadoop</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./14-FileFormats.html" class="">File Formats</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./15-PySpark.html" class="">PySpark</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
+</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  </ul>
+  </div>
+</nav>
+  </div>
+  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#basic-commands-in-the-unix-shell" class="nav-link active" data-scroll-target="#basic-commands-in-the-unix-shell">Basic Commands in the Unix Shell</a>
+<ul class="collapse">
+<li><a href="#unix-shell" class="nav-link" data-scroll-target="#unix-shell">Unix Shell</a></li>
+<li><a href="#directories" class="nav-link" data-scroll-target="#directories">Directories</a></li>
+<li><a href="#home-directory" class="nav-link" data-scroll-target="#home-directory">Home directory</a>
+<ul class="collapse">
+<li><a href="#create-a-new-subdirectory-named-primer" class="nav-link" data-scroll-target="#create-a-new-subdirectory-named-primer">Create a new subdirectory named “primer” :</a></li>
+</ul></li>
+<li><a href="#files" class="nav-link" data-scroll-target="#files">Files</a>
+<ul class="collapse">
+<li><a href="#list-files-and-directories" class="nav-link" data-scroll-target="#list-files-and-directories">List files and directories</a></li>
+<li><a href="#display-file-content" class="nav-link" data-scroll-target="#display-file-content">Display file content</a></li>
+</ul></li>
+<li><a href="#connect-to-a-server" class="nav-link" data-scroll-target="#connect-to-a-server">Connect to a server</a>
+<ul class="collapse">
+<li><a href="#exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+</ul></li>
+<li><a href="#secure-copy-scp" class="nav-link" data-scroll-target="#secure-copy-scp">Secure copy (scp)</a></li>
+<li><a href="#summary-of-basic-shell-commands" class="nav-link" data-scroll-target="#summary-of-basic-shell-commands">Summary Of Basic Shell Commands</a></li>
+<li><a href="#redirecting" class="nav-link" data-scroll-target="#redirecting">Redirecting</a>
+<ul class="collapse">
+<li><a href="#python-example" class="nav-link" data-scroll-target="#python-example">Python example</a></li>
+</ul></li>
+<li><a href="#permissions" class="nav-link" data-scroll-target="#permissions">Permissions</a>
+<ul class="collapse">
+<li><a href="#example" class="nav-link" data-scroll-target="#example">Example</a></li>
+</ul></li>
+<li><a href="#chmod" class="nav-link" data-scroll-target="#chmod">chmod</a></li>
+<li><a href="#pipelining" class="nav-link" data-scroll-target="#pipelining">Pipelining</a>
+<ul class="collapse">
+<li><a href="#exercice-11.1" class="nav-link" data-scroll-target="#exercice-11.1">Exercice 11.1</a></li>
+</ul></li>
+<li><a href="#chained-pipelines" class="nav-link" data-scroll-target="#chained-pipelines">Chained pipelines</a>
+<ul class="collapse">
+<li><a href="#exercice-11.2" class="nav-link" data-scroll-target="#exercice-11.2">Exercice 11.2</a></li>
+<li><a href="#exercice-11.3" class="nav-link" data-scroll-target="#exercice-11.3">Exercice 11.3</a></li>
+<li><a href="#exercice-11.4" class="nav-link" data-scroll-target="#exercice-11.4">Exercice 11.4</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav></div>
+  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
+<main>
+
+<section id="basic-commands-in-the-unix-shell" class="level1">
+<h1>Basic Commands in the Unix Shell</h1>
+<section id="unix-shell" class="level2">
+<h2 class="anchored" data-anchor-id="unix-shell">Unix Shell</h2>
+<p>The shell is a command programming language that provides an interface to the UNIX operating system. Documentation of unix command is displayed by command <code>man</code>. Exemple:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> whoami</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00001-cbda3782-ffac-4f61-ba83-a894f67fdf17" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#man whoami</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="directories" class="level2">
+<h2 class="anchored" data-anchor-id="directories">Directories</h2>
+<p>The shell should start you in your home directory. This is your individual space on the UNIX system for your files. You can find out the name of your current working directory with the unix command <code>pwd</code>.</p>
+<p>In the terminal, type the letters ‘p’, ‘w’, ‘d’, and then “enter” - always conclude each command by pressing the “enter” key. The response that follows on the next line will be the name of your home directory, where the name following the last slash should be your username.) The directory structure can be conceptualized as an inverted tree.</p>
+<p>In the jupyter notebook, unix shell command can be executed using the escape character “!” or add <code>%%bash</code> to the cell first line. You can type command directly in a terminal without the “!”.</p>
+<div class="cell" data-cell_id="00005-56529011-b8f0-44fb-b56f-681a160a2303" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Some unix command (not all) are also jupyter magic command like %pwd</p>
+<div class="cell" data-cell_id="00007-957bbe75-1c50-4764-adbe-26e9f3e3970e" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="home-directory" class="level2">
+<h2 class="anchored" data-anchor-id="home-directory">Home directory</h2>
+<p>No matter where in the directory structure you are, you can always get back to your home directory with <code>cd</code>.</p>
+<section id="create-a-new-subdirectory-named-primer" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-new-subdirectory-named-primer">Create a new subdirectory named “primer” :</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> primer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00010-78718857-16a6-4d8f-9c83-840c5f0e56d6" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#rm -rf primer  # remove primer directory if it exists</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#mkdir  primer  # make the new directory </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now change to the “primer” subdirectory, making it your current working directory:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> primer</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00012-b0b545fc-1837-43c3-b31b-6c717f7ff631" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%cd primer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00013-28af7edc-80c1-46d1-8fe1-f90d39b4eb25" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="files" class="level2">
+<h2 class="anchored" data-anchor-id="files">Files</h2>
+<p>Create a file using <code>date</code> command and <code>whoami</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span> <span class="op">&gt;&gt;</span> first.txt</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">whoami</span> <span class="op">&gt;&gt;</span> first.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>date and whoami are not jupyter magic commands</p>
+<div class="cell" data-cell_id="00015-57c8a880-fdf0-4427-86f7-ed9851c14265" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#date &gt;&gt; first.txt</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#whoami &gt;&gt; first.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="list-files-and-directories" class="level3">
+<h3 class="anchored" data-anchor-id="list-files-and-directories">List files and directories</h3>
+<p>Files live within directories. You can see a list of the files in your “primer” directory (which should be your current working directory) by typing:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00017-e85af7b9-9be5-4547-9a9a-eba13fef00d2" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="display-file-content" class="level3">
+<h3 class="anchored" data-anchor-id="display-file-content">Display file content</h3>
+<p>You can view a text file with the following command:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> first.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(“cat” is short for concatenate - you can use this to display multiple files together on the screen.) If you have a file that is longer than your 24-line console window, use instead “more” to list one page at a time or “less” to scroll the file down and up with the arrow keys. Don’t use these programs to try to display binary (non-text) files on your console - the attempt to print the non-printable control characters might alter your console settings and render the console unusable.</p>
+<div class="cell" data-cell_id="00019-09fc99be-f1fb-4d02-a2fd-902751ecceee" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#cat first.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Copy file “first” using the following command:</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> first.txt 2nd.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By doing this you have created a new file named “2nd.txt” which is a duplicate of file “first.txt”. Geet he file listing with:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00021-0a30962a-9163-447d-8474-31e6a9d7ede7" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#cp first.txt 2nd.txt</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Now rename the file “2nd” to “second”:</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> 2nd.txt second.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Listing the files still shows two files because you haven’t created a new file, just changed an existing file’s name:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00023-c21e507b-5b70-4efe-89e1-1958d6bbbca1" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#mv 2nd.txt second.txt</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you “cat” the second file, you’ll see the same sentence as in your first file:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> second.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00025-5e124f42-b110-44e0-b36e-455b4dd9930b" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#cat second.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>“mv” will allow you to move files, not just rename them. Perform the following commands:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> sub</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> second.txt sub</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> sub</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(where “username” will be your username and “group” will be your group name). Among other things, this lists the creation date and time, file access permissions, and file size in bytes. The letter ‘d’ (the first character on the line) indicates the directory names.</p>
+<div class="cell" data-cell_id="00027-11c1d42b-ed6d-404b-a579-4d46585d6068" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb25"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#mkdir sub</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#mv second.txt sub</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#ls sub</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This creates a new subdirectory named “sub”, moves “second” into “sub”, then lists the contents of both directories. You can list even more information about files by using the “-l” option with “ls”:</p>
+<div class="cell" data-cell_id="00029-6459f88a-d9b4-4384-9ad7-dde3d57994fd" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ls -l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next perform the following commands:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> sub</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00031-d3126f26-0a2f-48b1-ba9c-5346e14265e4" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb28"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">## go to sub directory</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#cd sub </span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">## current working directory</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#pwd  </span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">## list files with permissions</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#ls -l </span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">## go to parent directory</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#cd ..  </span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">## current working directory</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#pwd     </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, clean up the duplicate files by removing the “second.txt” file and the “sub” subdirectory:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> sub/second.txt</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdir</span> sub</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This shows that you can refer to a file in a different directory using the relative path name to the file (you can also use the absolute path name to the file - something like “/Users/username/primer/sub/second.txt”, depending on your home directory). You can also include the “..” within the path name (for instance, you could have referred to the file as “../primer/sub/second.txt”).</p>
+<div class="cell" data-cell_id="00033-f33fa4f2-fbaf-4260-870a-6fb4a077296e" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#rm -f sub/second.txt</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#rmdir sub</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#ls -l</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#cd ..</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">#rm -rf primer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="connect-to-a-server" class="level2">
+<h2 class="anchored" data-anchor-id="connect-to-a-server">Connect to a server</h2>
+<p>Remote login to another machine can be accomplished using the “ssh” command:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-l</span> mylogin host</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> mylogin@host</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where “myname” will be your username on the remote system (possibly identical to your username on this system) and “host” is the name (or IP address) of the machine you are logging into.</p>
+<p>Transfer files between machines using “scp”. - To copy file “myfile” from the remote machine named “host”:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> myname@host:myfile .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>To copy file “myfile” from the local machine to the remote named “host”:</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> myfile myname@host:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Use <code>ssh -r</code> option to copy a directory (The “.” refers to your current working directory, meaning that the destination for “myfile” is your current directory.)</li>
+</ul>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<ul>
+<li>Copy a file to the server <code>svmass2.mass.uhb.fr</code></li>
+<li>Log on to this server and display this file with <code>cat</code></li>
+</ul>
+</section>
+</section>
+<section id="secure-copy-scp" class="level2">
+<h2 class="anchored" data-anchor-id="secure-copy-scp">Secure copy (scp)</h2>
+<p>Synchronize big-data directory on the cluster:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> big-data svmass2:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This a secure copy of big-data directory to the server.</p>
+<p>or</p>
+<pre><code>rsync -e ssh -avrz big-data svmass2:</code></pre>
+<p>It synchronizes the local directory big-data with the remote repository big-data on svmass2 server</p>
+</section>
+<section id="summary-of-basic-shell-commands" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-basic-shell-commands">Summary Of Basic Shell Commands</h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> pico myfile               <span class="co"># text edit file "myfile"</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> ls                        <span class="co"># list files in current directory</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> ls <span class="at">-l</span>                     <span class="co"># long format listing</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> touch myfile              <span class="co"># create new empty file "myfile"</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> cat myfile                <span class="co"># view contents of text file "myfile"</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> more myfile               <span class="co"># paged viewing of text file "myfile"</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> less myfile               <span class="co"># scroll through text file "myfile"</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> head myfile               <span class="co"># view 10 first lines of text file "myfile"</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> tail myfile               <span class="co"># view 10 last lines of text file "myfile"</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> cp srcfile destfile       <span class="co"># copy file "srcfile" to new file "destfile"</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> mv oldname newname        <span class="co"># rename (or move) file "oldname" to "newname"</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> rm myfile                 <span class="co"># remove file "myfile"</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> mkdir subdir              <span class="co"># make new directory "subdir"</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> cd subdir                 <span class="co"># change current working directory to "subdir"</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> rmdir subdir              <span class="co"># remove (empty) directory "subdir"</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> pwd                       <span class="co"># display current working directory</span></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> date                      <span class="co"># display current date and time of day</span></span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> ssh <span class="at">-l</span> myname host        <span class="co"># remote shell login of username "myname" to "host"</span></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> scp myname@host:myfile .  <span class="co"># remote copy of file "myfile" to current directory</span></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> scp myfile myname@host:   <span class="co"># copy of file "myfile" to remote server</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> firefox <span class="kw">&amp;</span>                 <span class="co"># start Firefox web browser (in background)</span></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> jobs                      <span class="co"># display programs running in background</span></span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> kill %n                   <span class="co"># kill job number n (use jobs to get this number)</span></span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> man <span class="at">-k</span> <span class="st">"topic"</span>            <span class="co"># search manual pages for "topic"</span></span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> man command               <span class="co"># display man page for "command"</span></span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> exit                      <span class="co"># exit a terminal window</span></span>
+<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a><span class="ex">%</span> logout                    <span class="co"># logout of a console session</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="redirecting" class="level2">
+<h2 class="anchored" data-anchor-id="redirecting">Redirecting</h2>
+<p>Redirection is usually implemented by placing characters &lt;,&gt;,|,&gt;&gt; between commands.</p>
+<ul>
+<li>Use &gt; to redirect output.</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>.ipynb <span class="op">&gt;</span> file_list.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>executes <code>ls</code>, placing the output in file_list.txt, as opposed to displaying it at the terminal, which is the usual destination for standard output. This will clobber any existing data in file1.</p>
+<div class="cell" data-cell_id="00038-c7ce1ca9-d4e1-4779-9852-81135a3476b5" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb39"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ls *.ipynb &gt; file_list.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Use &lt; to redirect input.</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="op">&lt;</span> file_list.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>executes <code>wc</code>, with file_list.txt as the source of input, as opposed to the keyboard, which is the usual source for standard input.</p>
+<section id="python-example" class="level3">
+<h3 class="anchored" data-anchor-id="python-example">Python example</h3>
+<div class="cell" data-cell_id="00041-4882192b-23bb-4ce4-9f4f-3a2d5fe2f574" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb41"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> test_stdin.py</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin env python</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># input comes from standard input</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> sys.stdin:</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    k <span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'file </span><span class="sc">{}</span><span class="st"> : </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(k,<span class="bu">file</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00042-a0ec4f44-75d8-406f-9d80-5e38f83f8644" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb42"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># python test_stdin.py &lt; file_list.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can combine the two capabilities: read from an input file and write to an output file.</p>
+<div class="cell" data-cell_id="00044-f7a81803-7028-4898-8161-51090c2dd21f" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb43"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># python test_stdin.py &lt; file_list.txt &gt; output.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00045-f659953b-58cf-4a7e-8de7-dadb93279bb2" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb44"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cat output.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To append output to the end of the file, rather than clobbering it, the &gt;&gt; operator is used:</p>
+<p>date &gt;&gt; output.txt</p>
+<p>It will append the today date to the end of the file output.txt</p>
+<div class="cell" data-cell_id="00047-cfcf9771-7c96-49b2-b3e7-cefa3672eea4" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb45"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># date &gt;&gt; output.txt</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cat output.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="permissions" class="level2">
+<h2 class="anchored" data-anchor-id="permissions">Permissions</h2>
+<p>Every file on the system has associated with it a set of permissions. Permissions tell UNIX what can be done with that file and by whom. There are three things you can (or can’t) do with a given file: - read, - write (modify), - execute.</p>
+<p>Unix permissions specify what can ‘owner’, ‘group’ and ‘all’ can do.</p>
+<p>If you try ls -l on the command prompt you get something like the following:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  1 navaro  staff   15799  5 oct 15:57 01.MapReduce.ipynb</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  1 navaro  staff   18209 12 oct 16:04 02.Containers.ipynb</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  1 navaro  staff   37963 12 oct 21:28 03.ParallelComputation.ipynb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Three bits specify access permissions: - <strong>r</strong> read, - <strong>w</strong> access, - <strong>w</strong> execute.</p>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<pre><code>rwxr-xr--</code></pre>
+<ul>
+<li>the owner can do anything with the file,</li>
+<li>group owners and the can only read or execute it.</li>
+<li>rest of the world can only read</li>
+</ul>
+</section>
+</section>
+<section id="chmod" class="level2">
+<h2 class="anchored" data-anchor-id="chmod">chmod</h2>
+<p>To set/modify a file’s permissions you need to use the chmod program. Of course, only the owner of a file may use chmod to alter a file’s permissions. chmod has the following syntax:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> [options] mode file<span class="er">(</span><span class="ex">s</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The ‘mode’ part specifies the new permissions for the file(s) that follow as arguments. A mode specifies which user’s permissions should be changed, and afterwards which access types should be changed.</li>
+<li>We use <code>+</code> or <code>-</code> to change the mode for owner, group and the rest of the world.</li>
+<li>The permissions start with a letter specifying what users should be affected by the change.</li>
+</ul>
+<p>Original permissions of script.py are <code>rw-------</code></p>
+<ul>
+<li><code>chmod u+x script.py</code> set permissions to <code>rwx------</code></li>
+<li><code>chmod a+x script.py</code> set permissions to <code>rwx--x--x</code></li>
+<li><code>chmod g+r script.py</code> set permissions to <code>rwxr-x--x</code></li>
+<li><code>chmod o-x script.py</code> set permissions to <code>rwxr-x---</code></li>
+<li><code>chmod og+w script.py</code> set permissions to <code>rwxrwx-w-</code></li>
+</ul>
+</section>
+<section id="pipelining" class="level2">
+<h2 class="anchored" data-anchor-id="pipelining">Pipelining</h2>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="kw">|</span> <span class="fu">grep</span> ipynb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>executes <code>ls</code>, using its output as the input for <code>grep</code>.</p>
+<section id="exercice-11.1" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-11.1">Exercice 11.1</h3>
+<ul>
+<li>Pipe <code>cat *.ipynb</code> output to <code>sort</code> command.</li>
+<li>Pipe <code>ls</code> output to <code>wc</code> command.</li>
+<li>Pipe <code>cat 11.UnixCommands.ipynb</code> to <code>less</code> command.</li>
+</ul>
+</section>
+</section>
+<section id="chained-pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="chained-pipelines">Chained pipelines</h2>
+<p>The redirection and piping tokens can be chained together to create complex commands.</p>
+<section id="exercice-11.2" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-11.2">Exercice 11.2</h3>
+<p>Use unix commands chained to display word count of file <code>sample.txt</code>.</p>
+<p>Hints:</p>
+<ul>
+<li><code>fmt -n</code> takes text as input and reformats it into paragraphs with no line longer than n.&nbsp;</li>
+<li><code>sort</code> sort the output alphabetically</li>
+<li><code>tr -d str</code> delete the string str from the output</li>
+<li><code>uniq -c</code> writes a copy of each unique input and precede each word with the count of the number of occurences.</li>
+</ul>
+<div class="cell" data-cell_id="00052-ce41eb43-8803-47b0-9c46-086383c94569" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1604930645700" data-source_hash="924b525e">
+<div class="sourceCode" id="cb50"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'sample.txt'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    f.write(text())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00053-1d0ed3b1-7f00-4a13-a92f-2cd76ff34001" data-deepnote_cell_type="code" data-execution_millis="926" data-execution_start="1604930795340" data-source_hash="92e55d11">
+<div class="sourceCode" id="cb51"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat sample.txt <span class="op">|</span> tr [:upper:] [:lower:] <span class="op">|</span> tr <span class="op">-</span>d <span class="st">"."</span> <span class="op">|</span> fmt <span class="op">-</span><span class="dv">1</span> <span class="op">|</span> sort <span class="op">|</span> uniq <span class="op">-</span>c <span class="op">|</span> sort <span class="op">-</span>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercice-11.3" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-11.3">Exercice 11.3</h3>
+<ul>
+<li>Create a python script mapper.py to count words from stdin. The script prints out every word found in stdin with the value 1 separate by a tab.</li>
+</ul>
+<pre class="text"><code>Consectetur 1
+adipisci    1
+quiquia 1
+sit 1</code></pre>
+<div class="cell" data-cell_id="00054-0a9a358c-05e0-4e70-af97-a23c2801094b" data-deepnote_cell_type="code" data-execution_millis="18" data-execution_start="1604930429640" data-source_hash="e02e1eec">
+<div class="sourceCode" id="cb53"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> mapper.py</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, string</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>translator <span class="op">=</span> <span class="bu">str</span>.maketrans(<span class="st">''</span>, <span class="st">''</span>, string.punctuation)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="co"># input comes from standard input</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> sys.stdin:</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> line.strip().lower() <span class="co"># remove leading and trailing whitespace</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> line.translate(translator)   <span class="co"># strip punctuation</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> line.split() <span class="co"># split the line into words</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># increase counters</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> word <span class="kw">in</span> words:</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># write the results to standard output;</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># what we output here will be the input for the</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Reduce step, i.e. the input for reducer.py</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tab-delimited; the trivial word count is 1</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span> (<span class="st">'</span><span class="sc">%s</span><span class="ch">\t</span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (word, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>File <code>mapper.py</code> must be executable.</p>
+<div class="cell" data-cell_id="00055-e19ab085-c53a-4919-8990-0fccb29bda20" data-deepnote_cell_type="code" data-execution_millis="1908" data-execution_start="1604930454586" data-source_hash="5f6869d6">
+<div class="sourceCode" id="cb54"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>chmod <span class="op">+</span>x mapper.py</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>.<span class="op">/</span>mapper.py <span class="op">&lt;</span> sample.txt <span class="op">|</span> sort </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercice-11.4" class="level3">
+<h3 class="anchored" data-anchor-id="exercice-11.4">Exercice 11.4</h3>
+<ul>
+<li>Create a python script reducer.py to read output from mapper.py. The script prints out every word and number of occurences.</li>
+</ul>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> sample.txt <span class="kw">|</span> <span class="ex">./mapper.py</span> <span class="kw">|</span> <span class="ex">./reducer.py</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="text"><code>7   porro
+7   eius
+6   non
+6   dolore</code></pre>
+<div class="cell" data-cell_id="00060-a0f68c33-9d6d-47b3-a53c-78ab12d7708b" data-deepnote_cell_type="code" data-execution_millis="22" data-execution_start="1604930922575" data-source_hash="c2ebe356">
+<div class="sourceCode" id="cb57"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> reducer.py</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>current_word <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>current_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> sys.stdin:</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># parse the input we got from mapper.py</span></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    word, count <span class="op">=</span> line.split(<span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, <span class="dv">1</span>)</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># convert count (currently a string) to int</span></span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> <span class="bu">int</span>(count)</span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># count was not a number, so silently</span></span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ignore/discard this line</span></span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this IF-switch only works because Hadoop sorts map output</span></span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># by key (here: word) before it is passed to the reducer</span></span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> current_word <span class="op">==</span> word:</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>        current_count <span class="op">+=</span> count</span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> current_word:</span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>            <span class="co"># write result to sys.stdout</span></span>
+<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span> (<span class="ss">f'</span><span class="sc">{</span>current_count<span class="sc">}</span><span class="ch">\t</span><span class="sc">{</span>current_word<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a>        current_count <span class="op">=</span> count</span>
+<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a>        current_word <span class="op">=</span> word</span>
+<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a><span class="co"># do not forget to output the last word if needed!</span></span>
+<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> current_word <span class="op">==</span> word:</span>
+<span id="cb57-36"><a href="#cb57-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (<span class="ss">f'</span><span class="sc">{</span>current_count<span class="sc">}</span><span class="ch">\t</span><span class="sc">{</span>current_word<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00057-3e0838f5-85f2-4cd5-8a8d-317fa85ca025" data-deepnote_cell_type="code" data-execution_millis="943" data-execution_start="1604930927634" data-source_hash="85a3582c">
+<div class="sourceCode" id="cb58"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>chmod <span class="op">+</span>x .<span class="op">/</span>reducer.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00062-6ce14d80-e488-4f45-be15-e54352951e9d" data-deepnote_cell_type="code" data-execution_millis="1092" data-execution_start="1604930984057" data-source_hash="1930a291">
+<div class="sourceCode" id="cb59"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat sample.txt <span class="op">|</span> .<span class="op">/</span>mapper.py <span class="op">|</span> sort <span class="op">|</span> .<span class="op">/</span>reducer.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<!-- -->
+</section>
+</section>
+</section>
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    window.tippy(el, {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    }); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</main>
+<div class="page-navigation page-navigation-docked">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</div>
+</div> <!-- /main column -->
+</div> <!-- /row -->
+</div> <!-- /container fluid -->
+
+
+</body></html>

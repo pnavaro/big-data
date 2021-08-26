@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.94">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Python tools for Big Data – daskdelayed</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.min.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/clipboard.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+<header id="quarto-header" class="headroom fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fluid">
+  <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Python tools for Big Data</span>
+  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./intro.html">Home</a>
+  </li>  
+</ul>
+      </div> <!-- /navcollapse -->
+  </div> <!-- /container-fluid -->
+</nav>
+<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <div class="container-fluid d-flex justify-content-between">
+    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
+    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+</nav>
+</header>
+ <!-- /navbar/sidebar -->
+<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
+<div class="row flex-fill" id="quarto-content">
+  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
+    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
+      <div class="sidebar-search">
+      <form class="d-flex mb-0">
+  <input id="quarto-search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+      </div>
+    </div>
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1 px-3">
+      <ul class="list-unstyled sidebar-section depth1">
+    <li class="">
+        <div class="me-auto ">
+            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
+              <div class="me-auto  sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+            </a>
+        </div>
+      <div class="collapse  show" id="notebooks-collapse">
+        <ul class="list-unstyled sidebar-item-contents">
+          <li class="sidebar-item">
+  <a href="./01-GitBasics.html" class="">Git basics</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./02-Installation.html" class="">Installation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./04-WordCount.html" class="">Wordcount</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./05-MapReduce.html" class="">Map Reduce</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./06-ParallelComputation.html" class="">Parallel Computation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./08-DaskDelayed.html" class="active">Dask</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./09-DaskBag.html" class="">Dask bag</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./11-PandaDataframes.html" class="">Pandas Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./12-UnixCommands.html" class="">Basic Commands in the Unix Shell</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./13-Hadoop.html" class="">Hadoop</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./14-FileFormats.html" class="">File Formats</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./15-PySpark.html" class="">PySpark</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
+</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  </ul>
+  </div>
+</nav>
+  </div>
+  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#dask" class="nav-link active" data-scroll-target="#dask">Dask</a>
+<ul class="collapse">
+<li><a href="#define-two-slow-functions" class="nav-link" data-scroll-target="#define-two-slow-functions">Define two slow functions</a></li>
+<li><a href="#parallelize-with-dask.delayed" class="nav-link" data-scroll-target="#parallelize-with-dask.delayed">Parallelize with dask.delayed</a></li>
+<li><a href="#dask-graph" class="nav-link" data-scroll-target="#dask-graph">Dask graph</a></li>
+<li><a href="#parallelize-a-loop" class="nav-link" data-scroll-target="#parallelize-a-loop">Parallelize a loop</a>
+<ul class="collapse">
+<li><a href="#exercise-8.1" class="nav-link" data-scroll-target="#exercise-8.1">Exercise 8.1</a></li>
+</ul></li>
+<li><a href="#decorator" class="nav-link" data-scroll-target="#decorator">Decorator</a></li>
+<li><a href="#control-flow" class="nav-link" data-scroll-target="#control-flow">Control flow</a>
+<ul class="collapse">
+<li><a href="#exercise-8.2" class="nav-link" data-scroll-target="#exercise-8.2">Exercise 8.2</a></li>
+<li><a href="#exercise-8.3" class="nav-link" data-scroll-target="#exercise-8.3">Exercise 8.3</a></li>
+</ul></li>
+<li><a href="#read-multiple-files-with-dask-arrays" class="nav-link" data-scroll-target="#read-multiple-files-with-dask-arrays">Read multiple files with Dask Arrays</a></li>
+<li><a href="#use-dask-to-read-and-display-images" class="nav-link" data-scroll-target="#use-dask-to-read-and-display-images">Use dask to read and display images</a>
+<ul class="collapse">
+<li><a href="#some-questions-to-consider" class="nav-link" data-scroll-target="#some-questions-to-consider">Some questions to consider:</a></li>
+</ul></li>
+<li><a href="#exercise-parallelizing-a-pandas-groupby-reduction" class="nav-link" data-scroll-target="#exercise-parallelizing-a-pandas-groupby-reduction">Exercise: Parallelizing a Pandas Groupby Reduction</a>
+<ul class="collapse">
+<li><a href="#prep-data" class="nav-link" data-scroll-target="#prep-data">Prep data</a></li>
+<li><a href="#inspect-data" class="nav-link" data-scroll-target="#inspect-data">Inspect data</a></li>
+<li><a href="#read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay" class="nav-link" data-scroll-target="#read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay">Read one file with <code>pandas.read_csv</code> and compute mean departure delay</a></li>
+<li><a href="#sequential-code-mean-departure-delay-per-airport" class="nav-link" data-scroll-target="#sequential-code-mean-departure-delay-per-airport">Sequential code: Mean Departure Delay Per Airport</a></li>
+<li><a href="#exercise-parallelize-the-code-above" class="nav-link" data-scroll-target="#exercise-parallelize-the-code-above">Exercise : Parallelize the code above</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav></div>
+  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
+<main>
+
+<section id="dask" class="level1">
+<h1>Dask</h1>
+<p><img src="images/dask_logo.jpg"></p>
+<ul>
+<li>process data that doesn’t fit into memory by breaking it into blocks and specifying task chains</li>
+<li>parallelize execution of tasks across cores and even nodes of a cluster</li>
+<li>move computation to the data rather than the other way around, to minimize communication overheads</li>
+</ul>
+<p>http://dask.pydata.org/en/latest/</p>
+<div class="cell" data-cell_id="00002-4d25f43d-8a30-42d0-b4a8-406689ce13cf" data-deepnote_cell_type="code" data-execution_millis="261" data-execution_start="1604928157843" data-source_hash="145bccde">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.multiprocessing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="define-two-slow-functions" class="level2">
+<h2 class="anchored" data-anchor-id="define-two-slow-functions">Define two slow functions</h2>
+<div class="cell" data-cell_id="00004-bdaf2b7c-2b02-488d-9dca-89cf289d6636" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928159401" data-source_hash="4246c45a">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slowinc(x, delay<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    sleep(delay)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slowadd(x, y, delay<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    sleep(delay)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00005-709c6ad2-c285-41cc-9242-2731f719b06c" data-deepnote_cell_type="code" data-execution_millis="3004" data-execution_start="1604928160391" data-source_hash="5a5a4ebf">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> slowinc(<span class="dv">1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> slowinc(<span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> slowadd(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="parallelize-with-dask.delayed" class="level2">
+<h2 class="anchored" data-anchor-id="parallelize-with-dask.delayed">Parallelize with dask.delayed</h2>
+<ul>
+<li>Functions wrapped by <code>dask.delayed</code> don’t run immediately, but instead put those functions and arguments into a task graph.</li>
+<li>The result is computed separately by calling the <code>.compute()</code> method.</li>
+</ul>
+<div class="cell" data-cell_id="00007-b872f4aa-b348-44cd-9add-a6947c947632" data-deepnote_cell_type="code" data-execution_millis="2" data-execution_start="1604928168699" data-source_hash="6ebfca2f">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask <span class="im">import</span> delayed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00008-50c7cc67-ef95-4abc-a436-5d2383a61263" data-deepnote_cell_type="code" data-execution_millis="4" data-execution_start="1604928169627" data-source_hash="bd3eeed4">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dask.delayed(slowinc)(<span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> dask.delayed(slowinc)(<span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> dask.delayed(slowadd)(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00009-23d17b22-0a3d-4e32-8aae-08426be7c50b" data-deepnote_cell_type="code" data-execution_millis="2047" data-execution_start="1604928170971" data-source_hash="8d6c6701">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>z.compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dask-graph" class="level2">
+<h2 class="anchored" data-anchor-id="dask-graph">Dask graph</h2>
+<ul>
+<li>Contains description of the calculations necessary to produce the result.</li>
+<li>The z object is a lazy Delayed object. This object holds everything we need to compute the final result. We can compute the result with .compute() as above or we can visualize the task graph for this value with .visualize().</li>
+</ul>
+<div class="cell" data-cell_id="00011-5f32f2e0-51f9-4e56-9ea1-6a58c815c6c5" data-deepnote_cell_type="code" data-execution_millis="114" data-execution_start="1604928174844" data-source_hash="3d8a266a">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>z.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="parallelize-a-loop" class="level2">
+<h2 class="anchored" data-anchor-id="parallelize-a-loop">Parallelize a loop</h2>
+<div class="cell" data-cell_id="00013-c881baab-40c3-47d6-b513-321ffe5a8588" data-deepnote_cell_type="code" data-execution_millis="15" data-execution_start="1604928177369" data-source_hash="ca27d9b6">
+<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">8</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>tasks <span class="op">=</span> []</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> data:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> delayed(slowinc)(x)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    tasks.append(y)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> delayed(<span class="bu">sum</span>)(tasks)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00017-6ad2a2a3-f126-470d-9c2d-ffdbc4d69499" data-deepnote_cell_type="code" data-execution_millis="131" data-execution_start="1604928178279" data-source_hash="c8188fb7">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>total.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00016-4a04c353-8948-4c66-9fb5-e437df06de1c" data-deepnote_cell_type="code" data-execution_millis="4030" data-execution_start="1604928179742" data-source_hash="9af19944">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>total.compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-8.1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8.1">Exercise 8.1</h3>
+<ul>
+<li>Parallelize this by appending the delayed <code>slowinc</code> calls to the list <code>results</code>.</li>
+<li>Display the graph of <code>total</code> computation</li>
+<li>Compute time elapsed for the computation.</li>
+</ul>
+</section>
+</section>
+<section id="decorator" class="level2">
+<h2 class="anchored" data-anchor-id="decorator">Decorator</h2>
+<p>It is also common to see the delayed function used as a decorator. Same example:</p>
+<div class="cell" data-cell_id="00016-45f52943-f239-4265-b026-8110f2c9c1a7" data-deepnote_cell_type="code" data-execution_millis="2017" data-execution_start="1604928185931" data-source_hash="52b83e58">
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dask.delayed</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slowinc(x, delay<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    sleep(delay)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="at">@dask.delayed</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slowadd(x, y, delay<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    sleep(delay)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> slowinc(<span class="dv">1</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> slowinc(<span class="dv">2</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> slowadd(x, y)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>z.compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00019-e4fb6083-ef12-4369-a226-334da8875343" data-deepnote_cell_type="code" data-execution_millis="83" data-execution_start="1604928187955" data-source_hash="3d8a266a">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>z.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00021-7aa2e771-214c-45c3-ad3a-4af0467e699e" data-deepnote_cell_type="code" data-execution_millis="16" data-execution_start="1604928188967" data-source_hash="7b990b90">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rectangle:</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    width : <span class="bu">int</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    height : <span class="bu">int</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">@property</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.width <span class="op">*</span> <span class="va">self</span>.height</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> Rectangle( <span class="dv">4</span>, <span class="fl">5.0</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>r.area</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="control-flow" class="level2">
+<h2 class="anchored" data-anchor-id="control-flow">Control flow</h2>
+<ul>
+<li>Delay only some functions, running a few of them immediately. This is helpful when those functions are fast and help us to determine what other slower functions we should call.</li>
+<li>In the example below we iterate through a list of inputs. If that input is even then we want to call <code>half</code>. If the input is odd then we want to call <code>odd_process</code>. This iseven decision to call <code>half</code> or <code>odd_process</code> has to be made immediately (not lazily) in order for our graph-building Python code to proceed.</li>
+</ul>
+<div class="cell" data-cell_id="00018-7a4c86ba-18df-432a-bd2a-1b767dc6b10f" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928190542" data-source_hash="c1388939">
+<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.delayed</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">@delayed</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> half(x):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="dv">1</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="at">@delayed</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> odd_process(x):</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="dv">1</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_even(x):</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">not</span> x <span class="op">%</span> <span class="dv">2</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [randint(<span class="dv">0</span>,<span class="dv">100</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>)]</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> []</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> data:</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> is_even(x):</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        result.append(half(x))</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        result.append(odd_process(x))</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> delayed(<span class="bu">sum</span>)(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00024-86fb0e82-440e-40c3-b896-fdd6975a1794" data-deepnote_cell_type="code" data-execution_millis="139" data-execution_start="1604928191593" data-source_hash="c8188fb7">
+<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>total.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00025-475c8ac6-c7f1-45de-ad7b-85e8746b0bea" data-deepnote_cell_type="code" data-execution_millis="3973" data-execution_start="1604928196027" data-source_hash="9af19944">
+<div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>total.compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-8.2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8.2">Exercise 8.2</h3>
+<ul>
+<li>Parallelize the sequential code above using dask.delayed</li>
+<li>You will need to delay some functions, but not all</li>
+<li>Visualize and check the computed result</li>
+</ul>
+</section>
+<section id="exercise-8.3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-8.3">Exercise 8.3</h3>
+<ul>
+<li>Parallelize the hdf5 conversion from json files</li>
+<li>Create a function <code>convert_to_hdf</code></li>
+<li>Use dask.compute function on delayed calls of the funtion created list</li>
+<li>Is it really faster as expected ?</li>
+</ul>
+<p>Hint: Read <a href="http://dask.pydata.org/en/latest/delayed-best-practices.html">Delayed Best Practices</a></p>
+<div class="cell" data-cell_id="00021-2eebfde2-13e4-4f69-bb93-d11e0216112e" data-deepnote_cell_type="code" data-execution_millis="7" data-execution_start="1604928202619" data-source_hash="cae726ac">
+<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># library to get directory and file paths</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tarfile <span class="co"># this module makes possible to read and write tar archives</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_data(name, where):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    datadir <span class="op">=</span> os.path.join(where) <span class="co"># directory where extract all datafile</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(datadir): <span class="co"># check if this directory exists</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="bu">print</span>(<span class="st">"Extracting data..."</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       tar_path <span class="op">=</span> os.path.join(name<span class="op">+</span><span class="st">'.tgz'</span>)  <span class="co"># path to the tgz file</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>       <span class="cf">with</span> tarfile.<span class="bu">open</span>(tar_path, mode<span class="op">=</span><span class="st">'r:gz'</span>) <span class="im">as</span> data: <span class="co"># open the tgz file</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>          data.extractall(datadir)  <span class="co"># extract all data file in datadir</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>extract_data(<span class="st">'daily-stock'</span>,<span class="st">'data'</span>) <span class="co"># this function call will extract json files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00022-0c5ae210-e929-4dc9-80a4-65d82633f166" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928207401" data-source_hash="c6c7aed9">
+<div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, sys</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>here <span class="op">=</span> os.getcwd() <span class="co"># get the current directory</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> <span class="bu">sorted</span>(glob(os.path.join(here,<span class="st">'data'</span>, <span class="st">'daily-stock'</span>, <span class="st">'*.json'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00030-8e4a6346-7542-46f8-908c-656950c3e738" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928209989" data-source_hash="72b32632">
+<div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>filenames[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00032-468f2ab1-6937-4414-bc93-3e503beff036" data-deepnote_cell_type="code" data-execution_millis="1272" data-execution_start="1604928213763" data-source_hash="16bc38b6">
+<div class="sourceCode" id="cb20"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>rm data<span class="op">/</span>daily<span class="op">-</span>stock<span class="op">/*</span>.h5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00023-520dbf61-07b2-4e40-ac56-43d0e875e741" data-deepnote_cell_type="code" data-execution_millis="30370" data-execution_start="1604928216157" data-source_hash="f38575be">
+<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dask.delayed</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read( fn ):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">" read json file "</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(fn) <span class="im">as</span> f:</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [json.loads(line) <span class="cf">for</span> line <span class="kw">in</span> f]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="at">@dask.delayed</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert(data, fn):</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">" convert json file to hdf5 file"</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    out_filename <span class="op">=</span> fn[:<span class="op">-</span><span class="dv">5</span>] <span class="op">+</span> <span class="st">'.h5'</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    df.to_hdf(out_filename, <span class="st">'/data'</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fn[:<span class="op">-</span><span class="dv">5</span>]</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filename <span class="kw">in</span> filenames:</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> read(filename)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    results.append(convert(data, filename))</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time dask.compute(<span class="op">*</span>results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00024-5bf568e4-5c12-4b02-98dd-8a21a6829448" data-deepnote_cell_type="code" data-execution_millis="961" data-execution_start="1604928248388" data-source_hash="86b6a7">
+<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>ls data<span class="op">/</span>daily<span class="op">-</span>stock<span class="op">/*</span>.h5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="read-multiple-files-with-dask-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="read-multiple-files-with-dask-arrays">Read multiple files with Dask Arrays</h2>
+<div class="cell" data-cell_id="00026-d7df423f-4e01-4f9a-91ed-f2cd3145dd6d" data-deepnote_cell_type="code" data-execution_millis="336" data-execution_start="1604928252896" data-source_hash="7afa2800">
+<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm <span class="co"># barre de progression</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image <span class="co"># AFFICHER DES IMAGES DEPUIS UN TABLEAU 2D</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.delayed <span class="im">as</span> delayed</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob  <span class="co"># Lister des fichiers</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> h5py <span class="im">as</span> h5 <span class="co"># ecrire et lire des fichiers au format hdf5</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># numpy pour normaliser les images</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this dataset we have two dimensional field records along time. Every h5 file contains a matrix.</p>
+<p>Data are already downloaded in datasets directory. You can download the file from <a href="https://github.com/MMASSD/datasets/blob/master/fvalues.tgz">https://github.com/MMASSD/datasets</a></p>
+<p>!wget https://github.com/MMASSD/datasets/raw/master/fvalues.tgz</p>
+<p>This file is a zip archive we need to uncompress and extract.</p>
+<div class="cell" data-cell_id="00031-caab7c6a-4b86-498b-99b0-b9984eaa4e79" data-deepnote_cell_type="code" data-execution_millis="25239" data-source_hash="784e4ddc">
+<div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract_data('fvalues','.') </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You get 1000 h5 files</p>
+<div class="cell" data-cell_id="00033-89147e3c-0b69-4328-a745-4e0c24b374c1" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1604928267075" data-source_hash="65560be">
+<div class="sourceCode" id="cb25"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> <span class="bu">sorted</span>(glob(<span class="st">"fvalues/*.h5"</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>filenames[:<span class="dv">5</span>], <span class="bu">len</span>(filenames)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In order to plot these fields, we will scale them between 0 to 255 grey levels.</p>
+<div class="cell" data-cell_id="00035-affdedb4-9cd0-4769-b036-144de5e0a875" data-deepnote_cell_type="code" data-execution_millis="4" data-execution_start="1604928273895" data-source_hash="7cfa0d5e">
+<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scale(x) :</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Scale field to 0-255 levels"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.uint8(<span class="dv">255</span><span class="op">*</span>(x<span class="op">-</span>np.<span class="bu">min</span>(x)) <span class="op">/</span> (np.<span class="bu">max</span>(x)<span class="op">-</span>np.<span class="bu">min</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s create a function that read the file and return the scaled field.</p>
+<div class="cell" data-cell_id="00037-89107980-3f98-49db-91b1-1fb4c80facb4" data-deepnote_cell_type="code" data-execution_millis="7" data-execution_start="1604928275090" data-source_hash="b6356dd3">
+<div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> h5py <span class="im">as</span> h5</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_frame( filepath ):</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">" Create image from the `dataset` of h5 file `filepath` "</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> h5.File(filepath, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        z <span class="op">=</span> f.get(<span class="st">"values"</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> scale(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00038-506a2dd1-e6b0-4376-b864-20ce78f4b61e" data-deepnote_cell_type="code" data-execution_millis="24" data-execution_start="1604928276238" data-source_hash="13b34650">
+<div class="sourceCode" id="cb28"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> read_frame( filenames[<span class="dv">0</span>])</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>image.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00039-9bbfa08a-a867-4984-88bc-e1f818277d61" data-deepnote_cell_type="code" data-execution_millis="22" data-execution_start="1604928277545" data-source_hash="1570322a">
+<div class="sourceCode" id="cb29"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Image.fromarray(image)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With NumPy we might allocate a big array and then iteratively load images and place them into this array <code>serial_frames</code>.</p>
+<div class="cell" data-cell_id="00041-6ed3bbbc-5c62-46bc-b81b-a9bb29b28023" data-deepnote_cell_type="code" data-execution_millis="11638" data-execution_start="1604928280939" data-source_hash="b4f7c1d1">
+<div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>serial_frames <span class="op">=</span> np.empty((<span class="dv">1000</span>,<span class="op">*</span>image.shape), dtype<span class="op">=</span>np.uint8)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, fn <span class="kw">in</span> <span class="bu">enumerate</span>(filenames):</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    serial_frames[i, :, :] <span class="op">=</span> read_frame(fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00042-8e4ee63d-6cc6-41d6-beef-bf871befa6c3" data-deepnote_cell_type="code" data-execution_millis="156" data-execution_start="1604928294887" data-source_hash="264bfe9e">
+<div class="sourceCode" id="cb31"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact, IntSlider</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_sequence(iframe):</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> Image.fromarray(serial_frames[iframe,:,:])</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>interact(display_sequence, </span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>          iframe<span class="op">=</span>IntSlider(<span class="bu">min</span><span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>                           <span class="bu">max</span><span class="op">=</span>np.shape(serial_frames)[<span class="dv">0</span>]<span class="op">-</span><span class="dv">1</span>,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>                           step<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>                           value<span class="op">=</span><span class="dv">0</span>, </span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>                           continuous_update<span class="op">=</span><span class="va">True</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the code above, we read all images and store them in memory. If you have more plots or bigger images it won’t fit in your computer memory. You have two options: - Use a bigger computer - Not store all files in memory and read only the file that contains the field you want to display.</p>
+</section>
+<section id="use-dask-to-read-and-display-images" class="level2">
+<h2 class="anchored" data-anchor-id="use-dask-to-read-and-display-images">Use dask to read and display images</h2>
+<p>We can delayed the read function</p>
+<div class="cell" data-cell_id="00045-a926ce03-7f3e-43ad-972f-cfee08468ab3" data-deepnote_cell_type="code" data-execution_millis="11" data-execution_start="1604928303537" data-source_hash="2111e2c5">
+<div class="sourceCode" id="cb32"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>lazy_read <span class="op">=</span> delayed(read_frame)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>lazy_frames <span class="op">=</span> [lazy_read(fn) <span class="cf">for</span> fn <span class="kw">in</span> filenames]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Instead of <code>serial_frames</code>, we create an array of delayed tasks.</p>
+<div class="cell" data-cell_id="00047-01e1112c-5e50-4c51-b70d-a28ebf0b0dec" data-deepnote_cell_type="code" data-execution_millis="342" data-execution_start="1604928306371" data-source_hash="63f55fd3">
+<div class="sourceCode" id="cb33"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>lazy_frames <span class="op">=</span> [da.from_delayed(lazy_read,<span class="co"># Construct a small Dask array</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                           dtype<span class="op">=</span>image.dtype,   <span class="co"># for every lazy value</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                           shape<span class="op">=</span>image.shape)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> lazy_read <span class="kw">in</span> lazy_frames]</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>lazy_frames[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00048-ff157d72-3369-4bf2-ab95-61422862c2b0" data-deepnote_cell_type="code" data-execution_millis="6" data-execution_start="1604928308267" data-source_hash="549cb9ec">
+<div class="sourceCode" id="cb34"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dask_frames <span class="op">=</span> da.stack(lazy_frames[:<span class="dv">100</span>], axis<span class="op">=</span><span class="dv">0</span>)  <span class="co"># concatenate arrays along first axis </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00049-01b8685f-cbdd-4ed0-81fb-ea5ca01bc342" data-deepnote_cell_type="code" data-execution_millis="12" data-execution_start="1604928309488" data-source_hash="db88a505">
+<div class="sourceCode" id="cb35"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>dask_frames </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00050-d71a862e-dcbe-477b-9ce2-cbc372ebf2ec" data-deepnote_cell_type="code" data-execution_millis="8" data-execution_start="1604928311662" data-source_hash="b35eed0b">
+<div class="sourceCode" id="cb36"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>dask_frames <span class="op">=</span> dask_frames.rechunk((<span class="dv">10</span>, <span class="dv">257</span>, <span class="dv">257</span>))   </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>dask_frames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00051-797f2547-7e78-45f7-a1e0-d82941866917" data-deepnote_cell_type="code" data-execution_millis="1533" data-execution_start="1604928312412" data-source_hash="fd038353">
+<div class="sourceCode" id="cb37"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Image.fromarray(scale(dask_frames.mean(axis<span class="op">=</span><span class="dv">0</span>).compute()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00052-f989deee-56d3-4d68-8289-4049ea4e5df9" data-deepnote_cell_type="code" data-execution_millis="174" data-execution_start="1604928313981" data-source_hash="fea8be9f">
+<div class="sourceCode" id="cb38"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact, IntSlider</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_sequence(iframe):</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> Image.fromarray(dask_frames[iframe,:,:].compute())</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>interact(display_sequence, </span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>          iframe<span class="op">=</span>IntSlider(<span class="bu">min</span><span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>                           <span class="bu">max</span><span class="op">=</span><span class="bu">len</span>(dask_frames)<span class="op">-</span><span class="dv">1</span>,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>                           step<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>                           value<span class="op">=</span><span class="dv">0</span>, </span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>                           continuous_update<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Everytime you move the slider, it will read the corresponding file and load the frame. That’s why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.</p>
+<section id="some-questions-to-consider" class="level3">
+<h3 class="anchored" data-anchor-id="some-questions-to-consider">Some questions to consider:</h3>
+<ul>
+<li>Why did we go from 3s to 2s? Why weren’t we able to parallelize down to 1s?</li>
+<li>What would have happened if the inc and add functions didn’t include the <code>sleep(1)</code>? Would Dask still be able to speed up this code?</li>
+<li>What if we have multiple outputs or also want to get access to x or y?</li>
+</ul>
+</section>
+</section>
+<section id="exercise-parallelizing-a-pandas-groupby-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-parallelizing-a-pandas-groupby-reduction">Exercise: Parallelizing a Pandas Groupby Reduction</h2>
+<p>In this exercise we read several CSV files and perform a groupby operation in parallel. We are given sequential code to do this and parallelize it with <code>dask.delayed</code>.</p>
+<p>The computation we will parallelize is to compute the mean departure delay per airport from some historical flight data. We will do this by using <code>dask.delayed</code> together with <code>pandas</code>. In a future section we will do this same exercise with <code>dask.dataframe</code>.</p>
+<section id="prep-data" class="level3">
+<h3 class="anchored" data-anchor-id="prep-data">Prep data</h3>
+<p>First, run this code to prep some data. You don’t need to understand this code.</p>
+<p>This extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from <a href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>. This should only take a few seconds to run.</p>
+</section>
+<section id="inspect-data" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-data">Inspect data</h3>
+<p>Data are in the file <code>data/nycflights.tar.gz</code>. You can extract them with the command</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> zxvf nycflights.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>According to your operating system, double click on the file could do the job.</p>
+<div class="cell" data-cell_id="00060-3ed75ae6-57a0-4eed-9e09-30012046e27d" data-deepnote_cell_type="code" data-execution_millis="3" data-execution_start="1604928324013" data-source_hash="dac8590">
+<div class="sourceCode" id="cb40"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#import os  # library to get directory and file paths</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#import tarfile # this module makes possible to read and write tar archives</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co">#def extract_data(filename, where):</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    datadir = os.path.join(where) # directory where extract all datafile</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    if not os.path.exists(datadir): # check if this directory exists</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co">#       print("Extracting data...")</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co">#       tar_path = os.path.join(filename)  # path to the tgz file</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="co">#       with tarfile.open(tar_path, mode='r:gz') as data: # open the tgz file</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co">#          data.extractall(datadir)  # extract all data file in datadir</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co">#            </span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="co">#extract_data('data/nycflights.tar.gz','data')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay" class="level3">
+<h3 class="anchored" data-anchor-id="read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay">Read one file with <code>pandas.read_csv</code> and compute mean departure delay</h3>
+<div class="cell" data-cell_id="00063-571dc5fc-adc1-4c78-8327-8789e66df803" data-deepnote_cell_type="code" data-execution_millis="1287" data-execution_start="1604928326000" data-source_hash="1e7ce2bd">
+<div class="sourceCode" id="cb41"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(os.path.join(<span class="st">"data"</span>, <span class="st">"nycflights"</span>,<span class="st">'1990.csv'</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00064-89e8646e-fc15-431f-a829-4f996610ba3e" data-deepnote_cell_type="code" data-execution_millis="11" data-execution_start="1604928328770" data-source_hash="5c6e1e22">
+<div class="sourceCode" id="cb42"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the schema?</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00065-e7b82501-4d4b-4897-8c54-60be7eb78e78" data-deepnote_cell_type="code" data-execution_millis="19" data-execution_start="1604928330437" data-source_hash="8b27f206">
+<div class="sourceCode" id="cb43"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What originating airports are in the data?</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>df.Origin.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00066-c5b73f9f-634e-4292-aa87-a037ad381e1b" data-deepnote_cell_type="code" data-execution_millis="15" data-execution_start="1604928331514" data-source_hash="c59d6c33">
+<div class="sourceCode" id="cb44"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean departure delay per-airport for one year</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'Origin'</span>).DepDelay.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sequential-code-mean-departure-delay-per-airport" class="level3">
+<h3 class="anchored" data-anchor-id="sequential-code-mean-departure-delay-per-airport">Sequential code: Mean Departure Delay Per Airport</h3>
+<p>The above cell computes the mean departure delay per-airport for one year. Here we expand that to all years using a sequential for loop.</p>
+<div class="cell" data-cell_id="00068-55d4865b-71d5-43e5-9d57-bd68e47f7bd6" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1604928333654" data-source_hash="3418c48a">
+<div class="sourceCode" id="cb45"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> <span class="bu">sorted</span>(glob(os.path.join(<span class="st">'data'</span>, <span class="st">"nycflights"</span>, <span class="st">'*.csv'</span>)))</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>filenames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00069-57244563-895c-4b4e-babf-722e96a45882" data-deepnote_cell_type="code" data-execution_millis="9916" data-execution_start="1604928335284" data-source_hash="d67fb36f">
+<div class="sourceCode" id="cb46"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>sums <span class="op">=</span> []</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> []</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fn <span class="kw">in</span> filenames:</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read in file</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(fn)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Groupby origin airport</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    by_origin <span class="op">=</span> df.groupby(<span class="st">'Origin'</span>)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sum of all departure delays by origin</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> by_origin.DepDelay.<span class="bu">sum</span>()</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Number of flights by origin</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> by_origin.DepDelay.count()</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save the intermediates</span></span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>    sums.append(total)</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>    counts.append(count)</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine intermediates to get total mean-delay-per-origin</span></span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>total_delays <span class="op">=</span> <span class="bu">sum</span>(sums)</span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>n_flights <span class="op">=</span> <span class="bu">sum</span>(counts)</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> total_delays <span class="op">/</span> n_flights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00070-7408a639-3dfc-4e36-8f9d-1aad78f8be32" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928345215" data-source_hash="2f430a9c">
+<div class="sourceCode" id="cb47"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-parallelize-the-code-above" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-parallelize-the-code-above">Exercise : Parallelize the code above</h3>
+<p>Use <code>dask.delayed</code> to parallelize the code above. Some extra things you will need to know.</p>
+<ol type="1">
+<li><p>Methods and attribute access on delayed objects work automatically, so if you have a delayed object you can perform normal arithmetic, slicing, and method calls on it and it will produce the correct delayed calls.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> delayed(np.arange)(<span class="dv">10</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (x <span class="op">+</span> <span class="dv">1</span>)[::<span class="dv">2</span>].<span class="bu">sum</span>()  <span class="co"># everything here was delayed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Calling the <code>.compute()</code> method works well when you have a single output. When you have multiple outputs you might want to use the <code>dask.compute</code> function:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> x <span class="op">=</span> delayed(np.arange)(<span class="dv">10</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">min</span>, <span class="bu">max</span> <span class="op">=</span> compute(y.<span class="bu">min</span>(), y.<span class="bu">max</span>())</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>(<span class="dv">0</span>, <span class="dv">81</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This way Dask can share the intermediate values (like <code>y = x**2</code>)</p></li>
+</ol>
+<p>So your goal is to parallelize the code above (which has been copied below) using <code>dask.delayed</code>. You may also want to visualize a bit of the computation to see if you’re doing it correctly.</p>
+<div class="cell" data-cell_id="00080-690128cb-2ace-4ff2-a554-b9bcf3302f99" data-deepnote_cell_type="code" data-execution_millis="7983" data-execution_start="1604928345262" data-source_hash="9cd7016d">
+<div class="sourceCode" id="cb50"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask <span class="im">import</span> delayed, compute</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> add</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>sums <span class="op">=</span> []</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> []</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="at">@delayed</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_depdelay(fn):</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read in file</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(fn)</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    DepDelay <span class="op">=</span> df.groupby(<span class="st">'Origin'</span>).DepDelay</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> DepDelay.<span class="bu">sum</span>(), DepDelay.count()</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a><span class="at">@delayed</span></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_mean( list_of_tuples ):</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>    totals <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t, c <span class="kw">in</span> list_of_tuples:</span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>        totals <span class="op">+=</span> t</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>        counts <span class="op">+=</span> c</span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> totals <span class="op">/</span> counts</span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>totals_and_counts <span class="op">=</span> [read_depdelay(fn) <span class="cf">for</span> fn <span class="kw">in</span> filenames]</span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> compute_mean(totals_and_counts)</span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a>result.compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00081-b290be9c-d6fd-48d7-8baa-a307f260029c" data-deepnote_cell_type="code" data-execution_millis="202" data-execution_start="1604928353290" data-source_hash="696e3d1b">
+<div class="sourceCode" id="cb51"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>result.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="https://docs.dask.org/en/latest/delayed-best-practices.html">Delayed best practices</a></p>
+
+<!-- -->
+</section>
+</section>
+</section>
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    window.tippy(el, {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    }); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</main>
+<div class="page-navigation page-navigation-docked">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</div>
+</div> <!-- /main column -->
+</div> <!-- /row -->
+</div> <!-- /container fluid -->
+
+
+</body></html>

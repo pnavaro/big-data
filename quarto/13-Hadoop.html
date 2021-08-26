@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.94">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Python tools for Big Data – hadoop</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.min.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/clipboard.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+<header id="quarto-header" class="headroom fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fluid">
+  <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Python tools for Big Data</span>
+  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./intro.html">Home</a>
+  </li>  
+</ul>
+      </div> <!-- /navcollapse -->
+  </div> <!-- /container-fluid -->
+</nav>
+<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <div class="container-fluid d-flex justify-content-between">
+    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
+    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+</nav>
+</header>
+ <!-- /navbar/sidebar -->
+<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
+<div class="row flex-fill" id="quarto-content">
+  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
+    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
+      <div class="sidebar-search">
+      <form class="d-flex mb-0">
+  <input id="quarto-search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+      </div>
+    </div>
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1 px-3">
+      <ul class="list-unstyled sidebar-section depth1">
+    <li class="">
+        <div class="me-auto ">
+            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
+              <div class="me-auto  sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+            </a>
+        </div>
+      <div class="collapse  show" id="notebooks-collapse">
+        <ul class="list-unstyled sidebar-item-contents">
+          <li class="sidebar-item">
+  <a href="./01-GitBasics.html" class="">Git basics</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./02-Installation.html" class="">Installation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./04-WordCount.html" class="">Wordcount</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./05-MapReduce.html" class="">Map Reduce</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./06-ParallelComputation.html" class="">Parallel Computation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./08-DaskDelayed.html" class="">Dask</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./09-DaskBag.html" class="">Dask bag</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./11-PandaDataframes.html" class="">Pandas Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./12-UnixCommands.html" class="">Basic Commands in the Unix Shell</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./13-Hadoop.html" class="active">Hadoop</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./14-FileFormats.html" class="">File Formats</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./15-PySpark.html" class="">PySpark</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
+</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  </ul>
+  </div>
+</nav>
+  </div>
+  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#hadoop" class="nav-link active" data-scroll-target="#hadoop">Hadoop</a>
+<ul class="collapse">
+<li><a href="#hdfs" class="nav-link" data-scroll-target="#hdfs">HDFS</a></li>
+<li><a href="#accessibility" class="nav-link" data-scroll-target="#accessibility">Accessibility</a></li>
+<li><a href="#manage-files-and-directories" class="nav-link" data-scroll-target="#manage-files-and-directories">Manage files and directories</a></li>
+<li><a href="#transfer-between-nodes" class="nav-link" data-scroll-target="#transfer-between-nodes">Transfer between nodes</a>
+<ul class="collapse">
+<li><a href="#put" class="nav-link" data-scroll-target="#put">put</a></li>
+</ul></li>
+<li><a href="#hadoop-cluster" class="nav-link" data-scroll-target="#hadoop-cluster">Hadoop cluster</a>
+<ul class="collapse">
+<li><a href="#namenode-web-interface-hdfs-layer" class="nav-link" data-scroll-target="#namenode-web-interface-hdfs-layer">NameNode Web Interface (HDFS layer)</a></li>
+<li><a href="#secondary-namenode-information." class="nav-link" data-scroll-target="#secondary-namenode-information.">Secondary Namenode Information.</a></li>
+<li><a href="#datanode-information." class="nav-link" data-scroll-target="#datanode-information.">Datanode Information.</a></li>
+</ul></li>
+<li><a href="#hands-on-practice" class="nav-link" data-scroll-target="#hands-on-practice">Hands-on practice:</a></li>
+<li><a href="#yarn" class="nav-link" data-scroll-target="#yarn">YARN</a>
+<ul class="collapse">
+<li><a href="#yarn-web-interface" class="nav-link" data-scroll-target="#yarn-web-interface">Yarn Web Interface</a></li>
+</ul></li>
+<li><a href="#wordcount-example" class="nav-link" data-scroll-target="#wordcount-example">WordCount Example</a>
+<ul class="collapse">
+<li><a href="#exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+</ul></li>
+<li><a href="#deploying-the-mapreduce-python-code-on-hadoop" class="nav-link" data-scroll-target="#deploying-the-mapreduce-python-code-on-hadoop">Deploying the MapReduce Python code on Hadoop</a></li>
+<li><a href="#map" class="nav-link" data-scroll-target="#map">Map</a></li>
+<li><a href="#reduce" class="nav-link" data-scroll-target="#reduce">Reduce</a></li>
+<li><a href="#execution-on-hadoop-cluster" class="nav-link" data-scroll-target="#execution-on-hadoop-cluster">Execution on Hadoop cluster</a></li>
+</ul></li>
+</ul>
+</nav></div>
+  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
+<main>
+
+<section id="hadoop" class="level1">
+<h1>Hadoop</h1>
+<ul>
+<li>Data sets that are so large or complex that traditional data processing application software is inadequate to deal with them.</li>
+<li>Data analysis requires massively parallel software running on several servers.</li>
+<li><strong>Volume, Variety, Velocity, Variability and Veracity</strong> describe Big Data properties.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bigdata.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">https://github.com/veekaybee/data-lake-talk/</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hadoop.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Hadoop Logo</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>Framework for running applications on large cluster.</li>
+<li>The Hadoop framework transparently provides applications both reliability and data motion.</li>
+<li>Hadoop implements the computational paradigm named <strong>Map/Reduce</strong>, where the application is divided into many small fragments of work, each of which may be executed or re-executed on any node in the cluster.</li>
+<li>It provides a distributed file system (HDFS) that stores data on the compute nodes, providing very high aggregate bandwidth across the cluster.</li>
+<li>Both MapReduce and the <strong>Hadoop Distributed File System</strong> are designed so that node failures are automatically handled by the framework.</li>
+</ul>
+<section id="hdfs" class="level2">
+<h2 class="anchored" data-anchor-id="hdfs">HDFS</h2>
+<ul>
+<li>It is a distributed file systems.</li>
+<li>HDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware.</li>
+<li>HDFS is suitable for applications that have large data sets.</li>
+<li>HDFS provides interfaces to move applications closer to where the data is located. The computation is much more efficient when the size of the data set is huge.</li>
+<li>HDFS consists of a single NameNode with a number of DataNodes which manage storage.</li>
+<li>HDFS exposes a file system namespace and allows user data to be stored in files.
+<ol type="1">
+<li>A file is split by the NameNode into blocks stored in DataNodes.</li>
+<li>The <a href="http://svmass2.mass.uhb.fr:50070">NameNode</a> executes operations like opening, closing, and renaming files and directories.</li>
+<li>The <a href="http://svmass2.mass.uhb.fr:50090/status.html">Secondary NameNode</a> stores information from <strong>NameNode</strong>.</li>
+<li>The <strong>DataNodes</strong> manage perform block creation, deletion, and replication upon instruction from the NameNode.</li>
+<li>The placement of replicas is optimized for data reliability, availability, and network bandwidth utilization.</li>
+<li>User data never flows through the NameNode.</li>
+</ol></li>
+<li>Files in HDFS are write-once and have strictly one writer at any time.</li>
+<li>The DataNode has no knowledge about HDFS files.</li>
+</ul>
+</section>
+<section id="accessibility" class="level2">
+<h2 class="anchored" data-anchor-id="accessibility">Accessibility</h2>
+<p>All <a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html">HDFS commands</a> are invoked by the bin/hdfs Java script:</p>
+<pre class="shell"><code>hdfs [SHELL_OPTIONS] COMMAND [GENERIC_OPTIONS] [COMMAND_OPTIONS]</code></pre>
+</section>
+<section id="manage-files-and-directories" class="level2">
+<h2 class="anchored" data-anchor-id="manage-files-and-directories">Manage files and directories</h2>
+<pre class="shell"><code>hdfs dfs -ls -h -R # Recursively list subdirectories with human-readable file sizes.
+hdfs dfs -cp  # Copy files from source to destination
+hdfs dfs -mv  # Move files from source to destination
+hdfs dfs -mkdir /foodir # Create a directory named /foodir  
+hdfs dfs -rmr /foodir   # Remove a directory named /foodir  
+hdfs dfs -cat /foodir/myfile.txt #View the contents of a file named /foodir/myfile.txt  </code></pre>
+</section>
+<section id="transfer-between-nodes" class="level2">
+<h2 class="anchored" data-anchor-id="transfer-between-nodes">Transfer between nodes</h2>
+<section id="put" class="level3">
+<h3 class="anchored" data-anchor-id="put">put</h3>
+<pre class="shell"><code>hdfs fs -put [-f] [-p] [-l] [-d] [ - | &lt;localsrc1&gt; .. ]. &lt;dst&gt;</code></pre>
+<p>Copy single src, or multiple srcs from local file system to the destination file system.</p>
+<p>Options:</p>
+<pre><code>-p : Preserves rights and modification times.
+-f : Overwrites the destination if it already exists.</code></pre>
+<pre class="shell"><code>hdfs fs -put localfile /user/hadoop/hadoopfile
+hdfs fs -put -f localfile1 localfile2 /user/hadoop/hadoopdir</code></pre>
+<p>Similar to the fs -put command - <code>moveFromLocal</code> : to delete the source localsrc after copy. - <code>copyFromLocal</code> : source is restricted to a local file - <code>copyToLocal</code> : destination is restricted to a local file</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hdfs-fonctionnement.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">hdfs blocks</figcaption><p></p>
+</figure>
+</div>
+<p>The Name Node is not in the data path. The Name Node only provides the map of where data is and where data should go in the cluster (file system metadata).</p>
+</section>
+</section>
+<section id="hadoop-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="hadoop-cluster">Hadoop cluster</h2>
+<ul>
+<li>8 computers: sve1 -&gt; sve9</li>
+</ul>
+<section id="namenode-web-interface-hdfs-layer" class="level3">
+<h3 class="anchored" data-anchor-id="namenode-web-interface-hdfs-layer">NameNode Web Interface (HDFS layer)</h3>
+<p>http://svmass2.mass.uhb.fr:50070</p>
+<p>The name node web UI shows you a cluster summary including information about total/remaining capacity, live and dead nodes. Additionally, it allows you to browse the HDFS namespace and view the contents of its files in the web browser. It also gives access to the local machine’s Hadoop log files.</p>
+</section>
+<section id="secondary-namenode-information." class="level3">
+<h3 class="anchored" data-anchor-id="secondary-namenode-information.">Secondary Namenode Information.</h3>
+<p>http://svmass2.mass.uhb.fr:50090/</p>
+</section>
+<section id="datanode-information." class="level3">
+<h3 class="anchored" data-anchor-id="datanode-information.">Datanode Information.</h3>
+<ul>
+<li>http://svpe1.mass.uhb.fr:50075/</li>
+<li>http://svpe2.mass.uhb.fr:50075/</li>
+<li>…</li>
+<li>http://svpe8.mass.uhb.fr:50075/</li>
+<li>http://svpe9.mass.uhb.fr:50075/</li>
+</ul>
+<p>To do following hands on you can switch to <a href="https://jupyterlab.readthedocs.io">JupyterLab</a>.</p>
+<p>Just go to this following address http://localhost:9000/lab</p>
+<ul>
+<li>Check that your HDFS home directory required to execute MapReduce jobs exists:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-ls</span> /user/<span class="va">${USER}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Type the following commands:</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-ls</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-ls</span> /</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-mkdir</span> test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Create a local file user.txt containing your name and the date:</li>
+</ul>
+<div class="cell" data-cell_id="00009-f6414ae7-fd9a-47cd-bf43-03c9261c0ae4" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># echo "FirstName LastName" &gt; user.txt</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># echo `date` &gt;&gt; user.txt </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cat user.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Copy it on HDFS :</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-put</span> user.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check with:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-ls</span> <span class="at">-R</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-cat</span> user.txt </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-tail</span> user.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00011-23a1c9fe-3f71-4363-b98e-a806943b5abd" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># hdfs dfs -put user.txt</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># hdfs dfs -ls -R /user/navaro_p/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00012-34d0cd52-4319-49ac-89aa-4a113d361762" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># hdfs dfs -cat user.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Remove the file:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-rm</span> user.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Put it again on HDFS and move to books directory:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-copyFromLocal</span> user.txt</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-mv</span> user.txt books/user.txt</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-ls</span> <span class="at">-R</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Copy user.txt to hello.txt and remove it.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-cp</span> books/user.txt books/hello.txt</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-count</span> <span class="at">-h</span> /user/<span class="va">$USER</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-rm</span> books/user.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="hands-on-practice" class="level2">
+<h2 class="anchored" data-anchor-id="hands-on-practice">Hands-on practice:</h2>
+<ol type="1">
+<li>Create a directory <code>files</code> in HDFS.</li>
+<li>List the contents of a directory /.</li>
+<li>Upload the file today.txt in HDFS.</li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span> <span class="op">&gt;</span> today.txt</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">whoami</span> <span class="op">&gt;&gt;</span> today.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Display contents of file <code>today.txt</code></li>
+<li>Copy <code>today.txt</code> file from source to <code>files</code> directory.</li>
+<li>Copy file <code>jps.txt</code> from/To Local file system to HDFS</li>
+</ol>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jps</span> <span class="op">&gt;</span> jps.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>Move file <code>jps.txt</code> from source to <code>files</code>.</li>
+<li>Remove file <code>today.txt</code> from home directory in HDFS.</li>
+<li>Display last few lines of <code>jps.txt</code>.</li>
+<li>Display the help of <code>du</code> command and show the total amount of space in a human-readable fashion used by your home hdfs directory.</li>
+<li>Display the help of <code>df</code> command and show the total amount of space available in the filesystem in a human-readable fashion.</li>
+<li>With <code>chmod</code> change the rights of <code>today.txt</code> file. I has to be readable and writeable only by you.</li>
+</ol>
+</section>
+<section id="yarn" class="level2">
+<h2 class="anchored" data-anchor-id="yarn">YARN</h2>
+<p><em>YARN takes care of resource management and job scheduling/monitoring.</em></p>
+<ul>
+<li>The <strong>ResourceManager</strong> is the ultimate authority that arbitrates resources among all the applications in the system. It has two components: <strong>Scheduler</strong> and <strong>ApplicationsManager</strong>.</li>
+<li>The <strong>NodeManager</strong> is the per-machine framework agent who is responsible for <strong>Containers</strong>, monitoring their resource usage (cpu, memory, disk, network) and reporting the same to the <strong>ResourceManager/Scheduler</strong>.</li>
+</ul>
+<p>The per-application <strong>ApplicationMaster</strong> negotiates resources from the ResourceManager and working with the NodeManager(s) to execute and monitor the tasks.</p>
+<ul>
+<li><p>The <strong>Scheduler</strong> is responsible for allocating resources to the applications.</p></li>
+<li><p>The <strong>ApplicationsManager</strong> is responsible for accepting job-submissions, tracking their status and monitoring for progress.</p></li>
+</ul>
+<p><img src="images/yarn_architecture.png" class="img-fluid" alt="Yarn in Hadoop documentation"> Source: http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_architecture.gif</p>
+<section id="yarn-web-interface" class="level3">
+<h3 class="anchored" data-anchor-id="yarn-web-interface">Yarn Web Interface</h3>
+<p>The JobTracker web UI provides information about general job statistics of the Hadoop cluster, running/completed/failed jobs and a job history log file. It also gives access to the ‘‘local machine’s’’ Hadoop log files (the machine on which the web UI is running on).</p>
+<ul>
+<li>All Applications http://svmass2.mass.uhb.fr:8088</li>
+</ul>
+</section>
+</section>
+<section id="wordcount-example" class="level2">
+<h2 class="anchored" data-anchor-id="wordcount-example">WordCount Example</h2>
+<p>The <a href="https://wiki.apache.org/hadoop/WordCount">Worcount example</a> is implemented in Java and it is the example of <a href="https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html">Hadoop MapReduce Tutorial</a></p>
+<p>Let’s create some files with lorem python package</p>
+<div class="cell" data-cell_id="00019-72671e28-0cec-4833-a48e-4f7c507084a9" data-deepnote_cell_type="code" data-execution_start="1604936850977" data-source_hash="8b608431">
+<div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">'sample</span><span class="sc">{0:02d}</span><span class="st">.txt'</span>.<span class="bu">format</span>(i), <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            f.write(text())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Make input directory in your HDFS home directory required to execute MapReduce jobs:</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hdfs</span> dfs <span class="at">-mkdir</span> <span class="at">-p</span> /user/<span class="va">${USER}</span>/input</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>-p</code> flag force the directory creation even if it already exists.</p>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<ul>
+<li>Copy all necessary files in HDFS system.</li>
+<li>Run the Java example using the command</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hadoop</span> jar /export/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar wordcount /user/you/input /user/you/output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Remove the output directory and try to use yarn</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> jar /export/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar wordcount /user/you/input /user/you/output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Connect to the <a href="http://svmass2.mass.uhb.fr:8088/cluster">Yarn web user interface</a> and read the logs carefully.</li>
+</ul>
+</section>
+</section>
+<section id="deploying-the-mapreduce-python-code-on-hadoop" class="level2">
+<h2 class="anchored" data-anchor-id="deploying-the-mapreduce-python-code-on-hadoop">Deploying the MapReduce Python code on Hadoop</h2>
+<p>This Python must use the <a href="http://hadoop.apache.org/docs/stable/hadoop-streaming/HadoopStreaming.html">Hadoop Streaming API</a> to pass data between our Map and Reduce code via Python’s sys.stdin (standard input) and sys.stdout (standard output).</p>
+</section>
+<section id="map" class="level2">
+<h2 class="anchored" data-anchor-id="map">Map</h2>
+<p>The following Python code read data from sys.stdin, split it into words and output a list of lines mapping words to their (intermediate) counts to sys.stdout. For every word it outputs <word> 1 tuples immediately.</word></p>
+<div class="cell" data-cell_id="00024-6d0edba4-9bc8-496b-9907-14be2f832952" data-deepnote_cell_type="code" data-execution_millis="19" data-execution_start="1604938402949" data-source_hash="a4ea72f2">
+<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> mapper.py</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># input comes from standard input</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> sys.stdin:</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> line.strip().lower() <span class="co"># remove leading and trailing whitespace</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    line <span class="op">=</span> line.replace(<span class="st">"."</span>, <span class="st">" "</span>)   <span class="co"># strip punctuation </span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> word <span class="kw">in</span> line.split(): <span class="co"># split the line into words</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># write the results to standard output;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># what we output here will be the input for the</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Reduce step, i.e. the input for reducer.py</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tab-delimited; the trivial word count is 1</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span> (<span class="ss">f'</span><span class="sc">{</span>word<span class="sc">}</span><span class="ch">\t</span><span class="ss"> 1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The python script must be executable:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x mapper.py </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Try to run in a terminal with:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> sample01.txt <span class="kw">|</span> <span class="ex">./mapper.py</span> <span class="kw">|</span> <span class="fu">sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./mapper.py</span> <span class="op">&lt;</span> sample01.txt <span class="kw">|</span> <span class="fu">sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00027-65979a33-8c85-4cac-ac6a-438bcfab0068" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># chmod +x mapper.py</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cat sample01.txt | ./mapper.py | sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reduce" class="level2">
+<h2 class="anchored" data-anchor-id="reduce">Reduce</h2>
+<p>The following code reads the results of mapper.py and sum the occurrences of each word to a final count, and then output its results to sys.stdout. Remember that Hadoop sorts map output so it is easier to count words.</p>
+<div class="cell" data-cell_id="00029-88737004-d4de-47a3-a276-3962aa80834a" data-deepnote_cell_type="code" data-execution_millis="30" data-execution_start="1604938524251" data-source_hash="c2ebe356">
+<div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> reducer.py</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>current_word <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>current_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> sys.stdin:</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># parse the input we got from mapper.py</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    word, count <span class="op">=</span> line.split(<span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, <span class="dv">1</span>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># convert count (currently a string) to int</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> <span class="bu">int</span>(count)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># count was not a number, so silently</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ignore/discard this line</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this IF-switch only works because Hadoop sorts map output</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># by key (here: word) before it is passed to the reducer</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> current_word <span class="op">==</span> word:</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>        current_count <span class="op">+=</span> count</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> current_word:</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>            <span class="co"># write result to sys.stdout</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span> (<span class="ss">f'</span><span class="sc">{</span>current_count<span class="sc">}</span><span class="ch">\t</span><span class="sc">{</span>current_word<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>        current_count <span class="op">=</span> count</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>        current_word <span class="op">=</span> word</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="co"># do not forget to output the last word if needed!</span></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> current_word <span class="op">==</span> word:</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (<span class="ss">f'</span><span class="sc">{</span>current_count<span class="sc">}</span><span class="ch">\t</span><span class="sc">{</span>current_word<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As mapper the python script must be executable:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x reducer.py </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Try to run in a terminal with:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> sample.txt <span class="kw">|</span> <span class="ex">./mapper.py</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="ex">./reducer.py</span> <span class="kw">|</span> <span class="fu">sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./mapper.py</span> <span class="op">&lt;</span> sample01.txt <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="ex">./reducer.py</span> <span class="kw">|</span> <span class="fu">sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00032-22ada548-2ca7-4be1-b1c5-0ac0c3d4aade" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb31"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># chmod +x reducer.py </span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ./mapper.py &lt; sample01.txt | sort | ./reducer.py | sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="execution-on-hadoop-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="execution-on-hadoop-cluster">Execution on Hadoop cluster</h2>
+<ul>
+<li>Copy all files to HDFS cluster</li>
+<li>Run the WordCount MapReduce</li>
+</ul>
+<p>Before to run the following command you need to replace the path to the python executable. To print this path you can use the command</p>
+<pre><code>which python</code></pre>
+<p>You should get</p>
+<pre><code>/opt/tljh/user/bin/python</code></pre>
+<p>So replace the line</p>
+<pre><code>#!/usr/bin/env python</code></pre>
+<p>by</p>
+<pre><code>#!/opt/tljh/user/bin/python</code></pre>
+<p>in both files mapper.py and reducer.py</p>
+<p>Ensure that the output directory does not exist by removing it</p>
+<pre><code>hdfs dfs -rm -r output</code></pre>
+<p>Use the hadoop streaming library to read files on hdfs and redirect data to standard input, use your python scripts to process the data and write the result on hdfs directory named output :</p>
+<pre><code>hadoop jar /export/hadoop-2.7.6/share/hadoop/tools/lib/hadoop-streaming-2.7.6.jar \
+-input input/*.txt -output output \
+-file ${PWD}/mapper.py -mapper ${PWD}/mapper.py \
+-file ${PWD}/reducer.py -reducer ${PWD}/reducer.py</code></pre>
+<p>Check the results with</p>
+<pre><code>hdfs dfs -cat output/*</code></pre>
+<p>You can avoid these long lines commands by editing a Makefile</p>
+<div class="cell" data-cell_id="00034-01ed13f1-5e64-4cd1-9c15-e3e122e8f0eb" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb39"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> Makefile</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>HADOOP_VERSION<span class="op">=</span><span class="fl">2.7.6</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>HADOOP_HOME<span class="op">=/</span>export<span class="op">/</span>hadoop<span class="op">-</span>${HADOOP_VERSION}</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>HADOOP_TOOLS<span class="op">=</span>${HADOOP_HOME}<span class="op">/</span>share<span class="op">/</span>hadoop<span class="op">/</span>tools<span class="op">/</span>lib</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>HDFS_DIR<span class="op">=/</span>user<span class="op">/</span>${USER}</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>SAMPLES <span class="op">=</span> sample01.txt sample02.txt sample03.txt sample04.txt</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>copy_to_hdfs: ${SAMPLES}</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    hdfs dfs <span class="op">-</span>mkdir <span class="op">-</span>p ${HDFS_DIR}<span class="op">/</span><span class="bu">input</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    hdfs dfs <span class="op">-</span>put $<span class="op">^</span> ${HDFS_DIR}<span class="op">/</span><span class="bu">input</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>run_with_hadoop: </span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    hadoop jar ${HADOOP_TOOLS}<span class="op">/</span>hadoop<span class="op">-</span>streaming<span class="op">-</span>${HADOOP_VERSION}.jar <span class="op">\</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="bu">file</span>  ${PWD}<span class="op">/</span>mapper.py  <span class="op">-</span>mapper  ${PWD}<span class="op">/</span>mapper.py <span class="op">\</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="bu">file</span>  ${PWD}<span class="op">/</span>reducer.py <span class="op">-</span>reducer ${PWD}<span class="op">/</span>reducer.py <span class="op">\</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="bu">input</span> ${HDFS_DIR}<span class="op">/</span><span class="bu">input</span><span class="op">/*</span>.txt <span class="op">-</span>output ${HDFS_DIR}<span class="op">/</span>output<span class="op">-</span>hadoop</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>run_with_yarn: </span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>    yarn jar ${HADOOP_TOOLS}<span class="op">/</span>hadoop<span class="op">-</span>streaming<span class="op">-</span>${HADOOP_VERSION}.jar <span class="op">\</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="bu">file</span>  ${PWD}<span class="op">/</span>mapper.py  <span class="op">-</span>mapper  ${PWD}<span class="op">/</span>mapper.py <span class="op">\</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="bu">file</span>  ${PWD}<span class="op">/</span>reducer.py <span class="op">-</span>reducer ${PWD}<span class="op">/</span>reducer.py <span class="op">\</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span><span class="bu">input</span> ${HDFS_DIR}<span class="op">/</span><span class="bu">input</span><span class="op">/*</span>.txt <span class="op">-</span>output ${HDFS_DIR}<span class="op">/</span>output<span class="op">-</span>yarn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00035-a034949a-6e1f-4716-a304-8039cd216e88" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb40"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># hdfs dfs -rm -r input  # remove input directory</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># make copy_to_hdfs # copy sample files to hdfs</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># hdfs dfs -ls input # list files on hdfs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00036-2dd58a60-b1ac-4360-b0ad-b280b34abbb5" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb41"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%bash</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># hdfs dfs -rm -r -f output-hadoop # Remove output directory on hdfs</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># make run_with_hadoop  # Run the hadoop streaming map reduce process</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># hdfs dfs -cat output-hadoop/*  # Display results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<!-- -->
+</section>
+</section>
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    window.tippy(el, {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    }); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</main>
+<div class="page-navigation page-navigation-docked">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</div>
+</div> <!-- /main column -->
+</div> <!-- /row -->
+</div> <!-- /container fluid -->
+
+
+</body></html>

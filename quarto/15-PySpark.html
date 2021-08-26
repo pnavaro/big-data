@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.94">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Python tools for Big Data – pyspark</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.min.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/clipboard.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+<header id="quarto-header" class="headroom fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fluid">
+  <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Python tools for Big Data</span>
+  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./intro.html">Home</a>
+  </li>  
+</ul>
+      </div> <!-- /navcollapse -->
+  </div> <!-- /container-fluid -->
+</nav>
+<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <div class="container-fluid d-flex justify-content-between">
+    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
+    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+</nav>
+</header>
+ <!-- /navbar/sidebar -->
+<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
+<div class="row flex-fill" id="quarto-content">
+  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
+    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
+      <div class="sidebar-search">
+      <form class="d-flex mb-0">
+  <input id="quarto-search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+      </div>
+    </div>
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1 px-3">
+      <ul class="list-unstyled sidebar-section depth1">
+    <li class="">
+        <div class="me-auto ">
+            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
+              <div class="me-auto  sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+            </a>
+        </div>
+      <div class="collapse  show" id="notebooks-collapse">
+        <ul class="list-unstyled sidebar-item-contents">
+          <li class="sidebar-item">
+  <a href="./01-GitBasics.html" class="">Git basics</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./02-Installation.html" class="">Installation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./04-WordCount.html" class="">Wordcount</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./05-MapReduce.html" class="">Map Reduce</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./06-ParallelComputation.html" class="">Parallel Computation</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./08-DaskDelayed.html" class="">Dask</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./09-DaskBag.html" class="">Dask bag</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./11-PandaDataframes.html" class="">Pandas Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./12-UnixCommands.html" class="">Basic Commands in the Unix Shell</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./13-Hadoop.html" class="">Hadoop</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./14-FileFormats.html" class="">File Formats</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./15-PySpark.html" class="active">PySpark</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
+</li>
+          <li class="sidebar-item">
+  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
+</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  </ul>
+  </div>
+</nav>
+  </div>
+  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#pyspark" class="nav-link active" data-scroll-target="#pyspark">PySpark</a>
+<ul class="collapse">
+<li><a href="#resilient-distributed-datasets" class="nav-link" data-scroll-target="#resilient-distributed-datasets">Resilient distributed datasets</a></li>
+<li><a href="#lifecycle-of-a-spark-program" class="nav-link" data-scroll-target="#lifecycle-of-a-spark-program">Lifecycle of a Spark Program</a></li>
+<li><a href="#operations-on-distributed-data" class="nav-link" data-scroll-target="#operations-on-distributed-data">Operations on Distributed Data</a></li>
+<li><a href="#transformations-lazy" class="nav-link" data-scroll-target="#transformations-lazy"><span>Transformations</span> (lazy)</a></li>
+<li><a href="#actions" class="nav-link" data-scroll-target="#actions"><span>Actions</span></a></li>
+<li><a href="#python-api" class="nav-link" data-scroll-target="#python-api">Python API</a></li>
+<li><a href="#the-sparkcontext-class" class="nav-link" data-scroll-target="#the-sparkcontext-class">The <code>SparkContext</code> class</a></li>
+<li><a href="#first-example" class="nav-link" data-scroll-target="#first-example">First example</a></li>
+<li><a href="#create-your-first-rdd" class="nav-link" data-scroll-target="#create-your-first-rdd">Create your first RDD</a>
+<ul class="collapse">
+<li><a href="#exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+<li><a href="#collect" class="nav-link" data-scroll-target="#collect">Collect</a></li>
+<li><a href="#exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
+<li><a href="#map" class="nav-link" data-scroll-target="#map">Map</a></li>
+<li><a href="#exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise</a></li>
+<li><a href="#filter" class="nav-link" data-scroll-target="#filter">Filter</a></li>
+<li><a href="#flatmap" class="nav-link" data-scroll-target="#flatmap">FlatMap</a></li>
+<li><a href="#exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise</a></li>
+<li><a href="#groupby" class="nav-link" data-scroll-target="#groupby">GroupBy</a></li>
+<li><a href="#groupbykey" class="nav-link" data-scroll-target="#groupbykey">GroupByKey</a></li>
+<li><a href="#join" class="nav-link" data-scroll-target="#join">Join</a></li>
+<li><a href="#distinct" class="nav-link" data-scroll-target="#distinct">Distinct</a></li>
+<li><a href="#keyby" class="nav-link" data-scroll-target="#keyby">KeyBy</a></li>
+</ul></li>
+<li><a href="#actions-1" class="nav-link" data-scroll-target="#actions-1">Actions</a>
+<ul class="collapse">
+<li><a href="#map-reduce-operation" class="nav-link" data-scroll-target="#map-reduce-operation">Map-Reduce operation</a></li>
+<li><a href="#max-min-sum-mean-variance-stdev" class="nav-link" data-scroll-target="#max-min-sum-mean-variance-stdev">Max, Min, Sum, Mean, Variance, Stdev</a></li>
+<li><a href="#countbykey" class="nav-link" data-scroll-target="#countbykey">CountByKey</a></li>
+<li><a href="#exercise-10.1-word-count-in-apache-spark" class="nav-link" data-scroll-target="#exercise-10.1-word-count-in-apache-spark">Exercise 10.1 Word-count in Apache Spark</a></li>
+</ul></li>
+<li><a href="#sparksession" class="nav-link" data-scroll-target="#sparksession">SparkSession</a>
+<ul class="collapse">
+<li><a href="#pi-computation-example" class="nav-link" data-scroll-target="#pi-computation-example"><span class="math inline">\(\pi\)</span> computation example</a></li>
+<li><a href="#exercise-9.2" class="nav-link" data-scroll-target="#exercise-9.2">Exercise 9.2</a></li>
+<li><a href="#correlation-between-daily-stock" class="nav-link" data-scroll-target="#correlation-between-daily-stock">Correlation between daily stock</a></li>
+<li><a href="#sequential-code" class="nav-link" data-scroll-target="#sequential-code">Sequential code</a></li>
+<li><a href="#exercise-9.3" class="nav-link" data-scroll-target="#exercise-9.3">Exercise 9.3</a></li>
+<li><a href="#exercise-9.4-fasta-file-example" class="nav-link" data-scroll-target="#exercise-9.4-fasta-file-example">Exercise 9.4 Fasta file example</a></li>
+<li><a href="#another-example" class="nav-link" data-scroll-target="#another-example">Another example</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav></div>
+  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
+<main>
+
+<section id="pyspark" class="level1">
+<h1>PySpark</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/apache_spark_logo.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Logo</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p><a href="https://spark.apache.org">Apache Spark</a> was first released in 2014.</p></li>
+<li><p>It was originally developed by <a href="http://people.csail.mit.edu/matei">Matei Zaharia</a> as a class project, and later a PhD dissertation, at University of California, Berkeley.</p></li>
+<li><p>Spark is written in <a href="https://www.scala-lang.org">Scala</a>.</p></li>
+<li><p>All images come from <a href="https://databricks.com/product/getting-started-guide">Databricks</a>.</p></li>
+<li><p>Apache Spark is a fast and general-purpose cluster computing system.</p></li>
+<li><p>It provides high-level APIs in Java, Scala, Python and R, and an optimized engine that supports general execution graphs.</p></li>
+<li><p>Spark can manage “big data” collections with a small set of high-level primitives like <code>map</code>, <code>filter</code>, <code>groupby</code>, and <code>join</code>. With these common patterns we can often handle computations that are more complex than map, but are still structured.</p></li>
+<li><p>It also supports a rich set of higher-level tools including <a href="https://spark.apache.org/docs/latest/sql-programming-guide.html">Spark SQL</a> for SQL and structured data processing, <a href="https://spark.apache.org/docs/latest/ml-guide.html">MLlib</a> for machine learning, <a href="https://spark.apache.org/docs/latest/graphx-programming-guide.html">GraphX</a> for graph processing, and Spark Streaming.</p></li>
+</ul>
+<section id="resilient-distributed-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="resilient-distributed-datasets">Resilient distributed datasets</h2>
+<ul>
+<li>The fundamental abstraction of Apache Spark is a read-only, parallel, distributed, fault-tolerent collection called a resilient distributed datasets (RDD).</li>
+<li>RDDs behave a bit like Python collections (e.g.&nbsp;lists).</li>
+<li>When working with Apache Spark we iteratively apply functions to every item of these collections in parallel to produce <em>new</em> RDDs.</li>
+<li>The data is distributed across nodes in a cluster of computers.</li>
+<li>Functions implemented in Spark can work in parallel across elements of the collection.</li>
+<li>The Spark framework allocates data and processing to different nodes, without any intervention from the programmer.</li>
+<li>RDDs automatically rebuilt on machine failure.</li>
+</ul>
+</section>
+<section id="lifecycle-of-a-spark-program" class="level2">
+<h2 class="anchored" data-anchor-id="lifecycle-of-a-spark-program">Lifecycle of a Spark Program</h2>
+<ol type="1">
+<li>Create some input RDDs from external data or parallelize a collection in your driver program.</li>
+<li>Lazily transform them to define new RDDs using transformations like <code>filter()</code> or <code>map()</code></li>
+<li>Ask Spark to cache() any intermediate RDDs that will need to be reused.</li>
+<li>Launch actions such as count() and collect() to kick off a parallel computation, which is then optimized and executed by Spark.</li>
+</ol>
+</section>
+<section id="operations-on-distributed-data" class="level2">
+<h2 class="anchored" data-anchor-id="operations-on-distributed-data">Operations on Distributed Data</h2>
+<ul>
+<li>Two types of operations: <strong>transformations</strong> and <strong>actions</strong></li>
+<li>Transformations are <em>lazy</em> (not computed immediately)</li>
+<li>Transformations are executed when an action is run</li>
+</ul>
+</section>
+<section id="transformations-lazy" class="level2">
+<h2 class="anchored" data-anchor-id="transformations-lazy"><a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations">Transformations</a> (lazy)</h2>
+<pre><code>map() flatMap()
+filter() 
+mapPartitions() mapPartitionsWithIndex() 
+sample()
+union() intersection() distinct()
+groupBy() groupByKey()
+reduceBy() reduceByKey()
+sortBy() sortByKey()
+join()
+cogroup()
+cartesian()
+pipe()
+coalesce()
+repartition()
+partitionBy()
+...</code></pre>
+</section>
+<section id="actions" class="level2">
+<h2 class="anchored" data-anchor-id="actions"><a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#actions">Actions</a></h2>
+<pre><code>reduce()
+collect()
+count()
+first()
+take()
+takeSample()
+saveToCassandra()
+takeOrdered()
+saveAsTextFile()
+saveAsSequenceFile()
+saveAsObjectFile()
+countByKey()
+foreach()</code></pre>
+</section>
+<section id="python-api" class="level2">
+<h2 class="anchored" data-anchor-id="python-api">Python API</h2>
+<p>PySpark uses Py4J that enables Python programs to dynamically access Java objects.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/YlI8AqEl.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">PySpark Internals</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="the-sparkcontext-class" class="level2">
+<h2 class="anchored" data-anchor-id="the-sparkcontext-class">The <code>SparkContext</code> class</h2>
+<ul>
+<li><p>When working with Apache Spark we invoke methods on an object which is an instance of the <code>pyspark.SparkContext</code> context.</p></li>
+<li><p>Typically, an instance of this object will be created automatically for you and assigned to the variable <code>sc</code>.</p></li>
+<li><p>The <code>parallelize</code> method in <code>SparkContext</code> can be used to turn any ordinary Python collection into an RDD;</p>
+<ul>
+<li>normally we would create an RDD from a large file or an HBase table.</li>
+</ul></li>
+</ul>
+</section>
+<section id="first-example" class="level2">
+<h2 class="anchored" data-anchor-id="first-example">First example</h2>
+<p>PySpark isn’t on sys.path by default, but that doesn’t mean it can’t be used as a regular library. You can address this by either symlinking pyspark into your site-packages, or adding pyspark to sys.path at runtime. <a href="https://github.com/minrk/findspark">findspark</a> does the latter.</p>
+<p>We have a spark context sc to use with a tiny local spark cluster with 4 nodes (will work just fine on a multicore machine).</p>
+<div class="cell" data-cell_id="00012-8698152c-385e-4d22-ae56-408429b08600" data-deepnote_cell_type="code" data-execution_millis="4" data-execution_start="1606208122779" data-source_hash="a22d9657">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, sys</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sys.executable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00013-7e179656-f878-4ef7-bfc5-4683fd92851d" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1606208260172" data-source_hash="a04577ae">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#os.environ["SPARK_HOME"] = "/opt/spark-3.0.1-bin-hadoop2.7"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"PYSPARK_PYTHON"</span>] <span class="op">=</span> sys.executable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00014-f661aeba-0a4e-489c-93b7-034ee40d1ef4" data-deepnote_cell_type="code" data-execution_millis="7637" data-execution_start="1606208269332" data-source_hash="73659aa7">
+<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyspark</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> pyspark.SparkContext(master<span class="op">=</span><span class="st">"local[*]"</span>, appName<span class="op">=</span><span class="st">"FirstExample"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sc.setLogLevel(<span class="st">"ERROR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00015-bf748379-3532-453e-8058-f4fc6531a830" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1606208288902" data-source_hash="3831e90d">
+<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sc) <span class="co"># it is like a Pool Processor executor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-your-first-rdd" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-first-rdd">Create your first RDD</h2>
+<div class="cell" data-cell_id="00017-6079893b-b1de-4a98-91ee-cbc10b34cb56" data-deepnote_cell_type="code" data-execution_millis="549" data-execution_start="1606208314201" data-source_hash="27883792">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">8</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize(data) <span class="co"># create collection</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>rdd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<p>Create a file <code>sample.txt</code>with lorem package. Read and load it into a RDD with the <code>textFile</code> spark function.</p>
+<div class="cell" data-cell_id="00019-2d925cb0-f03e-475c-8f9f-59d9930824b3" data-deepnote_cell_type="code" data-execution_millis="104" data-execution_start="1606208752430" data-source_hash="6dc5b4c8">
+<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> faker <span class="im">import</span> Faker</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fake <span class="op">=</span> Faker()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Faker.seed(<span class="dv">0</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sample.txt"</span>,<span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    f.write(fake.text(max_nb_chars<span class="op">=</span><span class="dv">1000</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.textFile(<span class="st">"sample.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="collect" class="level3">
+<h3 class="anchored" data-anchor-id="collect">Collect</h3>
+<p>Action / To Driver: Return all items in the RDD to the driver in a single list</p>
+<p><img src="images/DUO6ygB.png" class="img-fluid"></p>
+<p>Source: https://i.imgur.com/DUO6ygB.png</p>
+</section>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
+<p>Collect the text you read before from the <code>sample.txt</code>file.</p>
+</section>
+<section id="map" class="level3">
+<h3 class="anchored" data-anchor-id="map">Map</h3>
+<p>Transformation / Narrow: Return a new RDD by applying a function to each element of this RDD</p>
+<p><img src="images/PxNJf0U.png" class="img-fluid"></p>
+<p>Source: http://i.imgur.com/PxNJf0U.png</p>
+<div class="cell" data-cell_id="00022-e19738f1-5568-4e01-a918-31f95720f79a" data-deepnote_cell_type="code" data-execution_millis="2412" data-execution_start="1605183503558" data-source_hash="8210a3cb">
+<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">8</span>)))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rdd.<span class="bu">map</span>(<span class="kw">lambda</span> x: x <span class="op">**</span> <span class="dv">2</span>).collect() <span class="co"># Square each element</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise</h3>
+<p>Replace the lambda function by a function that contains a pause (sleep(1)) and check if the <code>map</code> operation is parallelized.</p>
+</section>
+<section id="filter" class="level3">
+<h3 class="anchored" data-anchor-id="filter">Filter</h3>
+<p>Transformation / Narrow: Return a new RDD containing only the elements that satisfy a predicate</p>
+<p><img src="images/GFyji4U.png" class="img-fluid"> Source: http://i.imgur.com/GFyji4U.png</p>
+<div class="cell" data-cell_id="00025-9893a281-e7fd-49e4-880e-c18c223437e2" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the even elements</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>rdd.<span class="bu">filter</span>(<span class="kw">lambda</span> x: x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="flatmap" class="level3">
+<h3 class="anchored" data-anchor-id="flatmap">FlatMap</h3>
+<p>Transformation / Narrow: Return a new RDD by first applying a function to all elements of this RDD, and then flattening the results</p>
+<p><img src="images/TsSUex8.png" class="img-fluid"></p>
+<div class="cell" data-cell_id="00027-eab04ee2-2189-474e-b0ee-7cdf04d51334" data-deepnote_cell_type="code" data-execution_millis="1423" data-execution_start="1606209096798" data-source_hash="ed69af29">
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>rdd.flatMap(<span class="kw">lambda</span> x: (x, x<span class="op">*</span><span class="dv">100</span>, <span class="dv">42</span>)).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise</h3>
+<p>Use FlatMap to clean the text from <code>sample.txt</code>file. Lower, remove dots and split into words.</p>
+</section>
+<section id="groupby" class="level3">
+<h3 class="anchored" data-anchor-id="groupby">GroupBy</h3>
+<p>Transformation / Wide: Group the data in the original RDD. Create pairs where the key is the output of a user function, and the value is all items for which the function yields this key.</p>
+<p><img src="images/gdj0Ey8.png" class="img-fluid"></p>
+<div class="cell" data-cell_id="00029-93936a32-6fc4-4c60-b38d-7935aa2df61f" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize([<span class="st">'John'</span>, <span class="st">'Fred'</span>, <span class="st">'Anna'</span>, <span class="st">'James'</span>])</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> rdd.groupBy(<span class="kw">lambda</span> w: w[<span class="dv">0</span>])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>[(k, <span class="bu">list</span>(v)) <span class="cf">for</span> (k, v) <span class="kw">in</span> rdd.collect()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="groupbykey" class="level3">
+<h3 class="anchored" data-anchor-id="groupbykey">GroupByKey</h3>
+<p>Transformation / Wide: Group the values for each key in the original RDD. Create a new pair where the original key corresponds to this collected group of values.</p>
+<p><img src="images/TlWRGr2.png" class="img-fluid"></p>
+<div class="cell" data-cell_id="00031-bc1d6a4c-8103-42a9-a39a-ee8d80680447" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize([(<span class="st">'B'</span>,<span class="dv">5</span>),(<span class="st">'B'</span>,<span class="dv">4</span>),(<span class="st">'A'</span>,<span class="dv">3</span>),(<span class="st">'A'</span>,<span class="dv">2</span>),(<span class="st">'A'</span>,<span class="dv">1</span>)])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> rdd.groupByKey()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>[(j[<span class="dv">0</span>], <span class="bu">list</span>(j[<span class="dv">1</span>])) <span class="cf">for</span> j <span class="kw">in</span> rdd.collect()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="join" class="level3">
+<h3 class="anchored" data-anchor-id="join">Join</h3>
+<p>Transformation / Wide: Return a new RDD containing all pairs of elements having the same key in the original RDDs</p>
+<p><img src="images/YXL42Nl.png" class="img-fluid"></p>
+<div class="cell" data-cell_id="00033-10e3b4f2-3f6f-4a99-adac-d8bc8c92c2e9" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sc.parallelize([(<span class="st">"a"</span>, <span class="dv">1</span>), (<span class="st">"b"</span>, <span class="dv">2</span>)])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> sc.parallelize([(<span class="st">"a"</span>, <span class="dv">3</span>), (<span class="st">"a"</span>, <span class="dv">4</span>), (<span class="st">"b"</span>, <span class="dv">5</span>)])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>x.join(y).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="distinct" class="level3">
+<h3 class="anchored" data-anchor-id="distinct">Distinct</h3>
+<p>Transformation / Wide: Return a new RDD containing distinct items from the original RDD (omitting all duplicates)</p>
+<p><img src="images/Vqgy2a4.png" class="img-fluid"></p>
+<div class="cell" data-cell_id="00035-fd077e6b-1166-4fca-b5e8-c9a310dc59e7" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>rdd.distinct().collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="keyby" class="level3">
+<h3 class="anchored" data-anchor-id="keyby">KeyBy</h3>
+<p>Transformation / Narrow: Create a Pair RDD, forming one pair for each item in the original RDD. The pair’s key is calculated from the value via a user-supplied function.</p>
+<p><img src="images/nqYhDW5.png" class="img-fluid"></p>
+<div class="cell" data-cell_id="00037-e13e8ce6-ad59-4cb9-a672-336afba96873" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize([<span class="st">'John'</span>, <span class="st">'Fred'</span>, <span class="st">'Anna'</span>, <span class="st">'James'</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>rdd.keyBy(<span class="kw">lambda</span> w: w[<span class="dv">0</span>]).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="actions-1" class="level2">
+<h2 class="anchored" data-anchor-id="actions-1">Actions</h2>
+<section id="map-reduce-operation" class="level3">
+<h3 class="anchored" data-anchor-id="map-reduce-operation">Map-Reduce operation</h3>
+<p>Action / To Driver: Aggregate all the elements of the RDD by applying a user function pairwise to elements and partial results, and return a result to the driver</p>
+<p><img src="images/R72uzwX.png" class="img-fluid"></p>
+<div class="cell" data-cell_id="00039-cc090acd-104b-4683-844f-153af8f2956d" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> add</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">8</span>)))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>rdd.<span class="bu">map</span>(<span class="kw">lambda</span> x: x <span class="op">**</span> <span class="dv">2</span>).<span class="bu">reduce</span>(add) <span class="co"># reduce is an action!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="max-min-sum-mean-variance-stdev" class="level3">
+<h3 class="anchored" data-anchor-id="max-min-sum-mean-variance-stdev">Max, Min, Sum, Mean, Variance, Stdev</h3>
+<p>Action / To Driver: Compute the respective function (maximum value, minimum value, sum, mean, variance, or standard deviation) from a numeric RDD</p>
+<p><img src="images/HUCtib1.png" class="img-fluid"></p>
+</section>
+<section id="countbykey" class="level3">
+<h3 class="anchored" data-anchor-id="countbykey">CountByKey</h3>
+<p>Action / To Driver: Return a map of keys and counts of their occurrences in the RDD</p>
+<p><img src="images/jvQTGv6.png" class="img-fluid"></p>
+<div class="cell" data-cell_id="00042-613102f2-fea1-436a-a695-8169201af599" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.parallelize([(<span class="st">'J'</span>, <span class="st">'James'</span>), (<span class="st">'F'</span>,<span class="st">'Fred'</span>), </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                    (<span class="st">'A'</span>,<span class="st">'Anna'</span>), (<span class="st">'J'</span>,<span class="st">'John'</span>)])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>rdd.countByKey()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00043-a8624fda-21b4-4d84-b41a-0b2f94951a4a" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stop the local spark cluster</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sc.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-10.1-word-count-in-apache-spark" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-10.1-word-count-in-apache-spark">Exercise 10.1 Word-count in Apache Spark</h3>
+<ul>
+<li>Write the sample text file</li>
+</ul>
+<div class="cell" data-cell_id="00045-5b333640-61a1-44e1-b743-aa57a5042686" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb20"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'sample.txt'</span>,<span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    f.write(text())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Create the rdd with <code>SparkContext.textFile method</code></li>
+<li>lower, remove dots and split using <code>rdd.flatMap</code></li>
+<li>use <code>rdd.map</code> to create the list of key/value pair (word, 1)</li>
+<li><code>rdd.reduceByKey</code> to get all occurences</li>
+<li><code>rdd.takeOrdered</code>to get sorted frequencies of words</li>
+</ul>
+<p>All documentation is available <a href="https://spark.apache.org/docs/2.1.0/api/python/pyspark.html?highlight=textfile#pyspark.SparkContext">here</a> for textFile and <a href="https://spark.apache.org/docs/2.1.0/api/python/pyspark.html?highlight=textfile#pyspark.RDD">here</a> for RDD.</p>
+<p>For a global overview see the Transformations section of the <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">programming guide</a></p>
+</section>
+</section>
+<section id="sparksession" class="level2">
+<h2 class="anchored" data-anchor-id="sparksession">SparkSession</h2>
+<p>Since SPARK 2.0.0, SparkSession provides a single point of entry to interact with Spark functionality and allows programming Spark with DataFrame and Dataset APIs.</p>
+<section id="pi-computation-example" class="level3">
+<h3 class="anchored" data-anchor-id="pi-computation-example"><span class="math inline">\(\pi\)</span> computation example</h3>
+<ul>
+<li>We can estimate an approximate value for <span class="math inline">\(\pi\)</span> using the following Monte-Carlo method:</li>
+</ul>
+<ol type="1">
+<li>Inscribe a circle in a square</li>
+<li>Randomly generate points in the square</li>
+<li>Determine the number of points in the square that are also in the circle</li>
+<li>Let <span class="math inline">\(r\)</span> be the number of points in the circle divided by the number of points in the square, then <span class="math inline">\(\pi \approx 4 r\)</span>.</li>
+</ol>
+<ul>
+<li>Note that the more points generated, the better the approximation</li>
+</ul>
+<p>See <a href="https://computing.llnl.gov/tutorials/parallel_comp/#ExamplesPI">this tutorial</a>.</p>
+</section>
+<section id="exercise-9.2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-9.2">Exercise 9.2</h3>
+<p>Using the same method than the PI computation example, compute the integral <span class="math display">\[
+I = \int_0^1 \exp(-x^2) dx
+\]</span> You can check your result with numpy</p>
+<div class="cell" data-cell_id="00047-4e2ae5f8-be58-401c-8691-41d0eb0e7932" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numpy evaluates solution using numeric computation. </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># It uses discrete values of the function</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1000</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>np.trapz(np.exp(<span class="op">-</span>x<span class="op">*</span>x),x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>numpy and scipy evaluates solution using numeric computation. It uses discrete values of the function</p>
+<div class="cell" data-cell_id="00049-f4fbd4ea-4a0c-41fb-81cd-e319fee06fd5" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> quad</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>quad(<span class="kw">lambda</span> x: np.exp(<span class="op">-</span>x<span class="op">*</span>x), <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># note: the solution returned is complex </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="correlation-between-daily-stock" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-between-daily-stock">Correlation between daily stock</h3>
+<ul>
+<li>Data preparation</li>
+</ul>
+<div class="cell" data-cell_id="00051-c66a61e1-30d9-4d8f-8d8c-06e39894d019" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># library to get directory and file paths</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tarfile <span class="co"># this module makes possible to read and write tar archives</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_data(name, where):</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    datadir <span class="op">=</span> os.path.join(where,name)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(datadir):</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>       <span class="bu">print</span>(<span class="st">"Extracting data..."</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>       tar_path <span class="op">=</span> os.path.join(where, name<span class="op">+</span><span class="st">'.tgz'</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>       <span class="cf">with</span> tarfile.<span class="bu">open</span>(tar_path, mode<span class="op">=</span><span class="st">'r:gz'</span>) <span class="im">as</span> data:</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>          data.extractall(where)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>extract_data(<span class="st">'daily-stock'</span>,<span class="st">'data'</span>) <span class="co"># this function call will extract json files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00052-5dba8c02-1524-4ef4-b5f5-85a65e1434c5" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, glob</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>here <span class="op">=</span> os.getcwd()</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>datadir <span class="op">=</span> os.path.join(here,<span class="st">'data'</span>,<span class="st">'daily-stock'</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> <span class="bu">sorted</span>(glob.glob(os.path.join(datadir, <span class="st">'*.json'</span>)))</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>filenames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00053-6816ac9f-f87e-4f04-956c-105517c73273" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb25"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>rm data<span class="op">/</span>daily<span class="op">-</span>stock<span class="op">/*</span>.h5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00054-c7da4efd-ed13-469f-a26b-2f6e285603f7" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, json</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fn <span class="kw">in</span> filenames:</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(fn) <span class="im">as</span> f:</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> [json.loads(line) <span class="cf">for</span> line <span class="kw">in</span> f]</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    out_filename <span class="op">=</span> fn[:<span class="op">-</span><span class="dv">5</span>] <span class="op">+</span> <span class="st">'.h5'</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    df.to_hdf(out_filename, <span class="st">'/data'</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Finished : </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> out_filename.split(os.path.sep)[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> <span class="bu">sorted</span>(glob(os.path.join(<span class="st">'data'</span>, <span class="st">'daily-stock'</span>, <span class="st">'*.h5'</span>)))  <span class="co"># data/json/*.json</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sequential-code" class="level3">
+<h3 class="anchored" data-anchor-id="sequential-code">Sequential code</h3>
+<div class="cell" data-cell_id="00056-114f9f2a-37a4-4414-a5dd-c2a6bf1f3835" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>filenames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00057-39e60f20-3194-4f82-8230-9dbef224afa8" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb28"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pd.HDFStore(<span class="st">'data/daily-stock/aet.h5'</span>) <span class="im">as</span> hdf:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This prints a list of all group names:</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(hdf.keys())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00058-957e72f9-0bea-498d-93e2-685cea013bd5" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb29"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df_test <span class="op">=</span> pd.read_hdf(<span class="st">'data/daily-stock/aet.h5'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00059-ae84d087-9d8b-4288-bc0d-aad10643fb19" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> []</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fn <span class="kw">in</span> filenames:   <span class="co"># Simple map over filenames</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    series.append(pd.read_hdf(fn)[<span class="st">"close"</span>])</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> series:    <span class="co"># Doubly nested loop over the same collection</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> series:  </span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> (a <span class="op">==</span> b).<span class="bu">all</span>():     <span class="co"># Filter out comparisons of the same series </span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>            results.append(a.corr(b))  <span class="co"># Apply function</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">max</span>(results)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exercise-9.3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-9.3">Exercise 9.3</h3>
+<p>Parallelize the code above with Apache Spark.</p>
+<ul>
+<li>Change the filenames because of the Hadoop environment.</li>
+</ul>
+<div class="cell" data-cell_id="00062-06454d0f-52e6-4f2e-abd5-be1ece9f3cbb" data-deepnote_cell_type="code">
+<div class="sourceCode" id="cb31"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, glob</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>here <span class="op">=</span> os.getcwd()</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> <span class="bu">sorted</span>(glob.glob(os.path.join(here,<span class="st">'data'</span>, <span class="st">'daily-stock'</span>, <span class="st">'*.h5'</span>)))</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>filenames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If it is not started don’t forget the PySpark context</p>
+<p>Computation time is slower because there is a lot of setup, workers creation, there is a lot of communications the correlation function is too small</p>
+</section>
+<section id="exercise-9.4-fasta-file-example" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-9.4-fasta-file-example">Exercise 9.4 Fasta file example</h3>
+<p>Use a RDD to calculate the GC content of fasta file nucleotide-sample.txt:</p>
+<p><span class="math display">\[\frac{G+C}{A+T+G+C}\times100 \% \]</span></p>
+<p>Create a rdd from fasta file genome.txt in data directory and count ‘G’ and ‘C’ then divide by the total number of bases.</p>
+</section>
+<section id="another-example" class="level3">
+<h3 class="anchored" data-anchor-id="another-example">Another example</h3>
+<p>Compute the most frequent sequence with 5 bases.</p>
+
+<!-- -->
+</section>
+</section>
+</section>
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    window.tippy(el, {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    }); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</main>
+<div class="page-navigation page-navigation-docked">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</div>
+</div> <!-- /main column -->
+</div> <!-- /row -->
+</div> <!-- /container fluid -->
+
+
+</body></html>
