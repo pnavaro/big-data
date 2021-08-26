@@ -1,0 +1,44 @@
+project:
+  type: site
+  output-dir: _build/html/quarto
+
+site:
+  title: "Python tools for Big Data"
+  logo: images/logoR2-Noir.png
+  navbar:
+    type: dark
+    background: primary
+    left:
+      - href: intro.md
+        text: Home
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Notebooks"
+        contents:
+          - 01-GitBasics.ipynb
+          - 02-Installation.ipynb
+          - 03-JupyterQuickStart.ipynb
+          - 04-WordCount.ipynb
+          - 05-MapReduce.ipynb
+          - 06-ParallelComputation.ipynb
+          - 07-AsynchronousProcessing.ipynb
+          - 08-DaskDelayed.ipynb
+          - 09-DaskBag.ipynb
+          - 10-PandasSeries.ipynb
+          - 11-PandaDataframes.ipynb
+          - 12-UnixCommands.ipynb
+          - 13-Hadoop.ipynb
+          - 14-FileFormats.ipynb
+          - 15-PySpark.ipynb
+          - 16-DaskDataframes.ipynb
+          - 17-SparkDataFrames.ipynb
+          - 18-NYCTaxiCabTripDask.ipynb
+          - 19-NYCTaxiCabTripSpark.ipynb
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

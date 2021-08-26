@@ -1,5 +1,6 @@
-- file: intro.md
-
+format: jb-article
+root: intro.md
+sections:
 - file: 01-GitBasics
 - file: 02-Installation
 - file: 03-JupyterQuickStart

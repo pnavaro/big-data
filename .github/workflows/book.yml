@@ -41,8 +41,20 @@ jobs:
     - name: Build the book
       shell: bash -l {0}
       run: conda run -n base jupyter-book build notebooks
+    - name: "Install quarto bin"
+      run: |
+        curl -s https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | 
+        grep "browser_download_url.*deb" | 
+        cut -d '"' -f 4 |
+        wget -i -O quarto.deb -
+        sudo dpkg -i quarto.deb
+    - name: Render quarto book
+      shell: bash -l {0}
+      run: |
+        conda run -n base quarto render notebooks
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./notebooks/_build/html
+
