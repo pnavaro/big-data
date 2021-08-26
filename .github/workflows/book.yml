@@ -22,9 +22,9 @@ jobs:
     - name: Download Apache Spark
       uses: wei/wget@v1
       with:
-        args: https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz
+        args: https://mirrors.ircam.fr/pub/apache/spark/spark-3.1.2/spark-3.1.2-bin-hadoop2.7.tgz
     - name: Install Apache Spark
-      run: tar zxf spark-3.0.1-bin-hadoop2.7.tgz
+      run: tar zxf spark-3.1.2-bin-hadoop2.7.tgz
     - name: Set SPARK_HOME
       run: echo "SPARK_HOME=/home/runner/spark-3.0.0-bin-hadoop2.7" >> $GITHUB_ENV
     - name: Install Miniconda and dependencies
