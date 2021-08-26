@@ -7,7 +7,7 @@ Notebooks for [Master of Data Science Rennes](https://www.sites.univ-rennes2.fr/
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/pnavaro/big-data)
 
 - [Website](https://pnavaro.github.io/big-data) generated with [jupyterbook](https://jupyterbook.org).
-- [Website](https://pnavaro.github.io/big-data/quarto) generated with [quarto](https://quarto.org).
+- [Website](https://pnavaro.github.io/big-data/quarto/intro.html) generated with [quarto](https://quarto.org).
 
 The content of these notebooks are made thanks to these [references](https://pnavaro.github.io/big-data/intro.html).
 
