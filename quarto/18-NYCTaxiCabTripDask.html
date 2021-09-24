@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – nyctaxicabtripdask</title>
   <style>
@@ -100,7 +100,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -130,7 +130,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -142,10 +142,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -215,7 +215,7 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#dask-dataframes-on-hdfs" class="nav-link active" data-scroll-target="#dask-dataframes-on-hdfs">Dask dataframes on HDFS</a>
@@ -240,18 +240,16 @@
 <p>As Spark, Dask can work in cluster mode. There is several ways to launch a cluster.</p>
 <section id="local-cluster" class="level2">
 <h2 class="anchored" data-anchor-id="local-cluster">Local cluster</h2>
-<div class="cell" data-cell_id="00002-a625f38b-4c20-409c-b827-196021dd4c47" data-deepnote_cell_type="code" data-execution_millis="1048" data-execution_start="1606918412381" data-source_hash="4e55e2c8">
 <div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.distributed <span class="im">import</span> LocalCluster, Client</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> LocalCluster()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="remote-clusters-via-ssh" class="level2">
 <h2 class="anchored" data-anchor-id="remote-clusters-via-ssh">Remote clusters via SSH</h2>
 <p>Code below can be used to launch a Dask SSH cluster on svmass2 server.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.distributed <span class="im">import</span> SSHCluster</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>svpes <span class="op">=</span> [<span class="ss">f"svpe</span><span class="sc">{i:1d}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>)]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>svpes <span class="op">=</span> [<span class="ss">f"svpe</span><span class="sc">{</span>i<span class="sc">:1d}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>)]</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(svpes)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> SSHCluster([<span class="st">"localhost"</span>] <span class="op">+</span> svpes)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -302,7 +300,6 @@ client = Client(cluster)</code></pre>
 <p>We look at <a href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">the New York City Taxi Cab dataset</a>. This includes every ride made in the city of New York since 2009.</p>
 <p>On <a href="http://chriswhong.github.io/nyctaxi/">this website</a> you can see the data for one random NYC yellow taxi on a single day.</p>
 <p>On <a href="http://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/">this post</a>, you can see an analysis of this dataset. Postgres and R scripts are available on <a href="https://github.com/toddwschneider/nyc-taxi-data">GitHub</a>. There is also a dashboard available <a href="https://toddwschneider.com/dashboards/nyc-taxi-ridehailing-uber-lyft-data/">here</a> that updates monthly with the latest taxi, Uber, and Lyft aggregate stats.</p>
-<div class="cell" data-cell_id="00011-580f4583-2389-4de5-926a-3e4190b8585b" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>```python</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.distributed <span class="im">import</span> Client</span>
@@ -317,7 +314,6 @@ client = Client(cluster)</code></pre>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>nyc2014 <span class="op">=</span> c.persist(nyc2014)</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>progress(nyc2014)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>```</p>
-</div>
 <section id="exercises" class="level3">
 <h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
 <ul>
@@ -331,7 +327,6 @@ client = Client(cluster)</code></pre>
 </ul>
 <p><a href="http://docs.dask.org/en/latest/dataframe.html">Dask dataframe documentation</a></p>
 
-<!-- -->
 </section>
 </section>
 </section>

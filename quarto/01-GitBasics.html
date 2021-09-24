@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – gitbasics</title>
   <style>
@@ -100,7 +100,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -111,8 +111,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./intro.html">
- Home</a>
+    <a class="nav-link" href="./intro.html">Home</a>
   </li>  
 </ul>
       </div> <!-- /navcollapse -->
@@ -131,7 +130,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -143,10 +142,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -216,7 +215,8 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#git-basics" class="nav-link active" data-scroll-target="#git-basics">Git basics</a>
 <ul class="collapse">
@@ -228,6 +228,52 @@
 <li><a href="#distributed-version-control-systems" class="nav-link" data-scroll-target="#distributed-version-control-systems">Distributed Version Control Systems</a></li>
 <li><a href="#git-bash" class="nav-link" data-scroll-target="#git-bash">Git bash</a></li>
 <li><a href="#configure-git" class="nav-link" data-scroll-target="#configure-git">Configure Git</a></li>
+<li><a href="#initialize-a-git-repository-in-a-directory" class="nav-link" data-scroll-target="#initialize-a-git-repository-in-a-directory">Initialize a git repository in a directory</a>
+<ul class="collapse">
+<li><a href="#add-the-file-to-the-git-index" class="nav-link" data-scroll-target="#add-the-file-to-the-git-index">Add the file to the git index</a></li>
+</ul></li>
+<li><a href="#commit" class="nav-link" data-scroll-target="#commit">Commit</a></li>
+<li><a href="#four-file-status-in-the-repository" class="nav-link" data-scroll-target="#four-file-status-in-the-repository">Four File status in the repository</a></li>
+<li><a href="#github-account-and-ssh-key" class="nav-link" data-scroll-target="#github-account-and-ssh-key">Github account and SSH key</a>
+<ul class="collapse">
+<li><a href="#generating-publicprivate-rsa-key-pair." class="nav-link" data-scroll-target="#generating-publicprivate-rsa-key-pair.">Generating public/private rsa key pair.</a></li>
+</ul></li>
+<li><a href="#github-repository" class="nav-link" data-scroll-target="#github-repository">GitHub repository</a></li>
+<li><a href="#enable-github-pages" class="nav-link" data-scroll-target="#enable-github-pages">Enable GitHub pages</a></li>
+<li><a href="#git-workflow" class="nav-link" data-scroll-target="#git-workflow">Git Workflow</a></li>
+<li><a href="#exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+<li><a href="#branches" class="nav-link" data-scroll-target="#branches">Branches</a></li>
+<li><a href="#create-a-new-branch" class="nav-link" data-scroll-target="#create-a-new-branch">Create a new branch</a></li>
+<li><a href="#edit-and-modify-the-index.md-file" class="nav-link" data-scroll-target="#edit-and-modify-the-index.md-file">Edit and modify the index.md file</a></li>
+<li><a href="#commit-the-changes" class="nav-link" data-scroll-target="#commit-the-changes">Commit the changes</a></li>
+<li><a href="#commit-or-fast-commit" class="nav-link" data-scroll-target="#commit-or-fast-commit">Commit or fast commit</a></li>
+<li><a href="#merge-mybranch-with-the-master-branch" class="nav-link" data-scroll-target="#merge-mybranch-with-the-master-branch">Merge mybranch with the master branch</a></li>
+<li><a href="#push-master-branch" class="nav-link" data-scroll-target="#push-master-branch">Push master branch</a></li>
+<li><a href="#collaborating-writing-with-a-git-repository" class="nav-link" data-scroll-target="#collaborating-writing-with-a-git-repository">Collaborating writing with a git repository</a></li>
+<li><a href="#clone-the-remote-repository" class="nav-link" data-scroll-target="#clone-the-remote-repository">Clone the remote repository</a></li>
+<li><a href="#share-your-modifications" class="nav-link" data-scroll-target="#share-your-modifications">Share your modifications</a>
+<ul class="collapse">
+<li><a href="#option-1-merge-master-branch-and-push-it" class="nav-link" data-scroll-target="#option-1-merge-master-branch-and-push-it">Option 1 : merge master branch and push it</a></li>
+<li><a href="#option-2-push-your-branch" class="nav-link" data-scroll-target="#option-2-push-your-branch">Option 2 : Push your branch</a></li>
+</ul></li>
+<li><a href="#synchronize-the-repository" class="nav-link" data-scroll-target="#synchronize-the-repository">Synchronize the repository</a>
+<ul class="collapse">
+<li><a href="#update-master-branch" class="nav-link" data-scroll-target="#update-master-branch">Update master branch</a></li>
+<li><a href="#update-personal-branch" class="nav-link" data-scroll-target="#update-personal-branch">Update personal branch</a></li>
+</ul></li>
+<li><a href="#rebase" class="nav-link" data-scroll-target="#rebase">Rebase</a></li>
+<li><a href="#stash" class="nav-link" data-scroll-target="#stash">Stash</a>
+<ul class="collapse">
+<li><a href="#apply-last-stash" class="nav-link" data-scroll-target="#apply-last-stash">Apply last <code>stash</code></a></li>
+<li><a href="#delete-the-last-stash" class="nav-link" data-scroll-target="#delete-the-last-stash">Delete the last <code>stash</code></a></li>
+<li><a href="#apply-last-stash-and-drop" class="nav-link" data-scroll-target="#apply-last-stash-and-drop">Apply last <code>stash</code> and drop</a></li>
+</ul></li>
+<li><a href="#merge-conflicts" class="nav-link" data-scroll-target="#merge-conflicts">Merge conflicts</a></li>
+<li><a href="#why-git" class="nav-link" data-scroll-target="#why-git">Why Git?</a></li>
+<li><a href="#why-not" class="nav-link" data-scroll-target="#why-not">Why not</a></li>
+<li><a href="#some-useful-commands" class="nav-link" data-scroll-target="#some-useful-commands">Some useful commands</a></li>
+<li><a href="#revert-the-last-commit" class="nav-link" data-scroll-target="#revert-the-last-commit">Revert the last commit</a></li>
+<li><a href="#git-through-ide" class="nav-link" data-scroll-target="#git-through-ide">Git through IDE</a></li>
 </ul></li>
 </ul>
 </nav></div>
@@ -318,21 +364,423 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.name <span class="st">"Prenom Nom"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.email <span class="st">"prenom.nom@univ-rennes2.fr"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="table">
-<colgroup>
-<col style="width: 5%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">~~~ user.name=Prenom Nom user.email=prenom.nom@univ-rennes2.fr ~~~</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">document-css: false link-citations: true project: type: site output-dir: _build/html/quarto lib-dir: site_libs site: title: Python tools for Big Data logo: images/logoR2-Noir.png navbar: type: dark background: primary left: - href: intro.md text: Home sidebar: style: docked search: true contents: - section: Notebooks contents: - 01-GitBasics.ipynb - 02-Installation.ipynb - 03-JupyterQuickStart.ipynb - 04-WordCount.ipynb - 05-MapReduce.ipynb - 06-ParallelComputation.ipynb - 07-AsynchronousProcessing.ipynb - 08-DaskDelayed.ipynb - 09-DaskBag.ipynb - 10-PandasSeries.ipynb - 11-PandaDataframes.ipynb - 12-UnixCommands.ipynb - 13-Hadoop.ipynb - 14-FileFormats.ipynb - 15-PySpark.ipynb - 16-DaskDataframes.ipynb - 17-SparkDataFrames.ipynb - 18-NYCTaxiCabTripDask.ipynb - 19-NYCTaxiCabTripSpark.ipynb format: html: theme: cosmo css: - styles.css toc: true theme: cosmo toc-title: On this page</td>
-</tr>
-</tbody>
-</table>
+<hr>
+<pre><code>user.name=Prenom Nom
+user.email=prenom.nom@univ-rennes2.fr</code></pre>
+</section>
+<section id="initialize-a-git-repository-in-a-directory" class="level2">
+<h2 class="anchored" data-anchor-id="initialize-a-git-repository-in-a-directory">Initialize a git repository in a directory</h2>
+<p>Create the directory <code>homepage</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir homepage                          <span class="co"># Create directory homepage</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd homepage                             <span class="co"># Change directory</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> touch index.md                          <span class="co"># Create the index.md file</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">"# John Smith "</span> <span class="op">&gt;&gt;</span> index.md        <span class="co"># Write the string "# Test" in index.md</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">"Rennes"</span> <span class="op">&gt;&gt;</span> index.md               <span class="co"># Append Rennes to index.md</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat index.md                            <span class="co"># Display index.md content</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># John Smith</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Rennes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To use git in this repository</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git init</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Initialized</span> empty Git repository in /Users/navaro/homepage/.git/</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">No</span> commits yet</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Untracked</span> files:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to include in what will be committed<span class="kw">)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">index.md</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> added to commit but untracked files present <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> to track<span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="add-the-file-to-the-git-index" class="level3">
+<h3 class="anchored" data-anchor-id="add-the-file-to-the-git-index">Add the file to the git index</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add index.md</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">No</span> commits yet</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git rm --cached &lt;file&gt;..."</span> to unstage<span class="kw">)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">new</span> file:   index.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="commit" class="level2">
+<h2 class="anchored" data-anchor-id="commit">Commit</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">'Create the file index.md'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[master</span> <span class="er">(</span><span class="ex">root-commit</span><span class="kw">)</span> <span class="ex">63a5cee]</span> Create the file index.md</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> file changed, 2 insertions<span class="er">(</span><span class="ex">+</span><span class="kw">)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">create</span> mode 100644 index.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="four-file-status-in-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="four-file-status-in-the-repository">Four File status in the repository</h2>
+<p><img src="images/18333fig0201-tn.png" alt="git" width="450px"></p>
+</section>
+<section id="github-account-and-ssh-key" class="level2">
+<h2 class="anchored" data-anchor-id="github-account-and-ssh-key">Github account and SSH key</h2>
+<p><a href="https://github.com/join">Create your GitHub account</a></p>
+<section id="generating-publicprivate-rsa-key-pair." class="level3">
+<h3 class="anchored" data-anchor-id="generating-publicprivate-rsa-key-pair.">Generating public/private rsa key pair.</h3>
+<p>Ref : <a href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">New ssh key on GitHub</a></p>
+<p>Open Terminal or Git bash.</p>
+<p>Paste the text below, substituting in your GitHub email address.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa <span class="at">-b</span> 4096 <span class="at">-C</span> <span class="st">"prenom.nom@univ-rennes2.fr"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a new ssh key, using the provided email as a label.</p>
+<p>When you’re prompted to “Enter a file in which to save the key,” press Enter. This accepts the default file location. Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter] At the prompt, let it empty for no passphrase.</p>
+<p>This creates 2 files, the private key: <code>id_rsa</code>, and the public key <code>id_rsa.pub</code>. Display and copy the SSH key to your clipboard.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_rsa.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the upper-right corner of any page, click your profile photo, then click <code>Settings</code>. In the user settings sidebar, click <code>SSH and GPG keys</code>. Click <code>New SSH key</code> or <code>Add SSH key</code>.</p>
+</section>
+</section>
+<section id="github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="github-repository">GitHub repository</h2>
+<p><font color="red">In the following steps replace <strong>your_login</strong> by your own GitHub login</font></p>
+<p>Create the <code>your_login.github.io</code> repository on your GitHub account - Click on ‘+’ on top right of the page and select “New repository” - Repository name = “your_login.github.io” - Don’t change default options - Click on “Create repository”</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd homepage</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git remote add origin git@github.com:your_login/your_login.github.io.git</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git push <span class="at">-u</span> origin master</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Enumerating</span> objects: 6, done.</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Counting</span> objects: 100% <span class="er">(</span><span class="ex">6/6</span><span class="kw">)</span><span class="ex">,</span> done.</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Delta</span> compression using up to 4 threads</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Compressing</span> objects: 100% <span class="er">(</span><span class="ex">2/2</span><span class="kw">)</span><span class="ex">,</span> done.</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Writing</span> objects: 100% <span class="er">(</span><span class="ex">4/4</span><span class="kw">)</span><span class="ex">,</span> 449 bytes <span class="kw">|</span> <span class="ex">449.00</span> KiB/s, done.</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Total</span> 4 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> reused 0 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> pack-reused 0</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> github.com:your_login/your_login.github.io.git</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>   <span class="ex">fd6dace..c4488e6</span>  master <span class="at">-</span><span class="op">&gt;</span> master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="enable-github-pages" class="level2">
+<h2 class="anchored" data-anchor-id="enable-github-pages">Enable GitHub pages</h2>
+<p>Go to <a href="https://github.com/your_login.github.io/settings" class="uri">https://github.com/your_login.github.io/settings</a></p>
+<p>In the section <strong>GitHub Pages</strong></p>
+<p>Select <code>master</code> for <strong>Source</strong> and <code>root</code></p>
+<p>Choose the <strong>minimal theme</strong> and validate, you can change it later.</p>
+<p>The website is available at <a href="https://your_login.github.io" class="uri">https://your_login.github.io</a></p>
+</section>
+<section id="git-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="git-workflow">Git Workflow</h2>
+<p><img src="images/four_stages.png" alt="git" width="150px"></p>
+<p>By choosing a theme, you create on GitHub a file named “_config.yml”. You need to update your local version with</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--no-edit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>--no-edit</code> function avoid spawning a text editor, and asking for a merge commit message. If you do</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will display the new file _config.yml</p>
+</section>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>Check the web page by visiting <a href="https://your_login.github.io" class="uri">https://your_login.github.io</a></p>
+<p>Modify the file index.md and do the procedure again. Modify also the file <code>_config.yml</code> by appending the following content:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Page personnelle</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> Exercice Git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="branches" class="level2">
+<h2 class="anchored" data-anchor-id="branches">Branches</h2>
+<p><strong>Display all branches</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git branch <span class="at">-a</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> master</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">remotes/origin/master</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="create-a-new-branch" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-new-branch">Create a new branch</h2>
+<p>By creating a new branch you freeze the master branch and you can continue to work without modifying it. The branch created is the copy of the current branch (master).</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git branch mybranch</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout mybranch</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Switched</span> to branch <span class="st">'mybranch'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git branch</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">master</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> mybranch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Files could be different or not existing in two branches but they are located at the same place on the file system. When you use the <code>checkout</code> command, git applies the changes.</p>
+</section>
+<section id="edit-and-modify-the-index.md-file" class="level2">
+<h2 class="anchored" data-anchor-id="edit-and-modify-the-index.md-file">Edit and modify the index.md file</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="st">'![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)'</span> <span class="op">&gt;&gt;</span> index.md</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch mybranch</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git restore &lt;file&gt;..."</span> to discard changes in working directory<span class="kw">)</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   index.md</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="ex">no</span> changes added to commit <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> and/or <span class="st">"git commit -a"</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">--git</span> a/index.md b/index.md</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">index</span> 87dde03..af6739c 100644</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span> a/index.md</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">+++</span> b/index.md</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-3,3</span> +3,4 @@</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="ex">+![logo]</span><span class="er">(</span><span class="ex">https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="commit-the-changes" class="level2">
+<h2 class="anchored" data-anchor-id="commit-the-changes">Commit the changes</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add index.md</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch mybranch</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git restore --staged &lt;file&gt;..."</span> to unstage<span class="kw">)</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   index.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">'Add logo'</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[mybranch</span> 30a8912] Add logo</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> file changed, 1 insertion<span class="er">(</span><span class="ex">+</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="commit-or-fast-commit" class="level2">
+<h2 class="anchored" data-anchor-id="commit-or-fast-commit">Commit or fast commit</h2>
+<p><code>{image} images/index1.png :width: 400px</code> <code>{image} images/index2.png :width: 400px</code></p>
+</section>
+<section id="merge-mybranch-with-the-master-branch" class="level2">
+<h2 class="anchored" data-anchor-id="merge-mybranch-with-the-master-branch">Merge mybranch with the master branch</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff master</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">--git</span> a/index.md b/index.md</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">index</span> c744020..4d833d1 100644</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span> a/index.md</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="ex">+++</span> b/index.md</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-1,2</span> +1,3 @@</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a> <span class="co"># Prenom Nom</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">Rennes</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="ex">+![logo]</span><span class="er">(</span><span class="ex">https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="push-master-branch" class="level2">
+<h2 class="anchored" data-anchor-id="push-master-branch">Push master branch</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout master</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Switched</span> to branch <span class="st">'master'</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git merge mybranch</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Updating</span> 63a5cee..30a8912</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Fast-forward</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">index.md</span> <span class="kw">|</span> <span class="ex">1</span> +</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> file changed, 1 insertion<span class="er">(</span><span class="ex">+</span><span class="kw">)</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git push origin master</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Enumerating</span> objects: 9, done.</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Counting</span> objects: 100% <span class="er">(</span><span class="ex">9/9</span><span class="kw">)</span><span class="ex">,</span> done.</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Delta</span> compression using up to 4 threads</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Compressing</span> objects: 100% <span class="er">(</span><span class="ex">5/5</span><span class="kw">)</span><span class="ex">,</span> done.</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Writing</span> objects: 100% <span class="er">(</span><span class="ex">8/8</span><span class="kw">)</span><span class="ex">,</span> 869 bytes <span class="kw">|</span> <span class="ex">869.00</span> KiB/s, done.</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Total</span> 8 <span class="er">(</span><span class="ex">delta</span> 1<span class="kw">)</span><span class="ex">,</span> reused 0 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> pack-reused 0</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="ex">remote:</span> Resolving deltas: 100% <span class="er">(</span><span class="ex">1/1</span><span class="kw">)</span><span class="ex">,</span> completed with 1 local object.</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> github.com:your_login/your_login.github.io.git</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>   <span class="ex">6dafcbd..340d3dc</span>  master <span class="at">-</span><span class="op">&gt;</span> master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="collaborating-writing-with-a-git-repository" class="level2">
+<h2 class="anchored" data-anchor-id="collaborating-writing-with-a-git-repository">Collaborating writing with a git repository</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/git_cycle.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Cycle</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="clone-the-remote-repository" class="level2">
+<h2 class="anchored" data-anchor-id="clone-the-remote-repository">Clone the remote repository</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone ssh://svmass2/git/atelier_git.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:MMASSD/atelier_git.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="share-your-modifications" class="level2">
+<h2 class="anchored" data-anchor-id="share-your-modifications">Share your modifications</h2>
+<section id="option-1-merge-master-branch-and-push-it" class="level3">
+<h3 class="anchored" data-anchor-id="option-1-merge-master-branch-and-push-it">Option 1 : merge master branch and push it</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout master</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git merge mybranch</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git push origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="option-2-push-your-branch" class="level3">
+<h3 class="anchored" data-anchor-id="option-2-push-your-branch">Option 2 : Push your branch</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout mybranch</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git push origin mybranch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="synchronize-the-repository" class="level2">
+<h2 class="anchored" data-anchor-id="synchronize-the-repository">Synchronize the repository</h2>
+<section id="update-master-branch" class="level3">
+<h3 class="anchored" data-anchor-id="update-master-branch">Update master branch</h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can use <code>pull</code> which is a <code>fetch and merge</code> command</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git pull origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>origin</code> is the repository and <code>master</code> the <strong>remote</strong> branch from you want to update.</p>
+<p>In some cases, it could be safer to check the differences between your local and the remote branch with</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git fetch origin</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff origin/master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and merge</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git merge origin master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="update-personal-branch" class="level3">
+<h3 class="anchored" data-anchor-id="update-personal-branch">Update personal branch</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout mybranch</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git merge master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="rebase" class="level2">
+<h2 class="anchored" data-anchor-id="rebase">Rebase</h2>
+<p>If the branch named <code>mybranch</code> is local and never pushed to the repository. It is possible to use <strong>rebase</strong> instead of merge. <code>git rebase</code> reapply commits on top of another base tip.</p>
+<p>Exercise:</p>
+<ul>
+<li>Create a new branch called <code>test_rebase</code> from master.</li>
+<li>Do some modifications on the remote master branch by editing file in your browser on GitHub.</li>
+<li>On your <code>test_rebase</code> do also some modifications. Type</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git log <span class="at">-n</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It displays the last two commits - Switch and update your master branch - Switch back to <code>test_rebase</code> and rebase the local branch with:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git rebase master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Displays the last two commits and check how the history was changed</li>
+</ul>
+</section>
+<section id="stash" class="level2">
+<h2 class="anchored" data-anchor-id="stash">Stash</h2>
+<p>Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> date <span class="op">&gt;&gt;</span> index.md    <span class="co"># Modify the index.md file</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">--git</span> a/index.md b/index.md</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">index</span> 4d833d1..a7bc91d 100644</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span> a/index.md</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="ex">+++</span> b/index.md</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-1,3</span> +1,4 @@</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a> <span class="co"># Prenom Nom</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a> <span class="ex">Rennes</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a> <span class="ex">![logo]</span><span class="er">(</span><span class="ex">https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png</span><span class="kw">)</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="ex">+Sun</span> Sep 13 21:45:41 CEST 2020</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Saved</span> working directory and index state WIP on master: 0fc9d7d Merge remote-tracking branch <span class="st">'origin/master'</span> into master</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash show</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a> <span class="ex">index.md</span> <span class="kw">|</span> <span class="ex">1</span> +</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> file changed, 1 insertion<span class="er">(</span><span class="ex">+</span><span class="kw">)</span></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash pop</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git restore &lt;file&gt;..."</span> to discard changes in working directory<span class="kw">)</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   index.md</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ex">no</span> changes added to commit <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> and/or <span class="st">"git commit -a"</span><span class="kw">)</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Dropped</span> refs/stash@{0} <span class="er">(</span><span class="ex">3de29586d5e0b9ceeb3c23e03a9aeb045c4096b8</span><span class="kw">)</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git restore &lt;file&gt;..."</span> to discard changes in working directory<span class="kw">)</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   index.md</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="ex">no</span> changes added to commit <span class="er">(</span><span class="ex">use</span> <span class="st">"git add"</span> and/or <span class="st">"git commit -a"</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="apply-last-stash" class="level3">
+<h3 class="anchored" data-anchor-id="apply-last-stash">Apply last <code>stash</code></h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash apply</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="delete-the-last-stash" class="level3">
+<h3 class="anchored" data-anchor-id="delete-the-last-stash">Delete the last <code>stash</code></h3>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash drop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="apply-last-stash-and-drop" class="level3">
+<h3 class="anchored" data-anchor-id="apply-last-stash-and-drop">Apply last <code>stash</code> and drop</h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="merge-conflicts" class="level2">
+<h2 class="anchored" data-anchor-id="merge-conflicts">Merge conflicts</h2>
+<p>If you have conflict, try :</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git mergetool</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A nice editor helps you to choose the right version. Close and :</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">'Update and fixed conflicts'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="why-git" class="level2">
+<h2 class="anchored" data-anchor-id="why-git">Why Git?</h2>
+<ul>
+<li>Tracking and controlling changes in the software.</li>
+<li>Branches : Frictionless Context Switching, Role-Based Codelines.</li>
+<li>Everything is local : Git is fast.</li>
+<li>Multiple Backups.</li>
+<li>It’s impossible to get anything out of Git other than the exact bits you put in.</li>
+<li>Staging Area : intermediate index between working directory and repository.</li>
+<li>Pull-request is a nice feature for code reviewing and protect the stable branch.</li>
+</ul>
+</section>
+<section id="why-not" class="level2">
+<h2 class="anchored" data-anchor-id="why-not">Why not</h2>
+<ul>
+<li>Sometimes confusing for new users coming from CVS or subversion.</li>
+<li>Crazy command line syntax.</li>
+<li>Simple tasks need many commands.</li>
+<li>Git history is often strange.</li>
+<li>It is possible to destroy the repository on the remote server.</li>
+<li>Power for the maintainer, at the expense of the contributor.</li>
+</ul>
+</section>
+<section id="some-useful-commands" class="level2">
+<h2 class="anchored" data-anchor-id="some-useful-commands">Some useful commands</h2>
+<ul>
+<li>Showing which files have changed between git branches</li>
+</ul>
+<pre><code>$ git diff --name-status master..mybranch</code></pre>
+<ul>
+<li>Compare the master version of a file to my current branch version</li>
+</ul>
+<pre><code>$ git diff mybranch master -- myfile</code></pre>
+<ul>
+<li>Remove all ignored files (do it after a commit)</li>
+</ul>
+<pre><code>$ git clean -xdf</code></pre>
+</section>
+<section id="revert-the-last-commit" class="level2">
+<h2 class="anchored" data-anchor-id="revert-the-last-commit">Revert the last commit</h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> date <span class="op">&gt;&gt;</span> index.md <span class="co">## modify index.md</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">'Add date in index.md'</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[master</span> cbfb502] Add date in index.md</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">3</span> files changed, 18 insertions<span class="er">(</span><span class="ex">+</span><span class="kw">)</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">create</span> mode 100644 .gitignore</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">create</span> mode 100644 sandbox.Rproj</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git reset HEAD~1</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Unstaged</span> changes after reset:</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="ex">M</span>   index.md</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">--git</span> a/index.md b/index.md</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="ex">index</span> c744020..5d9bd58 100644</span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span> a/index.md</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="ex">+++</span> b/index.md</span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-1,2</span> +1,3 @@</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a> <span class="co"># Prenom Nom</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a> <span class="ex">Rennes</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="ex">+Sun</span> Sep 13 22:17:05 CEST 2020</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout index.md</span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="ex">Updated</span> 1 path from the index</span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat index.md</span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Prenom Nom</span></span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="ex">Rennes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="git-through-ide" class="level2">
+<h2 class="anchored" data-anchor-id="git-through-ide">Git through IDE</h2>
+<ul>
+<li>Install bash-completion and source git-prompt.sh.</li>
+<li>Use Gui tools:
+<ul>
+<li><a href="https://desktop.github.com/">GitHub Desktop</a></li>
+<li><a href="https://fr.atlassian.com/software/sourcetree">Sourcetree</a></li>
+<li><a href="https://www.gitkraken.com/">GitKraken</a></li>
+</ul></li>
+<li>VCS plugin of IDE
+<ul>
+<li><a href="https://www.rstudio.com/">RStudio</a></li>
+<li><a href="https://www.eclipse.org/downloads/">Eclipse</a></li>
+<li><a href="www.texstudio.org/">TeXstudio</a></li>
+<li><a href="https://www.jetbrains.com/">JetBrains</a></li>
+</ul></li>
+</ul>
+
 </section>
 </section>
 <script type="application/javascript">

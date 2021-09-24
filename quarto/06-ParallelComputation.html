@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – parallelcomputation</title>
   <style>
@@ -100,7 +100,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -130,7 +130,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -142,10 +142,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -215,7 +215,7 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#parallel-computation" class="nav-link active" data-scroll-target="#parallel-computation">Parallel Computation</a>
@@ -280,37 +280,28 @@
 </section>
 <section id="mapreduce" class="level2">
 <h2 class="anchored" data-anchor-id="mapreduce">MapReduce</h2>
-<div class="cell" data-cell_id="00003-a6d0d1b5-7958-41b2-86cf-215e54f2567e" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="dv">1</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">*</span>x</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">8</span>))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>L</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00004-0368a8cd-8a8e-46e5-86ac-690071ddedd7" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="bu">sum</span>(f(x) <span class="cf">for</span> x <span class="kw">in</span> L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00005-f2152918-0d12-4c04-9c6d-998ff31bda75" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="bu">sum</span>(<span class="bu">map</span>(f,L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="multiprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="multiprocessing">Multiprocessing</h2>
 <p><code>multiprocessing</code> is a package that supports spawning processes.</p>
 <p>We can use it to display how many concurrent processes you can launch on your computer.</p>
-<div class="cell" data-cell_id="00007-54f6b4f2-bf5a-4f94-9ec6-2d31b317dcfe" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiprocessing <span class="im">import</span> cpu_count</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cpu_count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="futures" class="level2">
 <h2 class="anchored" data-anchor-id="futures">Futures</h2>
 <p>The <code>concurrent.futures</code> module provides a high-level interface for asynchronously executing callables.</p>
 <p>The asynchronous execution can be performed with: - <strong>threads</strong>, using ThreadPoolExecutor, - separate <strong>processes</strong>, using ProcessPoolExecutor. Both implement the same interface, which is defined by the abstract Executor class.</p>
 <p><code>concurrent.futures</code> can’t launch <strong>processes</strong> on windows. Windows users must install <a href="https://github.com/tomMoral/loky">loky</a>.</p>
-<div class="cell" data-cell_id="00009-505b529f-4676-497f-8bfb-4c7725e792bf" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> pmap.py</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ProcessPoolExecutor</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep, time</span>
@@ -330,18 +321,14 @@
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    end <span class="op">=</span> time()</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"result = </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss"> and time = </span><span class="sc">{</span>end<span class="op">-</span>begin<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00010-3c871477-057b-4cfb-ae86-23eb18de441c" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} pmap.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <ul>
 <li><code>ProcessPoolExecutor</code> launches one slave process per physical core on the computer.</li>
 <li><code>pool.map</code> divides the input list into chunks and puts the tasks (function + chunk) on a queue.</li>
 <li>Each slave process takes a task (function + a chunk of data), runs map(function, chunk), and puts the result on a result list.</li>
 <li><code>pool.map</code> on the master process waits until all tasks are handled and returns the concatenation of the result lists.</li>
 </ul>
-<div class="cell" data-cell_id="00012-f32013a2-fb56-4dee-afb9-67e551946174" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -350,7 +337,6 @@
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> <span class="bu">sum</span>(pool.<span class="bu">map</span>(f, L))</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="thread-and-process-differences" class="level2">
 <h2 class="anchored" data-anchor-id="thread-and-process-differences">Thread and Process: Differences</h2>
@@ -386,10 +372,7 @@
 <section id="exercise-6.1" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6.1">Exercise 6.1</h3>
 <p>Use <code>ThreadPoolExecutor</code> to parallelize the code above.</p>
-<div class="cell" data-cell_id="00016-19ac1c76-86b2-4b97-b359-86a0e4336f93" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>mkdir books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00017-096986cc-9df8-4d72-b2ee-492eef8f2adb" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request <span class="im">as</span> url</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> <span class="st">"https://mmassd.github.io/"</span>  <span class="co"># "http://svmass2.mass.uhb.fr/hub/static/datasets/"</span></span>
@@ -397,55 +380,42 @@
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>url.urlretrieve(source<span class="op">+</span><span class="st">"books/proust.txt"</span>,   filename<span class="op">=</span><span class="st">"books/proust.txt"</span>)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>url.urlretrieve(source<span class="op">+</span><span class="st">"books/zola.txt"</span>,     filename<span class="op">=</span><span class="st">"books/zola.txt"</span>)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>url.urlretrieve(source<span class="op">+</span><span class="st">"books/stendhal.txt"</span>, filename<span class="op">=</span><span class="st">"books/stendhal.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00018-7375abda-8302-481a-b5b0-024f9b1199a5" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>books <span class="op">=</span> [<span class="st">"hugo.txt"</span>, <span class="st">"proust.txt"</span>, <span class="st">"zola.txt"</span>, <span class="st">"stendhal.txt"</span>]</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sources <span class="op">=</span> [ source<span class="op">+</span>book <span class="cf">for</span> book <span class="kw">in</span> books]</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> [<span class="st">"books/"</span><span class="op">+</span>book <span class="cf">for</span> book <span class="kw">in</span> books]</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ThreadPoolExecutor(<span class="dv">4</span>) <span class="im">as</span> pool:</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    pool.<span class="bu">map</span>(url.urlretrieve, sources, filenames )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 </section>
 <section id="wordcount" class="level2">
 <h2 class="anchored" data-anchor-id="wordcount">Wordcount</h2>
-<div class="cell" data-cell_id="00019-c43ef8bf-64f7-454f-a2c9-357271052a4c" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mapper(filename):</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">" split text to list of key/value pairs (word,1)"</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> f.read()</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data.strip().replace(<span class="st">"."</span>,<span class="st">""</span>).lower().split()</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sorted</span>([(w,<span class="dv">1</span>) <span class="cf">for</span> w <span class="kw">in</span> data])</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partitioner(mapped_values):</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" get lists from mapper and create a dict with</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">    (word,[1,1,1])"""</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> w, c <span class="kw">in</span> mapped_values:</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        res[w].append(c)</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res.items()</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reducer( item ):</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Compute words occurences from dict computed</span></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co">    by partioner</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    w, v <span class="op">=</span> item</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w,<span class="bu">len</span>(v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mapper(filename):</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">" split text to list of key/value pairs (word,1)"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> f.read()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data.strip().replace(<span class="st">"."</span>,<span class="st">""</span>).lower().split()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sorted</span>([(w,<span class="dv">1</span>) <span class="cf">for</span> w <span class="kw">in</span> data])</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partitioner(mapped_values):</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" get lists from mapper and create a dict with</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">    (word,[1,1,1])"""</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> w, c <span class="kw">in</span> mapped_values:</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        res[w].append(c)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res.items()</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reducer( item ):</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" Compute words occurences from dict computed</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">    by partioner</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    w, v <span class="op">=</span> item</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w,<span class="bu">len</span>(v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="parallel-map" class="level2">
 <h2 class="anchored" data-anchor-id="parallel-map">Parallel map</h2>
@@ -453,17 +423,15 @@
 <li>Let’s improve the <code>mapper</code> function by print out inside the function the current process name.</li>
 </ul>
 <p><em>Example</em></p>
-<div class="cell" data-cell_id="00021-d833e0fc-79f5-4824-99a1-cd9c5555f7bb" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> multiprocessing <span class="im">as</span> mp</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ProcessPoolExecutor</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_name(n):</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">" prints out the current process name "</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{mp.</span>current_process()<span class="sc">.</span>name<span class="sc">}</span><span class="ss"> "</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ProcessPoolExecutor() <span class="im">as</span> e:</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=</span> e.<span class="bu">map</span>(process_name, <span class="bu">range</span>(mp.cpu_count()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> multiprocessing <span class="im">as</span> mp</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ProcessPoolExecutor</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_name(n):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">" prints out the current process name "</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>mp<span class="sc">.</span>current_process()<span class="sc">.</span>name<span class="sc">}</span><span class="ss"> "</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ProcessPoolExecutor() <span class="im">as</span> e:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=</span> e.<span class="bu">map</span>(process_name, <span class="bu">range</span>(mp.cpu_count()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercise-6.2" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6.2">Exercise 6.2</h3>
 <ul>
@@ -479,25 +447,6 @@
 <section id="exercise-6.3" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6.3">Exercise 6.3</h3>
 <p>Write a parallel program that uses the three functions above using <code>ThreadPoolExecutor</code>. It reads all the “sample*.txt” files. Map and reduce steps are parallel.</p>
-<div class="cell" data-cell_id="00025-039179c1-2ac1-4046-877b-68dfb60c3c94" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> glob(<span class="st">"sample0*.txt"</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ThreadPoolExecutor() <span class="im">as</span> pool:</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    map_files <span class="op">=</span> pool.<span class="bu">map</span>(mapper, files)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    partitioned_data <span class="op">=</span> pool.<span class="bu">map</span>(partitioner, map_files)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    partitioned_results <span class="op">=</span> pool.<span class="bu">map</span>(reducer, chain(<span class="op">*</span>partitioned_data))</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w <span class="kw">in</span> partitioned_results:</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    results[w[<span class="dv">0</span>]] <span class="op">+=</span> w[<span class="dv">1</span>]</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(results.items(), key<span class="op">=</span>itemgetter(<span class="dv">1</span>), reverse<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 </section>
 <section id="increase-volume-of-data" class="level2">
@@ -508,55 +457,46 @@
 <ul>
 <li><a href="http://www.thelatinlibrary.com/">The Latin Library</a> contains a huge collection of freely accessible Latin texts. We get links on the Latin Library’s homepage ignoring some links that are not associated with a particular author.</li>
 </ul>
-<div class="cell" data-cell_id="00027-e7bc058d-a826-4080-b4ea-b9cd30d9525d" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install lxml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00025-4367b6fe-d051-4238-9823-3efb71e12d0a" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup  <span class="co"># web scraping library</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.request <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">"http://www.thelatinlibrary.com/"</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>home_content <span class="op">=</span> urlopen(base_url)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(home_content, <span class="st">"lxml"</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>author_page_links <span class="op">=</span> soup.find_all(<span class="st">"a"</span>)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>author_pages <span class="op">=</span> [ap[<span class="st">"href"</span>] <span class="cf">for</span> i, ap <span class="kw">in</span> <span class="bu">enumerate</span>(author_page_links) <span class="cf">if</span> i <span class="op">&lt;</span> <span class="dv">49</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup  <span class="co"># web scraping library</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.request <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">"http://www.thelatinlibrary.com/"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>home_content <span class="op">=</span> urlopen(base_url)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(home_content, <span class="st">"lxml"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>author_page_links <span class="op">=</span> soup.find_all(<span class="st">"a"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>author_pages <span class="op">=</span> [ap[<span class="st">"href"</span>] <span class="cf">for</span> i, ap <span class="kw">in</span> <span class="bu">enumerate</span>(author_page_links) <span class="cf">if</span> i <span class="op">&lt;</span> <span class="dv">49</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="generate-html-links" class="level3">
 <h3 class="anchored" data-anchor-id="generate-html-links">Generate html links</h3>
 <ul>
 <li>Create a list of all links pointing to Latin texts. The Latin Library uses a special format which makes it easy to find the corresponding links: All of these links contain the name of the text author.</li>
 </ul>
-<div class="cell" data-cell_id="00027-3a19e953-c48a-4ebc-9ca8-a258aa31a7fa" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ap_content <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ap <span class="kw">in</span> author_pages:</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    ap_content.append(urlopen(base_url <span class="op">+</span> ap))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>book_links <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> path, content <span class="kw">in</span> <span class="bu">zip</span>(author_pages, ap_content):</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    author_name <span class="op">=</span> path.split(<span class="st">"."</span>)[<span class="dv">0</span>]</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    ap_soup <span class="op">=</span> BeautifulSoup(content, <span class="st">"lxml"</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    book_links <span class="op">+=</span> ([link <span class="cf">for</span> link <span class="kw">in</span> ap_soup.find_all(<span class="st">"a"</span>, {<span class="st">"href"</span>: <span class="va">True</span>}) <span class="cf">if</span> author_name <span class="kw">in</span> link[<span class="st">"href"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ap_content <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ap <span class="kw">in</span> author_pages:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    ap_content.append(urlopen(base_url <span class="op">+</span> ap))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>book_links <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> path, content <span class="kw">in</span> <span class="bu">zip</span>(author_pages, ap_content):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    author_name <span class="op">=</span> path.split(<span class="st">"."</span>)[<span class="dv">0</span>]</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    ap_soup <span class="op">=</span> BeautifulSoup(content, <span class="st">"lxml"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    book_links <span class="op">+=</span> ([link <span class="cf">for</span> link <span class="kw">in</span> ap_soup.find_all(<span class="st">"a"</span>, {<span class="st">"href"</span>: <span class="va">True</span>}) <span class="cf">if</span> author_name <span class="kw">in</span> link[<span class="st">"href"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="download-webpages-content" class="level3">
 <h3 class="anchored" data-anchor-id="download-webpages-content">Download webpages content</h3>
-<div class="cell" data-cell_id="00029-e26f5cf7-acbc-4e58-b6ea-13a0664906e2" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.error <span class="im">import</span> HTTPError</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>num_pages <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, bl <span class="kw">in</span> <span class="bu">enumerate</span>(book_links[:num_pages]):</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Getting content "</span> <span class="op">+</span> <span class="bu">str</span>(i <span class="op">+</span> <span class="dv">1</span>) <span class="op">+</span> <span class="st">" of "</span> <span class="op">+</span> <span class="bu">str</span>(num_pages), end<span class="op">=</span><span class="st">"</span><span class="ch">\r</span><span class="st">"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        content <span class="op">=</span> urlopen(base_url <span class="op">+</span> bl[<span class="st">"href"</span>]).read()</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"book-</span><span class="sc">{i:03d}</span><span class="ss">.dat"</span>,<span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            f.write(content)</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> HTTPError <span class="im">as</span> err:</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Unable to retrieve "</span> <span class="op">+</span> bl[<span class="st">"href"</span>] <span class="op">+</span> <span class="st">"."</span>)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.error <span class="im">import</span> HTTPError</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>num_pages <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, bl <span class="kw">in</span> <span class="bu">enumerate</span>(book_links[:num_pages]):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Getting content "</span> <span class="op">+</span> <span class="bu">str</span>(i <span class="op">+</span> <span class="dv">1</span>) <span class="op">+</span> <span class="st">" of "</span> <span class="op">+</span> <span class="bu">str</span>(num_pages), end<span class="op">=</span><span class="st">"</span><span class="ch">\r</span><span class="st">"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        content <span class="op">=</span> urlopen(base_url <span class="op">+</span> bl[<span class="st">"href"</span>]).read()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f"book-</span><span class="sc">{</span>i<span class="sc">:03d}</span><span class="ss">.dat"</span>,<span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>            f.write(content)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> HTTPError <span class="im">as</span> err:</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Unable to retrieve "</span> <span class="op">+</span> bl[<span class="st">"href"</span>] <span class="op">+</span> <span class="st">"."</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="extract-data-files" class="level3">
 <h3 class="anchored" data-anchor-id="extract-data-files">Extract data files</h3>
@@ -564,86 +504,52 @@
 <li>I already put the content of pages in files named book-*.txt</li>
 <li>You can extract data from the archive by running the cell below</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># library to get directory and file paths</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tarfile <span class="co"># this module makes possible to read and write tar archives</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_data():</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    datadir <span class="op">=</span> os.path.join(<span class="st">'data'</span>,<span class="st">'latinbooks'</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(datadir):</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>       <span class="bu">print</span>(<span class="st">"Extracting data..."</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>       tar_path <span class="op">=</span> os.path.join(<span class="st">'data'</span>, <span class="st">'latinbooks.tgz'</span>)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>       <span class="cf">with</span> tarfile.<span class="bu">open</span>(tar_path, mode<span class="op">=</span><span class="st">'r:gz'</span>) <span class="im">as</span> books:</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>          books.extractall(<span class="st">'data'</span>)</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>extract_data() <span class="co"># this function call will extract text files in data/latinbooks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># library to get directory and file paths</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tarfile <span class="co"># this module makes possible to read and write tar archives</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_data():</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    datadir <span class="op">=</span> os.path.join(<span class="st">'data'</span>,<span class="st">'latinbooks'</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(datadir):</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>       <span class="bu">print</span>(<span class="st">"Extracting data..."</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>       tar_path <span class="op">=</span> os.path.join(<span class="st">'data'</span>, <span class="st">'latinbooks.tgz'</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>       <span class="cf">with</span> tarfile.<span class="bu">open</span>(tar_path, mode<span class="op">=</span><span class="st">'r:gz'</span>) <span class="im">as</span> books:</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>          books.extractall(<span class="st">'data'</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>extract_data() <span class="co"># this function call will extract text files in data/latinbooks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="read-data-files" class="level3">
 <h3 class="anchored" data-anchor-id="read-data-files">Read data files</h3>
-<div class="cell" data-cell_id="00033-ce4fe5c1-3406-4c35-a0a1-c9ef8a6635ce" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> glob(<span class="st">'book*.dat'</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>,<span class="st">'rb'</span>) <span class="im">as</span> f:</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> f.read()</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    texts.append(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> glob(<span class="st">'book*.dat'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>,<span class="st">'rb'</span>) <span class="im">as</span> f:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> f.read()</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    texts.append(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences." class="level3">
 <h3 class="anchored" data-anchor-id="extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences.">Extract the text from html and split the text at periods to convert it into sentences.</h3>
-<div class="cell" data-cell_id="00037-bac6178a-2ea7-4d88-ac31-472f569a14ed" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb20"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install bs4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00035-7b691054-629b-45d7-bca3-8c19e7c5f032" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>sentences <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, text <span class="kw">in</span> <span class="bu">enumerate</span>(texts):</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Document "</span> <span class="op">+</span> <span class="bu">str</span>(i <span class="op">+</span> <span class="dv">1</span>) <span class="op">+</span> <span class="st">" of "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">len</span>(texts)), end<span class="op">=</span><span class="st">"</span><span class="ch">\r</span><span class="st">"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    textSoup <span class="op">=</span> BeautifulSoup(text, <span class="st">"lxml"</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    paragraphs <span class="op">=</span> textSoup.find_all(<span class="st">"p"</span>, attrs<span class="op">=</span>{<span class="st">"class"</span>:<span class="va">None</span>})</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    prepared <span class="op">=</span> (<span class="st">""</span>.join([p.text.strip().lower() <span class="cf">for</span> p <span class="kw">in</span> paragraphs[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]]))</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> prepared.split(<span class="st">"."</span>):</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        part <span class="op">=</span> <span class="st">""</span>.join([c <span class="cf">for</span> c <span class="kw">in</span> t <span class="cf">if</span> c.isalpha() <span class="kw">or</span> c.isspace()])</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        sentences.append(part.strip())</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># print first and last sentence to check the results</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentences[<span class="dv">0</span>])</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentences[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>sentences <span class="op">=</span> <span class="bu">list</span>()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, text <span class="kw">in</span> <span class="bu">enumerate</span>(texts):</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Document "</span> <span class="op">+</span> <span class="bu">str</span>(i <span class="op">+</span> <span class="dv">1</span>) <span class="op">+</span> <span class="st">" of "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">len</span>(texts)), end<span class="op">=</span><span class="st">"</span><span class="ch">\r</span><span class="st">"</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    textSoup <span class="op">=</span> BeautifulSoup(text, <span class="st">"lxml"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    paragraphs <span class="op">=</span> textSoup.find_all(<span class="st">"p"</span>, attrs<span class="op">=</span>{<span class="st">"class"</span>:<span class="va">None</span>})</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    prepared <span class="op">=</span> (<span class="st">""</span>.join([p.text.strip().lower() <span class="cf">for</span> p <span class="kw">in</span> paragraphs[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]]))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> prepared.split(<span class="st">"."</span>):</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        part <span class="op">=</span> <span class="st">""</span>.join([c <span class="cf">for</span> c <span class="kw">in</span> t <span class="cf">if</span> c.isalpha() <span class="kw">or</span> c.isspace()])</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        sentences.append(part.strip())</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># print first and last sentence to check the results</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentences[<span class="dv">0</span>])</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentences[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-6.4" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6.4">Exercise 6.4</h3>
 <p>Parallelize this last process using <code>concurrent.futures</code>.</p>
-<div class="cell" data-cell_id="00041-774d5850-e09b-4373-b2be-6d34249bc73c" data-deepnote_cell_type="code">
-<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_text(text):</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    sentences <span class="op">=</span> <span class="bu">list</span>()</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print("Document " + str(i + 1) + " of " + str(len(texts)), end="\r", flush=True)</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    textSoup <span class="op">=</span> BeautifulSoup(text, <span class="st">"lxml"</span>)</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    paragraphs <span class="op">=</span> textSoup.find_all(<span class="st">"p"</span>, attrs<span class="op">=</span>{<span class="st">"class"</span>:<span class="va">None</span>})</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    prepared <span class="op">=</span> (<span class="st">""</span>.join([p.text.strip().lower() <span class="cf">for</span> p <span class="kw">in</span> paragraphs[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]]))</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> prepared.split(<span class="st">"."</span>):</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        part <span class="op">=</span> <span class="st">""</span>.join([c <span class="cf">for</span> c <span class="kw">in</span> t <span class="cf">if</span> c.isalpha() <span class="kw">or</span> c.isspace()])</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>        sentences.append(part.strip())</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sentences</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>indexes <span class="op">=</span> <span class="bu">range</span>(<span class="bu">len</span>(texts))</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ThreadPoolExecutor() <span class="im">as</span> pool:</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    mapped_sentences <span class="op">=</span> pool.<span class="bu">map</span>(process_text, texts)</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>sentences <span class="op">=</span> <span class="bu">list</span>(chain(<span class="op">*</span>mapped_sentences))   </span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co"># print first and last sentence to check the results</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentences[<span class="dv">0</span>])</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentences[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 </section>
 <section id="references" class="level2">
@@ -652,7 +558,6 @@
 <li><a href="https://medium.com/@felixmohr/using-python-and-conditional-random-fields-for-latin-word-segmentation-416ca7a9e513">Using Conditional Random Fields and Python for Latin word segmentation</a></li>
 </ul>
 
-<!-- -->
 </section>
 </section>
 <script type="application/javascript">

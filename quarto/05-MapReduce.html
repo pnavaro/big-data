@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – mapreduce</title>
   <style>
@@ -101,7 +101,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -131,7 +131,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -143,10 +143,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -216,7 +216,7 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#map-reduce" class="nav-link active" data-scroll-target="#map-reduce">Map Reduce</a>
@@ -227,7 +227,6 @@
 <ul class="collapse">
 <li><a href="#exercise-5.1" class="nav-link" data-scroll-target="#exercise-5.1">Exercise 5.1</a></li>
 <li><a href="#exercise-5.2" class="nav-link" data-scroll-target="#exercise-5.2">Exercise 5.2</a></li>
-<li><a href="#examples-with-filter" class="nav-link" data-scroll-target="#examples-with-filter">Examples with filter</a></li>
 </ul></li>
 <li><a href="#wordcount" class="nav-link" data-scroll-target="#wordcount">Wordcount</a></li>
 <li><a href="#map---read-file-and-return-a-keyvalue-pairs" class="nav-link" data-scroll-target="#map---read-file-and-return-a-keyvalue-pairs">Map - Read file and return a key/value pairs</a>
@@ -266,25 +265,17 @@
 <section id="map-function-example" class="level2">
 <h2 class="anchored" data-anchor-id="map-function-example"><code>map</code> function example</h2>
 <p>The <code>map(func, seq)</code> Python function applies the function func to all the elements of the sequence seq. It returns a new list with the elements changed by func</p>
-<div class="cell" data-cell_id="00002-da0bd233-0388-4413-b0ad-d5d8d6326966" data-execution_millis="8" data-execution_start="1604475123788" data-source_hash="95028dd2">
 <div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> x</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="bu">map</span>(f, rdd )</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>res  <span class="co"># Res is an iterator</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00003-8235787f-c264-4b77-8d37-544fad7a23ee" data-execution_millis="4" data-execution_start="1604475123800" data-source_hash="e4befbff">
 <div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">*</span>res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00004-d85df79e-12a9-4d71-86f2-7fb558857de8" data-execution_millis="2" data-execution_start="1604475123811" data-source_hash="322388ee">
 <div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> mul</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rdd1, rdd2 <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">7</span>], [<span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">3</span>]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="bu">map</span>(mul, rdd1, rdd2 ) <span class="co"># element wise sum of rdd1 and rdd2 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00005-992df850-d6e1-4c73-bb34-2c588ab3cfd6" data-execution_millis="3" data-execution_start="1604475123816" data-source_hash="e4befbff">
 <div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">*</span>res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mapreduce.jpg" class="img-fluid figure-img"></p>
@@ -295,30 +286,10 @@
 <section id="functools.reduce-example" class="level2">
 <h2 class="anchored" data-anchor-id="functools.reduce-example"><code>functools.reduce</code> example</h2>
 <p>The function <code>reduce(func, seq)</code> continually applies the function func() to the sequence seq and return a single value. For example, reduce(f, [1, 2, 3, 4, 5]) calculates f(f(f(f(1,2),3),4),5).</p>
-<div class="cell" data-cell_id="00008-819c928c-717c-45f4-a91c-69d920cb2e4a" data-execution_millis="3" data-execution_start="1604475123824" data-source_hash="59797020">
 <div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> add</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>))</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">reduce</span>(add, rdd) <span class="co"># computes ((((1+2)+3)+4)+5)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00009-b18b7168-bab4-4ff0-8e67-7eb194491e89" data-execution_millis="1" data-execution_start="1604475123839" data-source_hash="3a0d6a0c">
-<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> rdd:</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">*=</span> x</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00010-894f7892-1ca4-4e38-adae-1d6dc824754a" data-execution_millis="5" data-execution_start="1604475123843" data-source_hash="781c1501">
-<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x,y):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> y</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">reduce</span>(g, rdd) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00011-bc36bb28-6c3b-4cb3-9fbf-11259167e085" data-execution_millis="3" data-execution_start="1604475123853" data-source_hash="3a0d6a0c">
-<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> rdd:</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">*=</span> x</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="weighted-mean-and-variance" class="level2">
 <h2 class="anchored" data-anchor-id="weighted-mean-and-variance">Weighted mean and Variance</h2>
@@ -326,75 +297,21 @@
 <p><span class="math display">\[\operatorname{Var}(X) = \left(\sum_{i=1}^n p_i x_i ^2\right) - \mu^2,\]</span></p>
 <p>where <span class="math inline">\(\mu\)</span> is the average value, i.e.</p>
 <p><span class="math display">\[\mu = \sum_{i=1}^n p_i x_i. \]</span></p>
-<div class="cell" data-cell_id="00013-4379b3f6-195b-4caf-9af9-a0def24cc2b6" data-execution_millis="4" data-execution_start="1604475123860" data-source_hash="27e1cebb">
-<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> [<span class="fl">0.05</span>, <span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Example of <code>zip</code></p>
-<div class="cell" data-cell_id="00015-a1d4b6c3-bc23-4d40-bbc0-5d34c0476c2b" data-execution_millis="5" data-execution_start="1604475123868" data-source_hash="11cde8b8">
-<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, p <span class="kw">in</span> <span class="bu">zip</span>(X, P):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" x = </span><span class="sc">{x}</span><span class="ss"> ..... p = </span><span class="sc">{p}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00016-04bb1f2f-d3fe-4d82-af46-63613ebcbf71" data-execution_millis="4" data-execution_start="1604475123878" data-source_hash="7bfafc3a">
-<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> zip_longest</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, p <span class="kw">in</span> zip_longest(X, [<span class="fl">0.1</span>], fillvalue<span class="op">=</span><span class="fl">0.0</span>):</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" x = </span><span class="sc">{x}</span><span class="ss"> ..... p = </span><span class="sc">{p}</span><span class="ss">"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00017-abec5e78-7ef1-4138-ad8a-3eb4ad1d9dc7" data-execution_millis="3" data-execution_start="1604475123888" data-source_hash="f6aabc16">
-<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(P)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00018-99bed283-d4ea-45c6-b737-4494377b8d76" data-execution_millis="3" data-execution_start="1604475123987" data-source_hash="877963e6">
-<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1000000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00019-0a3ebe48-3e93-4244-8d05-009df587e295" data-execution_millis="1809" data-execution_start="1604475123993" data-source_hash="e11afadc">
-<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="dv">2</span><span class="op">*</span>sqrt(x)<span class="op">+</span><span class="dv">1</span>, data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00020-9adee9fc-f16e-44a5-a1f1-74373ff76ca9" data-execution_millis="15371" data-execution_start="1604475125819" data-source_hash="40602200">
-<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>( <span class="dv">2</span><span class="op">*</span>sqrt(x)<span class="op">+</span><span class="dv">1</span> <span class="cf">for</span> x <span class="kw">in</span>  data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> [<span class="fl">0.05</span>, <span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercise-5.1" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5.1">Exercise 5.1</h3>
 <ul>
 <li>Write functions to compute the average value and variance using for loops</li>
 </ul>
-<div class="cell" data-cell_id="00022-d9d47d25-2840-49dc-a6ba-1ba4e052db8b" data-execution_millis="1" data-execution_start="1604475141191" data-source_hash="f62aea75">
-<div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> [<span class="fl">0.05</span>, <span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>]</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_variance(X, P):</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> <span class="bu">sum</span>( x<span class="op">*</span>p <span class="cf">for</span> x,p <span class="kw">in</span> <span class="bu">zip</span>(X,P))<span class="op">/</span><span class="bu">sum</span>(P)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> (<span class="bu">sum</span>( x<span class="op">*</span>x<span class="op">*</span>p <span class="cf">for</span> x,p <span class="kw">in</span> <span class="bu">zip</span>(X,P)) <span class="op">-</span> mu<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span><span class="bu">sum</span>(P)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mu, sigma</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>average_variance(X, P)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00023-40636487-579b-4036-9f4c-ef1673137ee6" data-execution_millis="5" data-execution_start="1604475141196" data-source_hash="4d1eb894">
-<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> add, mul</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_variance(X, P):</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> <span class="bu">reduce</span>(add, <span class="bu">map</span>( mul, X,P))</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> <span class="bu">reduce</span>(add, <span class="bu">map</span>(<span class="kw">lambda</span> x,p:x<span class="op">*</span>x<span class="op">*</span>p, X, P) ) <span class="op">-</span> mu<span class="op">**</span><span class="dv">2</span> </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mu, sigma</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>average_variance(X, P)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> [<span class="fl">0.05</span>, <span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.25</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-5.2" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5.2">Exercise 5.2</h3>
 <ul>
 <li>Write functions to compute the average value and variance using <code>map</code> and <code>reduce</code></li>
 </ul>
-</section>
-<section id="examples-with-filter" class="level3">
-<h3 class="anchored" data-anchor-id="examples-with-filter">Examples with filter</h3>
-<div class="cell" data-cell_id="00021-94d4ec45-9aae-4c7c-af85-c910b67b8227" data-execution_millis="4" data-execution_start="1604475141205" data-source_hash="8898f860">
-<div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="bu">filter</span>( <span class="kw">lambda</span> p: p <span class="op">&gt;</span> <span class="fl">0.1</span>, P)  <span class="co"># select p &gt; 0.1</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">*</span>res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00022-f49364d3-b99a-44ef-8082-4d72d86240ac" data-execution_millis="2" data-execution_start="1604475141218" data-source_hash="965e9e6f">
-<div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="bu">filter</span>( <span class="kw">lambda</span> x: x <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>, <span class="bu">range</span>(<span class="dv">15</span>)) <span class="co"># select integer that can be divided by 3</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">*</span>res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><em>NB: Exercises above are just made to help to understand map-reduce process. This is a bad way to code a variance in Python. You should use <a href="http://www.numpy.org">Numpy</a> instead.</em></p>
 </section>
 </section>
@@ -412,41 +329,6 @@
 <p>Write a function <code>mapper</code> with a single file name as input that returns a sorted sequence of tuples (word, 1) values.</p>
 <pre class="pybt"><code>mapper('sample.txt')
 [('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('amet', 1), ('amet', 1), ('amet', 1)...</code></pre>
-<div class="cell" data-cell_id="00031-63b9c502-443e-41df-98cf-21e9ebca3e38" data-execution_millis="4" data-execution_start="1604475141227" data-source_hash="e4332bb8">
-<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poly( a, b, c):</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">lambda</span> x: a<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span><span class="op">+</span>b<span class="op">*</span>x<span class="op">+</span>c </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> poly(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>p(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00032-ddfcafbe-1687-4863-af4d-98547f31cc43" data-execution_millis="2" data-execution_start="1604475141239" data-source_hash="5f48605a">
-<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Poly:</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, a, b, c):</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a <span class="op">=</span> a</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b <span class="op">=</span> b</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.c <span class="op">=</span> b</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x):</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.a<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="va">self</span>.b<span class="op">*</span>x<span class="op">+</span><span class="va">self</span>.c</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> Poly(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>p(<span class="dv">2</span>)       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00033-2c3f15be-545b-4d49-b500-4aab184a92f9" data-execution_millis="3" data-execution_start="1604475141286" data-source_hash="c42926c9">
-<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sample.txt"</span>,<span class="st">"w"</span>) <span class="im">as</span> f:</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    f.write(text())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00031-917b092c-cac4-44a1-af5f-fc688f42e58b" data-execution_millis="7" data-execution_start="1604475141294" data-source_hash="9fa9c34b">
-<div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mapper(filename):</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> f.read().strip().lower().replace(<span class="st">"."</span>, <span class="st">" "</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sorted</span>(<span class="bu">map</span>(<span class="kw">lambda</span> w:(w,<span class="dv">1</span>), data.split()))</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>mapper(<span class="st">"sample.txt"</span>)[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 </section>
 <section id="partition" class="level2">
@@ -454,18 +336,8 @@
 <section id="exercise-5.4" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5.4">Exercise 5.4</h3>
 <p>Create a function named <code>partitioner</code> that stores the key/value pairs from <code>mapper</code> that group (word, 1) pairs into a list as:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>partitioner(mapper(<span class="st">'sample.txt'</span>))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>[(<span class="st">'adipisci'</span>, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]), (<span class="st">'aliquam'</span>, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]), (<span class="st">'amet'</span>, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>],...]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-cell_id="00035-5e40fd7d-61f3-40a3-a9da-f9e8faea7fef" data-execution_millis="4" data-execution_start="1604475141311" data-source_hash="1b4079ae">
-<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partitioner(map_words):</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> w,i <span class="kw">in</span> map_words:</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        d[w].append(<span class="dv">1</span>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(d.items())</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>partitioner(mapper(<span class="st">'sample.txt'</span>))[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>partitioner(mapper(<span class="st">'sample.txt'</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>[(<span class="st">'adipisci'</span>, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]), (<span class="st">'aliquam'</span>, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]), (<span class="st">'amet'</span>, [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>],...]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="reduce---sums-the-counts-and-returns-a-single-keyvalue-word-sum." class="level2">
@@ -473,61 +345,25 @@
 <section id="exercice-5.5" class="level3">
 <h3 class="anchored" data-anchor-id="exercice-5.5">Exercice 5.5</h3>
 <p>Write the function <code>reducer</code> that read a tuple <code>(word,[1,1,1,..,1])</code> and sum the occurrences of word to a final count, and then output the tuple (word,occurences).</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>reducer((<span class="st">'hello'</span>,[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>(<span class="st">'hello'</span>,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-cell_id="00038-83e269fe-7c52-4d02-8faa-0e9867022527" data-execution_millis="2" data-execution_start="1604475141327" data-source_hash="e1f68a94">
-<div class="sourceCode" id="cb28"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reducer(w):</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w[<span class="dv">0</span>],<span class="bu">len</span>(w[<span class="dv">1</span>])</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>reducer((<span class="st">'hello'</span>,[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>reducer((<span class="st">'hello'</span>,[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>(<span class="st">'hello'</span>,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="process-several-files" class="level2">
 <h2 class="anchored" data-anchor-id="process-several-files">Process several files</h2>
 <p>Let’s create 8 files <code>sample[0-7].txt</code>. Set most common words at the top of the output list.</p>
-<div class="cell" data-cell_id="00029-b2c70e85-cb81-48d2-b1ab-f433e60defbf" data-execution_millis="11" data-execution_start="1604475141331" data-source_hash="35d25c27">
-<div class="sourceCode" id="cb29"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>):</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sample</span><span class="sc">{0:02d}</span><span class="st">.txt"</span>.<span class="bu">format</span>(i), <span class="st">"w"</span>) <span class="im">as</span> f:</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        f.write(text())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00030-a5da7b68-98d0-4e0d-a5dc-a0bd8e821ff5" data-execution_millis="1" data-execution_start="1604475141355" data-source_hash="8bf0ba7a">
-<div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> <span class="bu">sorted</span>(glob.glob(<span class="st">'sample0*.txt'</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>):</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sample</span><span class="sc">{0:02d}</span><span class="st">.txt"</span>.<span class="bu">format</span>(i), <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        f.write(text())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> <span class="bu">sorted</span>(glob.glob(<span class="st">'sample0*.txt'</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercise-5.6" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5.6">Exercise 5.6</h3>
 <ul>
 <li>Use functions implemented above to count (word, occurences) by using a for loops over files and partitioned data.</li>
 </ul>
-<div class="cell" data-cell_id="00043-2edc1df6-307d-4e5e-b0a5-119732bf5469" data-execution_millis="3" data-execution_start="1604475141369" data-source_hash="1676a495">
-<div class="sourceCode" id="cb31"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>map_files <span class="op">=</span> [mapper(f) <span class="cf">for</span> f <span class="kw">in</span> files]</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>partitioned_data <span class="op">=</span> [partitioner(map_file) <span class="cf">for</span> map_file <span class="kw">in</span> map_files]</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>partitioned_results <span class="op">=</span> [reducer(keyvalue) <span class="cf">for</span> keyvalue <span class="kw">in</span> chain(<span class="op">*</span>partitioned_data)]</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w <span class="kw">in</span> partitioned_results:</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    results[w[<span class="dv">0</span>]] <span class="op">+=</span> w[<span class="dv">1</span>]</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(results.items(), key<span class="op">=</span>itemgetter(<span class="dv">1</span>), reverse<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00043-ddea4dec-98aa-4458-b25d-1bb79cfdc756" data-execution_millis="8" data-execution_start="1604475141379" data-source_hash="13cc3f19">
-<div class="sourceCode" id="cb32"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>map_files <span class="op">=</span> <span class="bu">map</span>(mapper, files)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>partitioned_data <span class="op">=</span> <span class="bu">map</span>(partitioner, map_files)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>partitioned_results <span class="op">=</span> <span class="bu">map</span>(reducer, chain(<span class="op">*</span>partitioned_data))</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w <span class="kw">in</span> partitioned_results:</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    results[w[<span class="dv">0</span>]] <span class="op">+=</span> w[<span class="dv">1</span>]</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(results.items(), key<span class="op">=</span>itemgetter(<span class="dv">1</span>), reverse<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="exercise-5.7" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5.7">Exercise 5.7</h3>
@@ -535,7 +371,6 @@
 <li>This time use <code>map</code> function to apply mapper and reducer.</li>
 </ul>
 
-<!-- -->
 </section>
 </section>
 </section>

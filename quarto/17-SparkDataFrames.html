@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – sparkdataframes</title>
   <style>
@@ -100,7 +100,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -130,7 +130,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -142,10 +142,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -215,7 +215,7 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#spark-dataframes" class="nav-link active" data-scroll-target="#spark-dataframes">Spark DataFrames</a>
@@ -367,13 +367,10 @@ only showing top 20 rows</code></pre>
 </section>
 <section id="creating-a-dataframe-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="creating-a-dataframe-in-python">Creating a DataFrame in Python</h2>
-<div class="cell" data-cell_id="00006-5a6c7399-651e-433e-8f93-ceb2c87b79f0" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, subprocess</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"PYSPARK_PYTHON"</span>] <span class="op">=</span> sys.executable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00007-d9d415d1-5949-4ece-9e73-251bca9c98ca" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark <span class="im">import</span> SparkContext, SparkConf, SQLContext</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The following three lines are not necessary</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># in the pyspark shell</span></span>
@@ -381,21 +378,16 @@ only showing top 20 rows</code></pre>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> SparkContext(conf<span class="op">=</span>conf)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sc.setLogLevel(<span class="st">"ERROR"</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>sqlContext <span class="op">=</span> SQLContext(sc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00008-02e6ee97-82ff-4525-80ae-bc20808d952a" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> sqlContext.read.json(<span class="st">"data/people.json"</span>) <span class="co"># get a dataframe from json file</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df.show(<span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="schema-inference" class="level2">
 <h2 class="anchored" data-anchor-id="schema-inference">Schema Inference</h2>
 <p>In this exercise, let’s explore schema inference. We’re going to be using a file called <code>irmar.txt</code>. The data is structured, but it has no self-describing schema. And, it’s not JSON, so Spark can’t infer the schema automatically. Let’s create an RDD and look at the first few rows of the file.</p>
-<div class="cell" data-cell_id="00010-6542567c-7758-4453-9878-ad75618a9b20" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.textFile(<span class="st">"data/irmar.csv"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> rdd.take(<span class="dv">10</span>):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="hands-on-exercises" class="level2">
 <h2 class="anchored" data-anchor-id="hands-on-exercises">Hands-on Exercises</h2>
@@ -411,7 +403,6 @@ only showing top 20 rows</code></pre>
 <li>team1</li>
 <li>team2</li>
 </ul>
-<div class="cell" data-cell_id="00012-8cfe56f0-c5e8-4d83-a2fa-3e85108f624a" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> namedtuple</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>rdd <span class="op">=</span> sc.textFile(<span class="st">"data/irmar.csv"</span>)</span>
@@ -435,72 +426,43 @@ only showing top 20 rows</code></pre>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>people_rdd <span class="op">=</span> rdd.<span class="bu">map</span>(map_to_person)</span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> people_rdd.toDF()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00013-242264f2-6446-49b0-99a8-aaf0a119370b" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="schema" class="level3">
 <h3 class="anchored" data-anchor-id="schema">Schema</h3>
-<div class="cell" data-cell_id="00015-11feeecf-9cd9-4938-aa53-55443edfb762" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="display" class="level3">
 <h3 class="anchored" data-anchor-id="display">display</h3>
-<div class="cell" data-cell_id="00017-40b484a1-55ae-4332-b8f9-ef28e752db55" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>display(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="select" class="level3">
 <h3 class="anchored" data-anchor-id="select">select</h3>
-<div class="cell" data-cell_id="00019-5bb4b7ac-ea01-414d-8c6d-8bf81791ff42" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.select(df[<span class="st">"name"</span>], df[<span class="st">"position"</span>], df[<span class="st">"organization"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00020-0c1cd8b8-fa29-4218-a26b-6944adb3b36f" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df.select(df[<span class="st">"name"</span>], df[<span class="st">"position"</span>], df[<span class="st">"organization"</span>]).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="filter" class="level3">
 <h3 class="anchored" data-anchor-id="filter">filter</h3>
-<div class="cell" data-cell_id="00022-78b374b3-01a0-4781-a3d0-2dca1e7adeaa" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>(df[<span class="st">"organization"</span>] <span class="op">==</span> <span class="st">"R2"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="filter-select" class="level3">
 <h3 class="anchored" data-anchor-id="filter-select">filter + select</h3>
-<div class="cell" data-cell_id="00024-43c070dc-7b1c-4156-8662-b1763a1be2ed" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df.<span class="bu">filter</span>(df[<span class="st">"organization"</span>] <span class="op">==</span> <span class="st">"R2"</span>).select(df[<span class="st">'name'</span>],df[<span class="st">'team1'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00025-4a2c47fd-40e4-42f6-9ec6-4d0696b87d38" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df2.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="orderby" class="level3">
 <h3 class="anchored" data-anchor-id="orderby">orderBy</h3>
-<div class="cell" data-cell_id="00027-758d72cc-21a5-493b-9515-3b09f460bcd2" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(df.<span class="bu">filter</span>(df[<span class="st">"organization"</span>] <span class="op">==</span> <span class="st">"R2"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>   .select(df[<span class="st">"name"</span>],df[<span class="st">"position"</span>])</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>   .orderBy(<span class="st">"position"</span>)).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="groupby" class="level3">
 <h3 class="anchored" data-anchor-id="groupby">groupBy</h3>
-<div class="cell" data-cell_id="00029-012ad184-07da-48a9-ac24-e38514d30fa0" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df.groupby(df[<span class="st">"hdr"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00030-c6ba2b2b-fb0f-49ba-bab5-2bf1b962d885" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb20"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df.groupby(df[<span class="st">"hdr"</span>]).count().show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>WARNING: Don’t confuse GroupedData.count() with DataFrame.count(). GroupedData.count() is not an action. DataFrame.count() is an action.</p>
-<div class="cell" data-cell_id="00032-cdde6dcf-628c-4caa-b984-cfba0dff5afc" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>(df[<span class="st">"hdr"</span>]).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00033-46281461-bbd0-41c9-bb11-6b2c1edb768f" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">filter</span>(df[<span class="st">'hdr'</span>]).select(<span class="st">"name"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00034-24e8c678-7489-43e7-92ca-9b6397cd6e48" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df.groupBy(df[<span class="st">"organization"</span>]).count().show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="exercises" class="level3">
 <h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
@@ -516,11 +478,8 @@ only showing top 20 rows</code></pre>
 <li>Which team contains most DOC ?</li>
 <li>List people from CNRS that are neither CR nor DR ?</li>
 </ul>
-<div class="cell" data-cell_id="00036-317e204d-c3ec-4549-9285-2dee794a1e0e" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sc.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
-<!-- -->
 </section>
 </section>
 </section>

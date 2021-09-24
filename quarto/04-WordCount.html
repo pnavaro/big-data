@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – wordcount</title>
   <style>
@@ -100,7 +100,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -130,7 +130,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -142,10 +142,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -215,7 +215,7 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#wordcount" class="nav-link active" data-scroll-target="#wordcount">Wordcount</a>
@@ -258,25 +258,17 @@
 <p>Some recommendations: - <em>Don’t google too much, ask me or use the python documentation through <code>help</code> function.</em> - <em>Do not try to find a clever or optimized solution, do something that works before.</em> - <em>Please don’t get the solution from your colleagues</em> - <em>Notebooks will be updated every week with solutions</em></p>
 <section id="create-sample-text-file" class="level2">
 <h2 class="anchored" data-anchor-id="create-sample-text-file">Create sample text file</h2>
-<div class="cell" data-cell_id="00003-e82a929b-5863-475d-be7e-f1cc7227c450" data-deepnote_cell_type="code" data-execution_millis="6547" data-execution_start="1604475107831" data-source_hash="ab114d3a">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>U pip</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install lorem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00003-4d7f6c1d-8859-4403-bb81-8a0e8a776db0" data-deepnote_cell_type="code" data-execution_millis="3632" data-execution_start="1604475114385" data-source_hash="f3007ae0">
-<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sample.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        f.write(text())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sample.txt"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        f.write(text())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercise-4.1" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4.1">Exercise 4.1</h3>
 <p>Write a python program that counts the number of lines, different words and characters in that file.</p>
-<div class="cell" data-cell_id="00005-99c44bbd-d3cc-4e16-99f5-569b359b007e" data-deepnote_cell_type="code" data-execution_millis="121" data-execution_start="1604475118049" data-source_hash="fc5d8416">
-<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>wc sample.txt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>du <span class="op">-</span>h sample.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>wc sample.txt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>du <span class="op">-</span>h sample.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-4.2" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4.2">Exercise 4.2</h3>
@@ -288,21 +280,17 @@
 <section id="sorting-a-dictionary-by-value" class="level2">
 <h2 class="anchored" data-anchor-id="sorting-a-dictionary-by-value">Sorting a dictionary by value</h2>
 <p>By default, if you use <code>sorted</code> function on a <code>dict</code>, it will use keys to sort it. To sort by values, you can use <a href="https://docs.python.org/3.6/library/operator.html">operator</a>.itemgetter(1) Return a callable object that fetches item from its operand using the operand’s <code>__getitem__(</code> method. It could be used to sort results.</p>
-<div class="cell" data-cell_id="00008-dddf6414-17e3-48c7-add8-76814d07d5c0" data-deepnote_cell_type="code" data-execution_millis="8" data-execution_start="1604475118172" data-source_hash="d61b0611">
-<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> operator</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> [(<span class="st">'apple'</span>, <span class="dv">3</span>), (<span class="st">'banana'</span>, <span class="dv">2</span>), (<span class="st">'pear'</span>, <span class="dv">5</span>), (<span class="st">'orange'</span>, <span class="dv">1</span>)]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>getcount <span class="op">=</span> operator.itemgetter(<span class="dv">1</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>(<span class="bu">sorted</span>(fruits, key<span class="op">=</span>getcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> operator</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> [(<span class="st">'apple'</span>, <span class="dv">3</span>), (<span class="st">'banana'</span>, <span class="dv">2</span>), (<span class="st">'pear'</span>, <span class="dv">5</span>), (<span class="st">'orange'</span>, <span class="dv">1</span>)]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>getcount <span class="op">=</span> operator.itemgetter(<span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>(<span class="bu">sorted</span>(fruits, key<span class="op">=</span>getcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>sorted</code> function has also a <code>reverse</code> optional argument.</p>
-<div class="cell" data-cell_id="00010-3fde7150-3008-468b-a98a-4232b516024d" data-deepnote_cell_type="code" data-execution_millis="8" data-execution_start="1604475118186" data-source_hash="d7444908">
-<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>(<span class="bu">sorted</span>(fruits, key<span class="op">=</span>getcount, reverse<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>(<span class="bu">sorted</span>(fruits, key<span class="op">=</span>getcount, reverse<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercise-4.3" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4.3">Exercise 4.3</h3>
 <p>Create a function <code>reduce</code> to reduce the list of words returned by <code>map_words</code> and return a dictionary containing all words as keys and number of occurrences as values.</p>
-<pre class="pybt"><code>wordcount('sample.txt')
-{'tempora': 2, 'non': 1, 'quisquam': 1, 'amet': 1, 'sit': 1}</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>recuce(<span class="st">'sample.txt'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">'tempora'</span>: <span class="dv">2</span>, <span class="st">'non'</span>: <span class="dv">1</span>, <span class="st">'quisquam'</span>: <span class="dv">1</span>, <span class="st">'amet'</span>: <span class="dv">1</span>, <span class="st">'sit'</span>: <span class="dv">1</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You probably notice that this simple function is not easy to implement. Python standard library provides some features that can help.</p>
 </section>
 </section>
@@ -317,15 +305,13 @@
 <h3 class="anchored" data-anchor-id="defaultdict">defaultdict</h3>
 <p>When you implement the <code>wordcount</code> function you probably had some problem to append key-value pair to your <code>dict</code>. If you try to change the value of a key that is not present in the dict, the key is not automatically created.</p>
 <p>You can use a <code>try-except</code> flow but the <code>defaultdict</code> could be a solution. This container is a <code>dict</code> subclass that calls a factory function to supply missing values. For example, using list as the default_factory, it is easy to group a sequence of key-value pairs into a dictionary of lists:</p>
-<div class="cell" data-cell_id="00015-e3838c4c-076b-4219-a3ae-1a03431b9997" data-deepnote_cell_type="code" data-execution_millis="8" data-execution_start="1604475118195" data-source_hash="5e869425">
-<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> [(<span class="st">'yellow'</span>, <span class="dv">1</span>), (<span class="st">'blue'</span>, <span class="dv">2</span>), (<span class="st">'yellow'</span>, <span class="dv">3</span>), (<span class="st">'blue'</span>, <span class="dv">4</span>), (<span class="st">'red'</span>, <span class="dv">1</span>)]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, v <span class="kw">in</span> s:</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    d[k].append(v)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> [(<span class="st">'yellow'</span>, <span class="dv">1</span>), (<span class="st">'blue'</span>, <span class="dv">2</span>), (<span class="st">'yellow'</span>, <span class="dv">3</span>), (<span class="st">'blue'</span>, <span class="dv">4</span>), (<span class="st">'red'</span>, <span class="dv">1</span>)]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, v <span class="kw">in</span> s:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    d[k].append(v)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-4.4" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4.4">Exercise 4.4</h3>
@@ -337,24 +323,16 @@
 <h3 class="anchored" data-anchor-id="counter">Counter</h3>
 <p>A Counter is a dict subclass for counting hashable objects. It is an unordered collection where elements are stored as dictionary keys and their counts are stored as dictionary values. Counts are allowed to be any integer value including zero or negative counts.</p>
 <p>Elements are counted from an iterable or initialized from another mapping (or counter):</p>
-<div class="cell" data-cell_id="00018-0a4a9a48-d6d4-458d-8456-9d09663c2dd6" data-deepnote_cell_type="code" data-execution_start="1604475118223" data-source_hash="6c91b3d3">
-<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>violet <span class="op">=</span> <span class="bu">dict</span>(r<span class="op">=</span><span class="dv">23</span>,g<span class="op">=</span><span class="dv">13</span>,b<span class="op">=</span><span class="dv">23</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(violet)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>cnt <span class="op">=</span> Counter(violet)  <span class="co"># or Counter(r=238, g=130, b=238)</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cnt[<span class="st">'c'</span>])</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cnt[<span class="st">'r'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00019-d1ee2786-b0d6-4df6-9248-6bd86afc4969" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1604475118225" data-source_hash="882d365b">
-<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">*</span>cnt.elements())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00020-b5a17f34-1b0d-41b0-92d1-59d914b04baa" data-deepnote_cell_type="code" data-execution_start="1604475118240" data-source_hash="5a80c266">
-<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cnt.most_common(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00021-5e8b6b05-72fd-46ae-a211-6b918e042456" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604475118247" data-source_hash="ab270fed">
-<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cnt.values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>violet <span class="op">=</span> <span class="bu">dict</span>(r<span class="op">=</span><span class="dv">23</span>,g<span class="op">=</span><span class="dv">13</span>,b<span class="op">=</span><span class="dv">23</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(violet)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>cnt <span class="op">=</span> Counter(violet)  <span class="co"># or Counter(r=238, g=130, b=238)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cnt[<span class="st">'c'</span>])</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cnt[<span class="st">'r'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">*</span>cnt.elements())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cnt.most_common(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cnt.values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-4.5" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4.5">Exercise 4.5</h3>
@@ -370,13 +348,11 @@
 <li>You have to loop over them to sum occurences and return the resulted dict. To iterate on specific mappings, Python standard library provides some useful features in <code>itertools</code> module.</li>
 <li><a href="https://docs.python.org/3.6/library/itertools.html#itertools.chain">itertools.chain(*mapped_values)</a> could be used for treating consecutive sequences as a single sequence.</li>
 </ul>
-<div class="cell" data-cell_id="00025-944ba1df-e400-4e23-830f-a658dfe9f3de" data-deepnote_cell_type="code" data-execution_millis="8" data-execution_start="1604475118255" data-source_hash="d1e71c55">
-<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools, operator</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> [(<span class="st">'apple'</span>, <span class="dv">3</span>), (<span class="st">'banana'</span>, <span class="dv">2</span>), (<span class="st">'pear'</span>, <span class="dv">5</span>), (<span class="st">'orange'</span>, <span class="dv">1</span>)]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>vegetables <span class="op">=</span> [(<span class="st">'endive'</span>, <span class="dv">2</span>), (<span class="st">'spinach'</span>, <span class="dv">1</span>), (<span class="st">'celery'</span>, <span class="dv">5</span>), (<span class="st">'carrot'</span>, <span class="dv">4</span>)]</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>getcount <span class="op">=</span> operator.itemgetter(<span class="dv">1</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>(<span class="bu">sorted</span>(itertools.chain(fruits,vegetables), key<span class="op">=</span>getcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools, operator</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> [(<span class="st">'apple'</span>, <span class="dv">3</span>), (<span class="st">'banana'</span>, <span class="dv">2</span>), (<span class="st">'pear'</span>, <span class="dv">5</span>), (<span class="st">'orange'</span>, <span class="dv">1</span>)]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>vegetables <span class="op">=</span> [(<span class="st">'endive'</span>, <span class="dv">2</span>), (<span class="st">'spinach'</span>, <span class="dv">1</span>), (<span class="st">'celery'</span>, <span class="dv">5</span>), (<span class="st">'carrot'</span>, <span class="dv">4</span>)]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>getcount <span class="op">=</span> operator.itemgetter(<span class="dv">1</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">dict</span>(<span class="bu">sorted</span>(itertools.chain(fruits,vegetables), key<span class="op">=</span>getcount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercise-4.6" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-4.6">Exercise 4.6</h3>
 <ul>
@@ -393,17 +369,14 @@
 <ul>
 <li>Example of use of arbitrary argument list and arbitrary named arguments.</li>
 </ul>
-<div class="cell" data-cell_id="00029-4f68a23c-8c3c-4549-aeff-b8e79cfb2f81" data-deepnote_cell_type="code" data-execution_millis="2" data-execution_start="1604475118265" data-source_hash="c0a56b7c">
-<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func( <span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> arg <span class="kw">in</span> args:</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(arg)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(kwargs)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>func( <span class="st">"3"</span>, [<span class="dv">1</span>,<span class="dv">2</span>], <span class="st">"bonjour"</span>, x <span class="op">=</span> <span class="dv">4</span>, y <span class="op">=</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func( <span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> arg <span class="kw">in</span> args:</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(arg)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(kwargs)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>func( <span class="st">"3"</span>, [<span class="dv">1</span>,<span class="dv">2</span>], <span class="st">"bonjour"</span>, x <span class="op">=</span> <span class="dv">4</span>, y <span class="op">=</span> <span class="st">"y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<!-- -->
 </section>
 </section>
 </section>

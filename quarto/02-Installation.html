@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – installation</title>
   <style>
@@ -100,7 +100,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -130,7 +130,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -142,10 +142,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -215,7 +215,7 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#installation" class="nav-link active" data-scroll-target="#installation">Installation</a>
@@ -255,16 +255,12 @@ bash Miniforge3-Linux-x86_64.sh -b</code></pre>
 <section id="open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows" class="level2">
 <h2 class="anchored" data-anchor-id="open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows">Open a terminal (Linux/MacOSX) or a Anaconda prompt (Windows)</h2>
 <p>Verify that conda is installed and running on your system by typing:</p>
-<div class="cell" data-cell_id="00003-d557c9f8-81ee-4c1e-b7ac-6f454935523a" data-deepnote_cell_type="code" data-execution_millis="170" data-execution_start="1605782014656" data-source_hash="f0593b1f">
 <div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">~/</span>miniforge3<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>conda init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00006-4178ff26-bed3-4b36-9fc8-acd37e1fb16c" data-deepnote_cell_type="code" data-execution_millis="3" data-execution_start="1605782209255" data-source_hash="2be4121e">
 <div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">BONJOUR !</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">Sur le coté il y a un lien "add comment" qui permet de commenter pour les visiteurs :-)</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Conda displays the number of the version that you have installed.</p>
 <p>If you get an error message, make sure you closed and re-opened the terminal window after installing, or do it now.</p>
 <p>To update conda to the current version. Type the following:</p>
@@ -295,10 +291,8 @@ bash Miniforge3-Linux-x86_64.sh -b</code></pre>
 </section>
 <section id="to-see-a-list-of-all-your-environments-type" class="level3">
 <h3 class="anchored" data-anchor-id="to-see-a-list-of-all-your-environments-type">To see a list of all your environments, type:</h3>
-<div class="cell" data-cell_id="00010-f66a0378-5833-4fa0-ab0b-005baa7bd2ff" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>conda info <span class="op">--</span>envs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>The active environment is the one with an asterisk (*).</p>
 </section>
 <section id="change-your-current-environment-back-to-the-default-base" class="level3">
@@ -311,19 +305,15 @@ bash Miniforge3-Linux-x86_64.sh -b</code></pre>
 <ul>
 <li>Check to see if a package you have not installed named “jupyter” is available from the Anaconda repository (must be connected to the Internet):</li>
 </ul>
-<div class="cell" data-cell_id="00013-2a0afc14-6f3c-4303-8fe1-c044376d61ef" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>conda search jupyter <span class="op">|</span> grep conda<span class="op">-</span>forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Conda displays a list of all packages with that name on conda-forge repository, so we know it is available.</p>
 <p>Install this package into the base environment:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-y</span> jupyter <span class="at">-c</span> conda-forge <span class="at">-n</span> base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Check to see if the newly installed program is in this environment:</p>
-<div class="cell" data-cell_id="00016-259afc3f-771d-445e-bef8-8a86ace41777" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>conda <span class="bu">list</span> jupyter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="update-a-new-conda-environment-from-file" class="level3">
 <h3 class="anchored" data-anchor-id="update-a-new-conda-environment-from-file">Update a new conda environment from file</h3>
 <p>Download the file <a href="https://raw.githubusercontent.com/pnavaro/big-data/master/environment.yml">environment.yml</a>. This file contains the packages list for this course. Be aware that it takes time to download and install all packages.</p>
@@ -344,14 +334,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 <h2 class="anchored" data-anchor-id="install-the-kernel-for-jupyter">Install the kernel for jupyter</h2>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> run <span class="at">-n</span> big-data python <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> big-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>With this command you create the <code>big-data</code> kernel with python and all course dependencies. The cell above will give you the path to the python that runs in this notebook.</p>
-<div class="cell" data-cell_id="00020-9708ee56-1207-4fc0-b94b-a3963e073993" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sys<span class="sc">.</span>executable<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00021-ef265755-c5c4-4b5b-aaa3-9b1f5f3b5d3d" data-deepnote_cell_type="code">
 <div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>jupyter<span class="op">-</span>kernelspec <span class="bu">list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="mamba" class="level2">
 <h2 class="anchored" data-anchor-id="mamba">Mamba</h2>
@@ -364,7 +350,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    0m32.365s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this comparison packages are already downloaded, mamba is even better with downloads.</p>
 
-<!-- -->
 </section>
 </section>
 <script type="application/javascript">

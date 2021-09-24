@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -71,6 +71,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/logoR2-Noir.png" class="logo" alt="logo">
       
@@ -572,25 +576,6 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-
-<span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">Rectangle</span><span class="p">:</span>
-    
-    <span class="n">width</span> <span class="p">:</span> <span class="nb">int</span>
-    <span class="n">height</span> <span class="p">:</span> <span class="nb">int</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
-<span class="n">r</span><span class="o">.</span><span class="n">area</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="control-flow">
 <h2>Control flow<a class="headerlink" href="#control-flow" title="Permalink to this headline">¶</a></h2>
@@ -703,39 +688,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">rm</span> data/daily-stock/*.h5
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
-<span class="k">def</span> <span class="nf">read</span><span class="p">(</span> <span class="n">fn</span> <span class="p">):</span>
-    <span class="s2">&quot; read json file &quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
-    
-<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
-<span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
-    <span class="s2">&quot; convert json file to hdf5 file&quot;</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">out_filename</span> <span class="o">=</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.h5&#39;</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="n">out_filename</span><span class="p">,</span> <span class="s1">&#39;/data&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">fn</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span>
- 
-<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
- 
-<span class="o">%</span><span class="k">time</span> dask.compute(*results)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">ls</span> data/daily-stock/*.h5
 </pre></div>
 </div>
 </div>
@@ -1076,48 +1028,6 @@
 </li>
 </ol>
 <p>So your goal is to parallelize the code above (which has been copied below) using <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code>.  You may also want to visualize a bit of the computation to see if you’re doing it correctly.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="kn">from</span> <span class="nn">dask</span> <span class="kn">import</span> <span class="n">delayed</span><span class="p">,</span> <span class="n">compute</span>
-<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
-
-<span class="n">sums</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="nd">@delayed</span>
-<span class="k">def</span> <span class="nf">read_depdelay</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
-    <span class="c1"># Read in file</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-    <span class="n">DepDelay</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Origin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">DepDelay</span>
-    <span class="k">return</span> <span class="n">DepDelay</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">DepDelay</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-
-<span class="nd">@delayed</span>
-<span class="k">def</span> <span class="nf">compute_mean</span><span class="p">(</span> <span class="n">list_of_tuples</span> <span class="p">):</span>
-    <span class="n">totals</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">counts</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">list_of_tuples</span><span class="p">:</span>
-        <span class="n">totals</span> <span class="o">+=</span> <span class="n">t</span>
-        <span class="n">counts</span> <span class="o">+=</span> <span class="n">c</span>
-    <span class="k">return</span> <span class="n">totals</span> <span class="o">/</span> <span class="n">counts</span>
-    
-<span class="n">totals_and_counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">read_depdelay</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
-
-<span class="n">result</span> <span class="o">=</span> <span class="n">compute_mean</span><span class="p">(</span><span class="n">totals_and_counts</span><span class="p">)</span>
-
-<span class="n">result</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p><a class="reference external" href="https://docs.dask.org/en/latest/delayed-best-practices.html">Delayed best practices</a></p>
 </div>
 </div>
@@ -1175,7 +1085,7 @@
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

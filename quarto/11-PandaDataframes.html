@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – pandadataframes</title>
   <style>
@@ -100,7 +100,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -130,7 +130,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -142,10 +142,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -215,7 +215,7 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#pandas-dataframes" class="nav-link active" data-scroll-target="#pandas-dataframes">Pandas Dataframes</a>
@@ -251,7 +251,6 @@
 
 <section id="pandas-dataframes" class="level1">
 <h1>Pandas Dataframes</h1>
-<div class="cell" data-cell_id="00001-0e34313a-e6ff-42cd-b964-2bba4a813d96" data-execution_millis="496" data-execution_start="1604929143179" data-source_hash="b8bc3b3f">
 <div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -260,50 +259,34 @@
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_rows"</span>, <span class="dv">8</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="dv">9</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="create-a-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-dataframe">Create a <a href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#dataframe">DataFrame</a></h2>
-<div class="cell" data-cell_id="00003-bc5e5cf4-af3f-4565-a34e-66fab5d27d0e" data-execution_millis="15" data-execution_start="1604929144225" data-source_hash="eacdfea2">
 <div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> pd.date_range(<span class="st">'20130101'</span>, periods<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.random.randn(<span class="dv">6</span>,<span class="dv">4</span>), index<span class="op">=</span>dates, columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'ABCD'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00004-d8c0cc56-13e2-4415-b058-f191eafe2632" data-execution_millis="48" data-execution_start="1604929144672" data-source_hash="9ad5feb5">
 <div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">'A'</span> : <span class="fl">1.</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">'B'</span> : pd.Timestamp(<span class="st">'20130102'</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">'C'</span> : pd.Series(<span class="dv">1</span>,index<span class="op">=</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">4</span>)),dtype<span class="op">=</span><span class="st">'float32'</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">'D'</span> : np.arange(<span class="dv">4</span>,dtype<span class="op">=</span><span class="st">'int32'</span>),</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">'E'</span> : pd.Categorical([<span class="st">"test"</span>,<span class="st">"train"</span>,<span class="st">"test"</span>,<span class="st">"train"</span>]),</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">'F'</span> : <span class="st">'foo'</span> })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="load-data-from-csv-file" class="level2">
 <h2 class="anchored" data-anchor-id="load-data-from-csv-file">Load Data from CSV File</h2>
-<div class="cell" data-cell_id="00006-13dfdf33-8278-45f5-a9c2-01a737b174f8" data-execution_millis="926" data-execution_start="1604929147280" data-source_hash="9d3380cd">
 <div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.fun-mooc.fr/c4x/agrocampusouest/40001S03/asset/AnaDo_JeuDonnees_TemperatFrance.csv"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>french_cities <span class="op">=</span> pd.read_csv(url, delimiter<span class="op">=</span><span class="st">";"</span>, encoding<span class="op">=</span><span class="st">"latin1"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="viewing-data" class="level2">
 <h2 class="anchored" data-anchor-id="viewing-data">Viewing Data</h2>
-<div class="cell" data-cell_id="00008-99d0a65e-947e-4715-bdb3-0c129c7f876b" data-execution_millis="139" data-execution_start="1604929152108" data-source_hash="fe8fd366">
 <div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>french_cities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00009-c92cb0d8-c982-49ad-b418-b960e715378c" data-execution_millis="9" data-execution_start="1604929152880" data-source_hash="ae565e9">
 <div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>french_cities.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="index" class="level2">
 <h2 class="anchored" data-anchor-id="index">Index</h2>
-<div class="cell" data-cell_id="00011-5f25aea1-d6a1-4049-b4b6-72d39b4faf9e" data-execution_millis="12" data-execution_start="1604929154496" data-source_hash="933263d2">
 <div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>french_cities.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>We can rename an index by setting its name.</p>
-<div class="cell" data-cell_id="00013-f061ba24-2fea-4c72-89ce-d6430d363873" data-execution_millis="139" data-execution_start="1604929155968" data-source_hash="29216189">
 <div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>french_cities.index.name <span class="op">=</span> <span class="st">"City"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>french_cities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00014-f45b2d74-f3ac-40ca-86ca-72c564eb0a38" data-execution_millis="233" data-execution_start="1604929212500" data-source_hash="52d62797">
 <div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> locale</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> calendar</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> </span>
@@ -320,7 +303,6 @@
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>french_cities.rename(columns<span class="op">=</span>{<span class="st">'Moye'</span>:<span class="st">'Mean'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="exercise-rename-dataframe-months-in-english" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-rename-dataframe-months-in-english">Exercise: Rename DataFrame Months in English</h3>
 </section>
@@ -328,163 +310,102 @@
 <section id="from-a-local-or-remote-html-file" class="level2">
 <h2 class="anchored" data-anchor-id="from-a-local-or-remote-html-file">From a local or remote HTML file</h2>
 <p>We can download and extract data about mean sea level stations around the world from the <a href="http://www.psmsl.org/">PSMSL website</a>.</p>
-<div class="cell" data-cell_id="00016-ef98988f-7791-458e-81d7-6e19bf098bba" data-execution_millis="2168" data-execution_start="1604929241527" data-source_hash="ac2d49ef">
 <div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Needs `lxml`, `beautifulSoup4` and `html5lib` python packages</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>table_list <span class="op">=</span> pd.read_html(<span class="st">"http://www.psmsl.org/data/obtaining/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00017-0e97952d-0d80-4dc8-9806-531f927579c7" data-execution_millis="130" data-execution_start="1604929244911" data-source_hash="7e6f684d">
 <div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># there is 1 table on that page which contains metadata about the stations where </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sea levels are recorded</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>local_sea_level_stations <span class="op">=</span> table_list[<span class="dv">0</span>]</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>local_sea_level_stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="indexing-on-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="indexing-on-dataframes">Indexing on DataFrames</h2>
-<div class="cell" data-cell_id="00019-8d267528-d105-4ed8-8195-e17675e2da7b" data-execution_millis="8" data-execution_start="1604929252129" data-source_hash="c5c5d86d">
 <div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Lati'</span>]  <span class="co"># DF [] accesses columns (Series)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><code>.loc</code> and <code>.iloc</code> allow to access individual values, slices or masked selections:</p>
-<div class="cell" data-cell_id="00021-fb0a5b50-0b2f-4619-a6d6-e36d1bfa78e0" data-execution_millis="11" data-execution_start="1604929254001" data-source_hash="b5989654">
 <div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, <span class="st">"Sep"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00022-86d74db4-f444-456d-b56d-f5210d040bfa" data-execution_millis="5" data-execution_start="1604929257668" data-source_hash="e38bc8ab">
 <div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, [<span class="st">"Sep"</span>, <span class="st">"Dec"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00023-2ae5e898-6451-4058-94a7-4a1991148893" data-execution_millis="7" data-execution_start="1604929265747" data-source_hash="48ff286d">
 <div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, <span class="st">"Sep"</span>:<span class="st">"Dec"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="masking" class="level2">
 <h2 class="anchored" data-anchor-id="masking">Masking</h2>
-<div class="cell" data-cell_id="00025-c366d1f1-e377-4697-9b2f-e8c3aed28b52" data-execution_millis="21" data-execution_start="1604929267186" data-source_hash="6e04c5f8">
 <div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>] <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> [<span class="va">False</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(french_cities.iloc[:, mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00026-676281d6-09aa-4f20-a213-8f24e05676d9" data-execution_millis="11" data-execution_start="1604929268153" data-source_hash="33197cfe">
 <div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(french_cities.loc[<span class="st">"Rennes"</span>, mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="new-column" class="level2">
 <h2 class="anchored" data-anchor-id="new-column">New column</h2>
-<div class="cell" data-cell_id="00028-7b7c8a44-d1cc-4a89-9942-b5b28f54e48d" data-execution_millis="169" data-execution_start="1604929269737" data-source_hash="33d4611">
 <div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">"std"</span>] <span class="op">=</span> french_cities.iloc[:,:<span class="dv">12</span>].std(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00029-12934356-2631-46cd-ae75-048962cb8a16" data-execution_millis="2" data-execution_start="1604929270222" data-source_hash="e1061317">
 <div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>french_cities <span class="op">=</span> french_cities.drop(<span class="st">"std"</span>, axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># remove this new column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00030-16672180-0d4d-4c74-9d63-6e6f9f448797" data-execution_millis="155" data-execution_start="1604929270556" data-source_hash="fb4a2abe">
 <div class="sourceCode" id="cb20"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="modifying-a-dataframe-with-multiple-indexing" class="level2">
 <h2 class="anchored" data-anchor-id="modifying-a-dataframe-with-multiple-indexing">Modifying a dataframe with multiple indexing</h2>
-<div class="cell" data-cell_id="00032-14658a93-b2f7-46f3-bfe2-50377f95683e" data-execution_millis="16" data-execution_start="1604929272679" data-source_hash="6df209b9">
 <div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># french_cities['Rennes']['Sep'] = 25 # It does not works and breaks the DataFrame</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>][<span class="st">'Sep'</span>] <span class="co"># = 25 is the right way to do it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00033-5b2ceac7-475d-4f2a-9b5e-e682856691cf" data-execution_millis="151" data-execution_start="1604929274686" data-source_hash="fb4a2abe">
 <div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="transforming-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="transforming-datasets">Transforming datasets</h2>
-<div class="cell" data-cell_id="00035-bf089935-a4bd-4fbb-be4a-dad0ec93ab71" data-execution_millis="11" data-execution_start="1604929277326" data-source_hash="3c6e0409">
 <div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Mean'</span>].<span class="bu">min</span>(), french_cities[<span class="st">'Ampl'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="apply" class="level2">
 <h2 class="anchored" data-anchor-id="apply">Apply</h2>
 <p>Let’s convert the temperature mean from Celsius to Fahrenheit degree.</p>
-<div class="cell" data-cell_id="00037-9292c2f7-d414-4c3d-8fd5-05cc784217d5" data-execution_millis="7" data-execution_start="1604929278399" data-source_hash="3a84419b">
 <div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fahrenheit <span class="op">=</span> <span class="kw">lambda</span> T: T<span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">5</span><span class="op">+</span><span class="dv">32</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Mean'</span>].<span class="bu">apply</span>(fahrenheit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="sort" class="level2">
 <h2 class="anchored" data-anchor-id="sort">Sort</h2>
-<div class="cell" data-cell_id="00039-0ec6612b-d99a-4d62-ad31-ae12a0728205" data-execution_millis="19" data-execution_start="1604929281094" data-source_hash="26ce0f72">
 <div class="sourceCode" id="cb25"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>french_cities.sort_values(by<span class="op">=</span><span class="st">'Lati'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00040-fde35918-986d-41b5-a437-0100d64304ba" data-execution_millis="130" data-execution_start="1604929281429" data-source_hash="c49a4270">
 <div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>french_cities <span class="op">=</span> french_cities.sort_values(by<span class="op">=</span><span class="st">'Lati'</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="stack-and-unstack" class="level2">
 <h2 class="anchored" data-anchor-id="stack-and-unstack">Stack and unstack</h2>
 <p>Instead of seeing the months along the axis 1, and the cities along the axis 0, let’s try to convert these into an outer and an inner axis along only 1 time dimension.</p>
-<div class="cell" data-cell_id="00042-05765873-9d26-460d-819c-ef7d6d474f7b" data-execution_millis="25" data-execution_start="1604929283164" data-source_hash="cae8748d">
 <div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_rows"</span>, <span class="dv">20</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>unstacked <span class="op">=</span> french_cities.iloc[:,:<span class="dv">12</span>].unstack()</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>unstacked</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00043-46a90b9c-0da5-4ea2-a627-46b62706d8e1" data-execution_millis="6" data-execution_start="1604929284834" data-source_hash="5c13ac1d">
 <div class="sourceCode" id="cb28"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(unstacked)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="transpose" class="level2">
 <h2 class="anchored" data-anchor-id="transpose">Transpose</h2>
 <p>The result is grouped in the wrong order since it sorts first the axis that was unstacked. We need to transpose the dataframe.</p>
-<div class="cell" data-cell_id="00046-bbf8a9f3-89a6-496a-bc90-421b9fd5593d" data-execution_millis="966" data-execution_start="1604929285491" data-source_hash="efb0ae18">
 <div class="sourceCode" id="cb29"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>city_temp <span class="op">=</span> french_cities.iloc[:,:<span class="dv">12</span>].transpose()</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>city_temp.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00047-2098bbe9-19f1-4eb6-92d9-48cc69c7e2f1" data-execution_millis="835" data-execution_start="1604929289192" data-source_hash="937b7cd1">
 <div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>city_temp.boxplot(rot<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="describing" class="level2">
 <h2 class="anchored" data-anchor-id="describing">Describing</h2>
-<div class="cell" data-cell_id="00049-a5a1e30a-2e23-4752-afc1-72b5704ed14b" data-execution_millis="2" data-execution_start="1604929290050" data-source_hash="b5dc77ef">
 <div class="sourceCode" id="cb31"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00050-4f2da8ac-1b8b-4330-89fb-1465dda137bf" data-execution_millis="1" data-execution_start="1604929291231" data-source_hash="fabe831">
 <div class="sourceCode" id="cb32"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00051-e49dd603-cd1c-4476-910a-ec0d50d96265" data-execution_millis="15" data-execution_start="1604929293473" data-source_hash="24228889">
 <div class="sourceCode" id="cb33"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00052-501d65e1-a478-4f60-9718-6660c0b06597" data-execution_millis="12" data-execution_start="1604929294893" data-source_hash="bc954d26">
 <div class="sourceCode" id="cb34"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To save memory, we can convert it to a categorical column:</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">"Région"</span>] <span class="op">=</span> french_cities[<span class="st">"Région"</span>].astype(<span class="st">"category"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00053-a326bf61-d92b-44bd-b9bb-5971b3ff1cb2" data-execution_millis="17" data-execution_start="1604929296449" data-source_hash="aac71f04">
 <div class="sourceCode" id="cb35"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>french_cities.memory_usage()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="data-aggregationsummarization" class="level2">
 <h2 class="anchored" data-anchor-id="data-aggregationsummarization">Data Aggregation/summarization</h2>
 </section>
 <section id="groupby" class="level2">
 <h2 class="anchored" data-anchor-id="groupby">groupby</h2>
-<div class="cell" data-cell_id="00055-83791040-c079-42e6-861b-43783e94be77" data-execution_millis="9" data-execution_start="1604929298683" data-source_hash="2c7ff5cf">
 <div class="sourceCode" id="cb36"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fc_grouped_region <span class="op">=</span> french_cities.groupby(<span class="st">"Région"</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(fc_grouped_region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00056-d2c21f4d-c8df-422f-966b-18e6c204d0b1" data-execution_millis="7" data-execution_start="1604929300011" data-source_hash="8f3dff8a">
 <div class="sourceCode" id="cb37"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> group_name, subdf <span class="kw">in</span> fc_grouped_region:</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group_name)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(subdf)</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="exercise" class="level3">
 <h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
 <p>Consider the following dataset <a href="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant">UCI Machine Learning Repository Combined Cycle Power Plant Data Set</a>. This dataset consists of records of measurements relating to peaker power plants of 10000 points over 6 years (2006-2011).</p>
 <p><strong>Variables</strong> - AT = Atmospheric Temperature in C - V = Exhaust Vaccum Speed - AP = Atmospheric Pressure - RH = Relative Humidity - PE = Power Output</p>
 <p>We want to model the power output as a function of the other parameters.</p>
 <p>Observations are in 5 excel sheets of about 10000 records in “Folds5x2_pp.xlsx”. These 5 sheets are same data shuffled. - Read this file with the pandas function <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_excel.html">read_excel</a>. What is the type returned by this function? - Implement a <code>select</code> function to regroup all observations in a pandas serie. - Use <code>select</code> function and <code>corr</code> to compute the maximum correlation. - Parallelize this loop with <code>concurrent.futures</code>.</p>
-<div class="cell" data-cell_id="00059-e1cdbb6e-d8cb-41d6-a0ce-c79fd1987f6d" data-execution_millis="6788" data-execution_start="1604930104289" data-source_hash="84c274bc">
 <div class="sourceCode" id="cb38"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'data/Folds5x2_pp.xlsx'</span>)</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00060-7c284e28-e7ae-40ee-b284-8cc2da2b87af" data-execution_millis="7" data-execution_start="1604930229279" data-source_hash="d7b6d2d7">
 <div class="sourceCode" id="cb39"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'AT'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00059-d45ac30b-e272-4ffe-99ef-367beb289be1" data-execution_millis="5" data-execution_start="1604930252774" data-source_hash="e1fc145f">
 <div class="sourceCode" id="cb40"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> df.columns:</span>
@@ -493,34 +414,29 @@
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>            results[a, b] <span class="op">=</span> <span class="bu">abs</span>(df[a].corr(df[b]))</span>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>((a, b), corr) <span class="op">=</span> <span class="bu">max</span>(results.items(), key<span class="op">=</span><span class="kw">lambda</span> kv: kv[<span class="dv">1</span>])</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{a}</span><span class="ss"> matches with </span><span class="sc">{b}</span><span class="ss"> with correlation </span><span class="sc">{</span>corr<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00058-6d92b56d-393c-4d2b-8f6c-324e9dab664f" data-execution_millis="43" data-execution_start="1604930297846" data-source_hash="812c30ae">
-<div class="sourceCode" id="cb41"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> ThreadPoolExecutor(<span class="dv">2</span>)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>futures <span class="op">=</span> {}</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corr( serie_a, serie_b):</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(serie_a.corr(serie_b))</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> df.columns:</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> df.columns:</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a <span class="op">!=</span> b:</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>            futures[a, b] <span class="op">=</span> e.submit( corr, df[a], df[b])</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {k : f.result() <span class="cf">for</span> k, f <span class="kw">in</span> futures.items()}</span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> matches with </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> with correlation </span><span class="sc">{</span>corr<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> ThreadPoolExecutor(<span class="dv">2</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>futures <span class="op">=</span> {}</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corr( serie_a, serie_b):</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(serie_a.corr(serie_b))</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> df.columns:</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> df.columns:</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a <span class="op">!=</span> b:</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>            futures[a, b] <span class="op">=</span> e.submit( corr, df[a], df[b])</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {k : f.result() <span class="cf">for</span> k, f <span class="kw">in</span> futures.items()}</span>
 <span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>((a, b), corr) <span class="op">=</span> <span class="bu">max</span>(results.items(), key<span class="op">=</span><span class="kw">lambda</span> kv: kv[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00060-f9e70625-45bc-4593-8e8e-652d2bff59f3" data-execution_millis="3" data-execution_start="1604930307501" data-source_hash="dad58854">
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>((a, b), corr) <span class="op">=</span> <span class="bu">max</span>(results.items(), key<span class="op">=</span><span class="kw">lambda</span> kv: kv[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb42"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>a, b, corr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
-<!-- -->
 </section>
 </section>
 </section>

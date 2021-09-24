@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.94">
+  <meta name="generator" content="quarto-0.2.168">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Python tools for Big Data – pandasseries</title>
   <style>
@@ -100,7 +100,7 @@
 <body>
 <div id="quarto-search-results"></div>
 <header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+<nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container-fluid">
   <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
@@ -130,7 +130,7 @@
 <div class="container-fluid quarto-container d-flex flex-column page-layout-article">
 <div class="row flex-fill" id="quarto-content">
   <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto py-2 docked  overflow-scroll">
+    <nav class="me-lg-auto docked overflow-auto">
     <div class="d-flex px-3 mt-2 flex-shrink-0 align-items-center">
       <div class="sidebar-search">
       <form class="d-flex mb-0">
@@ -142,10 +142,10 @@
   <ul class="list-unstyled mt-1 px-3">
       <ul class="list-unstyled sidebar-section depth1">
     <li class="">
-        <div class="me-auto ">
+        <div class="me-auto">
             <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto  sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2 "></i></div>
+              <div class="me-auto sidebar-section-item">Notebooks</div>
+            <div><i class="bi bi-chevron-right ms-2"></i></div>
             </a>
         </div>
       <div class="collapse  show" id="notebooks-collapse">
@@ -215,7 +215,7 @@
   </div>
 </nav>
   </div>
-  <div id="quarto-toc-sidebar" class="col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
+  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
 <h2 id="toc-title">On this page</h2>
 <ul>
 <li><a href="#pandas-series" class="nav-link active" data-scroll-target="#pandas-series">Pandas Series</a>
@@ -274,7 +274,6 @@
 <li>Plotting functions</li>
 <li>Basic statistical tools.</li>
 </ul>
-<div class="cell" data-cell_id="00002-6e6ebda8-7419-47fb-90a2-ee91f297ca5c" data-execution_millis="1384" data-execution_start="1604928732612" data-source_hash="774a64a2">
 <div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -284,7 +283,6 @@
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>()</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_rows"</span>, <span class="dv">8</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="dv">9</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="series" class="level2">
 <h2 class="anchored" data-anchor-id="series"><a href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#series">Series</a></h2>
 <ul>
@@ -294,12 +292,8 @@
 <li>The index must be the same length as the data.</li>
 <li>If no index is supplied it is automatically generated as <code>range(len(data))</code>.</li>
 </ul>
-<div class="cell" data-cell_id="00004-1ebd1d12-f259-4f95-9f28-dd5a3a5af928" data-execution_millis="21" data-execution_start="1604928739183" data-source_hash="bc816813">
 <div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.Series([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,np.nan,<span class="dv">6</span>,<span class="dv">8</span>], dtype<span class="op">=</span>np.float64)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00005-d4bc0a60-8059-462c-9374-b63d835e4cc8" data-execution_millis="29" data-execution_start="1604928740625" data-source_hash="f3135575">
 <div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pd.Series(index<span class="op">=</span>pd.period_range(<span class="st">'09/11/2017'</span>, <span class="st">'09/18/2017'</span>, freq<span class="op">=</span><span class="st">"D"</span>), dtype<span class="op">=</span>np.int8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="exercise" class="level3">
 <h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
 <ul>
@@ -311,10 +305,8 @@
 <ul>
 <li>From the results create a Pandas series name latin_series with words in alphabetical order as index.</li>
 </ul>
-<div class="cell" data-cell_id="00008-93c5e0ea-c9e8-4756-83f1-a23bff2bbcf4">
 <div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.Series(result)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="exercise-2" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-2">Exercise</h3>
@@ -342,7 +334,6 @@
 <section id="full-globe-temperature-between-1901-and-2000." class="level3">
 <h3 class="anchored" data-anchor-id="full-globe-temperature-between-1901-and-2000.">Full globe temperature between 1901 and 2000.</h3>
 <p>We read the text file and load the results in a pandas dataframe. In cells below you need to clean the data and convert the dataframe to a time series.</p>
-<div class="cell" data-cell_id="00013-d7a4604a-6476-412c-ae02-c8d468c38dc0">
 <div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>here <span class="op">=</span> os.getcwd()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -351,7 +342,6 @@
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_table(filename, sep<span class="op">=</span><span class="st">"\s+"</span>, </span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                   names<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"mean temp"</span>])</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="exercise-5" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5">Exercise</h3>
@@ -411,18 +401,13 @@
 <section id="saving-work" class="level3">
 <h3 class="anchored" data-anchor-id="saving-work">Saving Work</h3>
 <p><a href="https://support.hdfgroup.org/HDF5/">HDF5</a> is widely used and one of the most powerful file format to store binary data. It allows to store both Series and DataFrames.</p>
-<div class="cell" data-cell_id="00024-99e4e168-7177-41c1-a7de-51130e5454ce">
 <div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pd.HDFStore(<span class="st">"data/pandas_series.h5"</span>) <span class="im">as</span> writer:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    df.to_hdf(writer, <span class="st">"/temperatures/full_globe"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="reloading-data" class="level3">
 <h3 class="anchored" data-anchor-id="reloading-data">Reloading data</h3>
-<div class="cell" data-cell_id="00026-a31b8c65-b19c-4dad-96b0-5d98a6f00b21">
 <div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pd.HDFStore(<span class="st">"data/pandas_series.h5"</span>) <span class="im">as</span> store:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> store[<span class="st">"/temperatures/full_globe"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00027-227420a8-0290-4009-a8a8-cf7ca47d37fc" data-execution_millis="20" data-execution_start="1604928925019" data-source_hash="c2725c7a">
 <div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lorem <span class="im">import</span> text</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> operator</span>
@@ -430,19 +415,11 @@
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> Counter(<span class="bu">filter</span>(<span class="va">None</span>,text().strip().replace(<span class="st">'.'</span>,<span class="st">''</span>).replace(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>,<span class="st">' '</span>).lower().split(<span class="st">' '</span>)))</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">sorted</span>(c.most_common(),key<span class="op">=</span>operator.itemgetter(<span class="dv">1</span>),reverse<span class="op">=</span><span class="va">True</span>))</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00028-0399eb7e-c714-45c4-a2cb-16256e4ccbf8" data-execution_millis="1" data-execution_start="1604928934672" data-source_hash="7708a3b0">
 <div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.Series(result)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00028-bbfadb3e-00f9-4d21-a1e6-5e0331afb9aa" data-execution_millis="1017" data-execution_start="1604928939851" data-source_hash="e52bbe9d">
 <div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00030-b37da711-4eae-4791-97f1-791e43a90137" data-execution_millis="994" data-execution_start="1604928962001" data-source_hash="afd13689">
 <div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df.plot(kind<span class="op">=</span><span class="st">'bar'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00031-04621593-8003-42af-8a0f-f21162d2b9cf" data-execution_millis="13" data-execution_start="1604929014646" data-source_hash="aaffa75e">
 <div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>here <span class="op">=</span> os.getcwd()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -457,31 +434,18 @@
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[<span class="st">'mean temp'</span>]</span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00032-0d29437c-a129-4eda-b69c-e39f407f5c4a" data-execution_millis="14" data-execution_start="1604929043623" data-source_hash="838c0c28">
 <div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00033-eaf4fca4-06f7-4300-ad9d-b75e4d281b6c" data-execution_millis="4" data-execution_start="1604929061452" data-source_hash="7ecfaa90">
 <div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a> df[df.values <span class="op">==</span> <span class="op">-</span><span class="dv">999</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00034-4ab43419-690e-41f2-8fe2-933506d57178" data-execution_millis="18" data-execution_start="1604929072552" data-source_hash="b9f2fd7">
 <div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df.copy()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df2[df <span class="op">==</span> <span class="op">-</span><span class="fl">999.0</span>] <span class="op">=</span> np.nan  <span class="co"># For this indexing we need a copy</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>df2.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00035-629edd1e-1889-4749-a2f5-51a8bb1e3c44" data-execution_millis="18" data-execution_start="1604929081658" data-source_hash="64f433d8">
 <div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df2.dropna()</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00036-fafe259a-8d90-42df-bb07-040017a89450" data-execution_millis="3" data-execution_start="1604929096047" data-source_hash="d61000">
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df.tail()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.to_period(<span class="st">'M'</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-cell_id="00027-5b5ee84f-74c9-459f-a558-04c51abbc53b" data-execution_millis="999" data-execution_start="1604929119469" data-source_hash="e0123ca5">
 <div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df.resample(<span class="st">'10A'</span>).mean().plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
-<!-- -->
 </section>
 </section>
 </section>
