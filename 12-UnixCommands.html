@@ -924,22 +924,6 @@ ls -l
 <li><p><code class="docutils literal notranslate"><span class="pre">tr</span> <span class="pre">-d</span> <span class="pre">str</span></code> delete the string str from the output</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">uniq</span> <span class="pre">-c</span></code> writes a copy of each unique input and precede each word with the count of the number of occurences.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lorem</span> <span class="kn">import</span> <span class="n">text</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!cat sample.txt | tr [:upper:] [:lower:] | tr -d &quot;.&quot; | fmt -1 | sort | uniq -c | sort -r
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="exercice-11-3">
 <h3>Exercice 11.3<a class="headerlink" href="#exercice-11-3" title="Permalink to this headline">¶</a></h3>
@@ -952,37 +936,7 @@ quiquia	1
 sit	1
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">mapper</span><span class="o">.</span><span class="n">py</span>
-<span class="c1">#!/usr/bin/env python</span>
-<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">string</span>
-<span class="n">translator</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
-<span class="c1"># input comes from standard input</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="c1"># remove leading and trailing whitespace</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span>   <span class="c1"># strip punctuation</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="c1"># split the line into words</span>
-    <span class="c1"># increase counters</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-        <span class="c1"># write the results to standard output;</span>
-        <span class="c1"># what we output here will be the input for the</span>
-        <span class="c1"># Reduce step, i.e. the input for reducer.py</span>
-        <span class="c1"># tab-delimited; the trivial word count is 1</span>
-        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="se">\t</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>File <code class="docutils literal notranslate"><span class="pre">mapper.py</span></code> must be executable.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!chmod +x mapper.py
-!./mapper.py &lt; sample.txt | sort 
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="exercice-11-4">
 <h3>Exercice 11.4<a class="headerlink" href="#exercice-11-4" title="Permalink to this headline">¶</a></h3>
@@ -997,62 +951,6 @@ sit	1
 6	non
 6	dolore
 </pre></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">reducer</span><span class="o">.</span><span class="n">py</span>
-<span class="c1">#!/usr/bin/env python</span>
-<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="n">current_word</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">current_count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">word</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">:</span>
-    
-    <span class="c1"># parse the input we got from mapper.py</span>
-    <span class="n">word</span><span class="p">,</span> <span class="n">count</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># convert count (currently a string) to int</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-        <span class="c1"># count was not a number, so silently</span>
-        <span class="c1"># ignore/discard this line</span>
-        <span class="k">continue</span>
-
-    <span class="c1"># this IF-switch only works because Hadoop sorts map output</span>
-    <span class="c1"># by key (here: word) before it is passed to the reducer</span>
-    <span class="k">if</span> <span class="n">current_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
-        <span class="n">current_count</span> <span class="o">+=</span> <span class="n">count</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">current_word</span><span class="p">:</span>
-            <span class="c1"># write result to sys.stdout</span>
-            <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">current_count</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">current_word</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">current_count</span> <span class="o">=</span> <span class="n">count</span>
-        <span class="n">current_word</span> <span class="o">=</span> <span class="n">word</span>
-
-<span class="c1"># do not forget to output the last word if needed!</span>
-<span class="k">if</span> <span class="n">current_word</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">current_count</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">current_word</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!chmod +x ./reducer.py
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!cat sample.txt | ./mapper.py | sort | ./reducer.py
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>
