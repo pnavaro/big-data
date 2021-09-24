@@ -844,15 +844,6 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 <ul class="simple">
 <li><p>Write the sample text file</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lorem</span> <span class="kn">import</span> <span class="n">text</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
 <ul class="simple">
 <li><p>Create the rdd with <code class="docutils literal notranslate"><span class="pre">SparkContext.textFile</span> <span class="pre">method</span></code></p></li>
 <li><p>lower, remove dots and split using <code class="docutils literal notranslate"><span class="pre">rdd.flatMap</span></code></p></li>

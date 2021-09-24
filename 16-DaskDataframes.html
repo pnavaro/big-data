@@ -713,34 +713,6 @@
 <li><p>Use selections <code class="docutils literal notranslate"><span class="pre">df[...]</span></code> to find how many positive (late) and negative (early) departure times there are</p></li>
 <li><p>In total, how many non-cancelled flights were taken? (To invert a boolean pandas Series s, use ~s).</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span> <span class="n">df</span><span class="o">.</span><span class="n">DepDelay</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="divisions-and-the-index">
@@ -813,20 +785,6 @@
 <ul class="simple">
 <li><p>What day of the week has the worst average departure delay?</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="o">~</span><span class="n">df2</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Origin</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="p">[</span><span class="o">~</span><span class="n">df2</span><span class="o">.</span><span class="n">Cancelled</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Origin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="sharing-intermediate-results">
@@ -876,18 +834,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dask</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">mean_delay</span><span class="p">,</span> <span class="n">std_delay</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
- 
-<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">threads_per_worker</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">memory_limit</span><span class="o">=</span><span class="s1">&#39;1GB&#39;</span><span class="p">)</span>
- 
-<span class="n">client</span>
- 
 </pre></div>
 </div>
 </div>

@@ -436,10 +436,6 @@
 <li>Use selections <code>df[...]</code> to find how many positive (late) and negative (early) departure times there are</li>
 <li>In total, how many non-cancelled flights were taken? (To invert a boolean pandas Series s, use ~s).</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df[ df.DepDelay <span class="op">&lt;</span> <span class="dv">0</span>]), <span class="bu">len</span>(df[ df.DepDelay <span class="op">&gt;</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df[ <span class="op">~</span>df.Cancelled]), <span class="bu">len</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="divisions-and-the-index" class="level2">
@@ -448,20 +444,20 @@
 <p>In <code>dask.dataframe</code> this index becomes even more important. Recall that one dask <code>DataFrame</code> consists of several Pandas <code>DataFrame</code>s. These dataframes are separated along the index by value. For example, when working with time series we may partition our large dataset by month.</p>
 <p>Recall that these many partitions of our data may not all live in memory at the same time, instead they might live on disk; we simply have tasks that can materialize these pandas <code>DataFrames</code> on demand.</p>
 <p>Partitioning your data can greatly improve efficiency. Operations like <code>loc</code>, <code>groupby</code>, and <code>merge/join</code> along the index are <em>much more efficient</em> than operations along other columns. You can see how your dataset is partitioned with the <code>.divisions</code> attribute. Note that data that comes out of simple data sources like CSV files aren’t intelligently indexed by default. In these cases the values for <code>.divisions</code> will be <code>None.</code></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> dd.read_csv(filenames,</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                 dtype<span class="op">=</span>{<span class="st">'TailNum'</span>: <span class="bu">str</span>,</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'CRSElapsedTime'</span>: <span class="bu">float</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Cancelled'</span>: <span class="bu">bool</span>})</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>df.divisions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> dd.read_csv(filenames,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                 dtype<span class="op">=</span>{<span class="st">'TailNum'</span>: <span class="bu">str</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'CRSElapsedTime'</span>: <span class="bu">float</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Cancelled'</span>: <span class="bu">bool</span>})</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>df.divisions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>However if we set the index to some new column then dask will divide our data roughly evenly along that column and create new divisions for us. Warning, <code>set_index</code> triggers immediate computation.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df.set_index(<span class="st">'Year'</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df2.divisions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df.set_index(<span class="st">'Year'</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df2.divisions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We see here the minimum and maximum values (1990 and 1999) as well as the intermediate values that separate our data well. This dataset has ten partitions, as the final value is assumed to be the inclusive right-side for the last bin.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df2.npartitions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df2.npartitions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>One of the benefits of this is that operations like <code>loc</code> only need to load the relevant partitions</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df2.loc[<span class="dv">1991</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df2.loc[<span class="dv">1991</span>].compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df2.loc[<span class="dv">1991</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df2.loc[<span class="dv">1991</span>].compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercises-15.2" class="level3">
 <h3 class="anchored" data-anchor-id="exercises-15.2">Exercises 15.2</h3>
 <p>In this section we do a few <code>dask.dataframe</code> computations. If you are comfortable with Pandas then these should be familiar. You will have to think about when to call <code>compute</code>.</p>
@@ -476,29 +472,27 @@
 <ul>
 <li>What day of the week has the worst average departure delay?</li>
 </ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df2[<span class="op">~</span>df2.Cancelled].groupby(<span class="st">"Origin"</span>).Origin.count().compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df2[<span class="op">~</span>df2.Cancelled].groupby(<span class="st">"Origin"</span>).DepDelay.mean().compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="sharing-intermediate-results" class="level2">
 <h2 class="anchored" data-anchor-id="sharing-intermediate-results">Sharing Intermediate Results</h2>
 <p>When computing all of the above, we sometimes did the same operation more than once. For most operations, <code>dask.dataframe</code> hashes the arguments, allowing duplicate computations to be shared, and only computed once.</p>
 <p>For example, lets compute the mean and standard deviation for departure delay of all non-cancelled flights:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>non_cancelled <span class="op">=</span> df[<span class="op">~</span>df.Cancelled]</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>mean_delay <span class="op">=</span> non_cancelled.DepDelay.mean()</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>std_delay <span class="op">=</span> non_cancelled.DepDelay.std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>non_cancelled <span class="op">=</span> df[<span class="op">~</span>df.Cancelled]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>mean_delay <span class="op">=</span> non_cancelled.DepDelay.mean()</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>std_delay <span class="op">=</span> non_cancelled.DepDelay.std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="using-two-calls-to-.compute" class="level4">
 <h4 class="anchored" data-anchor-id="using-two-calls-to-.compute">Using two calls to <code>.compute</code>:</h4>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mean_delay_res <span class="op">=</span> mean_delay.compute()</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>std_delay_res <span class="op">=</span> std_delay.compute()</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>mean_delay_res, std_delay_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>mean_delay_res <span class="op">=</span> mean_delay.compute()</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>std_delay_res <span class="op">=</span> std_delay.compute()</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>mean_delay_res, std_delay_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="using-one-call-to-dask.compute" class="level4">
 <h4 class="anchored" data-anchor-id="using-one-call-to-dask.compute">Using one call to <code>dask.compute</code>:</h4>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>mean_delay_res, std_delay_res <span class="op">=</span> dask.compute(mean_delay, std_delay)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>mean_delay_res, std_delay_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>mean_delay_res, std_delay_res <span class="op">=</span> dask.compute(mean_delay, std_delay)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>mean_delay_res, std_delay_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Using <code>dask.compute</code> takes roughly 1/2 the time. This is because the task graphs for both results are merged when calling <code>dask.compute</code>, allowing shared operations to only be done once instead of twice. In particular, using <code>dask.compute</code> only does the following once:</p>
 <ul>
 <li>the calls to <code>read_csv</code></li>
@@ -506,13 +500,7 @@
 <li>some of the necessary reductions (<code>sum</code>, <code>count</code>)</li>
 </ul>
 <p>To see what the merged task graphs between multiple results look like (and what’s shared), you can use the <code>dask.visualize</code> function (we might want to use <code>filename='graph.pdf'</code> to zoom in on the graph better):</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>dask.visualize(mean_delay, std_delay)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.distributed <span class="im">import</span> Client</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client(n_workers<span class="op">=</span><span class="dv">2</span>, threads_per_worker<span class="op">=</span><span class="dv">1</span>, memory_limit<span class="op">=</span><span class="st">'1GB'</span>)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>client</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>dask.visualize(mean_delay, std_delay)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </section>
 </section>
