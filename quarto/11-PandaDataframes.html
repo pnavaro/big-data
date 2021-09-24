@@ -401,41 +401,6 @@
 <p><strong>Variables</strong> - AT = Atmospheric Temperature in C - V = Exhaust Vaccum Speed - AP = Atmospheric Pressure - RH = Relative Humidity - PE = Power Output</p>
 <p>We want to model the power output as a function of the other parameters.</p>
 <p>Observations are in 5 excel sheets of about 10000 records in “Folds5x2_pp.xlsx”. These 5 sheets are same data shuffled. - Read this file with the pandas function <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_excel.html">read_excel</a>. What is the type returned by this function? - Implement a <code>select</code> function to regroup all observations in a pandas serie. - Use <code>select</code> function and <code>corr</code> to compute the maximum correlation. - Parallelize this loop with <code>concurrent.futures</code>.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'data/Folds5x2_pp.xlsx'</span>)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'AT'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> df.columns:</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> df.columns:</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a <span class="op">!=</span> b:</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>            results[a, b] <span class="op">=</span> <span class="bu">abs</span>(df[a].corr(df[b]))</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>((a, b), corr) <span class="op">=</span> <span class="bu">max</span>(results.items(), key<span class="op">=</span><span class="kw">lambda</span> kv: kv[<span class="dv">1</span>])</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss"> matches with </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> with correlation </span><span class="sc">{</span>corr<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> ThreadPoolExecutor(<span class="dv">2</span>)</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>futures <span class="op">=</span> {}</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corr( serie_a, serie_b):</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">abs</span>(serie_a.corr(serie_b))</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="kw">in</span> df.columns:</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> b <span class="kw">in</span> df.columns:</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a <span class="op">!=</span> b:</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>            futures[a, b] <span class="op">=</span> e.submit( corr, df[a], df[b])</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {k : f.result() <span class="cf">for</span> k, f <span class="kw">in</span> futures.items()}</span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>((a, b), corr) <span class="op">=</span> <span class="bu">max</span>(results.items(), key<span class="op">=</span><span class="kw">lambda</span> kv: kv[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>a, b, corr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </section>
 </section>
