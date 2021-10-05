@@ -1,1049 +1,1210 @@
 [
   {
+    "objectID": "17-SparkDataFrames.html#references",
     "href": "17-SparkDataFrames.html#references",
     "title": "Python tools for Big Data",
     "section": "References",
     "text": "Spark SQL, DataFrames and Datasets Guide\nIntroduction to DataFrames - Python\nPySpark Cheat Sheet: Spark DataFrames in Python\n\n\nDataFrames are :\n\nThe preferred abstraction in Spark\nStrongly typed collection of distributed elements\nBuilt on Resilient Distributed Datasets (RDD)\nImmutable once constructed\n\n\n\nWith Dataframes you can :\n\nTrack lineage information to efficiently recompute lost data\nEnable operations on collection of elements in parallel\n\n\n\nYou construct DataFrames\n\nby parallelizing existing collections (e.g., Pandas DataFrames)\nby transforming an existing DataFrames\nfrom files in HDFS or any other storage system (e.g., Parquet)\n\n\n\nFeatures\n\nAbility to scale from kilobytes of data on a single laptop to petabytes on a large cluster\nSupport for a wide array of data formats and storage systems\nSeamless integration with all big data tooling and infrastructure via Spark\nAPIs for Python, Java, Scala, and R\n\n\n\nDataFrames versus RDDs\n\nNice API for new users familiar with data frames in other programming languages.\nFor existing Spark users, the API will make Spark easier to program than using RDDs\nFor both sets of users, DataFrames will improve performance through intelligent optimizations and code-generation"
   },
   {
+    "objectID": "17-SparkDataFrames.html#pyspark-shell",
     "href": "17-SparkDataFrames.html#pyspark-shell",
     "title": "Python tools for Big Data",
     "section": "PySpark Shell",
     "text": "Run the Spark shell:\npyspark\nOutput similar to the following will be displayed, followed by a >>> REPL prompt:\nPython 3.6.5 |Anaconda, Inc.| (default, Apr 29 2018, 16:14:56)\n[GCC 7.2.0] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n2018-09-18 17:13:13 WARN  NativeCodeLoader:62 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSetting default log level to \"WARN\".\nTo adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).\nWelcome to\n      ____              __\n     / __/__  ___ _____/ /__\n    _\\ \\/ _ \\/ _ `/ __/  '_/\n   /__ / .__/\\_,_/_/ /_/\\_\\   version 2.3.1\n      /_/\n\nUsing Python version 3.6.5 (default, Apr 29 2018 16:14:56)\nSparkSession available as 'spark'.\n>>>\nRead data and convert to Dataset\ndf = sqlContext.read.csv(\"/tmp/irmar.csv\", sep=';', header=True)\n>>> df2.show()\n+---+--------------------+------------+------+------------+--------+-----+---------+--------+\n|_c0|                name|       phone|office|organization|position|  hdr|    team1|   team2|\n+---+--------------------+------------+------+------------+--------+-----+---------+--------+\n|  0|      Alphonse Paul |+33223235223|   214|          R1|     DOC|False|      EDP|      NA|\n|  1|        Ammari Zied |+33223235811|   209|          R1|      MC| True|      EDP|      NA|\n.\n.\n.\n| 18|    Bernier Joachim |+33223237558|   214|          R1|     DOC|False|   ANANUM|      NA|\n| 19|   Berthelot Pierre |+33223236043|   601|          R1|      PE| True|       GA|      NA|\n+---+--------------------+------------+------+------------+--------+-----+---------+--------+\nonly showing top 20 rows"
   },
   {
+    "objectID": "17-SparkDataFrames.html#transformations-actions-laziness",
     "href": "17-SparkDataFrames.html#transformations-actions-laziness",
     "title": "Python tools for Big Data",
     "section": "Transformations, Actions, Laziness",
     "text": "Like RDDs, DataFrames are lazy. Transformations contribute to the query plan, but they don’t execute anything. Actions cause the execution of the query.\n\nTransformation examples\n\nfilter\nselect\ndrop\nintersect\njoin ### Action examples\ncount\ncollect\nshow\nhead\ntake"
   },
   {
+    "objectID": "17-SparkDataFrames.html#creating-a-dataframe-in-python",
     "href": "17-SparkDataFrames.html#creating-a-dataframe-in-python",
     "title": "Python tools for Big Data",
     "section": "Creating a DataFrame in Python",
     "text": "import sys, subprocess\nimport os\n\nos.environ[\"PYSPARK_PYTHON\"] = sys.executable\nfrom pyspark import SparkContext, SparkConf, SQLContext\n# The following three lines are not necessary\n# in the pyspark shell\nconf = SparkConf().setAppName(\"people\").setMaster(\"local[*]\") \nsc = SparkContext(conf=conf)\nsc.setLogLevel(\"ERROR\")\nsqlContext = SQLContext(sc)\ndf = sqlContext.read.json(\"data/people.json\") # get a dataframe from json file\n\ndf.show(24)"
   },
   {
+    "objectID": "17-SparkDataFrames.html#schema-inference",
     "href": "17-SparkDataFrames.html#schema-inference",
     "title": "Python tools for Big Data",
     "section": "Schema Inference",
     "text": "In this exercise, let’s explore schema inference. We’re going to be using a file called irmar.txt. The data is structured, but it has no self-describing schema. And, it’s not JSON, so Spark can’t infer the schema automatically. Let’s create an RDD and look at the first few rows of the file.\nrdd = sc.textFile(\"data/irmar.csv\")\nfor line in rdd.take(10):\n  print(line)"
   },
   {
+    "objectID": "17-SparkDataFrames.html#hands-on-exercises",
     "href": "17-SparkDataFrames.html#hands-on-exercises",
     "title": "Python tools for Big Data",
     "section": "Hands-on Exercises",
     "text": "You can look at the DataFrames API documentation\nLet’s take a look to file “/tmp/irmar.csv”. Each line consists of the same information about a person:\n\nname\nphone\noffice\norganization\nposition\nhdr\nteam1\nteam2\n\nfrom collections import namedtuple\n\nrdd = sc.textFile(\"data/irmar.csv\")\n\nPerson = namedtuple('Person', ['name', 'phone', 'office', 'organization', \n                               'position', 'hdr', 'team1', 'team2'])\ndef str_to_bool(s):\n    if s == 'True': return True\n    return False\n\ndef map_to_person(line):\n    cols = line.split(\";\")\n    return Person(name         = cols[0],\n                  phone        = cols[1],\n                  office       = cols[2],\n                  organization = cols[3],\n                  position     = cols[4], \n                  hdr          = str_to_bool(cols[5]),\n                  team1        = cols[6],\n                  team2        = cols[7])\n    \npeople_rdd = rdd.map(map_to_person)\ndf = people_rdd.toDF()\ndf.show()\n\nSchema\ndf.printSchema()\n\n\ndisplay\ndisplay(df)\n\n\nselect\ndf.select(df[\"name\"], df[\"position\"], df[\"organization\"])\ndf.select(df[\"name\"], df[\"position\"], df[\"organization\"]).show()\n\n\nfilter\ndf.filter(df[\"organization\"] == \"R2\").show()\n\n\nfilter + select\ndf2 = df.filter(df[\"organization\"] == \"R2\").select(df['name'],df['team1'])\ndf2.show()\n\n\norderBy\n(df.filter(df[\"organization\"] == \"R2\")\n   .select(df[\"name\"],df[\"position\"])\n   .orderBy(\"position\")).show()\n\n\ngroupBy\ndf.groupby(df[\"hdr\"])\ndf.groupby(df[\"hdr\"]).count().show()\nWARNING: Don’t confuse GroupedData.count() with DataFrame.count(). GroupedData.count() is not an action. DataFrame.count() is an action.\ndf.filter(df[\"hdr\"]).count()\ndf.filter(df['hdr']).select(\"name\").show()\ndf.groupBy(df[\"organization\"]).count().show()\n\n\nExercises\n\nHow many teachers from INSA (PR+MC) ?\nHow many MC in STATS team ?\nHow many MC+CR with HDR ?\nWhat is the ratio of student supervision (DOC / HDR) ?\nList number of people for every organization ?\nList number of HDR people for every team ?\nWhich team contains most HDR ?\nList number of DOC students for every organization ?\nWhich team contains most DOC ?\nList people from CNRS that are neither CR nor DR ?\n\nsc.stop()"
   },
   {
+    "objectID": "12-UnixCommands.html#unix-shell",
     "href": "12-UnixCommands.html#unix-shell",
     "title": "Python tools for Big Data",
     "section": "Unix Shell",
     "text": "The shell is a command programming language that provides an interface to the UNIX operating system. Documentation of unix command is displayed by command man. Exemple:\nman whoami\n#%%bash\n#man whoami"
   },
   {
+    "objectID": "12-UnixCommands.html#directories",
     "href": "12-UnixCommands.html#directories",
     "title": "Python tools for Big Data",
     "section": "Directories",
     "text": "The shell should start you in your home directory. This is your individual space on the UNIX system for your files. You can find out the name of your current working directory with the unix command pwd.\nIn the terminal, type the letters ‘p’, ‘w’, ‘d’, and then “enter” - always conclude each command by pressing the “enter” key. The response that follows on the next line will be the name of your home directory, where the name following the last slash should be your username.) The directory structure can be conceptualized as an inverted tree.\nIn the jupyter notebook, unix shell command can be executed using the escape character “!” or add %%bash to the cell first line. You can type command directly in a terminal without the “!”.\n#%%bash\n#pwd\nSome unix command (not all) are also jupyter magic command like %pwd\n#%pwd"
   },
   {
+    "objectID": "12-UnixCommands.html#home-directory",
     "href": "12-UnixCommands.html#home-directory",
     "title": "Python tools for Big Data",
     "section": "Home directory",
     "text": "No matter where in the directory structure you are, you can always get back to your home directory with cd.\n\nCreate a new subdirectory named “primer” :\nmkdir primer\n#%%bash\n#rm -rf primer  # remove primer directory if it exists\n#mkdir  primer  # make the new directory \nNow change to the “primer” subdirectory, making it your current working directory:\ncd primer\npwd\n#%cd primer\n#pwd"
   },
   {
+    "objectID": "12-UnixCommands.html#files",
     "href": "12-UnixCommands.html#files",
     "title": "Python tools for Big Data",
     "section": "Files",
     "text": "Create a file using date command and whoami:\ndate >> first.txt\nwhoami >> first.txt\ndate and whoami are not jupyter magic commands\n#%%bash\n#\n#date >> first.txt\n#whoami >> first.txt\n\nList files and directories\nFiles live within directories. You can see a list of the files in your “primer” directory (which should be your current working directory) by typing:\nls\n#%%bash\n#ls\n\n\nDisplay file content\nYou can view a text file with the following command:\ncat first.txt\n(“cat” is short for concatenate - you can use this to display multiple files together on the screen.) If you have a file that is longer than your 24-line console window, use instead “more” to list one page at a time or “less” to scroll the file down and up with the arrow keys. Don’t use these programs to try to display binary (non-text) files on your console - the attempt to print the non-printable control characters might alter your console settings and render the console unusable.\n#%%bash\n#cat first.txt\n\nCopy file “first” using the following command:\n\ncp first.txt 2nd.txt\nBy doing this you have created a new file named “2nd.txt” which is a duplicate of file “first.txt”. Geet he file listing with:\nls\n#%%bash\n#cp first.txt 2nd.txt\n#ls\n\nNow rename the file “2nd” to “second”:\n\nmv 2nd.txt second.txt\nListing the files still shows two files because you haven’t created a new file, just changed an existing file’s name:\nls\n#%%bash\n#mv 2nd.txt second.txt\n#ls\nIf you “cat” the second file, you’ll see the same sentence as in your first file:\ncat second.txt\n#%%bash\n#cat second.txt\n“mv” will allow you to move files, not just rename them. Perform the following commands:\nmkdir sub\nmv second.txt sub\nls sub\nls\n(where “username” will be your username and “group” will be your group name). Among other things, this lists the creation date and time, file access permissions, and file size in bytes. The letter ‘d’ (the first character on the line) indicates the directory names.\n#%%bash\n#mkdir sub\n#mv second.txt sub\n#ls sub\nThis creates a new subdirectory named “sub”, moves “second” into “sub”, then lists the contents of both directories. You can list even more information about files by using the “-l” option with “ls”:\n#%%bash\n#ls -l\nNext perform the following commands:\ncd sub\npwd\nls -l\ncd ..\npwd\n#%%bash\n## go to sub directory\n#cd sub \n## current working directory\n#pwd  \n## list files with permissions\n#ls -l \n## go to parent directory\n#cd ..  \n## current working directory\n#pwd     \nFinally, clean up the duplicate files by removing the “second.txt” file and the “sub” subdirectory:\nrm sub/second.txt\nrmdir sub\nls -l\ncd\nThis shows that you can refer to a file in a different directory using the relative path name to the file (you can also use the absolute path name to the file - something like “/Users/username/primer/sub/second.txt”, depending on your home directory). You can also include the “..” within the path name (for instance, you could have referred to the file as “../primer/sub/second.txt”).\n#%%bash\n#rm -f sub/second.txt\n#rmdir sub\n#ls -l\n#cd ..\n#rm -rf primer"
   },
   {
+    "objectID": "12-UnixCommands.html#connect-to-a-server",
     "href": "12-UnixCommands.html#connect-to-a-server",
     "title": "Python tools for Big Data",
     "section": "Connect to a server",
     "text": "Remote login to another machine can be accomplished using the “ssh” command:\nssh -l mylogin host\nor\nssh mylogin@host\nwhere “myname” will be your username on the remote system (possibly identical to your username on this system) and “host” is the name (or IP address) of the machine you are logging into.\nTransfer files between machines using “scp”. - To copy file “myfile” from the remote machine named “host”:\nscp myname@host:myfile .\n\nTo copy file “myfile” from the local machine to the remote named “host”:\n\nscp myfile myname@host:\n\nUse ssh -r option to copy a directory (The “.” refers to your current working directory, meaning that the destination for “myfile” is your current directory.)\n\n\nExercise\n\nCopy a file to the server svmass2.mass.uhb.fr\nLog on to this server and display this file with cat"
   },
   {
+    "objectID": "12-UnixCommands.html#secure-copy-scp",
     "href": "12-UnixCommands.html#secure-copy-scp",
     "title": "Python tools for Big Data",
     "section": "Secure copy (scp)",
     "text": "Synchronize big-data directory on the cluster:\nscp -r big-data svmass2:\nThis a secure copy of big-data directory to the server.\nor\nrsync -e ssh -avrz big-data svmass2:\nIt synchronizes the local directory big-data with the remote repository big-data on svmass2 server"
   },
   {
+    "objectID": "12-UnixCommands.html#summary-of-basic-shell-commands",
     "href": "12-UnixCommands.html#summary-of-basic-shell-commands",
     "title": "Python tools for Big Data",
     "section": "Summary Of Basic Shell Commands",
     "text": "% pico myfile               # text edit file \"myfile\"\n% ls                        # list files in current directory\n% ls -l                     # long format listing\n% touch myfile              # create new empty file \"myfile\"\n% cat myfile                # view contents of text file \"myfile\"\n% more myfile               # paged viewing of text file \"myfile\"\n% less myfile               # scroll through text file \"myfile\"\n% head myfile               # view 10 first lines of text file \"myfile\"\n% tail myfile               # view 10 last lines of text file \"myfile\"\n% cp srcfile destfile       # copy file \"srcfile\" to new file \"destfile\"\n% mv oldname newname        # rename (or move) file \"oldname\" to \"newname\"\n% rm myfile                 # remove file \"myfile\"\n% mkdir subdir              # make new directory \"subdir\"\n% cd subdir                 # change current working directory to \"subdir\"\n% rmdir subdir              # remove (empty) directory \"subdir\"\n% pwd                       # display current working directory\n% date                      # display current date and time of day\n% ssh -l myname host        # remote shell login of username \"myname\" to \"host\"\n% scp myname@host:myfile .  # remote copy of file \"myfile\" to current directory\n% scp myfile myname@host:   # copy of file \"myfile\" to remote server\n% firefox &                 # start Firefox web browser (in background)\n% jobs                      # display programs running in background\n% kill %n                   # kill job number n (use jobs to get this number)\n% man -k \"topic\"            # search manual pages for \"topic\"\n% man command               # display man page for \"command\"\n% exit                      # exit a terminal window\n% logout                    # logout of a console session"
   },
   {
+    "objectID": "12-UnixCommands.html#redirecting",
     "href": "12-UnixCommands.html#redirecting",
     "title": "Python tools for Big Data",
     "section": "Redirecting",
     "text": "Redirection is usually implemented by placing characters <,>,|,>> between commands.\n\nUse > to redirect output.\n\nls *.ipynb > file_list.txt\nexecutes ls, placing the output in file_list.txt, as opposed to displaying it at the terminal, which is the usual destination for standard output. This will clobber any existing data in file1.\n#%%bash\n#ls *.ipynb > file_list.txt\n\nUse < to redirect input.\n\nwc < file_list.txt\nexecutes wc, with file_list.txt as the source of input, as opposed to the keyboard, which is the usual source for standard input.\n\nPython example\n%%file test_stdin.py\n#!/usr/bin env python\nimport sys\n\n# input comes from standard input\nk = 0\nfor file in sys.stdin:\n    k +=1\n    print('file {} : {}'.format(k,file))\n# %%bash\n# python test_stdin.py < file_list.txt\nYou can combine the two capabilities: read from an input file and write to an output file.\n# %%bash\n# python test_stdin.py < file_list.txt > output.txt\n# %%bash\n# cat output.txt\nTo append output to the end of the file, rather than clobbering it, the >> operator is used:\ndate >> output.txt\nIt will append the today date to the end of the file output.txt\n# %%bash\n# date >> output.txt\n# cat output.txt"
   },
   {
+    "objectID": "12-UnixCommands.html#permissions",
     "href": "12-UnixCommands.html#permissions",
     "title": "Python tools for Big Data",
     "section": "Permissions",
     "text": "Every file on the system has associated with it a set of permissions. Permissions tell UNIX what can be done with that file and by whom. There are three things you can (or can’t) do with a given file: - read, - write (modify), - execute.\nUnix permissions specify what can ‘owner’, ‘group’ and ‘all’ can do.\nIf you try ls -l on the command prompt you get something like the following:\n-rw-r--r--  1 navaro  staff   15799  5 oct 15:57 01.MapReduce.ipynb\n-rw-r--r--  1 navaro  staff   18209 12 oct 16:04 02.Containers.ipynb\n-rw-r--r--  1 navaro  staff   37963 12 oct 21:28 03.ParallelComputation.ipynb\nThree bits specify access permissions: - r read, - w access, - w execute.\n\nExample\nrwxr-xr--\n\nthe owner can do anything with the file,\ngroup owners and the can only read or execute it.\nrest of the world can only read"
   },
   {
+    "objectID": "12-UnixCommands.html#chmod",
     "href": "12-UnixCommands.html#chmod",
     "title": "Python tools for Big Data",
     "section": "chmod",
     "text": "To set/modify a file’s permissions you need to use the chmod program. Of course, only the owner of a file may use chmod to alter a file’s permissions. chmod has the following syntax:\nchmod [options] mode file(s)\n\nThe ‘mode’ part specifies the new permissions for the file(s) that follow as arguments. A mode specifies which user’s permissions should be changed, and afterwards which access types should be changed.\nWe use + or - to change the mode for owner, group and the rest of the world.\nThe permissions start with a letter specifying what users should be affected by the change.\n\nOriginal permissions of script.py are rw-------\n\nchmod u+x script.py set permissions to rwx------\nchmod a+x script.py set permissions to rwx--x--x\nchmod g+r script.py set permissions to rwxr-x--x\nchmod o-x script.py set permissions to rwxr-x---\nchmod og+w script.py set permissions to rwxrwx-w-"
   },
   {
+    "objectID": "12-UnixCommands.html#pipelining",
     "href": "12-UnixCommands.html#pipelining",
     "title": "Python tools for Big Data",
     "section": "Pipelining",
     "text": "ls | grep ipynb\nexecutes ls, using its output as the input for grep.\n\nExercice 11.1\n\nPipe cat *.ipynb output to sort command.\nPipe ls output to wc command.\nPipe cat 11.UnixCommands.ipynb to less command."
   },
   {
+    "objectID": "12-UnixCommands.html#chained-pipelines",
     "href": "12-UnixCommands.html#chained-pipelines",
     "title": "Python tools for Big Data",
     "section": "Chained pipelines",
     "text": "The redirection and piping tokens can be chained together to create complex commands.\n\nExercice 11.2\nUse unix commands chained to display word count of file sample.txt.\nHints:\n\nfmt -n takes text as input and reformats it into paragraphs with no line longer than n. \nsort sort the output alphabetically\ntr -d str delete the string str from the output\nuniq -c writes a copy of each unique input and precede each word with the count of the number of occurences.\n\n\n\nExercice 11.3\n\nCreate a python script mapper.py to count words from stdin. The script prints out every word found in stdin with the value 1 separate by a tab.\n\nConsectetur 1\nadipisci    1\nquiquia 1\nsit 1\nFile mapper.py must be executable.\n\n\nExercice 11.4\n\nCreate a python script reducer.py to read output from mapper.py. The script prints out every word and number of occurences.\n\ncat sample.txt | ./mapper.py | ./reducer.py\n7   porro\n7   eius\n6   non\n6   dolore"
   },
   {
+    "objectID": "intro.html#run-jupyter-notebooks-with-docker",
     "href": "intro.html#run-jupyter-notebooks-with-docker",
     "title": "Python tools for Big Data",
     "section": "Run Jupyter notebooks with docker",
     "text": "Get docker app\n\nMac\nWindows\nLinux\n\nYou can run these notebooks with Docker. The following command starts a container with the Notebook server listening for HTTP connections on port 8888 and 4040 without authentication configured.\ngit clone https://github.com/pnavaro/big-data.git\ndocker run --rm -v $PWD/big-data:/home/jovyan/ -p 8888:8888 -p 4040:4040 pnavaro/big-data"
   },
   {
+    "objectID": "intro.html#references",
     "href": "intro.html#references",
     "title": "Python tools for Big Data",
     "section": "References",
     "text": "Books\n\nPython for Data Analysis by Wes McKinney.\nPython Data Science Handbook by Jake VanderPlas\n\n\n\nSoftware documentation\n\nPandas.\nDask\nPySpark\nApache Arrow\nParquet\nGCSFS\nDask.distributed\nfastparquet\n\n\n\nTutorials\n\nPython\n\nAnalyzing and Manipulating Data with Pandas Beginner: SciPy 2016 Tutorial by Jonathan Rocher.\n\nDask\n\nDask Examples\nParallel Data Analysis with Dask Dask tutorial at PyCon 2018 by Tom Augspurger.\nParallelizing Scientific Python with Dask SciPy 2018 Tutorial by James Crist and Martin Durant\nParallelizing Scientific Python with Dask, SciPy 2017 Tutorial by James Crist.\nParallel Python: Analyzing Large Datasets Intermediate, SciPy 2016 Tutorial by Matthew Rocklin.\nParallel Data Analysis in Python, SciPy 2017 Tutorial by Matthew Rocklin, Ben Zaitlen & Aron Ahmadia.\nMatthew Rocklin - Streaming Processing with Dask\nJacob Tomlinson - Dask Video Tutorial 2020\n\nHadoop\n\nWriting an Hadoop MapReduce Program in Python by Michael G. Noll.\n\nSpark\n\nGetOting Started with Apache Spark Tutorial - Databricks\nHortonworks Data Tutorials\n\n\n\n\nBlog posts\n\nDon’t use Hadoop - your data isn’t that big\nFormat Wars: From VHS and Beta to Avro and Parquet overview of Hadoop File formats.\nShould you replace Hadoop with your laptop? by Vicki Boykis.\nImplementing MapReduce with multiprocessing by Doug Hellmann.\nDeploying Dask on YARN by Jim Crist.\nNative Hadoop file system (HDFS) connectivity in Python by Wes McKinney.\nWorking Notes from Matthew Rocklin (must read)\nLarge SVDs with Dask\nMachine Learning – 7 astuces pour scaler Python sur de grands datasets\nThe Best Format to Save Pandas Data\n\n\n\nOnline courses\n\nDataCamp Cheat Sheets\nOutils pour le Big Data by Pierre Nerzic. 🇫🇷\nwikistat - Ateliers Big Data by Philippe Besse. 🇫🇷\nData Science and Big Data with Python by Steve Phelps.\n\nThis work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
   },
   {
+    "objectID": "15-PySpark.html#resilient-distributed-datasets",
     "href": "15-PySpark.html#resilient-distributed-datasets",
     "title": "Python tools for Big Data",
     "section": "Resilient distributed datasets",
     "text": "The fundamental abstraction of Apache Spark is a read-only, parallel, distributed, fault-tolerent collection called a resilient distributed datasets (RDD).\nRDDs behave a bit like Python collections (e.g. lists).\nWhen working with Apache Spark we iteratively apply functions to every item of these collections in parallel to produce new RDDs.\nThe data is distributed across nodes in a cluster of computers.\nFunctions implemented in Spark can work in parallel across elements of the collection.\nThe Spark framework allocates data and processing to different nodes, without any intervention from the programmer.\nRDDs automatically rebuilt on machine failure."
   },
   {
+    "objectID": "15-PySpark.html#lifecycle-of-a-spark-program",
     "href": "15-PySpark.html#lifecycle-of-a-spark-program",
     "title": "Python tools for Big Data",
     "section": "Lifecycle of a Spark Program",
     "text": "Create some input RDDs from external data or parallelize a collection in your driver program.\nLazily transform them to define new RDDs using transformations like filter() or map()\nAsk Spark to cache() any intermediate RDDs that will need to be reused.\nLaunch actions such as count() and collect() to kick off a parallel computation, which is then optimized and executed by Spark."
   },
   {
+    "objectID": "15-PySpark.html#operations-on-distributed-data",
     "href": "15-PySpark.html#operations-on-distributed-data",
     "title": "Python tools for Big Data",
     "section": "Operations on Distributed Data",
     "text": "Two types of operations: transformations and actions\nTransformations are lazy (not computed immediately)\nTransformations are executed when an action is run"
   },
   {
+    "objectID": "15-PySpark.html#transformations-lazy",
     "href": "15-PySpark.html#transformations-lazy",
     "title": "Python tools for Big Data",
     "section": "Transformations (lazy)",
     "text": "map() flatMap()\nfilter() \nmapPartitions() mapPartitionsWithIndex() \nsample()\nunion() intersection() distinct()\ngroupBy() groupByKey()\nreduceBy() reduceByKey()\nsortBy() sortByKey()\njoin()\ncogroup()\ncartesian()\npipe()\ncoalesce()\nrepartition()\npartitionBy()\n..."
   },
   {
+    "objectID": "15-PySpark.html#actions",
     "href": "15-PySpark.html#actions",
     "title": "Python tools for Big Data",
     "section": "Actions",
     "text": "reduce()\ncollect()\ncount()\nfirst()\ntake()\ntakeSample()\nsaveToCassandra()\ntakeOrdered()\nsaveAsTextFile()\nsaveAsSequenceFile()\nsaveAsObjectFile()\ncountByKey()\nforeach()"
   },
   {
+    "objectID": "15-PySpark.html#python-api",
     "href": "15-PySpark.html#python-api",
     "title": "Python tools for Big Data",
     "section": "Python API",
     "text": "PySpark uses Py4J that enables Python programs to dynamically access Java objects.\n\n\n\nPySpark Internals"
   },
   {
+    "objectID": "15-PySpark.html#the-sparkcontext-class",
     "href": "15-PySpark.html#the-sparkcontext-class",
     "title": "Python tools for Big Data",
     "section": "The SparkContext class",
     "text": "When working with Apache Spark we invoke methods on an object which is an instance of the pyspark.SparkContext context.\nTypically, an instance of this object will be created automatically for you and assigned to the variable sc.\nThe parallelize method in SparkContext can be used to turn any ordinary Python collection into an RDD;\n\nnormally we would create an RDD from a large file or an HBase table."
   },
   {
+    "objectID": "15-PySpark.html#first-example",
     "href": "15-PySpark.html#first-example",
     "title": "Python tools for Big Data",
     "section": "First example",
     "text": "PySpark isn’t on sys.path by default, but that doesn’t mean it can’t be used as a regular library. You can address this by either symlinking pyspark into your site-packages, or adding pyspark to sys.path at runtime. findspark does the latter.\nWe have a spark context sc to use with a tiny local spark cluster with 4 nodes (will work just fine on a multicore machine).\nimport os, sys\nsys.executable\n#os.environ[\"SPARK_HOME\"] = \"/opt/spark-3.0.1-bin-hadoop2.7\"\nos.environ[\"PYSPARK_PYTHON\"] = sys.executable\nimport pyspark\n\nsc = pyspark.SparkContext(master=\"local[*]\", appName=\"FirstExample\")\nsc.setLogLevel(\"ERROR\")\nprint(sc) # it is like a Pool Processor executor"
   },
   {
+    "objectID": "15-PySpark.html#create-your-first-rdd",
     "href": "15-PySpark.html#create-your-first-rdd",
     "title": "Python tools for Big Data",
     "section": "Create your first RDD",
     "text": "data = list(range(8))\nrdd = sc.parallelize(data) # create collection\nrdd\n\nExercise\nCreate a file sample.txtwith lorem package. Read and load it into a RDD with the textFile spark function.\nfrom faker import Faker\nfake = Faker()\nFaker.seed(0)\n\nwith open(\"sample.txt\",\"w\") as f:\n    f.write(fake.text(max_nb_chars=1000))\n    \nrdd = sc.textFile(\"sample.txt\")\n\n\nCollect\nAction / To Driver: Return all items in the RDD to the driver in a single list\n\nSource: https://i.imgur.com/DUO6ygB.png\n\n\nExercise\nCollect the text you read before from the sample.txtfile.\n\n\nMap\nTransformation / Narrow: Return a new RDD by applying a function to each element of this RDD\n\nSource: http://i.imgur.com/PxNJf0U.png\nrdd = sc.parallelize(list(range(8)))\nrdd.map(lambda x: x ** 2).collect() # Square each element\n\n\nExercise\nReplace the lambda function by a function that contains a pause (sleep(1)) and check if the map operation is parallelized.\n\n\nFilter\nTransformation / Narrow: Return a new RDD containing only the elements that satisfy a predicate\n Source: http://i.imgur.com/GFyji4U.png\n# Select only the even elements\nrdd.filter(lambda x: x % 2 == 0).collect()\n\n\nFlatMap\nTransformation / Narrow: Return a new RDD by first applying a function to all elements of this RDD, and then flattening the results\n\nrdd = sc.parallelize([1,2,3])\nrdd.flatMap(lambda x: (x, x*100, 42)).collect()\n\n\nExercise\nUse FlatMap to clean the text from sample.txtfile. Lower, remove dots and split into words.\n\n\nGroupBy\nTransformation / Wide: Group the data in the original RDD. Create pairs where the key is the output of a user function, and the value is all items for which the function yields this key.\n\nrdd = sc.parallelize(['John', 'Fred', 'Anna', 'James'])\nrdd = rdd.groupBy(lambda w: w[0])\n[(k, list(v)) for (k, v) in rdd.collect()]\n\n\nGroupByKey\nTransformation / Wide: Group the values for each key in the original RDD. Create a new pair where the original key corresponds to this collected group of values.\n\nrdd = sc.parallelize([('B',5),('B',4),('A',3),('A',2),('A',1)])\nrdd = rdd.groupByKey()\n[(j[0], list(j[1])) for j in rdd.collect()]\n\n\nJoin\nTransformation / Wide: Return a new RDD containing all pairs of elements having the same key in the original RDDs\n\nx = sc.parallelize([(\"a\", 1), (\"b\", 2)])\ny = sc.parallelize([(\"a\", 3), (\"a\", 4), (\"b\", 5)])\nx.join(y).collect()\n\n\nDistinct\nTransformation / Wide: Return a new RDD containing distinct items from the original RDD (omitting all duplicates)\n\nrdd = sc.parallelize([1,2,3,3,4])\nrdd.distinct().collect()\n\n\nKeyBy\nTransformation / Narrow: Create a Pair RDD, forming one pair for each item in the original RDD. The pair’s key is calculated from the value via a user-supplied function.\n\nrdd = sc.parallelize(['John', 'Fred', 'Anna', 'James'])\nrdd.keyBy(lambda w: w[0]).collect()"
   },
   {
+    "objectID": "15-PySpark.html#actions-1",
     "href": "15-PySpark.html#actions-1",
     "title": "Python tools for Big Data",
     "section": "Actions",
     "text": "Map-Reduce operation\nAction / To Driver: Aggregate all the elements of the RDD by applying a user function pairwise to elements and partial results, and return a result to the driver\n\nfrom operator import add\nrdd = sc.parallelize(list(range(8)))\nrdd.map(lambda x: x ** 2).reduce(add) # reduce is an action!\n\n\nMax, Min, Sum, Mean, Variance, Stdev\nAction / To Driver: Compute the respective function (maximum value, minimum value, sum, mean, variance, or standard deviation) from a numeric RDD\n\n\n\nCountByKey\nAction / To Driver: Return a map of keys and counts of their occurrences in the RDD\n\nrdd = sc.parallelize([('J', 'James'), ('F','Fred'), \n                    ('A','Anna'), ('J','John')])\n\nrdd.countByKey()\n# Stop the local spark cluster\nsc.stop()\n\n\nExercise 10.1 Word-count in Apache Spark\n\nWrite the sample text file\nCreate the rdd with SparkContext.textFile method\nlower, remove dots and split using rdd.flatMap\nuse rdd.map to create the list of key/value pair (word, 1)\nrdd.reduceByKey to get all occurences\nrdd.takeOrderedto get sorted frequencies of words\n\nAll documentation is available here for textFile and here for RDD.\nFor a global overview see the Transformations section of the programming guide"
   },
   {
+    "objectID": "15-PySpark.html#sparksession",
     "href": "15-PySpark.html#sparksession",
     "title": "Python tools for Big Data",
     "section": "SparkSession",
     "text": "Since SPARK 2.0.0, SparkSession provides a single point of entry to interact with Spark functionality and allows programming Spark with DataFrame and Dataset APIs.\n\n\\(\\pi\\) computation example\n\nWe can estimate an approximate value for \\(\\pi\\) using the following Monte-Carlo method:\n\n\nInscribe a circle in a square\nRandomly generate points in the square\nDetermine the number of points in the square that are also in the circle\nLet \\(r\\) be the number of points in the circle divided by the number of points in the square, then \\(\\pi \\approx 4 r\\).\n\n\nNote that the more points generated, the better the approximation\n\nSee this tutorial.\n\n\nExercise 9.2\nUsing the same method than the PI computation example, compute the integral \\[\nI = \\int_0^1 \\exp(-x^2) dx\n\\] You can check your result with numpy\n# numpy evaluates solution using numeric computation. \n# It uses discrete values of the function\nimport numpy as np\nx = np.linspace(0,1,1000)\nnp.trapz(np.exp(-x*x),x)\nnumpy and scipy evaluates solution using numeric computation. It uses discrete values of the function\nimport numpy as np\nfrom scipy.integrate import quad\nquad(lambda x: np.exp(-x*x), 0, 1)\n# note: the solution returned is complex \n\n\nCorrelation between daily stock\n\nData preparation\n\nimport os  # library to get directory and file paths\nimport tarfile # this module makes possible to read and write tar archives\n\ndef extract_data(name, where):\n    datadir = os.path.join(where,name)\n    if not os.path.exists(datadir):\n       print(\"Extracting data...\")\n       tar_path = os.path.join(where, name+'.tgz')\n       with tarfile.open(tar_path, mode='r:gz') as data:\n          data.extractall(where)\n            \nextract_data('daily-stock','data') # this function call will extract json files\nimport json\nimport pandas as pd\nimport os, glob\n\nhere = os.getcwd()\ndatadir = os.path.join(here,'data','daily-stock')\nfilenames = sorted(glob.glob(os.path.join(datadir, '*.json')))\nfilenames\n%rm data/daily-stock/*.h5\nfrom glob import glob\nimport os, json\nimport pandas as pd\n\nfor fn in filenames:\n    with open(fn) as f:\n        data = [json.loads(line) for line in f]\n        \n    df = pd.DataFrame(data)\n    \n    out_filename = fn[:-5] + '.h5'\n    df.to_hdf(out_filename, '/data')\n    print(\"Finished : %s\" % out_filename.split(os.path.sep)[-1])\n\nfilenames = sorted(glob(os.path.join('data', 'daily-stock', '*.h5')))  # data/json/*.json\n\n\nSequential code\nfilenames\nwith pd.HDFStore('data/daily-stock/aet.h5') as hdf:\n    # This prints a list of all group names:\n    print(hdf.keys())\ndf_test = pd.read_hdf('data/daily-stock/aet.h5')\n%%time\n\nseries = []\nfor fn in filenames:   # Simple map over filenames\n    series.append(pd.read_hdf(fn)[\"close\"])\n\nresults = []\n\nfor a in series:    # Doubly nested loop over the same collection\n    for b in series:  \n        if not (a == b).all():     # Filter out comparisons of the same series \n            results.append(a.corr(b))  # Apply function\n\nresult = max(results)\nresult\n\n\nExercise 9.3\nParallelize the code above with Apache Spark.\n\nChange the filenames because of the Hadoop environment.\n\nimport os, glob\n\nhere = os.getcwd()\nfilenames = sorted(glob.glob(os.path.join(here,'data', 'daily-stock', '*.h5')))\nfilenames\nIf it is not started don’t forget the PySpark context\nComputation time is slower because there is a lot of setup, workers creation, there is a lot of communications the correlation function is too small\n\n\nExercise 9.4 Fasta file example\nUse a RDD to calculate the GC content of fasta file nucleotide-sample.txt:\n\\[\\frac{G+C}{A+T+G+C}\\times100 \\% \\]\nCreate a rdd from fasta file genome.txt in data directory and count ‘G’ and ‘C’ then divide by the total number of bases.\n\n\nAnother example\nCompute the most frequent sequence with 5 bases."
   },
   {
+    "objectID": "07-AsynchronousProcessing.html#executor.submit",
     "href": "07-AsynchronousProcessing.html#executor.submit",
     "title": "Python tools for Big Data",
     "section": "Executor.submit",
     "text": "The submit method starts a computation in a separate thread or process and immediately gives us a Future object that refers to the result. At first, the future is pending. Once the function completes the future is finished.\nWe collect the result of the task with the .result() method, which does not return until the results are available.\n%%time\nfrom time import sleep\n\ndef slowadd(a, b, delay=1):\n    sleep(delay)\n    return a + b\n\nslowadd(1,1)\nfrom concurrent.futures import ThreadPoolExecutor\n\nwith ThreadPoolExecutor(1) as e:\n    future = e.submit(slowadd, 1, 2)\n    print(future.result())"
   },
   {
+    "objectID": "07-AsynchronousProcessing.html#submit-many-tasks-receive-many-futures",
     "href": "07-AsynchronousProcessing.html#submit-many-tasks-receive-many-futures",
     "title": "Python tools for Big Data",
     "section": "Submit many tasks, receive many futures",
     "text": "Because submit returns immediately we can submit many tasks all at once and they will execute in parallel.\n%%time\nresults = [slowadd(i, i, delay=1) for i in range(8)]\nprint(results)\n%%time\ne = ThreadPoolExecutor()\nfutures = [e.submit(slowadd, i, i, delay=1) for i in range(8)]\nresults = [f.result() for f in futures]\nprint(results)\n\nSubmit fires off a single function call in the background, returning a future.\n\nWhen we combine submit with a single for loop we recover the functionality of map.\n\nWhen we want to collect our results we replace each of our futures, f, with a call to f.result()\nWe can combine submit with multiple for loops and other general programming to get something more general than map."
   },
   {
+    "objectID": "07-AsynchronousProcessing.html#exercise-7.1",
     "href": "07-AsynchronousProcessing.html#exercise-7.1",
     "title": "Python tools for Big Data",
     "section": "Exercise 7.1",
     "text": "Parallelize the following code with e.submit\n\nReplace the results list with a list called futures\nReplace calls to slowadd and slowsub with e.submit calls on those functions\nAt the end, block on the computation by recreating the results list by calling .result() on each future in the futures list.\n\n\nExtract daily stock data from google\n!rm -rf data/daily-stock\nimport os  # library to get directory and file paths\nimport tarfile # this module makes possible to read and write tar archives\n\ndef extract_data(name, where):\n    datadir = os.path.join(where,name)\n    if not os.path.exists(datadir):\n       print(\"Extracting data...\")\n       tar_path = os.path.join(where, name+'.tgz')\n       with tarfile.open(tar_path, mode='r:gz') as data:\n          data.extractall(where)\n            \nextract_data('daily-stock','data') # this function call will extract json files\n\n\nConvert data to pandas DataFrames and save it in hdf5 files\nHDF5 is a data model, library, and file format for storing and managing data. This format is widely used and is supported by many languages and platforms.\nimport json\nimport pandas as pd\nimport os, glob\n\nhere = os.getcwd()\ndatadir = os.path.join(here,'data','daily-stock')\nfilenames = sorted(glob.glob(os.path.join(datadir, '*.json')))\nfilenames\n\n\nSequential version\n!rm -f data/daily-stock/*.h5\n%%time\nimport json\nimport pandas as pd\nfrom tqdm import tqdm\n\n\nfor fn in tqdm(filenames):\n    \n    with open(fn) as f:\n        data = [json.loads(line) for line in f] # load \n        \n    df = pd.DataFrame(data) # parse \n    \n    out_filename = fn[:-5] + '.h5'\n    df.to_hdf(out_filename, '/data') # store\n    \n!rm -f data/daily-stock/*.h5"
   },
   {
+    "objectID": "07-AsynchronousProcessing.html#exercise-7.2",
     "href": "07-AsynchronousProcessing.html#exercise-7.2",
     "title": "Python tools for Big Data",
     "section": "Exercise 7.2",
     "text": "Parallelize the loop above using ThreadPoolExecutor and map.\n\nRead files and load dataframes.\nimport os, glob, pandas as pd\nfilenames = sorted(glob.glob(os.path.join('data', 'daily-stock', '*.h5')))\nseries ={}\nfor fn in filenames:\n    series[fn] = pd.read_hdf(fn)['close']\n\n\nApplication\nGiven our HDF5 files from the last section we want to find the two datasets with the greatest pair-wise correlation. This forces us to consider all \\(n\\times(n-1)\\) possibilities.\nWe use matplotlib to visually inspect the highly correlated timeseries\n%matplotlib inline\nimport matplotlib.pyplot as plt\nplt.figure(figsize=(10, 4))\nplt.plot(series[a]/series[a].max())\nplt.plot(series[b]/series[b].max())\nplt.xticks(visible=False);\n\n\nAnalysis\nThis computation starts out by loading data from disk. We already know how to parallelize it:\nseries = {}\nfor fn in filenames:\n    series[fn] = pd.read_hdf(fn)['x']\nIt follows with a doubly nested for loop with an if statement.\nresults = {}\nfor a in filenames:\n    for b in filenames:\n        if a != b:\n            results[a, b] = series[a].corr(series[b])\nIt is possible to solve this problem with map, but it requires some cleverness. Instead we’ll learn submit, an interface to start individual function calls asynchronously.\nIt finishes with a reduction on small data. This part is fast enough.\n((a, b), corr) = max(results.items(), key=lambda kv: kv[1])"
   },
   {
+    "objectID": "07-AsynchronousProcessing.html#exercise-7.3",
     "href": "07-AsynchronousProcessing.html#exercise-7.3",
     "title": "Python tools for Big Data",
     "section": "Exercise 7.3",
     "text": "Parallelize pair-wise correlations with e.submit\nImplement two versions one using Processes, another with Threads by replacing e with a ProcessPoolExecutor:\n\n\nThreads\nfrom concurrent.futures import ThreadPoolExecutor\ne = ThreadPoolExecutor(4)\n\n\nProcesses\nBe careful, a ProcessPoolExecutor does not run in the jupyter notebook cell. You must run your file in a terminal.\nfrom concurrent.futures import ProcessPoolExecutor\ne = ProcessPoolExecutor(4)\n\nHow does performance vary?"
   },
   {
+    "objectID": "07-AsynchronousProcessing.html#some-conclusions-about-futures",
     "href": "07-AsynchronousProcessing.html#some-conclusions-about-futures",
     "title": "Python tools for Big Data",
     "section": "Some conclusions about futures",
     "text": "submit functions can help us to parallelize more complex applications\nIt didn’t actually speed up the code very much\nThreads and Processes give some performance differences\nThis is not very robust."
   },
   {
+    "objectID": "04-WordCount.html#create-sample-text-file",
     "href": "04-WordCount.html#create-sample-text-file",
     "title": "Python tools for Big Data",
     "section": "Create sample text file",
     "text": "from lorem import text\n\nwith open(\"sample.txt\", \"w\") as f:\n    for i in range(2):\n        f.write(text())\n\nExercise 4.1\nWrite a python program that counts the number of lines, different words and characters in that file.\n%%bash\nwc sample.txt\ndu -h sample.txt\n\n\nExercise 4.2\nCreate a function called map_words that take a file name as argument and return a lists containing all words as items.\nmap_words(\"sample.txt\")[:5] # first five words\n['adipisci', 'adipisci', 'adipisci', 'adipisci', 'adipisci']"
   },
   {
+    "objectID": "04-WordCount.html#sorting-a-dictionary-by-value",
     "href": "04-WordCount.html#sorting-a-dictionary-by-value",
     "title": "Python tools for Big Data",
     "section": "Sorting a dictionary by value",
     "text": "By default, if you use sorted function on a dict, it will use keys to sort it. To sort by values, you can use operator.itemgetter(1) Return a callable object that fetches item from its operand using the operand’s __getitem__( method. It could be used to sort results.\nimport operator\nfruits = [('apple', 3), ('banana', 2), ('pear', 5), ('orange', 1)]\ngetcount = operator.itemgetter(1)\ndict(sorted(fruits, key=getcount))\nsorted function has also a reverse optional argument.\ndict(sorted(fruits, key=getcount, reverse=True))\n\nExercise 4.3\nCreate a function reduce to reduce the list of words returned by map_words and return a dictionary containing all words as keys and number of occurrences as values.\nrecuce('sample.txt')\n{'tempora': 2, 'non': 1, 'quisquam': 1, 'amet': 1, 'sit': 1}\nYou probably notice that this simple function is not easy to implement. Python standard library provides some features that can help."
   },
   {
+    "objectID": "04-WordCount.html#container-datatypes",
     "href": "04-WordCount.html#container-datatypes",
     "title": "Python tools for Big Data",
     "section": "Container datatypes",
     "text": "collection module implements specialized container datatypes providing alternatives to Python’s general purpose built-in containers, dict, list, set, and tuple.\n\ndefaultdict : dict subclass that calls a factory function to supply missing values\nCounter : dict subclass for counting hashable objects\n\n\ndefaultdict\nWhen you implement the wordcount function you probably had some problem to append key-value pair to your dict. If you try to change the value of a key that is not present in the dict, the key is not automatically created.\nYou can use a try-except flow but the defaultdict could be a solution. This container is a dict subclass that calls a factory function to supply missing values. For example, using list as the default_factory, it is easy to group a sequence of key-value pairs into a dictionary of lists:\nfrom collections import defaultdict\ns = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]\nd = defaultdict(list)\nfor k, v in s:\n    d[k].append(v)\n\ndict(d)\n\n\nExercise 4.4\n\nModify the reduce function you wrote above by using a defaultdict with the most suitable factory.\n\n\n\nCounter\nA Counter is a dict subclass for counting hashable objects. It is an unordered collection where elements are stored as dictionary keys and their counts are stored as dictionary values. Counts are allowed to be any integer value including zero or negative counts.\nElements are counted from an iterable or initialized from another mapping (or counter):\nfrom collections import Counter\n\nviolet = dict(r=23,g=13,b=23)\nprint(violet)\ncnt = Counter(violet)  # or Counter(r=238, g=130, b=238)\nprint(cnt['c'])\nprint(cnt['r'])\nprint(*cnt.elements())\ncnt.most_common(2)\ncnt.values()\n\n\nExercise 4.5\nUse a Counter object to count words occurences in the sample text file.\nThe Counter class is similar to bags or multisets in some Python libraries or other languages. We will see later how to use Counter-like objects in a parallel context."
   },
   {
+    "objectID": "04-WordCount.html#process-multiple-files",
     "href": "04-WordCount.html#process-multiple-files",
     "title": "Python tools for Big Data",
     "section": "Process multiple files",
     "text": "Create several files containing lorem text named ‘sample01.txt’, ‘sample02.txt’…\nIf you process these files you return multiple dictionaries.\nYou have to loop over them to sum occurences and return the resulted dict. To iterate on specific mappings, Python standard library provides some useful features in itertools module.\nitertools.chain(*mapped_values) could be used for treating consecutive sequences as a single sequence.\n\nimport itertools, operator\nfruits = [('apple', 3), ('banana', 2), ('pear', 5), ('orange', 1)]\nvegetables = [('endive', 2), ('spinach', 1), ('celery', 5), ('carrot', 4)]\ngetcount = operator.itemgetter(1)\ndict(sorted(itertools.chain(fruits,vegetables), key=getcount))\n\nExercise 4.6\n\nWrite the program that creates files, processes and use itertools.chain to get the merged word count dictionary.\n\n\n\nExercise 4.7\n\nCreate the wordcount function in order to accept several files as arguments and return the result dict.\n\nwordcount(file1, file2, file3, ...)\nHint: arbitrary argument lists\n\nExample of use of arbitrary argument list and arbitrary named arguments.\n\ndef func( *args, **kwargs):\n    for arg in args:\n        print(arg)\n        \n    print(kwargs)\n        \nfunc( \"3\", [1,2], \"bonjour\", x = 4, y = \"y\")"
   },
   {
+    "objectID": "16-DaskDataframes.html#dataframes",
     "href": "16-DaskDataframes.html#dataframes",
     "title": "Python tools for Big Data",
     "section": "DataFrames",
     "text": "Dask dataframes look and feel (mostly) like Pandas dataframes but they run on the same infrastructure that powers dask.delayed.\nThe dask.dataframe module implements a blocked parallel DataFrame object that mimics a large subset of the Pandas DataFrame. One dask DataFrame is comprised of many in-memory pandas DataFrames separated along the index. One operation on a dask DataFrame triggers many pandas operations on the constituent pandas DataFrames in a way that is mindful of potential parallelism and memory constraints.\nRelated Documentation\n\nDask DataFrame documentation\nPandas documentation\n\nIn this notebook, we will extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from here. This should only take a few seconds to run.\nWe will use dask.dataframe construct our computations for us. The dask.dataframe.read_csv function can take a globstring like \"data/nycflights/*.csv\" and build parallel computations on all of our data at once.\nVariable descriptions\nName Description\n\nYear 1987-2008\nMonth 1-12\nDayofMonth 1-31\nDayOfWee 1 (Monday) - 7 (Sunday)\nDepTime actual departure time (local, hhmm)\nCRSDepTime scheduled departure time (local, hhmm)\nArrTime actual arrival time (local, hhmm)\nCRSArrTime scheduled arrival time (local, hhmm)\nUniqueCarrier unique carrier code\nFlightNum flight number\nTailNu plane tail number\nActualElapsedTime in minutes\nCRSElapsedTime in minutes\nAirTime in minutes\nArrDelay arrival delay, in minutes\nDepDelay departure delay, in minutes\nOrigin origin IATA airport code\nDest destination IATA airport code\nDistance in miles\nTaxiIn taxi in time, in minutes\nTaxiOut taxi out time in minutes\nCancelled was the flight cancelled?\nCancellationCode reason for cancellation (A = carrier, B = weather, C = NAS, D = security)\nDiverted 1 = yes, 0 = no\nCarrierDelay in minutes\nWeatherDelay in minutes\nNASDelay in minutes\nSecurityDelay in minutes\nLateAircraftDelay in minutes\n\n\nPrep the Data\nimport os\nimport pandas as pd\npd.set_option(\"max.rows\", 10)\nos.getcwd()\nimport os  # library to get directory and file paths\nimport tarfile # this module makes possible to read and write tar archives\n\ndef extract_flight():\n    here = os.getcwd()\n    flightdir = os.path.join(here,'data', 'nycflights')\n    if not os.path.exists(flightdir):\n       print(\"Extracting flight data\")\n       tar_path = os.path.join('data', 'nycflights.tar.gz')\n       with tarfile.open(tar_path, mode='r:gz') as flights:\n          flights.extractall('data/')\n            \nextract_flight() # this function call will extract 10 csv files in data/nycflights\n\n\nLoad Data from CSVs in Dask Dataframes\nimport os\nhere = os.getcwd()\nfilenames = os.path.join(here, 'data', 'nycflights', '*.csv')\nfilenames\nimport dask\nimport dask.dataframe as dd\n\ndf = dd.read_csv(filenames,\n                 parse_dates={'Date': [0, 1, 2]})\nLet’s take a look to the dataframe\ndf\n### Get the first 5 rows\ndf.head(5)\nimport traceback # we use traceback because we expect an error.\n\ntry:\n    df.tail(5) # Get the last 5 rows\nexcept Exception:\n    traceback.print_exc()\n\n\nWhat just happened?\nUnlike pandas.read_csv which reads in the entire file before inferring datatypes, dask.dataframe.read_csv only reads in a sample from the beginning of the file (or first file if using a glob). These inferred datatypes are then enforced when reading all partitions.\nIn this case, the datatypes inferred in the sample are incorrect. The first n rows have no value for CRSElapsedTime (which pandas infers as a float), and later on turn out to be strings (object dtype). When this happens you have a few options:\n\nSpecify dtypes directly using the dtype keyword. This is the recommended solution, as it’s the least error prone (better to be explicit than implicit) and also the most performant.\nIncrease the size of the sample keyword (in bytes)\nUse assume_missing to make dask assume that columns inferred to be int (which don’t allow missing values) are actually floats (which do allow missing values). In our particular case this doesn’t apply.\n\nIn our case we’ll use the first option and directly specify the dtypes of the offending columns.\ndf.dtypes\ndf = dd.read_csv(filenames,\n                 parse_dates={'Date': [0, 1, 2]},\n                 dtype={'TailNum': object,\n                        'CRSElapsedTime': float,\n                        'Cancelled': bool})\ndf.tail(5)\nLet’s take a look at one more example to fix ideas.\nlen(df)\n\n\nWhy df is ten times longer ?\n\nDask investigated the input path and found that there are ten matching files.\nA set of jobs was intelligently created for each chunk - one per original CSV file in this case.\nEach file was loaded into a pandas dataframe, had len() applied to it.\nThe subtotals were combined to give you the final grant total."
   },
   {
+    "objectID": "16-DaskDataframes.html#computations-with-dask.dataframe",
     "href": "16-DaskDataframes.html#computations-with-dask.dataframe",
     "title": "Python tools for Big Data",
     "section": "Computations with dask.dataframe",
     "text": "We compute the maximum of the DepDelay column. With dask.delayed we could create this computation as follows:\nmaxes = []\nfor fn in filenames:\n    df = dask.delayed(pd.read_csv)(fn)\n    maxes.append(df.DepDelay.max())\n    \nfinal_max = dask.delayed(max)(maxes)\nfinal_max.compute()\nNow we just use the normal Pandas syntax as follows:\n%time df.DepDelay.max().compute()\nThis writes the delayed computation for us and then runs it. Recall that the delayed computation is a dask graph made of up of key-value pairs.\nSome things to note:\n\nAs with dask.delayed, we need to call .compute() when we’re done. Up until this point everything is lazy.\nDask will delete intermediate results (like the full pandas dataframe for each file) as soon as possible.\n\nThis lets us handle datasets that are larger than memory\nThis means that repeated computations will have to load all of the data in each time (run the code above again, is it faster or slower than you would expect?)\n\n\nAs with Delayed objects, you can view the underlying task graph using the .visualize method:\ndf.DepDelay.max().visualize()\nIf you are already familiar with the Pandas API then know how to use dask.dataframe. There are a couple of small changes.\nAs noted above, computations on dask DataFrame objects don’t perform work, instead they build up a dask graph. We can evaluate this dask graph at any time using the .compute() method.\nresult = df.DepDelay.mean()  # create the tasks graph\n%time result.compute()           # perform actual computation"
   },
   {
+    "objectID": "16-DaskDataframes.html#store-data-in-apache-parquet-format",
     "href": "16-DaskDataframes.html#store-data-in-apache-parquet-format",
     "title": "Python tools for Big Data",
     "section": "Store Data in Apache Parquet Format",
     "text": "Dask encourage dataframe users to store and load data using Parquet instead of csv. Apache Parquet is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than HDF5 (from the Dask library’s perspective). It is also a common format used by other big data systems like Apache Spark and Apache Impala and so is useful to interchange with other systems.\ndf.drop(\"TailNum\", axis=1).to_parquet(\"nycflights/\")  # save csv files using parquet format\nIt is possible to specify dtypes and compression when converting. This can definitely help give you significantly greater speedups, but just using the default settings will still be a large improvement.\ndf.size.compute()\nimport dask.dataframe as dd\ndf = dd.read_parquet(\"nycflights/\")\ndf.head()\nresult = df.DepDelay.mean() \n%time result.compute()\nThe computation is much faster because pulling out the DepDelay column is easy for Parquet.\n\nParquet advantages:\n\nBinary representation of data, allowing for speedy conversion of bytes-on-disk to bytes-in-memory\nColumnar storage, meaning that you can load in as few columns as you need without loading the entire dataset\nRow-chunked storage so that you can pull out data from a particular range without touching the others\nPer-chunk statistics so that you can find subsets quickly\nCompression\n\n\n\nExercise 15.1\nIf you don’t remember how to use pandas. Please read pandas documentation.\n\nUse the head() method to get the first ten rows\nHow many rows are in our dataset?\nUse selections df[...] to find how many positive (late) and negative (early) departure times there are\nIn total, how many non-cancelled flights were taken? (To invert a boolean pandas Series s, use ~s)."
   },
   {
+    "objectID": "16-DaskDataframes.html#divisions-and-the-index",
     "href": "16-DaskDataframes.html#divisions-and-the-index",
     "title": "Python tools for Big Data",
     "section": "Divisions and the Index",
     "text": "The Pandas index associates a value to each record/row of your data. Operations that align with the index, like loc can be a bit faster as a result.\nIn dask.dataframe this index becomes even more important. Recall that one dask DataFrame consists of several Pandas DataFrames. These dataframes are separated along the index by value. For example, when working with time series we may partition our large dataset by month.\nRecall that these many partitions of our data may not all live in memory at the same time, instead they might live on disk; we simply have tasks that can materialize these pandas DataFrames on demand.\nPartitioning your data can greatly improve efficiency. Operations like loc, groupby, and merge/join along the index are much more efficient than operations along other columns. You can see how your dataset is partitioned with the .divisions attribute. Note that data that comes out of simple data sources like CSV files aren’t intelligently indexed by default. In these cases the values for .divisions will be None.\ndf = dd.read_csv(filenames,\n                 dtype={'TailNum': str,\n                        'CRSElapsedTime': float,\n                        'Cancelled': bool})\ndf.divisions\nHowever if we set the index to some new column then dask will divide our data roughly evenly along that column and create new divisions for us. Warning, set_index triggers immediate computation.\ndf2 = df.set_index('Year')\ndf2.divisions\nWe see here the minimum and maximum values (1990 and 1999) as well as the intermediate values that separate our data well. This dataset has ten partitions, as the final value is assumed to be the inclusive right-side for the last bin.\ndf2.npartitions\ndf2.head()\nOne of the benefits of this is that operations like loc only need to load the relevant partitions\ndf2.loc[1991]\ndf2.loc[1991].compute()\n\nExercises 15.2\nIn this section we do a few dask.dataframe computations. If you are comfortable with Pandas then these should be familiar. You will have to think about when to call compute.\n\nIn total, how many non-cancelled flights were taken from each airport?\n\nHint: use df.groupby. df.groupby(df.A).B.func().\n\nWhat was the average departure delay from each airport?\n\nNote, this is the same computation you did in the previous notebook (is this approach faster or slower?)\n\nWhat day of the week has the worst average departure delay?"
   },
   {
+    "objectID": "16-DaskDataframes.html#sharing-intermediate-results",
     "href": "16-DaskDataframes.html#sharing-intermediate-results",
     "title": "Python tools for Big Data",
     "section": "Sharing Intermediate Results",
     "text": "When computing all of the above, we sometimes did the same operation more than once. For most operations, dask.dataframe hashes the arguments, allowing duplicate computations to be shared, and only computed once.\nFor example, lets compute the mean and standard deviation for departure delay of all non-cancelled flights:\nnon_cancelled = df[~df.Cancelled]\nmean_delay = non_cancelled.DepDelay.mean()\nstd_delay = non_cancelled.DepDelay.std()\n\nUsing two calls to .compute:\n%%time\nmean_delay_res = mean_delay.compute()\nstd_delay_res = std_delay.compute()\nmean_delay_res, std_delay_res\n\n\nUsing one call to dask.compute:\n%%time\nmean_delay_res, std_delay_res = dask.compute(mean_delay, std_delay)\nmean_delay_res, std_delay_res\nUsing dask.compute takes roughly 1/2 the time. This is because the task graphs for both results are merged when calling dask.compute, allowing shared operations to only be done once instead of twice. In particular, using dask.compute only does the following once:\n\nthe calls to read_csv\nthe filter (df[~df.Cancelled])\nsome of the necessary reductions (sum, count)\n\nTo see what the merged task graphs between multiple results look like (and what’s shared), you can use the dask.visualize function (we might want to use filename='graph.pdf' to zoom in on the graph better):\ndask.visualize(mean_delay, std_delay)"
   },
   {
+    "objectID": "11-PandaDataframes.html#create-a-dataframe",
     "href": "11-PandaDataframes.html#create-a-dataframe",
     "title": "Python tools for Big Data",
     "section": "Create a DataFrame",
     "text": "dates = pd.date_range('20130101', periods=6)\npd.DataFrame(np.random.randn(6,4), index=dates, columns=list('ABCD'))\npd.DataFrame({'A' : 1.,\n              'B' : pd.Timestamp('20130102'),\n              'C' : pd.Series(1,index=list(range(4)),dtype='float32'),\n              'D' : np.arange(4,dtype='int32'),\n              'E' : pd.Categorical([\"test\",\"train\",\"test\",\"train\"]),\n              'F' : 'foo' })"
   },
   {
+    "objectID": "11-PandaDataframes.html#load-data-from-csv-file",
     "href": "11-PandaDataframes.html#load-data-from-csv-file",
     "title": "Python tools for Big Data",
     "section": "Load Data from CSV File",
     "text": "url = \"https://www.fun-mooc.fr/c4x/agrocampusouest/40001S03/asset/AnaDo_JeuDonnees_TemperatFrance.csv\"\nfrench_cities = pd.read_csv(url, delimiter=\";\", encoding=\"latin1\", index_col=0)\nfrench_cities"
   },
   {
+    "objectID": "11-PandaDataframes.html#viewing-data",
     "href": "11-PandaDataframes.html#viewing-data",
     "title": "Python tools for Big Data",
     "section": "Viewing Data",
     "text": "french_cities.head()\nfrench_cities.tail()"
   },
   {
+    "objectID": "11-PandaDataframes.html#index",
     "href": "11-PandaDataframes.html#index",
     "title": "Python tools for Big Data",
     "section": "Index",
     "text": "french_cities.index\nWe can rename an index by setting its name.\nfrench_cities.index.name = \"City\"\nfrench_cities.head()\nimport locale\nimport calendar\n \nlocale.setlocale(locale.LC_ALL,'C')\n \nmonths = calendar.month_abbr\nprint(*months)\n \nfrench_cities.rename(\n  columns={ old : new \n           for old, new in zip(french_cities.columns[:12], months[1:])\n          if old != new },\n  inplace=True)\n \nfrench_cities.rename(columns={'Moye':'Mean'}, inplace=True)\nfrench_cities\n\nExercise: Rename DataFrame Months in English"
   },
   {
+    "objectID": "11-PandaDataframes.html#from-a-local-or-remote-html-file",
     "href": "11-PandaDataframes.html#from-a-local-or-remote-html-file",
     "title": "Python tools for Big Data",
     "section": "From a local or remote HTML file",
     "text": "We can download and extract data about mean sea level stations around the world from the PSMSL website.\n# Needs `lxml`, `beautifulSoup4` and `html5lib` python packages\ntable_list = pd.read_html(\"http://www.psmsl.org/data/obtaining/\")\n# there is 1 table on that page which contains metadata about the stations where \n# sea levels are recorded\nlocal_sea_level_stations = table_list[0]\nlocal_sea_level_stations"
   },
   {
+    "objectID": "11-PandaDataframes.html#indexing-on-dataframes",
     "href": "11-PandaDataframes.html#indexing-on-dataframes",
     "title": "Python tools for Big Data",
     "section": "Indexing on DataFrames",
     "text": "french_cities['Lati']  # DF [] accesses columns (Series)\n.loc and .iloc allow to access individual values, slices or masked selections:\nfrench_cities.loc['Rennes', \"Sep\"]\nfrench_cities.loc['Rennes', [\"Sep\", \"Dec\"]]\nfrench_cities.loc['Rennes', \"Sep\":\"Dec\"]"
   },
   {
+    "objectID": "11-PandaDataframes.html#masking",
     "href": "11-PandaDataframes.html#masking",
     "title": "Python tools for Big Data",
     "section": "Masking",
     "text": "mask = [True, False] * 6 + 5 * [False]\nprint(french_cities.iloc[:, mask])\nprint(french_cities.loc[\"Rennes\", mask])"
   },
   {
+    "objectID": "11-PandaDataframes.html#new-column",
     "href": "11-PandaDataframes.html#new-column",
     "title": "Python tools for Big Data",
     "section": "New column",
     "text": "french_cities[\"std\"] = french_cities.iloc[:,:12].std(axis=1)\nfrench_cities\nfrench_cities = french_cities.drop(\"std\", axis=1) # remove this new column\nfrench_cities"
   },
   {
+    "objectID": "11-PandaDataframes.html#modifying-a-dataframe-with-multiple-indexing",
     "href": "11-PandaDataframes.html#modifying-a-dataframe-with-multiple-indexing",
     "title": "Python tools for Big Data",
     "section": "Modifying a dataframe with multiple indexing",
     "text": "# french_cities['Rennes']['Sep'] = 25 # It does not works and breaks the DataFrame\nfrench_cities.loc['Rennes']['Sep'] # = 25 is the right way to do it\nfrench_cities"
   },
   {
+    "objectID": "11-PandaDataframes.html#transforming-datasets",
     "href": "11-PandaDataframes.html#transforming-datasets",
     "title": "Python tools for Big Data",
     "section": "Transforming datasets",
     "text": "french_cities['Mean'].min(), french_cities['Ampl'].max()"
   },
   {
+    "objectID": "11-PandaDataframes.html#apply",
     "href": "11-PandaDataframes.html#apply",
     "title": "Python tools for Big Data",
     "section": "Apply",
     "text": "Let’s convert the temperature mean from Celsius to Fahrenheit degree.\nfahrenheit = lambda T: T*9/5+32\nfrench_cities['Mean'].apply(fahrenheit)"
   },
   {
+    "objectID": "11-PandaDataframes.html#sort",
     "href": "11-PandaDataframes.html#sort",
     "title": "Python tools for Big Data",
     "section": "Sort",
     "text": "french_cities.sort_values(by='Lati')\nfrench_cities = french_cities.sort_values(by='Lati',ascending=False)\nfrench_cities"
   },
   {
+    "objectID": "11-PandaDataframes.html#stack-and-unstack",
     "href": "11-PandaDataframes.html#stack-and-unstack",
     "title": "Python tools for Big Data",
     "section": "Stack and unstack",
     "text": "Instead of seeing the months along the axis 1, and the cities along the axis 0, let’s try to convert these into an outer and an inner axis along only 1 time dimension.\npd.set_option(\"display.max_rows\", 20)\nunstacked = french_cities.iloc[:,:12].unstack()\nunstacked\ntype(unstacked)"
   },
   {
+    "objectID": "11-PandaDataframes.html#transpose",
     "href": "11-PandaDataframes.html#transpose",
     "title": "Python tools for Big Data",
     "section": "Transpose",
     "text": "The result is grouped in the wrong order since it sorts first the axis that was unstacked. We need to transpose the dataframe.\ncity_temp = french_cities.iloc[:,:12].transpose()\ncity_temp.plot()\ncity_temp.boxplot(rot=90);"
   },
   {
+    "objectID": "11-PandaDataframes.html#describing",
     "href": "11-PandaDataframes.html#describing",
     "title": "Python tools for Big Data",
     "section": "Describing",
     "text": "french_cities['Région'].describe()\nfrench_cities['Région'].unique()\nfrench_cities['Région'].value_counts()\n# To save memory, we can convert it to a categorical column:\nfrench_cities[\"Région\"] = french_cities[\"Région\"].astype(\"category\")\nfrench_cities.memory_usage()"
   },
   {
+    "objectID": "11-PandaDataframes.html#data-aggregationsummarization",
     "href": "11-PandaDataframes.html#data-aggregationsummarization",
     "title": "Python tools for Big Data",
     "section": "Data Aggregation/summarization",
     "text": ""
   },
   {
+    "objectID": "11-PandaDataframes.html#groupby",
     "href": "11-PandaDataframes.html#groupby",
     "title": "Python tools for Big Data",
     "section": "groupby",
     "text": "fc_grouped_region = french_cities.groupby(\"Région\")\ntype(fc_grouped_region)\nfor group_name, subdf in fc_grouped_region:\n    print(group_name)\n    print(subdf)\n    print(\"\")\n\nExercise\nConsider the following dataset UCI Machine Learning Repository Combined Cycle Power Plant Data Set. This dataset consists of records of measurements relating to peaker power plants of 10000 points over 6 years (2006-2011).\nVariables - AT = Atmospheric Temperature in C - V = Exhaust Vaccum Speed - AP = Atmospheric Pressure - RH = Relative Humidity - PE = Power Output\nWe want to model the power output as a function of the other parameters.\nObservations are in 5 excel sheets of about 10000 records in “Folds5x2_pp.xlsx”. These 5 sheets are same data shuffled. - Read this file with the pandas function read_excel. What is the type returned by this function? - Implement a select function to regroup all observations in a pandas serie. - Use select function and corr to compute the maximum correlation. - Parallelize this loop with concurrent.futures."
   },
   {
+    "objectID": "01-GitBasics.html#about-dropbox",
     "href": "01-GitBasics.html#about-dropbox",
     "title": "Python tools for Big Data",
     "section": "About Dropbox",
     "text": "Dropbox versioning is not free.\nOnly keep your edits over a period of 30 days.\nPrivacy and Security ?\nNo differences display.\nThe service have the right to delete information from free and inactive accounts.\nUsers are not allowed to perform encryption."
   },
   {
+    "objectID": "01-GitBasics.html#about-version-control",
     "href": "01-GitBasics.html#about-version-control",
     "title": "Python tools for Big Data",
     "section": "About version control",
     "text": "Records changes to a file or set of files over time.\nYou can recall specific versions later.\nYou can use it with nearly any type of file on a computer.\nThis is the better way to collaborate on the same document."
   },
   {
+    "objectID": "01-GitBasics.html#centralized-version-control-systems",
     "href": "01-GitBasics.html#centralized-version-control-systems",
     "title": "Python tools for Big Data",
     "section": "Centralized Version Control Systems",
     "text": "Clients check out files from a central place.\nYou know what everyone else on the project is doing\nA single server contains all the versioned files.\nFor many years, this has been the standard (CVS, SVN).\nYou always need network connection.\nIf the server is corrupted, with no backup, you could lose everything !"
   },
   {
+    "objectID": "01-GitBasics.html#git",
     "href": "01-GitBasics.html#git",
     "title": "Python tools for Big Data",
     "section": "Git",
     "text": "Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.\nOfficial website https://git-scm.com\nNew products based on a git server for collaborating writing.\n\nShareLaTeX (https://fr.sharelatex.com)\nAuthorea (https://www.authorea.com)\nOverleaf (https://www.overleaf.com)\nPLMLateX (https://plmlatex.math.cnrs.fr/)"
   },
   {
+    "objectID": "01-GitBasics.html#github",
     "href": "01-GitBasics.html#github",
     "title": "Python tools for Big Data",
     "section": "GitHub",
     "text": "Web-based hosting service for version control using Git.\nOffers all of the distributed version control and source code management (SCM) functionality of Git as well as adding its own features.\nProvides access control and several collaboration features such as bug tracking, feature requests, task management, and wikis for every project.\nGitHub is the largest host of source code in the world.\nGitHub evolves towards a social network and offers a better visibility to your work.\nJulia language depends heavily on GitHub. Almost all R and Python packages developers use this platform.\n\nGitlab.com and Bitbucket offer similar services."
   },
   {
+    "objectID": "01-GitBasics.html#distributed-version-control-systems",
     "href": "01-GitBasics.html#distributed-version-control-systems",
     "title": "Python tools for Big Data",
     "section": "Distributed Version Control Systems",
     "text": "Clients fully mirror the repository.\nYou can collaborate with different groups of people in different ways simultaneously within the same project.\nNo need of network connection.\nMultiple backups."
   },
   {
+    "objectID": "01-GitBasics.html#git-bash",
     "href": "01-GitBasics.html#git-bash",
     "title": "Python tools for Big Data",
     "section": "Git bash",
     "text": "I you want to try Git on windows, install git bash. On Linux and Mac just open a terminal.\n\n\n\ngit bash"
   },
   {
+    "objectID": "01-GitBasics.html#configure-git",
     "href": "01-GitBasics.html#configure-git",
     "title": "Python tools for Big Data",
     "section": "Configure Git",
     "text": "Settings are saved on the computer for all your git repositories.\n$ git config --global user.name \"Prenom Nom\"\n$ git config --global user.email \"prenom.nom@univ-rennes2.fr\"\n$ git config --list\n\nuser.name=Prenom Nom\nuser.email=prenom.nom@univ-rennes2.fr"
   },
   {
+    "objectID": "01-GitBasics.html#initialize-a-git-repository-in-a-directory",
     "href": "01-GitBasics.html#initialize-a-git-repository-in-a-directory",
     "title": "Python tools for Big Data",
     "section": "Initialize a git repository in a directory",
     "text": "Create the directory homepage:\n$ mkdir homepage                          # Create directory homepage\n$ cd homepage                             # Change directory\n$ touch index.md                          # Create the index.md file\n$ echo \"# John Smith \" >> index.md        # Write the string \"# Test\" in index.md\n$ echo \"Rennes\" >> index.md               # Append Rennes to index.md\n$ cat index.md                            # Display index.md content\n# John Smith\nRennes\nTo use git in this repository\n$ git init\nInitialized empty Git repository in /Users/navaro/homepage/.git/\n$ git status\nOn branch master\n\nNo commits yet\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n    index.md\n\nnothing added to commit but untracked files present (use \"git add\" to track)\n\nAdd the file to the git index\n$ git add index.md\n$ git status\nOn branch master\n\nNo commits yet\n\nChanges to be committed:\n  (use \"git rm --cached <file>...\" to unstage)\n    new file:   index.md"
   },
   {
+    "objectID": "01-GitBasics.html#commit",
     "href": "01-GitBasics.html#commit",
     "title": "Python tools for Big Data",
     "section": "Commit",
     "text": "$ git commit -m 'Create the file index.md'\n[master (root-commit) 63a5cee] Create the file index.md\n 1 file changed, 2 insertions(+)\n create mode 100644 index.md\n$ git status\nOn branch master\nnothing to commit, working tree clean"
   },
   {
+    "objectID": "01-GitBasics.html#four-file-status-in-the-repository",
     "href": "01-GitBasics.html#four-file-status-in-the-repository",
     "title": "Python tools for Big Data",
     "section": "Four File status in the repository",
     "text": ""
   },
   {
+    "objectID": "01-GitBasics.html#github-account-and-ssh-key",
     "href": "01-GitBasics.html#github-account-and-ssh-key",
     "title": "Python tools for Big Data",
     "section": "Github account and SSH key",
     "text": "Create your GitHub account\n\nGenerating public/private rsa key pair.\nRef : New ssh key on GitHub\nOpen Terminal or Git bash.\nPaste the text below, substituting in your GitHub email address.\nssh-keygen -t rsa -b 4096 -C \"prenom.nom@univ-rennes2.fr\"\nThis creates a new ssh key, using the provided email as a label.\nWhen you’re prompted to “Enter a file in which to save the key,” press Enter. This accepts the default file location. Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter] At the prompt, let it empty for no passphrase.\nThis creates 2 files, the private key: id_rsa, and the public key id_rsa.pub. Display and copy the SSH key to your clipboard.\ncat ~/.ssh/id_rsa.pub\nIn the upper-right corner of any page, click your profile photo, then click Settings. In the user settings sidebar, click SSH and GPG keys. Click New SSH key or Add SSH key."
   },
   {
+    "objectID": "01-GitBasics.html#github-repository",
     "href": "01-GitBasics.html#github-repository",
     "title": "Python tools for Big Data",
     "section": "GitHub repository",
     "text": "In the following steps replace your_login by your own GitHub login\nCreate the your_login.github.io repository on your GitHub account - Click on ‘+’ on top right of the page and select “New repository” - Repository name = “your_login.github.io” - Don’t change default options - Click on “Create repository”\n$ cd homepage\n$ git remote add origin git@github.com:your_login/your_login.github.io.git\n$ git push -u origin master\nEnumerating objects: 6, done.\nCounting objects: 100% (6/6), done.\nDelta compression using up to 4 threads\nCompressing objects: 100% (2/2), done.\nWriting objects: 100% (4/4), 449 bytes | 449.00 KiB/s, done.\nTotal 4 (delta 0), reused 0 (delta 0), pack-reused 0\nTo github.com:your_login/your_login.github.io.git\n   fd6dace..c4488e6  master -> master\n$ git status\nOn branch master\nnothing to commit, working tree clean"
   },
   {
+    "objectID": "01-GitBasics.html#enable-github-pages",
     "href": "01-GitBasics.html#enable-github-pages",
     "title": "Python tools for Big Data",
     "section": "Enable GitHub pages",
     "text": "Go to https://github.com/your_login.github.io/settings\nIn the section GitHub Pages\nSelect master for Source and root\nChoose the minimal theme and validate, you can change it later.\nThe website is available at https://your_login.github.io"
   },
   {
+    "objectID": "01-GitBasics.html#git-workflow",
     "href": "01-GitBasics.html#git-workflow",
     "title": "Python tools for Big Data",
     "section": "Git Workflow",
     "text": "By choosing a theme, you create on GitHub a file named “_config.yml”. You need to update your local version with\ngit pull --no-edit\nThe --no-edit function avoid spawning a text editor, and asking for a merge commit message. If you do\nls\nYou will display the new file _config.yml"
   },
   {
+    "objectID": "01-GitBasics.html#exercise",
     "href": "01-GitBasics.html#exercise",
     "title": "Python tools for Big Data",
     "section": "Exercise",
     "text": "Check the web page by visiting https://your_login.github.io\nModify the file index.md and do the procedure again. Modify also the file _config.yml by appending the following content:\ntitle: Page personnelle\ndescription: Exercice Git"
   },
   {
+    "objectID": "01-GitBasics.html#branches",
     "href": "01-GitBasics.html#branches",
     "title": "Python tools for Big Data",
     "section": "Branches",
     "text": "Display all branches\n$ git branch -a\n* master\n  remotes/origin/master"
   },
   {
+    "objectID": "01-GitBasics.html#create-a-new-branch",
     "href": "01-GitBasics.html#create-a-new-branch",
     "title": "Python tools for Big Data",
     "section": "Create a new branch",
     "text": "By creating a new branch you freeze the master branch and you can continue to work without modifying it. The branch created is the copy of the current branch (master).\n$ git branch mybranch\n$ git checkout mybranch\nSwitched to branch 'mybranch'\n$ git branch\nmaster\n* mybranch\nFiles could be different or not existing in two branches but they are located at the same place on the file system. When you use the checkout command, git applies the changes."
   },
   {
+    "objectID": "01-GitBasics.html#edit-and-modify-the-index.md-file",
     "href": "01-GitBasics.html#edit-and-modify-the-index.md-file",
     "title": "Python tools for Big Data",
     "section": "Edit and modify the index.md file",
     "text": "$ echo '![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)' >> index.md\n$ git status\nOn branch mybranch\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n    modified:   index.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n$ git diff\ndiff --git a/index.md b/index.md\nindex 87dde03..af6739c 100644\n--- a/index.md\n+++ b/index.md\n@@ -3,3 +3,4 @@\n\n+![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)"
   },
   {
+    "objectID": "01-GitBasics.html#commit-the-changes",
     "href": "01-GitBasics.html#commit-the-changes",
     "title": "Python tools for Big Data",
     "section": "Commit the changes",
     "text": "$ git add index.md\n$ git status\nOn branch mybranch\nChanges to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n    modified:   index.md\n$ git commit -m 'Add logo'\n[mybranch 30a8912] Add logo\n 1 file changed, 1 insertion(+)"
   },
   {
+    "objectID": "01-GitBasics.html#commit-or-fast-commit",
     "href": "01-GitBasics.html#commit-or-fast-commit",
     "title": "Python tools for Big Data",
     "section": "Commit or fast commit",
     "text": "{image} images/index1.png :width: 400px {image} images/index2.png :width: 400px"
   },
   {
+    "objectID": "01-GitBasics.html#merge-mybranch-with-the-master-branch",
     "href": "01-GitBasics.html#merge-mybranch-with-the-master-branch",
     "title": "Python tools for Big Data",
     "section": "Merge mybranch with the master branch",
     "text": "$ git diff master\ndiff --git a/index.md b/index.md\nindex c744020..4d833d1 100644\n--- a/index.md\n+++ b/index.md\n@@ -1,2 +1,3 @@\n # Prenom Nom\n Rennes\n+![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)"
   },
   {
+    "objectID": "01-GitBasics.html#push-master-branch",
     "href": "01-GitBasics.html#push-master-branch",
     "title": "Python tools for Big Data",
     "section": "Push master branch",
     "text": "$ git checkout master\nSwitched to branch 'master'\n$ git merge mybranch\nUpdating 63a5cee..30a8912\nFast-forward\n index.md | 1 +\n 1 file changed, 1 insertion(+)\n$ git push origin master\nEnumerating objects: 9, done.\nCounting objects: 100% (9/9), done.\nDelta compression using up to 4 threads\nCompressing objects: 100% (5/5), done.\nWriting objects: 100% (8/8), 869 bytes | 869.00 KiB/s, done.\nTotal 8 (delta 1), reused 0 (delta 0), pack-reused 0\nremote: Resolving deltas: 100% (1/1), completed with 1 local object.\nTo github.com:your_login/your_login.github.io.git\n   6dafcbd..340d3dc  master -> master"
   },
   {
+    "objectID": "01-GitBasics.html#collaborating-writing-with-a-git-repository",
     "href": "01-GitBasics.html#collaborating-writing-with-a-git-repository",
     "title": "Python tools for Big Data",
     "section": "Collaborating writing with a git repository",
     "text": "Cycle"
   },
   {
+    "objectID": "01-GitBasics.html#clone-the-remote-repository",
     "href": "01-GitBasics.html#clone-the-remote-repository",
     "title": "Python tools for Big Data",
     "section": "Clone the remote repository",
     "text": "git clone ssh://svmass2/git/atelier_git.git\nor\ngit clone git@github.com:MMASSD/atelier_git.git"
   },
   {
+    "objectID": "01-GitBasics.html#share-your-modifications",
     "href": "01-GitBasics.html#share-your-modifications",
     "title": "Python tools for Big Data",
     "section": "Share your modifications",
     "text": "Option 1 : merge master branch and push it\n$ git checkout master\n$ git merge mybranch\n$ git push origin master\n\n\nOption 2 : Push your branch\n$ git checkout mybranch\n$ git push origin mybranch"
   },
   {
+    "objectID": "01-GitBasics.html#synchronize-the-repository",
     "href": "01-GitBasics.html#synchronize-the-repository",
     "title": "Python tools for Big Data",
     "section": "Synchronize the repository",
     "text": "Update master branch\n$ git checkout master\nYou can use pull which is a fetch and merge command\n$ git pull origin master\norigin is the repository and master the remote branch from you want to update.\nIn some cases, it could be safer to check the differences between your local and the remote branch with\n$ git fetch origin\n$ git diff origin/master\nand merge\n$ git merge origin master\n\n\nUpdate personal branch\n$ git checkout mybranch\n$ git merge master"
   },
   {
+    "objectID": "01-GitBasics.html#rebase",
     "href": "01-GitBasics.html#rebase",
     "title": "Python tools for Big Data",
     "section": "Rebase",
     "text": "If the branch named mybranch is local and never pushed to the repository. It is possible to use rebase instead of merge. git rebase reapply commits on top of another base tip.\nExercise:\n\nCreate a new branch called test_rebase from master.\nDo some modifications on the remote master branch by editing file in your browser on GitHub.\nOn your test_rebase do also some modifications. Type\n\n$ git log -n 2\nIt displays the last two commits - Switch and update your master branch - Switch back to test_rebase and rebase the local branch with:\n$ git rebase master\n\nDisplays the last two commits and check how the history was changed"
   },
   {
+    "objectID": "01-GitBasics.html#stash",
     "href": "01-GitBasics.html#stash",
     "title": "Python tools for Big Data",
     "section": "Stash",
     "text": "Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.\n$ date >> index.md    # Modify the index.md file\n\n$ git diff\ndiff --git a/index.md b/index.md\nindex 4d833d1..a7bc91d 100644\n--- a/index.md\n+++ b/index.md\n@@ -1,3 +1,4 @@\n # Prenom Nom\n Rennes\n ![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)\n+Sun Sep 13 21:45:41 CEST 2020\n\n$ git stash\nSaved working directory and index state WIP on master: 0fc9d7d Merge remote-tracking branch 'origin/master' into master\n\n$ git stash show\n index.md | 1 +\n 1 file changed, 1 insertion(+)\n \n$ git status\nOn branch master\nnothing to commit, working tree clean\n$ git stash pop\nOn branch master\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n    modified:   index.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nDropped refs/stash@{0} (3de29586d5e0b9ceeb3c23e03a9aeb045c4096b8)\n\n$ git status\nOn branch master\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n    modified:   index.md\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n\nApply last stash\n$ git stash apply\n\n\nDelete the last stash\n$ git stash drop\n\n\nApply last stash and drop\n$ git stash pop"
   },
   {
+    "objectID": "01-GitBasics.html#merge-conflicts",
     "href": "01-GitBasics.html#merge-conflicts",
     "title": "Python tools for Big Data",
     "section": "Merge conflicts",
     "text": "If you have conflict, try :\n$ git mergetool\nA nice editor helps you to choose the right version. Close and :\n$ git commit -m 'Update and fixed conflicts'"
   },
   {
+    "objectID": "01-GitBasics.html#why-git",
     "href": "01-GitBasics.html#why-git",
     "title": "Python tools for Big Data",
     "section": "Why Git?",
     "text": "Tracking and controlling changes in the software.\nBranches : Frictionless Context Switching, Role-Based Codelines.\nEverything is local : Git is fast.\nMultiple Backups.\nIt’s impossible to get anything out of Git other than the exact bits you put in.\nStaging Area : intermediate index between working directory and repository.\nPull-request is a nice feature for code reviewing and protect the stable branch."
   },
   {
+    "objectID": "01-GitBasics.html#why-not",
     "href": "01-GitBasics.html#why-not",
     "title": "Python tools for Big Data",
     "section": "Why not",
     "text": "Sometimes confusing for new users coming from CVS or subversion.\nCrazy command line syntax.\nSimple tasks need many commands.\nGit history is often strange.\nIt is possible to destroy the repository on the remote server.\nPower for the maintainer, at the expense of the contributor."
   },
   {
+    "objectID": "01-GitBasics.html#some-useful-commands",
     "href": "01-GitBasics.html#some-useful-commands",
     "title": "Python tools for Big Data",
     "section": "Some useful commands",
     "text": "Showing which files have changed between git branches\n\n$ git diff --name-status master..mybranch\n\nCompare the master version of a file to my current branch version\n\n$ git diff mybranch master -- myfile\n\nRemove all ignored files (do it after a commit)\n\n$ git clean -xdf"
   },
   {
+    "objectID": "01-GitBasics.html#revert-the-last-commit",
     "href": "01-GitBasics.html#revert-the-last-commit",
     "title": "Python tools for Big Data",
     "section": "Revert the last commit",
     "text": "$ date >> index.md ## modify index.md\n\n$ git commit -a -m 'Add date in index.md'\n[master cbfb502] Add date in index.md\n 3 files changed, 18 insertions(+)\n create mode 100644 .gitignore\n create mode 100644 sandbox.Rproj\n\n$ git reset HEAD~1\nUnstaged changes after reset:\nM   index.md\n\n$ git diff\ndiff --git a/index.md b/index.md\nindex c744020..5d9bd58 100644\n--- a/index.md\n+++ b/index.md\n@@ -1,2 +1,3 @@\n # Prenom Nom\n Rennes\n+Sun Sep 13 22:17:05 CEST 2020\n\n$ git checkout index.md\nUpdated 1 path from the index\n\n$ cat index.md\n# Prenom Nom\nRennes"
   },
   {
+    "objectID": "01-GitBasics.html#git-through-ide",
     "href": "01-GitBasics.html#git-through-ide",
     "title": "Python tools for Big Data",
     "section": "Git through IDE",
     "text": "Install bash-completion and source git-prompt.sh.\nUse Gui tools:\n\nGitHub Desktop\nSourcetree\nGitKraken\n\nVCS plugin of IDE\n\nRStudio\nEclipse\nTeXstudio\nJetBrains"
   },
   {
+    "objectID": "05-MapReduce.html#map-function-example",
     "href": "05-MapReduce.html#map-function-example",
     "title": "Python tools for Big Data",
     "section": "map function example",
     "text": "The map(func, seq) Python function applies the function func to all the elements of the sequence seq. It returns a new list with the elements changed by func\ndef f(x):\n    return x * x\n\nrdd = [2, 6, -3, 7]\nres = map(f, rdd )\nres  # Res is an iterator\nprint(*res)\nfrom operator import mul\nrdd1, rdd2 = [2, 6, -3, 7], [1, -4, 5, 3]\nres = map(mul, rdd1, rdd2 ) # element wise sum of rdd1 and rdd2 \nprint(*res)\n\n\n\nMapReduce"
   },
   {
+    "objectID": "05-MapReduce.html#functools.reduce-example",
     "href": "05-MapReduce.html#functools.reduce-example",
     "title": "Python tools for Big Data",
     "section": "functools.reduce example",
     "text": "The function reduce(func, seq) continually applies the function func() to the sequence seq and return a single value. For example, reduce(f, [1, 2, 3, 4, 5]) calculates f(f(f(f(1,2),3),4),5).\nfrom functools import reduce\nfrom operator import add\nrdd = list(range(1,6))\nreduce(add, rdd) # computes ((((1+2)+3)+4)+5)"
   },
   {
+    "objectID": "05-MapReduce.html#weighted-mean-and-variance",
     "href": "05-MapReduce.html#weighted-mean-and-variance",
     "title": "Python tools for Big Data",
     "section": "Weighted mean and Variance",
     "text": "If the generator of random variable \\(X\\) is discrete with probability mass function \\(x_1 \\mapsto p_1, x_2 \\mapsto p_2, \\ldots, x_n \\mapsto p_n\\) then\n\\[\\operatorname{Var}(X) = \\left(\\sum_{i=1}^n p_i x_i ^2\\right) - \\mu^2,\\]\nwhere \\(\\mu\\) is the average value, i.e.\n\\[\\mu = \\sum_{i=1}^n p_i x_i. \\]\nX = [5, 1, 2, 3, 1, 2, 5, 4]\nP = [0.05, 0.05, 0.15, 0.05, 0.15, 0.2, 0.1, 0.25]\n\nExercise 5.1\n\nWrite functions to compute the average value and variance using for loops\n\nX = [5, 1, 2, 3, 1, 2, 5, 4]\nP = [0.05, 0.05, 0.15, 0.05, 0.15, 0.2, 0.1, 0.25]\n\n\nExercise 5.2\n\nWrite functions to compute the average value and variance using map and reduce\n\nNB: Exercises above are just made to help to understand map-reduce process. This is a bad way to code a variance in Python. You should use Numpy instead."
   },
   {
+    "objectID": "05-MapReduce.html#wordcount",
     "href": "05-MapReduce.html#wordcount",
     "title": "Python tools for Big Data",
     "section": "Wordcount",
     "text": "We will modify the wordcount application into a map-reduce process.\nThe map process takes text files as input and breaks it into words. The reduce process sums the counts for each word and emits a single key/value with the word and sum.\nWe need to split the wordcount function we wrote in notebook 04 in order to use map and reduce.\nIn the following exercices we will implement in Python the Java example described in Hadoop documentation."
   },
   {
+    "objectID": "05-MapReduce.html#map---read-file-and-return-a-keyvalue-pairs",
     "href": "05-MapReduce.html#map---read-file-and-return-a-keyvalue-pairs",
     "title": "Python tools for Big Data",
     "section": "Map - Read file and return a key/value pairs",
     "text": "Exercise 5.3\nWrite a function mapper with a single file name as input that returns a sorted sequence of tuples (word, 1) values.\nmapper('sample.txt')\n[('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('adipisci', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('aliquam', 1), ('amet', 1), ('amet', 1), ('amet', 1)..."
   },
   {
+    "objectID": "05-MapReduce.html#partition",
     "href": "05-MapReduce.html#partition",
     "title": "Python tools for Big Data",
     "section": "Partition",
     "text": "Exercise 5.4\nCreate a function named partitioner that stores the key/value pairs from mapper that group (word, 1) pairs into a list as:\npartitioner(mapper('sample.txt'))\n[('adipisci', [1, 1, 1, 1, 1, 1, 1]), ('aliquam', [1, 1, 1, 1, 1, 1, 1]), ('amet', [1, 1, 1, 1],...]"
   },
   {
+    "objectID": "05-MapReduce.html#reduce---sums-the-counts-and-returns-a-single-keyvalue-word-sum.",
     "href": "05-MapReduce.html#reduce---sums-the-counts-and-returns-a-single-keyvalue-word-sum.",
     "title": "Python tools for Big Data",
     "section": "Reduce - Sums the counts and returns a single key/value (word, sum).",
     "text": "Exercice 5.5\nWrite the function reducer that read a tuple (word,[1,1,1,..,1]) and sum the occurrences of word to a final count, and then output the tuple (word,occurences).\nreducer(('hello',[1,1,1,1,1])\n('hello',5)"
   },
   {
+    "objectID": "05-MapReduce.html#process-several-files",
     "href": "05-MapReduce.html#process-several-files",
     "title": "Python tools for Big Data",
     "section": "Process several files",
     "text": "Let’s create 8 files sample[0-7].txt. Set most common words at the top of the output list.\nfrom lorem import text\nfor i in range(1):\n    with open(\"sample{0:02d}.txt\".format(i), \"w\") as f:\n        f.write(text())\nimport glob\nfiles = sorted(glob.glob('sample0*.txt'))\nfiles\n\nExercise 5.6\n\nUse functions implemented above to count (word, occurences) by using a for loops over files and partitioned data.\n\n\n\nExercise 5.7\n\nThis time use map function to apply mapper and reducer."
   },
   {
+    "objectID": "02-Installation.html#install-anaconda-large-or-miniconda-small-or-miniforge-best",
     "href": "02-Installation.html#install-anaconda-large-or-miniconda-small-or-miniforge-best",
     "title": "Python tools for Big Data",
     "section": "Install Anaconda (large) or Miniconda (small) or Miniforge (best)",
     "text": "wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh\nbash Miniforge3-Linux-x86_64.sh -b"
   },
   {
+    "objectID": "02-Installation.html#open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows",
     "href": "02-Installation.html#open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows",
     "title": "Python tools for Big Data",
     "section": "Open a terminal (Linux/MacOSX) or a Anaconda prompt (Windows)",
     "text": "Verify that conda is installed and running on your system by typing:\n%%bash\n~/miniforge3/bin/conda init\nprint(\"\"\"\nBONJOUR !\nSur le coté il y a un lien \"add comment\" qui permet de commenter pour les visiteurs :-)\n\"\"\")\nConda displays the number of the version that you have installed.\nIf you get an error message, make sure you closed and re-opened the terminal window after installing, or do it now.\nTo update conda to the current version. Type the following:\nconda update -y conda -n base"
   },
   {
+    "objectID": "02-Installation.html#managing-channels",
     "href": "02-Installation.html#managing-channels",
     "title": "Python tools for Big Data",
     "section": "Managing channels",
     "text": "Conda channels are the locations where packages are stored. We use the conda-forge, a good community-led collection of recipes for conda. If you installed Miniforge you already have a conda specific to conda-forge.\nconda config --add channels conda-forge \nconda config --set channel_priority strict\nStrict channel priority speed up conda operations and also reduce package incompatibility problems."
   },
   {
+    "objectID": "02-Installation.html#managing-environments",
     "href": "02-Installation.html#managing-environments",
     "title": "Python tools for Big Data",
     "section": "Managing environments",
     "text": "Conda allows you to create separate environments containing files, packages, and their dependencies that will not interact with other environments.\nWhen you begin using conda, you already have a default environment named base. You don’t want to put programs into your base environment, though. Create separate environments to keep your programs isolated from each other.\n\nCreate a new environment and install a package in it.\nWe will name the environment big-data and install the version 3.8 of python. At the Anaconda Prompt or in your terminal window, type the following:\nconda create -y -n big-data python=3.8\n\n\nTo use, or “activate” the new environment, type the following:\nconda activate big-data\nNow that you are in your big-data environment, any conda commands you type will go to that environment until you deactivate it.\nVerify which version of Python is in your current environment:\npython --version\n\n\nTo see a list of all your environments, type:\n%%bash\nconda info --envs\nThe active environment is the one with an asterisk (*).\n\n\nChange your current environment back to the default (base):\nconda activate"
   },
   {
+    "objectID": "02-Installation.html#managing-packages",
     "href": "02-Installation.html#managing-packages",
     "title": "Python tools for Big Data",
     "section": "Managing packages",
     "text": "Check to see if a package you have not installed named “jupyter” is available from the Anaconda repository (must be connected to the Internet):\n\n%%bash\nconda search jupyter | grep conda-forge\nConda displays a list of all packages with that name on conda-forge repository, so we know it is available.\nInstall this package into the base environment:\nconda activate\nconda install -y jupyter -c conda-forge -n base\nCheck to see if the newly installed program is in this environment:\n%%bash\nconda list jupyter\n\nUpdate a new conda environment from file\nDownload the file environment.yml. This file contains the packages list for this course. Be aware that it takes time to download and install all packages.\nconda env update -f environment.yml -n big-data\nConda envs documentation.\nActivating the conda environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.\n$ conda activate big-data\n(big-data) $ python\nPython 3.6.2 (default, Jul 17 2017, 16:44:45) \n[GCC 4.2.1 Compatible Apple LLVM 8.1.0 (clang-802.0.42)] on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> quit()\n\nYou must do this everytime you open a new terminal"
   },
   {
+    "objectID": "02-Installation.html#install-the-kernel-for-jupyter",
     "href": "02-Installation.html#install-the-kernel-for-jupyter",
     "title": "Python tools for Big Data",
     "section": "Install the kernel for jupyter",
     "text": "conda run -n big-data python -m ipykernel install --user --name big-data\nWith this command you create the big-data kernel with python and all course dependencies. The cell above will give you the path to the python that runs in this notebook.\nimport sys\nprint(f\"{sys.executable}\")\n%%bash\njupyter-kernelspec list"
   },
   {
+    "objectID": "02-Installation.html#mamba",
     "href": "02-Installation.html#mamba",
     "title": "Python tools for Big Data",
     "section": "Mamba",
     "text": "Mamba is a parallel reimplementation of the conda package manager in C++. It stays compatible as possible with conda interface. Install mamba from conda-forge:\nconda install mamba -c conda-forge\nTo test it you can try to install the metapackage r-tidyverse which contains 144 packages.\n$ time conda create -y r-tidyverse -n condatest\nreal    1m9.057s\n$ time mamba create -y r-tidyverse -n mambatest\nreal    0m32.365s\nIn this comparison packages are already downloaded, mamba is even better with downloads."
   },
   {
+    "objectID": "18-NYCTaxiCabTripDask.html#local-cluster",
     "href": "18-NYCTaxiCabTripDask.html#local-cluster",
     "title": "Python tools for Big Data",
     "section": "Local cluster",
     "text": "from dask.distributed import LocalCluster, Client\ncluster = LocalCluster()\ncluster"
   },
   {
+    "objectID": "18-NYCTaxiCabTripDask.html#remote-clusters-via-ssh",
     "href": "18-NYCTaxiCabTripDask.html#remote-clusters-via-ssh",
     "title": "Python tools for Big Data",
     "section": "Remote clusters via SSH",
     "text": "Code below can be used to launch a Dask SSH cluster on svmass2 server.\nfrom dask.distributed import SSHCluster\n\nsvpes = [f\"svpe{i:1d}\" for i in range(1,10)]\nprint(svpes)\ncluster = SSHCluster([\"localhost\"] + svpes)\ncluster"
   },
   {
+    "objectID": "18-NYCTaxiCabTripDask.html#yarn-cluster",
     "href": "18-NYCTaxiCabTripDask.html#yarn-cluster",
     "title": "Python tools for Big Data",
     "section": "Yarn cluster",
     "text": "Follow these instructions to create the environment file.\nfrom dask_yarn import YarnCluster\nfrom dask.distributed import Client\n\n# Create a cluster where each worker has two cores and eight GiB of memory\ncluster = YarnCluster(environment='environment.tar.gz',\n                      worker_vcores=2,\n                      worker_memory=\"8GiB\")\n# Scale out to ten such workers\ncluster.scale(10)\n\n# Connect to the cluster\nclient = Client(cluster)"
   },
   {
+    "objectID": "18-NYCTaxiCabTripDask.html#slurm-cluster",
     "href": "18-NYCTaxiCabTripDask.html#slurm-cluster",
     "title": "Python tools for Big Data",
     "section": "SLURM Cluster",
     "text": "You can use the dask module dask_jobqueue to launch a Dask cluster with the job manager SLURM.\nfrom dask_jobqueue import SLURMCluster\n\ncluster = SLURMCluster(cores=16,\n             queue='test',\n             project='myproject',\n             memory=\"16GB\",\n             walltime=\"01:00:00\")\nThe cluster generates a traditional job script and submits that an appropriate number of times to the job queue. You can see the job script that it will generate as follows:\nprint(cluster.job_script())\n#!/usr/bin/env bash\n\n#SBATCH -J dask-worker\n#SBATCH -p test\n#SBATCH -A myproject\n#SBATCH -n 1\n#SBATCH --cpus-per-task=16\n#SBATCH --mem=15G\n#SBATCH -t 01:00:00\n\n/opt/tljh/user/envs/big-data/bin/python -m distributed.cli.dask_worker tcp://192.168.2.54:40623 --nthreads 4 --nprocs 4 --memory-limit 4.00GB --name name --nanny --death-timeout 60\nUse the script above to submit your dask pipeline to the HPC server of your insttitution."
   },
   {
+    "objectID": "18-NYCTaxiCabTripDask.html#new-york-city-taxi-cab-trip",
     "href": "18-NYCTaxiCabTripDask.html#new-york-city-taxi-cab-trip",
     "title": "Python tools for Big Data",
     "section": "New York City Taxi Cab Trip",
     "text": "We look at the New York City Taxi Cab dataset. This includes every ride made in the city of New York since 2009.\nOn this website you can see the data for one random NYC yellow taxi on a single day.\nOn this post, you can see an analysis of this dataset. Postgres and R scripts are available on GitHub. There is also a dashboard available here that updates monthly with the latest taxi, Uber, and Lyft aggregate stats.\n```python\n\nfrom dask.distributed import Client\n\nclient = Client(n_workers=2, threads_per_worker=1, memory_limit='1GB')\n\n`nyc2014` is a dask.dataframe objects which present a subset of the Pandas API to the user, but farm out all of the work to the many Pandas dataframes they control across the network.\n\nnyc2014 = dd.read_csv('/opt/datasets/nyc-data/2014/yellow*.csv',\nparse_dates=['pickup_datetime', 'dropoff_datetime'],\nskipinitialspace=True)\nnyc2014 = c.persist(nyc2014)\nprogress(nyc2014)\n```\n\nExercises\n\nDisplay head of the dataframe\nDisplay number of rows of this dataframe.\nCompute the total number of passengers.\nCount occurrences in the payment_type column both for the full dataset, and filtered by zero tip (tip_amount == 0).\nCreate a new column, tip_fraction\nPlot the average of the new column tip_fraction grouped by day of week.\nPlot the average of the new column tip_fraction grouped by hour of day.\n\nDask dataframe documentation"
   },
   {
+    "objectID": "09-DaskBag.html#daily-stock-example",
     "href": "09-DaskBag.html#daily-stock-example",
     "title": "Python tools for Big Data",
     "section": "Daily stock example",
     "text": "Let’s use the bag interface to read the json files containing time series.\nEach line is a JSON encoded dictionary with the following keys - timestamp: Day. - close: Stock value at the end of the day. - high: Highest value. - low: Lowest value. - open: Opening price.\n# preparing data\nimport os  # library to get directory and file paths\nimport tarfile # this module makes possible to read and write tar archives\n\ndef extract_data(name, where):\n    datadir = os.path.join(where,name)\n    if not os.path.exists(datadir):\n       print(\"Extracting data...\")\n       tar_path = os.path.join(where, name+'.tgz')\n       with tarfile.open(tar_path, mode='r:gz') as data:\n          data.extractall(where)\n            \nextract_data('daily-stock','data') # this function call will extract json files\n%ls data/daily-stock/*.json\nimport dask.bag as db\nimport json\nstocks = db.read_text('data/daily-stock/*.json')\nstocks.npartitions\nstocks.visualize()\nimport json\njs = stocks.map(json.loads)\nimport os, sys\nfrom glob import glob\nimport pandas as pd\nimport json\n\nhere = os.getcwd() # get the current directory\nfilenames = sorted(glob(os.path.join(here,'data', 'daily-stock', '*.json')))\nfilenames\n!rm data/daily-stock/*.h5\nfrom tqdm import tqdm\nfor fn in tqdm(filenames):\n    with open(fn) as f:\n        data = [json.loads(line) for line in f]\n        \n    df = pd.DataFrame(data)\n    \n    out_filename = fn[:-5] + '.h5'\n    df.to_hdf(out_filename, '/data')\nfilenames = sorted(glob(os.path.join(here,'data', 'daily-stock', '*.h5')))\nfilenames\n\nSerial version\n%%time\nseries = {}\nfor fn in filenames:   # Simple map over filenames\n    series[fn] = pd.read_hdf(fn)['close']\n\nresults = {}\n\nfor a in filenames:    # Doubly nested loop over the same collection\n    for b in filenames:  \n        if a != b:     # Filter out bad elements\n            results[a, b] = series[a].corr(series[b])  # Apply function\n\n((a, b), corr) = max(results.items(), key=lambda kv: kv[1])  # Reduction\na, b, corr"
   },
   {
+    "objectID": "09-DaskBag.html#dask.bag-methods",
     "href": "09-DaskBag.html#dask.bag-methods",
     "title": "Python tools for Big Data",
     "section": "Dask.bag methods",
     "text": "We can construct most of the above computation with the following dask.bag methods:\n\ncollection.map(function): apply function to each element in collection\ncollection.product(collection): Create new collection with every pair of inputs\ncollection.filter(predicate): Keep only elements of colleciton that match the predicate function\ncollection.max(): Compute maximum element\n\n%%time\n\nimport dask.bag as db\n\nb = db.from_sequence(filenames)\nseries = b.map(lambda fn: pd.read_hdf(fn)['close'])\n\ncorr = (series.product(series)\n              .filter(lambda ab: not (ab[0] == ab[1]).all())\n              .map(lambda ab: ab[0].corr(ab[1])).max())\n%%time\n\nresult = corr.compute()\nresult\n\nWordcount with Dask bag\nimport lorem\n\nfor i in range(20):\n    with open(f\"sample{i:02d}.txt\",\"w\") as f:\n        f.write(lorem.text())\n%ls *.txt\nimport glob\nglob.glob('sample*.txt')\nimport dask.bag as db\nimport glob\nb = db.read_text(glob.glob('sample*.txt'))\n\nwordcount = (b.str.replace(\".\",\"\")  # remove dots\n             .str.lower()           # lower text\n             .str.strip()           # remove \\n and trailing spaces\n             .str.split()           # split into words\n             .flatten()             # chain all words lists\n             .frequencies()         # compute occurences\n             .topk(10, lambda x: x[1])) # sort and return top 10 words\n\n\nwordcount.compute() # Run all tasks and return result"
   },
   {
+    "objectID": "09-DaskBag.html#genome-example",
     "href": "09-DaskBag.html#genome-example",
     "title": "Python tools for Big Data",
     "section": "Genome example",
     "text": "We will use a Dask bag to calculate the frequencies of sequences of five bases, and then sort the sequences into descending order ranked by their frequency.\n\nFirst we will define some functions to split the bases into sequences of a certain size\n\n\nExercise 9.1\n\nImplement a function group_characters(line, n=5) to group n characters together and return a iterator. line is a text line in genome.txt file.\n\n>>> line = \"abcdefghijklmno\"\n>>> for seq in group_character(line, 5):\n        print(seq)\n        \n\"abcde\"\n\"efghi\"\n\"klmno\"\n\nImplement group_and_split(line)\n\n>>> group_and_split('abcdefghijklmno')\n['abcde', 'fghij', 'klmno']\n\nUse the dask bag to compute the frequencies of sequences of five bases.\n\n\n\nExercise 9.2\nThe FASTA file format is used to write several genome sequences.\n\nCreate a function that can read a FASTA file and compute the frequencies for n = 5 of a given sequence.\n\n%%file testset.fasta\n\n>SEQUENCE_1\nMTEITAAMVKELRESTGAGMMDCKNALSETNGDFDKAVQLLREKGLGKAAKKADRLAAEG\nLVSVKVSDDFTIAAMRPSYLSYEDLDMTFVENEYKALVAELEKENEERRRLKDPNKPEHK\nIPQFASRKQLSDAILKEAEEKIKEELKAQGKPEKIWDNIIPGKMNSFIADNSQLDSKLTL\nMGQFYVMDDKKTVEQVIAEKEKEFGGKIKIVEFICFEVGEGLEKKTEDFAAEVAAQL\n>SEQUENCE_2\nSATVSEINSETDFVAKNDQFIALTKDTTAHIQSNSLQSVEELHSSTINGVKFEEYLKSQI\nATIGENLVVRRFATLKAGANGVVNGYIHTNGRVGVVIAAACDSAEVASKSRDLLRQICMH\n\n\nExercise 9.3\nWrite a program that uses the function implemented above to read several FASTA files stored in a Dask bag.\n%cat data/genome.txt"
   },
   {
+    "objectID": "09-DaskBag.html#some-remarks-about-bag",
     "href": "09-DaskBag.html#some-remarks-about-bag",
     "title": "Python tools for Big Data",
     "section": "Some remarks about bag",
     "text": "Higher level dask collections include functions for common patterns\nMove data to collection, construct lazy computation, trigger at the end\nUse Dask.bag (product + map) to handle nested for loop\n\nBags have the following known limitations\n\nBag operations tend to be slower than array/dataframe computations in the same way that Python tends to be slower than NumPy/Pandas\nBag.groupby is slow. You should try to use Bag.foldby if possible.\nCheck the API\ndask.dataframe can be faster than dask.bag. But sometimes it is easier to load and clean messy data with a bag. We will see later how to transform a bag into a dask.dataframe with the to_dataframe method."
   },
   {
+    "objectID": "08-DaskDelayed.html#define-two-slow-functions",
     "href": "08-DaskDelayed.html#define-two-slow-functions",
     "title": "Python tools for Big Data",
     "section": "Define two slow functions",
-    "text": "from time import sleep\n\ndef slowinc(x, delay=1):\n    sleep(delay)\n    return x + 1\n\ndef slowadd(x, y, delay=1):\n    sleep(delay)\n    return x + y\n%%time\nx = slowinc(1)\ny = slowinc(2)\nz = slowadd(x, y)"
+    "text": "from time import sleep\n\ndef slowinc(x, delay=1):\n    sleep(delay)\n    return x + 1\n\ndef slowadd(x, y, delay=1):\n    sleep(delay)\n    return x + y\n\n%%time\nx = slowinc(1)\ny = slowinc(2)\nz = slowadd(x, y)\n\nCPU times: user 1.1 ms, sys: 1.59 ms, total: 2.69 ms\nWall time: 3 s"
   },
   {
+    "objectID": "08-DaskDelayed.html#parallelize-with-dask.delayed",
     "href": "08-DaskDelayed.html#parallelize-with-dask.delayed",
     "title": "Python tools for Big Data",
     "section": "Parallelize with dask.delayed",
-    "text": "Functions wrapped by dask.delayed don’t run immediately, but instead put those functions and arguments into a task graph.\nThe result is computed separately by calling the .compute() method.\n\nfrom dask import delayed\nx = dask.delayed(slowinc)(1)\ny = dask.delayed(slowinc)(2)\nz = dask.delayed(slowadd)(x, y)\n%%time\nz.compute()"
+    "text": "Functions wrapped by dask.delayed don’t run immediately, but instead put those functions and arguments into a task graph.\nThe result is computed separately by calling the .compute() method.\n\nfrom dask import delayed\nx = dask.delayed(slowinc)(1)\ny = dask.delayed(slowinc)(2)\nz = dask.delayed(slowadd)(x, y)\n\n%%time\nz.compute()\n\nCPU times: user 2.17 ms, sys: 1.78 ms, total: 3.95 ms\nWall time: 2.01 s\n\n\n5\n\n\n\nSome questions to consider:\n\nWhy did we go from 3s to 2s? Why weren’t we able to parallelize down to 1s?\nWhat would have happened if the inc and add functions didn’t include the sleep(1)? Would Dask still be able to speed up this code?\nWhat if we have multiple outputs or also want to get access to x or y?"
   },
   {
+    "objectID": "08-DaskDelayed.html#dask-graph",
     "href": "08-DaskDelayed.html#dask-graph",
     "title": "Python tools for Big Data",
     "section": "Dask graph",
-    "text": "Contains description of the calculations necessary to produce the result.\nThe z object is a lazy Delayed object. This object holds everything we need to compute the final result. We can compute the result with .compute() as above or we can visualize the task graph for this value with .visualize().\n\nz.visualize()"
+    "text": "Contains description of the calculations necessary to produce the result.\nThe z object is a lazy Delayed object. This object holds everything we need to compute the final result. We can compute the result with .compute() as above or we can visualize the task graph for this value with .visualize().\n\n\nz.visualize()"
   },
   {
+    "objectID": "08-DaskDelayed.html#parallelize-a-loop",
     "href": "08-DaskDelayed.html#parallelize-a-loop",
     "title": "Python tools for Big Data",
     "section": "Parallelize a loop",
-    "text": "%%time\ndata = list(range(8))\n\ntasks = []\n\nfor x in data:\n    y = delayed(slowinc)(x)\n    tasks.append(y)\n\ntotal = delayed(sum)(tasks)\ntotal\ntotal.visualize()\ntotal.compute()\n\nExercise 8.1\n\nParallelize this by appending the delayed slowinc calls to the list results.\nDisplay the graph of total computation\nCompute time elapsed for the computation."
+    "text": "%%time\ndata = list(range(8))\n\ntasks = []\n\nfor x in data:\n    y = slowinc(x)\n    tasks.append(y)\n\ntotal = sum(tasks)\ntotal\n\nCPU times: user 1.27 ms, sys: 2.14 ms, total: 3.42 ms\nWall time: 8.01 s\n\n\n36\n\n\n\nExercise 8.1\n\nParallelize this by appending the delayed slowinc calls to the list results.\nDisplay the graph of total computation\nCompute time elapsed for the computation."
   },
   {
+    "objectID": "08-DaskDelayed.html#decorator",
     "href": "08-DaskDelayed.html#decorator",
     "title": "Python tools for Big Data",
     "section": "Decorator",
-    "text": "It is also common to see the delayed function used as a decorator. Same example:\n%%time\n\n@dask.delayed\ndef slowinc(x, delay=1):\n    sleep(delay)\n    return x + 1\n\n@dask.delayed\ndef slowadd(x, y, delay=1):\n    sleep(delay)\n    return x + y\n\nx = slowinc(1)\ny = slowinc(2)\nz = slowadd(x, y)\nz.compute()\nz.visualize()"
+    "text": "It is also common to see the delayed function used as a decorator. Same example:\n\n%%time\n\n@dask.delayed\ndef slowinc(x, delay=1):\n    sleep(delay)\n    return x + 1\n\n@dask.delayed\ndef slowadd(x, y, delay=1):\n    sleep(delay)\n    return x + y\n\nx = slowinc(1)\ny = slowinc(2)\nz = slowadd(x, y)\nz.compute()\n\nCPU times: user 3.01 ms, sys: 2.53 ms, total: 5.55 ms\nWall time: 2.01 s\n\n\n5\n\n\n\nz.visualize()"
   },
   {
+    "objectID": "08-DaskDelayed.html#control-flow",
     "href": "08-DaskDelayed.html#control-flow",
     "title": "Python tools for Big Data",
     "section": "Control flow",
-    "text": "Delay only some functions, running a few of them immediately. This is helpful when those functions are fast and help us to determine what other slower functions we should call.\nIn the example below we iterate through a list of inputs. If that input is even then we want to call half. If the input is odd then we want to call odd_process. This iseven decision to call half or odd_process has to be made immediately (not lazily) in order for our graph-building Python code to proceed.\n\nfrom random import randint\nimport dask.delayed\n\n@delayed\ndef half(x):\n    sleep(1)\n    return x // 2\n\n@delayed\ndef odd_process(x):\n    sleep(1)\n    return 3*x+1\n\ndef is_even(x):\n    return not x % 2\n\ndata = [randint(0,100) for i in range(8)]\n\nresult = []\nfor x in data:\n    if is_even(x):\n        result.append(half(x))\n    else:\n        result.append(odd_process(x))\n\ntotal = delayed(sum)(result)\ntotal.visualize()\ntotal.compute()\n\nExercise 8.2\n\nParallelize the sequential code above using dask.delayed\nYou will need to delay some functions, but not all\nVisualize and check the computed result\n\n\n\nExercise 8.3\n\nParallelize the hdf5 conversion from json files\nCreate a function convert_to_hdf\nUse dask.compute function on delayed calls of the funtion created list\nIs it really faster as expected ?\n\nHint: Read Delayed Best Practices\nimport os  # library to get directory and file paths\nimport tarfile # this module makes possible to read and write tar archives\n\ndef extract_data(name, where):\n    datadir = os.path.join(where) # directory where extract all datafile\n    if not os.path.exists(datadir): # check if this directory exists\n       print(\"Extracting data...\")\n       tar_path = os.path.join(name+'.tgz')  # path to the tgz file\n       with tarfile.open(tar_path, mode='r:gz') as data: # open the tgz file\n          data.extractall(datadir)  # extract all data file in datadir\n            \nextract_data('daily-stock','data') # this function call will extract json files\nimport dask\nimport os, sys\nfrom glob import glob\nimport pandas as pd\nimport json\n\nhere = os.getcwd() # get the current directory\nfilenames = sorted(glob(os.path.join(here,'data', 'daily-stock', '*.json')))\nfilenames[:5]\n%rm data/daily-stock/*.h5"
+    "text": "Delay only some functions, running a few of them immediately. This is helpful when those functions are fast and help us to determine what other slower functions we should call.\nIn the example below we iterate through a list of inputs. If that input is even then we want to call half. If the input is odd then we want to call odd_process. This iseven decision to call half or odd_process has to be made immediately (not lazily) in order for our graph-building Python code to proceed.\n\nfrom random import randint\nimport dask.delayed\n\ndef half(x):\n    sleep(1)\n    return x // 2\n\ndef odd_process(x):\n    sleep(1)\n    return 3*x+1\n\ndef is_even(x):\n    return not x % 2\n\ndata = [randint(0,100) for i in range(8)]\n\nresult = []\nfor x in data:\n    if is_even(x):\n        result.append(half(x))\n    else:\n        result.append(odd_process(x))\n\ntotal = sum(result)\n\nExercise 8.2\n\nParallelize the sequential code above using dask.delayed\nYou will need to delay some functions, but not all\nVisualize and check the computed result\n\n\n\nExercise 8.3\n\nParallelize the hdf5 conversion from json files\nCreate a function convert_to_hdf\nUse dask.compute function on delayed calls of the funtion created list\nIs it really faster as expected ?\n\nHint: Read Delayed Best Practices\n\nimport os  # library to get directory and file paths\nimport tarfile # this module makes possible to read and write tar archives\n\ndef extract_data(name, where):\n    datadir = os.path.join(where) # directory where extract all datafile\n    if os.path.exists(datadir): # check if this directory exists\n       print(\"Extracting data...\")\n       tar_path = os.path.join(name)  # path to the tgz file\n       with tarfile.open(tar_path, mode='r:gz') as data: # open the tgz file\n          data.extractall(datadir)  # extract all data file in datadir\n            \nextract_data('data/daily-stock.tgz','data') # this function call will extract json files\n\nExtracting data...\n\n\nimport dask\nimport os, sys\nfrom glob import glob\nimport pandas as pd\nimport json\n\nhere = os.getcwd() # get the current directory\nfilenames = sorted(glob(os.path.join(here,'data', 'daily-stock', '*.json')))\n\nfilenames[:5]\n\n['/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.json',\n '/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/afl.json',\n '/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aig.json',\n '/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/al.json',\n '/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/amgn.json']\n\n\n\n%rm data/daily-stock/*.h5\n\nrm: data/daily-stock/*.h5: No such file or directory"
   },
   {
-    "href": "08-DaskDelayed.html#read-multiple-files-with-dask-arrays",
-    "title": "Python tools for Big Data",
-    "section": "Read multiple files with Dask Arrays",
-    "text": "from tqdm import tqdm # barre de progression\nfrom PIL import Image # AFFICHER DES IMAGES DEPUIS UN TABLEAU 2D\nimport dask \nimport dask.delayed as delayed\nimport dask.array as da\nfrom glob import glob  # Lister des fichiers\nimport h5py as h5 # ecrire et lire des fichiers au format hdf5\nimport numpy as np # numpy pour normaliser les images\nIn this dataset we have two dimensional field records along time. Every h5 file contains a matrix.\nData are already downloaded in datasets directory. You can download the file from https://github.com/MMASSD/datasets\n!wget https://github.com/MMASSD/datasets/raw/master/fvalues.tgz\nThis file is a zip archive we need to uncompress and extract.\n# extract_data('fvalues','.') \nYou get 1000 h5 files\nfilenames = sorted(glob(\"fvalues/*.h5\"))\nfilenames[:5], len(filenames)\nIn order to plot these fields, we will scale them between 0 to 255 grey levels.\nimport numpy as np\ndef scale(x) :\n    \"Scale field to 0-255 levels\"\n    return np.uint8(255*(x-np.min(x)) / (np.max(x)-np.min(x)))\nLet’s create a function that read the file and return the scaled field.\nimport h5py as h5\ndef read_frame( filepath ):\n    \" Create image from the `dataset` of h5 file `filepath` \"\n    with h5.File(filepath, \"r\") as f:\n        z = f.get(\"values\")\n        return scale(z)\nimage = read_frame( filenames[0])\nimage.shape\nfrom PIL import Image \nImage.fromarray(image)\nWith NumPy we might allocate a big array and then iteratively load images and place them into this array serial_frames.\n%%time\nserial_frames = np.empty((1000,*image.shape), dtype=np.uint8)\nfor i, fn in enumerate(filenames):\n    serial_frames[i, :, :] = read_frame(fn)\nfrom ipywidgets import interact, IntSlider\n \ndef display_sequence(iframe):\n     return Image.fromarray(serial_frames[iframe,:,:])\n     \ninteract(display_sequence, \n          iframe=IntSlider(min=0,\n                           max=np.shape(serial_frames)[0]-1,\n                           step=1,\n                           value=0, \n                           continuous_update=True));\nIn the code above, we read all images and store them in memory. If you have more plots or bigger images it won’t fit in your computer memory. You have two options: - Use a bigger computer - Not store all files in memory and read only the file that contains the field you want to display."
-  },
-  {
-    "href": "08-DaskDelayed.html#use-dask-to-read-and-display-images",
-    "title": "Python tools for Big Data",
-    "section": "Use dask to read and display images",
-    "text": "We can delayed the read function\nlazy_read = delayed(read_frame)\nlazy_frames = [lazy_read(fn) for fn in filenames]\nInstead of serial_frames, we create an array of delayed tasks.\nimport dask.array as da\nlazy_frames = [da.from_delayed(lazy_read,# Construct a small Dask array\n                           dtype=image.dtype,   # for every lazy value\n                           shape=image.shape)\n          for lazy_read in lazy_frames]\nlazy_frames[0]\ndask_frames = da.stack(lazy_frames[:100], axis=0)  # concatenate arrays along first axis \ndask_frames \ndask_frames = dask_frames.rechunk((10, 257, 257))   \ndask_frames\nImage.fromarray(scale(dask_frames.mean(axis=0).compute()))\nfrom ipywidgets import interact, IntSlider\n \ndef display_sequence(iframe):\n     \n     return Image.fromarray(dask_frames[iframe,:,:].compute())\n     \ninteract(display_sequence, \n          iframe=IntSlider(min=0,\n                           max=len(dask_frames)-1,\n                           step=1,\n                           value=0, \n                           continuous_update=True))\nEverytime you move the slider, it will read the corresponding file and load the frame. That’s why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.\n\nSome questions to consider:\n\nWhy did we go from 3s to 2s? Why weren’t we able to parallelize down to 1s?\nWhat would have happened if the inc and add functions didn’t include the sleep(1)? Would Dask still be able to speed up this code?\nWhat if we have multiple outputs or also want to get access to x or y?"
-  },
-  {
+    "objectID": "08-DaskDelayed.html#exercise-parallelizing-a-pandas-groupby-reduction",
     "href": "08-DaskDelayed.html#exercise-parallelizing-a-pandas-groupby-reduction",
     "title": "Python tools for Big Data",
     "section": "Exercise: Parallelizing a Pandas Groupby Reduction",
-    "text": "In this exercise we read several CSV files and perform a groupby operation in parallel. We are given sequential code to do this and parallelize it with dask.delayed.\nThe computation we will parallelize is to compute the mean departure delay per airport from some historical flight data. We will do this by using dask.delayed together with pandas. In a future section we will do this same exercise with dask.dataframe.\n\nPrep data\nFirst, run this code to prep some data. You don’t need to understand this code.\nThis extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from here. This should only take a few seconds to run.\n\n\nInspect data\nData are in the file data/nycflights.tar.gz. You can extract them with the command\ntar zxvf nycflights.tar.gz\nAccording to your operating system, double click on the file could do the job.\n#import os  # library to get directory and file paths\n#import tarfile # this module makes possible to read and write tar archives\n#\n#def extract_data(filename, where):\n#    datadir = os.path.join(where) # directory where extract all datafile\n#    if not os.path.exists(datadir): # check if this directory exists\n#       print(\"Extracting data...\")\n#       tar_path = os.path.join(filename)  # path to the tgz file\n#       with tarfile.open(tar_path, mode='r:gz') as data: # open the tgz file\n#          data.extractall(datadir)  # extract all data file in datadir\n#            \n#extract_data('data/nycflights.tar.gz','data')\n\n\nRead one file with pandas.read_csv and compute mean departure delay\nimport pandas as pd\ndf = pd.read_csv(os.path.join(\"data\", \"nycflights\",'1990.csv'))\ndf.head()\n# What is the schema?\ndf.dtypes\n# What originating airports are in the data?\ndf.Origin.unique()\n# Mean departure delay per-airport for one year\ndf.groupby('Origin').DepDelay.mean()\n\n\nSequential code: Mean Departure Delay Per Airport\nThe above cell computes the mean departure delay per-airport for one year. Here we expand that to all years using a sequential for loop.\nfrom glob import glob\nfilenames = sorted(glob(os.path.join('data', \"nycflights\", '*.csv')))\nfilenames\n%%time\n\nsums = []\ncounts = []\nfor fn in filenames:\n    # Read in file\n    df = pd.read_csv(fn)\n    \n    # Groupby origin airport\n    by_origin = df.groupby('Origin')\n    \n    # Sum of all departure delays by origin\n    total = by_origin.DepDelay.sum()\n    \n    # Number of flights by origin\n    count = by_origin.DepDelay.count()\n    \n    # Save the intermediates\n    sums.append(total)\n    counts.append(count)\n\n# Combine intermediates to get total mean-delay-per-origin\ntotal_delays = sum(sums)\nn_flights = sum(counts)\nmean = total_delays / n_flights\nmean\n\n\nExercise : Parallelize the code above\nUse dask.delayed to parallelize the code above. Some extra things you will need to know.\n\nMethods and attribute access on delayed objects work automatically, so if you have a delayed object you can perform normal arithmetic, slicing, and method calls on it and it will produce the correct delayed calls.\nx = delayed(np.arange)(10)\ny = (x + 1)[::2].sum()  # everything here was delayed\nCalling the .compute() method works well when you have a single output. When you have multiple outputs you might want to use the dask.compute function:\n>>> x = delayed(np.arange)(10)\n>>> y = x ** 2\n>>> min, max = compute(y.min(), y.max())\n(0, 81)\nThis way Dask can share the intermediate values (like y = x**2)\n\nSo your goal is to parallelize the code above (which has been copied below) using dask.delayed. You may also want to visualize a bit of the computation to see if you’re doing it correctly.\nDelayed best practices"
+    "text": "In this exercise we read several CSV files and perform a groupby operation in parallel. We are given sequential code to do this and parallelize it with dask.delayed.\nThe computation we will parallelize is to compute the mean departure delay per airport from some historical flight data. We will do this by using dask.delayed together with pandas. In a future section we will do this same exercise with dask.dataframe.\n\nPrep data\nFirst, run this code to prep some data. You don’t need to understand this code.\nThis extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from here. This should only take a few seconds to run.\n\n\nInspect data\nData are in the file data/nycflights.tar.gz. You can extract them with the command\ntar zxvf nycflights.tar.gz\nAccording to your operating system, double click on the file could do the job.\n\nextract_data('data/nycflights.tar.gz','data')\n\nExtracting data...\n\n\n\n\nRead one file with pandas.read_csv and compute mean departure delay\n\nimport pandas as pd\ndf = pd.read_csv(os.path.join(\"data\", \"nycflights\",'1990.csv'))\ndf.head()\n\n\n\n\n  \n    \n      \n      Year\n      Month\n      DayofMonth\n      DayOfWeek\n      DepTime\n      CRSDepTime\n      ArrTime\n      CRSArrTime\n      UniqueCarrier\n      FlightNum\n      ...\n      AirTime\n      ArrDelay\n      DepDelay\n      Origin\n      Dest\n      Distance\n      TaxiIn\n      TaxiOut\n      Cancelled\n      Diverted\n    \n  \n  \n    \n      0\n      1990\n      1\n      1\n      1\n      1621.0\n      1540\n      1747.0\n      1701\n      US\n      33\n      ...\n      NaN\n      46.0\n      41.0\n      EWR\n      PIT\n      319.0\n      NaN\n      NaN\n      0\n      0\n    \n    \n      1\n      1990\n      1\n      2\n      2\n      1547.0\n      1540\n      1700.0\n      1701\n      US\n      33\n      ...\n      NaN\n      -1.0\n      7.0\n      EWR\n      PIT\n      319.0\n      NaN\n      NaN\n      0\n      0\n    \n    \n      2\n      1990\n      1\n      3\n      3\n      1546.0\n      1540\n      1710.0\n      1701\n      US\n      33\n      ...\n      NaN\n      9.0\n      6.0\n      EWR\n      PIT\n      319.0\n      NaN\n      NaN\n      0\n      0\n    \n    \n      3\n      1990\n      1\n      4\n      4\n      1542.0\n      1540\n      1710.0\n      1701\n      US\n      33\n      ...\n      NaN\n      9.0\n      2.0\n      EWR\n      PIT\n      319.0\n      NaN\n      NaN\n      0\n      0\n    \n    \n      4\n      1990\n      1\n      5\n      5\n      1549.0\n      1540\n      1706.0\n      1701\n      US\n      33\n      ...\n      NaN\n      5.0\n      9.0\n      EWR\n      PIT\n      319.0\n      NaN\n      NaN\n      0\n      0\n    \n  \n\n5 rows × 23 columns\n\n\n\n\n# What is the schema?\ndf.dtypes\n\nYear                   int64\nMonth                  int64\nDayofMonth             int64\nDayOfWeek              int64\nDepTime              float64\nCRSDepTime             int64\nArrTime              float64\nCRSArrTime             int64\nUniqueCarrier         object\nFlightNum              int64\nTailNum              float64\nActualElapsedTime    float64\nCRSElapsedTime         int64\nAirTime              float64\nArrDelay             float64\nDepDelay             float64\nOrigin                object\nDest                  object\nDistance             float64\nTaxiIn               float64\nTaxiOut              float64\nCancelled              int64\nDiverted               int64\ndtype: object\n\n\n\n# What originating airports are in the data?\ndf.Origin.unique()\n\narray(['EWR', 'LGA', 'JFK'], dtype=object)\n\n\n\n# Mean departure delay per-airport for one year\ndf.groupby('Origin').DepDelay.mean()\n\nOrigin\nEWR     9.168411\nJFK    11.857274\nLGA     8.560045\nName: DepDelay, dtype: float64\n\n\n\n\nSequential code: Mean Departure Delay Per Airport\nThe above cell computes the mean departure delay per-airport for one year. Here we expand that to all years using a sequential for loop.\n\nfrom glob import glob\nfilenames = sorted(glob(os.path.join('data', \"nycflights\", '*.csv')))\nfilenames\n\n['data/nycflights/1990.csv',\n 'data/nycflights/1991.csv',\n 'data/nycflights/1992.csv',\n 'data/nycflights/1993.csv',\n 'data/nycflights/1994.csv',\n 'data/nycflights/1995.csv',\n 'data/nycflights/1996.csv',\n 'data/nycflights/1997.csv',\n 'data/nycflights/1998.csv',\n 'data/nycflights/1999.csv']\n\n\n\n%%time\n\nsums = []\ncounts = []\nfor fn in filenames:\n    # Read in file\n    df = pd.read_csv(fn)\n    \n    # Groupby origin airport\n    by_origin = df.groupby('Origin')\n    \n    # Sum of all departure delays by origin\n    total = by_origin.DepDelay.sum()\n    \n    # Number of flights by origin\n    count = by_origin.DepDelay.count()\n    \n    # Save the intermediates\n    sums.append(total)\n    counts.append(count)\n\n# Combine intermediates to get total mean-delay-per-origin\ntotal_delays = sum(sums)\nn_flights = sum(counts)\nmean = total_delays / n_flights\n\nCPU times: user 4.48 s, sys: 946 ms, total: 5.42 s\nWall time: 5.47 s\n\n\n\nmean\n\nOrigin\nEWR    10.295469\nJFK    10.351299\nLGA     7.431142\nName: DepDelay, dtype: float64\n\n\n\n\nExercise : Parallelize the code above\nUse dask.delayed to parallelize the code above. Some extra things you will need to know.\n\nMethods and attribute access on delayed objects work automatically, so if you have a delayed object you can perform normal arithmetic, slicing, and method calls on it and it will produce the correct delayed calls.\nx = delayed(np.arange)(10)\ny = (x + 1)[::2].sum()  # everything here was delayed\nCalling the .compute() method works well when you have a single output. When you have multiple outputs you might want to use the dask.compute function:\n>>> x = delayed(np.arange)(10)\n>>> y = x ** 2\n>>> min, max = compute(y.min(), y.max())\n(0, 81)\nThis way Dask can share the intermediate values (like y = x**2)\n\nSo your goal is to parallelize the code above (which has been copied below) using dask.delayed. You may also want to visualize a bit of the computation to see if you’re doing it correctly.\nDelayed best practices"
   },
   {
+    "objectID": "19-NYCTaxiCabTripSpark.html#loading-the-data",
     "href": "19-NYCTaxiCabTripSpark.html#loading-the-data",
     "title": "Python tools for Big Data",
     "section": "Loading the data",
     "text": "Normally we would read and load this data into memory as a Pandas dataframe. However in this case that would be unwise because this data is too large to fit in RAM.\nThe data can stay in the hdfs filesystem but for performance reason we can’t use the csv format. The file is large (32Go) and text formatted. Data Access is very slow.\nYou can convert csv file to parquet with Spark.\n%%time \nfrom pyspark.sql import SparkSession\n\nspark = SparkSession.builder \\\n        .appName(\"Convert CSV to parquet\") \\\n        .master(\"spark://svmass2.mass.uhb.fr:7077\") \\\n        .config('spark.hadoop.parquet.enable.summary-metadata', 'true') \\\n        .getOrCreate()\n\ndf = spark.read.csv(\"hdfs://svmass2.mass.uhb.fr:54310/data/nyc-taxi-csv/2009/yellow*.csv\", \n                    header=\"true\",inferSchema=\"true\")\n\ndf.write.parquet(\"hdfs://svmass2.mass.uhb.fr:54310/user/navaro_p/2009-yellow.parquet\")\n\nspark.stop()"
   },
   {
+    "objectID": "19-NYCTaxiCabTripSpark.html#spark-cluster",
     "href": "19-NYCTaxiCabTripSpark.html#spark-cluster",
     "title": "Python tools for Big Data",
     "section": "Spark Cluster",
     "text": "A Spark cluster is available and described on this web interface\n\nfrom pyspark.sql import SparkSession\nspark = SparkSession.builder \\\n        .master('spark://svmass2.mass.uhb.fr:7077') \\\n        .getOrCreate()\nspark\nThe SparkSession is connected to the Spark’s own standalone cluster manager (It is also possible to use YARN). The manager allocate resources across applications. Once connected, Spark acquires executors on nodes in the cluster, which are processes that run computations and store data for your application. Next, it sends your application code (Python file) to the executors. Finally, tasks are sent to the executors to run.\nSpark can access to files located on hdfs and it is also possible to access to local files. Example:\ndf = spark.read.parquet('file:///home/navaro_p/nyc-taxi/2016.parquet')\n\nExercise\n\nPick a year and read and convert csv files to parquet in your hdfs homedirectory.\nDon’t run the python code inside a notebook cell. Save a python script and launch it from a terminal instead. In Jupyter notebook you won’t see any progress or information if error occurs.\nUse the spark-submit command shell to run your script on the cluster.\nYou can control the log with\n\nspark.sparkContext.setLogLevel('ERROR')\nValid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN\nTry your script with a single file before to do it for a whole year.\nRead carefully the script given above, don’t submit it as is. You have to change some part of this code"
   },
   {
+    "objectID": "19-NYCTaxiCabTripSpark.html#some-examples-that-can-be-run-on-the-cluster",
     "href": "19-NYCTaxiCabTripSpark.html#some-examples-that-can-be-run-on-the-cluster",
     "title": "Python tools for Big Data",
     "section": "Some examples that can be run on the cluster",
     "text": "Here we read the NYC taxi data files of year 2016 and select some variables.\n\ncolumns = ['tpep_pickup_datetime', 'passenger_count', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'payment_type', 'fare_amount', 'tip_amount', 'total_amount']\n\ndf = (spark.read.parquet('hdfs://svmass2.mass.uhb.fr:54310/user/navaro/nyc-taxi/2016.parquet').select(*columns))\n\nSum the total number of passengers\n\ndf.agg({'passenger_count': 'sum'}).collect()\n\nAverage number of passenger per trip`\n\ndf.agg({'passenger_count': 'avg'}).collect()\n\nHow many trip with 0,1,2,3,…,9 passenger`\n\ndf.groupby('passenger_count').agg({'*': 'count'}).collect()"
   },
   {
+    "objectID": "19-NYCTaxiCabTripSpark.html#exercise-1",
     "href": "19-NYCTaxiCabTripSpark.html#exercise-1",
     "title": "Python tools for Big Data",
     "section": "Exercise",
     "text": "How well people tip based on the number of passengers in a cab. To do this you have to:\n\nRemove rides with zero fare\nAdd a new column tip_fraction that is equal to the ratio of the tip to the fare\nGroup by the passenger_count column and take the mean of the tip_fraction column.\n\n\nCheat Sheets and documentation\n\nSpark DataFrames in Python\nSpark in Python\nhttps://spark.apache.org/docs/latest/api/python/pyspark.sql.html\n\nUse the PySpark API.\n\nWrite a python program and use spark-submit\nRead the parquet files instead of csv files\nDon’t forget spark.stop() at the end of the script"
   },
   {
+    "objectID": "19-NYCTaxiCabTripSpark.html#hints",
     "href": "19-NYCTaxiCabTripSpark.html#hints",
     "title": "Python tools for Big Data",
     "section": "Hints",
     "text": "How to remove rows\n\ndf = df.filter(df.name == 'expression')\n\nHow to make new columns\n\ndf = df.withColumn('var2', df.var0 + df.var1)\n\nHow to do groupby-aggregations\n\ndf.groupBy(df.name).agg({'column-name': 'avg'})\nWhen you want to collect the result of your computation, finish with the .collect() method.\n\nExercices\n\nPlot the tip as a function of the hour of day and the day of the week?\nInvestigate the payment_type column. See how well each of the payment types correlate with the tip_fraction. Did you find anything interesting? Any guesses on what the different payment types might be? If you’re interested you may be able to find more information on the NYC TLC’s website\nPlot the average of the new column tip_fraction grouped by day of week.\nPlot the average of the new column tip_fraction grouped by hour of day."
   },
   {
+    "objectID": "06-ParallelComputation.html#parallel-computers",
     "href": "06-ParallelComputation.html#parallel-computers",
     "title": "Python tools for Big Data",
     "section": "Parallel computers",
     "text": "Multiprocessor/multicore: several processors work on data stored in shared memory\nCluster: several processor/memory units work together by exchanging data over a network\nCo-processor: a general-purpose processor delegates specific tasks to a special-purpose processor (GPU)"
   },
   {
+    "objectID": "06-ParallelComputation.html#parallel-programming",
     "href": "06-ParallelComputation.html#parallel-programming",
     "title": "Python tools for Big Data",
     "section": "Parallel Programming",
     "text": "Decomposition of the complete task into independent subtasks and the data flow between them.\nDistribution of the subtasks over the processors minimizing the total execution time.\nFor clusters: distribution of the data over the nodes minimizing the communication time.\nFor multiprocessors: optimization of the memory access patterns minimizing waiting times.\nSynchronization of the individual processes."
   },
   {
+    "objectID": "06-ParallelComputation.html#mapreduce",
     "href": "06-ParallelComputation.html#mapreduce",
     "title": "Python tools for Big Data",
     "section": "MapReduce",
     "text": "from time import sleep\ndef f(x):\n    sleep(1)\n    return x*x\nL = list(range(8))\nL\n%time sum(f(x) for x in L)\n%time sum(map(f,L))"
   },
   {
+    "objectID": "06-ParallelComputation.html#multiprocessing",
     "href": "06-ParallelComputation.html#multiprocessing",
     "title": "Python tools for Big Data",
     "section": "Multiprocessing",
     "text": "multiprocessing is a package that supports spawning processes.\nWe can use it to display how many concurrent processes you can launch on your computer.\nfrom multiprocessing import cpu_count\n\ncpu_count()"
   },
   {
+    "objectID": "06-ParallelComputation.html#futures",
     "href": "06-ParallelComputation.html#futures",
     "title": "Python tools for Big Data",
     "section": "Futures",
     "text": "The concurrent.futures module provides a high-level interface for asynchronously executing callables.\nThe asynchronous execution can be performed with: - threads, using ThreadPoolExecutor, - separate processes, using ProcessPoolExecutor. Both implement the same interface, which is defined by the abstract Executor class.\nconcurrent.futures can’t launch processes on windows. Windows users must install loky.\n%%file pmap.py\nfrom concurrent.futures import ProcessPoolExecutor\nfrom time import sleep, time\n\ndef f(x):\n    sleep(1)\n    return x*x\n\nL = list(range(8))\n\nif __name__ == '__main__':\n    \n    begin = time()\n    with ProcessPoolExecutor() as pool:\n\n        result = sum(pool.map(f, L))\n    end = time()\n    \n    print(f\"result = {result} and time = {end-begin}\")\nimport sys\n!{sys.executable} pmap.py\n\nProcessPoolExecutor launches one slave process per physical core on the computer.\npool.map divides the input list into chunks and puts the tasks (function + chunk) on a queue.\nEach slave process takes a task (function + a chunk of data), runs map(function, chunk), and puts the result on a result list.\npool.map on the master process waits until all tasks are handled and returns the concatenation of the result lists.\n\n%%time\nfrom concurrent.futures import ThreadPoolExecutor\n\nwith ThreadPoolExecutor() as pool:\n\n    results = sum(pool.map(f, L))\n    \nprint(results)"
   },
   {
+    "objectID": "06-ParallelComputation.html#thread-and-process-differences",
     "href": "06-ParallelComputation.html#thread-and-process-differences",
     "title": "Python tools for Big Data",
     "section": "Thread and Process: Differences",
     "text": "A process is an instance of a running program.\nProcess may contain one or more threads, but a thread cannot contain a process.\nProcess has a self-contained execution environment. It has its own memory space.\nApplication running on your computer may be a set of cooperating processes.\nProcess don’t share its memory, communication between processes implies data serialization.\nA thread is made of and exist within a process; every process has at least one thread.\nMultiple threads in a process share resources, which helps in efficient communication between threads.\nThreads can be concurrent on a multi-core system, with every core executing the separate threads simultaneously."
   },
   {
+    "objectID": "06-ParallelComputation.html#the-global-interpreter-lock-gil",
     "href": "06-ParallelComputation.html#the-global-interpreter-lock-gil",
     "title": "Python tools for Big Data",
     "section": "The Global Interpreter Lock (GIL)",
     "text": "The Python interpreter is not thread safe.\nA few critical internal data structures may only be accessed by one thread at a time. Access to them is protected by the GIL.\nAttempts at removing the GIL from Python have failed until now. The main difficulty is maintaining the C API for extension modules.\nMultiprocessing avoids the GIL by having separate processes which each have an independent copy of the interpreter data structures.\nThe price to pay: serialization of tasks, arguments, and results."
   },
   {
+    "objectID": "06-ParallelComputation.html#parallelize-text-files-downloads",
     "href": "06-ParallelComputation.html#parallelize-text-files-downloads",
     "title": "Python tools for Big Data",
     "section": "Parallelize text files downloads",
     "text": "Victor Hugo http://www.gutenberg.org/files/135/135-0.txt\nMarcel Proust http://www.gutenberg.org/files/7178/7178-8.txt\nEmile Zola http://www.gutenberg.org/files/1069/1069-0.txt\nStendhal http://www.gutenberg.org/files/44747/44747-0.txt\n\n\nExercise 6.1\nUse ThreadPoolExecutor to parallelize the code above.\n%mkdir books\n%%time\nimport urllib.request as url\nsource = \"https://mmassd.github.io/\"  # \"http://svmass2.mass.uhb.fr/hub/static/datasets/\"\nurl.urlretrieve(source+\"books/hugo.txt\",     filename=\"books/hugo.txt\")\nurl.urlretrieve(source+\"books/proust.txt\",   filename=\"books/proust.txt\")\nurl.urlretrieve(source+\"books/zola.txt\",     filename=\"books/zola.txt\")\nurl.urlretrieve(source+\"books/stendhal.txt\", filename=\"books/stendhal.txt\")"
   },
   {
+    "objectID": "06-ParallelComputation.html#wordcount",
     "href": "06-ParallelComputation.html#wordcount",
     "title": "Python tools for Big Data",
     "section": "Wordcount",
     "text": "from glob import glob\nfrom collections import defaultdict\nfrom operator import itemgetter\nfrom itertools import chain\nfrom concurrent.futures import ThreadPoolExecutor\n\ndef mapper(filename):\n    \" split text to list of key/value pairs (word,1)\"\n\n    with open(filename) as f:\n        data = f.read()\n        \n    data = data.strip().replace(\".\",\"\").lower().split()\n        \n    return sorted([(w,1) for w in data])\n\ndef partitioner(mapped_values):\n    \"\"\" get lists from mapper and create a dict with\n    (word,[1,1,1])\"\"\"\n    \n    res = defaultdict(list)\n    for w, c in mapped_values:\n        res[w].append(c)\n        \n    return res.items()\n\ndef reducer( item ):\n    \"\"\" Compute words occurences from dict computed\n    by partioner\n    \"\"\"\n    w, v = item\n    return (w,len(v))"
   },
   {
+    "objectID": "06-ParallelComputation.html#parallel-map",
     "href": "06-ParallelComputation.html#parallel-map",
     "title": "Python tools for Big Data",
     "section": "Parallel map",
     "text": "Let’s improve the mapper function by print out inside the function the current process name.\n\nExample\nimport multiprocessing as mp\nfrom concurrent.futures import ProcessPoolExecutor\n\ndef process_name(n):\n    \" prints out the current process name \"\n    print(f\"{mp.current_process().name} \")\n\nwith ProcessPoolExecutor() as e:\n    _ = e.map(process_name, range(mp.cpu_count()))\n\nExercise 6.2\n\nModify the mapper function by adding this print."
   },
   {
+    "objectID": "06-ParallelComputation.html#parallel-reduce",
     "href": "06-ParallelComputation.html#parallel-reduce",
     "title": "Python tools for Big Data",
     "section": "Parallel reduce",
     "text": "For parallel reduce operation, data must be aligned in a container. We already created a partitioner function that returns this container.\n\n\nExercise 6.3\nWrite a parallel program that uses the three functions above using ThreadPoolExecutor. It reads all the “sample*.txt” files. Map and reduce steps are parallel."
   },
   {
+    "objectID": "06-ParallelComputation.html#increase-volume-of-data",
     "href": "06-ParallelComputation.html#increase-volume-of-data",
     "title": "Python tools for Big Data",
     "section": "Increase volume of data",
     "text": "Due to the proxy, code above is not runnable on workstations\n\nGetting the data\n\nThe Latin Library contains a huge collection of freely accessible Latin texts. We get links on the Latin Library’s homepage ignoring some links that are not associated with a particular author.\n\nfrom bs4 import BeautifulSoup  # web scraping library\nfrom urllib.request import *\n\nbase_url = \"http://www.thelatinlibrary.com/\"\nhome_content = urlopen(base_url)\n\nsoup = BeautifulSoup(home_content, \"lxml\")\nauthor_page_links = soup.find_all(\"a\")\nauthor_pages = [ap[\"href\"] for i, ap in enumerate(author_page_links) if i < 49]\n\n\nGenerate html links\n\nCreate a list of all links pointing to Latin texts. The Latin Library uses a special format which makes it easy to find the corresponding links: All of these links contain the name of the text author.\n\nap_content = list()\nfor ap in author_pages:\n    ap_content.append(urlopen(base_url + ap))\n\nbook_links = list()\nfor path, content in zip(author_pages, ap_content):\n    author_name = path.split(\".\")[0]\n    ap_soup = BeautifulSoup(content, \"lxml\")\n    book_links += ([link for link in ap_soup.find_all(\"a\", {\"href\": True}) if author_name in link[\"href\"]])\n\n\nDownload webpages content\nfrom urllib.error import HTTPError\n\nnum_pages = 100\n\nfor i, bl in enumerate(book_links[:num_pages]):\n    print(\"Getting content \" + str(i + 1) + \" of \" + str(num_pages), end=\"\\r\", flush=True)\n    try:\n        content = urlopen(base_url + bl[\"href\"]).read()\n        with open(f\"book-{i:03d}.dat\",\"wb\") as f:\n            f.write(content)\n    except HTTPError as err:\n        print(\"Unable to retrieve \" + bl[\"href\"] + \".\")\n        continue\n\n\nExtract data files\n\nI already put the content of pages in files named book-*.txt\nYou can extract data from the archive by running the cell below\n\nimport os  # library to get directory and file paths\nimport tarfile # this module makes possible to read and write tar archives\n\ndef extract_data():\n    datadir = os.path.join('data','latinbooks')\n    if not os.path.exists(datadir):\n       print(\"Extracting data...\")\n       tar_path = os.path.join('data', 'latinbooks.tgz')\n       with tarfile.open(tar_path, mode='r:gz') as books:\n          books.extractall('data')\n            \nextract_data() # this function call will extract text files in data/latinbooks\n\n\nRead data files\nfrom glob import glob\nfiles = glob('book*.dat')\ntexts = list()\nfor file in files:\n    with open(file,'rb') as f:\n        text = f.read()\n    texts.append(text)\n\n\nExtract the text from html and split the text at periods to convert it into sentences.\n%%time\nfrom bs4 import BeautifulSoup\n\nsentences = list()\n\nfor i, text in enumerate(texts):\n    print(\"Document \" + str(i + 1) + \" of \" + str(len(texts)), end=\"\\r\", flush=True)\n    textSoup = BeautifulSoup(text, \"lxml\")\n    paragraphs = textSoup.find_all(\"p\", attrs={\"class\":None})\n    prepared = (\"\".join([p.text.strip().lower() for p in paragraphs[1:-1]]))\n    for t in prepared.split(\".\"):\n        part = \"\".join([c for c in t if c.isalpha() or c.isspace()])\n        sentences.append(part.strip())\n\n# print first and last sentence to check the results\nprint(sentences[0])\nprint(sentences[-1])\n\n\nExercise 6.4\nParallelize this last process using concurrent.futures."
   },
   {
+    "objectID": "06-ParallelComputation.html#references",
     "href": "06-ParallelComputation.html#references",
     "title": "Python tools for Big Data",
     "section": "References",
     "text": "Using Conditional Random Fields and Python for Latin word segmentation"
   },
   {
+    "objectID": "03-JupyterQuickStart.html#launch-jupyter-server",
     "href": "03-JupyterQuickStart.html#launch-jupyter-server",
     "title": "Python tools for Big Data",
     "section": "Launch Jupyter server",
     "text": "jupyter notebook\n\nGo to notebooks folder\nOpen the file 03.JupyterQuickStart.ipynb"
   },
   {
+    "objectID": "03-JupyterQuickStart.html#make-a-copy",
     "href": "03-JupyterQuickStart.html#make-a-copy",
     "title": "Python tools for Big Data",
     "section": "Make a Copy",
     "text": "Before modifying the notebook, make a copy of it. Go to to File menu on the top left of the notebook and click on Make a Copy..."
   },
   {
+    "objectID": "03-JupyterQuickStart.html#jupyter-notebook",
     "href": "03-JupyterQuickStart.html#jupyter-notebook",
     "title": "Python tools for Big Data",
     "section": "Jupyter Notebook",
     "text": "Jupyter notebook, formerly known as the IPython notebook, is a flexible tool that helps you create readable analyses, as you can keep code, images, comments, formulae and plots together.\nJupyter is quite extensible, supports many programming languages and is easily hosted on your computer or on almost any server — you only need to have ssh or http access. Best of all, it’s completely free.\nThe name Jupyter is an indirect acronyum of the three core languages it was designed for: JUlia, PYThon, and R"
   },
   {
+    "objectID": "03-JupyterQuickStart.html#keyboard-shortcuts",
     "href": "03-JupyterQuickStart.html#keyboard-shortcuts",
     "title": "Python tools for Big Data",
     "section": "Keyboard Shortcuts",
     "text": "To access keyboard shortcuts, use the command palette: Cmd + Shift + P\nEsc will take you into command mode where you can navigate around your notebook with arrow keys.\nWhile in command mode:\n\nA to insert a new cell above the current cell, B to insert a new cell below.\nM to change the current cell to Markdown, Y to change it back to code\nD + D (press the key twice) to delete the current cell"
   },
   {
+    "objectID": "03-JupyterQuickStart.html#easy-links-to-documentation",
     "href": "03-JupyterQuickStart.html#easy-links-to-documentation",
     "title": "Python tools for Big Data",
     "section": "Easy links to documentation",
     "text": "Shift + Tab will also show you the Docstring\n\ndict"
   },
   {
+    "objectID": "03-JupyterQuickStart.html#magic-commands",
     "href": "03-JupyterQuickStart.html#magic-commands",
     "title": "Python tools for Big Data",
     "section": "Magic commands",
     "text": "%lsmagic\n%ls *.ipynb\n%%file sample.txt\n\nwrite the cell content to the file sample.txt.\nThe file is created when you run this cell.\n%cat sample.txt\n%%file fibonacci.py\n\nf1, f2 = 1, 1\nfor n in range(10):\n    print(f1, end=',')\n    f1, f2 = f2, f1+f2\n%run fibonacci.py\n# %load fibonacci.py\n\nf1, f2 = 1, 1\nfor n in range(10):\n    print(f1, end=',')\n    f1, f2 = f2, f1+f2\n%%time\nf1, f2 = 1, 1\nfor n in range(10):\n    print(f1, end=',')\n    f1, f2 = f2, f1+f2\nprint()"
   },
   {
+    "objectID": "03-JupyterQuickStart.html#installing-python-packages-from-a-jupyter-notebook",
     "href": "03-JupyterQuickStart.html#installing-python-packages-from-a-jupyter-notebook",
     "title": "Python tools for Big Data",
     "section": "Installing Python Packages from a Jupyter Notebook",
     "text": "Install a conda package in the current Jupyter kernel\nExample with package numpy from conda-forge\n%conda install -c conda-forge numpy\n\n\nInstall a pip package in the current Jupyter kernel\n%pip install numpy"
   },
   {
+    "objectID": "14-FileFormats.html#feather",
     "href": "14-FileFormats.html#feather",
     "title": "Python tools for Big Data",
     "section": "Feather",
     "text": "For light data, it is recommanded to use Feather. It is a fast, interoperable data frame storage that comes with bindings for python and R.\nFeather uses also the Apache Arrow columnar memory specification to represent binary data on disk. This makes read and write operations very fast."
   },
   {
+    "objectID": "14-FileFormats.html#parquet-file-format",
     "href": "14-FileFormats.html#parquet-file-format",
     "title": "Python tools for Big Data",
     "section": "Parquet file format",
     "text": "Parquet format is a common binary data store, used particularly in the Hadoop/big-data sphere. It provides several advantages relevant to big-data processing:\nThe Apache Parquet project provides a standardized open-source columnar storage format for use in data analysis systems. It was created originally for use in Apache Hadoop with systems like Apache Drill, Apache Hive, Apache Impala, and Apache Spark adopting it as a shared standard for high performance data IO."
   },
   {
+    "objectID": "14-FileFormats.html#hierarchical-data-format",
     "href": "14-FileFormats.html#hierarchical-data-format",
     "title": "Python tools for Big Data",
     "section": "Hierarchical Data Format",
     "text": "HDF is a self-describing data format allowing an application to interpret the structure and contents of a file with no outside information. One HDF file can hold a mix of related objects which can be accessed as a group or as individual objects.\nLet’s create some big dataframe with consitent data (Floats) and 10% of missing values:\nimport feather\nimport pandas as pd\nimport numpy as np\narr = np.random.randn(500000) # 10% nulls\narr[::10] = np.nan\ndf = pd.DataFrame({'column_{0}'.format(i): arr for i in range(10)})\n%time df.to_csv('test.csv')\n%rm test.h5\n%time df.to_hdf(\"test.h5\", key=\"test\")\n%time df.to_parquet('test.parquet')\n%time df.to_feather('test.feather')\n%%bash\ndu -sh test.*\n%%time\ndf = pd.read_csv(\"test.csv\")\nlen(df)\n%%time\ndf = pd.read_hdf(\"test.h5\")\nlen(df)\n%%time\ndf = pd.read_parquet(\"test.parquet\")\nlen(df)\n%%time\ndf = pd.read_feather(\"test.feather\")\nlen(df)\n# Now we create a new big dataframe with a column of strings\nimport numpy as np\nimport pandas as pd\nfrom lorem import sentence\n\nwords = np.array(sentence().strip().lower().replace(\".\", \" \").split())\n\n# Set the seed so that the numbers can be reproduced.\nnp.random.seed(0)  \nn = 1000000\ndf = pd.DataFrame(np.c_[np.random.randn(n, 5),\n                  np.random.randint(0,10,(n, 2)),\n                  np.random.randint(0,1,(n, 2)),\nnp.array([np.random.choice(words) for i in range(n)])] , \ncolumns=list('ABCDEFGHIJ'))\n\ndf[\"A\"][::10] = np.nan\nlen(df)\n%%time\ndf.to_csv('test.csv', index=False)\n%%time\ndf.to_hdf('test.h5', key=\"test\", mode=\"w\")\n%%time\ndf.to_feather('test.feather')\n%%time\ndf.to_parquet('test.parquet')\n%%time \ndf = pd.read_csv(\"test.csv\")\nlen(df)\n%%time \ndf = pd.read_hdf(\"test.h5\")\nlen(df)\n%%time \ndf = pd.read_feather('test.feather')\nlen(df)\n%%time \ndf = pd.read_parquet('test.parquet')\nlen(df)\ndf.head(10)\ndf['J'] = pd.Categorical(df.J)\n%time df.to_feather('test.feather')\n%time df.to_parquet('test.parquet')\n%%time \ndf = pd.read_feather('test.feather')\nlen(df)\n%%time \ndf = pd.read_parquet('test.parquet')\nlen(df)"
   },
   {
+    "objectID": "14-FileFormats.html#feather-or-parquet",
     "href": "14-FileFormats.html#feather-or-parquet",
     "title": "Python tools for Big Data",
     "section": "Feather or Parquet",
     "text": "Parquet format is designed for long-term storage, where Arrow is more intended for short term or ephemeral storage because files volume are larger.\nParquet is usually more expensive to write than Feather as it features more layers of encoding and compression.\nFeather is unmodified raw columnar Arrow memory. We will probably add simple compression to Feather in the future.\nDue to dictionary encoding, RLE encoding, and data page compression, Parquet files will often be much smaller than Feather files\nParquet is a standard storage format for analytics that’s supported by Spark. So if you are doing analytics, Parquet is a good option as a reference storage format for query by multiple systems\n\nsource stackoverflow"
   },
   {
+    "objectID": "14-FileFormats.html#apache-arrow",
     "href": "14-FileFormats.html#apache-arrow",
     "title": "Python tools for Big Data",
     "section": "Apache Arrow",
     "text": "Arrow is a columnar in-memory analytics layer designed to accelerate big data. It houses a set of canonical in-memory representations of hierarchical data along with multiple language-bindings for structure manipulation. Arrow offers an unified way to be able to share the same data representation among languages and it will certainly be the next standard to store dataframes in all languages.\n\nR package\nJulia package\nGitHub project\n\n\nApache Arrow is an ideal in-memory transport layer for data that is being read or written with Parquet files. PyArrow includes Python bindings to read and write Parquet files with pandas.\n\ncolumnar storage, only read the data of interest\nefficient binary packing\nchoice of compression algorithms and encoding\nsplit data into files, allowing for parallel processing\nrange of logical types\nstatistics stored in metadata allow for skipping unneeded chunks\ndata partitioning using the directory structure\n\n\n\n\narrow\n\n\n\nhttps://arrow.apache.org/docs/python/csv.html\nhttps://arrow.apache.org/docs/python/feather.html\nhttps://arrow.apache.org/docs/python/parquet.html\n\nExample:\nimport pyarrow as pa\nimport pandas as pd\nimport numpy as np\narr = np.random.randn(500000) # 10% nulls\narr[::10] = np.nan\ndf = pd.DataFrame({'column_{0}'.format(i): arr for i in range(10)})\n\nhdfs = pa.hdfs.connect()\ntable = pa.Table.from_pandas(df)\npq.write_to_dataset(table, root_path=\"test\", filesystem=hdfs)\nhdfs.ls(\"test\")\n\nRead CSV from HDFS\nPut the file test.csv on hdfs system\nfrom pyarrow import csv\nwith hdfs.open(\"/data/nycflights/1999.csv\", \"rb\") as f:\n df = pd.read_csv(f, nrows = 10)\nprint(df.head())\n\n\nRead Parquet File from HDFS with pandas\nimport pandas as pd\nwikipedia = pd.read_parquet(\"hdfs://svmass2.mass.uhb.fr:54310/data/pagecounts-parquet/part-00007-8575060f-6b57-45ea-bf1d-cd77b6141f70.snappy.parquet\", engine=’pyarrow’)\nprint(wikipedia.head())\n\n\nRead Parquet File with pyarrow\ntable = pq.read_table(\"example.parquet\")\n\n\nWriting a parquet file from Apache Arrow\npq.write_table(table, \"example.parquet\")\n\n\nCheck metadata\nparquet_file = pq.ParquetFile(\"example.parquet\")\nprint(parquet_file.metadata)\n\n\nSee schema\nprint(parquet_file.schema)\n\n\nConnect to the Hadoop file system\nhdfs = pa.hdfs.connect()\n\n# copy to local\nwith hdfs.open(\"user.txt\", \"rb\") as f:\n    f.download(\"user.text\")\n\n# write parquet file on hdfs\nwith open(\"example.parquet\", \"rb\") as f:\n    pa.HadoopFileSystem.upload(hdfs, \"example.parquet\", f)\n\n# List files\nfor f in hdfs.ls(\"/user/navaro_p\"):\n    print(f)\n\n# create a small dataframe and write it to hadoop file system\nsmall_df = pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), columns=['a', 'b', 'c'])\ntable = pa.Table.from_pandas(small_df)\npq.write_table(table, \"small_df.parquet\", filesystem=hdfs)\n\n\n# Read files from Hadoop with pandas\nwith hdfs.open(\"/data/irmar.csv\") as f:\n    df = pd.read_csv(f)\n\nprint(df.head())\n\n# Read parquet file from Hadoop with pandas\nserver = \"hdfs://svmass2.mass.uhb.fr:54310\"\npath = \"data/pagecounts-parquet/part-00007-8575060f-6b57-45ea-bf1d-cd77b6141f70.snappy.parquet\"\npagecount = pd.read_parquet(os.path.join(server, path), engine=\"pyarrow\")\nprint(pagecount.head())\n\n# Read parquet file from Hadoop with pyarrow\ntable = pq.read_table(os.path.join(server,path))\nprint(table.schema)\ndf = table.to_pandas()\nprint(df.head())\n\n\nExercise\n\nTake the second dataframe with string as last column\nCreate an arrow table from pandas dataframe\nWrite the file test.parquet from arrow table\nPrint metadata from this parquet file\nPrint schema\nUpload the file to hadoop file system\nRead this file from hadoop file system and print dataframe head\n\nHint: check the doc https://arrow.apache.org/docs/python/parquet.html"
   },
   {
+    "objectID": "13-Hadoop.html#hdfs",
     "href": "13-Hadoop.html#hdfs",
     "title": "Python tools for Big Data",
     "section": "HDFS",
     "text": "It is a distributed file systems.\nHDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware.\nHDFS is suitable for applications that have large data sets.\nHDFS provides interfaces to move applications closer to where the data is located. The computation is much more efficient when the size of the data set is huge.\nHDFS consists of a single NameNode with a number of DataNodes which manage storage.\nHDFS exposes a file system namespace and allows user data to be stored in files.\n\nA file is split by the NameNode into blocks stored in DataNodes.\nThe NameNode executes operations like opening, closing, and renaming files and directories.\nThe Secondary NameNode stores information from NameNode.\nThe DataNodes manage perform block creation, deletion, and replication upon instruction from the NameNode.\nThe placement of replicas is optimized for data reliability, availability, and network bandwidth utilization.\nUser data never flows through the NameNode.\n\nFiles in HDFS are write-once and have strictly one writer at any time.\nThe DataNode has no knowledge about HDFS files."
   },
   {
+    "objectID": "13-Hadoop.html#accessibility",
     "href": "13-Hadoop.html#accessibility",
     "title": "Python tools for Big Data",
     "section": "Accessibility",
     "text": "All HDFS commands are invoked by the bin/hdfs Java script:\nhdfs [SHELL_OPTIONS] COMMAND [GENERIC_OPTIONS] [COMMAND_OPTIONS]"
   },
   {
+    "objectID": "13-Hadoop.html#manage-files-and-directories",
     "href": "13-Hadoop.html#manage-files-and-directories",
     "title": "Python tools for Big Data",
     "section": "Manage files and directories",
     "text": "hdfs dfs -ls -h -R # Recursively list subdirectories with human-readable file sizes.\nhdfs dfs -cp  # Copy files from source to destination\nhdfs dfs -mv  # Move files from source to destination\nhdfs dfs -mkdir /foodir # Create a directory named /foodir  \nhdfs dfs -rmr /foodir   # Remove a directory named /foodir  \nhdfs dfs -cat /foodir/myfile.txt #View the contents of a file named /foodir/myfile.txt"
   },
   {
+    "objectID": "13-Hadoop.html#transfer-between-nodes",
     "href": "13-Hadoop.html#transfer-between-nodes",
     "title": "Python tools for Big Data",
     "section": "Transfer between nodes",
     "text": "put\nhdfs fs -put [-f] [-p] [-l] [-d] [ - | <localsrc1> .. ]. <dst>\nCopy single src, or multiple srcs from local file system to the destination file system.\nOptions:\n-p : Preserves rights and modification times.\n-f : Overwrites the destination if it already exists.\nhdfs fs -put localfile /user/hadoop/hadoopfile\nhdfs fs -put -f localfile1 localfile2 /user/hadoop/hadoopdir\nSimilar to the fs -put command - moveFromLocal : to delete the source localsrc after copy. - copyFromLocal : source is restricted to a local file - copyToLocal : destination is restricted to a local file\n\n\n\nhdfs blocks\n\n\nThe Name Node is not in the data path. The Name Node only provides the map of where data is and where data should go in the cluster (file system metadata)."
   },
   {
+    "objectID": "13-Hadoop.html#hadoop-cluster",
     "href": "13-Hadoop.html#hadoop-cluster",
     "title": "Python tools for Big Data",
     "section": "Hadoop cluster",
     "text": "8 computers: sve1 -> sve9\n\n\nNameNode Web Interface (HDFS layer)\nhttp://svmass2.mass.uhb.fr:50070\nThe name node web UI shows you a cluster summary including information about total/remaining capacity, live and dead nodes. Additionally, it allows you to browse the HDFS namespace and view the contents of its files in the web browser. It also gives access to the local machine’s Hadoop log files.\n\n\nSecondary Namenode Information.\nhttp://svmass2.mass.uhb.fr:50090/\n\n\nDatanode Information.\n\nhttp://svpe1.mass.uhb.fr:50075/\nhttp://svpe2.mass.uhb.fr:50075/\n…\nhttp://svpe8.mass.uhb.fr:50075/\nhttp://svpe9.mass.uhb.fr:50075/\n\nTo do following hands on you can switch to JupyterLab.\nJust go to this following address http://localhost:9000/lab\n\nCheck that your HDFS home directory required to execute MapReduce jobs exists:\n\nhdfs dfs -ls /user/${USER}\n\nType the following commands:\n\nhdfs dfs -ls\nhdfs dfs -ls /\nhdfs dfs -mkdir test\n\nCreate a local file user.txt containing your name and the date:\n\n# %%bash\n# echo \"FirstName LastName\" > user.txt\n# echo `date` >> user.txt \n# cat user.txt\nCopy it on HDFS :\nhdfs dfs -put user.txt\nCheck with:\nhdfs dfs -ls -R \nhdfs dfs -cat user.txt \nhdfs dfs -tail user.txt \n# %%bash\n# hdfs dfs -put user.txt\n# hdfs dfs -ls -R /user/navaro_p/\n# %%bash\n# hdfs dfs -cat user.txt\nRemove the file:\nhdfs dfs -rm user.txt\nPut it again on HDFS and move to books directory:\nhdfs dfs -copyFromLocal user.txt\nhdfs dfs -mv user.txt books/user.txt\nhdfs dfs -ls -R -h\nCopy user.txt to hello.txt and remove it.\nhdfs dfs -cp books/user.txt books/hello.txt\nhdfs dfs -count -h /user/$USER\nhdfs dfs -rm books/user.txt"
   },
   {
+    "objectID": "13-Hadoop.html#hands-on-practice",
     "href": "13-Hadoop.html#hands-on-practice",
     "title": "Python tools for Big Data",
     "section": "Hands-on practice:",
     "text": "Create a directory files in HDFS.\nList the contents of a directory /.\nUpload the file today.txt in HDFS.\n\ndate > today.txt\nwhoami >> today.txt\n\nDisplay contents of file today.txt\nCopy today.txt file from source to files directory.\nCopy file jps.txt from/To Local file system to HDFS\n\njps > jps.txt\n\nMove file jps.txt from source to files.\nRemove file today.txt from home directory in HDFS.\nDisplay last few lines of jps.txt.\nDisplay the help of du command and show the total amount of space in a human-readable fashion used by your home hdfs directory.\nDisplay the help of df command and show the total amount of space available in the filesystem in a human-readable fashion.\nWith chmod change the rights of today.txt file. I has to be readable and writeable only by you."
   },
   {
+    "objectID": "13-Hadoop.html#yarn",
     "href": "13-Hadoop.html#yarn",
     "title": "Python tools for Big Data",
     "section": "YARN",
     "text": "YARN takes care of resource management and job scheduling/monitoring.\n\nThe ResourceManager is the ultimate authority that arbitrates resources among all the applications in the system. It has two components: Scheduler and ApplicationsManager.\nThe NodeManager is the per-machine framework agent who is responsible for Containers, monitoring their resource usage (cpu, memory, disk, network) and reporting the same to the ResourceManager/Scheduler.\n\nThe per-application ApplicationMaster negotiates resources from the ResourceManager and working with the NodeManager(s) to execute and monitor the tasks.\n\nThe Scheduler is responsible for allocating resources to the applications.\nThe ApplicationsManager is responsible for accepting job-submissions, tracking their status and monitoring for progress.\n\n Source: http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_architecture.gif\n\nYarn Web Interface\nThe JobTracker web UI provides information about general job statistics of the Hadoop cluster, running/completed/failed jobs and a job history log file. It also gives access to the ‘‘local machine’s’’ Hadoop log files (the machine on which the web UI is running on).\n\nAll Applications http://svmass2.mass.uhb.fr:8088"
   },
   {
+    "objectID": "13-Hadoop.html#wordcount-example",
     "href": "13-Hadoop.html#wordcount-example",
     "title": "Python tools for Big Data",
     "section": "WordCount Example",
     "text": "The Worcount example is implemented in Java and it is the example of Hadoop MapReduce Tutorial\nLet’s create some files with lorem python package\n\nMake input directory in your HDFS home directory required to execute MapReduce jobs:\n\nhdfs dfs -mkdir -p /user/${USER}/input\n-p flag force the directory creation even if it already exists.\n\nExercise\n\nCopy all necessary files in HDFS system.\nRun the Java example using the command\n\nhadoop jar /export/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar wordcount /user/you/input /user/you/output\n\nRemove the output directory and try to use yarn\n\nyarn jar /export/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar wordcount /user/you/input /user/you/output\n\nConnect to the Yarn web user interface and read the logs carefully."
   },
   {
+    "objectID": "13-Hadoop.html#deploying-the-mapreduce-python-code-on-hadoop",
     "href": "13-Hadoop.html#deploying-the-mapreduce-python-code-on-hadoop",
     "title": "Python tools for Big Data",
     "section": "Deploying the MapReduce Python code on Hadoop",
     "text": "This Python must use the Hadoop Streaming API to pass data between our Map and Reduce code via Python’s sys.stdin (standard input) and sys.stdout (standard output)."
   },
   {
+    "objectID": "13-Hadoop.html#map",
     "href": "13-Hadoop.html#map",
     "title": "Python tools for Big Data",
     "section": "Map",
     "text": "The following Python code read data from sys.stdin, split it into words and output a list of lines mapping words to their (intermediate) counts to sys.stdout. For every word it outputs  1 tuples immediately.\n%%file mapper.py\n#!/usr/bin/env python\nimport sys\n# input comes from standard input\nfor line in sys.stdin:\n    line = line.strip().lower() # remove leading and trailing whitespace\n    line = line.replace(\".\", \" \")   # strip punctuation \n    for word in line.split(): # split the line into words\n        # write the results to standard output;\n        # what we output here will be the input for the\n        # Reduce step, i.e. the input for reducer.py\n        # tab-delimited; the trivial word count is 1\n        print (f'{word}\\t 1')\nThe python script must be executable:\nchmod +x mapper.py \nTry to run in a terminal with:\ncat sample01.txt | ./mapper.py | sort\nor\n./mapper.py < sample01.txt | sort\n# %%bash\n# chmod +x mapper.py\n# cat sample01.txt | ./mapper.py | sort"
   },
   {
+    "objectID": "13-Hadoop.html#reduce",
     "href": "13-Hadoop.html#reduce",
     "title": "Python tools for Big Data",
     "section": "Reduce",
     "text": "The following code reads the results of mapper.py and sum the occurrences of each word to a final count, and then output its results to sys.stdout. Remember that Hadoop sorts map output so it is easier to count words.\n%%file reducer.py\n#!/usr/bin/env python\nfrom operator import itemgetter\nimport sys\n\ncurrent_word = None\ncurrent_count = 0\nword = None\n\nfor line in sys.stdin:\n    \n    # parse the input we got from mapper.py\n    word, count = line.split('\\t', 1)\n\n    # convert count (currently a string) to int\n    try:\n        count = int(count)\n    except ValueError:\n        # count was not a number, so silently\n        # ignore/discard this line\n        continue\n\n    # this IF-switch only works because Hadoop sorts map output\n    # by key (here: word) before it is passed to the reducer\n    if current_word == word:\n        current_count += count\n    else:\n        if current_word:\n            # write result to sys.stdout\n            print (f'{current_count}\\t{current_word}')\n        current_count = count\n        current_word = word\n\n# do not forget to output the last word if needed!\nif current_word == word:\n    print (f'{current_count}\\t{current_word}')\nAs mapper the python script must be executable:\nchmod +x reducer.py \nTry to run in a terminal with:\ncat sample.txt | ./mapper.py | sort | ./reducer.py | sort\nor\n./mapper.py < sample01.txt | sort | ./reducer.py | sort\n# %%bash\n# chmod +x reducer.py \n# ./mapper.py < sample01.txt | sort | ./reducer.py | sort"
   },
   {
+    "objectID": "13-Hadoop.html#execution-on-hadoop-cluster",
     "href": "13-Hadoop.html#execution-on-hadoop-cluster",
     "title": "Python tools for Big Data",
     "section": "Execution on Hadoop cluster",
     "text": "Copy all files to HDFS cluster\nRun the WordCount MapReduce\n\nBefore to run the following command you need to replace the path to the python executable. To print this path you can use the command\nwhich python\nYou should get\n/opt/tljh/user/bin/python\nSo replace the line\n#!/usr/bin/env python\nby\n#!/opt/tljh/user/bin/python\nin both files mapper.py and reducer.py\nEnsure that the output directory does not exist by removing it\nhdfs dfs -rm -r output\nUse the hadoop streaming library to read files on hdfs and redirect data to standard input, use your python scripts to process the data and write the result on hdfs directory named output :\nhadoop jar /export/hadoop-2.7.6/share/hadoop/tools/lib/hadoop-streaming-2.7.6.jar \\\n-input input/*.txt -output output \\\n-file ${PWD}/mapper.py -mapper ${PWD}/mapper.py \\\n-file ${PWD}/reducer.py -reducer ${PWD}/reducer.py\nCheck the results with\nhdfs dfs -cat output/*\nYou can avoid these long lines commands by editing a Makefile\n%%file Makefile\n\nHADOOP_VERSION=2.7.6\nHADOOP_HOME=/export/hadoop-${HADOOP_VERSION}\nHADOOP_TOOLS=${HADOOP_HOME}/share/hadoop/tools/lib\nHDFS_DIR=/user/${USER}\n \nSAMPLES = sample01.txt sample02.txt sample03.txt sample04.txt\n\ncopy_to_hdfs: ${SAMPLES}\n    hdfs dfs -mkdir -p ${HDFS_DIR}/input\n    hdfs dfs -put $^ ${HDFS_DIR}/input\n\nrun_with_hadoop: \n    hadoop jar ${HADOOP_TOOLS}/hadoop-streaming-${HADOOP_VERSION}.jar \\\n    -file  ${PWD}/mapper.py  -mapper  ${PWD}/mapper.py \\\n    -file  ${PWD}/reducer.py -reducer ${PWD}/reducer.py \\\n    -input ${HDFS_DIR}/input/*.txt -output ${HDFS_DIR}/output-hadoop\n\nrun_with_yarn: \n    yarn jar ${HADOOP_TOOLS}/hadoop-streaming-${HADOOP_VERSION}.jar \\\n    -file  ${PWD}/mapper.py  -mapper  ${PWD}/mapper.py \\\n    -file  ${PWD}/reducer.py -reducer ${PWD}/reducer.py \\\n    -input ${HDFS_DIR}/input/*.txt -output ${HDFS_DIR}/output-yarn\n# %%bash\n# hdfs dfs -rm -r input  # remove input directory\n# make copy_to_hdfs # copy sample files to hdfs\n# hdfs dfs -ls input # list files on hdfs\n# %%bash\n# hdfs dfs -rm -r -f output-hadoop # Remove output directory on hdfs\n# make run_with_hadoop  # Run the hadoop streaming map reduce process\n# hdfs dfs -cat output-hadoop/*  # Display results"
   },
   {
+    "objectID": "10-PandasSeries.html#series",
     "href": "10-PandasSeries.html#series",
     "title": "Python tools for Big Data",
     "section": "Series",
     "text": "A Series contains a one-dimensional array of data, and an associated sequence of labels called the index.\nThe index can contain numeric, string, or date/time values.\nWhen the index is a time value, the series is a time series.\nThe index must be the same length as the data.\nIf no index is supplied it is automatically generated as range(len(data)).\n\npd.Series([1,3,5,np.nan,6,8], dtype=np.float64)\npd.Series(index=pd.period_range('09/11/2017', '09/18/2017', freq=\"D\"), dtype=np.int8)\n\nExercise\n\nCreate a text with lorem and count word occurences with a collection.Counter. Put the result in a dict.\n\n\n\nExercise\n\nFrom the results create a Pandas series name latin_series with words in alphabetical order as index.\n\ndf = pd.Series(result)\ndf\n\n\nExercise\n\nPlot the series using ‘bar’ kind.\n\n\n\nExercise\n\nPandas provides explicit functions for indexing loc and iloc.\n\nUse loc to display the number of occurrences of ‘dolore’.\nUse iloc to diplay the number of occurrences of the last word in index.\n\n\n\n\nExercise\n\nSort words by number of occurrences.\nPlot the Series.\n\n\n\nFull globe temperature between 1901 and 2000.\nWe read the text file and load the results in a pandas dataframe. In cells below you need to clean the data and convert the dataframe to a time series.\nimport os\nhere = os.getcwd()\n\nfilename = os.path.join(here,\"data\",\"monthly.land.90S.90N.df_1901-2000mean.dat.txt\")\n\ndf = pd.read_table(filename, sep=\"\\s+\", \n                   names=[\"year\", \"month\", \"mean temp\"])\ndf\n\n\nExercise\n\nInsert a third column with value one named “day” with .insert.\nconvert df index to datetime with pd.to_datetime function.\nconvert df to Series containing only “mean temp” column.\n\n\n\nExercise\n\nDisplay the beginning of the file with .head.\n\n\n\nExercise\n\nDisplay the end of the file with .tail.\n\nIn the dataset, -999.00 was used to indicate that there was no value for that year.\n\n\nExercise\n\nDisplay values equal to -999 with .values.\nReplace the missing value (-999.000) by np.nan\n\nOnce they have been converted to np.nan, missing values can be removed (dropped).\n\n\nExercise\n\nRemove missing values with .dropna.\n\n\n\nExercise\n\nGenerate a basic visualization using .plot.\n\n\n\nExercise\nConvert df index from timestamp to period is more meaningfull since it was measured and averaged over the month. Use to_period method."
   },
   {
+    "objectID": "10-PandasSeries.html#resampling",
     "href": "10-PandasSeries.html#resampling",
     "title": "Python tools for Big Data",
     "section": "Resampling",

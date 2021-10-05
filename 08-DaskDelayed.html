@@ -306,6 +306,13 @@
   <a class="reference internal nav-link" href="#parallelize-with-dask-delayed">
    Parallelize with dask.delayed
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-questions-to-consider">
+     Some questions to consider:
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dask-graph">
@@ -342,23 +349,6 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise-8-3">
      Exercise 8.3
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-multiple-files-with-dask-arrays">
-   Read multiple files with Dask Arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#use-dask-to-read-and-display-images">
-   Use dask to read and display images
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#some-questions-to-consider">
-     Some questions to consider:
     </a>
    </li>
   </ul>
@@ -424,7 +414,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask</span>
-<span class="kn">import</span> <span class="nn">dask.multiprocessing</span>
 </pre></div>
 </div>
 </div>
@@ -452,6 +441,12 @@
 <span class="n">x</span> <span class="o">=</span> <span class="n">slowinc</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">slowinc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">slowadd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.1 ms, sys: 1.59 ms, total: 2.69 ms
+Wall time: 3 s
 </pre></div>
 </div>
 </div>
@@ -486,6 +481,23 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.17 ms, sys: 1.78 ms, total: 3.95 ms
+Wall time: 2.01 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="some-questions-to-consider">
+<h3>Some questions to consider:<a class="headerlink" href="#some-questions-to-consider" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Why did we go from 3s to 2s?  Why weren’t we able to parallelize down to 1s?</p></li>
+<li><p>What would have happened if the inc and add functions didn’t include the <code class="docutils literal notranslate"><span class="pre">sleep(1)</span></code>?  Would Dask still be able to speed up this code?</p></li>
+<li><p>What if we have multiple outputs or also want to get access to x or y?</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="dask-graph">
@@ -500,6 +512,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/08-DaskDelayed_12_0.png" src="_images/08-DaskDelayed_12_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="parallelize-a-loop">
@@ -512,25 +527,20 @@
 <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">slowinc</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">slowinc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
-<span class="n">total</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="nb">sum</span><span class="p">)(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
 <span class="n">total</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.27 ms, sys: 2.14 ms, total: 3.42 ms
+Wall time: 8.01 s
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
 </pre></div>
 </div>
 </div>
@@ -568,12 +578,24 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.01 ms, sys: 2.53 ms, total: 5.55 ms
+Wall time: 2.01 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08-DaskDelayed_18_0.png" src="_images/08-DaskDelayed_18_0.png" />
 </div>
 </div>
 </div>
@@ -588,12 +610,10 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 <span class="kn">import</span> <span class="nn">dask.delayed</span>
 
-<span class="nd">@delayed</span>
 <span class="k">def</span> <span class="nf">half</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">//</span> <span class="mi">2</span>
 
-<span class="nd">@delayed</span>
 <span class="k">def</span> <span class="nf">odd_process</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span>
@@ -610,21 +630,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">odd_process</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-<span class="n">total</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="nb">sum</span><span class="p">)(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -653,13 +659,18 @@
 
 <span class="k">def</span> <span class="nf">extract_data</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">where</span><span class="p">):</span>
     <span class="n">datadir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">where</span><span class="p">)</span> <span class="c1"># directory where extract all datafile</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">datadir</span><span class="p">):</span> <span class="c1"># check if this directory exists</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">datadir</span><span class="p">):</span> <span class="c1"># check if this directory exists</span>
        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracting data...&quot;</span><span class="p">)</span>
-       <span class="n">tar_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.tgz&#39;</span><span class="p">)</span>  <span class="c1"># path to the tgz file</span>
+       <span class="n">tar_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># path to the tgz file</span>
        <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tar_path</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r:gz&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span> <span class="c1"># open the tgz file</span>
           <span class="n">data</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">datadir</span><span class="p">)</span>  <span class="c1"># extract all data file in datadir</span>
             
-<span class="n">extract_data</span><span class="p">(</span><span class="s1">&#39;daily-stock&#39;</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">)</span> <span class="c1"># this function call will extract json files</span>
+<span class="n">extract_data</span><span class="p">(</span><span class="s1">&#39;data/daily-stock.tgz&#39;</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">)</span> <span class="c1"># this function call will extract json files</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data...
 </pre></div>
 </div>
 </div>
@@ -684,6 +695,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.json&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/afl.json&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aig.json&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/al.json&#39;,
+ &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/amgn.json&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -691,198 +711,12 @@
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="read-multiple-files-with-dask-arrays">
-<h2>Read multiple files with Dask Arrays<a class="headerlink" href="#read-multiple-files-with-dask-arrays" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> <span class="c1"># barre de progression</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> <span class="c1"># AFFICHER DES IMAGES DEPUIS UN TABLEAU 2D</span>
-<span class="kn">import</span> <span class="nn">dask</span> 
-<span class="kn">import</span> <span class="nn">dask.delayed</span> <span class="k">as</span> <span class="nn">delayed</span>
-<span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>  <span class="c1"># Lister des fichiers</span>
-<span class="kn">import</span> <span class="nn">h5py</span> <span class="k">as</span> <span class="nn">h5</span> <span class="c1"># ecrire et lire des fichiers au format hdf5</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># numpy pour normaliser les images</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rm: data/daily-stock/*.h5: No such file or directory
 </pre></div>
 </div>
 </div>
 </div>
-<p>In this dataset we have two dimensional field records along time. Every h5 file contains a matrix.</p>
-<p>Data are already downloaded in datasets directory. You can download the file from <a class="reference external" href="https://github.com/MMASSD/datasets/blob/master/fvalues.tgz">https://github.com/MMASSD/datasets</a></p>
-<p>!wget <a class="reference external" href="https://github.com/MMASSD/datasets/raw/master/fvalues.tgz">https://github.com/MMASSD/datasets/raw/master/fvalues.tgz</a></p>
-<p>This file is a zip archive we need to uncompress and extract.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract_data(&#39;fvalues&#39;,&#39;.&#39;) </span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>You get 1000 h5 files</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;fvalues/*.h5&quot;</span><span class="p">))</span>
-<span class="n">filenames</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>In order to plot these fields, we will scale them between 0 to 255 grey levels.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">:</span>
-    <span class="s2">&quot;Scale field to 0-255 levels&quot;</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="mi">255</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s create a function that read the file and return the scaled field.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span> <span class="k">as</span> <span class="nn">h5</span>
-<span class="k">def</span> <span class="nf">read_frame</span><span class="p">(</span> <span class="n">filepath</span> <span class="p">):</span>
-    <span class="s2">&quot; Create image from the `dataset` of h5 file `filepath` &quot;</span>
-    <span class="k">with</span> <span class="n">h5</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">scale</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">read_frame</span><span class="p">(</span> <span class="n">filenames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">image</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> 
-<span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>With NumPy we might allocate a big array and then iteratively load images and place them into this array <code class="docutils literal notranslate"><span class="pre">serial_frames</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">serial_frames</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="o">*</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fn</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">filenames</span><span class="p">):</span>
-    <span class="n">serial_frames</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">read_frame</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
- 
-<span class="k">def</span> <span class="nf">display_sequence</span><span class="p">(</span><span class="n">iframe</span><span class="p">):</span>
-     <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">serial_frames</span><span class="p">[</span><span class="n">iframe</span><span class="p">,:,:])</span>
-     
-<span class="n">interact</span><span class="p">(</span><span class="n">display_sequence</span><span class="p">,</span> 
-          <span class="n">iframe</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                           <span class="nb">max</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">serial_frames</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-                           <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                           <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
-                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">));</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>In the code above, we read all images and store them in memory. If you have more plots or bigger images it won’t fit in your computer memory. You have two options:</p>
-<ul class="simple">
-<li><p>Use a bigger computer</p></li>
-<li><p>Not store all files in memory and read only the file that contains the field you want to display.</p></li>
-</ul>
-</div>
-<div class="section" id="use-dask-to-read-and-display-images">
-<h2>Use dask to read and display images<a class="headerlink" href="#use-dask-to-read-and-display-images" title="Permalink to this headline">¶</a></h2>
-<p>We can delayed the read function</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lazy_read</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">read_frame</span><span class="p">)</span>
-<span class="n">lazy_frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">lazy_read</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Instead of <code class="docutils literal notranslate"><span class="pre">serial_frames</span></code>, we create an array of delayed tasks.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
-<span class="n">lazy_frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">da</span><span class="o">.</span><span class="n">from_delayed</span><span class="p">(</span><span class="n">lazy_read</span><span class="p">,</span><span class="c1"># Construct a small Dask array</span>
-                           <span class="n">dtype</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>   <span class="c1"># for every lazy value</span>
-                           <span class="n">shape</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-          <span class="k">for</span> <span class="n">lazy_read</span> <span class="ow">in</span> <span class="n">lazy_frames</span><span class="p">]</span>
-<span class="n">lazy_frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dask_frames</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">lazy_frames</span><span class="p">[:</span><span class="mi">100</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># concatenate arrays along first axis </span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dask_frames</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dask_frames</span> <span class="o">=</span> <span class="n">dask_frames</span><span class="o">.</span><span class="n">rechunk</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">257</span><span class="p">,</span> <span class="mi">257</span><span class="p">))</span>   
-<span class="n">dask_frames</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">scale</span><span class="p">(</span><span class="n">dask_frames</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
- 
-<span class="k">def</span> <span class="nf">display_sequence</span><span class="p">(</span><span class="n">iframe</span><span class="p">):</span>
-     
-     <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">dask_frames</span><span class="p">[</span><span class="n">iframe</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">compute</span><span class="p">())</span>
-     
-<span class="n">interact</span><span class="p">(</span><span class="n">display_sequence</span><span class="p">,</span> 
-          <span class="n">iframe</span><span class="o">=</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                           <span class="nb">max</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dask_frames</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-                           <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                           <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
-                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Everytime you move the slider, it will read the corresponding file and load the frame. That’s why you need to wait a little to get your image. You load image one by one and you can handle a very large amount of images.</p>
-<div class="section" id="some-questions-to-consider">
-<h3>Some questions to consider:<a class="headerlink" href="#some-questions-to-consider" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Why did we go from 3s to 2s?  Why weren’t we able to parallelize down to 1s?</p></li>
-<li><p>What would have happened if the inc and add functions didn’t include the <code class="docutils literal notranslate"><span class="pre">sleep(1)</span></code>?  Would Dask still be able to speed up this code?</p></li>
-<li><p>What if we have multiple outputs or also want to get access to x or y?</p></li>
-</ul>
 </div>
 </div>
 <div class="section" id="exercise-parallelizing-a-pandas-groupby-reduction">
@@ -903,18 +737,12 @@
 <p>According to your operating system, double click on the file could do the job.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import os  # library to get directory and file paths</span>
-<span class="c1">#import tarfile # this module makes possible to read and write tar archives</span>
-<span class="c1">#</span>
-<span class="c1">#def extract_data(filename, where):</span>
-<span class="c1">#    datadir = os.path.join(where) # directory where extract all datafile</span>
-<span class="c1">#    if not os.path.exists(datadir): # check if this directory exists</span>
-<span class="c1">#       print(&quot;Extracting data...&quot;)</span>
-<span class="c1">#       tar_path = os.path.join(filename)  # path to the tgz file</span>
-<span class="c1">#       with tarfile.open(tar_path, mode=&#39;r:gz&#39;) as data: # open the tgz file</span>
-<span class="c1">#          data.extractall(datadir)  # extract all data file in datadir</span>
-<span class="c1">#            </span>
-<span class="c1">#extract_data(&#39;data/nycflights.tar.gz&#39;,&#39;data&#39;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extract_data</span><span class="p">(</span><span class="s1">&#39;data/nycflights.tar.gz&#39;</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data...
 </pre></div>
 </div>
 </div>
@@ -930,11 +758,206 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Month</th>
+      <th>DayofMonth</th>
+      <th>DayOfWeek</th>
+      <th>DepTime</th>
+      <th>CRSDepTime</th>
+      <th>ArrTime</th>
+      <th>CRSArrTime</th>
+      <th>UniqueCarrier</th>
+      <th>FlightNum</th>
+      <th>...</th>
+      <th>AirTime</th>
+      <th>ArrDelay</th>
+      <th>DepDelay</th>
+      <th>Origin</th>
+      <th>Dest</th>
+      <th>Distance</th>
+      <th>TaxiIn</th>
+      <th>TaxiOut</th>
+      <th>Cancelled</th>
+      <th>Diverted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1990</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1621.0</td>
+      <td>1540</td>
+      <td>1747.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>46.0</td>
+      <td>41.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1990</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1547.0</td>
+      <td>1540</td>
+      <td>1700.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>-1.0</td>
+      <td>7.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1990</td>
+      <td>1</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1546.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>6.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1990</td>
+      <td>1</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1542.0</td>
+      <td>1540</td>
+      <td>1710.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1990</td>
+      <td>1</td>
+      <td>5</td>
+      <td>5</td>
+      <td>1549.0</td>
+      <td>1540</td>
+      <td>1706.0</td>
+      <td>1701</td>
+      <td>US</td>
+      <td>33</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>9.0</td>
+      <td>EWR</td>
+      <td>PIT</td>
+      <td>319.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is the schema?</span>
 <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Year                   int64
+Month                  int64
+DayofMonth             int64
+DayOfWeek              int64
+DepTime              float64
+CRSDepTime             int64
+ArrTime              float64
+CRSArrTime             int64
+UniqueCarrier         object
+FlightNum              int64
+TailNum              float64
+ActualElapsedTime    float64
+CRSElapsedTime         int64
+AirTime              float64
+ArrDelay             float64
+DepDelay             float64
+Origin                object
+Dest                  object
+Distance             float64
+TaxiIn               float64
+TaxiOut              float64
+Cancelled              int64
+Diverted               int64
+dtype: object
 </pre></div>
 </div>
 </div>
@@ -946,11 +969,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;EWR&#39;, &#39;LGA&#39;, &#39;JFK&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mean departure delay per-airport for one year</span>
 <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Origin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origin
+EWR     9.168411
+JFK    11.857274
+LGA     8.560045
+Name: DepDelay, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -964,6 +1001,20 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s2">&quot;nycflights&quot;</span><span class="p">,</span> <span class="s1">&#39;*.csv&#39;</span><span class="p">)))</span>
 <span class="n">filenames</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;data/nycflights/1990.csv&#39;,
+ &#39;data/nycflights/1991.csv&#39;,
+ &#39;data/nycflights/1992.csv&#39;,
+ &#39;data/nycflights/1993.csv&#39;,
+ &#39;data/nycflights/1994.csv&#39;,
+ &#39;data/nycflights/1995.csv&#39;,
+ &#39;data/nycflights/1996.csv&#39;,
+ &#39;data/nycflights/1997.csv&#39;,
+ &#39;data/nycflights/1998.csv&#39;,
+ &#39;data/nycflights/1999.csv&#39;]
 </pre></div>
 </div>
 </div>
@@ -998,10 +1049,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.48 s, sys: 946 ms, total: 5.42 s
+Wall time: 5.47 s
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origin
+EWR    10.295469
+JFK    10.351299
+LGA     7.431142
+Name: DepDelay, dtype: float64
 </pre></div>
 </div>
 </div>
