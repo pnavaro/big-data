@@ -1,264 +1,323 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.188">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Python tools for Big Data – parallelcomputation</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 2,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20
-  }</script>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.504">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python tools for Big Data – parallelcomputation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body class="nav-sidebar docked nav-fixed">
+
 <div id="quarto-search-results"></div>
-<header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-light ">
-    <div class="container-fluid">
-  <a class="navbar-brand" href="./index.html">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
   </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./intro.html">Home</a>
   </li>  
 </ul>
-          <div id="quarto-search" class="mb-0 " title="Search">
-</div>
-      </div> <!-- /navcollapse -->
-  </div> <!-- /container-fluid -->
-</nav>
-<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <div class="container-fluid d-flex justify-content-between">
-    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
-    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
-      <i class="bi bi-chevron-right"></i>
-    </button>
-  </div>
-</nav>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
- <!-- /navbar/sidebar -->
-<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
-<div class="row flex-fill" id="quarto-content">
-  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto docked overflow-auto">
-  <div class="sidebar-menu-container"> 
-  <ul class="list-unstyled mt-1 px-3">
-      <ul class="list-unstyled sidebar-section depth1">
-    <li class="">
-        <div class="me-auto">
-            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2"></i></div>
-            </a>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
-      <div class="collapse  show" id="notebooks-collapse">
-        <ul class="list-unstyled sidebar-item-contents">
-          <li class="sidebar-item">
-  <a href="./01-GitBasics.html" class="">Git basics</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./02-Installation.html" class="">Installation</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./04-WordCount.html" class="">Wordcount</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./05-MapReduce.html" class="">Map Reduce</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./06-ParallelComputation.html" class="active">Parallel Computation</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./08-DaskDelayed.html" class="">Dask</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./09-DaskBag.html" class="">Dask bag</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./11-PandaDataframes.html" class="">Pandas Dataframes</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./12-UnixCommands.html" class="">Basic Commands in the Unix Shell</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./13-Hadoop.html" class="">Hadoop</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./14-FileFormats.html" class="">File Formats</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./15-PySpark.html" class="">PySpark</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
-</li>
-        </ul>
       </div>
-    </li>
-  </ul>
-  </ul>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Notebooks</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-GitBasics.html" class="sidebar-item-text sidebar-link">Git basics</a>
   </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Installation.html" class="sidebar-item-text sidebar-link">Installation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-JupyterQuickStart.html" class="sidebar-item-text sidebar-link">Jupyter</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-WordCount.html" class="sidebar-item-text sidebar-link">Wordcount</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-MapReduce.html" class="sidebar-item-text sidebar-link">Map Reduce</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ParallelComputation.html" class="sidebar-item-text sidebar-link active">Parallel Computation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-AsynchronousProcessing.html" class="sidebar-item-text sidebar-link">Asynchronous Processing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-DaskDelayed.html" class="sidebar-item-text sidebar-link">Dask</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-DaskBag.html" class="sidebar-item-text sidebar-link">Dask bag</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-PandasSeries.html" class="sidebar-item-text sidebar-link">Pandas Series</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-PandaDataframes.html" class="sidebar-item-text sidebar-link">Pandas Dataframes</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-UnixCommands.html" class="sidebar-item-text sidebar-link">Basic Commands in the Unix Shell</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Hadoop.html" class="sidebar-item-text sidebar-link">Hadoop</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-FileFormats.html" class="sidebar-item-text sidebar-link">File Formats</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-PySpark.html" class="sidebar-item-text sidebar-link">PySpark</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-DaskDataframes.html" class="sidebar-item-text sidebar-link">Dask Dataframes</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-SparkDataFrames.html" class="sidebar-item-text sidebar-link">Spark DataFrames</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-NYCTaxiCabTripDask.html" class="sidebar-item-text sidebar-link">Dask dataframes on HDFS</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">Spark dataframes on HDFS</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
-  </div>
-  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a href="#parallel-computation" class="nav-link active" data-scroll-target="#parallel-computation">Parallel Computation</a>
-<ul class="collapse">
-<li><a href="#parallel-computers" class="nav-link" data-scroll-target="#parallel-computers">Parallel computers</a></li>
-<li><a href="#parallel-programming" class="nav-link" data-scroll-target="#parallel-programming">Parallel Programming</a></li>
-<li><a href="#mapreduce" class="nav-link" data-scroll-target="#mapreduce">MapReduce</a></li>
-<li><a href="#multiprocessing" class="nav-link" data-scroll-target="#multiprocessing">Multiprocessing</a></li>
-<li><a href="#futures" class="nav-link" data-scroll-target="#futures">Futures</a></li>
-<li><a href="#thread-and-process-differences" class="nav-link" data-scroll-target="#thread-and-process-differences">Thread and Process: Differences</a></li>
-<li><a href="#the-global-interpreter-lock-gil" class="nav-link" data-scroll-target="#the-global-interpreter-lock-gil">The Global Interpreter Lock (GIL)</a></li>
-<li><a href="#parallelize-text-files-downloads" class="nav-link" data-scroll-target="#parallelize-text-files-downloads">Parallelize text files downloads</a>
-<ul class="collapse">
-<li><a href="#exercise-6.1" class="nav-link" data-scroll-target="#exercise-6.1">Exercise 6.1</a></li>
-</ul></li>
-<li><a href="#wordcount" class="nav-link" data-scroll-target="#wordcount">Wordcount</a></li>
-<li><a href="#parallel-map" class="nav-link" data-scroll-target="#parallel-map">Parallel map</a>
-<ul class="collapse">
-<li><a href="#exercise-6.2" class="nav-link" data-scroll-target="#exercise-6.2">Exercise 6.2</a></li>
-</ul></li>
-<li><a href="#parallel-reduce" class="nav-link" data-scroll-target="#parallel-reduce">Parallel reduce</a>
-<ul class="collapse">
-<li><a href="#exercise-6.3" class="nav-link" data-scroll-target="#exercise-6.3">Exercise 6.3</a></li>
-</ul></li>
-<li><a href="#increase-volume-of-data" class="nav-link" data-scroll-target="#increase-volume-of-data">Increase volume of data</a>
-<ul class="collapse">
-<li><a href="#getting-the-data" class="nav-link" data-scroll-target="#getting-the-data">Getting the data</a></li>
-<li><a href="#generate-html-links" class="nav-link" data-scroll-target="#generate-html-links">Generate html links</a></li>
-<li><a href="#download-webpages-content" class="nav-link" data-scroll-target="#download-webpages-content">Download webpages content</a></li>
-<li><a href="#extract-data-files" class="nav-link" data-scroll-target="#extract-data-files">Extract data files</a></li>
-<li><a href="#read-data-files" class="nav-link" data-scroll-target="#read-data-files">Read data files</a></li>
-<li><a href="#extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences." class="nav-link" data-scroll-target="#extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences.">Extract the text from html and split the text at periods to convert it into sentences.</a></li>
-<li><a href="#exercise-6.4" class="nav-link" data-scroll-target="#exercise-6.4">Exercise 6.4</a></li>
-</ul></li>
-<li><a href="#references" class="nav-link" data-scroll-target="#references">References</a></li>
-</ul></li>
-</ul>
-</nav></div>
-  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
-<main>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#parallel-computation" id="toc-parallel-computation" class="nav-link active" data-scroll-target="#parallel-computation">Parallel Computation</a>
+  <ul class="collapse">
+  <li><a href="#parallel-computers" id="toc-parallel-computers" class="nav-link" data-scroll-target="#parallel-computers">Parallel computers</a></li>
+  <li><a href="#parallel-programming" id="toc-parallel-programming" class="nav-link" data-scroll-target="#parallel-programming">Parallel Programming</a></li>
+  <li><a href="#mapreduce" id="toc-mapreduce" class="nav-link" data-scroll-target="#mapreduce">MapReduce</a></li>
+  <li><a href="#multiprocessing" id="toc-multiprocessing" class="nav-link" data-scroll-target="#multiprocessing">Multiprocessing</a></li>
+  <li><a href="#futures" id="toc-futures" class="nav-link" data-scroll-target="#futures">Futures</a></li>
+  <li><a href="#thread-and-process-differences" id="toc-thread-and-process-differences" class="nav-link" data-scroll-target="#thread-and-process-differences">Thread and Process: Differences</a></li>
+  <li><a href="#the-global-interpreter-lock-gil" id="toc-the-global-interpreter-lock-gil" class="nav-link" data-scroll-target="#the-global-interpreter-lock-gil">The Global Interpreter Lock (GIL)</a></li>
+  <li><a href="#parallelize-text-files-downloads" id="toc-parallelize-text-files-downloads" class="nav-link" data-scroll-target="#parallelize-text-files-downloads">Parallelize text files downloads</a>
+  <ul class="collapse">
+  <li><a href="#exercise-6.1" id="toc-exercise-6.1" class="nav-link" data-scroll-target="#exercise-6.1">Exercise 6.1</a></li>
+  </ul></li>
+  <li><a href="#wordcount" id="toc-wordcount" class="nav-link" data-scroll-target="#wordcount">Wordcount</a></li>
+  <li><a href="#parallel-map" id="toc-parallel-map" class="nav-link" data-scroll-target="#parallel-map">Parallel map</a>
+  <ul class="collapse">
+  <li><a href="#exercise-6.2" id="toc-exercise-6.2" class="nav-link" data-scroll-target="#exercise-6.2">Exercise 6.2</a></li>
+  </ul></li>
+  <li><a href="#parallel-reduce" id="toc-parallel-reduce" class="nav-link" data-scroll-target="#parallel-reduce">Parallel reduce</a>
+  <ul class="collapse">
+  <li><a href="#exercise-6.3" id="toc-exercise-6.3" class="nav-link" data-scroll-target="#exercise-6.3">Exercise 6.3</a></li>
+  </ul></li>
+  <li><a href="#increase-volume-of-data" id="toc-increase-volume-of-data" class="nav-link" data-scroll-target="#increase-volume-of-data">Increase volume of data</a>
+  <ul class="collapse">
+  <li><a href="#getting-the-data" id="toc-getting-the-data" class="nav-link" data-scroll-target="#getting-the-data">Getting the data</a></li>
+  <li><a href="#generate-html-links" id="toc-generate-html-links" class="nav-link" data-scroll-target="#generate-html-links">Generate html links</a></li>
+  <li><a href="#download-webpages-content" id="toc-download-webpages-content" class="nav-link" data-scroll-target="#download-webpages-content">Download webpages content</a></li>
+  <li><a href="#extract-data-files" id="toc-extract-data-files" class="nav-link" data-scroll-target="#extract-data-files">Extract data files</a></li>
+  <li><a href="#read-data-files" id="toc-read-data-files" class="nav-link" data-scroll-target="#read-data-files">Read data files</a></li>
+  <li><a href="#extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences." id="toc-extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences." class="nav-link" data-scroll-target="#extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences.">Extract the text from html and split the text at periods to convert it into sentences.</a></li>
+  <li><a href="#exercise-6.4" id="toc-exercise-6.4" class="nav-link" data-scroll-target="#exercise-6.4">Exercise 6.4</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
 
 <section id="parallel-computation" class="level1">
 <h1>Parallel Computation</h1>
@@ -283,29 +342,38 @@
 </section>
 <section id="mapreduce" class="level2">
 <h2 class="anchored" data-anchor-id="mapreduce">MapReduce</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
+<div class="cell" data-cell_id="00003-a6d0d1b5-7958-41b2-86cf-215e54f2567e" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="dv">1</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">*</span>x</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">8</span>))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>L</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="bu">sum</span>(f(x) <span class="cf">for</span> x <span class="kw">in</span> L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="bu">sum</span>(<span class="bu">map</span>(f,L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00004-0368a8cd-8a8e-46e5-86ac-690071ddedd7" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="bu">sum</span>(f(x) <span class="cf">for</span> x <span class="kw">in</span> L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00005-f2152918-0d12-4c04-9c6d-998ff31bda75" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="bu">sum</span>(<span class="bu">map</span>(f,L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="multiprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="multiprocessing">Multiprocessing</h2>
 <p><code>multiprocessing</code> is a package that supports spawning processes.</p>
 <p>We can use it to display how many concurrent processes you can launch on your computer.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiprocessing <span class="im">import</span> cpu_count</span>
+<div class="cell" data-cell_id="00007-54f6b4f2-bf5a-4f94-9ec6-2d31b317dcfe" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> multiprocessing <span class="im">import</span> cpu_count</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cpu_count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="futures" class="level2">
 <h2 class="anchored" data-anchor-id="futures">Futures</h2>
 <p>The <code>concurrent.futures</code> module provides a high-level interface for asynchronously executing callables.</p>
 <p>The asynchronous execution can be performed with: - <strong>threads</strong>, using ThreadPoolExecutor, - separate <strong>processes</strong>, using ProcessPoolExecutor. Both implement the same interface, which is defined by the abstract Executor class.</p>
 <p><code>concurrent.futures</code> can’t launch <strong>processes</strong> on windows. Windows users must install <a href="https://github.com/tomMoral/loky">loky</a>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> pmap.py</span>
+<div class="cell" data-cell_id="00009-505b529f-4676-497f-8bfb-4c7725e792bf" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> pmap.py</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ProcessPoolExecutor</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep, time</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -324,15 +392,19 @@
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    end <span class="op">=</span> time()</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"result = </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss"> and time = </span><span class="sc">{</span>end<span class="op">-</span>begin<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+</div>
+<div class="cell" data-cell_id="00010-3c871477-057b-4cfb-ae86-23eb18de441c" data-deepnote_cell_type="code">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} pmap.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
 <li><code>ProcessPoolExecutor</code> launches one slave process per physical core on the computer.</li>
 <li><code>pool.map</code> divides the input list into chunks and puts the tasks (function + chunk) on a queue.</li>
 <li>Each slave process takes a task (function + a chunk of data), runs map(function, chunk), and puts the result on a result list.</li>
 <li><code>pool.map</code> on the master process waits until all tasks are handled and returns the concatenation of the result lists.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<div class="cell" data-cell_id="00012-f32013a2-fb56-4dee-afb9-67e551946174" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ThreadPoolExecutor</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ThreadPoolExecutor() <span class="im">as</span> pool:</span>
@@ -340,6 +412,7 @@
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> <span class="bu">sum</span>(pool.<span class="bu">map</span>(f, L))</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="thread-and-process-differences" class="level2">
 <h2 class="anchored" data-anchor-id="thread-and-process-differences">Thread and Process: Differences</h2>
@@ -375,19 +448,24 @@
 <section id="exercise-6.1" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6.1">Exercise 6.1</h3>
 <p>Use <code>ThreadPoolExecutor</code> to parallelize the code above.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>mkdir books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<div class="cell" data-cell_id="00016-19ac1c76-86b2-4b97-b359-86a0e4336f93" data-deepnote_cell_type="code">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>mkdir books</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00017-096986cc-9df8-4d72-b2ee-492eef8f2adb" data-deepnote_cell_type="code">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request <span class="im">as</span> url</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>source <span class="op">=</span> <span class="st">"https://mmassd.github.io/"</span>  <span class="co"># "http://svmass2.mass.uhb.fr/hub/static/datasets/"</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>url.urlretrieve(source<span class="op">+</span><span class="st">"books/hugo.txt"</span>,     filename<span class="op">=</span><span class="st">"books/hugo.txt"</span>)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>url.urlretrieve(source<span class="op">+</span><span class="st">"books/proust.txt"</span>,   filename<span class="op">=</span><span class="st">"books/proust.txt"</span>)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>url.urlretrieve(source<span class="op">+</span><span class="st">"books/zola.txt"</span>,     filename<span class="op">=</span><span class="st">"books/zola.txt"</span>)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>url.urlretrieve(source<span class="op">+</span><span class="st">"books/stendhal.txt"</span>, filename<span class="op">=</span><span class="st">"books/stendhal.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="wordcount" class="level2">
 <h2 class="anchored" data-anchor-id="wordcount">Wordcount</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<div class="cell" data-cell_id="00019-c43ef8bf-64f7-454f-a2c9-357271052a4c" data-deepnote_cell_type="code">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> chain</span>
@@ -419,6 +497,7 @@
 <span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    w, v <span class="op">=</span> item</span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (w,<span class="bu">len</span>(v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="parallel-map" class="level2">
 <h2 class="anchored" data-anchor-id="parallel-map">Parallel map</h2>
@@ -426,7 +505,8 @@
 <li>Let’s improve the <code>mapper</code> function by print out inside the function the current process name.</li>
 </ul>
 <p><em>Example</em></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> multiprocessing <span class="im">as</span> mp</span>
+<div class="cell" data-cell_id="00021-d833e0fc-79f5-4824-99a1-cd9c5555f7bb" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> multiprocessing <span class="im">as</span> mp</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> concurrent.futures <span class="im">import</span> ProcessPoolExecutor</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_name(n):</span>
@@ -435,6 +515,7 @@
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> ProcessPoolExecutor() <span class="im">as</span> e:</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=</span> e.<span class="bu">map</span>(process_name, <span class="bu">range</span>(mp.cpu_count()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="exercise-6.2" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6.2">Exercise 6.2</h3>
 <ul>
@@ -460,7 +541,8 @@
 <ul>
 <li><a href="http://www.thelatinlibrary.com/">The Latin Library</a> contains a huge collection of freely accessible Latin texts. We get links on the Latin Library’s homepage ignoring some links that are not associated with a particular author.</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup  <span class="co"># web scraping library</span></span>
+<div class="cell" data-cell_id="00025-4367b6fe-d051-4238-9823-3efb71e12d0a" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup  <span class="co"># web scraping library</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.request <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">"http://www.thelatinlibrary.com/"</span></span>
@@ -469,13 +551,15 @@
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> BeautifulSoup(home_content, <span class="st">"lxml"</span>)</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>author_page_links <span class="op">=</span> soup.find_all(<span class="st">"a"</span>)</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>author_pages <span class="op">=</span> [ap[<span class="st">"href"</span>] <span class="cf">for</span> i, ap <span class="kw">in</span> <span class="bu">enumerate</span>(author_page_links) <span class="cf">if</span> i <span class="op">&lt;</span> <span class="dv">49</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="generate-html-links" class="level3">
 <h3 class="anchored" data-anchor-id="generate-html-links">Generate html links</h3>
 <ul>
 <li>Create a list of all links pointing to Latin texts. The Latin Library uses a special format which makes it easy to find the corresponding links: All of these links contain the name of the text author.</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ap_content <span class="op">=</span> <span class="bu">list</span>()</span>
+<div class="cell" data-cell_id="00027-3a19e953-c48a-4ebc-9ca8-a258aa31a7fa" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ap_content <span class="op">=</span> <span class="bu">list</span>()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ap <span class="kw">in</span> author_pages:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    ap_content.append(urlopen(base_url <span class="op">+</span> ap))</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -484,10 +568,12 @@
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    author_name <span class="op">=</span> path.split(<span class="st">"."</span>)[<span class="dv">0</span>]</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    ap_soup <span class="op">=</span> BeautifulSoup(content, <span class="st">"lxml"</span>)</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    book_links <span class="op">+=</span> ([link <span class="cf">for</span> link <span class="kw">in</span> ap_soup.find_all(<span class="st">"a"</span>, {<span class="st">"href"</span>: <span class="va">True</span>}) <span class="cf">if</span> author_name <span class="kw">in</span> link[<span class="st">"href"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="download-webpages-content" class="level3">
 <h3 class="anchored" data-anchor-id="download-webpages-content">Download webpages content</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.error <span class="im">import</span> HTTPError</span>
+<div class="cell" data-cell_id="00029-e26f5cf7-acbc-4e58-b6ea-13a0664906e2" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.error <span class="im">import</span> HTTPError</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>num_pages <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -500,6 +586,7 @@
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> HTTPError <span class="im">as</span> err:</span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Unable to retrieve "</span> <span class="op">+</span> bl[<span class="st">"href"</span>] <span class="op">+</span> <span class="st">"."</span>)</span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="extract-data-files" class="level3">
 <h3 class="anchored" data-anchor-id="extract-data-files">Extract data files</h3>
@@ -522,17 +609,20 @@
 </section>
 <section id="read-data-files" class="level3">
 <h3 class="anchored" data-anchor-id="read-data-files">Read data files</h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<div class="cell" data-cell_id="00033-ce4fe5c1-3406-4c35-a0a1-c9ef8a6635ce" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> glob(<span class="st">'book*.dat'</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> <span class="bu">list</span>()</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>,<span class="st">'rb'</span>) <span class="im">as</span> f:</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> f.read()</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    texts.append(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences." class="level3">
 <h3 class="anchored" data-anchor-id="extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences.">Extract the text from html and split the text at periods to convert it into sentences.</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<div class="cell" data-cell_id="00035-7b691054-629b-45d7-bca3-8c19e7c5f032" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>sentences <span class="op">=</span> <span class="bu">list</span>()</span>
@@ -549,6 +639,7 @@
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># print first and last sentence to check the results</span></span>
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentences[<span class="dv">0</span>])</span>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentences[<span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="exercise-6.4" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6.4">Exercise 6.4</h3>
@@ -564,7 +655,9 @@
 
 </section>
 </section>
-<script type="application/javascript">
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -585,29 +678,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
   });
   function tippyHover(el, contentFn) {
-    window.tippy(el, {
+    const config = {
       allowHTML: true,
       content: contentFn,
       maxWidth: 500,
       delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
       placement: 'bottom-start'
-    }); 
+    };
+    window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
@@ -633,16 +736,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</main>
-<div class="page-navigation page-navigation-docked">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</div>
-</div> <!-- /main column -->
-</div> <!-- /row -->
-</div> <!-- /container fluid -->
+</div> <!-- /content -->
+
 
 
 </body></html>

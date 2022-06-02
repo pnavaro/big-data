@@ -1,260 +1,320 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.188">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Python tools for Big Data – pandadataframes</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 2,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20
-  }</script>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.504">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python tools for Big Data – pandadataframes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body class="nav-sidebar docked nav-fixed">
+
 <div id="quarto-search-results"></div>
-<header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-light ">
-    <div class="container-fluid">
-  <a class="navbar-brand" href="./index.html">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
   </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./intro.html">Home</a>
   </li>  
 </ul>
-          <div id="quarto-search" class="mb-0 " title="Search">
-</div>
-      </div> <!-- /navcollapse -->
-  </div> <!-- /container-fluid -->
-</nav>
-<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <div class="container-fluid d-flex justify-content-between">
-    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
-    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
-      <i class="bi bi-chevron-right"></i>
-    </button>
-  </div>
-</nav>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
- <!-- /navbar/sidebar -->
-<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
-<div class="row flex-fill" id="quarto-content">
-  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto docked overflow-auto">
-  <div class="sidebar-menu-container"> 
-  <ul class="list-unstyled mt-1 px-3">
-      <ul class="list-unstyled sidebar-section depth1">
-    <li class="">
-        <div class="me-auto">
-            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2"></i></div>
-            </a>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
-      <div class="collapse  show" id="notebooks-collapse">
-        <ul class="list-unstyled sidebar-item-contents">
-          <li class="sidebar-item">
-  <a href="./01-GitBasics.html" class="">Git basics</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./02-Installation.html" class="">Installation</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./04-WordCount.html" class="">Wordcount</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./05-MapReduce.html" class="">Map Reduce</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./06-ParallelComputation.html" class="">Parallel Computation</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./08-DaskDelayed.html" class="">Dask</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./09-DaskBag.html" class="">Dask bag</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./11-PandaDataframes.html" class="active">Pandas Dataframes</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./12-UnixCommands.html" class="">Basic Commands in the Unix Shell</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./13-Hadoop.html" class="">Hadoop</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./14-FileFormats.html" class="">File Formats</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./15-PySpark.html" class="">PySpark</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
-</li>
-        </ul>
       </div>
-    </li>
-  </ul>
-  </ul>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Notebooks</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-GitBasics.html" class="sidebar-item-text sidebar-link">Git basics</a>
   </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Installation.html" class="sidebar-item-text sidebar-link">Installation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-JupyterQuickStart.html" class="sidebar-item-text sidebar-link">Jupyter</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-WordCount.html" class="sidebar-item-text sidebar-link">Wordcount</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-MapReduce.html" class="sidebar-item-text sidebar-link">Map Reduce</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ParallelComputation.html" class="sidebar-item-text sidebar-link">Parallel Computation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-AsynchronousProcessing.html" class="sidebar-item-text sidebar-link">Asynchronous Processing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-DaskDelayed.html" class="sidebar-item-text sidebar-link">Dask</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-DaskBag.html" class="sidebar-item-text sidebar-link">Dask bag</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-PandasSeries.html" class="sidebar-item-text sidebar-link">Pandas Series</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-PandaDataframes.html" class="sidebar-item-text sidebar-link active">Pandas Dataframes</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-UnixCommands.html" class="sidebar-item-text sidebar-link">Basic Commands in the Unix Shell</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Hadoop.html" class="sidebar-item-text sidebar-link">Hadoop</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-FileFormats.html" class="sidebar-item-text sidebar-link">File Formats</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-PySpark.html" class="sidebar-item-text sidebar-link">PySpark</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-DaskDataframes.html" class="sidebar-item-text sidebar-link">Dask Dataframes</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-SparkDataFrames.html" class="sidebar-item-text sidebar-link">Spark DataFrames</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-NYCTaxiCabTripDask.html" class="sidebar-item-text sidebar-link">Dask dataframes on HDFS</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">Spark dataframes on HDFS</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
-  </div>
-  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a href="#pandas-dataframes" class="nav-link active" data-scroll-target="#pandas-dataframes">Pandas Dataframes</a>
-<ul class="collapse">
-<li><a href="#create-a-dataframe" class="nav-link" data-scroll-target="#create-a-dataframe">Create a <span>DataFrame</span></a></li>
-<li><a href="#load-data-from-csv-file" class="nav-link" data-scroll-target="#load-data-from-csv-file">Load Data from CSV File</a></li>
-<li><a href="#viewing-data" class="nav-link" data-scroll-target="#viewing-data">Viewing Data</a></li>
-<li><a href="#index" class="nav-link" data-scroll-target="#index">Index</a>
-<ul class="collapse">
-<li><a href="#exercise-rename-dataframe-months-in-english" class="nav-link" data-scroll-target="#exercise-rename-dataframe-months-in-english">Exercise: Rename DataFrame Months in English</a></li>
-</ul></li>
-<li><a href="#from-a-local-or-remote-html-file" class="nav-link" data-scroll-target="#from-a-local-or-remote-html-file">From a local or remote HTML file</a></li>
-<li><a href="#indexing-on-dataframes" class="nav-link" data-scroll-target="#indexing-on-dataframes">Indexing on DataFrames</a></li>
-<li><a href="#masking" class="nav-link" data-scroll-target="#masking">Masking</a></li>
-<li><a href="#new-column" class="nav-link" data-scroll-target="#new-column">New column</a></li>
-<li><a href="#modifying-a-dataframe-with-multiple-indexing" class="nav-link" data-scroll-target="#modifying-a-dataframe-with-multiple-indexing">Modifying a dataframe with multiple indexing</a></li>
-<li><a href="#transforming-datasets" class="nav-link" data-scroll-target="#transforming-datasets">Transforming datasets</a></li>
-<li><a href="#apply" class="nav-link" data-scroll-target="#apply">Apply</a></li>
-<li><a href="#sort" class="nav-link" data-scroll-target="#sort">Sort</a></li>
-<li><a href="#stack-and-unstack" class="nav-link" data-scroll-target="#stack-and-unstack">Stack and unstack</a></li>
-<li><a href="#transpose" class="nav-link" data-scroll-target="#transpose">Transpose</a></li>
-<li><a href="#describing" class="nav-link" data-scroll-target="#describing">Describing</a></li>
-<li><a href="#data-aggregationsummarization" class="nav-link" data-scroll-target="#data-aggregationsummarization">Data Aggregation/summarization</a></li>
-<li><a href="#groupby" class="nav-link" data-scroll-target="#groupby">groupby</a>
-<ul class="collapse">
-<li><a href="#exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav></div>
-  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
-<main>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pandas-dataframes" id="toc-pandas-dataframes" class="nav-link active" data-scroll-target="#pandas-dataframes">Pandas Dataframes</a>
+  <ul class="collapse">
+  <li><a href="#create-a-dataframe" id="toc-create-a-dataframe" class="nav-link" data-scroll-target="#create-a-dataframe">Create a <span>DataFrame</span></a></li>
+  <li><a href="#load-data-from-csv-file" id="toc-load-data-from-csv-file" class="nav-link" data-scroll-target="#load-data-from-csv-file">Load Data from CSV File</a></li>
+  <li><a href="#viewing-data" id="toc-viewing-data" class="nav-link" data-scroll-target="#viewing-data">Viewing Data</a></li>
+  <li><a href="#index" id="toc-index" class="nav-link" data-scroll-target="#index">Index</a>
+  <ul class="collapse">
+  <li><a href="#exercise-rename-dataframe-months-in-english" id="toc-exercise-rename-dataframe-months-in-english" class="nav-link" data-scroll-target="#exercise-rename-dataframe-months-in-english">Exercise: Rename DataFrame Months in English</a></li>
+  </ul></li>
+  <li><a href="#from-a-local-or-remote-html-file" id="toc-from-a-local-or-remote-html-file" class="nav-link" data-scroll-target="#from-a-local-or-remote-html-file">From a local or remote HTML file</a></li>
+  <li><a href="#indexing-on-dataframes" id="toc-indexing-on-dataframes" class="nav-link" data-scroll-target="#indexing-on-dataframes">Indexing on DataFrames</a></li>
+  <li><a href="#masking" id="toc-masking" class="nav-link" data-scroll-target="#masking">Masking</a></li>
+  <li><a href="#new-column" id="toc-new-column" class="nav-link" data-scroll-target="#new-column">New column</a></li>
+  <li><a href="#modifying-a-dataframe-with-multiple-indexing" id="toc-modifying-a-dataframe-with-multiple-indexing" class="nav-link" data-scroll-target="#modifying-a-dataframe-with-multiple-indexing">Modifying a dataframe with multiple indexing</a></li>
+  <li><a href="#transforming-datasets" id="toc-transforming-datasets" class="nav-link" data-scroll-target="#transforming-datasets">Transforming datasets</a></li>
+  <li><a href="#apply" id="toc-apply" class="nav-link" data-scroll-target="#apply">Apply</a></li>
+  <li><a href="#sort" id="toc-sort" class="nav-link" data-scroll-target="#sort">Sort</a></li>
+  <li><a href="#stack-and-unstack" id="toc-stack-and-unstack" class="nav-link" data-scroll-target="#stack-and-unstack">Stack and unstack</a></li>
+  <li><a href="#transpose" id="toc-transpose" class="nav-link" data-scroll-target="#transpose">Transpose</a></li>
+  <li><a href="#describing" id="toc-describing" class="nav-link" data-scroll-target="#describing">Describing</a></li>
+  <li><a href="#data-aggregationsummarization" id="toc-data-aggregationsummarization" class="nav-link" data-scroll-target="#data-aggregationsummarization">Data Aggregation/summarization</a></li>
+  <li><a href="#groupby" id="toc-groupby" class="nav-link" data-scroll-target="#groupby">groupby</a>
+  <ul class="collapse">
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
 
 <section id="pandas-dataframes" class="level1">
 <h1>Pandas Dataframes</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<div class="cell" data-cell_id="00001-0e34313a-e6ff-42cd-b964-2bba4a813d96" data-execution_millis="496" data-execution_start="1604929143179" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-source_hash="b8bc3b3f">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -262,35 +322,51 @@
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_rows"</span>, <span class="dv">8</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="dv">9</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="create-a-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-dataframe">Create a <a href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#dataframe">DataFrame</a></h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> pd.date_range(<span class="st">'20130101'</span>, periods<span class="op">=</span><span class="dv">6</span>)</span>
+<div class="cell" data-cell_id="00003-bc5e5cf4-af3f-4565-a34e-66fab5d27d0e" data-execution_millis="15" data-execution_start="1604929144225" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="eacdfea2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> pd.date_range(<span class="st">'20130101'</span>, periods<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(np.random.randn(<span class="dv">6</span>,<span class="dv">4</span>), index<span class="op">=</span>dates, columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'ABCD'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">'A'</span> : <span class="fl">1.</span>,</span>
+</div>
+<div class="cell" data-cell_id="00004-d8c0cc56-13e2-4415-b058-f191eafe2632" data-execution_millis="48" data-execution_start="1604929144672" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-source_hash="9ad5feb5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">'A'</span> : <span class="fl">1.</span>,</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">'B'</span> : pd.Timestamp(<span class="st">'20130102'</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">'C'</span> : pd.Series(<span class="dv">1</span>,index<span class="op">=</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">4</span>)),dtype<span class="op">=</span><span class="st">'float32'</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">'D'</span> : np.arange(<span class="dv">4</span>,dtype<span class="op">=</span><span class="st">'int32'</span>),</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">'E'</span> : pd.Categorical([<span class="st">"test"</span>,<span class="st">"train"</span>,<span class="st">"test"</span>,<span class="st">"train"</span>]),</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">'F'</span> : <span class="st">'foo'</span> })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="load-data-from-csv-file" class="level2">
 <h2 class="anchored" data-anchor-id="load-data-from-csv-file">Load Data from CSV File</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.fun-mooc.fr/c4x/agrocampusouest/40001S03/asset/AnaDo_JeuDonnees_TemperatFrance.csv"</span></span>
+<div class="cell" data-cell_id="00006-13dfdf33-8278-45f5-a9c2-01a737b174f8" data-execution_millis="926" data-execution_start="1604929147280" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="9d3380cd">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.fun-mooc.fr/c4x/agrocampusouest/40001S03/asset/AnaDo_JeuDonnees_TemperatFrance.csv"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>french_cities <span class="op">=</span> pd.read_csv(url, delimiter<span class="op">=</span><span class="st">";"</span>, encoding<span class="op">=</span><span class="st">"latin1"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="viewing-data" class="level2">
 <h2 class="anchored" data-anchor-id="viewing-data">Viewing Data</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>french_cities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>french_cities.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00008-99d0a65e-947e-4715-bdb3-0c129c7f876b" data-execution_millis="139" data-execution_start="1604929152108" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="fe8fd366">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>french_cities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00009-c92cb0d8-c982-49ad-b418-b960e715378c" data-execution_millis="9" data-execution_start="1604929152880" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-source_hash="ae565e9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>french_cities.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="index" class="level2">
 <h2 class="anchored" data-anchor-id="index">Index</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>french_cities.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00011-5f25aea1-d6a1-4049-b4b6-72d39b4faf9e" data-execution_millis="12" data-execution_start="1604929154496" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="933263d2">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>french_cities.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>We can rename an index by setting its name.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>french_cities.index.name <span class="op">=</span> <span class="st">"City"</span></span>
+<div class="cell" data-cell_id="00013-f061ba24-2fea-4c72-89ce-d6430d363873" data-execution_millis="139" data-execution_start="1604929155968" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-source_hash="29216189">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>french_cities.index.name <span class="op">=</span> <span class="st">"City"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>french_cities.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> locale</span>
+</div>
+<div class="cell" data-cell_id="00014-f45b2d74-f3ac-40ca-86ca-72c564eb0a38" data-execution_millis="233" data-execution_start="1604929212500" data-source_hash="52d62797" data-tags="[]">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> locale</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> calendar</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>locale.setlocale(locale.LC_ALL,<span class="st">'C'</span>)</span>
@@ -306,6 +382,7 @@
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>french_cities.rename(columns<span class="op">=</span>{<span class="st">'Moye'</span>:<span class="st">'Mean'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="exercise-rename-dataframe-months-in-english" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-rename-dataframe-months-in-english">Exercise: Rename DataFrame Months in English</h3>
 </section>
@@ -313,91 +390,147 @@
 <section id="from-a-local-or-remote-html-file" class="level2">
 <h2 class="anchored" data-anchor-id="from-a-local-or-remote-html-file">From a local or remote HTML file</h2>
 <p>We can download and extract data about mean sea level stations around the world from the <a href="http://www.psmsl.org/">PSMSL website</a>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Needs `lxml`, `beautifulSoup4` and `html5lib` python packages</span></span>
+<div class="cell" data-cell_id="00016-ef98988f-7791-458e-81d7-6e19bf098bba" data-execution_millis="2168" data-execution_start="1604929241527" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="ac2d49ef">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Needs `lxml`, `beautifulSoup4` and `html5lib` python packages</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>table_list <span class="op">=</span> pd.read_html(<span class="st">"http://www.psmsl.org/data/obtaining/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># there is 1 table on that page which contains metadata about the stations where </span></span>
+</div>
+<div class="cell" data-cell_id="00017-0e97952d-0d80-4dc8-9806-531f927579c7" data-execution_millis="130" data-execution_start="1604929244911" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="7e6f684d">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># there is 1 table on that page which contains metadata about the stations where </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sea levels are recorded</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>local_sea_level_stations <span class="op">=</span> table_list[<span class="dv">0</span>]</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>local_sea_level_stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="indexing-on-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="indexing-on-dataframes">Indexing on DataFrames</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Lati'</span>]  <span class="co"># DF [] accesses columns (Series)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00019-8d267528-d105-4ed8-8195-e17675e2da7b" data-execution_millis="8" data-execution_start="1604929252129" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="c5c5d86d">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Lati'</span>]  <span class="co"># DF [] accesses columns (Series)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><code>.loc</code> and <code>.iloc</code> allow to access individual values, slices or masked selections:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, <span class="st">"Sep"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, [<span class="st">"Sep"</span>, <span class="st">"Dec"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, <span class="st">"Sep"</span>:<span class="st">"Dec"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00021-fb0a5b50-0b2f-4619-a6d6-e36d1bfa78e0" data-execution_millis="11" data-execution_start="1604929254001" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="b5989654">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, <span class="st">"Sep"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00022-86d74db4-f444-456d-b56d-f5210d040bfa" data-execution_millis="5" data-execution_start="1604929257668" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="e38bc8ab">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, [<span class="st">"Sep"</span>, <span class="st">"Dec"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00023-2ae5e898-6451-4058-94a7-4a1991148893" data-execution_millis="7" data-execution_start="1604929265747" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="48ff286d">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>, <span class="st">"Sep"</span>:<span class="st">"Dec"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="masking" class="level2">
 <h2 class="anchored" data-anchor-id="masking">Masking</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>] <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> [<span class="va">False</span>]</span>
+<div class="cell" data-cell_id="00025-c366d1f1-e377-4697-9b2f-e8c3aed28b52" data-execution_millis="21" data-execution_start="1604929267186" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="6e04c5f8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>] <span class="op">*</span> <span class="dv">6</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> [<span class="va">False</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(french_cities.iloc[:, mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(french_cities.loc[<span class="st">"Rennes"</span>, mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00026-676281d6-09aa-4f20-a213-8f24e05676d9" data-execution_millis="11" data-execution_start="1604929268153" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="33197cfe">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(french_cities.loc[<span class="st">"Rennes"</span>, mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="new-column" class="level2">
 <h2 class="anchored" data-anchor-id="new-column">New column</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">"std"</span>] <span class="op">=</span> french_cities.iloc[:,:<span class="dv">12</span>].std(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<div class="cell" data-cell_id="00028-7b7c8a44-d1cc-4a89-9942-b5b28f54e48d" data-execution_millis="169" data-execution_start="1604929269737" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="33d4611">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">"std"</span>] <span class="op">=</span> french_cities.iloc[:,:<span class="dv">12</span>].std(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>french_cities <span class="op">=</span> french_cities.drop(<span class="st">"std"</span>, axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># remove this new column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00029-12934356-2631-46cd-ae75-048962cb8a16" data-execution_millis="2" data-execution_start="1604929270222" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="e1061317">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>french_cities <span class="op">=</span> french_cities.drop(<span class="st">"std"</span>, axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># remove this new column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00030-16672180-0d4d-4c74-9d63-6e6f9f448797" data-execution_millis="155" data-execution_start="1604929270556" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-source_hash="fb4a2abe">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="modifying-a-dataframe-with-multiple-indexing" class="level2">
 <h2 class="anchored" data-anchor-id="modifying-a-dataframe-with-multiple-indexing">Modifying a dataframe with multiple indexing</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># french_cities['Rennes']['Sep'] = 25 # It does not works and breaks the DataFrame</span></span>
+<div class="cell" data-cell_id="00032-14658a93-b2f7-46f3-bfe2-50377f95683e" data-execution_millis="16" data-execution_start="1604929272679" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="6df209b9">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># french_cities['Rennes']['Sep'] = 25 # It does not works and breaks the DataFrame</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>french_cities.loc[<span class="st">'Rennes'</span>][<span class="st">'Sep'</span>] <span class="co"># = 25 is the right way to do it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00033-5b2ceac7-475d-4f2a-9b5e-e682856691cf" data-execution_millis="151" data-execution_start="1604929274686" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-source_hash="fb4a2abe">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="transforming-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="transforming-datasets">Transforming datasets</h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Mean'</span>].<span class="bu">min</span>(), french_cities[<span class="st">'Ampl'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00035-bf089935-a4bd-4fbb-be4a-dad0ec93ab71" data-execution_millis="11" data-execution_start="1604929277326" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="3c6e0409">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Mean'</span>].<span class="bu">min</span>(), french_cities[<span class="st">'Ampl'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="apply" class="level2">
 <h2 class="anchored" data-anchor-id="apply">Apply</h2>
 <p>Let’s convert the temperature mean from Celsius to Fahrenheit degree.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fahrenheit <span class="op">=</span> <span class="kw">lambda</span> T: T<span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">5</span><span class="op">+</span><span class="dv">32</span></span>
+<div class="cell" data-cell_id="00037-9292c2f7-d414-4c3d-8fd5-05cc784217d5" data-execution_millis="7" data-execution_start="1604929278399" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="3a84419b">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fahrenheit <span class="op">=</span> <span class="kw">lambda</span> T: T<span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">5</span><span class="op">+</span><span class="dv">32</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Mean'</span>].<span class="bu">apply</span>(fahrenheit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sort" class="level2">
 <h2 class="anchored" data-anchor-id="sort">Sort</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>french_cities.sort_values(by<span class="op">=</span><span class="st">'Lati'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>french_cities <span class="op">=</span> french_cities.sort_values(by<span class="op">=</span><span class="st">'Lati'</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
+<div class="cell" data-cell_id="00039-0ec6612b-d99a-4d62-ad31-ae12a0728205" data-execution_millis="19" data-execution_start="1604929281094" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="26ce0f72">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>french_cities.sort_values(by<span class="op">=</span><span class="st">'Lati'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00040-fde35918-986d-41b5-a437-0100d64304ba" data-execution_millis="130" data-execution_start="1604929281429" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-source_hash="c49a4270">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>french_cities <span class="op">=</span> french_cities.sort_values(by<span class="op">=</span><span class="st">'Lati'</span>,ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>french_cities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="stack-and-unstack" class="level2">
 <h2 class="anchored" data-anchor-id="stack-and-unstack">Stack and unstack</h2>
 <p>Instead of seeing the months along the axis 1, and the cities along the axis 0, let’s try to convert these into an outer and an inner axis along only 1 time dimension.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_rows"</span>, <span class="dv">20</span>)</span>
+<div class="cell" data-cell_id="00042-05765873-9d26-460d-819c-ef7d6d474f7b" data-execution_millis="25" data-execution_start="1604929283164" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="cae8748d">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_rows"</span>, <span class="dv">20</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>unstacked <span class="op">=</span> french_cities.iloc[:,:<span class="dv">12</span>].unstack()</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>unstacked</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(unstacked)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00043-46a90b9c-0da5-4ea2-a627-46b62706d8e1" data-execution_millis="6" data-execution_start="1604929284834" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-source_hash="5c13ac1d">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(unstacked)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="transpose" class="level2">
 <h2 class="anchored" data-anchor-id="transpose">Transpose</h2>
 <p>The result is grouped in the wrong order since it sorts first the axis that was unstacked. We need to transpose the dataframe.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>city_temp <span class="op">=</span> french_cities.iloc[:,:<span class="dv">12</span>].transpose()</span>
+<div class="cell" data-cell_id="00046-bbf8a9f3-89a6-496a-bc90-421b9fd5593d" data-execution_millis="966" data-execution_start="1604929285491" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-source_hash="efb0ae18">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>city_temp <span class="op">=</span> french_cities.iloc[:,:<span class="dv">12</span>].transpose()</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>city_temp.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>city_temp.boxplot(rot<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00047-2098bbe9-19f1-4eb6-92d9-48cc69c7e2f1" data-execution_millis="835" data-execution_start="1604929289192" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-source_hash="937b7cd1">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>city_temp.boxplot(rot<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="describing" class="level2">
 <h2 class="anchored" data-anchor-id="describing">Describing</h2>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To save memory, we can convert it to a categorical column:</span></span>
+<div class="cell" data-cell_id="00049-a5a1e30a-2e23-4752-afc1-72b5704ed14b" data-execution_millis="2" data-execution_start="1604929290050" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="b5dc77ef">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00050-4f2da8ac-1b8b-4330-89fb-1465dda137bf" data-execution_millis="1" data-execution_start="1604929291231" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="fabe831">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00051-e49dd603-cd1c-4476-910a-ec0d50d96265" data-execution_millis="15" data-execution_start="1604929293473" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="24228889">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">'Région'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00052-501d65e1-a478-4f60-9718-6660c0b06597" data-execution_millis="12" data-execution_start="1604929294893" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="bc954d26">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To save memory, we can convert it to a categorical column:</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>french_cities[<span class="st">"Région"</span>] <span class="op">=</span> french_cities[<span class="st">"Région"</span>].astype(<span class="st">"category"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>french_cities.memory_usage()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00053-a326bf61-d92b-44bd-b9bb-5971b3ff1cb2" data-execution_millis="17" data-execution_start="1604929296449" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-source_hash="aac71f04">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>french_cities.memory_usage()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="data-aggregationsummarization" class="level2">
 <h2 class="anchored" data-anchor-id="data-aggregationsummarization">Data Aggregation/summarization</h2>
 </section>
 <section id="groupby" class="level2">
 <h2 class="anchored" data-anchor-id="groupby">groupby</h2>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fc_grouped_region <span class="op">=</span> french_cities.groupby(<span class="st">"Région"</span>)</span>
+<div class="cell" data-cell_id="00055-83791040-c079-42e6-861b-43783e94be77" data-execution_millis="9" data-execution_start="1604929298683" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="2c7ff5cf">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fc_grouped_region <span class="op">=</span> french_cities.groupby(<span class="st">"Région"</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(fc_grouped_region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> group_name, subdf <span class="kw">in</span> fc_grouped_region:</span>
+</div>
+<div class="cell" data-cell_id="00056-d2c21f4d-c8df-422f-966b-18e6c204d0b1" data-execution_millis="7" data-execution_start="1604929300011" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="8f3dff8a">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> group_name, subdf <span class="kw">in</span> fc_grouped_region:</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group_name)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(subdf)</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="exercise" class="level3">
 <h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
 <p>Consider the following dataset <a href="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant">UCI Machine Learning Repository Combined Cycle Power Plant Data Set</a>. This dataset consists of records of measurements relating to peaker power plants of 10000 points over 6 years (2006-2011).</p>
@@ -409,7 +542,9 @@
 </section>
 </section>
 </section>
-<script type="application/javascript">
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -430,29 +565,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
   });
   function tippyHover(el, contentFn) {
-    window.tippy(el, {
+    const config = {
       allowHTML: true,
       content: contentFn,
       maxWidth: 500,
       delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
       placement: 'bottom-start'
-    }); 
+    };
+    window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
@@ -478,16 +623,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</main>
-<div class="page-navigation page-navigation-docked">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</div>
-</div> <!-- /main column -->
-</div> <!-- /row -->
-</div> <!-- /container fluid -->
+</div> <!-- /content -->
+
 
 
 </body></html>

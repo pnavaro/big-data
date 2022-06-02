@@ -1,287 +1,346 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.188">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Python tools for Big Data – gitbasics</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 2,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20
-  }</script>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.504">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python tools for Big Data – gitbasics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body class="nav-sidebar docked nav-fixed">
+
 <div id="quarto-search-results"></div>
-<header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-light ">
-    <div class="container-fluid">
-  <a class="navbar-brand" href="./index.html">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
   </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./intro.html">Home</a>
   </li>  
 </ul>
-          <div id="quarto-search" class="mb-0 " title="Search">
-</div>
-      </div> <!-- /navcollapse -->
-  </div> <!-- /container-fluid -->
-</nav>
-<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <div class="container-fluid d-flex justify-content-between">
-    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
-    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
-      <i class="bi bi-chevron-right"></i>
-    </button>
-  </div>
-</nav>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
- <!-- /navbar/sidebar -->
-<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
-<div class="row flex-fill" id="quarto-content">
-  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto docked overflow-auto">
-  <div class="sidebar-menu-container"> 
-  <ul class="list-unstyled mt-1 px-3">
-      <ul class="list-unstyled sidebar-section depth1">
-    <li class="">
-        <div class="me-auto">
-            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2"></i></div>
-            </a>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
-      <div class="collapse  show" id="notebooks-collapse">
-        <ul class="list-unstyled sidebar-item-contents">
-          <li class="sidebar-item">
-  <a href="./01-GitBasics.html" class="active">Git basics</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./02-Installation.html" class="">Installation</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./04-WordCount.html" class="">Wordcount</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./05-MapReduce.html" class="">Map Reduce</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./06-ParallelComputation.html" class="">Parallel Computation</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./08-DaskDelayed.html" class="">Dask</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./09-DaskBag.html" class="">Dask bag</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./11-PandaDataframes.html" class="">Pandas Dataframes</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./12-UnixCommands.html" class="">Basic Commands in the Unix Shell</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./13-Hadoop.html" class="">Hadoop</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./14-FileFormats.html" class="">File Formats</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./15-PySpark.html" class="">PySpark</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
-</li>
-        </ul>
       </div>
-    </li>
-  </ul>
-  </ul>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Notebooks</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-GitBasics.html" class="sidebar-item-text sidebar-link active">Git basics</a>
   </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Installation.html" class="sidebar-item-text sidebar-link">Installation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-JupyterQuickStart.html" class="sidebar-item-text sidebar-link">Jupyter</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-WordCount.html" class="sidebar-item-text sidebar-link">Wordcount</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-MapReduce.html" class="sidebar-item-text sidebar-link">Map Reduce</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ParallelComputation.html" class="sidebar-item-text sidebar-link">Parallel Computation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-AsynchronousProcessing.html" class="sidebar-item-text sidebar-link">Asynchronous Processing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-DaskDelayed.html" class="sidebar-item-text sidebar-link">Dask</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-DaskBag.html" class="sidebar-item-text sidebar-link">Dask bag</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-PandasSeries.html" class="sidebar-item-text sidebar-link">Pandas Series</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-PandaDataframes.html" class="sidebar-item-text sidebar-link">Pandas Dataframes</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-UnixCommands.html" class="sidebar-item-text sidebar-link">Basic Commands in the Unix Shell</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Hadoop.html" class="sidebar-item-text sidebar-link">Hadoop</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-FileFormats.html" class="sidebar-item-text sidebar-link">File Formats</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-PySpark.html" class="sidebar-item-text sidebar-link">PySpark</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-DaskDataframes.html" class="sidebar-item-text sidebar-link">Dask Dataframes</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-SparkDataFrames.html" class="sidebar-item-text sidebar-link">Spark DataFrames</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-NYCTaxiCabTripDask.html" class="sidebar-item-text sidebar-link">Dask dataframes on HDFS</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">Spark dataframes on HDFS</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
-  </div>
-  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a href="#git-basics" class="nav-link active" data-scroll-target="#git-basics">Git basics</a>
-<ul class="collapse">
-<li><a href="#about-dropbox" class="nav-link" data-scroll-target="#about-dropbox">About Dropbox</a></li>
-<li><a href="#about-version-control" class="nav-link" data-scroll-target="#about-version-control">About version control</a></li>
-<li><a href="#centralized-version-control-systems" class="nav-link" data-scroll-target="#centralized-version-control-systems">Centralized Version Control Systems</a></li>
-<li><a href="#git" class="nav-link" data-scroll-target="#git">Git</a></li>
-<li><a href="#github" class="nav-link" data-scroll-target="#github">GitHub</a></li>
-<li><a href="#distributed-version-control-systems" class="nav-link" data-scroll-target="#distributed-version-control-systems">Distributed Version Control Systems</a></li>
-<li><a href="#git-bash" class="nav-link" data-scroll-target="#git-bash">Git bash</a></li>
-<li><a href="#configure-git" class="nav-link" data-scroll-target="#configure-git">Configure Git</a></li>
-<li><a href="#initialize-a-git-repository-in-a-directory" class="nav-link" data-scroll-target="#initialize-a-git-repository-in-a-directory">Initialize a git repository in a directory</a>
-<ul class="collapse">
-<li><a href="#add-the-file-to-the-git-index" class="nav-link" data-scroll-target="#add-the-file-to-the-git-index">Add the file to the git index</a></li>
-</ul></li>
-<li><a href="#commit" class="nav-link" data-scroll-target="#commit">Commit</a></li>
-<li><a href="#four-file-status-in-the-repository" class="nav-link" data-scroll-target="#four-file-status-in-the-repository">Four File status in the repository</a></li>
-<li><a href="#github-account-and-ssh-key" class="nav-link" data-scroll-target="#github-account-and-ssh-key">Github account and SSH key</a>
-<ul class="collapse">
-<li><a href="#generating-publicprivate-rsa-key-pair." class="nav-link" data-scroll-target="#generating-publicprivate-rsa-key-pair.">Generating public/private rsa key pair.</a></li>
-</ul></li>
-<li><a href="#github-repository" class="nav-link" data-scroll-target="#github-repository">GitHub repository</a></li>
-<li><a href="#enable-github-pages" class="nav-link" data-scroll-target="#enable-github-pages">Enable GitHub pages</a></li>
-<li><a href="#git-workflow" class="nav-link" data-scroll-target="#git-workflow">Git Workflow</a></li>
-<li><a href="#exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-<li><a href="#branches" class="nav-link" data-scroll-target="#branches">Branches</a></li>
-<li><a href="#create-a-new-branch" class="nav-link" data-scroll-target="#create-a-new-branch">Create a new branch</a></li>
-<li><a href="#edit-and-modify-the-index.md-file" class="nav-link" data-scroll-target="#edit-and-modify-the-index.md-file">Edit and modify the index.md file</a></li>
-<li><a href="#commit-the-changes" class="nav-link" data-scroll-target="#commit-the-changes">Commit the changes</a></li>
-<li><a href="#commit-or-fast-commit" class="nav-link" data-scroll-target="#commit-or-fast-commit">Commit or fast commit</a></li>
-<li><a href="#merge-mybranch-with-the-master-branch" class="nav-link" data-scroll-target="#merge-mybranch-with-the-master-branch">Merge mybranch with the master branch</a></li>
-<li><a href="#push-master-branch" class="nav-link" data-scroll-target="#push-master-branch">Push master branch</a></li>
-<li><a href="#collaborating-writing-with-a-git-repository" class="nav-link" data-scroll-target="#collaborating-writing-with-a-git-repository">Collaborating writing with a git repository</a></li>
-<li><a href="#clone-the-remote-repository" class="nav-link" data-scroll-target="#clone-the-remote-repository">Clone the remote repository</a></li>
-<li><a href="#share-your-modifications" class="nav-link" data-scroll-target="#share-your-modifications">Share your modifications</a>
-<ul class="collapse">
-<li><a href="#option-1-merge-master-branch-and-push-it" class="nav-link" data-scroll-target="#option-1-merge-master-branch-and-push-it">Option 1 : merge master branch and push it</a></li>
-<li><a href="#option-2-push-your-branch" class="nav-link" data-scroll-target="#option-2-push-your-branch">Option 2 : Push your branch</a></li>
-</ul></li>
-<li><a href="#synchronize-the-repository" class="nav-link" data-scroll-target="#synchronize-the-repository">Synchronize the repository</a>
-<ul class="collapse">
-<li><a href="#update-master-branch" class="nav-link" data-scroll-target="#update-master-branch">Update master branch</a></li>
-<li><a href="#update-personal-branch" class="nav-link" data-scroll-target="#update-personal-branch">Update personal branch</a></li>
-</ul></li>
-<li><a href="#rebase" class="nav-link" data-scroll-target="#rebase">Rebase</a></li>
-<li><a href="#stash" class="nav-link" data-scroll-target="#stash">Stash</a>
-<ul class="collapse">
-<li><a href="#apply-last-stash" class="nav-link" data-scroll-target="#apply-last-stash">Apply last <code>stash</code></a></li>
-<li><a href="#delete-the-last-stash" class="nav-link" data-scroll-target="#delete-the-last-stash">Delete the last <code>stash</code></a></li>
-<li><a href="#apply-last-stash-and-drop" class="nav-link" data-scroll-target="#apply-last-stash-and-drop">Apply last <code>stash</code> and drop</a></li>
-</ul></li>
-<li><a href="#merge-conflicts" class="nav-link" data-scroll-target="#merge-conflicts">Merge conflicts</a></li>
-<li><a href="#why-git" class="nav-link" data-scroll-target="#why-git">Why Git?</a></li>
-<li><a href="#why-not" class="nav-link" data-scroll-target="#why-not">Why not</a></li>
-<li><a href="#some-useful-commands" class="nav-link" data-scroll-target="#some-useful-commands">Some useful commands</a></li>
-<li><a href="#revert-the-last-commit" class="nav-link" data-scroll-target="#revert-the-last-commit">Revert the last commit</a></li>
-<li><a href="#git-through-ide" class="nav-link" data-scroll-target="#git-through-ide">Git through IDE</a></li>
-</ul></li>
-</ul>
-</nav></div>
-  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
-<main>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#git-basics" id="toc-git-basics" class="nav-link active" data-scroll-target="#git-basics">Git basics</a>
+  <ul class="collapse">
+  <li><a href="#about-dropbox" id="toc-about-dropbox" class="nav-link" data-scroll-target="#about-dropbox">About Dropbox</a></li>
+  <li><a href="#about-version-control" id="toc-about-version-control" class="nav-link" data-scroll-target="#about-version-control">About version control</a></li>
+  <li><a href="#centralized-version-control-systems" id="toc-centralized-version-control-systems" class="nav-link" data-scroll-target="#centralized-version-control-systems">Centralized Version Control Systems</a></li>
+  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git">Git</a></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github">GitHub</a></li>
+  <li><a href="#distributed-version-control-systems" id="toc-distributed-version-control-systems" class="nav-link" data-scroll-target="#distributed-version-control-systems">Distributed Version Control Systems</a></li>
+  <li><a href="#git-bash" id="toc-git-bash" class="nav-link" data-scroll-target="#git-bash">Git bash</a></li>
+  <li><a href="#configure-git" id="toc-configure-git" class="nav-link" data-scroll-target="#configure-git">Configure Git</a></li>
+  <li><a href="#initialize-a-git-repository-in-a-directory" id="toc-initialize-a-git-repository-in-a-directory" class="nav-link" data-scroll-target="#initialize-a-git-repository-in-a-directory">Initialize a git repository in a directory</a>
+  <ul class="collapse">
+  <li><a href="#add-the-file-to-the-git-index" id="toc-add-the-file-to-the-git-index" class="nav-link" data-scroll-target="#add-the-file-to-the-git-index">Add the file to the git index</a></li>
+  </ul></li>
+  <li><a href="#commit" id="toc-commit" class="nav-link" data-scroll-target="#commit">Commit</a></li>
+  <li><a href="#four-file-status-in-the-repository" id="toc-four-file-status-in-the-repository" class="nav-link" data-scroll-target="#four-file-status-in-the-repository">Four File status in the repository</a></li>
+  <li><a href="#github-account-and-ssh-key" id="toc-github-account-and-ssh-key" class="nav-link" data-scroll-target="#github-account-and-ssh-key">Github account and SSH key</a>
+  <ul class="collapse">
+  <li><a href="#generating-publicprivate-rsa-key-pair." id="toc-generating-publicprivate-rsa-key-pair." class="nav-link" data-scroll-target="#generating-publicprivate-rsa-key-pair.">Generating public/private rsa key pair.</a></li>
+  </ul></li>
+  <li><a href="#github-repository" id="toc-github-repository" class="nav-link" data-scroll-target="#github-repository">GitHub repository</a></li>
+  <li><a href="#enable-github-pages" id="toc-enable-github-pages" class="nav-link" data-scroll-target="#enable-github-pages">Enable GitHub pages</a></li>
+  <li><a href="#git-workflow" id="toc-git-workflow" class="nav-link" data-scroll-target="#git-workflow">Git Workflow</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches">Branches</a></li>
+  <li><a href="#create-a-new-branch" id="toc-create-a-new-branch" class="nav-link" data-scroll-target="#create-a-new-branch">Create a new branch</a></li>
+  <li><a href="#edit-and-modify-the-index.md-file" id="toc-edit-and-modify-the-index.md-file" class="nav-link" data-scroll-target="#edit-and-modify-the-index.md-file">Edit and modify the index.md file</a></li>
+  <li><a href="#commit-the-changes" id="toc-commit-the-changes" class="nav-link" data-scroll-target="#commit-the-changes">Commit the changes</a></li>
+  <li><a href="#commit-or-fast-commit" id="toc-commit-or-fast-commit" class="nav-link" data-scroll-target="#commit-or-fast-commit">Commit or fast commit</a></li>
+  <li><a href="#merge-mybranch-with-the-master-branch" id="toc-merge-mybranch-with-the-master-branch" class="nav-link" data-scroll-target="#merge-mybranch-with-the-master-branch">Merge mybranch with the master branch</a></li>
+  <li><a href="#push-master-branch" id="toc-push-master-branch" class="nav-link" data-scroll-target="#push-master-branch">Push master branch</a></li>
+  <li><a href="#collaborating-writing-with-a-git-repository" id="toc-collaborating-writing-with-a-git-repository" class="nav-link" data-scroll-target="#collaborating-writing-with-a-git-repository">Collaborating writing with a git repository</a></li>
+  <li><a href="#clone-the-remote-repository" id="toc-clone-the-remote-repository" class="nav-link" data-scroll-target="#clone-the-remote-repository">Clone the remote repository</a></li>
+  <li><a href="#share-your-modifications" id="toc-share-your-modifications" class="nav-link" data-scroll-target="#share-your-modifications">Share your modifications</a>
+  <ul class="collapse">
+  <li><a href="#option-1-merge-master-branch-and-push-it" id="toc-option-1-merge-master-branch-and-push-it" class="nav-link" data-scroll-target="#option-1-merge-master-branch-and-push-it">Option 1 : merge master branch and push it</a></li>
+  <li><a href="#option-2-push-your-branch" id="toc-option-2-push-your-branch" class="nav-link" data-scroll-target="#option-2-push-your-branch">Option 2 : Push your branch</a></li>
+  </ul></li>
+  <li><a href="#synchronize-the-repository" id="toc-synchronize-the-repository" class="nav-link" data-scroll-target="#synchronize-the-repository">Synchronize the repository</a>
+  <ul class="collapse">
+  <li><a href="#update-master-branch" id="toc-update-master-branch" class="nav-link" data-scroll-target="#update-master-branch">Update master branch</a></li>
+  <li><a href="#update-personal-branch" id="toc-update-personal-branch" class="nav-link" data-scroll-target="#update-personal-branch">Update personal branch</a></li>
+  </ul></li>
+  <li><a href="#rebase" id="toc-rebase" class="nav-link" data-scroll-target="#rebase">Rebase</a></li>
+  <li><a href="#stash" id="toc-stash" class="nav-link" data-scroll-target="#stash">Stash</a>
+  <ul class="collapse">
+  <li><a href="#apply-last-stash" id="toc-apply-last-stash" class="nav-link" data-scroll-target="#apply-last-stash">Apply last <code>stash</code></a></li>
+  <li><a href="#delete-the-last-stash" id="toc-delete-the-last-stash" class="nav-link" data-scroll-target="#delete-the-last-stash">Delete the last <code>stash</code></a></li>
+  <li><a href="#apply-last-stash-and-drop" id="toc-apply-last-stash-and-drop" class="nav-link" data-scroll-target="#apply-last-stash-and-drop">Apply last <code>stash</code> and drop</a></li>
+  </ul></li>
+  <li><a href="#merge-conflicts" id="toc-merge-conflicts" class="nav-link" data-scroll-target="#merge-conflicts">Merge conflicts</a></li>
+  <li><a href="#why-git" id="toc-why-git" class="nav-link" data-scroll-target="#why-git">Why Git?</a></li>
+  <li><a href="#why-not" id="toc-why-not" class="nav-link" data-scroll-target="#why-not">Why not</a></li>
+  <li><a href="#some-useful-commands" id="toc-some-useful-commands" class="nav-link" data-scroll-target="#some-useful-commands">Some useful commands</a></li>
+  <li><a href="#revert-the-last-commit" id="toc-revert-the-last-commit" class="nav-link" data-scroll-target="#revert-the-last-commit">Revert the last commit</a></li>
+  <li><a href="#git-through-ide" id="toc-git-through-ide" class="nav-link" data-scroll-target="#git-through-ide">Git through IDE</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
 
 <section id="git-basics" class="level1">
 <h1>Git basics</h1>
@@ -787,7 +846,9 @@ user.email=prenom.nom@univ-rennes2.fr</code></pre>
 
 </section>
 </section>
-<script type="application/javascript">
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -808,29 +869,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
   });
   function tippyHover(el, contentFn) {
-    window.tippy(el, {
+    const config = {
       allowHTML: true,
       content: contentFn,
       maxWidth: 500,
       delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
       placement: 'bottom-start'
-    }); 
+    };
+    window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
@@ -856,16 +927,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</main>
-<div class="page-navigation page-navigation-docked">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</div>
-</div> <!-- /main column -->
-</div> <!-- /row -->
-</div> <!-- /container fluid -->
+</div> <!-- /content -->
+
 
 
 </body></html>

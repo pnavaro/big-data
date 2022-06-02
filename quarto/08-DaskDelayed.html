@@ -1,260 +1,319 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.188">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Python tools for Big Data – daskdelayed</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 2,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20
-  }</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.504">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python tools for Big Data – daskdelayed</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body class="nav-sidebar docked nav-fixed">
+
 <div id="quarto-search-results"></div>
-<header id="quarto-header" class="headroom fixed-top">
-<nav class="navbar navbar-expand-lg navbar-light ">
-    <div class="container-fluid">
-  <a class="navbar-brand" href="./index.html">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Python tools for Big Data</span>
   </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./intro.html">Home</a>
   </li>  
 </ul>
-          <div id="quarto-search" class="mb-0 " title="Search">
-</div>
-      </div> <!-- /navcollapse -->
-  </div> <!-- /container-fluid -->
-</nav>
-<nav class="quarto-secondary-nav py-2 d-lg-none d-md-block " data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <div class="container-fluid d-flex justify-content-between">
-    <h1 class="quarto-secondary-nav-title mb-0 fs-3 d-inline">(Untitled)</h1>
-    <button type="button" class="quarto-btn-toggle btn d-lg-none py-0 px-1 d-inline-block border-0 ">
-      <i class="bi bi-chevron-right"></i>
-    </button>
-  </div>
-</nav>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
- <!-- /navbar/sidebar -->
-<div class="container-fluid quarto-container d-flex flex-column page-layout-article">
-<div class="row flex-fill" id="quarto-content">
-  <div id="quarto-sidebar" class="col col-12 col-lg-3 d-lg-flex px-0 pt-0 sidebar collapse sidebar-navigation">
-    <nav class="me-lg-auto docked overflow-auto">
-  <div class="sidebar-menu-container"> 
-  <ul class="list-unstyled mt-1 px-3">
-      <ul class="list-unstyled sidebar-section depth1">
-    <li class="">
-        <div class="me-auto">
-            <a class="sidebar-section-item d-inline-flex text-start w-100 " data-bs-toggle="collapse" data-bs-target="#notebooks-collapse" aria-expanded="true">
-              <div class="me-auto sidebar-section-item">Notebooks</div>
-            <div><i class="bi bi-chevron-right ms-2"></i></div>
-            </a>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
-      <div class="collapse  show" id="notebooks-collapse">
-        <ul class="list-unstyled sidebar-item-contents">
-          <li class="sidebar-item">
-  <a href="./01-GitBasics.html" class="">Git basics</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./02-Installation.html" class="">Installation</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./03-JupyterQuickStart.html" class="">Jupyter</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./04-WordCount.html" class="">Wordcount</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./05-MapReduce.html" class="">Map Reduce</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./06-ParallelComputation.html" class="">Parallel Computation</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./07-AsynchronousProcessing.html" class="">Asynchronous Processing</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./08-DaskDelayed.html" class="active">Dask</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./09-DaskBag.html" class="">Dask bag</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./10-PandasSeries.html" class="">Pandas Series</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./11-PandaDataframes.html" class="">Pandas Dataframes</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./12-UnixCommands.html" class="">Basic Commands in the Unix Shell</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./13-Hadoop.html" class="">Hadoop</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./14-FileFormats.html" class="">File Formats</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./15-PySpark.html" class="">PySpark</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./16-DaskDataframes.html" class="">Dask Dataframes</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./17-SparkDataFrames.html" class="">Spark DataFrames</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./18-NYCTaxiCabTripDask.html" class="">Dask dataframes on HDFS</a>
-</li>
-          <li class="sidebar-item">
-  <a href="./19-NYCTaxiCabTripSpark.html" class="">Spark dataframes on HDFS</a>
-</li>
-        </ul>
       </div>
-    </li>
-  </ul>
-  </ul>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Notebooks</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-GitBasics.html" class="sidebar-item-text sidebar-link">Git basics</a>
   </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Installation.html" class="sidebar-item-text sidebar-link">Installation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-JupyterQuickStart.html" class="sidebar-item-text sidebar-link">Jupyter</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-WordCount.html" class="sidebar-item-text sidebar-link">Wordcount</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-MapReduce.html" class="sidebar-item-text sidebar-link">Map Reduce</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ParallelComputation.html" class="sidebar-item-text sidebar-link">Parallel Computation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-AsynchronousProcessing.html" class="sidebar-item-text sidebar-link">Asynchronous Processing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-DaskDelayed.html" class="sidebar-item-text sidebar-link active">Dask</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-DaskBag.html" class="sidebar-item-text sidebar-link">Dask bag</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-PandasSeries.html" class="sidebar-item-text sidebar-link">Pandas Series</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-PandaDataframes.html" class="sidebar-item-text sidebar-link">Pandas Dataframes</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-UnixCommands.html" class="sidebar-item-text sidebar-link">Basic Commands in the Unix Shell</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Hadoop.html" class="sidebar-item-text sidebar-link">Hadoop</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-FileFormats.html" class="sidebar-item-text sidebar-link">File Formats</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-PySpark.html" class="sidebar-item-text sidebar-link">PySpark</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-DaskDataframes.html" class="sidebar-item-text sidebar-link">Dask Dataframes</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-SparkDataFrames.html" class="sidebar-item-text sidebar-link">Spark DataFrames</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-NYCTaxiCabTripDask.html" class="sidebar-item-text sidebar-link">Dask dataframes on HDFS</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">Spark dataframes on HDFS</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
-  </div>
-  <div id="quarto-toc-sidebar" class=" pt-0 col col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-toc order-last"><nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
-<ul>
-<li><a href="#dask" class="nav-link active" data-scroll-target="#dask">Dask</a>
-<ul class="collapse">
-<li><a href="#define-two-slow-functions" class="nav-link" data-scroll-target="#define-two-slow-functions">Define two slow functions</a></li>
-<li><a href="#parallelize-with-dask.delayed" class="nav-link" data-scroll-target="#parallelize-with-dask.delayed">Parallelize with dask.delayed</a>
-<ul class="collapse">
-<li><a href="#some-questions-to-consider" class="nav-link" data-scroll-target="#some-questions-to-consider">Some questions to consider:</a></li>
-</ul></li>
-<li><a href="#dask-graph" class="nav-link" data-scroll-target="#dask-graph">Dask graph</a></li>
-<li><a href="#parallelize-a-loop" class="nav-link" data-scroll-target="#parallelize-a-loop">Parallelize a loop</a>
-<ul class="collapse">
-<li><a href="#exercise-8.1" class="nav-link" data-scroll-target="#exercise-8.1">Exercise 8.1</a></li>
-</ul></li>
-<li><a href="#decorator" class="nav-link" data-scroll-target="#decorator">Decorator</a></li>
-<li><a href="#control-flow" class="nav-link" data-scroll-target="#control-flow">Control flow</a>
-<ul class="collapse">
-<li><a href="#exercise-8.2" class="nav-link" data-scroll-target="#exercise-8.2">Exercise 8.2</a></li>
-<li><a href="#exercise-8.3" class="nav-link" data-scroll-target="#exercise-8.3">Exercise 8.3</a></li>
-</ul></li>
-<li><a href="#exercise-parallelizing-a-pandas-groupby-reduction" class="nav-link" data-scroll-target="#exercise-parallelizing-a-pandas-groupby-reduction">Exercise: Parallelizing a Pandas Groupby Reduction</a>
-<ul class="collapse">
-<li><a href="#prep-data" class="nav-link" data-scroll-target="#prep-data">Prep data</a></li>
-<li><a href="#inspect-data" class="nav-link" data-scroll-target="#inspect-data">Inspect data</a></li>
-<li><a href="#read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay" class="nav-link" data-scroll-target="#read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay">Read one file with <code>pandas.read_csv</code> and compute mean departure delay</a></li>
-<li><a href="#sequential-code-mean-departure-delay-per-airport" class="nav-link" data-scroll-target="#sequential-code-mean-departure-delay-per-airport">Sequential code: Mean Departure Delay Per Airport</a></li>
-<li><a href="#exercise-parallelize-the-code-above" class="nav-link" data-scroll-target="#exercise-parallelize-the-code-above">Exercise : Parallelize the code above</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav></div>
-  <div class="col mx-auto col-sm-12 col-md-9 col-lg-7 col-xl-7 px-lg-4 pe-xxl-4 ps-xxl-0">
-<main>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#dask" id="toc-dask" class="nav-link active" data-scroll-target="#dask">Dask</a>
+  <ul class="collapse">
+  <li><a href="#define-two-slow-functions" id="toc-define-two-slow-functions" class="nav-link" data-scroll-target="#define-two-slow-functions">Define two slow functions</a></li>
+  <li><a href="#parallelize-with-dask.delayed" id="toc-parallelize-with-dask.delayed" class="nav-link" data-scroll-target="#parallelize-with-dask.delayed">Parallelize with dask.delayed</a>
+  <ul class="collapse">
+  <li><a href="#some-questions-to-consider" id="toc-some-questions-to-consider" class="nav-link" data-scroll-target="#some-questions-to-consider">Some questions to consider:</a></li>
+  </ul></li>
+  <li><a href="#dask-graph" id="toc-dask-graph" class="nav-link" data-scroll-target="#dask-graph">Dask graph</a></li>
+  <li><a href="#parallelize-a-loop" id="toc-parallelize-a-loop" class="nav-link" data-scroll-target="#parallelize-a-loop">Parallelize a loop</a>
+  <ul class="collapse">
+  <li><a href="#exercise-8.1" id="toc-exercise-8.1" class="nav-link" data-scroll-target="#exercise-8.1">Exercise 8.1</a></li>
+  </ul></li>
+  <li><a href="#decorator" id="toc-decorator" class="nav-link" data-scroll-target="#decorator">Decorator</a></li>
+  <li><a href="#control-flow" id="toc-control-flow" class="nav-link" data-scroll-target="#control-flow">Control flow</a>
+  <ul class="collapse">
+  <li><a href="#exercise-8.2" id="toc-exercise-8.2" class="nav-link" data-scroll-target="#exercise-8.2">Exercise 8.2</a></li>
+  <li><a href="#exercise-8.3" id="toc-exercise-8.3" class="nav-link" data-scroll-target="#exercise-8.3">Exercise 8.3</a></li>
+  </ul></li>
+  <li><a href="#exercise-parallelizing-a-pandas-groupby-reduction" id="toc-exercise-parallelizing-a-pandas-groupby-reduction" class="nav-link" data-scroll-target="#exercise-parallelizing-a-pandas-groupby-reduction">Exercise: Parallelizing a Pandas Groupby Reduction</a>
+  <ul class="collapse">
+  <li><a href="#prep-data" id="toc-prep-data" class="nav-link" data-scroll-target="#prep-data">Prep data</a></li>
+  <li><a href="#inspect-data" id="toc-inspect-data" class="nav-link" data-scroll-target="#inspect-data">Inspect data</a></li>
+  <li><a href="#read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay" id="toc-read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay" class="nav-link" data-scroll-target="#read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay">Read one file with <code>pandas.read_csv</code> and compute mean departure delay</a></li>
+  <li><a href="#sequential-code-mean-departure-delay-per-airport" id="toc-sequential-code-mean-departure-delay-per-airport" class="nav-link" data-scroll-target="#sequential-code-mean-departure-delay-per-airport">Sequential code: Mean Departure Delay Per Airport</a></li>
+  <li><a href="#exercise-parallelize-the-code-above" id="toc-exercise-parallelize-the-code-above" class="nav-link" data-scroll-target="#exercise-parallelize-the-code-above">Exercise : Parallelize the code above</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
 
 <section id="dask" class="level1">
 <h1>Dask</h1>
@@ -265,10 +324,13 @@
 <li>move computation to the data rather than the other way around, to minimize communication overheads</li>
 </ul>
 <p>http://dask.pydata.org/en/latest/</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-cell_id="00002-4d25f43d-8a30-42d0-b4a8-406689ce13cf" data-deepnote_cell_type="code" data-execution_millis="261" data-execution_start="1604928157843" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="145bccde" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="define-two-slow-functions" class="level2">
 <h2 class="anchored" data-anchor-id="define-two-slow-functions">Define two slow functions</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
+<div class="cell" data-cell_id="00004-bdaf2b7c-2b02-488d-9dca-89cf289d6636" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928159401" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="4246c45a" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slowinc(x, delay<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    sleep(delay)</span>
@@ -277,12 +339,13 @@
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slowadd(x, y, delay<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    sleep(delay)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-cell_id="00005-709c6ad2-c285-41cc-9242-2731f719b06c" data-deepnote_cell_type="code" data-execution_millis="3004" data-execution_start="1604928160391" data-source_hash="5a5a4ebf">
-<div class="sourceCode" id="cb3"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+</div>
+<div class="cell" data-cell_id="00005-709c6ad2-c285-41cc-9242-2731f719b06c" data-deepnote_cell_type="code" data-execution_millis="3004" data-execution_start="1604928160391" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="5a5a4ebf" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> slowinc(<span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> slowinc(<span class="dv">2</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> slowadd(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 1.1 ms, sys: 1.59 ms, total: 2.69 ms
 Wall time: 3 s</code></pre>
 </div>
@@ -294,18 +357,22 @@ Wall time: 3 s</code></pre>
 <li>Functions wrapped by <code>dask.delayed</code> don’t run immediately, but instead put those functions and arguments into a task graph.</li>
 <li>The result is computed separately by calling the <code>.compute()</code> method.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask <span class="im">import</span> delayed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dask.delayed(slowinc)(<span class="dv">1</span>)</span>
+<div class="cell" data-cell_id="00007-b872f4aa-b348-44cd-9add-a6947c947632" data-deepnote_cell_type="code" data-execution_millis="2" data-execution_start="1604928168699" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="6ebfca2f" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask <span class="im">import</span> delayed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-cell_id="00008-50c7cc67-ef95-4abc-a436-5d2383a61263" data-deepnote_cell_type="code" data-execution_millis="4" data-execution_start="1604928169627" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="bd3eeed4" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> dask.delayed(slowinc)(<span class="dv">1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> dask.delayed(slowinc)(<span class="dv">2</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> dask.delayed(slowadd)(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-cell_id="00009-23d17b22-0a3d-4e32-8aae-08426be7c50b" data-deepnote_cell_type="code" data-execution_millis="2047" data-execution_start="1604928170971" data-source_hash="8d6c6701">
-<div class="sourceCode" id="cb7"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+</div>
+<div class="cell" data-cell_id="00009-23d17b22-0a3d-4e32-8aae-08426be7c50b" data-deepnote_cell_type="code" data-execution_millis="2047" data-execution_start="1604928170971" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="8d6c6701" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>z.compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 2.17 ms, sys: 1.78 ms, total: 3.95 ms
 Wall time: 2.01 s</code></pre>
 </div>
-<div class="cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>5</code></pre>
 </div>
 </div>
@@ -324,17 +391,17 @@ Wall time: 2.01 s</code></pre>
 <li>Contains description of the calculations necessary to produce the result.</li>
 <li>The z object is a lazy Delayed object. This object holds everything we need to compute the final result. We can compute the result with .compute() as above or we can visualize the task graph for this value with .visualize().</li>
 </ul>
-<div class="cell" data-cell_id="00011-5f32f2e0-51f9-4e56-9ea1-6a58c815c6c5" data-deepnote_cell_type="code" data-execution_millis="114" data-execution_start="1604928174844" data-source_hash="3d8a266a">
-<div class="sourceCode" id="cb10"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>z.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="cell" data-cell_id="00011-5f32f2e0-51f9-4e56-9ea1-6a58c815c6c5" data-deepnote_cell_type="code" data-execution_millis="114" data-execution_start="1604928174844" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="3d8a266a" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>z.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 <p><img src="08-DaskDelayed_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="parallelize-a-loop" class="level2">
 <h2 class="anchored" data-anchor-id="parallelize-a-loop">Parallelize a loop</h2>
-<div class="cell" data-cell_id="00013-c881baab-40c3-47d6-b513-321ffe5a8588" data-deepnote_cell_type="code" data-execution_millis="15" data-execution_start="1604928177369" data-source_hash="ca27d9b6">
-<div class="sourceCode" id="cb11"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<div class="cell" data-cell_id="00013-c881baab-40c3-47d6-b513-321ffe5a8588" data-deepnote_cell_type="code" data-execution_millis="15" data-execution_start="1604928177369" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="ca27d9b6" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">8</span>))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>tasks <span class="op">=</span> []</span>
@@ -345,11 +412,11 @@ Wall time: 2.01 s</code></pre>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="bu">sum</span>(tasks)</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>total</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 1.27 ms, sys: 2.14 ms, total: 3.42 ms
 Wall time: 8.01 s</code></pre>
 </div>
-<div class="cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>36</code></pre>
 </div>
 </div>
@@ -365,8 +432,8 @@ Wall time: 8.01 s</code></pre>
 <section id="decorator" class="level2">
 <h2 class="anchored" data-anchor-id="decorator">Decorator</h2>
 <p>It is also common to see the delayed function used as a decorator. Same example:</p>
-<div class="cell" data-cell_id="00016-45f52943-f239-4265-b026-8110f2c9c1a7" data-deepnote_cell_type="code" data-execution_millis="2017" data-execution_start="1604928185931" data-source_hash="52b83e58">
-<div class="sourceCode" id="cb14"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<div class="cell" data-cell_id="00016-45f52943-f239-4265-b026-8110f2c9c1a7" data-deepnote_cell_type="code" data-execution_millis="2017" data-execution_start="1604928185931" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="52b83e58" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">@dask.delayed</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slowinc(x, delay<span class="op">=</span><span class="dv">1</span>):</span>
@@ -382,17 +449,17 @@ Wall time: 8.01 s</code></pre>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> slowinc(<span class="dv">2</span>)</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> slowadd(x, y)</span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>z.compute()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 3.01 ms, sys: 2.53 ms, total: 5.55 ms
 Wall time: 2.01 s</code></pre>
 </div>
-<div class="cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>5</code></pre>
 </div>
 </div>
-<div class="cell" data-cell_id="00019-e4fb6083-ef12-4369-a226-334da8875343" data-deepnote_cell_type="code" data-execution_millis="83" data-execution_start="1604928187955" data-source_hash="3d8a266a">
-<div class="sourceCode" id="cb17"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>z.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="cell" data-cell_id="00019-e4fb6083-ef12-4369-a226-334da8875343" data-deepnote_cell_type="code" data-execution_millis="83" data-execution_start="1604928187955" data-source_hash="3d8a266a" data-tags="[]" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>z.visualize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 <p><img src="08-DaskDelayed_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
@@ -403,7 +470,8 @@ Wall time: 2.01 s</code></pre>
 <li>Delay only some functions, running a few of them immediately. This is helpful when those functions are fast and help us to determine what other slower functions we should call.</li>
 <li>In the example below we iterate through a list of inputs. If that input is even then we want to call <code>half</code>. If the input is odd then we want to call <code>odd_process</code>. This iseven decision to call <code>half</code> or <code>odd_process</code> has to be made immediately (not lazily) in order for our graph-building Python code to proceed.</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
+<div class="cell" data-cell_id="00018-7a4c86ba-18df-432a-bd2a-1b767dc6b10f" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928190542" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="c1388939" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.delayed</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> half(x):</span>
@@ -427,6 +495,7 @@ Wall time: 2.01 s</code></pre>
 <span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        result.append(odd_process(x))</span>
 <span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="bu">sum</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="exercise-8.2" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-8.2">Exercise 8.2</h3>
 <ul>
@@ -444,8 +513,8 @@ Wall time: 2.01 s</code></pre>
 <li>Is it really faster as expected ?</li>
 </ul>
 <p>Hint: Read <a href="http://dask.pydata.org/en/latest/delayed-best-practices.html">Delayed Best Practices</a></p>
-<div class="cell" data-cell_id="00021-2eebfde2-13e4-4f69-bb93-d11e0216112e" data-deepnote_cell_type="code" data-execution_millis="7" data-execution_start="1604928202619" data-source_hash="cae726ac">
-<div class="sourceCode" id="cb19"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># library to get directory and file paths</span></span>
+<div class="cell" data-cell_id="00021-2eebfde2-13e4-4f69-bb93-d11e0216112e" data-deepnote_cell_type="code" data-execution_millis="7" data-execution_start="1604928202619" data-source_hash="cae726ac" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  <span class="co"># library to get directory and file paths</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tarfile <span class="co"># this module makes possible to read and write tar archives</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_data(name, where):</span>
@@ -457,11 +526,12 @@ Wall time: 2.01 s</code></pre>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>          data.extractall(datadir)  <span class="co"># extract all data file in datadir</span></span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>extract_data(<span class="st">'data/daily-stock.tgz'</span>,<span class="st">'data'</span>) <span class="co"># this function call will extract json files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code>Extracting data...</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask</span>
+<div class="cell" data-cell_id="00022-0c5ae210-e929-4dc9-80a4-65d82633f166" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928207401" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="c6c7aed9" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, sys</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -469,9 +539,10 @@ Wall time: 2.01 s</code></pre>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>here <span class="op">=</span> os.getcwd() <span class="co"># get the current directory</span></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> <span class="bu">sorted</span>(glob(os.path.join(here,<span class="st">'data'</span>, <span class="st">'daily-stock'</span>, <span class="st">'*.json'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-cell_id="00030-8e4a6346-7542-46f8-908c-656950c3e738" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928209989" data-source_hash="72b32632">
-<div class="sourceCode" id="cb22"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>filenames[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+</div>
+<div class="cell" data-cell_id="00030-8e4a6346-7542-46f8-908c-656950c3e738" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928209989" data-source_hash="72b32632" data-tags="[]" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>filenames[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>['/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.json',
  '/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/afl.json',
  '/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aig.json',
@@ -479,9 +550,9 @@ Wall time: 2.01 s</code></pre>
  '/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/amgn.json']</code></pre>
 </div>
 </div>
-<div class="cell" data-cell_id="00032-468f2ab1-6937-4414-bc93-3e503beff036" data-deepnote_cell_type="code" data-execution_millis="1272" data-execution_start="1604928213763" data-source_hash="16bc38b6">
-<div class="sourceCode" id="cb24"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>rm data<span class="op">/</span>daily<span class="op">-</span>stock<span class="op">/*</span>.h5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-stdout">
+<div class="cell" data-cell_id="00032-468f2ab1-6937-4414-bc93-3e503beff036" data-deepnote_cell_type="code" data-execution_millis="1272" data-execution_start="1604928213763" data-source_hash="16bc38b6" data-tags="[]" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>rm data<span class="op">/</span>daily<span class="op">-</span>stock<span class="op">/*</span>.h5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>rm: data/daily-stock/*.h5: No such file or directory</code></pre>
 </div>
 </div>
@@ -501,23 +572,24 @@ Wall time: 2.01 s</code></pre>
 <p>Data are in the file <code>data/nycflights.tar.gz</code>. You can extract them with the command</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> zxvf nycflights.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>According to your operating system, double click on the file could do the job.</p>
-<div class="cell" data-cell_id="00060-3ed75ae6-57a0-4eed-9e09-30012046e27d" data-deepnote_cell_type="code" data-execution_millis="3" data-execution_start="1604928324013" data-source_hash="dac8590">
-<div class="sourceCode" id="cb27"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>extract_data(<span class="st">'data/nycflights.tar.gz'</span>,<span class="st">'data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-stdout">
+<div class="cell" data-cell_id="00060-3ed75ae6-57a0-4eed-9e09-30012046e27d" data-deepnote_cell_type="code" data-execution_millis="3" data-execution_start="1604928324013" data-source_hash="dac8590" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>extract_data(<span class="st">'data/nycflights.tar.gz'</span>,<span class="st">'data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
 <pre><code>Extracting data...</code></pre>
 </div>
 </div>
 </section>
 <section id="read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay" class="level3">
 <h3 class="anchored" data-anchor-id="read-one-file-with-pandas.read_csv-and-compute-mean-departure-delay">Read one file with <code>pandas.read_csv</code> and compute mean departure delay</h3>
-<div class="cell" data-cell_id="00063-571dc5fc-adc1-4c78-8327-8789e66df803" data-deepnote_cell_type="code" data-execution_millis="1287" data-execution_start="1604928326000" data-source_hash="1e7ce2bd">
-<div class="sourceCode" id="cb29"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<div class="cell" data-cell_id="00063-571dc5fc-adc1-4c78-8327-8789e66df803" data-deepnote_cell_type="code" data-execution_millis="1287" data-execution_start="1604928326000" data-source_hash="1e7ce2bd" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(os.path.join(<span class="st">"data"</span>, <span class="st">"nycflights"</span>,<span class="st">'1990.csv'</span>))</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="36">
+
 <div>
 
-<table class="dataframe table">
+<table class="dataframe table table-sm table-striped">
   <thead>
     <tr>
       <th></th>
@@ -671,10 +743,10 @@ Wall time: 2.01 s</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-cell_id="00064-89e8646e-fc15-431f-a829-4f996610ba3e" data-deepnote_cell_type="code" data-execution_millis="11" data-execution_start="1604928328770" data-source_hash="5c6e1e22">
-<div class="sourceCode" id="cb30"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the schema?</span></span>
+<div class="cell" data-cell_id="00064-89e8646e-fc15-431f-a829-4f996610ba3e" data-deepnote_cell_type="code" data-execution_millis="11" data-execution_start="1604928328770" data-source_hash="5c6e1e22" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the schema?</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>Year                   int64
 Month                  int64
 DayofMonth             int64
@@ -701,17 +773,17 @@ Diverted               int64
 dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-cell_id="00065-e7b82501-4d4b-4897-8c54-60be7eb78e78" data-deepnote_cell_type="code" data-execution_millis="19" data-execution_start="1604928330437" data-source_hash="8b27f206">
-<div class="sourceCode" id="cb32"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What originating airports are in the data?</span></span>
+<div class="cell" data-cell_id="00065-e7b82501-4d4b-4897-8c54-60be7eb78e78" data-deepnote_cell_type="code" data-execution_millis="19" data-execution_start="1604928330437" data-source_hash="8b27f206" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What originating airports are in the data?</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df.Origin.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>array(['EWR', 'LGA', 'JFK'], dtype=object)</code></pre>
 </div>
 </div>
-<div class="cell" data-cell_id="00066-c5b73f9f-634e-4292-aa87-a037ad381e1b" data-deepnote_cell_type="code" data-execution_millis="15" data-execution_start="1604928331514" data-source_hash="c59d6c33">
-<div class="sourceCode" id="cb34"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean departure delay per-airport for one year</span></span>
+<div class="cell" data-cell_id="00066-c5b73f9f-634e-4292-aa87-a037ad381e1b" data-deepnote_cell_type="code" data-execution_millis="15" data-execution_start="1604928331514" data-source_hash="c59d6c33" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean departure delay per-airport for one year</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'Origin'</span>).DepDelay.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>Origin
 EWR     9.168411
 JFK    11.857274
@@ -723,11 +795,11 @@ Name: DepDelay, dtype: float64</code></pre>
 <section id="sequential-code-mean-departure-delay-per-airport" class="level3">
 <h3 class="anchored" data-anchor-id="sequential-code-mean-departure-delay-per-airport">Sequential code: Mean Departure Delay Per Airport</h3>
 <p>The above cell computes the mean departure delay per-airport for one year. Here we expand that to all years using a sequential for loop.</p>
-<div class="cell" data-cell_id="00068-55d4865b-71d5-43e5-9d57-bd68e47f7bd6" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1604928333654" data-source_hash="3418c48a">
-<div class="sourceCode" id="cb36"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<div class="cell" data-cell_id="00068-55d4865b-71d5-43e5-9d57-bd68e47f7bd6" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1604928333654" data-source_hash="3418c48a" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>filenames <span class="op">=</span> <span class="bu">sorted</span>(glob(os.path.join(<span class="st">'data'</span>, <span class="st">"nycflights"</span>, <span class="st">'*.csv'</span>)))</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>filenames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="cell-output cell-output-display" data-execution_count="40">
 <pre><code>['data/nycflights/1990.csv',
  'data/nycflights/1991.csv',
  'data/nycflights/1992.csv',
@@ -740,8 +812,8 @@ Name: DepDelay, dtype: float64</code></pre>
  'data/nycflights/1999.csv']</code></pre>
 </div>
 </div>
-<div class="cell" data-cell_id="00069-57244563-895c-4b4e-babf-722e96a45882" data-deepnote_cell_type="code" data-execution_millis="9916" data-execution_start="1604928335284" data-source_hash="d67fb36f">
-<div class="sourceCode" id="cb38"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<div class="cell" data-cell_id="00069-57244563-895c-4b4e-babf-722e96a45882" data-deepnote_cell_type="code" data-execution_millis="9916" data-execution_start="1604928335284" data-source_hash="d67fb36f" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>sums <span class="op">=</span> []</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> []</span>
@@ -766,14 +838,14 @@ Name: DepDelay, dtype: float64</code></pre>
 <span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>total_delays <span class="op">=</span> <span class="bu">sum</span>(sums)</span>
 <span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>n_flights <span class="op">=</span> <span class="bu">sum</span>(counts)</span>
 <span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> total_delays <span class="op">/</span> n_flights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-stdout">
+<div class="cell-output cell-output-stdout">
 <pre><code>CPU times: user 4.48 s, sys: 946 ms, total: 5.42 s
 Wall time: 5.47 s</code></pre>
 </div>
 </div>
-<div class="cell" data-cell_id="00070-7408a639-3dfc-4e36-8f9d-1aad78f8be32" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928345215" data-source_hash="2f430a9c">
-<div class="sourceCode" id="cb40"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="cell" data-cell_id="00070-7408a639-3dfc-4e36-8f9d-1aad78f8be32" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1604928345215" data-source_hash="2f430a9c" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>Origin
 EWR    10.295469
 JFK    10.351299
@@ -802,7 +874,9 @@ Name: DepDelay, dtype: float64</code></pre>
 </section>
 </section>
 </section>
-<script type="application/javascript">
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";
   const anchorJS = new window.AnchorJS();
@@ -823,29 +897,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
   });
   function tippyHover(el, contentFn) {
-    window.tippy(el, {
+    const config = {
       allowHTML: true,
       content: contentFn,
       maxWidth: 500,
       delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
       placement: 'bottom-start'
-    }); 
+    };
+    window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      const id = new URL(ref.getAttribute('href')).hash.replace(/^#/, "");
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
@@ -871,16 +955,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</main>
-<div class="page-navigation page-navigation-docked">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</div>
-</div> <!-- /main column -->
-</div> <!-- /row -->
-</div> <!-- /container fluid -->
+</div> <!-- /content -->
+
 
 
 </body></html>
