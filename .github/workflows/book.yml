@@ -35,11 +35,11 @@ jobs:
     - name: Install jupyter-book
       shell: bash -l {0}
       run: |
-        mamba run -n big-data python -m ipykernel install --user --name big-data
-        mamba install jupyter-book -n base
+        micromamba run -n big-data python -m ipykernel install --user --name big-data
+        micromamba install jupyter-book -n base
     - name: Build the book
       shell: bash -l {0}
-      run: mamba run -n base jupyter-book build notebooks
+      run: micromamba run -n base jupyter-book build notebooks
     - name: "Install quarto bin"
       run: |
         curl -s https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest | 
@@ -50,7 +50,7 @@ jobs:
     - name: Render quarto book
       shell: bash -l {0}
       run: |
-        mamba run -n base quarto render notebooks
+        micromamba run -n base quarto render notebooks
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3
       with:
