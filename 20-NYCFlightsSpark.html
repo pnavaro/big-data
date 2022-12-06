@@ -1,0 +1,1199 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>NYC Flights data &#8212; Python tools for Big data</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://pnavaro.github.io/big-data/20-NYCFlightsSpark.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NYC Flights data 2013 with Weather data" href="21-NYCFLights2013Spark.html" />
+    <link rel="prev" title="New York City Taxi Cab Trip - Spark dataframes on HDFS" href="19-NYCTaxiCabTripSpark.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logoR2-Noir.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Python tools for Big data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-GitBasics.html">
+   Git basics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-JupyterQuickStart.html">
+   Jupyter
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-WordCount.html">
+   Wordcount
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-MapReduce.html">
+   Map Reduce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-ParallelComputation.html">
+   Parallel Computation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-AsynchronousProcessing.html">
+   Asynchronous Processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-DaskDelayed.html">
+   Dask
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-DaskBag.html">
+   Dask bag
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-PandasSeries.html">
+   Pandas Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-PandaDataframes.html">
+   Pandas Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-UnixCommands.html">
+   Basic Commands in the Unix Shell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Hadoop.html">
+   Hadoop
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-FileFormats.html">
+   File Formats
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-PySpark.html">
+   PySpark
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-DaskDataframes.html">
+   Dask Dataframes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-SparkDataFrames.html">
+   Spark DataFrames
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-NYCTaxiCabTripDask.html">
+   Dask dataframes on HDFS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
+   New York City Taxi Cab Trip - Spark dataframes on HDFS
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   NYC Flights data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-NYCFLights2013Spark.html">
+   NYC Flights data 2013 with Weather data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-SparkExercises.html">
+   Start the spark session
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/20-NYCFlightsSpark.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/20-NYCFlightsSpark.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/pnavaro/big-data"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F20-NYCFlightsSpark.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/pnavaro/big-data/edit/master/notebooks/20-NYCFlightsSpark.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/20-NYCFlightsSpark.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#column-operations">
+   Column Operations
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>NYC Flights data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#column-operations">
+   Column Operations
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="nyc-flights-data">
+<h1>NYC Flights data<a class="headerlink" href="#nyc-flights-data" title="Permalink to this headline">#</a></h1>
+<p>Reference : <a class="reference external" href="https://github.com/rich-iannone/so-many-pyspark-examples/blob/main/spark-dataframes.ipynb">https://github.com/rich-iannone/so-many-pyspark-examples/blob/main/spark-dataframes.ipynb</a></p>
+<p>In this notebook, we will extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from <a class="reference external" href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>.</p>
+<p><strong>Variable descriptions</strong></p>
+<p>Name	Description</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Year</span></code> 1987-2008</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Month</span></code> 1-12</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DayofMonth</span></code> 1-31</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DayOfWeek</span></code> 1 (Monday) - 7 (Sunday)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DepTime</span></code> actual departure time (local, hhmm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CRSDepTime</span></code> scheduled departure time (local, hhmm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrTime</span></code> actual arrival time (local, hhmm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CRSArrTime</span></code> scheduled arrival time (local, hhmm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UniqueCarrier</span></code> unique carrier code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FlightNum</span></code> flight number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TailNu</span></code> plane tail number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ActualElapsedTime</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CRSElapsedTime</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AirTime</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrDelay</span></code> arrival delay, in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DepDelay</span></code> departure delay, in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Origin</span></code> origin IATA airport code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dest</span></code> destination IATA airport code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Distance</span></code> in miles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TaxiIn</span></code> taxi in time, in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TaxiOut</span></code> taxi out time in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cancelled</span></code> was the flight cancelled?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CancellationCode</span></code> reason for cancellation (A = carrier, B = weather, C = NAS, D = security)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diverted</span></code> 1 = yes, 0 = no</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CarrierDelay</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WeatherDelay</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NASDelay</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SecurityDelay</span></code> in minutes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LateAircraftDelay</span></code> in minutes</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+        <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.cores.max&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;NYCFlights&quot;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;spark://b2-120-gra11:7077&quot;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
+
+<span class="n">nycflights</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;hdfs://localhost:54310/data/nycflights.parquet&quot;</span><span class="p">)</span>
+<span class="n">nycflights</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 10:31:03 WARN Utils: Your hostname, b2-120-gra11 resolves to a loopback address: 127.0.1.1; using 141.94.168.194 instead (on interface ens3)
+22/12/06 10:31:03 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting default log level to &quot;WARN&quot;.
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 10:31:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 0:&gt;                                                          (0 + 0) / 1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 10:31:31 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
+|               Date|DayOfWeek|DepTime|CRSDepTime|ArrTime|CRSArrTime|UniqueCarrier|FlightNum|ActualElapsedTime|CRSElapsedTime|AirTime|ArrDelay|DepDelay|Origin|Dest|Distance|TaxiIn|TaxiOut|Cancelled|Diverted|__null_dask_index__|
++-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
+|1999-01-01 00:00:00|        5| 1526.0|      1515| 1838.0|      1849|           CO|     1923|            312.0|         334.0|  289.0|   -11.0|    11.0|   EWR| PHX|  2133.0|   7.0|   16.0|    false|       0|                  0|
+|1999-01-02 00:00:00|        6| 1727.0|      1540| 2056.0|      1914|           CO|     1923|            329.0|         334.0|  301.0|   102.0|   107.0|   EWR| PHX|  2133.0|   8.0|   20.0|    false|       0|                  1|
+|1999-01-03 00:00:00|        7| 1609.0|      1515| 1935.0|      1849|           CO|     1923|            326.0|         334.0|  295.0|    46.0|    54.0|   EWR| PHX|  2133.0|   6.0|   25.0|    false|       0|                  2|
+|1999-01-04 00:00:00|        1| 1605.0|      1515| 1923.0|      1849|           CO|     1923|            318.0|         334.0|  292.0|    34.0|    50.0|   EWR| PHX|  2133.0|   5.0|   21.0|    false|       0|                  3|
+|1999-01-05 00:00:00|        2| 1529.0|      1515| 1908.0|      1849|           CO|     1923|            339.0|         334.0|  301.0|    19.0|    14.0|   EWR| PHX|  2133.0|   6.0|   32.0|    false|       0|                  4|
+|1999-01-06 00:00:00|        3| 1523.0|      1515| 1941.0|      1849|           CO|     1923|            378.0|         334.0|  344.0|    52.0|     8.0|   EWR| PHX|  2133.0|  10.0|   24.0|    false|       0|                  5|
+|1999-01-07 00:00:00|        4| 1521.0|      1515| 1920.0|      1849|           CO|     1923|            359.0|         334.0|  326.0|    31.0|     6.0|   EWR| PHX|  2133.0|   6.0|   27.0|    false|       0|                  6|
+|1999-01-08 00:00:00|        5| 2038.0|      1515|   22.0|      1849|           CO|     1923|            344.0|         334.0|  290.0|   333.0|   323.0|   EWR| PHX|  2133.0|   4.0|   50.0|    false|       0|                  7|
+|1999-01-09 00:00:00|        6| 1616.0|      1540| 1943.0|      1914|           CO|     1923|            327.0|         334.0|  302.0|    29.0|    36.0|   EWR| PHX|  2133.0|   8.0|   17.0|    false|       0|                  8|
+|1999-01-10 00:00:00|        7| 1515.0|      1515| 1850.0|      1849|           CO|     1923|            335.0|         334.0|  291.0|     1.0|     0.0|   EWR| PHX|  2133.0|   9.0|   35.0|    false|       0|                  9|
+|1999-01-11 00:00:00|        1| 1514.0|      1515| 1922.0|      1849|           CO|     1923|            368.0|         334.0|  318.0|    33.0|    -1.0|   EWR| PHX|  2133.0|   5.0|   45.0|    false|       0|                 10|
+|1999-01-12 00:00:00|        2| 1513.0|      1515| 1838.0|      1849|           CO|     1923|            325.0|         334.0|  303.0|   -11.0|    -2.0|   EWR| PHX|  2133.0|   7.0|   15.0|    false|       0|                 11|
+|1999-01-13 00:00:00|        3| 1514.0|      1515| 1921.0|      1849|           CO|     1923|            367.0|         334.0|  316.0|    32.0|    -1.0|   EWR| PHX|  2133.0|   7.0|   44.0|    false|       0|                 12|
+|1999-01-14 00:00:00|        4| 1640.0|      1515| 2031.0|      1849|           CO|     1923|            351.0|         334.0|  289.0|   102.0|    85.0|   EWR| PHX|  2133.0|   6.0|   56.0|    false|       0|                 13|
+|1999-01-15 00:00:00|        5| 1605.0|      1515| 1950.0|      1849|           CO|     1923|            345.0|         334.0|  305.0|    61.0|    50.0|   EWR| PHX|  2133.0|   5.0|   35.0|    false|       0|                 14|
+|1999-01-16 00:00:00|        6| 1606.0|      1540| 1953.0|      1914|           CO|     1923|            347.0|         334.0|  317.0|    39.0|    26.0|   EWR| PHX|  2133.0|  14.0|   16.0|    false|       0|                 15|
+|1999-01-17 00:00:00|        7| 1527.0|      1515| 1859.0|      1849|           CO|     1923|            332.0|         334.0|  296.0|    10.0|    12.0|   EWR| PHX|  2133.0|   6.0|   30.0|    false|       0|                 16|
+|1999-01-18 00:00:00|        1| 1636.0|      1515| 2030.0|      1849|           CO|     1923|            354.0|         334.0|  307.0|   101.0|    81.0|   EWR| PHX|  2133.0|   6.0|   41.0|    false|       0|                 17|
+|1999-01-19 00:00:00|        2| 1510.0|      1515| 1901.0|      1849|           CO|     1923|            351.0|         334.0|  331.0|    12.0|    -5.0|   EWR| PHX|  2133.0|   7.0|   13.0|    false|       0|                 18|
+|1999-01-20 00:00:00|        3| 1520.0|      1515| 1915.0|      1849|           CO|     1923|            355.0|         334.0|  320.0|    26.0|     5.0|   EWR| PHX|  2133.0|   4.0|   31.0|    false|       0|                 19|
++-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
+only showing top 20 rows
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look to the dataframe scheme</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nycflights</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root
+ |-- Date: timestamp (nullable = true)
+ |-- DayOfWeek: long (nullable = true)
+ |-- DepTime: double (nullable = true)
+ |-- CRSDepTime: long (nullable = true)
+ |-- ArrTime: double (nullable = true)
+ |-- CRSArrTime: long (nullable = true)
+ |-- UniqueCarrier: string (nullable = true)
+ |-- FlightNum: long (nullable = true)
+ |-- ActualElapsedTime: double (nullable = true)
+ |-- CRSElapsedTime: double (nullable = true)
+ |-- AirTime: double (nullable = true)
+ |-- ArrDelay: double (nullable = true)
+ |-- DepDelay: double (nullable = true)
+ |-- Origin: string (nullable = true)
+ |-- Dest: string (nullable = true)
+ |-- Distance: double (nullable = true)
+ |-- TaxiIn: double (nullable = true)
+ |-- TaxiOut: double (nullable = true)
+ |-- Cancelled: boolean (nullable = true)
+ |-- Diverted: long (nullable = true)
+ |-- __null_dask_index__: long (nullable = true)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s group and aggregate <code class="docutils literal notranslate"><span class="pre">groupBy()</span></code> will group one or more DF columns and prep them for aggregration functions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">nycflights</span>
+ <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Origin&#39;</span><span class="p">)</span> <span class="c1"># creates &#39;GroupedData&#39;</span>
+ <span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="c1"># creates a new column with aggregate `count` values</span>
+ <span class="o">.</span><span class="n">show</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 4:&gt;                                                          (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+-------+
+|Origin|  count|
++------+-------+
+|   LGA|1003420|
+|   EWR|1174131|
+|   JFK| 434341|
++------+-------+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">agg()</span></code> function to perform multiple aggregations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">nycflights</span>
+ <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Origin&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;DepDelay&#39;</span><span class="p">:</span> <span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="s1">&#39;ArrDelay&#39;</span><span class="p">:</span> <span class="s1">&#39;avg&#39;</span><span class="p">})</span> <span class="c1"># note the new column names</span>
+ <span class="o">.</span><span class="n">show</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 7:&gt;                                                          (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+------------------+-----------------+
+|Origin|     avg(DepDelay)|    avg(ArrDelay)|
++------+------------------+-----------------+
+|   LGA| 7.431141565915709|6.047335822109474|
+|   EWR|10.295468607250333|9.565089035954916|
+|   JFK|10.351298909519874|8.353392637878372|
++------+------------------+-----------------+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can’t perform multiple aggregrations on the same column (only the last is performed)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">nycflights</span>
+ <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;DayOfWeek&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;DepDelay&#39;</span><span class="p">:</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;DepDelay&#39;</span><span class="p">:</span> <span class="s1">&#39;max&#39;</span><span class="p">})</span>
+ <span class="o">.</span><span class="n">show</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 10:&gt;                                                         (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+-------------+
+|DayOfWeek|max(DepDelay)|
++---------+-------------+
+|        7|       1429.0|
+|        6|       1434.0|
+|        5|       1435.0|
+|        1|       1435.0|
+|        3|       1435.0|
+|        2|       1434.0|
+|        4|       1435.0|
++---------+-------------+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">groupBy()</span></code> with a few columns, then aggregate</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">nycflights</span>
+  <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;DayOfWeek&#39;</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="s1">&#39;Dest&#39;</span><span class="p">])</span> <span class="c1"># group by these unique combinations</span>
+  <span class="o">.</span><span class="n">count</span><span class="p">()</span>                              <span class="c1"># perform a &#39;count&#39; aggregation on the groups</span>
+  <span class="o">.</span><span class="n">orderBy</span><span class="p">([</span><span class="s1">&#39;DayOfWeek&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">],</span>
+           <span class="n">ascending</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>          <span class="c1"># order by `DayOfWeek` ascending, `count` descending</span>
+  <span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="p">)</span> 
+     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 13:&gt;                                                         (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+------+----+-----+
+|DayOfWeek|Origin|Dest|count|
++---------+------+----+-----+
+|        1|   LGA| ORD|17121|
+|        1|   EWR| ORD|15946|
+|        1|   EWR| BOS|12157|
+|        1|   JFK| LAX|10383|
+|        1|   EWR| ATL| 9462|
+|        1|   LGA| BOS| 8755|
+|        1|   LGA| DFW| 8687|
+|        1|   LGA| DCA| 8165|
+|        1|   LGA| ATL| 7568|
+|        1|   EWR| DTW| 7209|
+|        1|   JFK| SFO| 6869|
+|        1|   EWR| MCO| 6564|
+|        1|   LGA| MIA| 6381|
+|        1|   EWR| DFW| 6364|
+|        1|   EWR| DCA| 6203|
+|        1|   EWR| LAX| 5959|
+|        1|   LGA| MCO| 5503|
+|        1|   EWR| PIT| 5213|
+|        1|   EWR| DEN| 5004|
+|        1|   JFK| SJU| 4988|
+|        1|   EWR| MIA| 4941|
+|        1|   LGA| DTW| 4927|
+|        1|   LGA| PIT| 4894|
+|        1|   LGA| PBI| 4888|
+|        1|   LGA| CLT| 4776|
+|        1|   JFK| MIA| 4749|
+|        1|   LGA| FLL| 4495|
+|        1|   EWR| IAH| 4399|
+|        1|   EWR| CLT| 4377|
+|        1|   LGA| CLE| 4308|
+|        1|   EWR| BUF| 4145|
+|        1|   EWR| CLE| 4096|
+|        1|   EWR| MSP| 4087|
+|        1|   LGA| IAH| 3931|
+|        1|   EWR| STL| 3931|
+|        1|   LGA| MSP| 3848|
+|        1|   EWR| SFO| 3844|
+|        1|   LGA| BUF| 3843|
+|        1|   EWR| FLL| 3811|
+|        1|   LGA| DEN| 3550|
++---------+------+----+-----+
+only showing top 40 rows
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">groupBy()</span></code> + <code class="docutils literal notranslate"><span class="pre">pivot()</span></code> + an aggregation function to make a pivot table!
+Get a table of flights by month for each carrier</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">nycflights</span>
+  <span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;DayOfWeek&#39;</span><span class="p">)</span> <span class="c1"># group the data for aggregation by `month` number</span>
+  <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;UniqueCarrier&#39;</span><span class="p">)</span> <span class="c1"># provide columns of data by `carrier` abbreviation</span>
+  <span class="o">.</span><span class="n">count</span><span class="p">()</span>          <span class="c1"># create aggregations as a count of rows</span>
+  <span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="p">)</span>
+     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 27:&gt;                                                         (0 + 1) / 1]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
+|DayOfWeek|   AA|    CO|   DL|  EA|  HP|ML (1)|   NW|PA (1)|   TW|   UA|   US|
++---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
+|        7|51950| 94901|52191|2375|6240|   306|17846|  5856|29381|33861|59781|
+|        6|46854| 85451|51611|2346|6429|   281|16335|  5891|28709|32328|44344|
+|        5|54980|106813|54520|2346|6411|   363|19695|  6263|29862|36895|67396|
+|        1|55358|106849|54824|2431|6413|   365|19783|  6254|30106|37294|68334|
+|        3|55268|106974|54936|2337|6396|   376|19806|  6259|30076|37299|68315|
+|        2|55472|107185|55061|2346|6411|   368|19893|  6206|30128|37311|68531|
+|        4|55049|106488|54626|2361|6417|   366|19709|  6173|29811|37135|67981|
++---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<section id="column-operations">
+<h2>Column Operations<a class="headerlink" href="#column-operations" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Column</span></code> instances can be created by:</p>
+<p>(1) Selecting a column from a DataFrame</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df.colName</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df[&quot;colName&quot;]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.select(df.colName)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.withColumn(df.colName)</span></code></p></li>
+</ul>
+<p>(2) Creating one from an expression</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df.colName</span> <span class="pre">+</span> <span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">df.colName</span></code></p></li>
+</ul>
+<p>Once you have a <code class="docutils literal notranslate"><span class="pre">Column</span></code> instance, you can apply a wide range of functions. Some of the functions covered here are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">format_number()</span></code>: apply formatting to a number, rounded to <code class="docutils literal notranslate"><span class="pre">d</span></code> decimal places, and return the result as a string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">when()</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">otherwise()</span></code>: <code class="docutils literal notranslate"><span class="pre">when()</span></code> evaluates a list of conditions and returns one of multiple possible result expressions; if <code class="docutils literal notranslate"><span class="pre">otherwise()</span></code> is not invoked, <code class="docutils literal notranslate"><span class="pre">None</span></code> is returned for unmatched conditions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">concat_ws()</span></code>: concatenates multiple input string columns together into a single string column, using the given separator</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">to_utc_timestamp()</span></code>: assumes the given timestamp is in given timezone and converts to UTC</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">year()</span></code>: extracts the year of a given date as integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">month()</span></code>: extracts the month of a given date as integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dayofmonth()</span></code>: extracts the day of the month of a given date as integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hour()</span></code>: extract the hour of a given date as integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minute()</span></code>: extract the minute of a given date as integer</p></li>
+</ul>
+<p>Perform 2 different aggregations, rename those new columns, then do some rounding of the aggregrate values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="p">(</span>
+  <span class="n">nycflights</span>
+  <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;DayOfWeek&#39;</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;DepDelay&#39;</span><span class="p">:</span> <span class="s1">&#39;avg&#39;</span><span class="p">,</span> <span class="s1">&#39;ArrDelay&#39;</span><span class="p">:</span> <span class="s1">&#39;avg&#39;</span><span class="p">})</span>
+  <span class="o">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s1">&#39;avg(DepDelay)&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_arr_delay&#39;</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s1">&#39;avg(ArrDelay)&#39;</span><span class="p">,</span> <span class="s1">&#39;mean_dep_delay&#39;</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;mean_arr_delay&#39;</span><span class="p">,</span> <span class="n">format_number</span><span class="p">(</span><span class="s1">&#39;mean_arr_delay&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;mean_dep_delay&#39;</span><span class="p">,</span> <span class="n">format_number</span><span class="p">(</span><span class="s1">&#39;mean_dep_delay&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 28:=====&gt;                                                  (1 + 10) / 11]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+--------------+--------------+
+|DayOfWeek|mean_arr_delay|mean_dep_delay|
++---------+--------------+--------------+
+|        7|           9.0|           4.8|
+|        6|           7.8|           3.1|
+|        5|          11.5|          11.8|
+|        1|           8.1|           6.3|
+|        3|           9.1|           9.8|
+|        2|           8.1|           7.7|
+|        4|          10.5|          11.5|
++---------+--------------+--------------+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add a new column (<code class="docutils literal notranslate"><span class="pre">far_or_near</span></code>) with a string based on a comparison
+on a numeric column; uses: <code class="docutils literal notranslate"><span class="pre">withColumn()</span></code>, <code class="docutils literal notranslate"><span class="pre">when()</span></code>, and <code class="docutils literal notranslate"><span class="pre">otherwise()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>  <span class="c1"># Necessary for creating schemas</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># Importing PySpark functions</span>
+
+<span class="p">(</span>
+  <span class="n">nycflights</span>
+  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;far_or_near&#39;</span><span class="p">,</span>
+              <span class="n">when</span><span class="p">(</span><span class="n">nycflights</span><span class="o">.</span><span class="n">Distance</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;far&#39;</span><span class="p">)</span> <span class="c1"># the `if-then` statement</span>
+              <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="s1">&#39;near&#39;</span><span class="p">))</span>                     <span class="c1"># the `else` statement</span>
+  <span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;Origin&quot;</span><span class="p">,</span> <span class="s2">&quot;Dest&quot;</span><span class="p">,</span> <span class="s2">&quot;far_or_near&quot;</span><span class="p">])</span>
+  <span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 28:=============================&gt;                            (2 + 2) / 4]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+----+-----------+
+|Origin|Dest|far_or_near|
++------+----+-----------+
+|   LGA| MKE|       near|
+|   LGA| BOS|       near|
+|   LGA| CAE|       near|
+|   JFK| FLL|        far|
+|   LGA| DTW|       near|
+|   JFK| IND|       near|
+|   LGA| BNA|       near|
+|   EWR| BNA|       near|
+|   LGA| PHL|       near|
+|   EWR| RSW|        far|
+|   EWR| DCA|       near|
+|   EWR| LAS|        far|
+|   EWR| ORH|       near|
+|   JFK| IAD|       near|
+|   EWR| SEA|        far|
+|   EWR| DAY|       near|
+|   JFK| RDU|       near|
+|   EWR| PIT|       near|
+|   LGA| EWR|       near|
+|   JFK| CVG|       near|
++------+----+-----------+
+only showing top 20 rows
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<p>Perform a few numerical computations across columns</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">nycflights</span>
+  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;dist_per_minute&#39;</span><span class="p">,</span>
+              <span class="n">nycflights</span><span class="o">.</span><span class="n">Distance</span> <span class="o">/</span> <span class="n">nycflights</span><span class="o">.</span><span class="n">AirTime</span><span class="p">)</span> <span class="c1"># create new column with division of values</span>
+  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;dist_per_minute&#39;</span><span class="p">,</span>
+              <span class="n">format_number</span><span class="p">(</span><span class="s1">&#39;dist_per_minute&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>       <span class="c1"># round that new column&#39;s float value to 2 decimal places</span>
+  <span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;Origin&quot;</span><span class="p">,</span> <span class="s2">&quot;Dest&quot;</span><span class="p">,</span> <span class="s2">&quot;dist_per_minute&quot;</span><span class="p">])</span>
+  <span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 31:===========================================&gt;              (3 + 1) / 4]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+----+---------------+
+|Origin|Dest|dist_per_minute|
++------+----+---------------+
+|   JFK| SFO|           6.66|
+|   JFK| STL|           7.89|
+|   LGA| TPA|           6.83|
+|   LGA| MEM|           7.77|
+|   LGA| MIA|           5.93|
+|   LGA| MSP|           5.45|
+|   LGA| MSY|           6.01|
+|   EWR| PBI|           8.26|
+|   EWR| LAX|           7.03|
+|   LGA| BOS|           4.87|
+|   LGA| DEN|           7.20|
+|   EWR| PHX|           6.20|
+|   EWR| GSP|           6.39|
+|   EWR| BUF|           3.97|
+|   EWR| CVG|           7.39|
+|   LGA| STL|           7.45|
+|   EWR| GSO|           4.80|
+|   EWR| ATL|           4.16|
+|   JFK| BQN|           7.40|
+|   LGA| CLT|           9.54|
++------+----+---------------+
+only showing top 20 rows
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can split the date if you need. Use the <code class="docutils literal notranslate"><span class="pre">year()</span></code>, <code class="docutils literal notranslate"><span class="pre">month()</span></code>, <code class="docutils literal notranslate"><span class="pre">dayofmonth()</span></code>,<code class="docutils literal notranslate"><span class="pre">hour()</span></code>, and <code class="docutils literal notranslate"><span class="pre">minute()</span></code> functions with <code class="docutils literal notranslate"><span class="pre">withColumn()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">nycflights</span>
+  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">year</span><span class="p">(</span><span class="n">nycflights</span><span class="o">.</span><span class="n">Date</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="n">month</span><span class="p">(</span><span class="n">nycflights</span><span class="o">.</span><span class="n">Date</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Day&#39;</span><span class="p">,</span> <span class="n">dayofmonth</span><span class="p">(</span><span class="n">nycflights</span><span class="o">.</span><span class="n">Date</span><span class="p">))</span>
+  <span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;Day&quot;</span><span class="p">,</span> <span class="s2">&quot;Month&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">])</span>
+  <span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 34:===========================================&gt;              (3 + 1) / 4]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---+-----+----+
+|Day|Month|Year|
++---+-----+----+
+| 10|    9|1995|
+| 29|   11|1995|
+| 29|    9|1990|
+|  1|   11|1990|
+| 24|    6|1994|
+| 17|   10|1994|
+|  6|    8|1995|
+|  5|    2|1990|
+| 29|    9|1994|
+| 18|   11|1994|
+|  2|   10|1995|
+| 26|    7|1994|
+| 31|    8|1994|
+|  5|    5|1990|
+|  8|    7|1990|
+| 16|    7|1990|
+|  1|    8|1990|
+|  2|   10|1994|
+|  2|    1|1995|
+| 22|    4|1995|
++---+-----+----+
+only showing top 20 rows
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are more time-based functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">date_sub()</span></code>: subtract an integer number of days from a <em>Date</em> or <em>Timestamp</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_add()</span></code>: add an integer number of days from a <em>Date</em> or <em>Timestamp</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datediff()</span></code>: get the difference between two dates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add_months()</span></code>: add an integer number of months</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">months_between()</span></code>: get the number of months between two dates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">next_day()</span></code>: returns the first date which is later than the value of the date column</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last_day()</span></code>: returns the last day of the month which the given date belongs to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dayofmonth()</span></code>: extract the day of the month of a given date as integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dayofyear()</span></code>: extract the day of the year of a given date as integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weekofyear()</span></code>: extract the week number of a given date as integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">quarter()</span></code>: extract the quarter of a given date</p></li>
+</ul>
+<p>Let’s transform the timestamp in the first record of <code class="docutils literal notranslate"><span class="pre">nycflights</span></code> with each of these functions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">nycflights</span>
+   <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+   <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>
+   <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;dayofyear&#39;</span><span class="p">,</span> <span class="n">dayofyear</span><span class="p">(</span><span class="n">nycflights</span><span class="o">.</span><span class="n">Date</span><span class="p">))</span>
+   <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;weekofyear&#39;</span><span class="p">,</span> <span class="n">weekofyear</span><span class="p">(</span><span class="n">nycflights</span><span class="o">.</span><span class="n">Date</span><span class="p">))</span>
+   <span class="o">.</span><span class="n">show</span><span class="p">()</span>
+   <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-------------------+---------+----------+
+|               Date|dayofyear|weekofyear|
++-------------------+---------+----------+
+|1992-01-07 00:00:00|        7|         2|
+|1992-01-08 00:00:00|        8|         2|
+|1992-01-09 00:00:00|        9|         2|
+|1992-01-11 00:00:00|       11|         2|
+|1992-01-12 00:00:00|       12|         2|
+|1992-01-13 00:00:00|       13|         3|
+|1992-01-14 00:00:00|       14|         3|
+|1992-01-15 00:00:00|       15|         3|
+|1992-01-16 00:00:00|       16|         3|
+|1992-01-17 00:00:00|       17|         3|
++-------------------+---------+----------+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spark</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "pnavaro/big-data",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="19-NYCTaxiCabTripSpark.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">New York City Taxi Cab Trip - Spark dataframes on HDFS</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="21-NYCFLights2013Spark.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">NYC Flights data 2013 with Weather data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pierre Navaro<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Spark DataFrames &#8212; Python tools for Big data</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -185,123 +199,283 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
-   Spark dataframes on HDFS
+   New York City Taxi Cab Trip - Spark dataframes on HDFS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20-NYCFlightsSpark.html">
+   NYC Flights data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-NYCFLights2013Spark.html">
+   NYC Flights data 2013 with Weather data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-SparkExercises.html">
+   Start the spark session
   </a>
  </li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/17-SparkDataFrames.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/pnavaro/big-data"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F17-SparkDataFrames.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/pnavaro/big-data/edit/master/notebooks/17-SparkDataFrames.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/17-SparkDataFrames.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/17-SparkDataFrames.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/pnavaro/big-data/master?urlpath=tree/notebooks/17-SparkDataFrames.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/pnavaro/big-data/blob/master/notebooks/17-SparkDataFrames.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/pnavaro/big-data"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/pnavaro/big-data/issues/new?title=Issue%20on%20page%20%2F17-SparkDataFrames.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/pnavaro/big-data/edit/master/notebooks/17-SparkDataFrames.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/17-SparkDataFrames.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
@@ -415,12 +589,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Spark DataFrames</h1>
@@ -550,11 +723,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="spark-dataframes">
-<h1>Spark DataFrames<a class="headerlink" href="#spark-dataframes" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="spark-dataframes">
+<h1>Spark DataFrames<a class="headerlink" href="#spark-dataframes" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
 <li><p>Enable wider audiences beyond “Big Data” engineers to leverage the power of distributed processing</p></li>
 <li><p>Inspired by data frames in R and Python (Pandas)</p></li>
@@ -562,57 +736,57 @@ const thebe_selector_output = ".output, .cell_output"
 data and data science applications</p></li>
 <li><p>Extension to the existing RDD API</p></li>
 </ul>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://spark.apache.org/docs/latest/sql-programming-guide.html">Spark SQL, DataFrames and Datasets Guide</a></p></li>
 <li><p><a class="reference external" href="https://docs.databricks.com/spark/latest/dataframes-datasets/introduction-to-dataframes-python.html">Introduction to DataFrames - Python</a></p></li>
 <li><p><a class="reference external" href="https://www.datacamp.com/community/blog/pyspark-sql-cheat-sheet">PySpark Cheat Sheet: Spark DataFrames in Python</a></p></li>
 </ul>
-<div class="section" id="dataframes-are">
-<h3>DataFrames are :<a class="headerlink" href="#dataframes-are" title="Permalink to this headline">¶</a></h3>
+<section id="dataframes-are">
+<h3>DataFrames are :<a class="headerlink" href="#dataframes-are" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>The preferred abstraction in Spark</p></li>
 <li><p>Strongly typed collection of distributed elements</p></li>
 <li><p>Built on Resilient Distributed Datasets (RDD)</p></li>
 <li><p>Immutable once constructed</p></li>
 </ul>
-</div>
-<div class="section" id="with-dataframes-you-can">
-<h3>With Dataframes you can :<a class="headerlink" href="#with-dataframes-you-can" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="with-dataframes-you-can">
+<h3>With Dataframes you can :<a class="headerlink" href="#with-dataframes-you-can" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Track lineage information to efficiently recompute lost data</p></li>
 <li><p>Enable operations on collection of elements in parallel</p></li>
 </ul>
-</div>
-<div class="section" id="you-construct-dataframes">
-<h3>You construct DataFrames<a class="headerlink" href="#you-construct-dataframes" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="you-construct-dataframes">
+<h3>You construct DataFrames<a class="headerlink" href="#you-construct-dataframes" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>by parallelizing existing collections (e.g., Pandas DataFrames)</p></li>
 <li><p>by transforming an existing DataFrames</p></li>
 <li><p>from files in HDFS or any other storage system (e.g., Parquet)</p></li>
 </ul>
-</div>
-<div class="section" id="features">
-<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Ability to scale from kilobytes of data on a single laptop to petabytes on a large cluster</p></li>
 <li><p>Support for a wide array of data formats and storage systems</p></li>
 <li><p>Seamless integration with all big data tooling and infrastructure via Spark</p></li>
 <li><p>APIs for Python, Java, Scala, and R</p></li>
 </ul>
-</div>
-<div class="section" id="dataframes-versus-rdds">
-<h3>DataFrames versus RDDs<a class="headerlink" href="#dataframes-versus-rdds" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="dataframes-versus-rdds">
+<h3>DataFrames versus RDDs<a class="headerlink" href="#dataframes-versus-rdds" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Nice API for new users familiar with data frames in other programming languages.</p></li>
 <li><p>For existing Spark users, the API will make Spark easier to program than using RDDs</p></li>
 <li><p>For both sets of users, DataFrames will improve performance through intelligent optimizations and code-generation</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="pyspark-shell">
-<h2>PySpark Shell<a class="headerlink" href="#pyspark-shell" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="pyspark-shell">
+<h2>PySpark Shell<a class="headerlink" href="#pyspark-shell" title="Permalink to this headline">#</a></h2>
 <p><strong>Run the Spark shell:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyspark
 </pre></div>
@@ -655,13 +829,13 @@ SparkSession available as &#39;spark&#39;.
 <span class="go">only showing top 20 rows</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="transformations-actions-laziness">
-<h2>Transformations, Actions, Laziness<a class="headerlink" href="#transformations-actions-laziness" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="transformations-actions-laziness">
+<h2>Transformations, Actions, Laziness<a class="headerlink" href="#transformations-actions-laziness" title="Permalink to this headline">#</a></h2>
 <p>Like RDDs, DataFrames are lazy. Transformations contribute to the query plan, but they don’t execute anything.
 Actions cause the execution of the query.</p>
-<div class="section" id="transformation-examples">
-<h3>Transformation examples<a class="headerlink" href="#transformation-examples" title="Permalink to this headline">¶</a></h3>
+<section id="transformation-examples">
+<h3>Transformation examples<a class="headerlink" href="#transformation-examples" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>filter</p></li>
 <li><p>select</p></li>
@@ -669,9 +843,9 @@ Actions cause the execution of the query.</p>
 <li><p>intersect</p></li>
 <li><p>join</p></li>
 </ul>
-</div>
-<div class="section" id="action-examples">
-<h3>Action examples<a class="headerlink" href="#action-examples" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="action-examples">
+<h3>Action examples<a class="headerlink" href="#action-examples" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>count</p></li>
 <li><p>collect</p></li>
@@ -679,10 +853,10 @@ Actions cause the execution of the query.</p>
 <li><p>head</p></li>
 <li><p>take</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="creating-a-dataframe-in-python">
-<h2>Creating a DataFrame in Python<a class="headerlink" href="#creating-a-dataframe-in-python" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="creating-a-dataframe-in-python">
+<h2>Creating a DataFrame in Python<a class="headerlink" href="#creating-a-dataframe-in-python" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">subprocess</span>
@@ -715,9 +889,9 @@ Actions cause the execution of the query.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="schema-inference">
-<h2>Schema Inference<a class="headerlink" href="#schema-inference" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="schema-inference">
+<h2>Schema Inference<a class="headerlink" href="#schema-inference" title="Permalink to this headline">#</a></h2>
 <p>In this exercise, let’s explore schema inference. We’re going to be using a file called <code class="docutils literal notranslate"><span class="pre">irmar.txt</span></code>. The data is structured, but it has no self-describing schema. And, it’s not JSON, so Spark can’t infer the schema automatically. Let’s create an RDD and look at the first few rows of the file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -728,9 +902,9 @@ Actions cause the execution of the query.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="hands-on-exercises">
-<h2>Hands-on Exercises<a class="headerlink" href="#hands-on-exercises" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="hands-on-exercises">
+<h2>Hands-on Exercises<a class="headerlink" href="#hands-on-exercises" title="Permalink to this headline">#</a></h2>
 <p>You can look at the <a href="http://spark.apache.org/docs/2.3.1/api/python/index.html" target="_blank">DataFrames API documentation</a></p>
 <p>Let’s take a look to file “/tmp/irmar.csv”. Each line consists
 of the same information about a person:</p>
@@ -780,8 +954,8 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-<div class="section" id="schema">
-<h3>Schema<a class="headerlink" href="#schema" title="Permalink to this headline">¶</a></h3>
+<section id="schema">
+<h3>Schema<a class="headerlink" href="#schema" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -789,9 +963,9 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="display">
-<h3>display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="display">
+<h3>display<a class="headerlink" href="#display" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -799,9 +973,9 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="select">
-<h3>select<a class="headerlink" href="#select" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="select">
+<h3>select<a class="headerlink" href="#select" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">])</span>
@@ -816,9 +990,9 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="filter">
-<h3>filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="filter">
+<h3>filter<a class="headerlink" href="#filter" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -826,9 +1000,9 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="filter-select">
-<h3>filter + select<a class="headerlink" href="#filter-select" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="filter-select">
+<h3>filter + select<a class="headerlink" href="#filter-select" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;team1&#39;</span><span class="p">])</span>
@@ -843,9 +1017,9 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="orderby">
-<h3>orderBy<a class="headerlink" href="#orderby" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="orderby">
+<h3>orderBy<a class="headerlink" href="#orderby" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span>
@@ -855,9 +1029,9 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="groupby">
-<h3>groupBy<a class="headerlink" href="#groupby" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="groupby">
+<h3>groupBy<a class="headerlink" href="#groupby" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;hdr&quot;</span><span class="p">])</span>
@@ -894,9 +1068,9 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>How many teachers from INSA (PR+MC) ?</p></li>
 <li><p>How many MC in STATS team ?</p></li>
@@ -916,9 +1090,9 @@ of the same information about a person:</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -942,9 +1116,11 @@ of the same information about a person:</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="16-DaskDataframes.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -960,24 +1136,28 @@ of the same information about a person:</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Pierre Navaro<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Pierre Navaro<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
