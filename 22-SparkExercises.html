@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Start the spark session &#8212; Python tools for Big data</title>
+    <title>Spark exercises &#8212; Python tools for Big data</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -213,7 +213,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Start the spark session
+   Spark exercises
   </a>
  </li>
 </ul>
@@ -475,17 +475,17 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-the-spark-session">
    Start the spark session
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-the-data">
    Load the data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cheat-sheets-and-documentation">
      Cheat Sheets and documentation
     </a>
@@ -501,7 +501,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Start the spark session</h1>
+                <h1>Spark exercises</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -511,17 +511,17 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-the-spark-session">
    Start the spark session
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-the-data">
    Load the data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cheat-sheets-and-documentation">
      Cheat Sheets and documentation
     </a>
@@ -538,8 +538,10 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="start-the-spark-session">
-<h1>Start the spark session<a class="headerlink" href="#start-the-spark-session" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="spark-exercises">
+<h1>Spark exercises<a class="headerlink" href="#spark-exercises" title="Permalink to this headline">#</a></h1>
+<section id="start-the-spark-session">
+<h2>Start the spark session<a class="headerlink" href="#start-the-spark-session" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
@@ -554,7 +556,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="load-the-data">
-<h1>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h1>
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Here we read the NYC taxi data files of year 2018 and select some variables.</p></li>
 </ul>
@@ -602,13 +604,14 @@ title="Print to PDF"
 <li><p>Investigate the <code class="docutils literal notranslate"><span class="pre">payment_type</span></code> column.  See how well each of the payment types correlate with the <code class="docutils literal notranslate"><span class="pre">tip_fraction</span></code>.  Did you find anything interesting?  Any guesses on what the different payment types might be?  If you’re interested you may be able to find more information on the <a class="reference external" href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">NYC TLC’s website</a></p></li>
 </ol>
 <section id="cheat-sheets-and-documentation">
-<h2>Cheat Sheets and documentation<a class="headerlink" href="#cheat-sheets-and-documentation" title="Permalink to this headline">#</a></h2>
+<h3>Cheat Sheets and documentation<a class="headerlink" href="#cheat-sheets-and-documentation" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/PySpark_SQL_Cheat_Sheet_Python.pdf">Spark DataFrames in Python</a></p></li>
 <li><p><a class="reference external" href="http://datacamp-community.s3.amazonaws.com/4d91fcbc-820d-4ae2-891b-f7a436ebefd4">Spark in Python</a></p></li>
 <li><p><a class="reference external" href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html">https://spark.apache.org/docs/latest/api/python/pyspark.sql.html</a></p></li>
 </ul>
 <p>Use the <a class="reference external" href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark API</a>.</p>
+</section>
 </section>
 </section>
 
