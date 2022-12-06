@@ -20,3 +20,6 @@ sections:
 - file: 17-SparkDataFrames
 - file: 18-NYCTaxiCabTripDask
 - file: 19-NYCTaxiCabTripSpark
+- file: 20-NYCFlightsSpark
+- file: 21-NYCFLights2013Spark
+- file: 22-SparkExercises

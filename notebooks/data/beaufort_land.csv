@@ -1,0 +1,14 @@
+force,speed_mi_h_lb,speed_mi_h_ub,name
+0,0,1,calm
+1,1,4,light air
+2,5,7,light breeze
+3,8,11,gentle breeze
+4,12,18,moderate breeze
+5,19,24,fresh breeze
+6,25,31,strong breeze
+7,32,38,near gale
+8,39,46,gale
+9,47,54,strong gale
+10,55,63,storm
+11,64,73,violent storm
+12,74,,hurricane
