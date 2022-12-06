@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">New York City Taxi Cab Trip - Spark dataframes on HDFS</a>
+  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">Spark dataframes on HDFS</a>
   </div>
 </li>
       </ul>
@@ -304,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="nyc-flights-data-2013-with-weather-data" class="level1">
 <h1>NYC Flights data 2013 with Weather data</h1>
 <p>Reference : https://github.com/rich-iannone/so-many-pyspark-examples/blob/main/spark-dataframes.ipynb</p>
-<div class="cell" data-cell_id="e04e8f8a418840098b98037121ea5da7" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1664193365062" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="88a3037b" data-execution_count="1">
+<div class="cell" data-cell_id="e04e8f8a418840098b98037121ea5da7" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1664193365062" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="88a3037b">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder <span class="op">\</span></span>
@@ -312,17 +312,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        .appName(<span class="st">"Convert CSV to parquet"</span>) <span class="op">\</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        .master(<span class="st">"spark://b2-120-gra11:7077"</span>) <span class="op">\</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        .getOrCreate()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>22/12/05 17:02:44 WARN Utils: Your hostname, b2-120-gra11 resolves to a loopback address: 127.0.1.1; using 141.94.168.194 instead (on interface ens3)
-22/12/05 17:02:44 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>22/12/05 17:02:46 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</code></pre>
-</div>
 </div>
 <section id="joins" class="level2">
 <h2 class="anchored" data-anchor-id="joins">Joins</h2>
@@ -330,429 +319,179 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 <p><code>join(other, on = None, how = None)</code></p>
 <p>where: - other: a DataFrame that serves as the right side of the join - on: typically a join expression - how: the default is <code>inner</code> but there are also <code>inner</code>, <code>outer</code>, <code>left_outer</code>, <code>right_outer</code>, and <code>leftsemi</code> joins available</p>
 <p>Let’s load in some more data so that we can have two DataFrames to join. The <strong>CSV</strong> file <code>weather.csv</code> contains hourly meteorological data from EWR during 2013. <code>nycflights2013.csv</code> contains flights data duringthe same period. Lets create nycflights2013 using a schema object made with `pyspark.sql.type``</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> <span class="op">*</span>  <span class="co"># Necessary for creating schemas</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> <span class="op">*</span> <span class="co"># Importing PySpark functions</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>nycflights_schema <span class="op">=</span> StructType([</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'year'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'month'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'day'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'dep_time'</span>, StringType(), <span class="va">True</span>),</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'dep_delay'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'arr_time'</span>, StringType(), <span class="va">True</span>),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'arr_delay'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'carrier'</span>, StringType(), <span class="va">True</span>),</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'tailnum'</span>, StringType(), <span class="va">True</span>),</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'flight'</span>, StringType(), <span class="va">True</span>),  </span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'origin'</span>, StringType(), <span class="va">True</span>),</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'dest'</span>, StringType(), <span class="va">True</span>),</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'air_time'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'distance'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'hour'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'minute'</span>, IntegerType(), <span class="va">True</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  ])</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and then read the CSV with the schema</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>nycflights13_csv <span class="op">=</span> spark.read.csv(<span class="st">"file:///srv/data/nycflights/nycflights13.csv"</span>, schema <span class="op">=</span> nycflights_schema )</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>nycflights13_csv.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+----+-----+----+--------+---------+--------+---------+-------+-------+------+------+----+--------+--------+----+------+
-|year|month| day|dep_time|dep_delay|arr_time|arr_delay|carrier|tailnum|flight|origin|dest|air_time|distance|hour|minute|
-+----+-----+----+--------+---------+--------+---------+-------+-------+------+------+----+--------+--------+----+------+
-|null| null|null|dep_time|     null|arr_time|     null|carrier|tailnum|flight|origin|dest|    null|    null|null|  null|
-|2013|    1|   1|     517|        2|     830|       11|     UA| N14228|  1545|   EWR| IAH|     227|    1400|   5|    17|
-|2013|    1|   1|     533|        4|     850|       20|     UA| N24211|  1714|   LGA| IAH|     227|    1416|   5|    33|
-|2013|    1|   1|     542|        2|     923|       33|     AA| N619AA|  1141|   JFK| MIA|     160|    1089|   5|    42|
-|2013|    1|   1|     544|       -1|    1004|      -18|     B6| N804JB|   725|   JFK| BQN|     183|    1576|   5|    44|
-|2013|    1|   1|     554|       -6|     812|      -25|     DL| N668DN|   461|   LGA| ATL|     116|     762|   5|    54|
-|2013|    1|   1|     554|       -4|     740|       12|     UA| N39463|  1696|   EWR| ORD|     150|     719|   5|    54|
-|2013|    1|   1|     555|       -5|     913|       19|     B6| N516JB|   507|   EWR| FLL|     158|    1065|   5|    55|
-|2013|    1|   1|     557|       -3|     709|      -14|     EV| N829AS|  5708|   LGA| IAD|      53|     229|   5|    57|
-|2013|    1|   1|     557|       -3|     838|       -8|     B6| N593JB|    79|   JFK| MCO|     140|     944|   5|    57|
-|2013|    1|   1|     558|       -2|     753|        8|     AA| N3ALAA|   301|   LGA| ORD|     138|     733|   5|    58|
-|2013|    1|   1|     558|       -2|     849|       -2|     B6| N793JB|    49|   JFK| PBI|     149|    1028|   5|    58|
-|2013|    1|   1|     558|       -2|     853|       -3|     B6| N657JB|    71|   JFK| TPA|     158|    1005|   5|    58|
-|2013|    1|   1|     558|       -2|     924|        7|     UA| N29129|   194|   JFK| LAX|     345|    2475|   5|    58|
-|2013|    1|   1|     558|       -2|     923|      -14|     UA| N53441|  1124|   EWR| SFO|     361|    2565|   5|    58|
-|2013|    1|   1|     559|       -1|     941|       31|     AA| N3DUAA|   707|   LGA| DFW|     257|    1389|   5|    59|
-|2013|    1|   1|     559|        0|     702|       -4|     B6| N708JB|  1806|   JFK| BOS|      44|     187|   5|    59|
-|2013|    1|   1|     559|       -1|     854|       -8|     UA| N76515|  1187|   EWR| LAS|     337|    2227|   5|    59|
-|2013|    1|   1|     600|        0|     851|       -7|     B6| N595JB|   371|   LGA| FLL|     152|    1076|   6|     0|
-|2013|    1|   1|     600|        0|     837|       12|     MQ| N542MQ|  4650|   LGA| ATL|     134|     762|   6|     0|
-+----+-----+----+--------+---------+--------+---------+-------+-------+------+------+----+--------+--------+----+------+
-only showing top 20 rows
-</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> <span class="op">*</span>  <span class="co"># Necessary for creating schemas</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> <span class="op">*</span> <span class="co"># Importing PySpark functions</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>nycflights_schema <span class="op">=</span> StructType([</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'year'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'month'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'day'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'dep_time'</span>, StringType(), <span class="va">True</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'dep_delay'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'arr_time'</span>, StringType(), <span class="va">True</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'arr_delay'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'carrier'</span>, StringType(), <span class="va">True</span>),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'tailnum'</span>, StringType(), <span class="va">True</span>),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'flight'</span>, StringType(), <span class="va">True</span>),  </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'origin'</span>, StringType(), <span class="va">True</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'dest'</span>, StringType(), <span class="va">True</span>),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'air_time'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'distance'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'hour'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'minute'</span>, IntegerType(), <span class="va">True</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  ])</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and then read the CSV with the schema</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>nycflights13_csv <span class="op">=</span> spark.read.csv(<span class="st">"file:///srv/data/nycflights/nycflights13.csv"</span>, schema <span class="op">=</span> nycflights_schema )</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>nycflights13_csv.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="create-a-proper-timestamp." class="level3">
 <h3 class="anchored" data-anchor-id="create-a-proper-timestamp.">Create a proper timestamp.</h3>
 <p>We have all the components: <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code>, and <code>minute</code>.</p>
 <p>Use <code>concat_ws()</code> (concatentate with separator) to combine column data into StringType columns such that dates (<code>-</code> separator, YYYY-MM-DD) and times (<code>:</code> separator, 24-hour time) are formed</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nycflights13 <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(nycflights13_csv</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'date'</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             concat_ws(<span class="st">'-'</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.year,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.month,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.day))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'time'</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>             concat_ws(<span class="st">':'</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.hour,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.minute)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nycflights13 <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(nycflights13_csv</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'date'</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>             concat_ws(<span class="st">'-'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.year,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.month,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.day))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'time'</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>             concat_ws(<span class="st">':'</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.hour,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                       nycflights13_csv.minute)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In a second step, concatenate with <code>concat_ws()</code> the <code>date</code> and <code>time</code> strings (separator is a space); then drop several columns</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nycflights13 <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(nycflights13</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'timestamp'</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>             concat_ws(<span class="st">' '</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                       nycflights13.date,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                       nycflights13.time))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'date'</span>)     <span class="co"># `drop()` doesn't accept a list of column names, therefore, for every column, </span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'minute'</span>)   <span class="co"># we would like to remove from the DataFrame, we must create a new `drop()`</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'time'</span>))    <span class="co"># statement</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># In the final step, convert the `timestamp` from</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># a StringType into a TimestampType</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>nycflights13 <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>(nycflights13</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'timestamp'</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>             to_utc_timestamp(nycflights13.timestamp, <span class="st">'GMT'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nycflights13 <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(nycflights13</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'timestamp'</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>             concat_ws(<span class="st">' '</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       nycflights13.date,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                       nycflights13.time))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'date'</span>)     <span class="co"># `drop()` doesn't accept a list of column names, therefore, for every column, </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'minute'</span>)   <span class="co"># we would like to remove from the DataFrame, we must create a new `drop()`</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'time'</span>))    <span class="co"># statement</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># In the final step, convert the `timestamp` from</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># a StringType into a TimestampType</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>nycflights13 <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>(nycflights13</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'timestamp'</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>             to_utc_timestamp(nycflights13.timestamp, <span class="st">'GMT'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create a schema object and then read the CSV with the schema</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>weather_schema <span class="op">=</span> StructType([  </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'year'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'month'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'day'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'hour'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'temp'</span>, FloatType(), <span class="va">True</span>),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'dewp'</span>, FloatType(), <span class="va">True</span>),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'humid'</span>, FloatType(), <span class="va">True</span>),</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'wind_dir'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'wind_speed'</span>, FloatType(), <span class="va">True</span>),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'wind_gust'</span>, FloatType(), <span class="va">True</span>),</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'precip'</span>, FloatType(), <span class="va">True</span>),</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'pressure'</span>, FloatType(), <span class="va">True</span>),</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'visib'</span>, FloatType(), <span class="va">True</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  ])</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>weather <span class="op">=</span> spark.read.csv(<span class="st">"file:///srv/data/nycflights/weather.csv"</span>, schema <span class="op">=</span> weather_schema)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>weather_schema <span class="op">=</span> StructType([  </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'year'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'month'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'day'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'hour'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'temp'</span>, FloatType(), <span class="va">True</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'dewp'</span>, FloatType(), <span class="va">True</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'humid'</span>, FloatType(), <span class="va">True</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'wind_dir'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'wind_speed'</span>, FloatType(), <span class="va">True</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'wind_gust'</span>, FloatType(), <span class="va">True</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'precip'</span>, FloatType(), <span class="va">True</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'pressure'</span>, FloatType(), <span class="va">True</span>),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'visib'</span>, FloatType(), <span class="va">True</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  ])</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>weather <span class="op">=</span> spark.read.csv(<span class="st">"file:///srv/data/nycflights/weather.csv"</span>, schema <span class="op">=</span> weather_schema)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>weather.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+----+-----+----+----+-----+-----+-----+--------+----------+---------+------+--------+-----+
-|year|month| day|hour| temp| dewp|humid|wind_dir|wind_speed|wind_gust|precip|pressure|visib|
-+----+-----+----+----+-----+-----+-----+--------+----------+---------+------+--------+-----+
-|null| null|null|null| null| null| null|    null|      null|     null|  null|    null| null|
-|2013|    1|   1|   0|37.04|21.92|53.97|     230|  10.35702|11.918652|   0.0|  1013.9| 10.0|
-|2013|    1|   1|   1|37.04|21.92|53.97|     230|  13.80936|15.891536|   0.0|  1013.0| 10.0|
-|2013|    1|   1|   2|37.94|21.92|52.09|     230|  12.65858|14.567241|   0.0|  1012.6| 10.0|
-|2013|    1|   1|   3|37.94| 23.0|54.51|     230|  13.80936|15.891536|   0.0|  1012.7| 10.0|
-|2013|    1|   1|   4|37.94|24.08|57.04|     240|  14.96014| 17.21583|   0.0|  1012.8| 10.0|
-|2013|    1|   1|   6|39.02|26.06|59.37|     270|  10.35702|11.918652|   0.0|  1012.0| 10.0|
-|2013|    1|   1|   7|39.02|26.96|61.63|     250|   8.05546| 9.270062|   0.0|  1012.3| 10.0|
-|2013|    1|   1|   8|39.02|28.04|64.43|     240|   11.5078|13.242946|   0.0|  1012.5| 10.0|
-|2013|    1|   1|   9|39.92|28.04|62.21|     250|  12.65858|14.567241|   0.0|  1012.2| 10.0|
-|2013|    1|   1|  10|39.02|28.04|64.43|     260|  12.65858|14.567241|   0.0|  1011.9| 10.0|
-|2013|    1|   1|  11|37.94|28.04|67.21|     240|   11.5078|13.242946|   0.0|  1012.4| 10.0|
-|2013|    1|   1|  12|39.02|28.04|64.43|     240|  14.96014| 17.21583|   0.0|  1012.2| 10.0|
-|2013|    1|   1|  13|39.92|28.04|62.21|     250|  10.35702|11.918652|   0.0|  1012.2| 10.0|
-|2013|    1|   1|  14|39.92|28.04|62.21|     260|  14.96014| 17.21583|   0.0|  1012.7| 10.0|
-|2013|    1|   1|  15| 41.0|28.04|59.65|     260|  13.80936|15.891536|   0.0|  1012.4| 10.0|
-|2013|    1|   1|  16| 41.0|26.96|57.06|     260|  14.96014| 17.21583|   0.0|  1011.4| 10.0|
-|2013|    1|   1|  17| 39.2| 28.4|64.93|     270|  16.11092|18.540125|   0.0|    null| 10.0|
-|2013|    1|   1|  18| 39.2| 28.4|64.93|     330|  14.96014| 17.21583|   0.0|    null| 10.0|
-|2013|    1|   1|  19|39.02|24.08|54.68|     280|  13.80936|15.891536|   0.0|  1010.8| 10.0|
-+----+-----+----+----+-----+-----+-----+--------+----------+---------+------+--------+-----+
-only showing top 20 rows
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>weather.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Join the <code>nycflights</code> DF with the <code>weather</code> DF</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nycflights_all_columns <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(nycflights13</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a> .join(weather,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>       [nycflights13.month <span class="op">==</span> weather.month, <span class="co"># three join conditions: month,</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        nycflights13.day <span class="op">==</span> weather.day,     <span class="co">#                        day,</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        nycflights13.hour <span class="op">==</span> weather.hour],  <span class="co">#                        hour</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>       <span class="st">'left_outer'</span>)) <span class="co"># left outer join: keep all rows from the left DF (flights), with the matching rows in the right DF (weather)</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                      <span class="co"># NULLs created if there is no match to the right DF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nycflights_all_columns <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>(nycflights13</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> .join(weather,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       [nycflights13.month <span class="op">==</span> weather.month, <span class="co"># three join conditions: month,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        nycflights13.day <span class="op">==</span> weather.day,     <span class="co">#                        day,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        nycflights13.hour <span class="op">==</span> weather.hour],  <span class="co">#                        hour</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       <span class="st">'left_outer'</span>)) <span class="co"># left outer join: keep all rows from the left DF (flights), with the matching rows in the right DF (weather)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                      <span class="co"># NULLs created if there is no match to the right DF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nycflights_all_columns.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>root
- |-- year: integer (nullable = true)
- |-- month: integer (nullable = true)
- |-- day: integer (nullable = true)
- |-- dep_time: string (nullable = true)
- |-- dep_delay: integer (nullable = true)
- |-- arr_time: string (nullable = true)
- |-- arr_delay: integer (nullable = true)
- |-- carrier: string (nullable = true)
- |-- tailnum: string (nullable = true)
- |-- flight: string (nullable = true)
- |-- origin: string (nullable = true)
- |-- dest: string (nullable = true)
- |-- air_time: integer (nullable = true)
- |-- distance: integer (nullable = true)
- |-- hour: integer (nullable = true)
- |-- timestamp: timestamp (nullable = true)
- |-- year: integer (nullable = true)
- |-- month: integer (nullable = true)
- |-- day: integer (nullable = true)
- |-- hour: integer (nullable = true)
- |-- temp: float (nullable = true)
- |-- dewp: float (nullable = true)
- |-- humid: float (nullable = true)
- |-- wind_dir: integer (nullable = true)
- |-- wind_speed: float (nullable = true)
- |-- wind_gust: float (nullable = true)
- |-- precip: float (nullable = true)
- |-- pressure: float (nullable = true)
- |-- visib: float (nullable = true)
-</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nycflights_all_columns.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One way to reduce the number of extraneous columns is to use a <code>select()</code> statement</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(nycflights_all_columns</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> .select([<span class="st">'timestamp'</span>, <span class="st">'carrier'</span>, <span class="st">'flight'</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">'origin'</span>, <span class="st">'dest'</span>, <span class="st">'wind_dir'</span>,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">'wind_speed'</span>, <span class="st">'wind_gust'</span>, <span class="st">'visib'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(nycflights_all_columns</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> .select([<span class="st">'timestamp'</span>, <span class="st">'carrier'</span>, <span class="st">'flight'</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">'origin'</span>, <span class="st">'dest'</span>, <span class="st">'wind_dir'</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">'wind_speed'</span>, <span class="st">'wind_gust'</span>, <span class="st">'visib'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib.schema.fields</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>[StructField('timestamp', TimestampType(), True),
- StructField('carrier', StringType(), True),
- StructField('flight', StringType(), True),
- StructField('origin', StringType(), True),
- StructField('dest', StringType(), True),
- StructField('wind_dir', IntegerType(), True),
- StructField('wind_speed', FloatType(), True),
- StructField('wind_gust', FloatType(), True),
- StructField('visib', FloatType(), True)]</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib.schema.fields</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s load in even more data so we can determine if any takeoffs occurred in very windy weather.</p>
 <p>The <strong>CSV</strong> <code>beaufort_land.csv</code> contains Beaufort scale values (the <code>force</code> column), wind speed ranges in <em>mph</em>, and the name for each wind force.</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a schema object... </span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>beaufort_land_schema <span class="op">=</span> StructType([  </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'force'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'speed_mi_h_lb'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'speed_mi_h_ub'</span>, IntegerType(), <span class="va">True</span>),</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'name'</span>, StringType(), <span class="va">True</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  ])</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and then read the CSV with the schema</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>beaufort_land <span class="op">=</span> spark.read.csv(<span class="st">'/srv/data/nycflights/beaufort_land.csv'</span>, </span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>                               header <span class="op">=</span> <span class="va">True</span>, schema <span class="op">=</span> beaufort_land_schema)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a schema object... </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>beaufort_land_schema <span class="op">=</span> StructType([  </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'force'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'speed_mi_h_lb'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'speed_mi_h_ub'</span>, IntegerType(), <span class="va">True</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  StructField(<span class="st">'name'</span>, StringType(), <span class="va">True</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ])</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ...and then read the CSV with the schema</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>beaufort_land <span class="op">=</span> spark.read.csv(<span class="st">'/srv/data/nycflights/beaufort_land.csv'</span>, </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                               header <span class="op">=</span> <span class="va">True</span>, schema <span class="op">=</span> beaufort_land_schema)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>beaufort_land.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+-----+-------------+-------------+---------------+
-|force|speed_mi_h_lb|speed_mi_h_ub|           name|
-+-----+-------------+-------------+---------------+
-|    0|            0|            1|           calm|
-|    1|            1|            4|      light air|
-|    2|            5|            7|   light breeze|
-|    3|            8|           11|  gentle breeze|
-|    4|           12|           18|moderate breeze|
-|    5|           19|           24|   fresh breeze|
-|    6|           25|           31|  strong breeze|
-|    7|           32|           38|      near gale|
-|    8|           39|           46|           gale|
-|    9|           47|           54|    strong gale|
-|   10|           55|           63|          storm|
-|   11|           64|           73|  violent storm|
-|   12|           74|         null|      hurricane|
-+-----+-------------+-------------+---------------+
-</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>beaufort_land.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Join the current working DF with the <code>beaufort_land</code> DF and use join expressions that use the WS ranges</p>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib_beaufort <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>(nycflights_wind_visib</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a> .join(beaufort_land,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>      [nycflights_wind_visib.wind_speed <span class="op">&gt;=</span> beaufort_land.speed_mi_h_lb,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>       nycflights_wind_visib.wind_speed <span class="op">&lt;</span> beaufort_land.speed_mi_h_ub],</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>       <span class="st">'left_outer'</span>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'month'</span>, month(nycflights_wind_visib.timestamp)) <span class="co"># Create a month column from `timestamp` values</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'speed_mi_h_lb'</span>)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'speed_mi_h_ub'</span>)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib_beaufort <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>(nycflights_wind_visib</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a> .join(beaufort_land,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      [nycflights_wind_visib.wind_speed <span class="op">&gt;=</span> beaufort_land.speed_mi_h_lb,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       nycflights_wind_visib.wind_speed <span class="op">&lt;</span> beaufort_land.speed_mi_h_ub],</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       <span class="st">'left_outer'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'month'</span>, month(nycflights_wind_visib.timestamp)) <span class="co"># Create a month column from `timestamp` values</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'speed_mi_h_lb'</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'speed_mi_h_ub'</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib_beaufort.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>root
- |-- timestamp: timestamp (nullable = true)
- |-- carrier: string (nullable = true)
- |-- flight: string (nullable = true)
- |-- origin: string (nullable = true)
- |-- dest: string (nullable = true)
- |-- wind_dir: integer (nullable = true)
- |-- wind_speed: float (nullable = true)
- |-- wind_gust: float (nullable = true)
- |-- visib: float (nullable = true)
- |-- force: integer (nullable = true)
- |-- name: string (nullable = true)
- |-- month: integer (nullable = true)
-</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib_beaufort.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib_beaufort.<span class="bu">filter</span>(<span class="st">"name IS NOT NULL"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib_beaufort.<span class="bu">filter</span>(<span class="st">"name IS NOT NULL"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 5:&gt;                                                          (0 + 1) / 1]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-|          timestamp|carrier|flight|origin|dest|wind_dir|wind_speed|wind_gust|visib|force|         name|month|
-+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-|2013-01-01 06:00:00|     B6|   371|   LGA| FLL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:00:00|     MQ|  4650|   LGA| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:01:00|     B6|   343|   EWR| PBI|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:02:00|     DL|  1919|   LGA| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:02:00|     MQ|  4401|   LGA| DTW|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:06:00|     AA|  1895|   EWR| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:06:00|     DL|  1743|   JFK| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:07:00|     UA|  1077|   EWR| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:08:00|     MQ|  3768|   EWR| ORD|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:11:00|     UA|   303|   JFK| SFO|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:13:00|     B6|   135|   JFK| RSW|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:15:00|     B6|   709|   JFK| SJU|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:15:00|     DL|   575|   EWR| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:22:00|     US|   245|   EWR| PHX|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:23:00|     AA|  1837|   LGA| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:23:00|     UA|   496|   LGA| IAH|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:24:00|     EV|  4626|   EWR| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:24:00|     MQ|  4599|   LGA| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:27:00|     US|    27|   JFK| PHX|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:28:00|     AA|   413|   JFK| SJU|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-only showing top 20 rows
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib_beaufort.<span class="bu">filter</span>(<span class="st">"NOT name IS NULL"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-|          timestamp|carrier|flight|origin|dest|wind_dir|wind_speed|wind_gust|visib|force|         name|month|
-+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-|2013-01-01 06:00:00|     B6|   371|   LGA| FLL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:00:00|     MQ|  4650|   LGA| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:01:00|     B6|   343|   EWR| PBI|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:02:00|     DL|  1919|   LGA| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:02:00|     MQ|  4401|   LGA| DTW|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:06:00|     AA|  1895|   EWR| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:06:00|     DL|  1743|   JFK| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:07:00|     UA|  1077|   EWR| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:08:00|     MQ|  3768|   EWR| ORD|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:11:00|     UA|   303|   JFK| SFO|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:13:00|     B6|   135|   JFK| RSW|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:15:00|     B6|   709|   JFK| SJU|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:15:00|     DL|   575|   EWR| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:22:00|     US|   245|   EWR| PHX|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:23:00|     AA|  1837|   LGA| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:23:00|     UA|   496|   LGA| IAH|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:24:00|     EV|  4626|   EWR| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:24:00|     MQ|  4599|   LGA| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:27:00|     US|    27|   JFK| PHX|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:28:00|     AA|   413|   JFK| SJU|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-only showing top 20 rows
-</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nycflights_wind_visib_beaufort.<span class="bu">filter</span>(<span class="st">"NOT name IS NULL"</span>).show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can inspect the number of potentially dangerous takeoffs (i.e., where the Beaufort force is high) month-by-month through the use of the <code>crosstab()</code> function</p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>crosstab_month_force <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>(nycflights_wind_visib_beaufort</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a> .crosstab(<span class="st">'month'</span>, <span class="st">'force'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>crosstab_month_force <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(nycflights_wind_visib_beaufort</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> .crosstab(<span class="st">'month'</span>, <span class="st">'force'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>crosstab_month_force.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+-----------+----+----+----+----+----+----+---+---+---+----+
-|month_force|   0|   1|   2|   3|   4|   5|  6|  7|  8|null|
-+-----------+----+----+----+----+----+----+---+---+---+----+
-|       null|   0|   0|   0|   0|   0|   0|  0|  0|  0|  30|
-|          5|2758|1688|6620|7334|3634| 736|217| 38|  0|5770|
-|         10|3140|2430|5086|5647|6053| 374| 50|  0|  0|6108|
-|          1|1911|1176|5047|6403|5205|1117|521|164| 92|5368|
-|          6|1389|1864|5140|7305|5744| 704|  1| 39|  0|6056|
-|          9|1716|2142|5985|8661|3646| 268|  0|  0|  0|5154|
-|          2|1836|1511|3930|5191|5400|1760|661|  0|  0|4659|
-|         12|2723|1573|4531|6126|6380| 354|  0|  0|  0|6442|
-|          7|1530|1739|4753|8686|6285| 343|  0|  0|  0|6083|
-|          3|1123| 902|3819|6733|7912|2172|445|  0|  0|5725|
-|         11|1707|1242|4242|5577|6909|1767|471|  0|  0|5352|
-|          8|2938|3302|6172|7015|3945| 203|  0|  0|  0|5750|
-|          4|1910|1876|4909|6542|6491|1247| 65|  0|  0|5287|
-+-----------+----+----+----+----+----+----+---+---+---+----+
-</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>crosstab_month_force.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After creating the crosstab DataFrame, use a few functions to clean up the resultant DataFrame</p>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>crosstab_month_force <span class="op">=</span> <span class="op">\</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>(crosstab_month_force</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'month_force'</span>,</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>             crosstab_month_force.month_force.cast(<span class="st">'int'</span>)) <span class="co"># the column is initially a string but recasting as</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                                                           <span class="co"># an `int` will aid ordering in the next expression</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a> .orderBy(<span class="st">'month_force'</span>)</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'null'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>crosstab_month_force <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>(crosstab_month_force</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a> .withColumn(<span class="st">'month_force'</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>             crosstab_month_force.month_force.cast(<span class="st">'int'</span>)) <span class="co"># the column is initially a string but recasting as</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                                                           <span class="co"># an `int` will aid ordering in the next expression</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a> .orderBy(<span class="st">'month_force'</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a> .drop(<span class="st">'null'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>crosstab_month_force.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+-----------+----+----+----+----+----+----+---+---+---+
-|month_force|   0|   1|   2|   3|   4|   5|  6|  7|  8|
-+-----------+----+----+----+----+----+----+---+---+---+
-|       null|   0|   0|   0|   0|   0|   0|  0|  0|  0|
-|          1|1911|1176|5047|6403|5205|1117|521|164| 92|
-|          2|1836|1511|3930|5191|5400|1760|661|  0|  0|
-|          3|1123| 902|3819|6733|7912|2172|445|  0|  0|
-|          4|1910|1876|4909|6542|6491|1247| 65|  0|  0|
-|          5|2758|1688|6620|7334|3634| 736|217| 38|  0|
-|          6|1389|1864|5140|7305|5744| 704|  1| 39|  0|
-|          7|1530|1739|4753|8686|6285| 343|  0|  0|  0|
-|          8|2938|3302|6172|7015|3945| 203|  0|  0|  0|
-|          9|1716|2142|5985|8661|3646| 268|  0|  0|  0|
-|         10|3140|2430|5086|5647|6053| 374| 50|  0|  0|
-|         11|1707|1242|4242|5577|6909|1767|471|  0|  0|
-|         12|2723|1573|4531|6126|6380| 354|  0|  0|  0|
-+-----------+----+----+----+----+----+----+---+---+---+
-</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>crosstab_month_force.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -760,58 +499,27 @@ only showing top 20 rows
 <h2 class="anchored" data-anchor-id="user-defined-functions-udfs">User Defined Functions (UDFs)</h2>
 <p><strong>UDF</strong>s allow for computations of values while looking at every input row in the DataFrame. They allow you to make your own function and import functionality from other <strong>Python</strong> libraries.</p>
 <p>Define a function to convert velocity from miles per hour (mph) to meters per second (mps)</p>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mph_to_mps(mph):</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>        mps <span class="op">=</span> mph <span class="op">*</span> <span class="fl">0.44704</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        mps <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mps</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Register this function as a UDF using `udf()`</span></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>mph_to_mps <span class="op">=</span> udf(mph_to_mps, FloatType()) <span class="co"># An output type was specified</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mph_to_mps(mph):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        mps <span class="op">=</span> mph <span class="op">*</span> <span class="fl">0.44704</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        mps <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mps</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Register this function as a UDF using `udf()`</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>mph_to_mps <span class="op">=</span> udf(mph_to_mps, FloatType()) <span class="co"># An output type was specified</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create two new columns that are conversions of wind speeds from mph to mps</p>
-<div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  nycflights_wind_visib_beaufort</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'wind_speed_mps'</span>, mph_to_mps(<span class="st">'wind_speed'</span>))</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'wind_gust_mps'</span>, mph_to_mps(<span class="st">'wind_gust'</span>))</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  .withColumnRenamed(<span class="st">'wind_speed'</span>, <span class="st">'wind_speed_mph'</span>)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  .withColumnRenamed(<span class="st">'wind_gust'</span>, <span class="st">'wind_gust_mph'</span>)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  .show()</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+-------------------+-------+------+------+----+--------+--------------+-------------+-----+-----+-------------+-----+--------------+-------------+
-|          timestamp|carrier|flight|origin|dest|wind_dir|wind_speed_mph|wind_gust_mph|visib|force|         name|month|wind_speed_mps|wind_gust_mps|
-+-------------------+-------+------+------+----+--------+--------------+-------------+-----+-----+-------------+-----+--------------+-------------+
-|               null|carrier|flight|origin|dest|    null|          null|         null| null| null|         null| null|           0.0|          0.0|
-|2013-01-01 05:17:00|     UA|  1545|   EWR| IAH|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:33:00|     UA|  1714|   LGA| IAH|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:42:00|     AA|  1141|   JFK| MIA|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:44:00|     B6|   725|   JFK| BQN|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:54:00|     DL|   461|   LGA| ATL|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:54:00|     UA|  1696|   EWR| ORD|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:55:00|     B6|   507|   EWR| FLL|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:57:00|     EV|  5708|   LGA| IAD|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:57:00|     B6|    79|   JFK| MCO|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     AA|   301|   LGA| ORD|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     B6|    49|   JFK| PBI|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     B6|    71|   JFK| TPA|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     UA|   194|   JFK| LAX|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     UA|  1124|   EWR| SFO|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:59:00|     AA|   707|   LGA| DFW|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:59:00|     B6|  1806|   JFK| BOS|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:59:00|     UA|  1187|   EWR| LAS|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 06:00:00|     B6|   371|   LGA| FLL|     270|      10.35702|    11.918652| 10.0|    3|gentle breeze|    1|     4.6300025|     5.328114|
-|2013-01-01 06:00:00|     MQ|  4650|   LGA| ATL|     270|      10.35702|    11.918652| 10.0|    3|gentle breeze|    1|     4.6300025|     5.328114|
-+-------------------+-------+------+------+----+--------+--------------+-------------+-----+-----+-------------+-----+--------------+-------------+
-only showing top 20 rows
-</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  nycflights_wind_visib_beaufort</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'wind_speed_mps'</span>, mph_to_mps(<span class="st">'wind_speed'</span>))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'wind_gust_mps'</span>, mph_to_mps(<span class="st">'wind_gust'</span>))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  .withColumnRenamed(<span class="st">'wind_speed'</span>, <span class="st">'wind_speed_mph'</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  .withColumnRenamed(<span class="st">'wind_gust'</span>, <span class="st">'wind_gust_mph'</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  .show()</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

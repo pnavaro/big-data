@@ -121,9 +121,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -274,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">New York City Taxi Cab Trip - Spark dataframes on HDFS</a>
+  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">Spark dataframes on HDFS</a>
   </div>
 </li>
       </ul>
@@ -303,49 +300,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="start-the-spark-session" class="level2">
 <h2 class="anchored" data-anchor-id="start-the-spark-session">Start the spark session</h2>
-<div class="cell" data-cell_id="00003-64de320b-50aa-4928-9884-23b77f541459" data-deepnote_cell_type="markdown" data-execution_count="1">
+<div class="cell" data-cell_id="00003-64de320b-50aa-4928-9884-23b77f541459" data-deepnote_cell_type="markdown">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder <span class="op">\</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        .config(<span class="st">"spark.cores.max"</span>, <span class="st">"4"</span>) <span class="op">\</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        .master(<span class="st">'spark://b2-120-gra11:7077'</span>) <span class="op">\</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        .getOrCreate()</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>spark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>22/12/06 11:05:12 WARN Utils: Your hostname, b2-120-gra11 resolves to a loopback address: 127.0.1.1; using 141.94.168.194 instead (on interface ens3)
-22/12/06 11:05:12 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>22/12/06 11:05:14 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-22/12/06 11:05:18 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
-22/12/06 11:05:18 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-
-            <div>
-                <p><b>SparkSession - in-memory</b></p>
-                
-        <div>
-            <p><b>SparkContext</b></p>
-
-            <p><a href="http://mas-sdd-rennes2.ovh:4042">Spark UI</a></p>
-
-            <dl>
-              <dt>Version</dt>
-                <dd><code>v3.3.1</code></dd>
-              <dt>Master</dt>
-                <dd><code>spark://b2-120-gra11:7077</code></dd>
-              <dt>AppName</dt>
-                <dd><code>pyspark-shell</code></dd>
-            </dl>
-        </div>
-        
-            </div>
-        
-</div>
 </div>
 </section>
 <section id="load-the-data" class="level2">
@@ -353,45 +314,33 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 <ul>
 <li>Here we read the NYC taxi data files of year 2018 and select some variables.</li>
 </ul>
-<div class="cell" data-cell_id="00003-64de320b-50aa-4928-9884-23b77f541459" data-deepnote_cell_type="markdown" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">'tpep_pickup_datetime'</span>, <span class="st">'passenger_count'</span>, <span class="st">'payment_type'</span>, <span class="st">'fare_amount'</span>, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">'tip_amount'</span>, <span class="st">'total_amount'</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> (spark.read.parquet(<span class="st">"hdfs://localhost:54310/data/nyctaxi/2018.parquet/"</span>).select(<span class="op">*</span>columns))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell" data-cell_id="00003-64de320b-50aa-4928-9884-23b77f541459" data-deepnote_cell_type="markdown">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">'tpep_pickup_datetime'</span>, <span class="st">'passenger_count'</span>, <span class="st">'payment_type'</span>, <span class="st">'fare_amount'</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">'tip_amount'</span>, <span class="st">'total_amount'</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> (spark.read.parquet(<span class="st">"hdfs://localhost:54310/data/nyctaxi/2018.parquet/"</span>).select(<span class="op">*</span>columns))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>Plot the tip_fraction as a function of the hour of day</li>
 </ol>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> <span class="op">*</span> <span class="co"># Importing PySpark functions</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> (df.<span class="bu">filter</span>(df.fare_amount <span class="op">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'tip_fraction'</span>, df.tip_amount <span class="op">/</span> df.fare_amount)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'hour_of_day'</span>, hour(df.tpep_pickup_datetime))</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>   .groupBy(<span class="st">"hour_of_day"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>   .agg({<span class="st">'tip_fraction'</span>: <span class="st">'avg'</span>})</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>   .orderBy(<span class="st">"hour_of_day"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>   .toPandas()</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>results.plot(x <span class="op">=</span> <span class="st">"hour_of_day"</span>, y <span class="op">=</span> <span class="st">"avg(tip_fraction)"</span>, kind<span class="op">=</span><span class="st">"bar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>&lt;AxesSubplot: xlabel='hour_of_day'&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="22-SparkExercises_files/figure-html/cell-4-output-3.png" class="img-fluid"></p>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> <span class="op">*</span> <span class="co"># Importing PySpark functions</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> (df.<span class="bu">filter</span>(df.fare_amount <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'tip_fraction'</span>, df.tip_amount <span class="op">/</span> df.fare_amount)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'hour_of_day'</span>, hour(df.tpep_pickup_datetime))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>   .groupBy(<span class="st">"hour_of_day"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>   .agg({<span class="st">'tip_fraction'</span>: <span class="st">'avg'</span>})</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>   .orderBy(<span class="st">"hour_of_day"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>   .toPandas()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>results.plot(x <span class="op">=</span> <span class="st">"hour_of_day"</span>, y <span class="op">=</span> <span class="st">"avg(tip_fraction)"</span>, kind<span class="op">=</span><span class="st">"bar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Same plot for the day of the week?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Investigate the <code>payment_type</code> column. See how well each of the payment types correlate with the <code>tip_fraction</code>. Did you find anything interesting? Any guesses on what the different payment types might be? If you’re interested you may be able to find more information on the <a href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">NYC TLC’s website</a></li>

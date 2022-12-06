@@ -198,12 +198,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
-   New York City Taxi Cab Trip - Spark dataframes on HDFS
+   Spark dataframes on HDFS
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-NYCFlightsSpark.html">
-   NYC Flights data
+   NYC Flights data analysis with Spark
   </a>
  </li>
  <li class="toctree-l1">
@@ -551,41 +551,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 11:05:12 WARN Utils: Your hostname, b2-120-gra11 resolves to a loopback address: 127.0.1.1; using 141.94.168.194 instead (on interface ens3)
-22/12/06 11:05:12 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting default log level to &quot;WARN&quot;.
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 11:05:14 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-22/12/06 11:05:18 WARN Utils: Service &#39;SparkUI&#39; could not bind on port 4040. Attempting port 4041.
-22/12/06 11:05:18 WARN Utils: Service &#39;SparkUI&#39; could not bind on port 4041. Attempting port 4042.
-</pre></div>
-</div>
-<div class="output text_html">
-    <div>
-        <p><b>SparkSession - in-memory</b></p>
-
-<div>
-    <p><b>SparkContext</b></p>
-
-    <p><a href="http://mas-sdd-rennes2.ovh:4042">Spark UI</a></p>
-
-    <dl>
-      <dt>Version</dt>
-        <dd><code>v3.3.1</code></dd>
-      <dt>Master</dt>
-        <dd><code>spark://b2-120-gra11:7077</code></dd>
-      <dt>AppName</dt>
-        <dd><code>pyspark-shell</code></dd>
-    </dl>
-</div>
-
-    </div>
-</div></div>
 </div>
 </section>
 <section id="load-the-data">
@@ -598,11 +563,6 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tpep_pickup_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;passenger_count&#39;</span><span class="p">,</span> <span class="s1">&#39;payment_type&#39;</span><span class="p">,</span> <span class="s1">&#39;fare_amount&#39;</span><span class="p">,</span> 
            <span class="s1">&#39;tip_amount&#39;</span><span class="p">,</span> <span class="s1">&#39;total_amount&#39;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;hdfs://localhost:54310/data/nyctaxi/2018.parquet/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="o">*</span><span class="n">columns</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
 </pre></div>
 </div>
 </div>
@@ -626,15 +586,6 @@ To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLeve
 <span class="n">results</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;hour_of_day&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;avg(tip_fraction)&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: xlabel=&#39;hour_of_day&#39;&gt;
-</pre></div>
-</div>
-<img alt="_images/22-SparkExercises_5_2.png" src="_images/22-SparkExercises_5_2.png" />
 </div>
 </div>
 <ol class="simple">

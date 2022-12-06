@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Start the spark session" href="22-SparkExercises.html" />
-    <link rel="prev" title="NYC Flights data" href="20-NYCFlightsSpark.html" />
+    <link rel="prev" title="NYC Flights data analysis with Spark" href="20-NYCFlightsSpark.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -199,12 +199,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
-   New York City Taxi Cab Trip - Spark dataframes on HDFS
+   Spark dataframes on HDFS
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-NYCFlightsSpark.html">
-   NYC Flights data
+   NYC Flights data analysis with Spark
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -554,19 +554,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/05 17:02:44 WARN Utils: Your hostname, b2-120-gra11 resolves to a loopback address: 127.0.1.1; using 141.94.168.194 instead (on interface ens3)
-22/12/05 17:02:44 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting default log level to &quot;WARN&quot;.
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/05 17:02:46 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-</pre></div>
-</div>
-</div>
 </div>
 <section id="joins">
 <h2>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">#</a></h2>
@@ -607,38 +594,6 @@ Lets create nycflights2013 using a schema object made with `pyspark.sql.type``</
 <span class="c1"># ...and then read the CSV with the schema</span>
 <span class="n">nycflights13_csv</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s2">&quot;file:///srv/data/nycflights/nycflights13.csv&quot;</span><span class="p">,</span> <span class="n">schema</span> <span class="o">=</span> <span class="n">nycflights_schema</span> <span class="p">)</span>
 <span class="n">nycflights13_csv</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+----+-----+----+--------+---------+--------+---------+-------+-------+------+------+----+--------+--------+----+------+
-|year|month| day|dep_time|dep_delay|arr_time|arr_delay|carrier|tailnum|flight|origin|dest|air_time|distance|hour|minute|
-+----+-----+----+--------+---------+--------+---------+-------+-------+------+------+----+--------+--------+----+------+
-|null| null|null|dep_time|     null|arr_time|     null|carrier|tailnum|flight|origin|dest|    null|    null|null|  null|
-|2013|    1|   1|     517|        2|     830|       11|     UA| N14228|  1545|   EWR| IAH|     227|    1400|   5|    17|
-|2013|    1|   1|     533|        4|     850|       20|     UA| N24211|  1714|   LGA| IAH|     227|    1416|   5|    33|
-|2013|    1|   1|     542|        2|     923|       33|     AA| N619AA|  1141|   JFK| MIA|     160|    1089|   5|    42|
-|2013|    1|   1|     544|       -1|    1004|      -18|     B6| N804JB|   725|   JFK| BQN|     183|    1576|   5|    44|
-|2013|    1|   1|     554|       -6|     812|      -25|     DL| N668DN|   461|   LGA| ATL|     116|     762|   5|    54|
-|2013|    1|   1|     554|       -4|     740|       12|     UA| N39463|  1696|   EWR| ORD|     150|     719|   5|    54|
-|2013|    1|   1|     555|       -5|     913|       19|     B6| N516JB|   507|   EWR| FLL|     158|    1065|   5|    55|
-|2013|    1|   1|     557|       -3|     709|      -14|     EV| N829AS|  5708|   LGA| IAD|      53|     229|   5|    57|
-|2013|    1|   1|     557|       -3|     838|       -8|     B6| N593JB|    79|   JFK| MCO|     140|     944|   5|    57|
-|2013|    1|   1|     558|       -2|     753|        8|     AA| N3ALAA|   301|   LGA| ORD|     138|     733|   5|    58|
-|2013|    1|   1|     558|       -2|     849|       -2|     B6| N793JB|    49|   JFK| PBI|     149|    1028|   5|    58|
-|2013|    1|   1|     558|       -2|     853|       -3|     B6| N657JB|    71|   JFK| TPA|     158|    1005|   5|    58|
-|2013|    1|   1|     558|       -2|     924|        7|     UA| N29129|   194|   JFK| LAX|     345|    2475|   5|    58|
-|2013|    1|   1|     558|       -2|     923|      -14|     UA| N53441|  1124|   EWR| SFO|     361|    2565|   5|    58|
-|2013|    1|   1|     559|       -1|     941|       31|     AA| N3DUAA|   707|   LGA| DFW|     257|    1389|   5|    59|
-|2013|    1|   1|     559|        0|     702|       -4|     B6| N708JB|  1806|   JFK| BOS|      44|     187|   5|    59|
-|2013|    1|   1|     559|       -1|     854|       -8|     UA| N76515|  1187|   EWR| LAS|     337|    2227|   5|    59|
-|2013|    1|   1|     600|        0|     851|       -7|     B6| N595JB|   371|   LGA| FLL|     152|    1076|   6|     0|
-|2013|    1|   1|     600|        0|     837|       12|     MQ| N542MQ|  4650|   LGA| ATL|     134|     762|   6|     0|
-+----+-----+----+--------+---------+--------+---------+-------+-------+------+------+----+--------+--------+----+------+
-only showing top 20 rows
 </pre></div>
 </div>
 </div>
@@ -718,38 +673,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+----+-----+----+----+-----+-----+-----+--------+----------+---------+------+--------+-----+
-|year|month| day|hour| temp| dewp|humid|wind_dir|wind_speed|wind_gust|precip|pressure|visib|
-+----+-----+----+----+-----+-----+-----+--------+----------+---------+------+--------+-----+
-|null| null|null|null| null| null| null|    null|      null|     null|  null|    null| null|
-|2013|    1|   1|   0|37.04|21.92|53.97|     230|  10.35702|11.918652|   0.0|  1013.9| 10.0|
-|2013|    1|   1|   1|37.04|21.92|53.97|     230|  13.80936|15.891536|   0.0|  1013.0| 10.0|
-|2013|    1|   1|   2|37.94|21.92|52.09|     230|  12.65858|14.567241|   0.0|  1012.6| 10.0|
-|2013|    1|   1|   3|37.94| 23.0|54.51|     230|  13.80936|15.891536|   0.0|  1012.7| 10.0|
-|2013|    1|   1|   4|37.94|24.08|57.04|     240|  14.96014| 17.21583|   0.0|  1012.8| 10.0|
-|2013|    1|   1|   6|39.02|26.06|59.37|     270|  10.35702|11.918652|   0.0|  1012.0| 10.0|
-|2013|    1|   1|   7|39.02|26.96|61.63|     250|   8.05546| 9.270062|   0.0|  1012.3| 10.0|
-|2013|    1|   1|   8|39.02|28.04|64.43|     240|   11.5078|13.242946|   0.0|  1012.5| 10.0|
-|2013|    1|   1|   9|39.92|28.04|62.21|     250|  12.65858|14.567241|   0.0|  1012.2| 10.0|
-|2013|    1|   1|  10|39.02|28.04|64.43|     260|  12.65858|14.567241|   0.0|  1011.9| 10.0|
-|2013|    1|   1|  11|37.94|28.04|67.21|     240|   11.5078|13.242946|   0.0|  1012.4| 10.0|
-|2013|    1|   1|  12|39.02|28.04|64.43|     240|  14.96014| 17.21583|   0.0|  1012.2| 10.0|
-|2013|    1|   1|  13|39.92|28.04|62.21|     250|  10.35702|11.918652|   0.0|  1012.2| 10.0|
-|2013|    1|   1|  14|39.92|28.04|62.21|     260|  14.96014| 17.21583|   0.0|  1012.7| 10.0|
-|2013|    1|   1|  15| 41.0|28.04|59.65|     260|  13.80936|15.891536|   0.0|  1012.4| 10.0|
-|2013|    1|   1|  16| 41.0|26.96|57.06|     260|  14.96014| 17.21583|   0.0|  1011.4| 10.0|
-|2013|    1|   1|  17| 39.2| 28.4|64.93|     270|  16.11092|18.540125|   0.0|    null| 10.0|
-|2013|    1|   1|  18| 39.2| 28.4|64.93|     330|  14.96014| 17.21583|   0.0|    null| 10.0|
-|2013|    1|   1|  19|39.02|24.08|54.68|     280|  13.80936|15.891536|   0.0|  1010.8| 10.0|
-+----+-----+----+----+-----+-----+-----+--------+----------+---------+------+--------+-----+
-only showing top 20 rows
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <p>Join the <code class="docutils literal notranslate"><span class="pre">nycflights</span></code> DF with the <code class="docutils literal notranslate"><span class="pre">weather</span></code> DF</p>
 <div class="cell docutils container">
@@ -772,40 +695,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root
- |-- year: integer (nullable = true)
- |-- month: integer (nullable = true)
- |-- day: integer (nullable = true)
- |-- dep_time: string (nullable = true)
- |-- dep_delay: integer (nullable = true)
- |-- arr_time: string (nullable = true)
- |-- arr_delay: integer (nullable = true)
- |-- carrier: string (nullable = true)
- |-- tailnum: string (nullable = true)
- |-- flight: string (nullable = true)
- |-- origin: string (nullable = true)
- |-- dest: string (nullable = true)
- |-- air_time: integer (nullable = true)
- |-- distance: integer (nullable = true)
- |-- hour: integer (nullable = true)
- |-- timestamp: timestamp (nullable = true)
- |-- year: integer (nullable = true)
- |-- month: integer (nullable = true)
- |-- day: integer (nullable = true)
- |-- hour: integer (nullable = true)
- |-- temp: float (nullable = true)
- |-- dewp: float (nullable = true)
- |-- humid: float (nullable = true)
- |-- wind_dir: integer (nullable = true)
- |-- wind_speed: float (nullable = true)
- |-- wind_gust: float (nullable = true)
- |-- precip: float (nullable = true)
- |-- pressure: float (nullable = true)
- |-- visib: float (nullable = true)
-</pre></div>
-</div>
-</div>
 </div>
 <p>One way to reduce the number of extraneous columns is to use a <code class="docutils literal notranslate"><span class="pre">select()</span></code> statement</p>
 <div class="cell docutils container">
@@ -822,19 +711,6 @@ only showing top 20 rows
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nycflights_wind_visib</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">fields</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[StructField(&#39;timestamp&#39;, TimestampType(), True),
- StructField(&#39;carrier&#39;, StringType(), True),
- StructField(&#39;flight&#39;, StringType(), True),
- StructField(&#39;origin&#39;, StringType(), True),
- StructField(&#39;dest&#39;, StringType(), True),
- StructField(&#39;wind_dir&#39;, IntegerType(), True),
- StructField(&#39;wind_speed&#39;, FloatType(), True),
- StructField(&#39;wind_gust&#39;, FloatType(), True),
- StructField(&#39;visib&#39;, FloatType(), True)]
 </pre></div>
 </div>
 </div>
@@ -864,27 +740,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-----+-------------+-------------+---------------+
-|force|speed_mi_h_lb|speed_mi_h_ub|           name|
-+-----+-------------+-------------+---------------+
-|    0|            0|            1|           calm|
-|    1|            1|            4|      light air|
-|    2|            5|            7|   light breeze|
-|    3|            8|           11|  gentle breeze|
-|    4|           12|           18|moderate breeze|
-|    5|           19|           24|   fresh breeze|
-|    6|           25|           31|  strong breeze|
-|    7|           32|           38|      near gale|
-|    8|           39|           46|           gale|
-|    9|           47|           54|    strong gale|
-|   10|           55|           63|          storm|
-|   11|           64|           73|  violent storm|
-|   12|           74|         null|      hurricane|
-+-----+-------------+-------------+---------------+
-</pre></div>
-</div>
-</div>
 </div>
 <p>Join the current working DF with the <code class="docutils literal notranslate"><span class="pre">beaufort_land</span></code> DF and use join expressions that use the WS ranges</p>
 <div class="cell docutils container">
@@ -909,23 +764,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root
- |-- timestamp: timestamp (nullable = true)
- |-- carrier: string (nullable = true)
- |-- flight: string (nullable = true)
- |-- origin: string (nullable = true)
- |-- dest: string (nullable = true)
- |-- wind_dir: integer (nullable = true)
- |-- wind_speed: float (nullable = true)
- |-- wind_gust: float (nullable = true)
- |-- visib: float (nullable = true)
- |-- force: integer (nullable = true)
- |-- name: string (nullable = true)
- |-- month: integer (nullable = true)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -933,77 +771,10 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 5:&gt;                                                          (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-|          timestamp|carrier|flight|origin|dest|wind_dir|wind_speed|wind_gust|visib|force|         name|month|
-+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-|2013-01-01 06:00:00|     B6|   371|   LGA| FLL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:00:00|     MQ|  4650|   LGA| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:01:00|     B6|   343|   EWR| PBI|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:02:00|     DL|  1919|   LGA| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:02:00|     MQ|  4401|   LGA| DTW|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:06:00|     AA|  1895|   EWR| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:06:00|     DL|  1743|   JFK| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:07:00|     UA|  1077|   EWR| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:08:00|     MQ|  3768|   EWR| ORD|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:11:00|     UA|   303|   JFK| SFO|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:13:00|     B6|   135|   JFK| RSW|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:15:00|     B6|   709|   JFK| SJU|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:15:00|     DL|   575|   EWR| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:22:00|     US|   245|   EWR| PHX|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:23:00|     AA|  1837|   LGA| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:23:00|     UA|   496|   LGA| IAH|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:24:00|     EV|  4626|   EWR| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:24:00|     MQ|  4599|   LGA| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:27:00|     US|    27|   JFK| PHX|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:28:00|     AA|   413|   JFK| SJU|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-only showing top 20 rows
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nycflights_wind_visib_beaufort</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s2">&quot;NOT name IS NULL&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-|          timestamp|carrier|flight|origin|dest|wind_dir|wind_speed|wind_gust|visib|force|         name|month|
-+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-|2013-01-01 06:00:00|     B6|   371|   LGA| FLL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:00:00|     MQ|  4650|   LGA| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:01:00|     B6|   343|   EWR| PBI|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:02:00|     DL|  1919|   LGA| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:02:00|     MQ|  4401|   LGA| DTW|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:06:00|     AA|  1895|   EWR| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:06:00|     DL|  1743|   JFK| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:07:00|     UA|  1077|   EWR| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:08:00|     MQ|  3768|   EWR| ORD|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:11:00|     UA|   303|   JFK| SFO|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:13:00|     B6|   135|   JFK| RSW|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:15:00|     B6|   709|   JFK| SJU|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:15:00|     DL|   575|   EWR| ATL|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:22:00|     US|   245|   EWR| PHX|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:23:00|     AA|  1837|   LGA| MIA|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:23:00|     UA|   496|   LGA| IAH|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:24:00|     EV|  4626|   EWR| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:24:00|     MQ|  4599|   LGA| MSP|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:27:00|     US|    27|   JFK| PHX|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-|2013-01-01 06:28:00|     AA|   413|   JFK| SJU|     270|  10.35702|11.918652| 10.0|    3|gentle breeze|    1|
-+-------------------+-------+------+------+----+--------+----------+---------+-----+-----+-------------+-----+
-only showing top 20 rows
 </pre></div>
 </div>
 </div>
@@ -1019,36 +790,10 @@ month-by-month through the use of the <code class="docutils literal notranslate"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crosstab_month_force</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-----------+----+----+----+----+----+----+---+---+---+----+
-|month_force|   0|   1|   2|   3|   4|   5|  6|  7|  8|null|
-+-----------+----+----+----+----+----+----+---+---+---+----+
-|       null|   0|   0|   0|   0|   0|   0|  0|  0|  0|  30|
-|          5|2758|1688|6620|7334|3634| 736|217| 38|  0|5770|
-|         10|3140|2430|5086|5647|6053| 374| 50|  0|  0|6108|
-|          1|1911|1176|5047|6403|5205|1117|521|164| 92|5368|
-|          6|1389|1864|5140|7305|5744| 704|  1| 39|  0|6056|
-|          9|1716|2142|5985|8661|3646| 268|  0|  0|  0|5154|
-|          2|1836|1511|3930|5191|5400|1760|661|  0|  0|4659|
-|         12|2723|1573|4531|6126|6380| 354|  0|  0|  0|6442|
-|          7|1530|1739|4753|8686|6285| 343|  0|  0|  0|6083|
-|          3|1123| 902|3819|6733|7912|2172|445|  0|  0|5725|
-|         11|1707|1242|4242|5577|6909|1767|471|  0|  0|5352|
-|          8|2938|3302|6172|7015|3945| 203|  0|  0|  0|5750|
-|          4|1910|1876|4909|6542|6491|1247| 65|  0|  0|5287|
-+-----------+----+----+----+----+----+----+---+---+---+----+
 </pre></div>
 </div>
 </div>
@@ -1070,27 +815,6 @@ month-by-month through the use of the <code class="docutils literal notranslate"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crosstab_month_force</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-----------+----+----+----+----+----+----+---+---+---+
-|month_force|   0|   1|   2|   3|   4|   5|  6|  7|  8|
-+-----------+----+----+----+----+----+----+---+---+---+
-|       null|   0|   0|   0|   0|   0|   0|  0|  0|  0|
-|          1|1911|1176|5047|6403|5205|1117|521|164| 92|
-|          2|1836|1511|3930|5191|5400|1760|661|  0|  0|
-|          3|1123| 902|3819|6733|7912|2172|445|  0|  0|
-|          4|1910|1876|4909|6542|6491|1247| 65|  0|  0|
-|          5|2758|1688|6620|7334|3634| 736|217| 38|  0|
-|          6|1389|1864|5140|7305|5744| 704|  1| 39|  0|
-|          7|1530|1739|4753|8686|6285| 343|  0|  0|  0|
-|          8|2938|3302|6172|7015|3945| 203|  0|  0|  0|
-|          9|1716|2142|5985|8661|3646| 268|  0|  0|  0|
-|         10|3140|2430|5086|5647|6053| 374| 50|  0|  0|
-|         11|1707|1242|4242|5577|6909|1767|471|  0|  0|
-|         12|2723|1573|4531|6126|6380| 354|  0|  0|  0|
-+-----------+----+----+----+----+----+----+---+---+---+
 </pre></div>
 </div>
 </div>
@@ -1131,38 +855,6 @@ miles per hour (mph) to meters per second (mps)</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-------------------+-------+------+------+----+--------+--------------+-------------+-----+-----+-------------+-----+--------------+-------------+
-|          timestamp|carrier|flight|origin|dest|wind_dir|wind_speed_mph|wind_gust_mph|visib|force|         name|month|wind_speed_mps|wind_gust_mps|
-+-------------------+-------+------+------+----+--------+--------------+-------------+-----+-----+-------------+-----+--------------+-------------+
-|               null|carrier|flight|origin|dest|    null|          null|         null| null| null|         null| null|           0.0|          0.0|
-|2013-01-01 05:17:00|     UA|  1545|   EWR| IAH|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:33:00|     UA|  1714|   LGA| IAH|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:42:00|     AA|  1141|   JFK| MIA|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:44:00|     B6|   725|   JFK| BQN|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:54:00|     DL|   461|   LGA| ATL|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:54:00|     UA|  1696|   EWR| ORD|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:55:00|     B6|   507|   EWR| FLL|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:57:00|     EV|  5708|   LGA| IAD|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:57:00|     B6|    79|   JFK| MCO|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     AA|   301|   LGA| ORD|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     B6|    49|   JFK| PBI|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     B6|    71|   JFK| TPA|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     UA|   194|   JFK| LAX|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:58:00|     UA|  1124|   EWR| SFO|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:59:00|     AA|   707|   LGA| DFW|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:59:00|     B6|  1806|   JFK| BOS|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 05:59:00|     UA|  1187|   EWR| LAS|    null|          null|         null| null| null|         null|    1|           0.0|          0.0|
-|2013-01-01 06:00:00|     B6|   371|   LGA| FLL|     270|      10.35702|    11.918652| 10.0|    3|gentle breeze|    1|     4.6300025|     5.328114|
-|2013-01-01 06:00:00|     MQ|  4650|   LGA| ATL|     270|      10.35702|    11.918652| 10.0|    3|gentle breeze|    1|     4.6300025|     5.328114|
-+-------------------+-------+------+------+----+--------+--------------+-------------+-----+-----+-------------+-----+--------------+-------------+
-only showing top 20 rows
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -1198,7 +890,7 @@ only showing top 20 rows
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">NYC Flights data</p>
+            <p class="prev-next-title">NYC Flights data analysis with Spark</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="22-SparkExercises.html" title="next page">

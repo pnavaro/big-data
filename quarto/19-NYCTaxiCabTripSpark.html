@@ -121,9 +121,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -274,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link active">New York City Taxi Cab Trip - Spark dataframes on HDFS</a>
+  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link active">Spark dataframes on HDFS</a>
   </div>
 </li>
       </ul>
@@ -288,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#new-york-city-taxi-cab-trip---spark-dataframes-on-hdfs" id="toc-new-york-city-taxi-cab-trip---spark-dataframes-on-hdfs" class="nav-link active" data-scroll-target="#new-york-city-taxi-cab-trip---spark-dataframes-on-hdfs">New York City Taxi Cab Trip - Spark dataframes on HDFS</a>
+  <li><a href="#spark-dataframes-on-hdfs" id="toc-spark-dataframes-on-hdfs" class="nav-link active" data-scroll-target="#spark-dataframes-on-hdfs">Spark dataframes on HDFS</a>
   <ul class="collapse">
   <li><a href="#loading-the-data" id="toc-loading-the-data" class="nav-link" data-scroll-target="#loading-the-data">Loading the data</a></li>
   <li><a href="#spark-cluster" id="toc-spark-cluster" class="nav-link" data-scroll-target="#spark-cluster">Spark Cluster</a></li>
@@ -304,8 +301,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="new-york-city-taxi-cab-trip---spark-dataframes-on-hdfs" class="level1">
-<h1>New York City Taxi Cab Trip - Spark dataframes on HDFS</h1>
+<section id="spark-dataframes-on-hdfs" class="level1">
+<h1>Spark dataframes on HDFS</h1>
 <p>We look at <a href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">the New York City Taxi Cab dataset</a>. This includes every ride made in the city of New York since 2009.</p>
 <p>On <a href="http://chriswhong.github.io/nyctaxi/">this website</a> you can see the data for one random NYC yellow taxi on a single day.</p>
 <p>On <a href="http://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/">this post</a>, you can see an analysis of this dataset. Postgres and R scripts are available on <a href="https://github.com/toddwschneider/nyc-taxi-data">GitHub</a>.</p>
@@ -339,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="spark-submit.sh">spark-submit.sh</h2>
 <p>The spark-submit script is used to launch applications on a cluster. It can use all of Spark’s supported cluster managers through a uniform interface so you don’t have to configure your application especially for each one.</p>
 <p>Example</p>
-<div class="cell" data-execution_count="2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span><span class="bu">file</span> wordcount.py</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, os</span>
@@ -359,21 +356,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    wordCounts <span class="op">=</span> words.<span class="bu">map</span>(<span class="kw">lambda</span> word: (word, <span class="dv">1</span>)).reduceByKey(<span class="kw">lambda</span> a,b:a <span class="op">+</span>b)</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    wordCounts.saveAsTextFile(os.path.join(<span class="st">"output"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Overwriting wordcount.py</code></pre>
 </div>
-</div>
-<p>Vous pouvez tester la commande en l’exécutant dans un terminal</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/opt/spark-3.3.1-bin-hadoop3/bin/spark-submit</span> wordcount.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Utilisez <code>Ctrl-C</code> pour la stopper en cas de problème</p>
-<p>par défaut la sortie se fait sur le système de fichier hdfs</p>
+<p>Launch your spark application using the command line</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">spark-submit</span> wordcount.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use <code>Ctrl-C</code> to stop it if you have a problem. If the environment variable <code>HADOOP_HOME</code> is set the output will be write on the HDFS. Display the results with:</p>
 <pre><code>hdfs dfs -cat output/*</code></pre>
 <ul>
 <li><strong>Don’t run the python code inside a notebook cell</strong>. Save a python script and launch it from a terminal instead. In Jupyter notebook you won’t see any progress or information if error occurs.</li>
 <li>Documentation of <a href="https://spark.apache.org/docs/latest/submitting-applications.html"><code>spark-submit</code></a> command shell to run your script on the cluster.</li>
 <li>You can control the log with</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spark.sparkContext.setLogLevel(<span class="st">'ERROR'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>spark.sparkContext.setLogLevel(<span class="st">'ERROR'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN</p>
 <p><strong>Try your script with a single file before to do it for whole data.</strong></p>
 <p><strong>Read carefully your script before, don’t submit many times.</strong></p>
@@ -383,81 +376,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Here we read the NYC taxi data files of year 2018 and select some variables.</li>
 </ul>
-<div class="cell" data-cell_id="00003-64de320b-50aa-4928-9884-23b77f541459" data-deepnote_cell_type="markdown" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder <span class="op">\</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        .master(<span class="st">'spark://b2-120-gra11:7077'</span>) <span class="op">\</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        .getOrCreate()</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>spark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-
-            <div>
-                <p><b>SparkSession - in-memory</b></p>
-                
-        <div>
-            <p><b>SparkContext</b></p>
-
-            <p><a href="http://mas-sdd-rennes2.ovh:4040">Spark UI</a></p>
-
-            <dl>
-              <dt>Version</dt>
-                <dd><code>v3.3.1</code></dd>
-              <dt>Master</dt>
-                <dd><code>spark://b2-120-gra11:7077</code></dd>
-              <dt>AppName</dt>
-                <dd><code>pyspark-shell</code></dd>
-            </dl>
-        </div>
-        
-            </div>
-        
+<div class="cell" data-cell_id="00003-64de320b-50aa-4928-9884-23b77f541459" data-deepnote_cell_type="markdown">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder <span class="op">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        .master(<span class="st">'spark://b2-120-gra11:7077'</span>) <span class="op">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        .getOrCreate()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>spark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="cell" data-cell_id="00003-64de320b-50aa-4928-9884-23b77f541459" data-deepnote_cell_type="markdown" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">'tpep_pickup_datetime'</span>, <span class="st">'passenger_count'</span>, <span class="st">'payment_type'</span>, <span class="st">'fare_amount'</span>, </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">'tip_amount'</span>, <span class="st">'total_amount'</span>]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> (spark.read.parquet(<span class="st">"hdfs://localhost:54310/data/nyctaxi/2018.parquet/"</span>).select(<span class="op">*</span>columns))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell" data-cell_id="00003-64de320b-50aa-4928-9884-23b77f541459" data-deepnote_cell_type="markdown">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">'tpep_pickup_datetime'</span>, <span class="st">'passenger_count'</span>, <span class="st">'payment_type'</span>, <span class="st">'fare_amount'</span>, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>           <span class="st">'tip_amount'</span>, <span class="st">'total_amount'</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> (spark.read.parquet(<span class="st">"hdfs://localhost:54310/data/nyctaxi/2018.parquet/"</span>).select(<span class="op">*</span>columns))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Sum the total number of passengers</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.agg({<span class="st">'passenger_count'</span>: <span class="st">'sum'</span>}).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 1:&gt;                                                        (0 + 48) / 68]</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.agg({<span class="st">'passenger_count'</span>: <span class="st">'sum'</span>}).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Average number of passenger per trip`</li>
 </ul>
 <div class="cell" data-cell_id="00004-1b1bb60b-720d-42f8-8643-7b4812088e73" data-deepnote_cell_type="markdown">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.agg({<span class="st">'passenger_count'</span>: <span class="st">'avg'</span>}).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.agg({<span class="st">'passenger_count'</span>: <span class="st">'avg'</span>}).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>How many trip with 0,1,2,3,…,9 passenger`</li>
 </ul>
-<div class="cell" data-cell_id="00004-1b1bb60b-720d-42f8-8643-7b4812088e73" data-deepnote_cell_type="markdown" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'passenger_count'</span>).agg({<span class="st">'*'</span>: <span class="st">'count'</span>}).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>[Row(passenger_count=1, count(1)=73072141),
- Row(passenger_count=6, count(1)=2783068),
- Row(passenger_count=3, count(1)=4295075),
- Row(passenger_count=5, count(1)=4602861),
- Row(passenger_count=9, count(1)=275),
- Row(passenger_count=4, count(1)=2029082),
- Row(passenger_count=8, count(1)=313),
- Row(passenger_count=7, count(1)=390),
- Row(passenger_count=2, count(1)=15087976),
- Row(passenger_count=0, count(1)=933067),
- Row(passenger_count=96, count(1)=1),
- Row(passenger_count=192, count(1)=1)]</code></pre>
-</div>
+<div class="cell" data-cell_id="00004-1b1bb60b-720d-42f8-8643-7b4812088e73" data-deepnote_cell_type="markdown">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'passenger_count'</span>).agg({<span class="st">'*'</span>: <span class="st">'count'</span>}).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example" class="level2">
@@ -471,56 +418,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>To remove rows</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.<span class="bu">filter</span>(df.name <span class="op">==</span> <span class="st">'expression'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.<span class="bu">filter</span>(df.name <span class="op">==</span> <span class="st">'expression'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>To make new columns</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.withColumn(<span class="st">'var2'</span>, df.var0 <span class="op">+</span> df.var1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.withColumn(<span class="st">'var2'</span>, df.var0 <span class="op">+</span> df.var1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>To do groupby-aggregations</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df.groupBy(df.name).agg({<span class="st">'column-name'</span>: <span class="st">'avg'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.groupBy(df.name).agg({<span class="st">'column-name'</span>: <span class="st">'avg'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When you want to collect the result of your computation, finish with the <code>.collect()</code> method.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(df.<span class="bu">filter</span>(df.fare_amount <span class="op">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'tip_fraction'</span>, df.tip_amount <span class="op">/</span> df.fare_amount)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>   .groupby(<span class="st">'passenger_count'</span>).agg({<span class="st">'tip_fraction'</span>: <span class="st">'avg'</span>})).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>[Row(passenger_count=1, avg(tip_fraction)=0.16703534839637652),
- Row(passenger_count=6, avg(tip_fraction)=0.14819715619095095),
- Row(passenger_count=3, avg(tip_fraction)=0.15911954017995542),
- Row(passenger_count=5, avg(tip_fraction)=0.15291846582994303),
- Row(passenger_count=9, avg(tip_fraction)=0.16675724210066872),
- Row(passenger_count=4, avg(tip_fraction)=0.15219073673118927),
- Row(passenger_count=8, avg(tip_fraction)=0.2569091162309514),
- Row(passenger_count=7, avg(tip_fraction)=0.11830764381318884),
- Row(passenger_count=2, avg(tip_fraction)=0.15288115804135563),
- Row(passenger_count=0, avg(tip_fraction)=0.1687758008957535),
- Row(passenger_count=192, avg(tip_fraction)=0.24333333333333332),
- Row(passenger_count=96, avg(tip_fraction)=0.22666666666666668)]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>22/12/06 10:18:04 ERROR StandaloneSchedulerBackend: Application has been killed. Reason: Master removed our application: KILLED
-22/12/06 10:18:04 ERROR Inbox: Ignoring error
-org.apache.spark.SparkException: Exiting due to error from cluster scheduler: Master removed our application: KILLED
-    at org.apache.spark.errors.SparkCoreErrors$.clusterSchedulerError(SparkCoreErrors.scala:218)
-    at org.apache.spark.scheduler.TaskSchedulerImpl.error(TaskSchedulerImpl.scala:923)
-    at org.apache.spark.scheduler.cluster.StandaloneSchedulerBackend.dead(StandaloneSchedulerBackend.scala:154)
-    at org.apache.spark.deploy.client.StandaloneAppClient$ClientEndpoint.markDead(StandaloneAppClient.scala:262)
-    at org.apache.spark.deploy.client.StandaloneAppClient$ClientEndpoint$$anonfun$receive$1.applyOrElse(StandaloneAppClient.scala:169)
-    at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
-    at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
-    at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
-    at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
-    at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
-    at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-    at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-    at java.base/java.lang.Thread.run(Thread.java:829)
-22/12/06 10:18:04 ERROR TaskSchedulerImpl: Lost executor 7 on 141.94.168.194: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(df.<span class="bu">filter</span>(df.fare_amount <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'tip_fraction'</span>, df.tip_amount <span class="op">/</span> df.fare_amount)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>   .groupby(<span class="st">'passenger_count'</span>).agg({<span class="st">'tip_fraction'</span>: <span class="st">'avg'</span>})).collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

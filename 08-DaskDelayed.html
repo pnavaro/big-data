@@ -199,12 +199,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
-   New York City Taxi Cab Trip - Spark dataframes on HDFS
+   Spark dataframes on HDFS
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-NYCFlightsSpark.html">
-   NYC Flights data
+   NYC Flights data analysis with Spark
   </a>
  </li>
  <li class="toctree-l1">
@@ -735,12 +735,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.1 ms, sys: 1.59 ms, total: 2.69 ms
-Wall time: 3 s
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="parallelize-with-dask-delayed">
@@ -772,15 +766,6 @@ Wall time: 3 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.17 ms, sys: 1.78 ms, total: 3.95 ms
-Wall time: 2.01 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
-</pre></div>
-</div>
-</div>
 </div>
 <section id="some-questions-to-consider">
 <h3>Some questions to consider:<a class="headerlink" href="#some-questions-to-consider" title="Permalink to this headline">#</a></h3>
@@ -803,9 +788,6 @@ Wall time: 2.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/08-DaskDelayed_12_0.png" src="_images/08-DaskDelayed_12_0.png" />
-</div>
 </div>
 </section>
 <section id="parallelize-a-loop">
@@ -823,15 +805,6 @@ Wall time: 2.01 s
 
 <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
 <span class="n">total</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.27 ms, sys: 2.14 ms, total: 3.42 ms
-Wall time: 8.01 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
 </pre></div>
 </div>
 </div>
@@ -869,24 +842,12 @@ Wall time: 8.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.01 ms, sys: 2.53 ms, total: 5.55 ms
-Wall time: 2.01 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/08-DaskDelayed_18_0.png" src="_images/08-DaskDelayed_18_0.png" />
 </div>
 </div>
 </section>
@@ -960,11 +921,6 @@ Wall time: 2.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data...
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -986,24 +942,10 @@ Wall time: 2.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aet.json&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/afl.json&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/aig.json&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/al.json&#39;,
- &#39;/Users/navaro/PycharmProjects/big-data/notebooks/data/daily-stock/amgn.json&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">rm</span> data/daily-stock/*.h5
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rm: data/daily-stock/*.h5: No such file or directory
 </pre></div>
 </div>
 </div>
@@ -1032,11 +974,6 @@ Wall time: 2.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting data...
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="read-one-file-with-pandas-read-csv-and-compute-mean-departure-delay">
@@ -1049,206 +986,11 @@ Wall time: 2.01 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Year</th>
-      <th>Month</th>
-      <th>DayofMonth</th>
-      <th>DayOfWeek</th>
-      <th>DepTime</th>
-      <th>CRSDepTime</th>
-      <th>ArrTime</th>
-      <th>CRSArrTime</th>
-      <th>UniqueCarrier</th>
-      <th>FlightNum</th>
-      <th>...</th>
-      <th>AirTime</th>
-      <th>ArrDelay</th>
-      <th>DepDelay</th>
-      <th>Origin</th>
-      <th>Dest</th>
-      <th>Distance</th>
-      <th>TaxiIn</th>
-      <th>TaxiOut</th>
-      <th>Cancelled</th>
-      <th>Diverted</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1990</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1621.0</td>
-      <td>1540</td>
-      <td>1747.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>46.0</td>
-      <td>41.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1990</td>
-      <td>1</td>
-      <td>2</td>
-      <td>2</td>
-      <td>1547.0</td>
-      <td>1540</td>
-      <td>1700.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>-1.0</td>
-      <td>7.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1990</td>
-      <td>1</td>
-      <td>3</td>
-      <td>3</td>
-      <td>1546.0</td>
-      <td>1540</td>
-      <td>1710.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>9.0</td>
-      <td>6.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1990</td>
-      <td>1</td>
-      <td>4</td>
-      <td>4</td>
-      <td>1542.0</td>
-      <td>1540</td>
-      <td>1710.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>9.0</td>
-      <td>2.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1990</td>
-      <td>1</td>
-      <td>5</td>
-      <td>5</td>
-      <td>1549.0</td>
-      <td>1540</td>
-      <td>1706.0</td>
-      <td>1701</td>
-      <td>US</td>
-      <td>33</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>5.0</td>
-      <td>9.0</td>
-      <td>EWR</td>
-      <td>PIT</td>
-      <td>319.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 23 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is the schema?</span>
 <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Year                   int64
-Month                  int64
-DayofMonth             int64
-DayOfWeek              int64
-DepTime              float64
-CRSDepTime             int64
-ArrTime              float64
-CRSArrTime             int64
-UniqueCarrier         object
-FlightNum              int64
-TailNum              float64
-ActualElapsedTime    float64
-CRSElapsedTime         int64
-AirTime              float64
-ArrDelay             float64
-DepDelay             float64
-Origin                object
-Dest                  object
-Distance             float64
-TaxiIn               float64
-TaxiOut              float64
-Cancelled              int64
-Diverted               int64
-dtype: object
 </pre></div>
 </div>
 </div>
@@ -1260,25 +1002,11 @@ dtype: object
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;EWR&#39;, &#39;LGA&#39;, &#39;JFK&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mean departure delay per-airport for one year</span>
 <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Origin&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">DepDelay</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origin
-EWR     9.168411
-JFK    11.857274
-LGA     8.560045
-Name: DepDelay, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1292,20 +1020,6 @@ Name: DepDelay, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s2">&quot;nycflights&quot;</span><span class="p">,</span> <span class="s1">&#39;*.csv&#39;</span><span class="p">)))</span>
 <span class="n">filenames</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;data/nycflights/1990.csv&#39;,
- &#39;data/nycflights/1991.csv&#39;,
- &#39;data/nycflights/1992.csv&#39;,
- &#39;data/nycflights/1993.csv&#39;,
- &#39;data/nycflights/1994.csv&#39;,
- &#39;data/nycflights/1995.csv&#39;,
- &#39;data/nycflights/1996.csv&#39;,
- &#39;data/nycflights/1997.csv&#39;,
- &#39;data/nycflights/1998.csv&#39;,
- &#39;data/nycflights/1999.csv&#39;]
 </pre></div>
 </div>
 </div>
@@ -1340,25 +1054,10 @@ Name: DepDelay, dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.48 s, sys: 946 ms, total: 5.42 s
-Wall time: 5.47 s
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origin
-EWR    10.295469
-JFK    10.351299
-LGA     7.431142
-Name: DepDelay, dtype: float64
 </pre></div>
 </div>
 </div>

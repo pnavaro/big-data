@@ -199,12 +199,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
-   New York City Taxi Cab Trip - Spark dataframes on HDFS
+   Spark dataframes on HDFS
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-NYCFlightsSpark.html">
-   NYC Flights data
+   NYC Flights data analysis with Spark
   </a>
  </li>
  <li class="toctree-l1">
@@ -690,21 +690,10 @@ which can be accessed as a group or as individual objects.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.25 s, sys: 467 ms, total: 7.72 s
-Wall time: 7.75 s
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">rm</span> test.h5
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rm: test.h5: No such file or directory
 </pre></div>
 </div>
 </div>
@@ -715,22 +704,10 @@ Wall time: 7.75 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 66.6 ms, sys: 70.2 ms, total: 137 ms
-Wall time: 1.83 s
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> df.to_parquet(&#39;test.parquet&#39;)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 260 ms, sys: 42.7 ms, total: 303 ms
-Wall time: 1.14 s
 </pre></div>
 </div>
 </div>
@@ -741,25 +718,11 @@ Wall time: 1.14 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 158 ms, sys: 28 ms, total: 186 ms
-Wall time: 111 ms
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 du -sh test.*
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 97M	test.csv
- 36M	test.feather
- 42M	test.h5
- 37M	test.parquet
 </pre></div>
 </div>
 </div>
@@ -772,30 +735,12 @@ du -sh test.*
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 749 ms, sys: 98.7 ms, total: 848 ms
-Wall time: 850 ms
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>500000
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s2">&quot;test.h5&quot;</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 51 ms, sys: 52.5 ms, total: 103 ms
-Wall time: 104 ms
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>500000
 </pre></div>
 </div>
 </div>
@@ -808,30 +753,12 @@ Wall time: 104 ms
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 82.2 ms, sys: 76.4 ms, total: 159 ms
-Wall time: 623 ms
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>500000
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s2">&quot;test.feather&quot;</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 31.8 ms, sys: 34.4 ms, total: 66.3 ms
-Wall time: 30.8 ms
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>500000
 </pre></div>
 </div>
 </div>
@@ -865,22 +792,11 @@ Wall time: 30.8 ms
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000000
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;test.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.66 s, sys: 207 ms, total: 4.87 s
-Wall time: 4.93 s
 </pre></div>
 </div>
 </div>
@@ -892,17 +808,6 @@ Wall time: 4.93 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;timed eval&gt;:1: PerformanceWarning: 
-your performance may suffer as PyTables will pickle object types that it cannot
-map directly to c-types [inferred_type-&gt;mixed,key-&gt;block0_values] [items-&gt;Index([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;H&#39;, &#39;I&#39;, &#39;J&#39;], dtype=&#39;object&#39;)]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.71 s, sys: 539 ms, total: 3.25 s
-Wall time: 3.49 s
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -911,23 +816,11 @@ Wall time: 3.49 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 768 ms, sys: 136 ms, total: 904 ms
-Wall time: 836 ms
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s1">&#39;test.parquet&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.07 s, sys: 68.6 ms, total: 1.14 s
-Wall time: 1.19 s
 </pre></div>
 </div>
 </div>
@@ -940,30 +833,12 @@ Wall time: 1.19 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.17 s, sys: 216 ms, total: 1.38 s
-Wall time: 1.38 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000000
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span> 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s2">&quot;test.h5&quot;</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.12 s, sys: 420 ms, total: 1.54 s
-Wall time: 1.54 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000000
 </pre></div>
 </div>
 </div>
@@ -976,30 +851,12 @@ Wall time: 1.54 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.62 s, sys: 440 ms, total: 2.06 s
-Wall time: 1.98 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000000
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span> 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s1">&#39;test.parquet&#39;</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.79 s, sys: 447 ms, total: 2.24 s
-Wall time: 1.8 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000000
 </pre></div>
 </div>
 </div>
@@ -1010,171 +867,6 @@ Wall time: 1.8 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-      <th>F</th>
-      <th>G</th>
-      <th>H</th>
-      <th>I</th>
-      <th>J</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>None</td>
-      <td>0.4001572083672233</td>
-      <td>0.9787379841057392</td>
-      <td>2.240893199201458</td>
-      <td>1.8675579901499675</td>
-      <td>0</td>
-      <td>4</td>
-      <td>0</td>
-      <td>0</td>
-      <td>dolorem</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>-0.977277879876411</td>
-      <td>0.9500884175255894</td>
-      <td>-0.1513572082976979</td>
-      <td>-0.10321885179355784</td>
-      <td>0.41059850193837233</td>
-      <td>5</td>
-      <td>5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>dolorem</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.144043571160878</td>
-      <td>1.454273506962975</td>
-      <td>0.7610377251469934</td>
-      <td>0.12167501649282841</td>
-      <td>0.44386323274542566</td>
-      <td>6</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>eius</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.33367432737426683</td>
-      <td>1.4940790731576061</td>
-      <td>-0.20515826376580087</td>
-      <td>0.31306770165090136</td>
-      <td>-0.8540957393017248</td>
-      <td>0</td>
-      <td>5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>numquam</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-2.5529898158340787</td>
-      <td>0.6536185954403606</td>
-      <td>0.8644361988595057</td>
-      <td>-0.7421650204064419</td>
-      <td>2.2697546239876076</td>
-      <td>6</td>
-      <td>7</td>
-      <td>0</td>
-      <td>0</td>
-      <td>sed</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>-1.4543656745987648</td>
-      <td>0.04575851730144607</td>
-      <td>-0.1871838500258336</td>
-      <td>1.5327792143584575</td>
-      <td>1.469358769900285</td>
-      <td>6</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>labore</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.1549474256969163</td>
-      <td>0.37816251960217356</td>
-      <td>-0.8877857476301128</td>
-      <td>-1.980796468223927</td>
-      <td>-0.3479121493261526</td>
-      <td>8</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>voluptatem</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.15634896910398005</td>
-      <td>1.2302906807277207</td>
-      <td>1.2023798487844113</td>
-      <td>-0.3873268174079523</td>
-      <td>-0.30230275057533557</td>
-      <td>5</td>
-      <td>5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>sed</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>-1.0485529650670926</td>
-      <td>-1.4200179371789752</td>
-      <td>-1.7062701906250126</td>
-      <td>1.9507753952317897</td>
-      <td>-0.5096521817516535</td>
-      <td>7</td>
-      <td>5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>eius</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>-0.4380743016111864</td>
-      <td>-1.2527953600499262</td>
-      <td>0.7774903558319101</td>
-      <td>-1.6138978475579515</td>
-      <td>-0.2127402802139687</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>voluptatem</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1189,22 +881,10 @@ Wall time: 1.8 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 557 ms, sys: 85.9 ms, total: 643 ms
-Wall time: 597 ms
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> df.to_parquet(&#39;test.parquet&#39;)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 935 ms, sys: 66.1 ms, total: 1 s
-Wall time: 1.06 s
 </pre></div>
 </div>
 </div>
@@ -1217,30 +897,12 @@ Wall time: 1.06 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.29 s, sys: 322 ms, total: 1.61 s
-Wall time: 1.55 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000000
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span> 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s1">&#39;test.parquet&#39;</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.59 s, sys: 357 ms, total: 1.94 s
-Wall time: 1.67 s
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000000
 </pre></div>
 </div>
 </div>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>New York City Taxi Cab Trip - Spark dataframes on HDFS &#8212; Python tools for Big data</title>
+    <title>Spark dataframes on HDFS &#8212; Python tools for Big data</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://pnavaro.github.io/big-data/19-NYCTaxiCabTripSpark.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="NYC Flights data" href="20-NYCFlightsSpark.html" />
+    <link rel="next" title="NYC Flights data analysis with Spark" href="20-NYCFlightsSpark.html" />
     <link rel="prev" title="Dask dataframes on HDFS" href="18-NYCTaxiCabTripDask.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -199,12 +199,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   New York City Taxi Cab Trip - Spark dataframes on HDFS
+   Spark dataframes on HDFS
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-NYCFlightsSpark.html">
-   NYC Flights data
+   NYC Flights data analysis with Spark
   </a>
  </li>
  <li class="toctree-l1">
@@ -510,7 +510,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>New York City Taxi Cab Trip - Spark dataframes on HDFS</h1>
+                <h1>Spark dataframes on HDFS</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -555,8 +555,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="new-york-city-taxi-cab-trip-spark-dataframes-on-hdfs">
-<h1>New York City Taxi Cab Trip - Spark dataframes on HDFS<a class="headerlink" href="#new-york-city-taxi-cab-trip-spark-dataframes-on-hdfs" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="spark-dataframes-on-hdfs">
+<h1>Spark dataframes on HDFS<a class="headerlink" href="#spark-dataframes-on-hdfs" title="Permalink to this headline">#</a></h1>
 <p>We look at <a class="reference external" href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">the New York City Taxi Cab dataset</a>. This includes every ride made in the city of New York since 2009.</p>
 <p>On <a class="reference external" href="http://chriswhong.github.io/nyctaxi/">this website</a> you can see the data for one random NYC yellow taxi on a single day.</p>
 <p>On <a class="reference external" href="http://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/">this post</a>, you can see an analysis of this dataset. Postgres and R scripts are available on <a class="reference external" href="https://github.com/toddwschneider/nyc-taxi-data">GitHub</a>.</p>
@@ -616,18 +616,13 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting wordcount.py
+</div>
+<p>Launch your spark application using the command line</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spark-submit wordcount.py
 </pre></div>
 </div>
-</div>
-</div>
-<p>Vous pouvez tester la commande en l’exécutant dans un terminal</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/opt/spark-3.3.1-bin-hadoop3/bin/spark-submit wordcount.py
-</pre></div>
-</div>
-<p>Utilisez <code class="docutils literal notranslate"><span class="pre">Ctrl-C</span></code> pour la stopper en cas de problème</p>
-<p>par défaut la sortie se fait sur le système de fichier hdfs</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">Ctrl-C</span></code> to stop it if you have a problem. If the environment variable
+<code class="docutils literal notranslate"><span class="pre">HADOOP_HOME</span></code> is set the output will be write on the HDFS. Display the results with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hdfs</span> <span class="n">dfs</span> <span class="o">-</span><span class="n">cat</span> <span class="n">output</span><span class="o">/*</span>
 </pre></div>
 </div>
@@ -659,39 +654,12 @@ In Jupyter notebook you won’t see any progress or information if error occurs.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-    <div>
-        <p><b>SparkSession - in-memory</b></p>
-
-<div>
-    <p><b>SparkContext</b></p>
-
-    <p><a href="http://mas-sdd-rennes2.ovh:4040">Spark UI</a></p>
-
-    <dl>
-      <dt>Version</dt>
-        <dd><code>v3.3.1</code></dd>
-      <dt>Master</dt>
-        <dd><code>spark://b2-120-gra11:7077</code></dd>
-      <dt>AppName</dt>
-        <dd><code>pyspark-shell</code></dd>
-    </dl>
-</div>
-
-    </div>
-</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tpep_pickup_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;passenger_count&#39;</span><span class="p">,</span> <span class="s1">&#39;payment_type&#39;</span><span class="p">,</span> <span class="s1">&#39;fare_amount&#39;</span><span class="p">,</span> 
            <span class="s1">&#39;tip_amount&#39;</span><span class="p">,</span> <span class="s1">&#39;total_amount&#39;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;hdfs://localhost:54310/data/nyctaxi/2018.parquet/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="o">*</span><span class="n">columns</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
 </pre></div>
 </div>
 </div>
@@ -702,11 +670,6 @@ In Jupyter notebook you won’t see any progress or information if error occurs.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;passenger_count&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 1:&gt;                                                        (0 + 48) / 68]
 </pre></div>
 </div>
 </div>
@@ -727,25 +690,6 @@ In Jupyter notebook you won’t see any progress or information if error occurs.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;passenger_count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;*&#39;</span><span class="p">:</span> <span class="s1">&#39;count&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Row(passenger_count=1, count(1)=73072141),
- Row(passenger_count=6, count(1)=2783068),
- Row(passenger_count=3, count(1)=4295075),
- Row(passenger_count=5, count(1)=4602861),
- Row(passenger_count=9, count(1)=275),
- Row(passenger_count=4, count(1)=2029082),
- Row(passenger_count=8, count(1)=313),
- Row(passenger_count=7, count(1)=390),
- Row(passenger_count=2, count(1)=15087976),
- Row(passenger_count=0, count(1)=933067),
- Row(passenger_count=96, count(1)=1),
- Row(passenger_count=192, count(1)=1)]
 </pre></div>
 </div>
 </div>
@@ -783,44 +727,6 @@ In Jupyter notebook you won’t see any progress or information if error occurs.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">fare_amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;tip_fraction&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">tip_amount</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">fare_amount</span><span class="p">)</span>
    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;passenger_count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;tip_fraction&#39;</span><span class="p">:</span> <span class="s1">&#39;avg&#39;</span><span class="p">}))</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Row(passenger_count=1, avg(tip_fraction)=0.16703534839637652),
- Row(passenger_count=6, avg(tip_fraction)=0.14819715619095095),
- Row(passenger_count=3, avg(tip_fraction)=0.15911954017995542),
- Row(passenger_count=5, avg(tip_fraction)=0.15291846582994303),
- Row(passenger_count=9, avg(tip_fraction)=0.16675724210066872),
- Row(passenger_count=4, avg(tip_fraction)=0.15219073673118927),
- Row(passenger_count=8, avg(tip_fraction)=0.2569091162309514),
- Row(passenger_count=7, avg(tip_fraction)=0.11830764381318884),
- Row(passenger_count=2, avg(tip_fraction)=0.15288115804135563),
- Row(passenger_count=0, avg(tip_fraction)=0.1687758008957535),
- Row(passenger_count=192, avg(tip_fraction)=0.24333333333333332),
- Row(passenger_count=96, avg(tip_fraction)=0.22666666666666668)]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 10:18:04 ERROR StandaloneSchedulerBackend: Application has been killed. Reason: Master removed our application: KILLED
-22/12/06 10:18:04 ERROR Inbox: Ignoring error
-org.apache.spark.SparkException: Exiting due to error from cluster scheduler: Master removed our application: KILLED
-	at org.apache.spark.errors.SparkCoreErrors$.clusterSchedulerError(SparkCoreErrors.scala:218)
-	at org.apache.spark.scheduler.TaskSchedulerImpl.error(TaskSchedulerImpl.scala:923)
-	at org.apache.spark.scheduler.cluster.StandaloneSchedulerBackend.dead(StandaloneSchedulerBackend.scala:154)
-	at org.apache.spark.deploy.client.StandaloneAppClient$ClientEndpoint.markDead(StandaloneAppClient.scala:262)
-	at org.apache.spark.deploy.client.StandaloneAppClient$ClientEndpoint$$anonfun$receive$1.applyOrElse(StandaloneAppClient.scala:169)
-	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:115)
-	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
-	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
-	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
-	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-22/12/06 10:18:04 ERROR TaskSchedulerImpl: Lost executor 7 on 141.94.168.194: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
 </pre></div>
 </div>
 </div>
@@ -865,7 +771,7 @@ org.apache.spark.SparkException: Exiting due to error from cluster scheduler: Ma
     <a class='right-next' id="next-link" href="20-NYCFlightsSpark.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">NYC Flights data</p>
+        <p class="prev-next-title">NYC Flights data analysis with Spark</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

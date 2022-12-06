@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">New York City Taxi Cab Trip - Spark dataframes on HDFS</a>
+  <a href="./19-NYCTaxiCabTripSpark.html" class="sidebar-item-text sidebar-link">Spark dataframes on HDFS</a>
   </div>
 </li>
       </ul>
@@ -285,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#nyc-flights-data" id="toc-nyc-flights-data" class="nav-link active" data-scroll-target="#nyc-flights-data">NYC Flights data</a>
+  <li><a href="#nyc-flights-data-analysis-with-spark" id="toc-nyc-flights-data-analysis-with-spark" class="nav-link active" data-scroll-target="#nyc-flights-data-analysis-with-spark">NYC Flights data analysis with Spark</a>
   <ul class="collapse">
   <li><a href="#column-operations" id="toc-column-operations" class="nav-link" data-scroll-target="#column-operations">Column Operations</a></li>
   </ul></li>
@@ -297,9 +297,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="nyc-flights-data" class="level1">
-<h1>NYC Flights data</h1>
-<p>Reference : https://github.com/rich-iannone/so-many-pyspark-examples/blob/main/spark-dataframes.ipynb</p>
+<section id="nyc-flights-data-analysis-with-spark" class="level1">
+<h1>NYC Flights data analysis with Spark</h1>
+<p>Reference : <a href="https://github.com/rich-iannone/so-many-pyspark-examples">so many pyspark examples</a></p>
 <p>In this notebook, we will extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from <a href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>.</p>
 <p><strong>Variable descriptions</strong></p>
 <p>Name Description</p>
@@ -334,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>SecurityDelay</code> in minutes</li>
 <li><code>LateAircraftDelay</code> in minutes</li>
 </ol>
-<div class="cell" data-cell_id="e04e8f8a418840098b98037121ea5da7" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1664193365062" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="88a3037b" data-execution_count="1">
+<div class="cell" data-cell_id="e04e8f8a418840098b98037121ea5da7" data-deepnote_cell_type="code" data-execution_millis="5" data-execution_start="1664193365062" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="88a3037b">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder <span class="op">\</span></span>
@@ -346,253 +346,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>nycflights <span class="op">=</span> spark.read.parquet(<span class="st">"hdfs://localhost:54310/data/nycflights.parquet"</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>nycflights.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>22/12/06 10:31:03 WARN Utils: Your hostname, b2-120-gra11 resolves to a loopback address: 127.0.1.1; using 141.94.168.194 instead (on interface ens3)
-22/12/06 10:31:03 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>22/12/06 10:31:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 0:&gt;                                                          (0 + 0) / 1]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>22/12/06 10:31:31 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
-|               Date|DayOfWeek|DepTime|CRSDepTime|ArrTime|CRSArrTime|UniqueCarrier|FlightNum|ActualElapsedTime|CRSElapsedTime|AirTime|ArrDelay|DepDelay|Origin|Dest|Distance|TaxiIn|TaxiOut|Cancelled|Diverted|__null_dask_index__|
-+-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
-|1999-01-01 00:00:00|        5| 1526.0|      1515| 1838.0|      1849|           CO|     1923|            312.0|         334.0|  289.0|   -11.0|    11.0|   EWR| PHX|  2133.0|   7.0|   16.0|    false|       0|                  0|
-|1999-01-02 00:00:00|        6| 1727.0|      1540| 2056.0|      1914|           CO|     1923|            329.0|         334.0|  301.0|   102.0|   107.0|   EWR| PHX|  2133.0|   8.0|   20.0|    false|       0|                  1|
-|1999-01-03 00:00:00|        7| 1609.0|      1515| 1935.0|      1849|           CO|     1923|            326.0|         334.0|  295.0|    46.0|    54.0|   EWR| PHX|  2133.0|   6.0|   25.0|    false|       0|                  2|
-|1999-01-04 00:00:00|        1| 1605.0|      1515| 1923.0|      1849|           CO|     1923|            318.0|         334.0|  292.0|    34.0|    50.0|   EWR| PHX|  2133.0|   5.0|   21.0|    false|       0|                  3|
-|1999-01-05 00:00:00|        2| 1529.0|      1515| 1908.0|      1849|           CO|     1923|            339.0|         334.0|  301.0|    19.0|    14.0|   EWR| PHX|  2133.0|   6.0|   32.0|    false|       0|                  4|
-|1999-01-06 00:00:00|        3| 1523.0|      1515| 1941.0|      1849|           CO|     1923|            378.0|         334.0|  344.0|    52.0|     8.0|   EWR| PHX|  2133.0|  10.0|   24.0|    false|       0|                  5|
-|1999-01-07 00:00:00|        4| 1521.0|      1515| 1920.0|      1849|           CO|     1923|            359.0|         334.0|  326.0|    31.0|     6.0|   EWR| PHX|  2133.0|   6.0|   27.0|    false|       0|                  6|
-|1999-01-08 00:00:00|        5| 2038.0|      1515|   22.0|      1849|           CO|     1923|            344.0|         334.0|  290.0|   333.0|   323.0|   EWR| PHX|  2133.0|   4.0|   50.0|    false|       0|                  7|
-|1999-01-09 00:00:00|        6| 1616.0|      1540| 1943.0|      1914|           CO|     1923|            327.0|         334.0|  302.0|    29.0|    36.0|   EWR| PHX|  2133.0|   8.0|   17.0|    false|       0|                  8|
-|1999-01-10 00:00:00|        7| 1515.0|      1515| 1850.0|      1849|           CO|     1923|            335.0|         334.0|  291.0|     1.0|     0.0|   EWR| PHX|  2133.0|   9.0|   35.0|    false|       0|                  9|
-|1999-01-11 00:00:00|        1| 1514.0|      1515| 1922.0|      1849|           CO|     1923|            368.0|         334.0|  318.0|    33.0|    -1.0|   EWR| PHX|  2133.0|   5.0|   45.0|    false|       0|                 10|
-|1999-01-12 00:00:00|        2| 1513.0|      1515| 1838.0|      1849|           CO|     1923|            325.0|         334.0|  303.0|   -11.0|    -2.0|   EWR| PHX|  2133.0|   7.0|   15.0|    false|       0|                 11|
-|1999-01-13 00:00:00|        3| 1514.0|      1515| 1921.0|      1849|           CO|     1923|            367.0|         334.0|  316.0|    32.0|    -1.0|   EWR| PHX|  2133.0|   7.0|   44.0|    false|       0|                 12|
-|1999-01-14 00:00:00|        4| 1640.0|      1515| 2031.0|      1849|           CO|     1923|            351.0|         334.0|  289.0|   102.0|    85.0|   EWR| PHX|  2133.0|   6.0|   56.0|    false|       0|                 13|
-|1999-01-15 00:00:00|        5| 1605.0|      1515| 1950.0|      1849|           CO|     1923|            345.0|         334.0|  305.0|    61.0|    50.0|   EWR| PHX|  2133.0|   5.0|   35.0|    false|       0|                 14|
-|1999-01-16 00:00:00|        6| 1606.0|      1540| 1953.0|      1914|           CO|     1923|            347.0|         334.0|  317.0|    39.0|    26.0|   EWR| PHX|  2133.0|  14.0|   16.0|    false|       0|                 15|
-|1999-01-17 00:00:00|        7| 1527.0|      1515| 1859.0|      1849|           CO|     1923|            332.0|         334.0|  296.0|    10.0|    12.0|   EWR| PHX|  2133.0|   6.0|   30.0|    false|       0|                 16|
-|1999-01-18 00:00:00|        1| 1636.0|      1515| 2030.0|      1849|           CO|     1923|            354.0|         334.0|  307.0|   101.0|    81.0|   EWR| PHX|  2133.0|   6.0|   41.0|    false|       0|                 17|
-|1999-01-19 00:00:00|        2| 1510.0|      1515| 1901.0|      1849|           CO|     1923|            351.0|         334.0|  331.0|    12.0|    -5.0|   EWR| PHX|  2133.0|   7.0|   13.0|    false|       0|                 18|
-|1999-01-20 00:00:00|        3| 1520.0|      1515| 1915.0|      1849|           CO|     1923|            355.0|         334.0|  320.0|    26.0|     5.0|   EWR| PHX|  2133.0|   4.0|   31.0|    false|       0|                 19|
-+-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
-only showing top 20 rows
-</code></pre>
-</div>
 </div>
 <p>Let’s take a look to the dataframe scheme</p>
-<div class="cell" data-cell_id="20afface4f594790a03eec65a1c9bfe7" data-deepnote_cell_type="code" data-execution_millis="12" data-execution_start="1664193395038" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="f804c160" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nycflights.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>root
- |-- Date: timestamp (nullable = true)
- |-- DayOfWeek: long (nullable = true)
- |-- DepTime: double (nullable = true)
- |-- CRSDepTime: long (nullable = true)
- |-- ArrTime: double (nullable = true)
- |-- CRSArrTime: long (nullable = true)
- |-- UniqueCarrier: string (nullable = true)
- |-- FlightNum: long (nullable = true)
- |-- ActualElapsedTime: double (nullable = true)
- |-- CRSElapsedTime: double (nullable = true)
- |-- AirTime: double (nullable = true)
- |-- ArrDelay: double (nullable = true)
- |-- DepDelay: double (nullable = true)
- |-- Origin: string (nullable = true)
- |-- Dest: string (nullable = true)
- |-- Distance: double (nullable = true)
- |-- TaxiIn: double (nullable = true)
- |-- TaxiOut: double (nullable = true)
- |-- Cancelled: boolean (nullable = true)
- |-- Diverted: long (nullable = true)
- |-- __null_dask_index__: long (nullable = true)
-</code></pre>
-</div>
+<div class="cell" data-cell_id="20afface4f594790a03eec65a1c9bfe7" data-deepnote_cell_type="code" data-execution_millis="12" data-execution_start="1664193395038" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="f804c160">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nycflights.printSchema()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s group and aggregate <code>groupBy()</code> will group one or more DF columns and prep them for aggregration functions</p>
-<div class="cell" data-cell_id="9316b884ebbf474a9ac6968f7d56ae4c" data-deepnote_cell_type="code" data-execution_millis="706" data-execution_start="1664193427066" data-source_hash="693ab60a" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(nycflights</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> .groupby(<span class="st">'Origin'</span>) <span class="co"># creates 'GroupedData'</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a> .count() <span class="co"># creates a new column with aggregate `count` values</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 4:&gt;                                                          (0 + 1) / 1]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+------+-------+
-|Origin|  count|
-+------+-------+
-|   LGA|1003420|
-|   EWR|1174131|
-|   JFK| 434341|
-+------+-------+
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell" data-cell_id="9316b884ebbf474a9ac6968f7d56ae4c" data-deepnote_cell_type="code" data-execution_millis="706" data-execution_start="1664193427066" data-source_hash="693ab60a">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(nycflights</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a> .groupby(<span class="st">'Origin'</span>) <span class="co"># creates 'GroupedData'</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> .count() <span class="co"># creates a new column with aggregate `count` values</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use the <code>agg()</code> function to perform multiple aggregations</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(nycflights</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> .groupby(<span class="st">'Origin'</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a> .agg({<span class="st">'DepDelay'</span>: <span class="st">'avg'</span>, <span class="st">'ArrDelay'</span>: <span class="st">'avg'</span>}) <span class="co"># note the new column names</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a> .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 7:&gt;                                                          (0 + 1) / 1]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+------+------------------+-----------------+
-|Origin|     avg(DepDelay)|    avg(ArrDelay)|
-+------+------------------+-----------------+
-|   LGA| 7.431141565915709|6.047335822109474|
-|   EWR|10.295468607250333|9.565089035954916|
-|   JFK|10.351298909519874|8.353392637878372|
-+------+------------------+-----------------+
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(nycflights</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> .groupby(<span class="st">'Origin'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> .agg({<span class="st">'DepDelay'</span>: <span class="st">'avg'</span>, <span class="st">'ArrDelay'</span>: <span class="st">'avg'</span>}) <span class="co"># note the new column names</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can’t perform multiple aggregrations on the same column (only the last is performed)</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(nycflights</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> .groupby(<span class="st">'DayOfWeek'</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a> .agg({<span class="st">'DepDelay'</span>: <span class="st">'min'</span>, <span class="st">'DepDelay'</span>: <span class="st">'max'</span>})</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a> .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 10:&gt;                                                         (0 + 1) / 1]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+---------+-------------+
-|DayOfWeek|max(DepDelay)|
-+---------+-------------+
-|        7|       1429.0|
-|        6|       1434.0|
-|        5|       1435.0|
-|        1|       1435.0|
-|        3|       1435.0|
-|        2|       1434.0|
-|        4|       1435.0|
-+---------+-------------+
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(nycflights</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> .groupby(<span class="st">'DayOfWeek'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> .agg({<span class="st">'DepDelay'</span>: <span class="st">'min'</span>, <span class="st">'DepDelay'</span>: <span class="st">'max'</span>})</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a> .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use <code>groupBy()</code> with a few columns, then aggregate</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  .groupby([<span class="st">'DayOfWeek'</span>, <span class="st">'Origin'</span>, <span class="st">'Dest'</span>]) <span class="co"># group by these unique combinations</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  .count()                              <span class="co"># perform a 'count' aggregation on the groups</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  .orderBy([<span class="st">'DayOfWeek'</span>, <span class="st">'count'</span>],</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>           ascending <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">0</span>])          <span class="co"># order by `DayOfWeek` ascending, `count` descending</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  .show(<span class="dv">40</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 13:&gt;                                                         (0 + 1) / 1]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+---------+------+----+-----+
-|DayOfWeek|Origin|Dest|count|
-+---------+------+----+-----+
-|        1|   LGA| ORD|17121|
-|        1|   EWR| ORD|15946|
-|        1|   EWR| BOS|12157|
-|        1|   JFK| LAX|10383|
-|        1|   EWR| ATL| 9462|
-|        1|   LGA| BOS| 8755|
-|        1|   LGA| DFW| 8687|
-|        1|   LGA| DCA| 8165|
-|        1|   LGA| ATL| 7568|
-|        1|   EWR| DTW| 7209|
-|        1|   JFK| SFO| 6869|
-|        1|   EWR| MCO| 6564|
-|        1|   LGA| MIA| 6381|
-|        1|   EWR| DFW| 6364|
-|        1|   EWR| DCA| 6203|
-|        1|   EWR| LAX| 5959|
-|        1|   LGA| MCO| 5503|
-|        1|   EWR| PIT| 5213|
-|        1|   EWR| DEN| 5004|
-|        1|   JFK| SJU| 4988|
-|        1|   EWR| MIA| 4941|
-|        1|   LGA| DTW| 4927|
-|        1|   LGA| PIT| 4894|
-|        1|   LGA| PBI| 4888|
-|        1|   LGA| CLT| 4776|
-|        1|   JFK| MIA| 4749|
-|        1|   LGA| FLL| 4495|
-|        1|   EWR| IAH| 4399|
-|        1|   EWR| CLT| 4377|
-|        1|   LGA| CLE| 4308|
-|        1|   EWR| BUF| 4145|
-|        1|   EWR| CLE| 4096|
-|        1|   EWR| MSP| 4087|
-|        1|   LGA| IAH| 3931|
-|        1|   EWR| STL| 3931|
-|        1|   LGA| MSP| 3848|
-|        1|   EWR| SFO| 3844|
-|        1|   LGA| BUF| 3843|
-|        1|   EWR| FLL| 3811|
-|        1|   LGA| DEN| 3550|
-+---------+------+----+-----+
-only showing top 40 rows
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  .groupby([<span class="st">'DayOfWeek'</span>, <span class="st">'Origin'</span>, <span class="st">'Dest'</span>]) <span class="co"># group by these unique combinations</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  .count()                              <span class="co"># perform a 'count' aggregation on the groups</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  .orderBy([<span class="st">'DayOfWeek'</span>, <span class="st">'count'</span>],</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>           ascending <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">0</span>])          <span class="co"># order by `DayOfWeek` ascending, `count` descending</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  .show(<span class="dv">40</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use <code>groupBy()</code> + <code>pivot()</code> + an aggregation function to make a pivot table! Get a table of flights by month for each carrier</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  .groupBy(<span class="st">'DayOfWeek'</span>) <span class="co"># group the data for aggregation by `month` number</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  .pivot(<span class="st">'UniqueCarrier'</span>) <span class="co"># provide columns of data by `carrier` abbreviation</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  .count()          <span class="co"># create aggregations as a count of rows</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  .show()</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 27:&gt;                                                         (0 + 1) / 1]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
-|DayOfWeek|   AA|    CO|   DL|  EA|  HP|ML (1)|   NW|PA (1)|   TW|   UA|   US|
-+---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
-|        7|51950| 94901|52191|2375|6240|   306|17846|  5856|29381|33861|59781|
-|        6|46854| 85451|51611|2346|6429|   281|16335|  5891|28709|32328|44344|
-|        5|54980|106813|54520|2346|6411|   363|19695|  6263|29862|36895|67396|
-|        1|55358|106849|54824|2431|6413|   365|19783|  6254|30106|37294|68334|
-|        3|55268|106974|54936|2337|6396|   376|19806|  6259|30076|37299|68315|
-|        2|55472|107185|55061|2346|6411|   368|19893|  6206|30128|37311|68531|
-|        4|55049|106488|54626|2361|6417|   366|19709|  6173|29811|37135|67981|
-+---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  .groupBy(<span class="st">'DayOfWeek'</span>) <span class="co"># group the data for aggregation by `month` number</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  .pivot(<span class="st">'UniqueCarrier'</span>) <span class="co"># provide columns of data by `carrier` abbreviation</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  .count()          <span class="co"># create aggregations as a count of rows</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  .show()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="column-operations" class="level2">
 <h2 class="anchored" data-anchor-id="column-operations">Column Operations</h2>
@@ -615,213 +416,74 @@ only showing top 40 rows
 </ul>
 <p>Once you have a <code>Column</code> instance, you can apply a wide range of functions. Some of the functions covered here are: - <code>format_number()</code>: apply formatting to a number, rounded to <code>d</code> decimal places, and return the result as a string - <code>when()</code> &amp; <code>otherwise()</code>: <code>when()</code> evaluates a list of conditions and returns one of multiple possible result expressions; if <code>otherwise()</code> is not invoked, <code>None</code> is returned for unmatched conditions - <code>concat_ws()</code>: concatenates multiple input string columns together into a single string column, using the given separator - <code>to_utc_timestamp()</code>: assumes the given timestamp is in given timezone and converts to UTC - <code>year()</code>: extracts the year of a given date as integer - <code>month()</code>: extracts the month of a given date as integer - <code>dayofmonth()</code>: extracts the day of the month of a given date as integer - <code>hour()</code>: extract the hour of a given date as integer - <code>minute()</code>: extract the minute of a given date as integer</p>
 <p>Perform 2 different aggregations, rename those new columns, then do some rounding of the aggregrate values</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  .groupby(<span class="st">'DayOfWeek'</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  .agg({<span class="st">'DepDelay'</span>: <span class="st">'avg'</span>, <span class="st">'ArrDelay'</span>: <span class="st">'avg'</span>})</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  .withColumnRenamed(<span class="st">'avg(DepDelay)'</span>, <span class="st">'mean_arr_delay'</span>)</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  .withColumnRenamed(<span class="st">'avg(ArrDelay)'</span>, <span class="st">'mean_dep_delay'</span>)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'mean_arr_delay'</span>, format_number(<span class="st">'mean_arr_delay'</span>, <span class="dv">1</span>))</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'mean_dep_delay'</span>, format_number(<span class="st">'mean_dep_delay'</span>, <span class="dv">1</span>))</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  .show()</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 28:=====&gt;                                                  (1 + 10) / 11]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+---------+--------------+--------------+
-|DayOfWeek|mean_arr_delay|mean_dep_delay|
-+---------+--------------+--------------+
-|        7|           9.0|           4.8|
-|        6|           7.8|           3.1|
-|        5|          11.5|          11.8|
-|        1|           8.1|           6.3|
-|        3|           9.1|           9.8|
-|        2|           8.1|           7.7|
-|        4|          10.5|          11.5|
-+---------+--------------+--------------+
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  .groupby(<span class="st">'DayOfWeek'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  .agg({<span class="st">'DepDelay'</span>: <span class="st">'avg'</span>, <span class="st">'ArrDelay'</span>: <span class="st">'avg'</span>})</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  .withColumnRenamed(<span class="st">'avg(DepDelay)'</span>, <span class="st">'mean_arr_delay'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  .withColumnRenamed(<span class="st">'avg(ArrDelay)'</span>, <span class="st">'mean_dep_delay'</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'mean_arr_delay'</span>, format_number(<span class="st">'mean_arr_delay'</span>, <span class="dv">1</span>))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'mean_dep_delay'</span>, format_number(<span class="st">'mean_dep_delay'</span>, <span class="dv">1</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  .show()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Add a new column (<code>far_or_near</code>) with a string based on a comparison on a numeric column; uses: <code>withColumn()</code>, <code>when()</code>, and <code>otherwise()</code></p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> <span class="op">*</span>  <span class="co"># Necessary for creating schemas</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> <span class="op">*</span> <span class="co"># Importing PySpark functions</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'far_or_near'</span>,</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>              when(nycflights.Distance <span class="op">&gt;</span> <span class="dv">1000</span>, <span class="st">'far'</span>) <span class="co"># the `if-then` statement</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>              .otherwise(<span class="st">'near'</span>))                     <span class="co"># the `else` statement</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  .select([<span class="st">"Origin"</span>, <span class="st">"Dest"</span>, <span class="st">"far_or_near"</span>])</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  .distinct()</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  .show()</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 28:=============================&gt;                            (2 + 2) / 4]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+------+----+-----------+
-|Origin|Dest|far_or_near|
-+------+----+-----------+
-|   LGA| MKE|       near|
-|   LGA| BOS|       near|
-|   LGA| CAE|       near|
-|   JFK| FLL|        far|
-|   LGA| DTW|       near|
-|   JFK| IND|       near|
-|   LGA| BNA|       near|
-|   EWR| BNA|       near|
-|   LGA| PHL|       near|
-|   EWR| RSW|        far|
-|   EWR| DCA|       near|
-|   EWR| LAS|        far|
-|   EWR| ORH|       near|
-|   JFK| IAD|       near|
-|   EWR| SEA|        far|
-|   EWR| DAY|       near|
-|   JFK| RDU|       near|
-|   EWR| PIT|       near|
-|   LGA| EWR|       near|
-|   JFK| CVG|       near|
-+------+----+-----------+
-only showing top 20 rows
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.types <span class="im">import</span> <span class="op">*</span>  <span class="co"># Necessary for creating schemas</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql.functions <span class="im">import</span> <span class="op">*</span> <span class="co"># Importing PySpark functions</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'far_or_near'</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>              when(nycflights.Distance <span class="op">&gt;</span> <span class="dv">1000</span>, <span class="st">'far'</span>) <span class="co"># the `if-then` statement</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>              .otherwise(<span class="st">'near'</span>))                     <span class="co"># the `else` statement</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  .select([<span class="st">"Origin"</span>, <span class="st">"Dest"</span>, <span class="st">"far_or_near"</span>])</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  .distinct()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  .show()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Perform a few numerical computations across columns</p>
-<div class="cell" data-scrolled="true" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'dist_per_minute'</span>,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>              nycflights.Distance <span class="op">/</span> nycflights.AirTime) <span class="co"># create new column with division of values</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'dist_per_minute'</span>,</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>              format_number(<span class="st">'dist_per_minute'</span>, <span class="dv">2</span>))       <span class="co"># round that new column's float value to 2 decimal places</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  .select([<span class="st">"Origin"</span>, <span class="st">"Dest"</span>, <span class="st">"dist_per_minute"</span>])</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  .distinct()</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  .show()</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 31:===========================================&gt;              (3 + 1) / 4]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+------+----+---------------+
-|Origin|Dest|dist_per_minute|
-+------+----+---------------+
-|   JFK| SFO|           6.66|
-|   JFK| STL|           7.89|
-|   LGA| TPA|           6.83|
-|   LGA| MEM|           7.77|
-|   LGA| MIA|           5.93|
-|   LGA| MSP|           5.45|
-|   LGA| MSY|           6.01|
-|   EWR| PBI|           8.26|
-|   EWR| LAX|           7.03|
-|   LGA| BOS|           4.87|
-|   LGA| DEN|           7.20|
-|   EWR| PHX|           6.20|
-|   EWR| GSP|           6.39|
-|   EWR| BUF|           3.97|
-|   EWR| CVG|           7.39|
-|   LGA| STL|           7.45|
-|   EWR| GSO|           4.80|
-|   EWR| ATL|           4.16|
-|   JFK| BQN|           7.40|
-|   LGA| CLT|           9.54|
-+------+----+---------------+
-only showing top 20 rows
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'dist_per_minute'</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              nycflights.Distance <span class="op">/</span> nycflights.AirTime) <span class="co"># create new column with division of values</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'dist_per_minute'</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>              format_number(<span class="st">'dist_per_minute'</span>, <span class="dv">2</span>))       <span class="co"># round that new column's float value to 2 decimal places</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  .select([<span class="st">"Origin"</span>, <span class="st">"Dest"</span>, <span class="st">"dist_per_minute"</span>])</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  .distinct()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  .show()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can split the date if you need. Use the <code>year()</code>, <code>month()</code>, <code>dayofmonth()</code>,<code>hour()</code>, and <code>minute()</code> functions with <code>withColumn()</code></p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'Year'</span>, year(nycflights.Date))</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'Month'</span>, month(nycflights.Date))</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'Day'</span>, dayofmonth(nycflights.Date))</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  .select([<span class="st">"Day"</span>, <span class="st">"Month"</span>, <span class="st">"Year"</span>])</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  .distinct()</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  .show()</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[Stage 34:===========================================&gt;              (3 + 1) / 4]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+---+-----+----+
-|Day|Month|Year|
-+---+-----+----+
-| 10|    9|1995|
-| 29|   11|1995|
-| 29|    9|1990|
-|  1|   11|1990|
-| 24|    6|1994|
-| 17|   10|1994|
-|  6|    8|1995|
-|  5|    2|1990|
-| 29|    9|1994|
-| 18|   11|1994|
-|  2|   10|1995|
-| 26|    7|1994|
-| 31|    8|1994|
-|  5|    5|1990|
-|  8|    7|1990|
-| 16|    7|1990|
-|  1|    8|1990|
-|  2|   10|1994|
-|  2|    1|1995|
-| 22|    4|1995|
-+---+-----+----+
-only showing top 20 rows
-</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>                                                                                </code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'Year'</span>, year(nycflights.Date))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'Month'</span>, month(nycflights.Date))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  .withColumn(<span class="st">'Day'</span>, dayofmonth(nycflights.Date))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  .select([<span class="st">"Day"</span>, <span class="st">"Month"</span>, <span class="st">"Year"</span>])</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  .distinct()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  .show()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are more time-based functions: - <code>date_sub()</code>: subtract an integer number of days from a <em>Date</em> or <em>Timestamp</em> - <code>date_add()</code>: add an integer number of days from a <em>Date</em> or <em>Timestamp</em> - <code>datediff()</code>: get the difference between two dates - <code>add_months()</code>: add an integer number of months - <code>months_between()</code>: get the number of months between two dates - <code>next_day()</code>: returns the first date which is later than the value of the date column - <code>last_day()</code>: returns the last day of the month which the given date belongs to - <code>dayofmonth()</code>: extract the day of the month of a given date as integer - <code>dayofyear()</code>: extract the day of the year of a given date as integer - <code>weekofyear()</code>: extract the week number of a given date as integer - <code>quarter()</code>: extract the quarter of a given date</p>
 <p>Let’s transform the timestamp in the first record of <code>nycflights</code> with each of these functions</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>   .limit(<span class="dv">10</span>)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>   .select(<span class="st">'Date'</span>)</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'dayofyear'</span>, dayofyear(nycflights.Date))</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'weekofyear'</span>, weekofyear(nycflights.Date))</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>   .show()</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>+-------------------+---------+----------+
-|               Date|dayofyear|weekofyear|
-+-------------------+---------+----------+
-|1992-01-07 00:00:00|        7|         2|
-|1992-01-08 00:00:00|        8|         2|
-|1992-01-09 00:00:00|        9|         2|
-|1992-01-11 00:00:00|       11|         2|
-|1992-01-12 00:00:00|       12|         2|
-|1992-01-13 00:00:00|       13|         3|
-|1992-01-14 00:00:00|       14|         3|
-|1992-01-15 00:00:00|       15|         3|
-|1992-01-16 00:00:00|       16|         3|
-|1992-01-17 00:00:00|       17|         3|
-+-------------------+---------+----------+
-</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  nycflights</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   .limit(<span class="dv">10</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>   .select(<span class="st">'Date'</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'dayofyear'</span>, dayofyear(nycflights.Date))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>   .withColumn(<span class="st">'weekofyear'</span>, weekofyear(nycflights.Date))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>   .show()</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>spark.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>spark.stop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

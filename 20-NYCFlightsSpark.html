@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>NYC Flights data &#8212; Python tools for Big data</title>
+    <title>NYC Flights data analysis with Spark &#8212; Python tools for Big data</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="NYC Flights data 2013 with Weather data" href="21-NYCFLights2013Spark.html" />
-    <link rel="prev" title="New York City Taxi Cab Trip - Spark dataframes on HDFS" href="19-NYCTaxiCabTripSpark.html" />
+    <link rel="prev" title="Spark dataframes on HDFS" href="19-NYCTaxiCabTripSpark.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -199,12 +199,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-NYCTaxiCabTripSpark.html">
-   New York City Taxi Cab Trip - Spark dataframes on HDFS
+   Spark dataframes on HDFS
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   NYC Flights data
+   NYC Flights data analysis with Spark
   </a>
  </li>
  <li class="toctree-l1">
@@ -490,7 +490,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>NYC Flights data</h1>
+                <h1>NYC Flights data analysis with Spark</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -515,9 +515,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="nyc-flights-data">
-<h1>NYC Flights data<a class="headerlink" href="#nyc-flights-data" title="Permalink to this headline">#</a></h1>
-<p>Reference : <a class="reference external" href="https://github.com/rich-iannone/so-many-pyspark-examples/blob/main/spark-dataframes.ipynb">https://github.com/rich-iannone/so-many-pyspark-examples/blob/main/spark-dataframes.ipynb</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="nyc-flights-data-analysis-with-spark">
+<h1>NYC Flights data analysis with Spark<a class="headerlink" href="#nyc-flights-data-analysis-with-spark" title="Permalink to this headline">#</a></h1>
+<p>Reference : <a class="reference external" href="https://github.com/rich-iannone/so-many-pyspark-examples">so many pyspark examples</a></p>
 <p>In this notebook, we will extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from <a class="reference external" href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>.</p>
 <p><strong>Variable descriptions</strong></p>
 <p>Name	Description</p>
@@ -568,86 +568,11 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 10:31:03 WARN Utils: Your hostname, b2-120-gra11 resolves to a loopback address: 127.0.1.1; using 141.94.168.194 instead (on interface ens3)
-22/12/06 10:31:03 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting default log level to &quot;WARN&quot;.
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 10:31:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 0:&gt;                                                          (0 + 0) / 1]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22/12/06 10:31:31 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
-|               Date|DayOfWeek|DepTime|CRSDepTime|ArrTime|CRSArrTime|UniqueCarrier|FlightNum|ActualElapsedTime|CRSElapsedTime|AirTime|ArrDelay|DepDelay|Origin|Dest|Distance|TaxiIn|TaxiOut|Cancelled|Diverted|__null_dask_index__|
-+-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
-|1999-01-01 00:00:00|        5| 1526.0|      1515| 1838.0|      1849|           CO|     1923|            312.0|         334.0|  289.0|   -11.0|    11.0|   EWR| PHX|  2133.0|   7.0|   16.0|    false|       0|                  0|
-|1999-01-02 00:00:00|        6| 1727.0|      1540| 2056.0|      1914|           CO|     1923|            329.0|         334.0|  301.0|   102.0|   107.0|   EWR| PHX|  2133.0|   8.0|   20.0|    false|       0|                  1|
-|1999-01-03 00:00:00|        7| 1609.0|      1515| 1935.0|      1849|           CO|     1923|            326.0|         334.0|  295.0|    46.0|    54.0|   EWR| PHX|  2133.0|   6.0|   25.0|    false|       0|                  2|
-|1999-01-04 00:00:00|        1| 1605.0|      1515| 1923.0|      1849|           CO|     1923|            318.0|         334.0|  292.0|    34.0|    50.0|   EWR| PHX|  2133.0|   5.0|   21.0|    false|       0|                  3|
-|1999-01-05 00:00:00|        2| 1529.0|      1515| 1908.0|      1849|           CO|     1923|            339.0|         334.0|  301.0|    19.0|    14.0|   EWR| PHX|  2133.0|   6.0|   32.0|    false|       0|                  4|
-|1999-01-06 00:00:00|        3| 1523.0|      1515| 1941.0|      1849|           CO|     1923|            378.0|         334.0|  344.0|    52.0|     8.0|   EWR| PHX|  2133.0|  10.0|   24.0|    false|       0|                  5|
-|1999-01-07 00:00:00|        4| 1521.0|      1515| 1920.0|      1849|           CO|     1923|            359.0|         334.0|  326.0|    31.0|     6.0|   EWR| PHX|  2133.0|   6.0|   27.0|    false|       0|                  6|
-|1999-01-08 00:00:00|        5| 2038.0|      1515|   22.0|      1849|           CO|     1923|            344.0|         334.0|  290.0|   333.0|   323.0|   EWR| PHX|  2133.0|   4.0|   50.0|    false|       0|                  7|
-|1999-01-09 00:00:00|        6| 1616.0|      1540| 1943.0|      1914|           CO|     1923|            327.0|         334.0|  302.0|    29.0|    36.0|   EWR| PHX|  2133.0|   8.0|   17.0|    false|       0|                  8|
-|1999-01-10 00:00:00|        7| 1515.0|      1515| 1850.0|      1849|           CO|     1923|            335.0|         334.0|  291.0|     1.0|     0.0|   EWR| PHX|  2133.0|   9.0|   35.0|    false|       0|                  9|
-|1999-01-11 00:00:00|        1| 1514.0|      1515| 1922.0|      1849|           CO|     1923|            368.0|         334.0|  318.0|    33.0|    -1.0|   EWR| PHX|  2133.0|   5.0|   45.0|    false|       0|                 10|
-|1999-01-12 00:00:00|        2| 1513.0|      1515| 1838.0|      1849|           CO|     1923|            325.0|         334.0|  303.0|   -11.0|    -2.0|   EWR| PHX|  2133.0|   7.0|   15.0|    false|       0|                 11|
-|1999-01-13 00:00:00|        3| 1514.0|      1515| 1921.0|      1849|           CO|     1923|            367.0|         334.0|  316.0|    32.0|    -1.0|   EWR| PHX|  2133.0|   7.0|   44.0|    false|       0|                 12|
-|1999-01-14 00:00:00|        4| 1640.0|      1515| 2031.0|      1849|           CO|     1923|            351.0|         334.0|  289.0|   102.0|    85.0|   EWR| PHX|  2133.0|   6.0|   56.0|    false|       0|                 13|
-|1999-01-15 00:00:00|        5| 1605.0|      1515| 1950.0|      1849|           CO|     1923|            345.0|         334.0|  305.0|    61.0|    50.0|   EWR| PHX|  2133.0|   5.0|   35.0|    false|       0|                 14|
-|1999-01-16 00:00:00|        6| 1606.0|      1540| 1953.0|      1914|           CO|     1923|            347.0|         334.0|  317.0|    39.0|    26.0|   EWR| PHX|  2133.0|  14.0|   16.0|    false|       0|                 15|
-|1999-01-17 00:00:00|        7| 1527.0|      1515| 1859.0|      1849|           CO|     1923|            332.0|         334.0|  296.0|    10.0|    12.0|   EWR| PHX|  2133.0|   6.0|   30.0|    false|       0|                 16|
-|1999-01-18 00:00:00|        1| 1636.0|      1515| 2030.0|      1849|           CO|     1923|            354.0|         334.0|  307.0|   101.0|    81.0|   EWR| PHX|  2133.0|   6.0|   41.0|    false|       0|                 17|
-|1999-01-19 00:00:00|        2| 1510.0|      1515| 1901.0|      1849|           CO|     1923|            351.0|         334.0|  331.0|    12.0|    -5.0|   EWR| PHX|  2133.0|   7.0|   13.0|    false|       0|                 18|
-|1999-01-20 00:00:00|        3| 1520.0|      1515| 1915.0|      1849|           CO|     1923|            355.0|         334.0|  320.0|    26.0|     5.0|   EWR| PHX|  2133.0|   4.0|   31.0|    false|       0|                 19|
-+-------------------+---------+-------+----------+-------+----------+-------------+---------+-----------------+--------------+-------+--------+--------+------+----+--------+------+-------+---------+--------+-------------------+
-only showing top 20 rows
-</pre></div>
-</div>
-</div>
 </div>
 <p>Let’s take a look to the dataframe scheme</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nycflights</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root
- |-- Date: timestamp (nullable = true)
- |-- DayOfWeek: long (nullable = true)
- |-- DepTime: double (nullable = true)
- |-- CRSDepTime: long (nullable = true)
- |-- ArrTime: double (nullable = true)
- |-- CRSArrTime: long (nullable = true)
- |-- UniqueCarrier: string (nullable = true)
- |-- FlightNum: long (nullable = true)
- |-- ActualElapsedTime: double (nullable = true)
- |-- CRSElapsedTime: double (nullable = true)
- |-- AirTime: double (nullable = true)
- |-- ArrDelay: double (nullable = true)
- |-- DepDelay: double (nullable = true)
- |-- Origin: string (nullable = true)
- |-- Dest: string (nullable = true)
- |-- Distance: double (nullable = true)
- |-- TaxiIn: double (nullable = true)
- |-- TaxiOut: double (nullable = true)
- |-- Cancelled: boolean (nullable = true)
- |-- Diverted: long (nullable = true)
- |-- __null_dask_index__: long (nullable = true)
 </pre></div>
 </div>
 </div>
@@ -662,23 +587,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 4:&gt;                                                          (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+-------+
-|Origin|  count|
-+------+-------+
-|   LGA|1003420|
-|   EWR|1174131|
-|   JFK| 434341|
-+------+-------+
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">agg()</span></code> function to perform multiple aggregations</p>
 <div class="cell docutils container">
@@ -690,23 +598,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 7:&gt;                                                          (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+------------------+-----------------+
-|Origin|     avg(DepDelay)|    avg(ArrDelay)|
-+------+------------------+-----------------+
-|   LGA| 7.431141565915709|6.047335822109474|
-|   EWR|10.295468607250333|9.565089035954916|
-|   JFK|10.351298909519874|8.353392637878372|
-+------+------------------+-----------------+
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <p>You can’t perform multiple aggregrations on the same column (only the last is performed)</p>
 <div class="cell docutils container">
@@ -715,27 +606,6 @@ only showing top 20 rows
  <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;DayOfWeek&#39;</span><span class="p">)</span>
  <span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;DepDelay&#39;</span><span class="p">:</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;DepDelay&#39;</span><span class="p">:</span> <span class="s1">&#39;max&#39;</span><span class="p">})</span>
  <span class="o">.</span><span class="n">show</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 10:&gt;                                                         (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+-------------+
-|DayOfWeek|max(DepDelay)|
-+---------+-------------+
-|        7|       1429.0|
-|        6|       1434.0|
-|        5|       1435.0|
-|        1|       1435.0|
-|        3|       1435.0|
-|        2|       1434.0|
-|        4|       1435.0|
-+---------+-------------+
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
 </pre></div>
 </div>
 </div>
@@ -755,61 +625,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 13:&gt;                                                         (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+------+----+-----+
-|DayOfWeek|Origin|Dest|count|
-+---------+------+----+-----+
-|        1|   LGA| ORD|17121|
-|        1|   EWR| ORD|15946|
-|        1|   EWR| BOS|12157|
-|        1|   JFK| LAX|10383|
-|        1|   EWR| ATL| 9462|
-|        1|   LGA| BOS| 8755|
-|        1|   LGA| DFW| 8687|
-|        1|   LGA| DCA| 8165|
-|        1|   LGA| ATL| 7568|
-|        1|   EWR| DTW| 7209|
-|        1|   JFK| SFO| 6869|
-|        1|   EWR| MCO| 6564|
-|        1|   LGA| MIA| 6381|
-|        1|   EWR| DFW| 6364|
-|        1|   EWR| DCA| 6203|
-|        1|   EWR| LAX| 5959|
-|        1|   LGA| MCO| 5503|
-|        1|   EWR| PIT| 5213|
-|        1|   EWR| DEN| 5004|
-|        1|   JFK| SJU| 4988|
-|        1|   EWR| MIA| 4941|
-|        1|   LGA| DTW| 4927|
-|        1|   LGA| PIT| 4894|
-|        1|   LGA| PBI| 4888|
-|        1|   LGA| CLT| 4776|
-|        1|   JFK| MIA| 4749|
-|        1|   LGA| FLL| 4495|
-|        1|   EWR| IAH| 4399|
-|        1|   EWR| CLT| 4377|
-|        1|   LGA| CLE| 4308|
-|        1|   EWR| BUF| 4145|
-|        1|   EWR| CLE| 4096|
-|        1|   EWR| MSP| 4087|
-|        1|   LGA| IAH| 3931|
-|        1|   EWR| STL| 3931|
-|        1|   LGA| MSP| 3848|
-|        1|   EWR| SFO| 3844|
-|        1|   LGA| BUF| 3843|
-|        1|   EWR| FLL| 3811|
-|        1|   LGA| DEN| 3550|
-+---------+------+----+-----+
-only showing top 40 rows
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <p>Use <code class="docutils literal notranslate"><span class="pre">groupBy()</span></code> + <code class="docutils literal notranslate"><span class="pre">pivot()</span></code> + an aggregation function to make a pivot table!
 Get a table of flights by month for each carrier</p>
@@ -823,27 +638,6 @@ Get a table of flights by month for each carrier</p>
   <span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="p">)</span>
      
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 27:&gt;                                                         (0 + 1) / 1]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
-|DayOfWeek|   AA|    CO|   DL|  EA|  HP|ML (1)|   NW|PA (1)|   TW|   UA|   US|
-+---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
-|        7|51950| 94901|52191|2375|6240|   306|17846|  5856|29381|33861|59781|
-|        6|46854| 85451|51611|2346|6429|   281|16335|  5891|28709|32328|44344|
-|        5|54980|106813|54520|2346|6411|   363|19695|  6263|29862|36895|67396|
-|        1|55358|106849|54824|2431|6413|   365|19783|  6254|30106|37294|68334|
-|        3|55268|106974|54936|2337|6396|   376|19806|  6259|30076|37299|68315|
-|        2|55472|107185|55061|2346|6411|   368|19893|  6206|30128|37311|68531|
-|        4|55049|106488|54626|2361|6417|   366|19709|  6173|29811|37135|67981|
-+---------+-----+------+-----+----+----+------+-----+------+-----+-----+-----+
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
 </pre></div>
 </div>
 </div>
@@ -893,27 +687,6 @@ Get a table of flights by month for each carrier</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 28:=====&gt;                                                  (1 + 10) / 11]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+--------------+--------------+
-|DayOfWeek|mean_arr_delay|mean_dep_delay|
-+---------+--------------+--------------+
-|        7|           9.0|           4.8|
-|        6|           7.8|           3.1|
-|        5|          11.5|          11.8|
-|        1|           8.1|           6.3|
-|        3|           9.1|           9.8|
-|        2|           8.1|           7.7|
-|        4|          10.5|          11.5|
-+---------+--------------+--------------+
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <p>Add a new column (<code class="docutils literal notranslate"><span class="pre">far_or_near</span></code>) with a string based on a comparison
 on a numeric column; uses: <code class="docutils literal notranslate"><span class="pre">withColumn()</span></code>, <code class="docutils literal notranslate"><span class="pre">when()</span></code>, and <code class="docutils literal notranslate"><span class="pre">otherwise()</span></code></p>
@@ -934,41 +707,6 @@ on a numeric column; uses: <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 28:=============================&gt;                            (2 + 2) / 4]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+----+-----------+
-|Origin|Dest|far_or_near|
-+------+----+-----------+
-|   LGA| MKE|       near|
-|   LGA| BOS|       near|
-|   LGA| CAE|       near|
-|   JFK| FLL|        far|
-|   LGA| DTW|       near|
-|   JFK| IND|       near|
-|   LGA| BNA|       near|
-|   EWR| BNA|       near|
-|   LGA| PHL|       near|
-|   EWR| RSW|        far|
-|   EWR| DCA|       near|
-|   EWR| LAS|        far|
-|   EWR| ORH|       near|
-|   JFK| IAD|       near|
-|   EWR| SEA|        far|
-|   EWR| DAY|       near|
-|   JFK| RDU|       near|
-|   EWR| PIT|       near|
-|   LGA| EWR|       near|
-|   JFK| CVG|       near|
-+------+----+-----------+
-only showing top 20 rows
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <p>Perform a few numerical computations across columns</p>
 <div class="cell docutils container">
@@ -986,41 +724,6 @@ only showing top 20 rows
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 31:===========================================&gt;              (3 + 1) / 4]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+------+----+---------------+
-|Origin|Dest|dist_per_minute|
-+------+----+---------------+
-|   JFK| SFO|           6.66|
-|   JFK| STL|           7.89|
-|   LGA| TPA|           6.83|
-|   LGA| MEM|           7.77|
-|   LGA| MIA|           5.93|
-|   LGA| MSP|           5.45|
-|   LGA| MSY|           6.01|
-|   EWR| PBI|           8.26|
-|   EWR| LAX|           7.03|
-|   LGA| BOS|           4.87|
-|   LGA| DEN|           7.20|
-|   EWR| PHX|           6.20|
-|   EWR| GSP|           6.39|
-|   EWR| BUF|           3.97|
-|   EWR| CVG|           7.39|
-|   LGA| STL|           7.45|
-|   EWR| GSO|           4.80|
-|   EWR| ATL|           4.16|
-|   JFK| BQN|           7.40|
-|   LGA| CLT|           9.54|
-+------+----+---------------+
-only showing top 20 rows
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
-</pre></div>
-</div>
-</div>
 </div>
 <p>You can split the date if you need. Use the <code class="docutils literal notranslate"><span class="pre">year()</span></code>, <code class="docutils literal notranslate"><span class="pre">month()</span></code>, <code class="docutils literal notranslate"><span class="pre">dayofmonth()</span></code>,<code class="docutils literal notranslate"><span class="pre">hour()</span></code>, and <code class="docutils literal notranslate"><span class="pre">minute()</span></code> functions with <code class="docutils literal notranslate"><span class="pre">withColumn()</span></code></p>
 <div class="cell docutils container">
@@ -1034,41 +737,6 @@ only showing top 20 rows
   <span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
   <span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Stage 34:===========================================&gt;              (3 + 1) / 4]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---+-----+----+
-|Day|Month|Year|
-+---+-----+----+
-| 10|    9|1995|
-| 29|   11|1995|
-| 29|    9|1990|
-|  1|   11|1990|
-| 24|    6|1994|
-| 17|   10|1994|
-|  6|    8|1995|
-|  5|    2|1990|
-| 29|    9|1994|
-| 18|   11|1994|
-|  2|   10|1995|
-| 26|    7|1994|
-| 31|    8|1994|
-|  5|    5|1990|
-|  8|    7|1990|
-| 16|    7|1990|
-|  1|    8|1990|
-|  2|   10|1994|
-|  2|    1|1995|
-| 22|    4|1995|
-+---+-----+----+
-only showing top 20 rows
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                
 </pre></div>
 </div>
 </div>
@@ -1098,24 +766,6 @@ only showing top 20 rows
    <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;weekofyear&#39;</span><span class="p">,</span> <span class="n">weekofyear</span><span class="p">(</span><span class="n">nycflights</span><span class="o">.</span><span class="n">Date</span><span class="p">))</span>
    <span class="o">.</span><span class="n">show</span><span class="p">()</span>
    <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-------------------+---------+----------+
-|               Date|dayofyear|weekofyear|
-+-------------------+---------+----------+
-|1992-01-07 00:00:00|        7|         2|
-|1992-01-08 00:00:00|        8|         2|
-|1992-01-09 00:00:00|        9|         2|
-|1992-01-11 00:00:00|       11|         2|
-|1992-01-12 00:00:00|       12|         2|
-|1992-01-13 00:00:00|       13|         3|
-|1992-01-14 00:00:00|       14|         3|
-|1992-01-15 00:00:00|       15|         3|
-|1992-01-16 00:00:00|       16|         3|
-|1992-01-17 00:00:00|       17|         3|
-+-------------------+---------+----------+
 </pre></div>
 </div>
 </div>
@@ -1161,7 +811,7 @@ only showing top 20 rows
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">New York City Taxi Cab Trip - Spark dataframes on HDFS</p>
+            <p class="prev-next-title">Spark dataframes on HDFS</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-NYCFLights2013Spark.html" title="next page">
