@@ -19,7 +19,6 @@ parse:
     - smartquotes
     - substitution
 
-
 html:
   home_page_in_navbar: false
   use_edit_page_button: true
