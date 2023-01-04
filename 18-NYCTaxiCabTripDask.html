@@ -642,7 +642,7 @@ to launch a Dask cluster with the job manager SLURM.</p>
 <span class="c1">#SBATCH --mem=15G</span>
 <span class="c1">#SBATCH -t 01:00:00</span>
 
-/opt/tljh/user/envs/big-data/bin/python -m distributed.cli.dask_worker tcp://192.168.2.54:40623 --nthreads <span class="m">4</span> --nprocs <span class="m">4</span> --memory-limit <span class="m">4</span>.00GB --name name --nanny --death-timeout <span class="m">60</span>
+/opt/tljh/user/envs/big-data/bin/python<span class="w"> </span>-m<span class="w"> </span>distributed.cli.dask_worker<span class="w"> </span>tcp://192.168.2.54:40623<span class="w"> </span>--nthreads<span class="w"> </span><span class="m">4</span><span class="w"> </span>--nprocs<span class="w"> </span><span class="m">4</span><span class="w"> </span>--memory-limit<span class="w"> </span><span class="m">4</span>.00GB<span class="w"> </span>--name<span class="w"> </span>name<span class="w"> </span>--nanny<span class="w"> </span>--death-timeout<span class="w"> </span><span class="m">60</span>
 </pre></div>
 </div>
 <p>Use the script above to submit your dask pipeline to the HPC server of your insttitution.</p>

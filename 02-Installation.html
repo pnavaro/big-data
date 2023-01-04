@@ -670,7 +670,7 @@ title="Print to PDF"
 <p>If you get an error message, make sure you closed and re-opened the
 terminal window after installing, or do it now.</p>
 <p>To update conda to the current version. Type the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda update -y conda -n base
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>update<span class="w"> </span>-y<span class="w"> </span>conda<span class="w"> </span>-n<span class="w"> </span>base
 </pre></div>
 </div>
 </section>
@@ -678,8 +678,8 @@ terminal window after installing, or do it now.</p>
 <h2>Managing channels<a class="headerlink" href="#managing-channels" title="Permalink to this headline">#</a></h2>
 <p>Conda channels are the locations where packages are stored. We use the <a class="reference external" href="https://conda-forge.org">conda-forge</a>,
 a good community-led collection of recipes for conda. If you installed <a class="reference external" href="https://github.com/conda-forge/miniforge">Miniforge</a> you already have a conda specific to conda-forge.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda config --add channels conda-forge 
-conda config --set channel_priority strict
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge<span class="w"> </span>
+conda<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>channel_priority<span class="w"> </span>strict
 </pre></div>
 </div>
 <p>Strict channel priority speed up conda operations and also reduce package incompatibility problems.</p>
@@ -694,18 +694,18 @@ Create separate environments to keep your programs isolated from each other.</p>
 <section id="create-a-new-environment-and-install-a-package-in-it">
 <h3>Create a new environment and install a package in it.<a class="headerlink" href="#create-a-new-environment-and-install-a-package-in-it" title="Permalink to this headline">#</a></h3>
 <p>We will name the environment <code class="docutils literal notranslate"><span class="pre">big-data</span></code> and install the version 3.8 of <code class="docutils literal notranslate"><span class="pre">python</span></code>. At the Anaconda Prompt or in your terminal window, type the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -y -n big-data <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-n<span class="w"> </span>big-data<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
 </pre></div>
 </div>
 </section>
 <section id="to-use-or-activate-the-new-environment-type-the-following">
 <h3>To use, or “activate” the new environment, type the following:<a class="headerlink" href="#to-use-or-activate-the-new-environment-type-the-following" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate big-data
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>big-data
 </pre></div>
 </div>
 <p>Now that you are in your <code class="docutils literal notranslate"><span class="pre">big-data</span></code> environment, any conda commands you type will go to that environment until you deactivate it.</p>
 <p>Verify which version of Python is in your current environment:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python --version
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version
 </pre></div>
 </div>
 </section>
@@ -723,7 +723,7 @@ Create separate environments to keep your programs isolated from each other.</p>
 </section>
 <section id="change-your-current-environment-back-to-the-default-base">
 <h3>Change your current environment back to the default (base):<a class="headerlink" href="#change-your-current-environment-back-to-the-default-base" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate
 </pre></div>
 </div>
 </section>
@@ -743,8 +743,8 @@ Create separate environments to keep your programs isolated from each other.</p>
 </div>
 <p>Conda displays a list of all packages with that name on conda-forge repository, so we know it is available.</p>
 <p>Install this package into the base environment:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate
-conda install -y jupyter -c conda-forge -n base
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate
+conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>jupyter<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-n<span class="w"> </span>base
 </pre></div>
 </div>
 <p>Check to see if the newly installed program is in this environment:</p>
@@ -760,7 +760,7 @@ conda install -y jupyter -c conda-forge -n base
 <h3>Update a new conda environment from file<a class="headerlink" href="#update-a-new-conda-environment-from-file" title="Permalink to this headline">#</a></h3>
 <p>Download the file <a class="reference external" href="https://raw.githubusercontent.com/pnavaro/big-data/master/environment.yml">environment.yml</a>.
 This file contains the packages list for this course. Be aware that it takes time to download and install all packages.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env update -f environment.yml -n big-data
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>update<span class="w"> </span>-f<span class="w"> </span>environment.yml<span class="w"> </span>-n<span class="w"> </span>big-data
 </pre></div>
 </div>
 <p><a class="reference external" href="https://conda.io/docs/using/envs.html">Conda envs documentation</a>.</p>
@@ -778,7 +778,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </section>
 <section id="install-the-kernel-for-jupyter">
 <h2>Install the kernel for jupyter<a class="headerlink" href="#install-the-kernel-for-jupyter" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda run -n big-data python -m ipykernel install --user --name big-data
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>run<span class="w"> </span>-n<span class="w"> </span>big-data<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="w"> </span>big-data
 </pre></div>
 </div>
 <p>With this command you create the <code class="docutils literal notranslate"><span class="pre">big-data</span></code> kernel with python and all course dependencies.
@@ -803,14 +803,14 @@ The cell above will give you the path to the python that runs in this notebook.<
 <section id="mamba">
 <h2>Mamba<a class="headerlink" href="#mamba" title="Permalink to this headline">#</a></h2>
 <p>Mamba is a parallel reimplementation of the conda package manager in C++. It stays compatible as possible with conda interface. Install mamba from conda-forge:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install mamba -c conda-forge
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>mamba<span class="w"> </span>-c<span class="w"> </span>conda-forge
 </pre></div>
 </div>
 <p>To test it you can try to install the metapackage <code class="docutils literal notranslate"><span class="pre">r-tidyverse</span></code> which contains 144 packages.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">time</span> conda create -y r-tidyverse -n condatest
-real	1m9.057s
-$ <span class="nb">time</span> mamba create -y r-tidyverse -n mambatest
-real	0m32.365s
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">time</span><span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>r-tidyverse<span class="w"> </span>-n<span class="w"> </span>condatest
+real<span class="w">	</span>1m9.057s
+$<span class="w"> </span><span class="nb">time</span><span class="w"> </span>mamba<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>r-tidyverse<span class="w"> </span>-n<span class="w"> </span>mambatest
+real<span class="w">	</span>0m32.365s
 </pre></div>
 </div>
 <p>In this comparison packages are already downloaded, mamba is even better with downloads.</p>

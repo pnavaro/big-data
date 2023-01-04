@@ -758,7 +758,7 @@ title="Print to PDF"
 <section id="unix-shell">
 <h2>Unix Shell<a class="headerlink" href="#unix-shell" title="Permalink to this headline">#</a></h2>
 <p>The shell is a command programming language that provides an interface to the UNIX operating system. Documentation of unix command is displayed by command <code class="docutils literal notranslate"><span class="pre">man</span></code>. Exemple:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man whoami
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>whoami
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -797,7 +797,7 @@ title="Print to PDF"
 <p>No matter where in the directory structure you are, you can always get back to your home directory with <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p>
 <section id="create-a-new-subdirectory-named-primer">
 <h3>Create a new subdirectory named “primer” :<a class="headerlink" href="#create-a-new-subdirectory-named-primer" title="Permalink to this headline">#</a></h3>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir primer
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>primer
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -810,7 +810,7 @@ title="Print to PDF"
 </div>
 </div>
 <p>Now change to the “primer” subdirectory, making it your current working directory:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> primer
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>primer
 <span class="nb">pwd</span>
 </pre></div>
 </div>
@@ -833,8 +833,8 @@ title="Print to PDF"
 <section id="files">
 <h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">#</a></h2>
 <p>Create a file using <code class="docutils literal notranslate"><span class="pre">date</span></code> command and <code class="docutils literal notranslate"><span class="pre">whoami</span></code>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>date &gt;&gt; first.txt
-whoami &gt;&gt; first.txt
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>date<span class="w"> </span>&gt;&gt;<span class="w"> </span>first.txt
+whoami<span class="w"> </span>&gt;&gt;<span class="w"> </span>first.txt
 </pre></div>
 </div>
 <p>date and whoami are not jupyter magic commands</p>
@@ -866,7 +866,7 @@ whoami &gt;&gt; first.txt
 <section id="display-file-content">
 <h3>Display file content<a class="headerlink" href="#display-file-content" title="Permalink to this headline">#</a></h3>
 <p>You can view a text file with the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat first.txt
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>first.txt
 </pre></div>
 </div>
 <p>(“cat” is short for concatenate - you can use this to display multiple files together on the screen.) If you have a file that is longer than your 24-line console window, use instead “more” to list one page at a time or “less” to scroll the file down and up with the arrow keys. Don’t use these programs to try to display binary (non-text) files on your console - the attempt to print the non-printable control characters might alter your console settings and render the console unusable.</p>
@@ -881,7 +881,7 @@ whoami &gt;&gt; first.txt
 <ul class="simple">
 <li><p>Copy file “first” using the following command:</p></li>
 </ul>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cp first.txt 2nd.txt
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>first.txt<span class="w"> </span>2nd.txt
 </pre></div>
 </div>
 <p>By doing this you have created a new file named “2nd.txt” which is a duplicate of file “first.txt”. Geet he file listing with:</p>
@@ -900,7 +900,7 @@ whoami &gt;&gt; first.txt
 <ul class="simple">
 <li><p>Now rename the file “2nd” to “second”:</p></li>
 </ul>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mv 2nd.txt second.txt
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>2nd.txt<span class="w"> </span>second.txt
 </pre></div>
 </div>
 <p>Listing the files still shows two files because you haven’t created a new file, just changed an existing file’s name:</p>
@@ -917,7 +917,7 @@ whoami &gt;&gt; first.txt
 </div>
 </div>
 <p>If you “cat” the second file, you’ll see the same sentence as in your first file:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat second.txt
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>second.txt
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -929,9 +929,9 @@ whoami &gt;&gt; first.txt
 </div>
 </div>
 <p>“mv” will allow you to move files, not just rename them. Perform the following commands:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir sub
-mv second.txt sub
-ls sub
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>sub
+mv<span class="w"> </span>second.txt<span class="w"> </span>sub
+ls<span class="w"> </span>sub
 ls
 </pre></div>
 </div>
@@ -956,10 +956,10 @@ ls
 </div>
 </div>
 <p>Next perform the following commands:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> sub
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>sub
 <span class="nb">pwd</span>
-ls -l
-<span class="nb">cd</span> ..
+ls<span class="w"> </span>-l
+<span class="nb">cd</span><span class="w"> </span>..
 <span class="nb">pwd</span>
 </pre></div>
 </div>
@@ -981,9 +981,9 @@ ls -l
 </div>
 </div>
 <p>Finally, clean up the duplicate files by removing the “second.txt” file and the “sub” subdirectory:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rm sub/second.txt
-rmdir sub
-ls -l
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>sub/second.txt
+rmdir<span class="w"> </span>sub
+ls<span class="w"> </span>-l
 <span class="nb">cd</span>
 </pre></div>
 </div>
@@ -1005,11 +1005,11 @@ ls -l
 <section id="connect-to-a-server">
 <h2>Connect to a server<a class="headerlink" href="#connect-to-a-server" title="Permalink to this headline">#</a></h2>
 <p>Remote login to another machine can be accomplished using the “ssh” command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh -l mylogin host
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-l<span class="w"> </span>mylogin<span class="w"> </span>host
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh mylogin@host
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>mylogin@host
 </pre></div>
 </div>
 <p>where “myname” will be your username on the remote system (possibly identical to your username on this system) and “host” is the name (or IP address) of the machine you are logging into.</p>
@@ -1017,13 +1017,13 @@ ls -l
 <ul class="simple">
 <li><p>To copy file “myfile” from the remote machine named “host”:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp myname@host:myfile .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>myname@host:myfile<span class="w"> </span>.
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>To copy file “myfile” from the local machine to the remote named “host”:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp myfile myname@host:
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>myfile<span class="w"> </span>myname@host:
 </pre></div>
 </div>
 <ul class="simple">
@@ -1041,7 +1041,7 @@ ls -l
 <section id="secure-copy-scp">
 <h2>Secure copy (scp)<a class="headerlink" href="#secure-copy-scp" title="Permalink to this headline">#</a></h2>
 <p>Synchronize big-data directory on the cluster:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp -r big-data svmass2:
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>-r<span class="w"> </span>big-data<span class="w"> </span>svmass2:
 </pre></div>
 </div>
 <p>This a secure copy of big-data directory to the server.</p>
@@ -1053,33 +1053,33 @@ ls -l
 </section>
 <section id="summary-of-basic-shell-commands">
 <h2>Summary Of Basic Shell Commands<a class="headerlink" href="#summary-of-basic-shell-commands" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>% pico myfile	            <span class="c1"># text edit file &quot;myfile&quot;</span>
-% ls	                    <span class="c1"># list files in current directory</span>
-% ls -l	                    <span class="c1"># long format listing</span>
-% touch myfile              <span class="c1"># create new empty file &quot;myfile&quot;</span>
-% cat myfile	            <span class="c1"># view contents of text file &quot;myfile&quot;</span>
-% more myfile	            <span class="c1"># paged viewing of text file &quot;myfile&quot;</span>
-% less myfile	            <span class="c1"># scroll through text file &quot;myfile&quot;</span>
-% head myfile               <span class="c1"># view 10 first lines of text file &quot;myfile&quot;</span>
-% tail myfile               <span class="c1"># view 10 last lines of text file &quot;myfile&quot;</span>
-% cp srcfile destfile	    <span class="c1"># copy file &quot;srcfile&quot; to new file &quot;destfile&quot;</span>
-% mv oldname newname	    <span class="c1"># rename (or move) file &quot;oldname&quot; to &quot;newname&quot;</span>
-% rm myfile	                <span class="c1"># remove file &quot;myfile&quot;</span>
-% mkdir subdir	            <span class="c1"># make new directory &quot;subdir&quot;</span>
-% <span class="nb">cd</span> subdir	                <span class="c1"># change current working directory to &quot;subdir&quot;</span>
-% rmdir subdir	            <span class="c1"># remove (empty) directory &quot;subdir&quot;</span>
-% <span class="nb">pwd</span>	                    <span class="c1"># display current working directory</span>
-% date	                    <span class="c1"># display current date and time of day</span>
-% ssh -l myname host	    <span class="c1"># remote shell login of username &quot;myname&quot; to &quot;host&quot;</span>
-% scp myname@host:myfile .	<span class="c1"># remote copy of file &quot;myfile&quot; to current directory</span>
-% scp myfile myname@host:	<span class="c1"># copy of file &quot;myfile&quot; to remote server</span>
-% firefox <span class="p">&amp;</span>	                <span class="c1"># start Firefox web browser (in background)</span>
-% <span class="nb">jobs</span>                      <span class="c1"># display programs running in background</span>
-% <span class="nb">kill</span> %n                   <span class="c1"># kill job number n (use jobs to get this number)</span>
-% man -k <span class="s2">&quot;topic&quot;</span>	        <span class="c1"># search manual pages for &quot;topic&quot;</span>
-% man <span class="nb">command</span>	            <span class="c1"># display man page for &quot;command&quot;</span>
-% <span class="nb">exit</span>	                    <span class="c1"># exit a terminal window</span>
-% <span class="nb">logout</span>	                <span class="c1"># logout of a console session</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>pico<span class="w"> </span>myfile<span class="w">	            </span><span class="c1"># text edit file &quot;myfile&quot;</span>
+%<span class="w"> </span>ls<span class="w">	                    </span><span class="c1"># list files in current directory</span>
+%<span class="w"> </span>ls<span class="w"> </span>-l<span class="w">	                    </span><span class="c1"># long format listing</span>
+%<span class="w"> </span>touch<span class="w"> </span>myfile<span class="w">              </span><span class="c1"># create new empty file &quot;myfile&quot;</span>
+%<span class="w"> </span>cat<span class="w"> </span>myfile<span class="w">	            </span><span class="c1"># view contents of text file &quot;myfile&quot;</span>
+%<span class="w"> </span>more<span class="w"> </span>myfile<span class="w">	            </span><span class="c1"># paged viewing of text file &quot;myfile&quot;</span>
+%<span class="w"> </span>less<span class="w"> </span>myfile<span class="w">	            </span><span class="c1"># scroll through text file &quot;myfile&quot;</span>
+%<span class="w"> </span>head<span class="w"> </span>myfile<span class="w">               </span><span class="c1"># view 10 first lines of text file &quot;myfile&quot;</span>
+%<span class="w"> </span>tail<span class="w"> </span>myfile<span class="w">               </span><span class="c1"># view 10 last lines of text file &quot;myfile&quot;</span>
+%<span class="w"> </span>cp<span class="w"> </span>srcfile<span class="w"> </span>destfile<span class="w">	    </span><span class="c1"># copy file &quot;srcfile&quot; to new file &quot;destfile&quot;</span>
+%<span class="w"> </span>mv<span class="w"> </span>oldname<span class="w"> </span>newname<span class="w">	    </span><span class="c1"># rename (or move) file &quot;oldname&quot; to &quot;newname&quot;</span>
+%<span class="w"> </span>rm<span class="w"> </span>myfile<span class="w">	                </span><span class="c1"># remove file &quot;myfile&quot;</span>
+%<span class="w"> </span>mkdir<span class="w"> </span>subdir<span class="w">	            </span><span class="c1"># make new directory &quot;subdir&quot;</span>
+%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>subdir<span class="w">	                </span><span class="c1"># change current working directory to &quot;subdir&quot;</span>
+%<span class="w"> </span>rmdir<span class="w"> </span>subdir<span class="w">	            </span><span class="c1"># remove (empty) directory &quot;subdir&quot;</span>
+%<span class="w"> </span><span class="nb">pwd</span><span class="w">	                    </span><span class="c1"># display current working directory</span>
+%<span class="w"> </span>date<span class="w">	                    </span><span class="c1"># display current date and time of day</span>
+%<span class="w"> </span>ssh<span class="w"> </span>-l<span class="w"> </span>myname<span class="w"> </span>host<span class="w">	    </span><span class="c1"># remote shell login of username &quot;myname&quot; to &quot;host&quot;</span>
+%<span class="w"> </span>scp<span class="w"> </span>myname@host:myfile<span class="w"> </span>.<span class="w">	</span><span class="c1"># remote copy of file &quot;myfile&quot; to current directory</span>
+%<span class="w"> </span>scp<span class="w"> </span>myfile<span class="w"> </span>myname@host:<span class="w">	</span><span class="c1"># copy of file &quot;myfile&quot; to remote server</span>
+%<span class="w"> </span>firefox<span class="w"> </span><span class="p">&amp;</span><span class="w">	                </span><span class="c1"># start Firefox web browser (in background)</span>
+%<span class="w"> </span><span class="nb">jobs</span><span class="w">                      </span><span class="c1"># display programs running in background</span>
+%<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>%n<span class="w">                   </span><span class="c1"># kill job number n (use jobs to get this number)</span>
+%<span class="w"> </span>man<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;topic&quot;</span><span class="w">	        </span><span class="c1"># search manual pages for &quot;topic&quot;</span>
+%<span class="w"> </span>man<span class="w"> </span><span class="nb">command</span><span class="w">	            </span><span class="c1"># display man page for &quot;command&quot;</span>
+%<span class="w"> </span><span class="nb">exit</span><span class="w">	                    </span><span class="c1"># exit a terminal window</span>
+%<span class="w"> </span><span class="nb">logout</span><span class="w">	                </span><span class="c1"># logout of a console session</span>
 </pre></div>
 </div>
 </section>
@@ -1089,7 +1089,7 @@ ls -l
 <ul class="simple">
 <li><p>Use  &gt; to redirect output.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls *.ipynb &gt; file_list.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>*.ipynb<span class="w"> </span>&gt;<span class="w"> </span>file_list.txt
 </pre></div>
 </div>
 <p>executes <code class="docutils literal notranslate"><span class="pre">ls</span></code>, placing the output in file_list.txt, as opposed to displaying it at the terminal, which is the usual destination for standard output. This will clobber any existing data in file1.</p>
@@ -1104,7 +1104,7 @@ ls -l
 <ul class="simple">
 <li><p>Use &lt; to redirect input.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc &lt; file_list.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc<span class="w"> </span>&lt;<span class="w"> </span>file_list.txt
 </pre></div>
 </div>
 <p>executes <code class="docutils literal notranslate"><span class="pre">wc</span></code>, with file_list.txt as the source of input, as opposed to the keyboard, which is the usual source for standard input.</p>
@@ -1174,9 +1174,9 @@ ls -l
 </ul>
 <p>Unix permissions specify what can ‘owner’, ‘group’ and ‘all’ can do.</p>
 <p>If you try ls -l on the command prompt you get something like the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-rw-r--r--  <span class="m">1</span> navaro  staff   <span class="m">15799</span>  <span class="m">5</span> oct <span class="m">15</span>:57 <span class="m">01</span>.MapReduce.ipynb
--rw-r--r--  <span class="m">1</span> navaro  staff   <span class="m">18209</span> <span class="m">12</span> oct <span class="m">16</span>:04 <span class="m">02</span>.Containers.ipynb
--rw-r--r--  <span class="m">1</span> navaro  staff   <span class="m">37963</span> <span class="m">12</span> oct <span class="m">21</span>:28 <span class="m">03</span>.ParallelComputation.ipynb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>navaro<span class="w">  </span>staff<span class="w">   </span><span class="m">15799</span><span class="w">  </span><span class="m">5</span><span class="w"> </span>oct<span class="w"> </span><span class="m">15</span>:57<span class="w"> </span><span class="m">01</span>.MapReduce.ipynb
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>navaro<span class="w">  </span>staff<span class="w">   </span><span class="m">18209</span><span class="w"> </span><span class="m">12</span><span class="w"> </span>oct<span class="w"> </span><span class="m">16</span>:04<span class="w"> </span><span class="m">02</span>.Containers.ipynb
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>navaro<span class="w">  </span>staff<span class="w">   </span><span class="m">37963</span><span class="w"> </span><span class="m">12</span><span class="w"> </span>oct<span class="w"> </span><span class="m">21</span>:28<span class="w"> </span><span class="m">03</span>.ParallelComputation.ipynb
 </pre></div>
 </div>
 <p>Three bits specify access permissions:</p>
@@ -1200,7 +1200,7 @@ ls -l
 <section id="chmod">
 <h2>chmod<a class="headerlink" href="#chmod" title="Permalink to this headline">#</a></h2>
 <p>To set/modify a file’s permissions you need to use the chmod program. Of course, only the owner of a file may use chmod to alter a file’s permissions. chmod has the following syntax:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod <span class="o">[</span>options<span class="o">]</span> mode file<span class="o">(</span>s<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>mode<span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -1219,7 +1219,7 @@ ls -l
 </section>
 <section id="pipelining">
 <h2>Pipelining<a class="headerlink" href="#pipelining" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls <span class="p">|</span> grep ipynb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ipynb
 </pre></div>
 </div>
 <p>executes <code class="docutils literal notranslate"><span class="pre">ls</span></code>, using its output as the input for <code class="docutils literal notranslate"><span class="pre">grep</span></code>.</p>
@@ -1264,7 +1264,7 @@ sit	1
 <ul class="simple">
 <li><p>Create a python script <a class="reference external" href="http://reducer.py">reducer.py</a> to read output from <a class="reference external" href="http://mapper.py">mapper.py</a>. The script prints out every word and number of occurences.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat sample.txt <span class="p">|</span> ./mapper.py <span class="p">|</span> ./reducer.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>sample.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>./mapper.py<span class="w"> </span><span class="p">|</span><span class="w"> </span>./reducer.py
 </pre></div>
 </div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>7	porro

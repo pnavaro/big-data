@@ -1073,9 +1073,9 @@ title="Print to PDF"
 <section id="configure-git">
 <h2>Configure Git<a class="headerlink" href="#configure-git" title="Permalink to this headline">#</a></h2>
 <p>Settings are saved on the computer for all your git repositories.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git config --global user.name <span class="s2">&quot;Prenom Nom&quot;</span>
-$ git config --global user.email <span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
-$ git config --list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Prenom Nom&quot;</span>
+$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
+$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--list
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -1087,57 +1087,57 @@ $ git config --list
 <section id="initialize-a-git-repository-in-a-directory">
 <h2>Initialize a git repository in a directory<a class="headerlink" href="#initialize-a-git-repository-in-a-directory" title="Permalink to this headline">#</a></h2>
 <p>Create the directory <code class="docutils literal notranslate"><span class="pre">homepage</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir homepage                          <span class="c1"># Create directory homepage</span>
-$ <span class="nb">cd</span> homepage                             <span class="c1"># Change directory</span>
-$ touch index.md                          <span class="c1"># Create the index.md file</span>
-$ <span class="nb">echo</span> <span class="s2">&quot;# John Smith &quot;</span> &gt;&gt; index.md        <span class="c1"># Write the string &quot;# Test&quot; in index.md</span>
-$ <span class="nb">echo</span> <span class="s2">&quot;Rennes&quot;</span> &gt;&gt; index.md               <span class="c1"># Append Rennes to index.md</span>
-$ cat index.md                            <span class="c1"># Display index.md content</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>homepage<span class="w">                          </span><span class="c1"># Create directory homepage</span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>homepage<span class="w">                             </span><span class="c1"># Change directory</span>
+$<span class="w"> </span>touch<span class="w"> </span>index.md<span class="w">                          </span><span class="c1"># Create the index.md file</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;# John Smith &quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>index.md<span class="w">        </span><span class="c1"># Write the string &quot;# Test&quot; in index.md</span>
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Rennes&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>index.md<span class="w">               </span><span class="c1"># Append Rennes to index.md</span>
+$<span class="w"> </span>cat<span class="w"> </span>index.md<span class="w">                            </span><span class="c1"># Display index.md content</span>
 <span class="c1"># John Smith</span>
 Rennes
 </pre></div>
 </div>
 <p>To use git in this repository</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git init
-Initialized empty Git repository <span class="k">in</span> /Users/navaro/homepage/.git/
-$ git status
-On branch master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>init
+Initialized<span class="w"> </span>empty<span class="w"> </span>Git<span class="w"> </span>repository<span class="w"> </span><span class="k">in</span><span class="w"> </span>/Users/navaro/homepage/.git/
+$<span class="w"> </span>git<span class="w"> </span>status
+On<span class="w"> </span>branch<span class="w"> </span>master
 
-No commits yet
+No<span class="w"> </span>commits<span class="w"> </span>yet
 
-Untracked files:
-  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="k">in</span> what will be committed<span class="o">)</span>
-	index.md
+Untracked<span class="w"> </span>files:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+<span class="w">	</span>index.md
 
-nothing added to commit but untracked files present <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> to track<span class="o">)</span>
+nothing<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span>but<span class="w"> </span>untracked<span class="w"> </span>files<span class="w"> </span>present<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>to<span class="w"> </span>track<span class="o">)</span>
 </pre></div>
 </div>
 <section id="add-the-file-to-the-git-index">
 <h3>Add the file to the git index<a class="headerlink" href="#add-the-file-to-the-git-index" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add index.md
-$ git status
-On branch master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>index.md
+$<span class="w"> </span>git<span class="w"> </span>status
+On<span class="w"> </span>branch<span class="w"> </span>master
 
-No commits yet
+No<span class="w"> </span>commits<span class="w"> </span>yet
 
-Changes to be committed:
-  <span class="o">(</span>use <span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
-	new file:   index.md
+Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+<span class="w">	</span>new<span class="w"> </span>file:<span class="w">   </span>index.md
 </pre></div>
 </div>
 </section>
 </section>
 <section id="commit">
 <h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s1">&#39;Create the file index.md&#39;</span>
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 63a5cee<span class="o">]</span> Create the file index.md
- <span class="m">1</span> file changed, <span class="m">2</span> insertions<span class="o">(</span>+<span class="o">)</span>
- create mode <span class="m">100644</span> index.md
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Create the file index.md&#39;</span>
+<span class="o">[</span>master<span class="w"> </span><span class="o">(</span>root-commit<span class="o">)</span><span class="w"> </span>63a5cee<span class="o">]</span><span class="w"> </span>Create<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>index.md
+<span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">2</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>
+<span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>index.md
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
-On branch master
-nothing to commit, working tree clean
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>status
+On<span class="w"> </span>branch<span class="w"> </span>master
+nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
 </pre></div>
 </div>
 </section>
@@ -1153,14 +1153,14 @@ nothing to commit, working tree clean
 <p>Ref : <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">New ssh key on GitHub</a></p>
 <p>Open Terminal or Git bash.</p>
 <p>Paste the text below, substituting in your GitHub email address.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
 </pre></div>
 </div>
 <p>This creates a new ssh key, using the provided email as a label.</p>
 <p>When you’re prompted to “Enter a file in which to save the key,” press Enter. This accepts the default file location. Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
 At the prompt, let it empty for no passphrase.</p>
 <p>This creates 2 files, the private key: <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>, and the public key <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>. Display and copy the SSH key to your clipboard.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat ~/.ssh/id_rsa.pub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>~/.ssh/id_rsa.pub
 </pre></div>
 </div>
 <p>In the upper-right corner of any page, click your profile photo, then click <code class="docutils literal notranslate"><span class="pre">Settings</span></code>.
@@ -1177,22 +1177,22 @@ In the user settings sidebar, click <code class="docutils literal notranslate"><
 <li><p>Don’t change default options</p></li>
 <li><p>Click on “Create repository”</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> homepage
-$ git remote add origin git@github.com:your_login/your_login.github.io.git
-$ git push -u origin master
-Enumerating objects: <span class="m">6</span>, <span class="k">done</span>.
-Counting objects: <span class="m">100</span>% <span class="o">(</span><span class="m">6</span>/6<span class="o">)</span>, <span class="k">done</span>.
-Delta compression using up to <span class="m">4</span> threads
-Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>, <span class="k">done</span>.
-Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="m">449</span> bytes <span class="p">|</span> <span class="m">449</span>.00 KiB/s, <span class="k">done</span>.
-Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">0</span>
-To github.com:your_login/your_login.github.io.git
-   fd6dace..c4488e6  master -&gt; master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>homepage
+$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:your_login/your_login.github.io.git
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>master
+Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">6</span>,<span class="w"> </span><span class="k">done</span>.
+Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">6</span>/6<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+Delta<span class="w"> </span>compression<span class="w"> </span>using<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">4</span><span class="w"> </span>threads
+Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>,<span class="w"> </span><span class="m">449</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">449</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+Total<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span>
+To<span class="w"> </span>github.com:your_login/your_login.github.io.git
+<span class="w">   </span>fd6dace..c4488e6<span class="w">  </span>master<span class="w"> </span>-&gt;<span class="w"> </span>master
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git status
-On branch master
-nothing to commit, working tree clean
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>status
+On<span class="w"> </span>branch<span class="w"> </span>master
+nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
 </pre></div>
 </div>
 </section>
@@ -1208,7 +1208,7 @@ nothing to commit, working tree clean
 <h2>Git Workflow<a class="headerlink" href="#git-workflow" title="Permalink to this headline">#</a></h2>
 <a class="reference internal image-reference" href="_images/four_stages.png"><img alt="git" src="_images/four_stages.png" style="width: 150px;" /></a>
 <p>By choosing a theme, you create on GitHub a file named “_config.yml”. You need to update your local version with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull --no-edit
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>--no-edit
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">--no-edit</span></code> function avoid spawning a text editor, and asking for a merge commit message.
@@ -1222,17 +1222,17 @@ If you do</p>
 <h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
 <p>Check the web page by visiting <a class="reference external" href="https://your_login.github.io">https://your_login.github.io</a></p>
 <p>Modify the file <a class="reference external" href="http://index.md">index.md</a> and do the procedure again. Modify also the file <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> by appending the following content:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Page personnelle</span><span class="w"></span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exercice Git</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Page personnelle</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exercice Git</span>
 </pre></div>
 </div>
 </section>
 <section id="branches">
 <h2>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">#</a></h2>
 <p><strong>Display all branches</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch -a
-* master
-  remotes/origin/master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-a
+*<span class="w"> </span>master
+<span class="w">  </span>remotes/origin/master
 </pre></div>
 </div>
 </section>
@@ -1240,37 +1240,37 @@ If you do</p>
 <h2>Create a new branch<a class="headerlink" href="#create-a-new-branch" title="Permalink to this headline">#</a></h2>
 <p>By creating a new branch you freeze the master branch and you can continue to work without modifying it.
 The branch created is the copy of the current branch (master).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch mybranch
-$ git checkout mybranch
-Switched to branch <span class="s1">&#39;mybranch&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>mybranch
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>mybranch
+Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;mybranch&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git branch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>branch
 master
-* mybranch
+*<span class="w"> </span>mybranch
 </pre></div>
 </div>
 <p>Files could be different or not existing in two branches but they are located at the same place on the file system. When you use the <code class="docutils literal notranslate"><span class="pre">checkout</span></code> command, git applies the changes.</p>
 </section>
 <section id="edit-and-modify-the-index-md-file">
 <h2>Edit and modify the <a class="reference external" href="http://index.md">index.md</a> file<a class="headerlink" href="#edit-and-modify-the-index-md-file" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)&#39;</span> &gt;&gt; index.md
-$ git status
-On branch mybranch
-Changes not staged <span class="k">for</span> commit:
-  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
-  <span class="o">(</span>use <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="k">in</span> working directory<span class="o">)</span>
-	modified:   index.md
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>index.md
+$<span class="w"> </span>git<span class="w"> </span>status
+On<span class="w"> </span>branch<span class="w"> </span>mybranch
+Changes<span class="w"> </span>not<span class="w"> </span>staged<span class="w"> </span><span class="k">for</span><span class="w"> </span>commit:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
+<span class="w">	</span>modified:<span class="w">   </span>index.md
 
-no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git diff
-diff --git a/index.md b/index.md
-index 87dde03..af6739c <span class="m">100644</span>
---- a/index.md
-+++ b/index.md
-@@ -3,3 +3,4 @@
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>diff
+diff<span class="w"> </span>--git<span class="w"> </span>a/index.md<span class="w"> </span>b/index.md
+index<span class="w"> </span>87dde03..af6739c<span class="w"> </span><span class="m">100644</span>
+---<span class="w"> </span>a/index.md
++++<span class="w"> </span>b/index.md
+@@<span class="w"> </span>-3,3<span class="w"> </span>+3,4<span class="w"> </span>@@
 
 +!<span class="o">[</span>logo<span class="o">](</span>https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png<span class="o">)</span>
 </pre></div>
@@ -1278,17 +1278,17 @@ index 87dde03..af6739c <span class="m">100644</span>
 </section>
 <section id="commit-the-changes">
 <h2>Commit the changes<a class="headerlink" href="#commit-the-changes" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add index.md
-$ git status
-On branch mybranch
-Changes to be committed:
-  <span class="o">(</span>use <span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
-	modified:   index.md
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>index.md
+$<span class="w"> </span>git<span class="w"> </span>status
+On<span class="w"> </span>branch<span class="w"> </span>mybranch
+Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+<span class="w">	</span>modified:<span class="w">   </span>index.md
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s1">&#39;Add logo&#39;</span>
-<span class="o">[</span>mybranch 30a8912<span class="o">]</span> Add logo
- <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Add logo&#39;</span>
+<span class="o">[</span>mybranch<span class="w"> </span>30a8912<span class="o">]</span><span class="w"> </span>Add<span class="w"> </span>logo
+<span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
 </pre></div>
 </div>
 </section>
@@ -1299,37 +1299,37 @@ Changes to be committed:
 </section>
 <section id="merge-mybranch-with-the-master-branch">
 <h2>Merge mybranch with the master branch<a class="headerlink" href="#merge-mybranch-with-the-master-branch" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git diff master
-diff --git a/index.md b/index.md
-index c744020..4d833d1 <span class="m">100644</span>
---- a/index.md
-+++ b/index.md
-@@ -1,2 +1,3 @@
- <span class="c1"># Prenom Nom</span>
- Rennes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>diff<span class="w"> </span>master
+diff<span class="w"> </span>--git<span class="w"> </span>a/index.md<span class="w"> </span>b/index.md
+index<span class="w"> </span>c744020..4d833d1<span class="w"> </span><span class="m">100644</span>
+---<span class="w"> </span>a/index.md
++++<span class="w"> </span>b/index.md
+@@<span class="w"> </span>-1,2<span class="w"> </span>+1,3<span class="w"> </span>@@
+<span class="w"> </span><span class="c1"># Prenom Nom</span>
+<span class="w"> </span>Rennes
 +!<span class="o">[</span>logo<span class="o">](</span>https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png<span class="o">)</span>
 </pre></div>
 </div>
 </section>
 <section id="push-master-branch">
 <h2>Push master branch<a class="headerlink" href="#push-master-branch" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout master
-Switched to branch <span class="s1">&#39;master&#39;</span>
-$ git merge mybranch
-Updating 63a5cee..30a8912
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;master&#39;</span>
+$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>mybranch
+Updating<span class="w"> </span>63a5cee..30a8912
 Fast-forward
- index.md <span class="p">|</span> <span class="m">1</span> +
- <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
-$ git push origin master
-Enumerating objects: <span class="m">9</span>, <span class="k">done</span>.
-Counting objects: <span class="m">100</span>% <span class="o">(</span><span class="m">9</span>/9<span class="o">)</span>, <span class="k">done</span>.
-Delta compression using up to <span class="m">4</span> threads
-Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>, <span class="k">done</span>.
-Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">8</span>/8<span class="o">)</span>, <span class="m">869</span> bytes <span class="p">|</span> <span class="m">869</span>.00 KiB/s, <span class="k">done</span>.
-Total <span class="m">8</span> <span class="o">(</span>delta <span class="m">1</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">0</span>
-remote: Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>, completed with <span class="m">1</span> <span class="nb">local</span> object.
-To github.com:your_login/your_login.github.io.git
-   6dafcbd..340d3dc  master -&gt; master
+<span class="w"> </span>index.md<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>+
+<span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master
+Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">9</span>,<span class="w"> </span><span class="k">done</span>.
+Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">9</span>/9<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+Delta<span class="w"> </span>compression<span class="w"> </span>using<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">4</span><span class="w"> </span>threads
+Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">8</span>/8<span class="o">)</span>,<span class="w"> </span><span class="m">869</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">869</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+Total<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">1</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span>
+remote:<span class="w"> </span>Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>,<span class="w"> </span>completed<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">local</span><span class="w"> </span>object.
+To<span class="w"> </span>github.com:your_login/your_login.github.io.git
+<span class="w">   </span>6dafcbd..340d3dc<span class="w">  </span>master<span class="w"> </span>-&gt;<span class="w"> </span>master
 </pre></div>
 </div>
 </section>
@@ -1339,11 +1339,11 @@ To github.com:your_login/your_login.github.io.git
 </section>
 <section id="clone-the-remote-repository">
 <h2>Clone the remote repository<a class="headerlink" href="#clone-the-remote-repository" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone ssh://svmass2/git/atelier_git.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>ssh://svmass2/git/atelier_git.git
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:MMASSD/atelier_git.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:MMASSD/atelier_git.git
 </pre></div>
 </div>
 </section>
@@ -1351,16 +1351,16 @@ To github.com:your_login/your_login.github.io.git
 <h2>Share your modifications<a class="headerlink" href="#share-your-modifications" title="Permalink to this headline">#</a></h2>
 <section id="option-1-merge-master-branch-and-push-it">
 <h3>Option 1 : merge master branch and push it<a class="headerlink" href="#option-1-merge-master-branch-and-push-it" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout master
-$ git merge mybranch
-$ git push origin master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>mybranch
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master
 </pre></div>
 </div>
 </section>
 <section id="option-2-push-your-branch">
 <h3>Option 2 : Push your branch<a class="headerlink" href="#option-2-push-your-branch" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout mybranch
-$ git push origin mybranch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>mybranch
+$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>mybranch
 </pre></div>
 </div>
 </section>
@@ -1369,28 +1369,28 @@ $ git push origin mybranch
 <h2>Synchronize the repository<a class="headerlink" href="#synchronize-the-repository" title="Permalink to this headline">#</a></h2>
 <section id="update-master-branch">
 <h3>Update master branch<a class="headerlink" href="#update-master-branch" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
 </pre></div>
 </div>
 <p>You can use <code class="docutils literal notranslate"><span class="pre">pull</span></code> which is a <code class="docutils literal notranslate"><span class="pre">fetch</span> <span class="pre">and</span> <span class="pre">merge</span></code> command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git pull origin master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>master
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">origin</span></code> is the repository and <code class="docutils literal notranslate"><span class="pre">master</span></code> the <strong>remote</strong> branch from you want to update.</p>
 <p>In some cases, it could be safer to check the differences between your local and the remote branch with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git fetch origin
-$ git diff origin/master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>fetch<span class="w"> </span>origin
+$<span class="w"> </span>git<span class="w"> </span>diff<span class="w"> </span>origin/master
 </pre></div>
 </div>
 <p>and merge</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git merge origin master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>origin<span class="w"> </span>master
 </pre></div>
 </div>
 </section>
 <section id="update-personal-branch">
 <h3>Update personal branch<a class="headerlink" href="#update-personal-branch" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git checkout mybranch
-$ git merge master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>mybranch
+$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>master
 </pre></div>
 </div>
 </section>
@@ -1404,7 +1404,7 @@ $ git merge master
 <li><p>Do some modifications on the remote master branch by editing file in your browser on GitHub.</p></li>
 <li><p>On your <code class="docutils literal notranslate"><span class="pre">test_rebase</span></code> do also some modifications. Type</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git log -n <span class="m">2</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>log<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span>
 </pre></div>
 </div>
 <p>It displays the last two commits</p>
@@ -1412,7 +1412,7 @@ $ git merge master
 <li><p>Switch and update your master branch</p></li>
 <li><p>Switch back to <code class="docutils literal notranslate"><span class="pre">test_rebase</span></code> and rebase the local branch with:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git rebase master
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>rebase<span class="w"> </span>master
 </pre></div>
 </div>
 <ul class="simple">
@@ -1422,66 +1422,66 @@ $ git merge master
 <section id="stash">
 <h2>Stash<a class="headerlink" href="#stash" title="Permalink to this headline">#</a></h2>
 <p>Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ date &gt;&gt; index.md    <span class="c1"># Modify the index.md file</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>date<span class="w"> </span>&gt;&gt;<span class="w"> </span>index.md<span class="w">    </span><span class="c1"># Modify the index.md file</span>
 
-$ git diff
-diff --git a/index.md b/index.md
-index 4d833d1..a7bc91d <span class="m">100644</span>
---- a/index.md
-+++ b/index.md
-@@ -1,3 +1,4 @@
- <span class="c1"># Prenom Nom</span>
- Rennes
- !<span class="o">[</span>logo<span class="o">](</span>https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png<span class="o">)</span>
-+Sun Sep <span class="m">13</span> <span class="m">21</span>:45:41 CEST <span class="m">2020</span>
+$<span class="w"> </span>git<span class="w"> </span>diff
+diff<span class="w"> </span>--git<span class="w"> </span>a/index.md<span class="w"> </span>b/index.md
+index<span class="w"> </span>4d833d1..a7bc91d<span class="w"> </span><span class="m">100644</span>
+---<span class="w"> </span>a/index.md
++++<span class="w"> </span>b/index.md
+@@<span class="w"> </span>-1,3<span class="w"> </span>+1,4<span class="w"> </span>@@
+<span class="w"> </span><span class="c1"># Prenom Nom</span>
+<span class="w"> </span>Rennes
+<span class="w"> </span>!<span class="o">[</span>logo<span class="o">](</span>https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png<span class="o">)</span>
++Sun<span class="w"> </span>Sep<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">21</span>:45:41<span class="w"> </span>CEST<span class="w"> </span><span class="m">2020</span>
 
-$ git stash
-Saved working directory and index state WIP on master: 0fc9d7d Merge remote-tracking branch <span class="s1">&#39;origin/master&#39;</span> into master
+$<span class="w"> </span>git<span class="w"> </span>stash
+Saved<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>and<span class="w"> </span>index<span class="w"> </span>state<span class="w"> </span>WIP<span class="w"> </span>on<span class="w"> </span>master:<span class="w"> </span>0fc9d7d<span class="w"> </span>Merge<span class="w"> </span>remote-tracking<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;origin/master&#39;</span><span class="w"> </span>into<span class="w"> </span>master
 
-$ git stash show
- index.md <span class="p">|</span> <span class="m">1</span> +
- <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
- 
-$ git status
-On branch master
-nothing to commit, working tree clean
+$<span class="w"> </span>git<span class="w"> </span>stash<span class="w"> </span>show
+<span class="w"> </span>index.md<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>+
+<span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+<span class="w"> </span>
+$<span class="w"> </span>git<span class="w"> </span>status
+On<span class="w"> </span>branch<span class="w"> </span>master
+nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git stash pop
-On branch master
-Changes not staged <span class="k">for</span> commit:
-  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
-  <span class="o">(</span>use <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="k">in</span> working directory<span class="o">)</span>
-	modified:   index.md
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>stash<span class="w"> </span>pop
+On<span class="w"> </span>branch<span class="w"> </span>master
+Changes<span class="w"> </span>not<span class="w"> </span>staged<span class="w"> </span><span class="k">for</span><span class="w"> </span>commit:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
+<span class="w">	</span>modified:<span class="w">   </span>index.md
 
-no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
-Dropped refs/stash@<span class="o">{</span><span class="m">0</span><span class="o">}</span> <span class="o">(</span>3de29586d5e0b9ceeb3c23e03a9aeb045c4096b8<span class="o">)</span>
+no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+Dropped<span class="w"> </span>refs/stash@<span class="o">{</span><span class="m">0</span><span class="o">}</span><span class="w"> </span><span class="o">(</span>3de29586d5e0b9ceeb3c23e03a9aeb045c4096b8<span class="o">)</span>
 
-$ git status
-On branch master
-Changes not staged <span class="k">for</span> commit:
-  <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
-  <span class="o">(</span>use <span class="s2">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="k">in</span> working directory<span class="o">)</span>
-	modified:   index.md
+$<span class="w"> </span>git<span class="w"> </span>status
+On<span class="w"> </span>branch<span class="w"> </span>master
+Changes<span class="w"> </span>not<span class="w"> </span>staged<span class="w"> </span><span class="k">for</span><span class="w"> </span>commit:
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+<span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
+<span class="w">	</span>modified:<span class="w">   </span>index.md
 
-no changes added to commit <span class="o">(</span>use <span class="s2">&quot;git add&quot;</span> and/or <span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
 </pre></div>
 </div>
 <section id="apply-last-stash">
 <h3>Apply last <code class="docutils literal notranslate"><span class="pre">stash</span></code><a class="headerlink" href="#apply-last-stash" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git stash apply
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>stash<span class="w"> </span>apply
 </pre></div>
 </div>
 </section>
 <section id="delete-the-last-stash">
 <h3>Delete the last <code class="docutils literal notranslate"><span class="pre">stash</span></code><a class="headerlink" href="#delete-the-last-stash" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git stash drop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>stash<span class="w"> </span>drop
 </pre></div>
 </div>
 </section>
 <section id="apply-last-stash-and-drop">
 <h3>Apply last <code class="docutils literal notranslate"><span class="pre">stash</span></code> and drop<a class="headerlink" href="#apply-last-stash-and-drop" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git stash pop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>stash<span class="w"> </span>pop
 </pre></div>
 </div>
 </section>
@@ -1489,11 +1489,11 @@ no changes added to commit <span class="o">(</span>use <span class="s2">&quot;gi
 <section id="merge-conflicts">
 <h2>Merge conflicts<a class="headerlink" href="#merge-conflicts" title="Permalink to this headline">#</a></h2>
 <p>If you have conflict, try :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git mergetool
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>mergetool
 </pre></div>
 </div>
 <p>A nice editor helps you to choose the right version. Close and :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git commit -m <span class="s1">&#39;Update and fixed conflicts&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Update and fixed conflicts&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -1543,32 +1543,32 @@ no changes added to commit <span class="o">(</span>use <span class="s2">&quot;gi
 </section>
 <section id="revert-the-last-commit">
 <h2>Revert the last commit<a class="headerlink" href="#revert-the-last-commit" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ date &gt;&gt; index.md <span class="c1">## modify index.md</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>date<span class="w"> </span>&gt;&gt;<span class="w"> </span>index.md<span class="w"> </span><span class="c1">## modify index.md</span>
 
-$ git commit -a -m <span class="s1">&#39;Add date in index.md&#39;</span>
-<span class="o">[</span>master cbfb502<span class="o">]</span> Add date <span class="k">in</span> index.md
- <span class="m">3</span> files changed, <span class="m">18</span> insertions<span class="o">(</span>+<span class="o">)</span>
- create mode <span class="m">100644</span> .gitignore
- create mode <span class="m">100644</span> sandbox.Rproj
+$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Add date in index.md&#39;</span>
+<span class="o">[</span>master<span class="w"> </span>cbfb502<span class="o">]</span><span class="w"> </span>Add<span class="w"> </span>date<span class="w"> </span><span class="k">in</span><span class="w"> </span>index.md
+<span class="w"> </span><span class="m">3</span><span class="w"> </span>files<span class="w"> </span>changed,<span class="w"> </span><span class="m">18</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>
+<span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>.gitignore
+<span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>sandbox.Rproj
 
-$ git reset HEAD~1
-Unstaged changes after reset:
-M	index.md
+$<span class="w"> </span>git<span class="w"> </span>reset<span class="w"> </span>HEAD~1
+Unstaged<span class="w"> </span>changes<span class="w"> </span>after<span class="w"> </span>reset:
+M<span class="w">	</span>index.md
 
-$ git diff
-diff --git a/index.md b/index.md
-index c744020..5d9bd58 <span class="m">100644</span>
---- a/index.md
-+++ b/index.md
-@@ -1,2 +1,3 @@
- <span class="c1"># Prenom Nom</span>
- Rennes
-+Sun Sep <span class="m">13</span> <span class="m">22</span>:17:05 CEST <span class="m">2020</span>
+$<span class="w"> </span>git<span class="w"> </span>diff
+diff<span class="w"> </span>--git<span class="w"> </span>a/index.md<span class="w"> </span>b/index.md
+index<span class="w"> </span>c744020..5d9bd58<span class="w"> </span><span class="m">100644</span>
+---<span class="w"> </span>a/index.md
++++<span class="w"> </span>b/index.md
+@@<span class="w"> </span>-1,2<span class="w"> </span>+1,3<span class="w"> </span>@@
+<span class="w"> </span><span class="c1"># Prenom Nom</span>
+<span class="w"> </span>Rennes
++Sun<span class="w"> </span>Sep<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">22</span>:17:05<span class="w"> </span>CEST<span class="w"> </span><span class="m">2020</span>
 
-$ git checkout index.md
-Updated <span class="m">1</span> path from the index
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>index.md
+Updated<span class="w"> </span><span class="m">1</span><span class="w"> </span>path<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>index
 
-$ cat index.md
+$<span class="w"> </span>cat<span class="w"> </span>index.md
 <span class="c1"># Prenom Nom</span>
 Rennes
 </pre></div>

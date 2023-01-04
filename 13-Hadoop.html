@@ -742,18 +742,18 @@ title="Print to PDF"
 <section id="accessibility">
 <h2>Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this headline">#</a></h2>
 <p>All <a class="reference external" href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html">HDFS commands</a>  are invoked by the bin/hdfs Java script:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs <span class="o">[</span>SHELL_OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>GENERIC_OPTIONS<span class="o">]</span> <span class="o">[</span>COMMAND_OPTIONS<span class="o">]</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span><span class="o">[</span>SHELL_OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>GENERIC_OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>COMMAND_OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
 </section>
 <section id="manage-files-and-directories">
 <h2>Manage files and directories<a class="headerlink" href="#manage-files-and-directories" title="Permalink to this headline">#</a></h2>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs dfs -ls -h -R <span class="c1"># Recursively list subdirectories with human-readable file sizes.</span>
-hdfs dfs -cp  <span class="c1"># Copy files from source to destination</span>
-hdfs dfs -mv  <span class="c1"># Move files from source to destination</span>
-hdfs dfs -mkdir /foodir <span class="c1"># Create a directory named /foodir	</span>
-hdfs dfs -rmr /foodir   <span class="c1"># Remove a directory named /foodir	</span>
-hdfs dfs -cat /foodir/myfile.txt <span class="c1">#View the contents of a file named /foodir/myfile.txt	</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-ls<span class="w"> </span>-h<span class="w"> </span>-R<span class="w"> </span><span class="c1"># Recursively list subdirectories with human-readable file sizes.</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-cp<span class="w">  </span><span class="c1"># Copy files from source to destination</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-mv<span class="w">  </span><span class="c1"># Move files from source to destination</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-mkdir<span class="w"> </span>/foodir<span class="w"> </span><span class="c1"># Create a directory named /foodir	</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-rmr<span class="w"> </span>/foodir<span class="w">   </span><span class="c1"># Remove a directory named /foodir	</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-cat<span class="w"> </span>/foodir/myfile.txt<span class="w"> </span><span class="c1">#View the contents of a file named /foodir/myfile.txt	</span>
 </pre></div>
 </div>
 </section>
@@ -761,7 +761,7 @@ hdfs dfs -cat /foodir/myfile.txt <span class="c1">#View the contents of a file n
 <h2>Transfer between nodes<a class="headerlink" href="#transfer-between-nodes" title="Permalink to this headline">#</a></h2>
 <section id="put">
 <h3>put<a class="headerlink" href="#put" title="Permalink to this headline">#</a></h3>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs fs -put <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-p<span class="o">]</span> <span class="o">[</span>-l<span class="o">]</span> <span class="o">[</span>-d<span class="o">]</span> <span class="o">[</span> - <span class="p">|</span> &lt;localsrc1&gt; .. <span class="o">]</span>. &lt;dst&gt;
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>fs<span class="w"> </span>-put<span class="w"> </span><span class="o">[</span>-f<span class="o">]</span><span class="w"> </span><span class="o">[</span>-p<span class="o">]</span><span class="w"> </span><span class="o">[</span>-l<span class="o">]</span><span class="w"> </span><span class="o">[</span>-d<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;localsrc1&gt;<span class="w"> </span>..<span class="w"> </span><span class="o">]</span>.<span class="w"> </span>&lt;dst&gt;
 </pre></div>
 </div>
 <p>Copy single src, or multiple srcs from local file system to the destination file system.</p>
@@ -770,8 +770,8 @@ hdfs dfs -cat /foodir/myfile.txt <span class="c1">#View the contents of a file n
 -f : Overwrites the destination if it already exists.
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs fs -put localfile /user/hadoop/hadoopfile
-hdfs fs -put -f localfile1 localfile2 /user/hadoop/hadoopdir
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>fs<span class="w"> </span>-put<span class="w"> </span>localfile<span class="w"> </span>/user/hadoop/hadoopfile
+hdfs<span class="w"> </span>fs<span class="w"> </span>-put<span class="w"> </span>-f<span class="w"> </span>localfile1<span class="w"> </span>localfile2<span class="w"> </span>/user/hadoop/hadoopdir
 </pre></div>
 </div>
 <p>Similar to the fs -put command</p>
@@ -812,15 +812,15 @@ hdfs fs -put -f localfile1 localfile2 /user/hadoop/hadoopdir
 <ul class="simple">
 <li><p>Check that your HDFS home directory required to execute MapReduce jobs exists:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -ls /user/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-ls<span class="w"> </span>/user/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Type the following commands:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -ls
-hdfs dfs -ls /
-hdfs dfs -mkdir <span class="nb">test</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-ls
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-ls<span class="w"> </span>/
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-mkdir<span class="w"> </span><span class="nb">test</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -837,13 +837,13 @@ hdfs dfs -mkdir <span class="nb">test</span>
 </div>
 </div>
 <p>Copy it on  HDFS :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -put user.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-put<span class="w"> </span>user.txt
 </pre></div>
 </div>
 <p>Check with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -ls -R 
-hdfs dfs -cat user.txt 
-hdfs dfs -tail user.txt 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-ls<span class="w"> </span>-R<span class="w"> </span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-cat<span class="w"> </span>user.txt<span class="w"> </span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-tail<span class="w"> </span>user.txt<span class="w"> </span>
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -864,19 +864,19 @@ hdfs dfs -tail user.txt
 </div>
 </div>
 <p>Remove the file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -rm user.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-rm<span class="w"> </span>user.txt
 </pre></div>
 </div>
 <p>Put it again on HDFS and move to books directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -copyFromLocal user.txt
-hdfs dfs -mv user.txt books/user.txt
-hdfs dfs -ls -R -h
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-copyFromLocal<span class="w"> </span>user.txt
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-mv<span class="w"> </span>user.txt<span class="w"> </span>books/user.txt
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-ls<span class="w"> </span>-R<span class="w"> </span>-h
 </pre></div>
 </div>
 <p>Copy user.txt to hello.txt and remove it.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -cp books/user.txt books/hello.txt
-hdfs dfs -count -h /user/<span class="nv">$USER</span>
-hdfs dfs -rm books/user.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-cp<span class="w"> </span>books/user.txt<span class="w"> </span>books/hello.txt
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-count<span class="w"> </span>-h<span class="w"> </span>/user/<span class="nv">$USER</span>
+hdfs<span class="w"> </span>dfs<span class="w"> </span>-rm<span class="w"> </span>books/user.txt
 </pre></div>
 </div>
 </section>
@@ -888,8 +888,8 @@ hdfs dfs -rm books/user.txt
 <li><p>List the contents of a directory /.</p></li>
 <li><p>Upload the file today.txt in HDFS.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>date &gt; today.txt
-whoami &gt;&gt; today.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>date<span class="w"> </span>&gt;<span class="w"> </span>today.txt
+whoami<span class="w"> </span>&gt;&gt;<span class="w"> </span>today.txt
 </pre></div>
 </div>
 <ol class="simple">
@@ -897,7 +897,7 @@ whoami &gt;&gt; today.txt
 <li><p>Copy <code class="docutils literal notranslate"><span class="pre">today.txt</span></code> file from source to <code class="docutils literal notranslate"><span class="pre">files</span></code> directory.</p></li>
 <li><p>Copy file <code class="docutils literal notranslate"><span class="pre">jps.txt</span></code> from/To Local file system to HDFS</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jps &gt; jps.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jps<span class="w"> </span>&gt;<span class="w"> </span>jps.txt
 </pre></div>
 </div>
 <ol class="simple">
@@ -938,7 +938,7 @@ Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable
 <ul class="simple">
 <li><p>Make input directory in your HDFS home directory required to execute MapReduce jobs:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs dfs -mkdir -p /user/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/input
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-mkdir<span class="w"> </span>-p<span class="w"> </span>/user/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/input
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">-p</span></code> flag force the directory creation even if it already exists.</p>
@@ -948,13 +948,13 @@ Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable
 <li><p>Copy all necessary files in HDFS system.</p></li>
 <li><p>Run the Java example using the command</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hadoop jar /export/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar wordcount /user/you/input /user/you/output
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hadoop<span class="w"> </span>jar<span class="w"> </span>/export/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar<span class="w"> </span>wordcount<span class="w"> </span>/user/you/input<span class="w"> </span>/user/you/output
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Remove the output directory and try to use yarn</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yarn jar /export/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar wordcount /user/you/input /user/you/output
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yarn<span class="w"> </span>jar<span class="w"> </span>/export/hadoop-2.7.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.6.jar<span class="w"> </span>wordcount<span class="w"> </span>/user/you/input<span class="w"> </span>/user/you/output
 </pre></div>
 </div>
 <ul class="simple">
@@ -989,15 +989,15 @@ Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable
 </div>
 </div>
 <p>The python script must be executable:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x mapper.py 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>mapper.py<span class="w"> </span>
 </pre></div>
 </div>
 <p>Try to run in a terminal with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat sample01.txt <span class="p">|</span> ./mapper.py <span class="p">|</span> sort
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>sample01.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>./mapper.py<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./mapper.py &lt; sample01.txt <span class="p">|</span> sort
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./mapper.py<span class="w"> </span>&lt;<span class="w"> </span>sample01.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -1057,15 +1057,15 @@ Remember that Hadoop sorts map output so it is easier to count words.</p>
 </div>
 </div>
 <p>As mapper the python script must be executable:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod +x reducer.py 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>reducer.py<span class="w"> </span>
 </pre></div>
 </div>
 <p>Try to run in a terminal with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat sample.txt <span class="p">|</span> ./mapper.py <span class="p">|</span> sort <span class="p">|</span> ./reducer.py <span class="p">|</span> sort
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>sample.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>./mapper.py<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>./reducer.py<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./mapper.py &lt; sample01.txt <span class="p">|</span> sort <span class="p">|</span> ./reducer.py <span class="p">|</span> sort
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./mapper.py<span class="w"> </span>&lt;<span class="w"> </span>sample01.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>./reducer.py<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort
 </pre></div>
 </div>
 <div class="cell docutils container">
