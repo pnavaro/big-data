@@ -11,6 +11,8 @@ site:
     left:
       - href: intro.md
         text: Home
+      - icon: github
+        href: https://github.com/pnavaro/big-data
   sidebar:
     style: "docked"
     search: true

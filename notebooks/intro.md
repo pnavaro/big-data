@@ -2,7 +2,7 @@
 
 This course is being taught at as part of Master Datascience Rennes II
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/pnavaro/big-data) [![View on Deepnote](https://beta.deepnote.com/buttons/launch-in-deepnote.svg)](https://deepnote.com/project/d285d66f-0462-4909-bf37-8a1a2f3c6200)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/pnavaro/big-data) [![View on Deepnote](https://beta.deepnote.com/buttons/launch-in-deepnote.svg)](https://deepnote.com/workspace/pierre-navaro-e83f212c-c65d-4fbd-ab8d-f435272b1d5b/project/Rennes2-70d1fe9d-dab0-43fc-8e68-32e5ce63f747)
 
 ## Run Jupyter notebooks with docker
 
