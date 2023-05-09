@@ -4,7 +4,7 @@ project:
 
 site:
   title: "Python tools for Big Data"
-  logo: images/logoR2-Noir.png
+  logo: images/logo_ENSAI.png
   navbar:
     type: dark
     background: primary

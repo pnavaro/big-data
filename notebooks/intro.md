@@ -1,8 +1,6 @@
-# Python tools for Big data
+# Parallel Computing with Python
 
-This course is being taught at as part of Master Datascience Rennes II
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/pnavaro/big-data) [![View on Deepnote](https://beta.deepnote.com/buttons/launch-in-deepnote.svg)](https://deepnote.com/workspace/pierre-navaro-e83f212c-c65d-4fbd-ab8d-f435272b1d5b/project/Rennes2-70d1fe9d-dab0-43fc-8e68-32e5ce63f747)
+This course is being taught at as part of [Master For Smart Data Science](https://ensai.fr/2-cursus/msc-statistics-for-smart-data/) ENSAI Rennes.
 
 ## Run Jupyter notebooks with docker
 
@@ -54,6 +52,10 @@ docker run --rm -v $PWD/big-data:/home/jovyan/ -p 8888:8888 -p 4040:4040 pnavaro
   	   * [Hortonworks Data Tutorials](https://github.com/hortonworks/data-tutorials)
 
 ### Blog posts
+  * [Why Polars uses less memory than Pandas](https://pythonspeed.com/articles/polars-memory-pandas/)
+  * [Reducing Pandas memory usage #1: lossless compression](https://pythonspeed.com/articles/pandas-load-less-data/)
+  * [Reducing Pandas memory usage #2: lossy compression](https://pythonspeed.com/articles/pandas-reduce-memory-lossy/)
+  * [Reducing Pandas memory usage #3: Reading in chunks](https://pythonspeed.com/articles/chunking-pandas/)
   * [Don't use Hadoop - your data isn't that big](https://www.chrisstucchio.com/blog/2013/hadoop_hatred.html)
   * [Format Wars: From VHS and Beta to Avro and Parquet](http://www.svds.com/dataformats/)  overview of Hadoop File formats.
   * [Should you replace Hadoop with your laptop?](http://veekaybee.github.io/2017/03/20/hadoop-or-laptop/) by Vicki Boykis.
