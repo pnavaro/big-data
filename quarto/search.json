@@ -627,7 +627,7 @@
     "href": "02-Installation.html#install-anamamba-large-or-minimamba-small-or-miniforge-best",
     "title": "Installation",
     "section": "Install Anamamba (large) or Minimamba (small) or Miniforge (best)",
-    "text": "Install Anamamba (large) or Minimamba (small) or Miniforge (best)\nwget https://github.com/mamba-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh\nbash Mambaforge-Linux-x86_64.sh -b"
+    "text": "Install Anamamba (large) or Minimamba (small) or Miniforge (best)\nwget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh\nbash Mambaforge-Linux-x86_64.sh -b"
   },
   {
     "objectID": "02-Installation.html#open-a-terminal-linuxmacosx-or-a-anamamba-prompt-windows",
@@ -655,7 +655,7 @@
     "href": "02-Installation.html#managing-packages",
     "title": "Installation",
     "section": "Managing packages",
-    "text": "Managing packages\n\nCheck to see if a package you have not installed named “jupyter” is available from the Anamamba repository (must be connected to the Internet):\n\n\n%%bash\nmamba search jupyter \n\nConda/Mamba displays a list of all packages with that name on mamba-forge repository, so we know it is available.\nInstall this package into the base environment:\nmamba activate\nmamba install -y jupyter \n\nUpdate a new mamba environment from file\nIt is possible to create an environment from a file environment.yml. This file contains the packages list.\nname: exercices\nchannels:\n  - conda-forge\ndependencies:\n  - python=3.10\n  - lorem\n  - matplotlib\n  - seaborn\n  - pandas\nmamba env update -f environment.yml \nConda envs documentation.\nActivating the mamba environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.\n$ mamba activate py36\n(big-data) $ python\nPython 3.6.2 (default, Jul 17 2017, 16:44:45) \n[GCC 4.2.1 Compatible Apple LLVM 8.1.0 (clang-802.0.42)] on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n&gt;&gt;&gt; quit()\n\nYou must do this everytime you open a new terminal"
+    "text": "Managing packages\n\nCheck to see if a package you have not installed named “jupyter” is available from the Anamamba repository (must be connected to the Internet):\n\n\n%%bash\nmamba search jupyter \n\nConda/Mamba displays a list of all packages with that name on conda-forge repository, so we know it is available.\nInstall this package into the base environment:\nmamba activate\nmamba install -y jupyter \n\nUpdate a new mamba environment from file\nIt is possible to create an environment from a file environment.yml. This file contains the packages list.\nname: exercices\nchannels:\n  - conda-forge\ndependencies:\n  - python=3.10\n  - lorem\n  - matplotlib\n  - seaborn\n  - pandas\nmamba env update -f environment.yml \nConda envs documentation.\nActivating the mamba environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.\n$ mamba activate py36\n(big-data) $ python\nPython 3.6.2 (default, Jul 17 2017, 16:44:45) \n[GCC 4.2.1 Compatible Apple LLVM 8.1.0 (clang-802.0.42)] on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n&gt;&gt;&gt; quit()\n\nYou must do this everytime you open a new terminal"
   },
   {
     "objectID": "02-Installation.html#install-the-kernel-for-jupyter",
@@ -942,7 +942,7 @@
     "href": "01-GitBasics.html#commit-or-fast-commit",
     "title": "Git basics",
     "section": "Commit or fast commit",
-    "text": "Commit or fast commit\nbwghbha images/index1.png :width: 400px bwghbha images/index2.png :width: 400px"
+    "text": "Commit or fast commit\nqoalqyv images/index1.png :width: 400px qoalqyv images/index2.png :width: 400px"
   },
   {
     "objectID": "01-GitBasics.html#merge-mybranch-with-the-master-branch",
