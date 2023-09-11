@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Hadoop" href="13-Hadoop.html" />
     <link rel="prev" title="Pandas Dataframes" href="11-PandaDataframes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -496,9 +497,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="basic-commands-in-the-unix-shell">
-<h1>Basic Commands in the Unix Shell<a class="headerlink" href="#basic-commands-in-the-unix-shell" title="Permalink to this headline">#</a></h1>
+<h1>Basic Commands in the Unix Shell<a class="headerlink" href="#basic-commands-in-the-unix-shell" title="Permalink to this heading">#</a></h1>
 <section id="unix-shell">
-<h2>Unix Shell<a class="headerlink" href="#unix-shell" title="Permalink to this headline">#</a></h2>
+<h2>Unix Shell<a class="headerlink" href="#unix-shell" title="Permalink to this heading">#</a></h2>
 <p>The shell is a command programming language that provides an interface to the UNIX operating system. Documentation of unix command is displayed by command <code class="docutils literal notranslate"><span class="pre">man</span></code>. Exemple:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>whoami
 </pre></div>
@@ -513,7 +514,7 @@ document.write(`
 </div>
 </section>
 <section id="directories">
-<h2>Directories<a class="headerlink" href="#directories" title="Permalink to this headline">#</a></h2>
+<h2>Directories<a class="headerlink" href="#directories" title="Permalink to this heading">#</a></h2>
 <p>The shell should start you in your home directory. This is your individual space on the UNIX system for your files. You can find out the name of your current working directory with the unix command <code class="docutils literal notranslate"><span class="pre">pwd</span></code>.</p>
 <p>In the terminal, type the letters ‘p’, ‘w’, ‘d’, and then “enter” - always conclude each command by pressing the “enter” key. The response that follows on the next line will be the name of your home directory, where the name following the last slash should be your username.) The directory structure can be conceptualized as an inverted tree.</p>
 <p>In the jupyter notebook, unix shell command can be executed using the escape character “!” or add <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> to the cell first line. You can type command directly in a terminal without the “!”.</p>
@@ -535,10 +536,10 @@ document.write(`
 </div>
 </section>
 <section id="home-directory">
-<h2>Home directory<a class="headerlink" href="#home-directory" title="Permalink to this headline">#</a></h2>
+<h2>Home directory<a class="headerlink" href="#home-directory" title="Permalink to this heading">#</a></h2>
 <p>No matter where in the directory structure you are, you can always get back to your home directory with <code class="docutils literal notranslate"><span class="pre">cd</span></code>.</p>
 <section id="create-a-new-subdirectory-named-primer">
-<h3>Create a new subdirectory named “primer” :<a class="headerlink" href="#create-a-new-subdirectory-named-primer" title="Permalink to this headline">#</a></h3>
+<h3>Create a new subdirectory named “primer” :<a class="headerlink" href="#create-a-new-subdirectory-named-primer" title="Permalink to this heading">#</a></h3>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>primer
 </pre></div>
 </div>
@@ -573,7 +574,7 @@ document.write(`
 </section>
 </section>
 <section id="files">
-<h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">#</a></h2>
+<h2>Files<a class="headerlink" href="#files" title="Permalink to this heading">#</a></h2>
 <p>Create a file using <code class="docutils literal notranslate"><span class="pre">date</span></code> command and <code class="docutils literal notranslate"><span class="pre">whoami</span></code>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>date<span class="w"> </span>&gt;&gt;<span class="w"> </span>first.txt
 whoami<span class="w"> </span>&gt;&gt;<span class="w"> </span>first.txt
@@ -591,7 +592,7 @@ whoami<span class="w"> </span>&gt;&gt;<span class="w"> </span>first.txt
 </div>
 </div>
 <section id="list-files-and-directories">
-<h3>List files and directories<a class="headerlink" href="#list-files-and-directories" title="Permalink to this headline">#</a></h3>
+<h3>List files and directories<a class="headerlink" href="#list-files-and-directories" title="Permalink to this heading">#</a></h3>
 <p>Files live within directories. You can see a list of the files in your “primer” directory (which should be your current working directory) by typing:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ls
 </pre></div>
@@ -606,7 +607,7 @@ whoami<span class="w"> </span>&gt;&gt;<span class="w"> </span>first.txt
 </div>
 </section>
 <section id="display-file-content">
-<h3>Display file content<a class="headerlink" href="#display-file-content" title="Permalink to this headline">#</a></h3>
+<h3>Display file content<a class="headerlink" href="#display-file-content" title="Permalink to this heading">#</a></h3>
 <p>You can view a text file with the following command:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>first.txt
 </pre></div>
@@ -745,7 +746,7 @@ ls<span class="w"> </span>-l
 </section>
 </section>
 <section id="connect-to-a-server">
-<h2>Connect to a server<a class="headerlink" href="#connect-to-a-server" title="Permalink to this headline">#</a></h2>
+<h2>Connect to a server<a class="headerlink" href="#connect-to-a-server" title="Permalink to this heading">#</a></h2>
 <p>Remote login to another machine can be accomplished using the “ssh” command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-l<span class="w"> </span>mylogin<span class="w"> </span>host
 </pre></div>
@@ -773,7 +774,7 @@ ls<span class="w"> </span>-l
 (The “.” refers to your current working directory, meaning that the destination for “myfile” is your current directory.)</p></li>
 </ul>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Copy a file to the server <code class="docutils literal notranslate"><span class="pre">svmass2.mass.uhb.fr</span></code></p></li>
 <li><p>Log on to this server and display this file with <code class="docutils literal notranslate"><span class="pre">cat</span></code></p></li>
@@ -781,7 +782,7 @@ ls<span class="w"> </span>-l
 </section>
 </section>
 <section id="secure-copy-scp">
-<h2>Secure copy (scp)<a class="headerlink" href="#secure-copy-scp" title="Permalink to this headline">#</a></h2>
+<h2>Secure copy (scp)<a class="headerlink" href="#secure-copy-scp" title="Permalink to this heading">#</a></h2>
 <p>Synchronize big-data directory on the cluster:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp<span class="w"> </span>-r<span class="w"> </span>big-data<span class="w"> </span>svmass2:
 </pre></div>
@@ -794,7 +795,7 @@ ls<span class="w"> </span>-l
 <p>It synchronizes the local directory big-data with the remote repository big-data on svmass2 server</p>
 </section>
 <section id="summary-of-basic-shell-commands">
-<h2>Summary Of Basic Shell Commands<a class="headerlink" href="#summary-of-basic-shell-commands" title="Permalink to this headline">#</a></h2>
+<h2>Summary Of Basic Shell Commands<a class="headerlink" href="#summary-of-basic-shell-commands" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>pico<span class="w"> </span>myfile<span class="w">	            </span><span class="c1"># text edit file &quot;myfile&quot;</span>
 %<span class="w"> </span>ls<span class="w">	                    </span><span class="c1"># list files in current directory</span>
 %<span class="w"> </span>ls<span class="w"> </span>-l<span class="w">	                    </span><span class="c1"># long format listing</span>
@@ -826,7 +827,7 @@ ls<span class="w"> </span>-l
 </div>
 </section>
 <section id="redirecting">
-<h2>Redirecting<a class="headerlink" href="#redirecting" title="Permalink to this headline">#</a></h2>
+<h2>Redirecting<a class="headerlink" href="#redirecting" title="Permalink to this heading">#</a></h2>
 <p>Redirection is usually implemented by placing characters &lt;,&gt;,|,&gt;&gt; between commands.</p>
 <ul class="simple">
 <li><p>Use  &gt; to redirect output.</p></li>
@@ -851,7 +852,7 @@ ls<span class="w"> </span>-l
 </div>
 <p>executes <code class="docutils literal notranslate"><span class="pre">wc</span></code>, with file_list.txt as the source of input, as opposed to the keyboard, which is the usual source for standard input.</p>
 <section id="python-example">
-<h3>Python example<a class="headerlink" href="#python-example" title="Permalink to this headline">#</a></h3>
+<h3>Python example<a class="headerlink" href="#python-example" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">test_stdin</span><span class="o">.</span><span class="n">py</span>
@@ -907,7 +908,7 @@ ls<span class="w"> </span>-l
 </section>
 </section>
 <section id="permissions">
-<h2>Permissions<a class="headerlink" href="#permissions" title="Permalink to this headline">#</a></h2>
+<h2>Permissions<a class="headerlink" href="#permissions" title="Permalink to this heading">#</a></h2>
 <p>Every file on the system has associated with it a set of permissions. Permissions tell UNIX what can be done with that file and by whom. There are three things you can (or can’t) do with a given file:</p>
 <ul class="simple">
 <li><p>read,</p></li>
@@ -928,7 +929,7 @@ ls<span class="w"> </span>-l
 <li><p><strong>w</strong> execute.</p></li>
 </ul>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">--</span>
 </pre></div>
 </div>
@@ -940,7 +941,7 @@ ls<span class="w"> </span>-l
 </section>
 </section>
 <section id="chmod">
-<h2>chmod<a class="headerlink" href="#chmod" title="Permalink to this headline">#</a></h2>
+<h2>chmod<a class="headerlink" href="#chmod" title="Permalink to this heading">#</a></h2>
 <p>To set/modify a file’s permissions you need to use the chmod program. Of course, only the owner of a file may use chmod to alter a file’s permissions. chmod has the following syntax:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span>mode<span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span>
 </pre></div>
@@ -960,13 +961,13 @@ ls<span class="w"> </span>-l
 </ul>
 </section>
 <section id="pipelining">
-<h2>Pipelining<a class="headerlink" href="#pipelining" title="Permalink to this headline">#</a></h2>
+<h2>Pipelining<a class="headerlink" href="#pipelining" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ipynb
 </pre></div>
 </div>
 <p>executes <code class="docutils literal notranslate"><span class="pre">ls</span></code>, using its output as the input for <code class="docutils literal notranslate"><span class="pre">grep</span></code>.</p>
 <section id="exercice-11-1">
-<h3>Exercice 11.1<a class="headerlink" href="#exercice-11-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercice 11.1<a class="headerlink" href="#exercice-11-1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Pipe <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">*.ipynb</span></code> output to <code class="docutils literal notranslate"><span class="pre">sort</span></code> command.</p></li>
 <li><p>Pipe <code class="docutils literal notranslate"><span class="pre">ls</span></code> output to <code class="docutils literal notranslate"><span class="pre">wc</span></code> command.</p></li>
@@ -975,10 +976,10 @@ ls<span class="w"> </span>-l
 </section>
 </section>
 <section id="chained-pipelines">
-<h2>Chained pipelines<a class="headerlink" href="#chained-pipelines" title="Permalink to this headline">#</a></h2>
+<h2>Chained pipelines<a class="headerlink" href="#chained-pipelines" title="Permalink to this heading">#</a></h2>
 <p>The redirection and piping tokens can be chained together to create complex commands.</p>
 <section id="exercice-11-2">
-<h3>Exercice 11.2<a class="headerlink" href="#exercice-11-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercice 11.2<a class="headerlink" href="#exercice-11-2" title="Permalink to this heading">#</a></h3>
 <p>Use unix commands chained to display word count of file <code class="docutils literal notranslate"><span class="pre">sample.txt</span></code>.</p>
 <p>Hints:</p>
 <ul class="simple">
@@ -989,7 +990,7 @@ ls<span class="w"> </span>-l
 </ul>
 </section>
 <section id="exercice-11-3">
-<h3>Exercice 11.3<a class="headerlink" href="#exercice-11-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercice 11.3<a class="headerlink" href="#exercice-11-3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Create a python script <a class="reference external" href="http://mapper.py">mapper.py</a> to count words from stdin. The script prints out every word found in stdin with the value 1 separate by a tab.</p></li>
 </ul>
@@ -1002,7 +1003,7 @@ sit	1
 <p>File <code class="docutils literal notranslate"><span class="pre">mapper.py</span></code> must be executable.</p>
 </section>
 <section id="exercice-11-4">
-<h3>Exercice 11.4<a class="headerlink" href="#exercice-11-4" title="Permalink to this headline">#</a></h3>
+<h3>Exercice 11.4<a class="headerlink" href="#exercice-11-4" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Create a python script <a class="reference external" href="http://reducer.py">reducer.py</a> to read output from <a class="reference external" href="http://mapper.py">mapper.py</a>. The script prints out every word and number of occurences.</p></li>
 </ul>

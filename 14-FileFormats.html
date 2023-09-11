@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="PySpark" href="15-PySpark.html" />
     <link rel="prev" title="Hadoop" href="13-Hadoop.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -475,7 +476,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="file-formats">
-<h1>File Formats<a class="headerlink" href="#file-formats" title="Permalink to this headline">#</a></h1>
+<h1>File Formats<a class="headerlink" href="#file-formats" title="Permalink to this heading">#</a></h1>
 <p>I present three data formats, feather, parquet and hdf but it exists several more like <a class="reference external" href="http://avro.apache.org/docs/current/">Apache Avro</a> or <a class="reference external" href="https://orc.apache.org">Apache ORC</a>.</p>
 <p>These data formats may be more appropriate in certain situations.
 However, the software needed to handle them is either more difficult
@@ -490,17 +491,17 @@ The following formats are supported
 by pandas and apache arrow. These softwares are supported by very strong communities.</p></li>
 </ul>
 <section id="feather">
-<h2>Feather<a class="headerlink" href="#feather" title="Permalink to this headline">#</a></h2>
+<h2>Feather<a class="headerlink" href="#feather" title="Permalink to this heading">#</a></h2>
 <p>For light data, it is recommanded to use <a class="reference external" href="https://github.com/wesm/feather">Feather</a>. It is a fast, interoperable data frame storage that comes with bindings for python and R.</p>
 <p>Feather uses also the Apache Arrow columnar memory specification to represent binary data on disk. This makes read and write operations very fast.</p>
 </section>
 <section id="parquet-file-format">
-<h2>Parquet file format<a class="headerlink" href="#parquet-file-format" title="Permalink to this headline">#</a></h2>
+<h2>Parquet file format<a class="headerlink" href="#parquet-file-format" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://github.com/apache/parquet-format">Parquet format</a> is a common binary data store, used particularly in the Hadoop/big-data sphere. It provides several advantages relevant to big-data processing:</p>
 <p>The Apache Parquet project provides a standardized open-source columnar storage format for use in data analysis systems. It was created originally for use in Apache Hadoop with systems like Apache Drill, Apache Hive, Apache Impala, and Apache Spark adopting it as a shared standard for high performance data IO.</p>
 </section>
 <section id="hierarchical-data-format">
-<h2>Hierarchical Data Format<a class="headerlink" href="#hierarchical-data-format" title="Permalink to this headline">#</a></h2>
+<h2>Hierarchical Data Format<a class="headerlink" href="#hierarchical-data-format" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF</a> is a self-describing data format
 allowing an application to interpret the structure and
 contents of a file with no outside information.
@@ -744,7 +745,7 @@ du -sh test.*
 </div>
 </section>
 <section id="feather-or-parquet">
-<h2>Feather or Parquet<a class="headerlink" href="#feather-or-parquet" title="Permalink to this headline">#</a></h2>
+<h2>Feather or Parquet<a class="headerlink" href="#feather-or-parquet" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Parquet format is designed for long-term storage, where Arrow is more intended for short term or ephemeral storage because files volume are larger.</p></li>
 <li><p>Parquet is usually more expensive to write than Feather as it features more layers of encoding and compression.</p></li>
@@ -755,7 +756,7 @@ du -sh test.*
 <p><a class="reference external" href="https://stackoverflow.com/questions/48083405/what-are-the-differences-between-feather-and-parquet">source stackoverflow</a></p>
 </section>
 <section id="apache-arrow">
-<h2>Apache Arrow<a class="headerlink" href="#apache-arrow" title="Permalink to this headline">#</a></h2>
+<h2>Apache Arrow<a class="headerlink" href="#apache-arrow" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://arrow.apache.org/docs/python/">Arrow</a> is a columnar in-memory analytics layer designed to accelerate big data.
 It houses a set of canonical in-memory representations of
 hierarchical data along with multiple language-bindings
@@ -801,7 +802,7 @@ the next standard to store dataframes in all languages.</p>
 </pre></div>
 </div>
 <section id="read-csv-from-hdfs">
-<h3>Read CSV from HDFS<a class="headerlink" href="#read-csv-from-hdfs" title="Permalink to this headline">#</a></h3>
+<h3>Read CSV from HDFS<a class="headerlink" href="#read-csv-from-hdfs" title="Permalink to this heading">#</a></h3>
 <p>Put the file test.csv on hdfs system</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyarrow</span> <span class="kn">import</span> <span class="n">csv</span>
 <span class="k">with</span> <span class="n">hdfs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;/data/nycflights/1999.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -811,7 +812,7 @@ the next standard to store dataframes in all languages.</p>
 </div>
 </section>
 <section id="read-parquet-file-from-hdfs-with-pandas">
-<h3>Read Parquet File from HDFS with pandas<a class="headerlink" href="#read-parquet-file-from-hdfs-with-pandas" title="Permalink to this headline">#</a></h3>
+<h3>Read Parquet File from HDFS with pandas<a class="headerlink" href="#read-parquet-file-from-hdfs-with-pandas" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>import pandas as pd
 wikipedia = pd.read_parquet(&quot;hdfs://svmass2.mass.uhb.fr:54310/data/pagecounts-parquet/part-00007-8575060f-6b57-45ea-bf1d-cd77b6141f70.snappy.parquet&quot;, engine=’pyarrow’)
 print(wikipedia.head())
@@ -819,32 +820,32 @@ print(wikipedia.head())
 </div>
 </section>
 <section id="read-parquet-file-with-pyarrow">
-<h3>Read Parquet File with pyarrow<a class="headerlink" href="#read-parquet-file-with-pyarrow" title="Permalink to this headline">#</a></h3>
+<h3>Read Parquet File with pyarrow<a class="headerlink" href="#read-parquet-file-with-pyarrow" title="Permalink to this heading">#</a></h3>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;example.parquet&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="writing-a-parquet-file-from-apache-arrow">
-<h3>Writing a parquet file from Apache Arrow<a class="headerlink" href="#writing-a-parquet-file-from-apache-arrow" title="Permalink to this headline">#</a></h3>
+<h3>Writing a parquet file from Apache Arrow<a class="headerlink" href="#writing-a-parquet-file-from-apache-arrow" title="Permalink to this heading">#</a></h3>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s2">&quot;example.parquet&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="check-metadata">
-<h3>Check metadata<a class="headerlink" href="#check-metadata" title="Permalink to this headline">#</a></h3>
+<h3>Check metadata<a class="headerlink" href="#check-metadata" title="Permalink to this heading">#</a></h3>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">parquet_file</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetFile</span><span class="p">(</span><span class="s2">&quot;example.parquet&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">parquet_file</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="see-schema">
-<h3>See schema<a class="headerlink" href="#see-schema" title="Permalink to this headline">#</a></h3>
+<h3>See schema<a class="headerlink" href="#see-schema" title="Permalink to this heading">#</a></h3>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">parquet_file</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="connect-to-the-hadoop-file-system">
-<h3>Connect to the Hadoop file system<a class="headerlink" href="#connect-to-the-hadoop-file-system" title="Permalink to this headline">#</a></h3>
+<h3>Connect to the Hadoop file system<a class="headerlink" href="#connect-to-the-hadoop-file-system" title="Permalink to this heading">#</a></h3>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">hdfs</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">hdfs</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 
 <span class="c1"># copy to local</span>
@@ -886,7 +887,7 @@ print(wikipedia.head())
 </div>
 </section>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Take the second dataframe with string as last column</p></li>
 <li><p>Create an arrow table from pandas dataframe</p></li>

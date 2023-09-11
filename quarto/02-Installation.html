@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,7 +89,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -137,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-GitBasics.html">Notebooks</a></li><li class="breadcrumb-item"><a href="./02-Installation.html">Installation</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -289,8 +290,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install-anaconda-large-or-miniconda-small-or-miniforge-best" id="toc-install-anaconda-large-or-miniconda-small-or-miniforge-best" class="nav-link active" data-scroll-target="#install-anaconda-large-or-miniconda-small-or-miniforge-best">Install Anaconda (large) or Miniconda (small) or Miniforge (best)</a></li>
-  <li><a href="#open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows" id="toc-open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows" class="nav-link" data-scroll-target="#open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows">Open a terminal (Linux/MacOSX) or a Anaconda prompt (Windows)</a></li>
+  <li><a href="#install-anamamba-large-or-minimamba-small-or-miniforge-best" id="toc-install-anamamba-large-or-minimamba-small-or-miniforge-best" class="nav-link active" data-scroll-target="#install-anamamba-large-or-minimamba-small-or-miniforge-best">Install Anamamba (large) or Minimamba (small) or Miniforge (best)</a></li>
+  <li><a href="#open-a-terminal-linuxmacosx-or-a-anamamba-prompt-windows" id="toc-open-a-terminal-linuxmacosx-or-a-anamamba-prompt-windows" class="nav-link" data-scroll-target="#open-a-terminal-linuxmacosx-or-a-anamamba-prompt-windows">Open a terminal (Linux/MacOSX) or a Anamamba prompt (Windows)</a></li>
   <li><a href="#managing-channels" id="toc-managing-channels" class="nav-link" data-scroll-target="#managing-channels">Managing channels</a></li>
   <li><a href="#managing-environments" id="toc-managing-environments" class="nav-link" data-scroll-target="#managing-environments">Managing environments</a>
   <ul class="collapse">
@@ -301,10 +302,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#managing-packages" id="toc-managing-packages" class="nav-link" data-scroll-target="#managing-packages">Managing packages</a>
   <ul class="collapse">
-  <li><a href="#update-a-new-conda-environment-from-file" id="toc-update-a-new-conda-environment-from-file" class="nav-link" data-scroll-target="#update-a-new-conda-environment-from-file">Update a new conda environment from file</a></li>
+  <li><a href="#update-a-new-mamba-environment-from-file" id="toc-update-a-new-mamba-environment-from-file" class="nav-link" data-scroll-target="#update-a-new-mamba-environment-from-file">Update a new mamba environment from file</a></li>
   </ul></li>
   <li><a href="#install-the-kernel-for-jupyter" id="toc-install-the-kernel-for-jupyter" class="nav-link" data-scroll-target="#install-the-kernel-for-jupyter">Install the kernel for jupyter</a></li>
-  <li><a href="#mamba" id="toc-mamba" class="nav-link" data-scroll-target="#mamba">Mamba</a></li>
   </ul>
 </nav>
     </div>
@@ -329,92 +329,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>Conda is a powerful package manager and environment manager.</p>
-<p><a href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">Ref: Getting started with conda</a></p>
+<p><a href="https://docs.mamba.io/projects/mamba/en/latest/user-guide/getting-started.html">Ref: Getting started with mamba</a></p>
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-<section id="install-anaconda-large-or-miniconda-small-or-miniforge-best" class="level2">
-<h2 class="anchored" data-anchor-id="install-anaconda-large-or-miniconda-small-or-miniforge-best">Install <a href="https://www.anaconda.com/downloads">Anaconda</a> (large) or <a href="https://conda.io/miniconda.html">Miniconda</a> (small) or <a href="https://github.com/conda-forge/miniforge/releases">Miniforge</a> (best)</h2>
-<pre><code>wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
-bash Miniforge3-Linux-x86_64.sh -b</code></pre>
+<section id="install-anamamba-large-or-minimamba-small-or-miniforge-best" class="level2">
+<h2 class="anchored" data-anchor-id="install-anamamba-large-or-minimamba-small-or-miniforge-best">Install <a href="https://www.anamamba.com/downloads">Anamamba</a> (large) or <a href="https://mamba.io/minimamba.html">Minimamba</a> (small) or <a href="https://github.com/mamba-forge/miniforge/releases">Miniforge</a> (best)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/mamba-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Mambaforge-Linux-x86_64.sh <span class="at">-b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows" class="level2">
-<h2 class="anchored" data-anchor-id="open-a-terminal-linuxmacosx-or-a-anaconda-prompt-windows">Open a terminal (Linux/MacOSX) or a Anaconda prompt (Windows)</h2>
-<p>Verify that conda is installed and running on your system by typing:</p>
-<div class="cell" data-cell_id="00003-d557c9f8-81ee-4c1e-b7ac-6f454935523a" data-deepnote_cell_type="code" data-execution_millis="170" data-execution_start="1605782014656" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="f0593b1f">
+<section id="open-a-terminal-linuxmacosx-or-a-anamamba-prompt-windows" class="level2">
+<h2 class="anchored" data-anchor-id="open-a-terminal-linuxmacosx-or-a-anamamba-prompt-windows">Open a terminal (Linux/MacOSX) or a Anamamba prompt (Windows)</h2>
+<p>Verify that mamba is installed and running on your system by typing:</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">~/</span>miniforge3<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>conda init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">~/</span>miniforge3<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>mamba init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-cell_id="00006-4178ff26-bed3-4b36-9fc8-acd37e1fb16c" data-deepnote_cell_type="code" data-execution_millis="3" data-execution_start="1605782209255" data-source_hash="2be4121e" data-tags="[]">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">BONJOUR !</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">Sur le coté il y a un lien "add comment" qui permet de commenter pour les visiteurs :-)</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Close the terminal and open a new one.</p>
 <p>Conda displays the number of the version that you have installed.</p>
 <p>If you get an error message, make sure you closed and re-opened the terminal window after installing, or do it now.</p>
-<p>To update conda to the current version. Type the following:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-y</span> conda <span class="at">-n</span> base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To update mamba to the current version. Type the following:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> update <span class="at">-y</span> mamba <span class="at">-n</span> base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="managing-channels" class="level2">
 <h2 class="anchored" data-anchor-id="managing-channels">Managing channels</h2>
-<p>Conda channels are the locations where packages are stored. We use the <a href="https://conda-forge.org">conda-forge</a>, a good community-led collection of recipes for conda. If you installed <a href="https://github.com/conda-forge/miniforge">Miniforge</a> you already have a conda specific to conda-forge.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels conda-forge </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority strict</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Strict channel priority speed up conda operations and also reduce package incompatibility problems.</p>
+<p>Conda channels are the locations where packages are stored. We use the <a href="https://conda-forge.org">conda-forge</a>, a good community-led collection of recipes for mamba. If you installed <a href="https://github.com/conda-forge/miniforge">Miniforge</a> or Mambaforge you already have a mamba specific to conda-forge.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> config <span class="at">--add</span> channels conda-forge </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> config <span class="at">--set</span> channel_priority strict</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Strict channel priority speed up mamba operations and also reduce package incompatibility problems.</p>
 </section>
 <section id="managing-environments" class="level2">
 <h2 class="anchored" data-anchor-id="managing-environments">Managing environments</h2>
-<p>Conda allows you to create separate environments containing files, packages, and their dependencies that will not interact with other environments.</p>
-<p>When you begin using conda, you already have a default environment named <code>base</code>. You don’t want to put programs into your base environment, though. Create separate environments to keep your programs isolated from each other.</p>
+<p>Conda/Mamba allows you to create separate environments containing files, packages, and their dependencies that will not interact with other environments.</p>
+<p>When you begin using mamba, you already have a default environment named <code>base</code>. You don’t want to put programs into your base environment, though. Create separate environments to keep your programs isolated from each other.</p>
 <section id="create-a-new-environment-and-install-a-package-in-it." class="level3">
 <h3 class="anchored" data-anchor-id="create-a-new-environment-and-install-a-package-in-it.">Create a new environment and install a package in it.</h3>
-<p>We will name the environment <code>big-data</code> and install the version 3.8 of <code>python</code>. At the Anaconda Prompt or in your terminal window, type the following:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-y</span> <span class="at">-n</span> big-data python=3.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We will name the environment <code>big-data</code> and install the version 3.10 of <code>python</code>. At the Anamamba Prompt or in your terminal window, type the following:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">-y</span> <span class="at">-n</span> big-data python=3.10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="to-use-or-activate-the-new-environment-type-the-following" class="level3">
 <h3 class="anchored" data-anchor-id="to-use-or-activate-the-new-environment-type-the-following">To use, or “activate” the new environment, type the following:</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate big-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now that you are in your <code>big-data</code> environment, any conda commands you type will go to that environment until you deactivate it.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate big-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that you are in your <code>big-data</code> environment, any mamba commands you type will go to that environment until you deactivate it.</p>
 <p>Verify which version of Python is in your current environment:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="to-see-a-list-of-all-your-environments-type" class="level3">
 <h3 class="anchored" data-anchor-id="to-see-a-list-of-all-your-environments-type">To see a list of all your environments, type:</h3>
-<div class="cell" data-cell_id="00010-f66a0378-5833-4fa0-ab0b-005baa7bd2ff" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>conda info <span class="op">--</span>envs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mamba info <span class="op">--</span>envs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The active environment is the one with an asterisk (*).</p>
 </section>
 <section id="change-your-current-environment-back-to-the-default-base" class="level3">
 <h3 class="anchored" data-anchor-id="change-your-current-environment-back-to-the-default-base">Change your current environment back to the default (base):</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="managing-packages" class="level2">
 <h2 class="anchored" data-anchor-id="managing-packages">Managing packages</h2>
 <ul>
-<li>Check to see if a package you have not installed named “jupyter” is available from the Anaconda repository (must be connected to the Internet):</li>
+<li>Check to see if a package you have not installed named “jupyter” is available from the Anamamba repository (must be connected to the Internet):</li>
 </ul>
-<div class="cell" data-cell_id="00013-2a0afc14-6f3c-4303-8fe1-c044376d61ef" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>conda search jupyter <span class="op">|</span> grep conda<span class="op">-</span>forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mamba search jupyter </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Conda displays a list of all packages with that name on conda-forge repository, so we know it is available.</p>
+<p>Conda/Mamba displays a list of all packages with that name on mamba-forge repository, so we know it is available.</p>
 <p>Install this package into the base environment:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-y</span> jupyter <span class="at">-c</span> conda-forge <span class="at">-n</span> base</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Check to see if the newly installed program is in this environment:</p>
-<div class="cell" data-cell_id="00016-259afc3f-771d-445e-bef8-8a86ace41777" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>conda <span class="bu">list</span> jupyter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="update-a-new-conda-environment-from-file" class="level3">
-<h3 class="anchored" data-anchor-id="update-a-new-conda-environment-from-file">Update a new conda environment from file</h3>
-<p>Download the file <a href="https://raw.githubusercontent.com/pnavaro/big-data/master/environment.yml">environment.yml</a>. This file contains the packages list for this course. Be aware that it takes time to download and install all packages.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env update <span class="at">-f</span> environment.yml <span class="at">-n</span> big-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><a href="https://conda.io/docs/using/envs.html">Conda envs documentation</a>.</p>
-Activating the conda environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.
-<pre>$ conda activate big-data
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install <span class="at">-y</span> jupyter </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="update-a-new-mamba-environment-from-file" class="level3">
+<h3 class="anchored" data-anchor-id="update-a-new-mamba-environment-from-file">Update a new mamba environment from file</h3>
+<p>It is possible to create an environment from a file <code>environment.yml</code>. This file contains the packages list.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> exercices</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.10</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> lorem</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> matplotlib</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> seaborn</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> env update <span class="at">-f</span> environment.yml </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><a href="https://mamba.io/docs/using/envs.html">Conda envs documentation</a>.</p>
+Activating the mamba environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.
+<pre>$ mamba activate py36
 (big-data) $ python
 Python 3.6.2 (default, Jul 17 2017, 16:44:45) 
 [GCC 4.2.1 Compatible Apple LLVM 8.1.0 (clang-802.0.42)] on darwin
@@ -426,27 +425,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 </section>
 <section id="install-the-kernel-for-jupyter" class="level2">
 <h2 class="anchored" data-anchor-id="install-the-kernel-for-jupyter">Install the kernel for jupyter</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> run <span class="at">-n</span> big-data python <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> big-data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>With this command you create the <code>big-data</code> kernel with python and all course dependencies. The cell above will give you the path to the python that runs in this notebook.</p>
-<div class="cell" data-cell_id="00020-9708ee56-1207-4fc0-b94b-a3963e073993" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sys<span class="sc">.</span>executable<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> activate exercices</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mamba</span> install ipykernel</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> exercices</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With this command you create the <code>exercices</code> kernel with python and all course dependencies. The cell above will give you the path to the python that runs in this notebook.</p>
+<p>To display which python is running</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>sys<span class="sc">.</span>executable<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-cell_id="00021-ef265755-c5c4-4b5b-aaa3-9b1f5f3b5d3d" data-deepnote_cell_type="code" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>jupyter<span class="op">-</span>kernelspec <span class="bu">list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="mamba" class="level2">
-<h2 class="anchored" data-anchor-id="mamba">Mamba</h2>
-<p>Mamba is a parallel reimplementation of the conda package manager in C++. It stays compatible as possible with conda interface. Install mamba from conda-forge:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install mamba <span class="at">-c</span> conda-forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To test it you can try to install the metapackage <code>r-tidyverse</code> which contains 144 packages.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> time conda create <span class="at">-y</span> r-tidyverse <span class="at">-n</span> condatest</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    1m9.057s</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> time mamba create <span class="at">-y</span> r-tidyverse <span class="at">-n</span> mambatest</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    0m32.365s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this comparison packages are already downloaded, mamba is even better with downloads.</p>
 
 
 </section>

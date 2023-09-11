@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Jupyter" href="03-JupyterQuickStart.html" />
     <link rel="prev" title="Git basics" href="01-GitBasics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -448,8 +449,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-anaconda-large-or-miniconda-small-or-miniforge-best">Install Anaconda (large) or Miniconda (small) or Miniforge (best)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-a-terminal-linux-macosx-or-a-anaconda-prompt-windows">Open a terminal (Linux/MacOSX) or a Anaconda prompt (Windows)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-anamamba-large-or-minimamba-small-or-miniforge-best">Install Anamamba (large) or Minimamba (small) or Miniforge (best)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-a-terminal-linux-macosx-or-a-anamamba-prompt-windows">Open a terminal (Linux/MacOSX) or a Anamamba prompt (Windows)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-channels">Managing channels</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-environments">Managing environments</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-environment-and-install-a-package-in-it">Create a new environment and install a package in it.</a></li>
@@ -459,11 +460,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-packages">Managing packages</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-a-new-conda-environment-from-file">Update a new conda environment from file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-a-new-mamba-environment-from-file">Update a new mamba environment from file</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-kernel-for-jupyter">Install the kernel for jupyter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mamba">Mamba</a></li>
 </ul>
             </nav>
         </div>
@@ -476,87 +476,78 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
 <p>Conda is a powerful package manager and environment manager.</p>
-<p><a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html">Ref: Getting started with conda</a></p>
+<p><a class="reference external" href="https://docs.mamba.io/projects/mamba/en/latest/user-guide/getting-started.html">Ref: Getting started with mamba</a></p>
 <!-- #region {"slideshow": {"slide_type": "slide"}} -->
-<section id="install-anaconda-large-or-miniconda-small-or-miniforge-best">
-<h2>Install <a class="reference external" href="https://www.anaconda.com/downloads">Anaconda</a> (large) or <a class="reference external" href="https://conda.io/miniconda.html">Miniconda</a> (small) or <a class="reference external" href="https://github.com/conda-forge/miniforge/releases">Miniforge</a> (best)<a class="headerlink" href="#install-anaconda-large-or-miniconda-small-or-miniforge-best" title="Permalink to this headline">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">forge</span><span class="o">/</span><span class="n">miniforge</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">Miniforge3</span><span class="o">-</span><span class="n">Linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">sh</span>
-<span class="n">bash</span> <span class="n">Miniforge3</span><span class="o">-</span><span class="n">Linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">b</span>
+<section id="install-anamamba-large-or-minimamba-small-or-miniforge-best">
+<h2>Install <a class="reference external" href="https://www.anamamba.com/downloads">Anamamba</a> (large) or <a class="reference external" href="https://mamba.io/minimamba.html">Minimamba</a> (small) or <a class="reference external" href="https://github.com/mamba-forge/miniforge/releases">Miniforge</a> (best)<a class="headerlink" href="#install-anamamba-large-or-minimamba-small-or-miniforge-best" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://github.com/mamba-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+bash<span class="w"> </span>Mambaforge-Linux-x86_64.sh<span class="w"> </span>-b
 </pre></div>
 </div>
 </section>
-<section id="open-a-terminal-linux-macosx-or-a-anaconda-prompt-windows">
-<h2>Open a terminal (Linux/MacOSX) or a Anaconda prompt (Windows)<a class="headerlink" href="#open-a-terminal-linux-macosx-or-a-anaconda-prompt-windows" title="Permalink to this headline">#</a></h2>
-<p>Verify that conda is installed and running on your system by typing:</p>
+<section id="open-a-terminal-linux-macosx-or-a-anamamba-prompt-windows">
+<h2>Open a terminal (Linux/MacOSX) or a Anamamba prompt (Windows)<a class="headerlink" href="#open-a-terminal-linux-macosx-or-a-anamamba-prompt-windows" title="Permalink to this heading">#</a></h2>
+<p>Verify that mamba is installed and running on your system by typing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="o">~/</span><span class="n">miniforge3</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">conda</span> <span class="n">init</span>
+<span class="o">~/</span><span class="n">miniforge3</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mamba</span> <span class="n">init</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">BONJOUR !</span>
-<span class="s2">Sur le coté il y a un lien &quot;add comment&quot; qui permet de commenter pour les visiteurs :-)</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Close the terminal and open a new one.</p>
 <p>Conda displays the number of the version that you have installed.</p>
 <p>If you get an error message, make sure you closed and re-opened the
 terminal window after installing, or do it now.</p>
-<p>To update conda to the current version. Type the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>update<span class="w"> </span>-y<span class="w"> </span>conda<span class="w"> </span>-n<span class="w"> </span>base
+<p>To update mamba to the current version. Type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>update<span class="w"> </span>-y<span class="w"> </span>mamba<span class="w"> </span>-n<span class="w"> </span>base
 </pre></div>
 </div>
 </section>
 <section id="managing-channels">
-<h2>Managing channels<a class="headerlink" href="#managing-channels" title="Permalink to this headline">#</a></h2>
+<h2>Managing channels<a class="headerlink" href="#managing-channels" title="Permalink to this heading">#</a></h2>
 <p>Conda channels are the locations where packages are stored. We use the <a class="reference external" href="https://conda-forge.org">conda-forge</a>,
-a good community-led collection of recipes for conda. If you installed <a class="reference external" href="https://github.com/conda-forge/miniforge">Miniforge</a> you already have a conda specific to conda-forge.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge<span class="w"> </span>
-conda<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>channel_priority<span class="w"> </span>strict
+a good community-led collection of recipes for mamba. If you installed <a class="reference external" href="https://github.com/conda-forge/miniforge">Miniforge</a> or Mambaforge you already have a mamba specific to conda-forge.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge<span class="w"> </span>
+mamba<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>channel_priority<span class="w"> </span>strict
 </pre></div>
 </div>
-<p>Strict channel priority speed up conda operations and also reduce package incompatibility problems.</p>
+<p>Strict channel priority speed up mamba operations and also reduce package incompatibility problems.</p>
 </section>
 <section id="managing-environments">
-<h2>Managing environments<a class="headerlink" href="#managing-environments" title="Permalink to this headline">#</a></h2>
-<p>Conda allows you to create separate environments containing files, packages,
+<h2>Managing environments<a class="headerlink" href="#managing-environments" title="Permalink to this heading">#</a></h2>
+<p>Conda/Mamba allows you to create separate environments containing files, packages,
 and their dependencies that will not interact with other environments.</p>
-<p>When you begin using conda, you already have a default environment named
+<p>When you begin using mamba, you already have a default environment named
 <code class="docutils literal notranslate"><span class="pre">base</span></code>. You don’t want to put programs into your base environment, though.
 Create separate environments to keep your programs isolated from each other.</p>
 <section id="create-a-new-environment-and-install-a-package-in-it">
-<h3>Create a new environment and install a package in it.<a class="headerlink" href="#create-a-new-environment-and-install-a-package-in-it" title="Permalink to this headline">#</a></h3>
-<p>We will name the environment <code class="docutils literal notranslate"><span class="pre">big-data</span></code> and install the version 3.8 of <code class="docutils literal notranslate"><span class="pre">python</span></code>. At the Anaconda Prompt or in your terminal window, type the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-n<span class="w"> </span>big-data<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
+<h3>Create a new environment and install a package in it.<a class="headerlink" href="#create-a-new-environment-and-install-a-package-in-it" title="Permalink to this heading">#</a></h3>
+<p>We will name the environment <code class="docutils literal notranslate"><span class="pre">big-data</span></code> and install the version 3.10 of <code class="docutils literal notranslate"><span class="pre">python</span></code>. At the Anamamba Prompt or in your terminal window, type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-n<span class="w"> </span>big-data<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
 </pre></div>
 </div>
 </section>
 <section id="to-use-or-activate-the-new-environment-type-the-following">
-<h3>To use, or “activate” the new environment, type the following:<a class="headerlink" href="#to-use-or-activate-the-new-environment-type-the-following" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>big-data
+<h3>To use, or “activate” the new environment, type the following:<a class="headerlink" href="#to-use-or-activate-the-new-environment-type-the-following" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>activate<span class="w"> </span>big-data
 </pre></div>
 </div>
-<p>Now that you are in your <code class="docutils literal notranslate"><span class="pre">big-data</span></code> environment, any conda commands you type will go to that environment until you deactivate it.</p>
+<p>Now that you are in your <code class="docutils literal notranslate"><span class="pre">big-data</span></code> environment, any mamba commands you type will go to that environment until you deactivate it.</p>
 <p>Verify which version of Python is in your current environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version
 </pre></div>
 </div>
 </section>
 <section id="to-see-a-list-of-all-your-environments-type">
-<h3>To see a list of all your environments, type:<a class="headerlink" href="#to-see-a-list-of-all-your-environments-type" title="Permalink to this headline">#</a></h3>
+<h3>To see a list of all your environments, type:<a class="headerlink" href="#to-see-a-list-of-all-your-environments-type" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">conda</span> <span class="n">info</span> <span class="o">--</span><span class="n">envs</span>
+<span class="n">mamba</span> <span class="n">info</span> <span class="o">--</span><span class="n">envs</span>
 </pre></div>
 </div>
 </div>
@@ -564,51 +555,53 @@ Create separate environments to keep your programs isolated from each other.</p>
 <p>The active environment is the one with an asterisk (*).</p>
 </section>
 <section id="change-your-current-environment-back-to-the-default-base">
-<h3>Change your current environment back to the default (base):<a class="headerlink" href="#change-your-current-environment-back-to-the-default-base" title="Permalink to this headline">#</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate
+<h3>Change your current environment back to the default (base):<a class="headerlink" href="#change-your-current-environment-back-to-the-default-base" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>activate
 </pre></div>
 </div>
 </section>
 </section>
 <section id="managing-packages">
-<h2>Managing packages<a class="headerlink" href="#managing-packages" title="Permalink to this headline">#</a></h2>
+<h2>Managing packages<a class="headerlink" href="#managing-packages" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Check to see if a package you have not installed named “jupyter” is available from the Anaconda repository (must be connected to the Internet):</p></li>
+<li><p>Check to see if a package you have not installed named “jupyter” is available from the Anamamba repository (must be connected to the Internet):</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">conda</span> <span class="n">search</span> <span class="n">jupyter</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+<span class="n">mamba</span> <span class="n">search</span> <span class="n">jupyter</span> 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Conda displays a list of all packages with that name on conda-forge repository, so we know it is available.</p>
+<p>Conda/Mamba displays a list of all packages with that name on mamba-forge repository, so we know it is available.</p>
 <p>Install this package into the base environment:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate
-conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>jupyter<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-n<span class="w"> </span>base
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>activate
+mamba<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>jupyter<span class="w"> </span>
 </pre></div>
 </div>
-<p>Check to see if the newly installed program is in this environment:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">conda</span> <span class="nb">list</span> <span class="n">jupyter</span>
+<section id="update-a-new-mamba-environment-from-file">
+<h3>Update a new mamba environment from file<a class="headerlink" href="#update-a-new-mamba-environment-from-file" title="Permalink to this heading">#</a></h3>
+<p>It is possible to create an environment from a file <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>.
+This file contains the packages list.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exercices</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.10</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lorem</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seaborn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas</span>
 </pre></div>
 </div>
-</div>
-</div>
-<section id="update-a-new-conda-environment-from-file">
-<h3>Update a new conda environment from file<a class="headerlink" href="#update-a-new-conda-environment-from-file" title="Permalink to this headline">#</a></h3>
-<p>Download the file <a class="reference external" href="https://raw.githubusercontent.com/pnavaro/big-data/master/environment.yml">environment.yml</a>.
-This file contains the packages list for this course. Be aware that it takes time to download and install all packages.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>update<span class="w"> </span>-f<span class="w"> </span>environment.yml<span class="w"> </span>-n<span class="w"> </span>big-data
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>env<span class="w"> </span>update<span class="w"> </span>-f<span class="w"> </span>environment.yml<span class="w"> </span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://conda.io/docs/using/envs.html">Conda envs documentation</a>.</p>
-<p>Activating the conda environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.</p>
+<p><a class="reference external" href="https://mamba.io/docs/using/envs.html">Conda envs documentation</a>.</p>
+<p>Activating the mamba environment will change your shell’s prompt to show what virtual environment you’re using, and modify the environment so that running python will get you that particular version and installation of Python.</p>
 <pre>
-$ conda activate big-data
+$ mamba activate py36
 (big-data) $ python
 Python 3.6.2 (default, Jul 17 2017, 16:44:45) 
 [GCC 4.2.1 Compatible Apple LLVM 8.1.0 (clang-802.0.42)] on darwin
@@ -619,12 +612,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 </section>
 </section>
 <section id="install-the-kernel-for-jupyter">
-<h2>Install the kernel for jupyter<a class="headerlink" href="#install-the-kernel-for-jupyter" title="Permalink to this headline">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>run<span class="w"> </span>-n<span class="w"> </span>big-data<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="w"> </span>big-data
+<h2>Install the kernel for jupyter<a class="headerlink" href="#install-the-kernel-for-jupyter" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>activate<span class="w"> </span>exercices
+mamba<span class="w"> </span>install<span class="w"> </span>ipykernel
+python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="w"> </span>exercices
 </pre></div>
 </div>
-<p>With this command you create the <code class="docutils literal notranslate"><span class="pre">big-data</span></code> kernel with python and all course dependencies.
+<p>With this command you create the <code class="docutils literal notranslate"><span class="pre">exercices</span></code> kernel with python and all course dependencies.
 The cell above will give you the path to the python that runs in this notebook.</p>
+<p>To display which python is running</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -633,29 +629,6 @@ The cell above will give you the path to the python that runs in this notebook.<
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">jupyter</span><span class="o">-</span><span class="n">kernelspec</span> <span class="nb">list</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="mamba">
-<h2>Mamba<a class="headerlink" href="#mamba" title="Permalink to this headline">#</a></h2>
-<p>Mamba is a parallel reimplementation of the conda package manager in C++. It stays compatible as possible with conda interface. Install mamba from conda-forge:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>mamba<span class="w"> </span>-c<span class="w"> </span>conda-forge
-</pre></div>
-</div>
-<p>To test it you can try to install the metapackage <code class="docutils literal notranslate"><span class="pre">r-tidyverse</span></code> which contains 144 packages.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">time</span><span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>r-tidyverse<span class="w"> </span>-n<span class="w"> </span>condatest
-real<span class="w">	</span>1m9.057s
-$<span class="w"> </span><span class="nb">time</span><span class="w"> </span>mamba<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>r-tidyverse<span class="w"> </span>-n<span class="w"> </span>mambatest
-real<span class="w">	</span>0m32.365s
-</pre></div>
-</div>
-<p>In this comparison packages are already downloaded, mamba is even better with downloads.</p>
 </section>
 </section>
 
@@ -726,8 +699,8 @@ real<span class="w">	</span>0m32.365s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-anaconda-large-or-miniconda-small-or-miniforge-best">Install Anaconda (large) or Miniconda (small) or Miniforge (best)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-a-terminal-linux-macosx-or-a-anaconda-prompt-windows">Open a terminal (Linux/MacOSX) or a Anaconda prompt (Windows)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-anamamba-large-or-minimamba-small-or-miniforge-best">Install Anamamba (large) or Minimamba (small) or Miniforge (best)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-a-terminal-linux-macosx-or-a-anamamba-prompt-windows">Open a terminal (Linux/MacOSX) or a Anamamba prompt (Windows)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-channels">Managing channels</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-environments">Managing environments</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-environment-and-install-a-package-in-it">Create a new environment and install a package in it.</a></li>
@@ -737,11 +710,10 @@ real<span class="w">	</span>0m32.365s
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-packages">Managing packages</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-a-new-conda-environment-from-file">Update a new conda environment from file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-a-new-mamba-environment-from-file">Update a new mamba environment from file</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-kernel-for-jupyter">Install the kernel for jupyter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mamba">Mamba</a></li>
 </ul>
   </nav></div>
 

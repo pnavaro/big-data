@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Installation" href="02-Installation.html" />
     <link rel="prev" title="Parallel Computing with Python" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -514,9 +515,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="git-basics">
-<h1>Git basics<a class="headerlink" href="#git-basics" title="Permalink to this headline">#</a></h1>
+<h1>Git basics<a class="headerlink" href="#git-basics" title="Permalink to this heading">#</a></h1>
 <section id="about-dropbox">
-<h2>About Dropbox<a class="headerlink" href="#about-dropbox" title="Permalink to this headline">#</a></h2>
+<h2>About Dropbox<a class="headerlink" href="#about-dropbox" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Dropbox versioning is not free.</p></li>
 <li><p>Only keep your edits over a period of 30 days.</p></li>
@@ -527,7 +528,7 @@ document.write(`
 </ul>
 </section>
 <section id="about-version-control">
-<h2>About version control<a class="headerlink" href="#about-version-control" title="Permalink to this headline">#</a></h2>
+<h2>About version control<a class="headerlink" href="#about-version-control" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Records changes to a file or set of files over time.</p></li>
 <li><p>You can recall specific versions later.</p></li>
@@ -536,7 +537,7 @@ document.write(`
 </ul>
 </section>
 <section id="centralized-version-control-systems">
-<h2>Centralized Version Control Systems<a class="headerlink" href="#centralized-version-control-systems" title="Permalink to this headline">#</a></h2>
+<h2>Centralized Version Control Systems<a class="headerlink" href="#centralized-version-control-systems" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="_images/cvs.png"><img alt="_images/cvs.png" src="_images/cvs.png" style="width: 400px;" /></a>
 <ul class="simple">
 <li><p>Clients check out files from a central place.</p></li>
@@ -548,7 +549,7 @@ document.write(`
 </ul>
 </section>
 <section id="git">
-<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">#</a></h2>
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this heading">#</a></h2>
 <p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</p>
 <p>Official website <a class="reference external" href="https://git-scm.com">https://git-scm.com</a></p>
 <p><strong>New products based on a git server for collaborating writing.</strong></p>
@@ -560,7 +561,7 @@ document.write(`
 </ul>
 </section>
 <section id="github">
-<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">#</a></h2>
+<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Web-based hosting service for version control using Git.</p></li>
 <li><p>Offers all of the distributed version control and source code management (SCM) functionality of Git as well as adding its own features.</p></li>
@@ -572,7 +573,7 @@ document.write(`
 <p><a class="reference external" href="https://about.gitlab.com">Gitlab.com</a> and <a class="reference external" href="https://bitbucket.org">Bitbucket</a> offer similar services.</p>
 </section>
 <section id="distributed-version-control-systems">
-<h2>Distributed Version Control Systems<a class="headerlink" href="#distributed-version-control-systems" title="Permalink to this headline">#</a></h2>
+<h2>Distributed Version Control Systems<a class="headerlink" href="#distributed-version-control-systems" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="_images/git.png"><img alt="git" src="_images/git.png" style="width: 300px;" /></a>
 <ul class="simple">
 <li><p>Clients fully mirror the repository.</p></li>
@@ -582,12 +583,12 @@ document.write(`
 </ul>
 </section>
 <section id="git-bash">
-<h2>Git bash<a class="headerlink" href="#git-bash" title="Permalink to this headline">#</a></h2>
+<h2>Git bash<a class="headerlink" href="#git-bash" title="Permalink to this heading">#</a></h2>
 <p>I you want to try Git on windows, install <a class="reference external" href="https://gitforwindows.org">git bash</a>. On Linux and Mac just open a terminal.</p>
 <p><img alt="git bash" src="https://gitforwindows.org/img/gw1web_thumb.png" /></p>
 </section>
 <section id="configure-git">
-<h2>Configure Git<a class="headerlink" href="#configure-git" title="Permalink to this headline">#</a></h2>
+<h2>Configure Git<a class="headerlink" href="#configure-git" title="Permalink to this heading">#</a></h2>
 <p>Settings are saved on the computer for all your git repositories.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Prenom Nom&quot;</span>
 $<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;prenom.nom@univ-rennes2.fr&quot;</span>
@@ -601,7 +602,7 @@ $<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </spa
 </div>
 </section>
 <section id="initialize-a-git-repository-in-a-directory">
-<h2>Initialize a git repository in a directory<a class="headerlink" href="#initialize-a-git-repository-in-a-directory" title="Permalink to this headline">#</a></h2>
+<h2>Initialize a git repository in a directory<a class="headerlink" href="#initialize-a-git-repository-in-a-directory" title="Permalink to this heading">#</a></h2>
 <p>Create the directory <code class="docutils literal notranslate"><span class="pre">homepage</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>homepage<span class="w">                          </span><span class="c1"># Create directory homepage</span>
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>homepage<span class="w">                             </span><span class="c1"># Change directory</span>
@@ -629,7 +630,7 @@ nothing<span class="w"> </span>added<span class="w"> </span>to<span class="w"> <
 </pre></div>
 </div>
 <section id="add-the-file-to-the-git-index">
-<h3>Add the file to the git index<a class="headerlink" href="#add-the-file-to-the-git-index" title="Permalink to this headline">#</a></h3>
+<h3>Add the file to the git index<a class="headerlink" href="#add-the-file-to-the-git-index" title="Permalink to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>index.md
 $<span class="w"> </span>git<span class="w"> </span>status
 On<span class="w"> </span>branch<span class="w"> </span>master
@@ -644,7 +645,7 @@ Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </sp
 </section>
 </section>
 <section id="commit">
-<h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">#</a></h2>
+<h2>Commit<a class="headerlink" href="#commit" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Create the file index.md&#39;</span>
 <span class="o">[</span>master<span class="w"> </span><span class="o">(</span>root-commit<span class="o">)</span><span class="w"> </span>63a5cee<span class="o">]</span><span class="w"> </span>Create<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>index.md
 <span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">2</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>
@@ -658,14 +659,14 @@ nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w">
 </div>
 </section>
 <section id="four-file-status-in-the-repository">
-<h2>Four File status in the repository<a class="headerlink" href="#four-file-status-in-the-repository" title="Permalink to this headline">#</a></h2>
+<h2>Four File status in the repository<a class="headerlink" href="#four-file-status-in-the-repository" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="_images/18333fig0201-tn.png"><img alt="git" src="_images/18333fig0201-tn.png" style="width: 450px;" /></a>
 </section>
 <section id="github-account-and-ssh-key">
-<h2>Github account and SSH key<a class="headerlink" href="#github-account-and-ssh-key" title="Permalink to this headline">#</a></h2>
+<h2>Github account and SSH key<a class="headerlink" href="#github-account-and-ssh-key" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://github.com/join">Create your GitHub account</a></p>
 <section id="generating-public-private-rsa-key-pair">
-<h3>Generating public/private rsa key pair.<a class="headerlink" href="#generating-public-private-rsa-key-pair" title="Permalink to this headline">#</a></h3>
+<h3>Generating public/private rsa key pair.<a class="headerlink" href="#generating-public-private-rsa-key-pair" title="Permalink to this heading">#</a></h3>
 <p>Ref : <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">New ssh key on GitHub</a></p>
 <p>Open Terminal or Git bash.</p>
 <p>Paste the text below, substituting in your GitHub email address.</p>
@@ -684,7 +685,7 @@ In the user settings sidebar, click <code class="docutils literal notranslate"><
 </section>
 </section>
 <section id="github-repository">
-<h2>GitHub repository<a class="headerlink" href="#github-repository" title="Permalink to this headline">#</a></h2>
+<h2>GitHub repository<a class="headerlink" href="#github-repository" title="Permalink to this heading">#</a></h2>
 <p><font color="red">In the following steps replace <strong>your_login</strong> by your own GitHub login</font></p>
 <p>Create the <code class="docutils literal notranslate"><span class="pre">your_login.github.io</span></code> repository on your GitHub account</p>
 <ul class="simple">
@@ -713,7 +714,7 @@ nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w">
 </div>
 </section>
 <section id="enable-github-pages">
-<h2>Enable GitHub pages<a class="headerlink" href="#enable-github-pages" title="Permalink to this headline">#</a></h2>
+<h2>Enable GitHub pages<a class="headerlink" href="#enable-github-pages" title="Permalink to this heading">#</a></h2>
 <p>Go to <a class="github reference external" href="https://github.com/your_login.github.io/settings">your_login.github.io/settings</a></p>
 <p>In the section <strong>GitHub Pages</strong></p>
 <p>Select <code class="docutils literal notranslate"><span class="pre">master</span></code> for <strong>Source</strong> and <code class="docutils literal notranslate"><span class="pre">root</span></code></p>
@@ -721,7 +722,7 @@ nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w">
 <p>The website is available at <a class="reference external" href="https://your_login.github.io">https://your_login.github.io</a></p>
 </section>
 <section id="git-workflow">
-<h2>Git Workflow<a class="headerlink" href="#git-workflow" title="Permalink to this headline">#</a></h2>
+<h2>Git Workflow<a class="headerlink" href="#git-workflow" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="_images/four_stages.png"><img alt="git" src="_images/four_stages.png" style="width: 150px;" /></a>
 <p>By choosing a theme, you create on GitHub a file named “_config.yml”. You need to update your local version with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull<span class="w"> </span>--no-edit
@@ -735,7 +736,7 @@ If you do</p>
 <p>You will display the new file _config.yml</p>
 </section>
 <section id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
 <p>Check the web page by visiting <a class="reference external" href="https://your_login.github.io">https://your_login.github.io</a></p>
 <p>Modify the file <a class="reference external" href="http://index.md">index.md</a> and do the procedure again. Modify also the file <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> by appending the following content:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Page personnelle</span>
@@ -744,7 +745,7 @@ If you do</p>
 </div>
 </section>
 <section id="branches">
-<h2>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">#</a></h2>
+<h2>Branches<a class="headerlink" href="#branches" title="Permalink to this heading">#</a></h2>
 <p><strong>Display all branches</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-a
 *<span class="w"> </span>master
@@ -753,7 +754,7 @@ If you do</p>
 </div>
 </section>
 <section id="create-a-new-branch">
-<h2>Create a new branch<a class="headerlink" href="#create-a-new-branch" title="Permalink to this headline">#</a></h2>
+<h2>Create a new branch<a class="headerlink" href="#create-a-new-branch" title="Permalink to this heading">#</a></h2>
 <p>By creating a new branch you freeze the master branch and you can continue to work without modifying it.
 The branch created is the copy of the current branch (master).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>mybranch
@@ -769,7 +770,7 @@ master
 <p>Files could be different or not existing in two branches but they are located at the same place on the file system. When you use the <code class="docutils literal notranslate"><span class="pre">checkout</span></code> command, git applies the changes.</p>
 </section>
 <section id="edit-and-modify-the-index-md-file">
-<h2>Edit and modify the <a class="reference external" href="http://index.md">index.md</a> file<a class="headerlink" href="#edit-and-modify-the-index-md-file" title="Permalink to this headline">#</a></h2>
+<h2>Edit and modify the <a class="reference external" href="http://index.md">index.md</a> file<a class="headerlink" href="#edit-and-modify-the-index-md-file" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;![logo](https://intranet.univ-rennes2.fr/sites/default/files/resize/UHB/SERVICE-COMMUNICATION/logor2-noir-150x147.png)&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>index.md
 $<span class="w"> </span>git<span class="w"> </span>status
 On<span class="w"> </span>branch<span class="w"> </span>mybranch
@@ -793,7 +794,7 @@ index<span class="w"> </span>87dde03..af6739c<span class="w"> </span><span class
 </div>
 </section>
 <section id="commit-the-changes">
-<h2>Commit the changes<a class="headerlink" href="#commit-the-changes" title="Permalink to this headline">#</a></h2>
+<h2>Commit the changes<a class="headerlink" href="#commit-the-changes" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>index.md
 $<span class="w"> </span>git<span class="w"> </span>status
 On<span class="w"> </span>branch<span class="w"> </span>mybranch
@@ -809,12 +810,12 @@ Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </sp
 </div>
 </section>
 <section id="commit-or-fast-commit">
-<h2>Commit or fast commit<a class="headerlink" href="#commit-or-fast-commit" title="Permalink to this headline">#</a></h2>
+<h2>Commit or fast commit<a class="headerlink" href="#commit-or-fast-commit" title="Permalink to this heading">#</a></h2>
 <a class="reference internal image-reference" href="_images/index1.png"><img alt="_images/index1.png" src="_images/index1.png" style="width: 400px;" /></a>
 <a class="reference internal image-reference" href="_images/index2.png"><img alt="_images/index2.png" src="_images/index2.png" style="width: 400px;" /></a>
 </section>
 <section id="merge-mybranch-with-the-master-branch">
-<h2>Merge mybranch with the master branch<a class="headerlink" href="#merge-mybranch-with-the-master-branch" title="Permalink to this headline">#</a></h2>
+<h2>Merge mybranch with the master branch<a class="headerlink" href="#merge-mybranch-with-the-master-branch" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>diff<span class="w"> </span>master
 diff<span class="w"> </span>--git<span class="w"> </span>a/index.md<span class="w"> </span>b/index.md
 index<span class="w"> </span>c744020..4d833d1<span class="w"> </span><span class="m">100644</span>
@@ -828,7 +829,7 @@ index<span class="w"> </span>c744020..4d833d1<span class="w"> </span><span class
 </div>
 </section>
 <section id="push-master-branch">
-<h2>Push master branch<a class="headerlink" href="#push-master-branch" title="Permalink to this headline">#</a></h2>
+<h2>Push master branch<a class="headerlink" href="#push-master-branch" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
 Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;master&#39;</span>
 $<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>mybranch
@@ -850,11 +851,11 @@ To<span class="w"> </span>github.com:your_login/your_login.github.io.git
 </div>
 </section>
 <section id="collaborating-writing-with-a-git-repository">
-<h2>Collaborating writing with a git repository<a class="headerlink" href="#collaborating-writing-with-a-git-repository" title="Permalink to this headline">#</a></h2>
+<h2>Collaborating writing with a git repository<a class="headerlink" href="#collaborating-writing-with-a-git-repository" title="Permalink to this heading">#</a></h2>
 <p><img alt="Cycle" src="_images/git_cycle.png" /></p>
 </section>
 <section id="clone-the-remote-repository">
-<h2>Clone the remote repository<a class="headerlink" href="#clone-the-remote-repository" title="Permalink to this headline">#</a></h2>
+<h2>Clone the remote repository<a class="headerlink" href="#clone-the-remote-repository" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>ssh://svmass2/git/atelier_git.git
 </pre></div>
 </div>
@@ -864,9 +865,9 @@ To<span class="w"> </span>github.com:your_login/your_login.github.io.git
 </div>
 </section>
 <section id="share-your-modifications">
-<h2>Share your modifications<a class="headerlink" href="#share-your-modifications" title="Permalink to this headline">#</a></h2>
+<h2>Share your modifications<a class="headerlink" href="#share-your-modifications" title="Permalink to this heading">#</a></h2>
 <section id="option-1-merge-master-branch-and-push-it">
-<h3>Option 1 : merge master branch and push it<a class="headerlink" href="#option-1-merge-master-branch-and-push-it" title="Permalink to this headline">#</a></h3>
+<h3>Option 1 : merge master branch and push it<a class="headerlink" href="#option-1-merge-master-branch-and-push-it" title="Permalink to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
 $<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>mybranch
 $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>master
@@ -874,7 +875,7 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
 </div>
 </section>
 <section id="option-2-push-your-branch">
-<h3>Option 2 : Push your branch<a class="headerlink" href="#option-2-push-your-branch" title="Permalink to this headline">#</a></h3>
+<h3>Option 2 : Push your branch<a class="headerlink" href="#option-2-push-your-branch" title="Permalink to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>mybranch
 $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>mybranch
 </pre></div>
@@ -882,9 +883,9 @@ $<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>
 </section>
 </section>
 <section id="synchronize-the-repository">
-<h2>Synchronize the repository<a class="headerlink" href="#synchronize-the-repository" title="Permalink to this headline">#</a></h2>
+<h2>Synchronize the repository<a class="headerlink" href="#synchronize-the-repository" title="Permalink to this heading">#</a></h2>
 <section id="update-master-branch">
-<h3>Update master branch<a class="headerlink" href="#update-master-branch" title="Permalink to this headline">#</a></h3>
+<h3>Update master branch<a class="headerlink" href="#update-master-branch" title="Permalink to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>master
 </pre></div>
 </div>
@@ -904,7 +905,7 @@ $<span class="w"> </span>git<span class="w"> </span>diff<span class="w"> </span>
 </div>
 </section>
 <section id="update-personal-branch">
-<h3>Update personal branch<a class="headerlink" href="#update-personal-branch" title="Permalink to this headline">#</a></h3>
+<h3>Update personal branch<a class="headerlink" href="#update-personal-branch" title="Permalink to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>mybranch
 $<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>master
 </pre></div>
@@ -912,7 +913,7 @@ $<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span
 </section>
 </section>
 <section id="rebase">
-<h2>Rebase<a class="headerlink" href="#rebase" title="Permalink to this headline">#</a></h2>
+<h2>Rebase<a class="headerlink" href="#rebase" title="Permalink to this heading">#</a></h2>
 <p>If the branch named <code class="docutils literal notranslate"><span class="pre">mybranch</span></code> is local and never pushed to the repository. It is possible to use <strong>rebase</strong> instead of merge. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span></code> reapply commits on top of another base tip.</p>
 <p>Exercise:</p>
 <ul class="simple">
@@ -936,7 +937,7 @@ $<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span
 </ul>
 </section>
 <section id="stash">
-<h2>Stash<a class="headerlink" href="#stash" title="Permalink to this headline">#</a></h2>
+<h2>Stash<a class="headerlink" href="#stash" title="Permalink to this heading">#</a></h2>
 <p>Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory. The command saves your local modifications away and reverts the working directory to match the HEAD commit.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>date<span class="w"> </span>&gt;&gt;<span class="w"> </span>index.md<span class="w">    </span><span class="c1"># Modify the index.md file</span>
 
@@ -984,26 +985,26 @@ no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> <
 </pre></div>
 </div>
 <section id="apply-last-stash">
-<h3>Apply last <code class="docutils literal notranslate"><span class="pre">stash</span></code><a class="headerlink" href="#apply-last-stash" title="Permalink to this headline">#</a></h3>
+<h3>Apply last <code class="docutils literal notranslate"><span class="pre">stash</span></code><a class="headerlink" href="#apply-last-stash" title="Permalink to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>stash<span class="w"> </span>apply
 </pre></div>
 </div>
 </section>
 <section id="delete-the-last-stash">
-<h3>Delete the last <code class="docutils literal notranslate"><span class="pre">stash</span></code><a class="headerlink" href="#delete-the-last-stash" title="Permalink to this headline">#</a></h3>
+<h3>Delete the last <code class="docutils literal notranslate"><span class="pre">stash</span></code><a class="headerlink" href="#delete-the-last-stash" title="Permalink to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>stash<span class="w"> </span>drop
 </pre></div>
 </div>
 </section>
 <section id="apply-last-stash-and-drop">
-<h3>Apply last <code class="docutils literal notranslate"><span class="pre">stash</span></code> and drop<a class="headerlink" href="#apply-last-stash-and-drop" title="Permalink to this headline">#</a></h3>
+<h3>Apply last <code class="docutils literal notranslate"><span class="pre">stash</span></code> and drop<a class="headerlink" href="#apply-last-stash-and-drop" title="Permalink to this heading">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>stash<span class="w"> </span>pop
 </pre></div>
 </div>
 </section>
 </section>
 <section id="merge-conflicts">
-<h2>Merge conflicts<a class="headerlink" href="#merge-conflicts" title="Permalink to this headline">#</a></h2>
+<h2>Merge conflicts<a class="headerlink" href="#merge-conflicts" title="Permalink to this heading">#</a></h2>
 <p>If you have conflict, try :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>mergetool
 </pre></div>
@@ -1014,7 +1015,7 @@ no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> <
 </div>
 </section>
 <section id="why-git">
-<h2>Why Git?<a class="headerlink" href="#why-git" title="Permalink to this headline">#</a></h2>
+<h2>Why Git?<a class="headerlink" href="#why-git" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Tracking and controlling changes in the software.</p></li>
 <li><p>Branches : Frictionless Context Switching, Role-Based Codelines.</p></li>
@@ -1026,7 +1027,7 @@ no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> <
 </ul>
 </section>
 <section id="why-not">
-<h2>Why not<a class="headerlink" href="#why-not" title="Permalink to this headline">#</a></h2>
+<h2>Why not<a class="headerlink" href="#why-not" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Sometimes confusing for new users coming from CVS or subversion.</p></li>
 <li><p>Crazy command line syntax.</p></li>
@@ -1037,7 +1038,7 @@ no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> <
 </ul>
 </section>
 <section id="some-useful-commands">
-<h2>Some useful commands<a class="headerlink" href="#some-useful-commands" title="Permalink to this headline">#</a></h2>
+<h2>Some useful commands<a class="headerlink" href="#some-useful-commands" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Showing which files have changed between git branches</p></li>
 </ul>
@@ -1058,7 +1059,7 @@ no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> <
 </div>
 </section>
 <section id="revert-the-last-commit">
-<h2>Revert the last commit<a class="headerlink" href="#revert-the-last-commit" title="Permalink to this headline">#</a></h2>
+<h2>Revert the last commit<a class="headerlink" href="#revert-the-last-commit" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>date<span class="w"> </span>&gt;&gt;<span class="w"> </span>index.md<span class="w"> </span><span class="c1">## modify index.md</span>
 
 $<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Add date in index.md&#39;</span>
@@ -1091,7 +1092,7 @@ Rennes
 </div>
 </section>
 <section id="git-through-ide">
-<h2>Git through IDE<a class="headerlink" href="#git-through-ide" title="Permalink to this headline">#</a></h2>
+<h2>Git through IDE<a class="headerlink" href="#git-through-ide" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Install bash-completion and source <a class="reference external" href="http://git-prompt.sh">git-prompt.sh</a>.</p></li>
 <li><p>Use Gui tools:</p>

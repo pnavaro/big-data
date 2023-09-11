@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Spark DataFrames" href="17-SparkDataFrames.html" />
     <link rel="prev" title="PySpark" href="15-PySpark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -482,7 +483,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dask-dataframes">
-<h1>Dask Dataframes<a class="headerlink" href="#dask-dataframes" title="Permalink to this headline">#</a></h1>
+<h1>Dask Dataframes<a class="headerlink" href="#dask-dataframes" title="Permalink to this heading">#</a></h1>
 <p><em><a class="reference external" href="http://dask.pydata.org">Dask</a> is a flexible parallel computing library for analytic computing</em> written in Python. Dask is similar to Spark, by lazily constructing directed acyclic graph (DAG) of tasks and splitting large datasets into small portions called partitions. See the below image from <a class="reference external" href="http://dask.pydata.org">Dask’s web page</a> for illustration.</p>
 <p><img alt="http://dask.pydata.org/en/latest/_images/collections-schedulers.png" src="_images/collections-schedulers.png" /></p>
 <p>It has three main interfaces:</p>
@@ -493,7 +494,7 @@ document.write(`
 </ul>
 <p>While it can work on a <a class="reference external" href="http://dask.pydata.org/en/latest/distributed.html">distributed cluster</a>, Dask works also very well on a single cpu machine.</p>
 <section id="dataframes">
-<h2>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this headline">#</a></h2>
+<h2>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this heading">#</a></h2>
 <p>Dask dataframes look and feel (mostly) like Pandas dataframes but they run on the same infrastructure that powers dask.delayed.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code> module implements a blocked parallel <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> object that mimics a large subset of the Pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. One dask <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is comprised of many in-memory pandas <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> separated along the index. One operation on a dask <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> triggers many pandas operations on the constituent pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s in a way that is mindful of potential parallelism and memory constraints.</p>
 <p><strong>Related Documentation</strong></p>
@@ -537,7 +538,7 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">LateAircraftDelay</span></code> in minutes</p></li>
 </ol>
 <section id="prep-the-data">
-<h3>Prep the Data<a class="headerlink" href="#prep-the-data" title="Permalink to this headline">#</a></h3>
+<h3>Prep the Data<a class="headerlink" href="#prep-the-data" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -569,7 +570,7 @@ document.write(`
 </div>
 </section>
 <section id="load-data-from-csvs-in-dask-dataframes">
-<h3>Load Data from CSVs in Dask Dataframes<a class="headerlink" href="#load-data-from-csvs-in-dask-dataframes" title="Permalink to this headline">#</a></h3>
+<h3>Load Data from CSVs in Dask Dataframes<a class="headerlink" href="#load-data-from-csvs-in-dask-dataframes" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -621,7 +622,7 @@ document.write(`
 </div>
 </section>
 <section id="what-just-happened">
-<h3>What just happened?<a class="headerlink" href="#what-just-happened" title="Permalink to this headline">#</a></h3>
+<h3>What just happened?<a class="headerlink" href="#what-just-happened" title="Permalink to this heading">#</a></h3>
 <p>Unlike <code class="docutils literal notranslate"><span class="pre">pandas.read_csv</span></code> which reads in the entire file before inferring datatypes, <code class="docutils literal notranslate"><span class="pre">dask.dataframe.read_csv</span></code> only reads in a sample from the beginning of the file (or first file if using a glob). These inferred datatypes are then enforced when reading all partitions.</p>
 <p>In this case, the datatypes inferred in the sample are incorrect. The first <code class="docutils literal notranslate"><span class="pre">n</span></code> rows have no value for <code class="docutils literal notranslate"><span class="pre">CRSElapsedTime</span></code> (which pandas infers as a <code class="docutils literal notranslate"><span class="pre">float</span></code>), and later on turn out to be strings (<code class="docutils literal notranslate"><span class="pre">object</span></code> dtype). When this happens you have a few options:</p>
 <ul class="simple">
@@ -665,7 +666,7 @@ document.write(`
 </div>
 </section>
 <section id="why-df-is-ten-times-longer">
-<h3>Why df is ten times longer ?<a class="headerlink" href="#why-df-is-ten-times-longer" title="Permalink to this headline">#</a></h3>
+<h3>Why df is ten times longer ?<a class="headerlink" href="#why-df-is-ten-times-longer" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Dask investigated the input path and found that there are ten matching files.</p></li>
 <li><p>A set of jobs was intelligently created for each chunk - one per original CSV file in this case.</p></li>
@@ -675,7 +676,7 @@ document.write(`
 </section>
 </section>
 <section id="computations-with-dask-dataframe">
-<h2>Computations with <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code><a class="headerlink" href="#computations-with-dask-dataframe" title="Permalink to this headline">#</a></h2>
+<h2>Computations with <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code><a class="headerlink" href="#computations-with-dask-dataframe" title="Permalink to this heading">#</a></h2>
 <p>We compute the maximum of the <code class="docutils literal notranslate"><span class="pre">DepDelay</span></code> column.  With <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code> we could create this computation as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">maxes</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
@@ -731,7 +732,7 @@ document.write(`
 </div>
 </section>
 <section id="store-data-in-apache-parquet-format">
-<h2>Store Data in Apache Parquet Format<a class="headerlink" href="#store-data-in-apache-parquet-format" title="Permalink to this headline">#</a></h2>
+<h2>Store Data in Apache Parquet Format<a class="headerlink" href="#store-data-in-apache-parquet-format" title="Permalink to this heading">#</a></h2>
 <p>Dask encourage dataframe users to store and load data using Parquet instead of csv. <a class="reference external" href="http://parquet.apache.org/">Apache Parquet</a> is a columnar binary format that is easy to split into multiple files (easier for parallel loading) and is generally much simpler to deal with than HDF5 (from the Dask library’s perspective). It is also a common format used by other big data systems like <a class="reference external" href="http://spark.apache.org/">Apache Spark</a> and <a class="reference external" href="http://impala.apache.org/">Apache Impala</a> and so is useful to interchange with other systems.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -773,7 +774,7 @@ document.write(`
 </div>
 <p>The computation is much faster because pulling out the DepDelay column is  easy for Parquet.</p>
 <section id="parquet-advantages">
-<h3>Parquet advantages:<a class="headerlink" href="#parquet-advantages" title="Permalink to this headline">#</a></h3>
+<h3>Parquet advantages:<a class="headerlink" href="#parquet-advantages" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Binary representation of data, allowing for speedy conversion of bytes-on-disk to bytes-in-memory</p></li>
 <li><p>Columnar storage, meaning that you can load in as few columns as you need without loading the entire dataset</p></li>
@@ -783,7 +784,7 @@ document.write(`
 </ul>
 </section>
 <section id="exercise-15-1">
-<h3>Exercise 15.1<a class="headerlink" href="#exercise-15-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 15.1<a class="headerlink" href="#exercise-15-1" title="Permalink to this heading">#</a></h3>
 <p>If you don’t remember how to use pandas.  Please read <a class="reference external" href="http://pandas.pydata.org/">pandas documentation</a>.</p>
 <ul class="simple">
 <li><p>Use the <code class="docutils literal notranslate"><span class="pre">head()</span></code> method to get the first ten rows</p></li>
@@ -794,7 +795,7 @@ document.write(`
 </section>
 </section>
 <section id="divisions-and-the-index">
-<h2>Divisions and the Index<a class="headerlink" href="#divisions-and-the-index" title="Permalink to this headline">#</a></h2>
+<h2>Divisions and the Index<a class="headerlink" href="#divisions-and-the-index" title="Permalink to this heading">#</a></h2>
 <p>The Pandas index associates a value to each record/row of your data.  Operations that align with the index, like <code class="docutils literal notranslate"><span class="pre">loc</span></code> can be a bit faster as a result.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code> this index becomes even more important.  Recall that one dask <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> consists of several Pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s.  These dataframes are separated along the index by value.  For example, when working with time series we may partition our large dataset by month.</p>
 <p>Recall that these many partitions of our data may not all live in memory at the same time, instead they might live on disk; we simply have tasks that can materialize these pandas <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> on demand.</p>
@@ -850,7 +851,7 @@ document.write(`
 </div>
 </div>
 <section id="exercises-15-2">
-<h3>Exercises 15.2<a class="headerlink" href="#exercises-15-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercises 15.2<a class="headerlink" href="#exercises-15-2" title="Permalink to this heading">#</a></h3>
 <p>In this section we do a few <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code> computations. If you are comfortable with Pandas then these should be familiar. You will have to think about when to call <code class="docutils literal notranslate"><span class="pre">compute</span></code>.</p>
 <ul class="simple">
 <li><p>In total, how many non-cancelled flights were taken from each airport?</p></li>
@@ -866,7 +867,7 @@ document.write(`
 </section>
 </section>
 <section id="sharing-intermediate-results">
-<h2>Sharing Intermediate Results<a class="headerlink" href="#sharing-intermediate-results" title="Permalink to this headline">#</a></h2>
+<h2>Sharing Intermediate Results<a class="headerlink" href="#sharing-intermediate-results" title="Permalink to this heading">#</a></h2>
 <p>When computing all of the above, we sometimes did the same operation more than once. For most operations, <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code> hashes the arguments, allowing duplicate computations to be shared, and only computed once.</p>
 <p>For example, lets compute the mean and standard deviation for departure delay of all non-cancelled flights:</p>
 <div class="cell docutils container">
@@ -879,7 +880,7 @@ document.write(`
 </div>
 </div>
 <section id="using-two-calls-to-compute">
-<h3>Using two calls to <code class="docutils literal notranslate"><span class="pre">.compute</span></code>:<a class="headerlink" href="#using-two-calls-to-compute" title="Permalink to this headline">#</a></h3>
+<h3>Using two calls to <code class="docutils literal notranslate"><span class="pre">.compute</span></code>:<a class="headerlink" href="#using-two-calls-to-compute" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -892,7 +893,7 @@ document.write(`
 </div>
 </section>
 <section id="using-one-call-to-dask-compute">
-<h3>Using one call to <code class="docutils literal notranslate"><span class="pre">dask.compute</span></code>:<a class="headerlink" href="#using-one-call-to-dask-compute" title="Permalink to this headline">#</a></h3>
+<h3>Using one call to <code class="docutils literal notranslate"><span class="pre">dask.compute</span></code>:<a class="headerlink" href="#using-one-call-to-dask-compute" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>

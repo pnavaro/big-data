@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Spark exercises" href="22-SparkExercises.html" />
     <link rel="prev" title="NYC Flights data analysis with Spark" href="20-NYCFlightsSpark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -465,7 +466,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="nyc-flights-data-2013-with-weather-data">
-<h1>NYC Flights data 2013 with Weather data<a class="headerlink" href="#nyc-flights-data-2013-with-weather-data" title="Permalink to this headline">#</a></h1>
+<h1>NYC Flights data 2013 with Weather data<a class="headerlink" href="#nyc-flights-data-2013-with-weather-data" title="Permalink to this heading">#</a></h1>
 <p>Reference : <a class="github reference external" href="https://github.com/rich-iannone/so-many-pyspark-examples/blob/main/spark-dataframes.ipynb">rich-iannone/so-many-pyspark-examples</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -481,7 +482,7 @@ document.write(`
 </div>
 </div>
 <section id="joins">
-<h2>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">#</a></h2>
+<h2>Joins<a class="headerlink" href="#joins" title="Permalink to this heading">#</a></h2>
 <p>Joins are easily performed with Spark DataFrames. The expression is:</p>
 <p><code class="docutils literal notranslate"><span class="pre">join(other,</span> <span class="pre">on</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">how</span> <span class="pre">=</span> <span class="pre">None)</span></code></p>
 <p>where:</p>
@@ -524,7 +525,7 @@ Lets create nycflights2013 using a schema object made with `pyspark.sql.type``</
 </div>
 </div>
 <section id="create-a-proper-timestamp">
-<h3>Create a proper timestamp.<a class="headerlink" href="#create-a-proper-timestamp" title="Permalink to this headline">#</a></h3>
+<h3>Create a proper timestamp.<a class="headerlink" href="#create-a-proper-timestamp" title="Permalink to this heading">#</a></h3>
 <p>We have all the components: <code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">month</span></code>, <code class="docutils literal notranslate"><span class="pre">day</span></code>, <code class="docutils literal notranslate"><span class="pre">hour</span></code>, and <code class="docutils literal notranslate"><span class="pre">minute</span></code>.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">concat_ws()</span></code> (concatentate with separator) to combine column data into StringType columns such that dates (<code class="docutils literal notranslate"><span class="pre">-</span></code> separator, YYYY-MM-DD) and times (<code class="docutils literal notranslate"><span class="pre">:</span></code> separator, 24-hour time) are formed</p>
 <div class="cell docutils container">
@@ -747,7 +748,7 @@ month-by-month through the use of the <code class="docutils literal notranslate"
 </section>
 </section>
 <section id="user-defined-functions-udfs">
-<h2>User Defined Functions (UDFs)<a class="headerlink" href="#user-defined-functions-udfs" title="Permalink to this headline">#</a></h2>
+<h2>User Defined Functions (UDFs)<a class="headerlink" href="#user-defined-functions-udfs" title="Permalink to this heading">#</a></h2>
 <p><strong>UDF</strong>s allow for computations of values while looking at every input row in the DataFrame. They allow you to make your own function and import functionality from other <strong>Python</strong> libraries.</p>
 <p>Define a function to convert velocity from
 miles per hour (mph) to meters per second (mps)</p>

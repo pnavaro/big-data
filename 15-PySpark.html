@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -69,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Dask Dataframes" href="16-DaskDataframes.html" />
     <link rel="prev" title="File Formats" href="14-FileFormats.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -503,7 +504,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pyspark">
-<h1>PySpark<a class="headerlink" href="#pyspark" title="Permalink to this headline">#</a></h1>
+<h1>PySpark<a class="headerlink" href="#pyspark" title="Permalink to this heading">#</a></h1>
 <p><img alt="Logo" src="_images/apache_spark_logo.png" /></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://spark.apache.org">Apache Spark</a> was first released in 2014.</p></li>
@@ -518,7 +519,7 @@ document.write(`
 <li><p>It also supports a rich set of higher-level tools including <a class="reference external" href="https://spark.apache.org/docs/latest/sql-programming-guide.html">Spark SQL</a> for SQL and structured data processing, <a class="reference external" href="https://spark.apache.org/docs/latest/ml-guide.html">MLlib</a> for machine learning, <a class="reference external" href="https://spark.apache.org/docs/latest/graphx-programming-guide.html">GraphX</a> for graph processing, and Spark Streaming.</p></li>
 </ul>
 <section id="resilient-distributed-datasets">
-<h2>Resilient distributed datasets<a class="headerlink" href="#resilient-distributed-datasets" title="Permalink to this headline">#</a></h2>
+<h2>Resilient distributed datasets<a class="headerlink" href="#resilient-distributed-datasets" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The fundamental abstraction of Apache Spark is a read-only, parallel, distributed, fault-tolerent collection called a resilient distributed datasets (RDD).</p></li>
 <li><p>RDDs behave a bit like Python collections (e.g. lists).</p></li>
@@ -530,7 +531,7 @@ document.write(`
 </ul>
 </section>
 <section id="lifecycle-of-a-spark-program">
-<h2>Lifecycle of a Spark Program<a class="headerlink" href="#lifecycle-of-a-spark-program" title="Permalink to this headline">#</a></h2>
+<h2>Lifecycle of a Spark Program<a class="headerlink" href="#lifecycle-of-a-spark-program" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Create some input RDDs from external data or parallelize a collection in your driver program.</p></li>
 <li><p>Lazily transform them to define new RDDs using transformations like <code class="docutils literal notranslate"><span class="pre">filter()</span></code> or <code class="docutils literal notranslate"><span class="pre">map()</span></code></p></li>
@@ -539,7 +540,7 @@ document.write(`
 </ol>
 </section>
 <section id="operations-on-distributed-data">
-<h2>Operations on Distributed Data<a class="headerlink" href="#operations-on-distributed-data" title="Permalink to this headline">#</a></h2>
+<h2>Operations on Distributed Data<a class="headerlink" href="#operations-on-distributed-data" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Two types of operations: <strong>transformations</strong> and <strong>actions</strong></p></li>
 <li><p>Transformations are <em>lazy</em> (not computed immediately)</p></li>
@@ -547,7 +548,7 @@ document.write(`
 </ul>
 </section>
 <section id="transformations-lazy">
-<h2><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations">Transformations</a> (lazy)<a class="headerlink" href="#transformations-lazy" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations">Transformations</a> (lazy)<a class="headerlink" href="#transformations-lazy" title="Permalink to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span><span class="p">()</span> <span class="n">flatMap</span><span class="p">()</span>
 <span class="nb">filter</span><span class="p">()</span> 
 <span class="n">mapPartitions</span><span class="p">()</span> <span class="n">mapPartitionsWithIndex</span><span class="p">()</span> 
@@ -568,7 +569,7 @@ document.write(`
 </div>
 </section>
 <section id="actions">
-<h2><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#actions">Actions</a><a class="headerlink" href="#actions" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://spark.apache.org/docs/latest/rdd-programming-guide.html#actions">Actions</a><a class="headerlink" href="#actions" title="Permalink to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reduce</span><span class="p">()</span>
 <span class="n">collect</span><span class="p">()</span>
 <span class="n">count</span><span class="p">()</span>
@@ -586,12 +587,12 @@ document.write(`
 </div>
 </section>
 <section id="python-api">
-<h2>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">#</a></h2>
+<h2>Python API<a class="headerlink" href="#python-api" title="Permalink to this heading">#</a></h2>
 <p>PySpark uses Py4J that enables Python programs to dynamically access Java objects.</p>
 <p><img alt="PySpark Internals" src="_images/YlI8AqEl.png" /></p>
 </section>
 <section id="the-sparkcontext-class">
-<h2>The <code class="docutils literal notranslate"><span class="pre">SparkContext</span></code> class<a class="headerlink" href="#the-sparkcontext-class" title="Permalink to this headline">#</a></h2>
+<h2>The <code class="docutils literal notranslate"><span class="pre">SparkContext</span></code> class<a class="headerlink" href="#the-sparkcontext-class" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>When working with Apache Spark we invoke methods on an object which is an instance of the <code class="docutils literal notranslate"><span class="pre">pyspark.SparkContext</span></code> context.</p></li>
 <li><p>Typically, an instance of this object will be created automatically for you and assigned to the variable <code class="docutils literal notranslate"><span class="pre">sc</span></code>.</p></li>
@@ -603,7 +604,7 @@ document.write(`
 </ul>
 </section>
 <section id="first-example">
-<h2>First example<a class="headerlink" href="#first-example" title="Permalink to this headline">#</a></h2>
+<h2>First example<a class="headerlink" href="#first-example" title="Permalink to this heading">#</a></h2>
 <p>PySpark isn’t on sys.path by default, but that doesn’t mean it can’t be used as a regular library. You can address this by either symlinking pyspark into your site-packages, or adding pyspark to sys.path at runtime. <a class="reference external" href="https://github.com/minrk/findspark">findspark</a> does the latter.</p>
 <p>We have a spark context sc to use with a tiny local spark cluster with 4 nodes (will work just fine on a multicore machine).</p>
 <div class="cell docutils container">
@@ -641,7 +642,7 @@ document.write(`
 </div>
 </section>
 <section id="create-your-first-rdd">
-<h2>Create your first RDD<a class="headerlink" href="#create-your-first-rdd" title="Permalink to this headline">#</a></h2>
+<h2>Create your first RDD<a class="headerlink" href="#create-your-first-rdd" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
@@ -652,7 +653,7 @@ document.write(`
 </div>
 </div>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <p>Create a file <code class="docutils literal notranslate"><span class="pre">sample.txt</span></code>with lorem package. Read and load it into a RDD with the <code class="docutils literal notranslate"><span class="pre">textFile</span></code> spark function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -670,17 +671,17 @@ document.write(`
 </div>
 </section>
 <section id="collect">
-<h3>Collect<a class="headerlink" href="#collect" title="Permalink to this headline">#</a></h3>
+<h3>Collect<a class="headerlink" href="#collect" title="Permalink to this heading">#</a></h3>
 <p>Action / To Driver: Return all items in the RDD to the driver in a single list</p>
 <p><img alt="" src="_images/DUO6ygB.png" /></p>
 <p>Source: <a class="reference external" href="https://i.imgur.com/DUO6ygB.png">https://i.imgur.com/DUO6ygB.png</a></p>
 </section>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Collect the text you read before from the <code class="docutils literal notranslate"><span class="pre">sample.txt</span></code>file.</p>
 </section>
 <section id="map">
-<h3>Map<a class="headerlink" href="#map" title="Permalink to this headline">#</a></h3>
+<h3>Map<a class="headerlink" href="#map" title="Permalink to this heading">#</a></h3>
 <p>Transformation / Narrow: Return a new RDD by applying a function to each element of this RDD</p>
 <p><img alt="" src="_images/PxNJf0U.png" /></p>
 <p>Source: <a class="reference external" href="http://i.imgur.com/PxNJf0U.png">http://i.imgur.com/PxNJf0U.png</a></p>
@@ -694,11 +695,11 @@ document.write(`
 </div>
 </section>
 <section id="id2">
-<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>Replace the lambda function by a function that contains a pause (sleep(1)) and check if the <code class="docutils literal notranslate"><span class="pre">map</span></code> operation is parallelized.</p>
 </section>
 <section id="filter">
-<h3>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">#</a></h3>
+<h3>Filter<a class="headerlink" href="#filter" title="Permalink to this heading">#</a></h3>
 <p>Transformation / Narrow: Return a new RDD containing only the elements that satisfy a predicate</p>
 <p><img alt="" src="_images/GFyji4U.png" />
 Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http://i.imgur.com/GFyji4U.png</a></p>
@@ -712,7 +713,7 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </div>
 </section>
 <section id="flatmap">
-<h3>FlatMap<a class="headerlink" href="#flatmap" title="Permalink to this headline">#</a></h3>
+<h3>FlatMap<a class="headerlink" href="#flatmap" title="Permalink to this heading">#</a></h3>
 <p>Transformation / Narrow: Return a new RDD by first applying a function to all elements of this RDD, and then flattening the results</p>
 <p><img alt="" src="_images/TsSUex8.png" /></p>
 <div class="cell docutils container">
@@ -725,11 +726,11 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </div>
 </section>
 <section id="id3">
-<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>Use FlatMap to clean the text from <code class="docutils literal notranslate"><span class="pre">sample.txt</span></code>file. Lower, remove dots and split into words.</p>
 </section>
 <section id="groupby">
-<h3>GroupBy<a class="headerlink" href="#groupby" title="Permalink to this headline">#</a></h3>
+<h3>GroupBy<a class="headerlink" href="#groupby" title="Permalink to this heading">#</a></h3>
 <p>Transformation / Wide: Group the data in the original RDD. Create pairs where the key is the output of a user function, and the value is all items for which the function yields this key.</p>
 <p><img alt="" src="_images/gdj0Ey8.png" /></p>
 <div class="cell docutils container">
@@ -743,7 +744,7 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </div>
 </section>
 <section id="groupbykey">
-<h3>GroupByKey<a class="headerlink" href="#groupbykey" title="Permalink to this headline">#</a></h3>
+<h3>GroupByKey<a class="headerlink" href="#groupbykey" title="Permalink to this heading">#</a></h3>
 <p>Transformation / Wide: Group the values for each key in the original RDD. Create a new pair where the original key corresponds to this collected group of values.</p>
 <p><img alt="" src="_images/TlWRGr2.png" /></p>
 <div class="cell docutils container">
@@ -757,7 +758,7 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </div>
 </section>
 <section id="join">
-<h3>Join<a class="headerlink" href="#join" title="Permalink to this headline">#</a></h3>
+<h3>Join<a class="headerlink" href="#join" title="Permalink to this heading">#</a></h3>
 <p>Transformation / Wide: Return a new RDD containing all pairs of elements having the same key in the original RDDs</p>
 <p><img alt="" src="_images/YXL42Nl.png" /></p>
 <div class="cell docutils container">
@@ -771,7 +772,7 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </div>
 </section>
 <section id="distinct">
-<h3>Distinct<a class="headerlink" href="#distinct" title="Permalink to this headline">#</a></h3>
+<h3>Distinct<a class="headerlink" href="#distinct" title="Permalink to this heading">#</a></h3>
 <p>Transformation / Wide: Return a new RDD containing distinct items from the original RDD (omitting all duplicates)</p>
 <p><img alt="" src="_images/Vqgy2a4.png" /></p>
 <div class="cell docutils container">
@@ -784,7 +785,7 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </div>
 </section>
 <section id="keyby">
-<h3>KeyBy<a class="headerlink" href="#keyby" title="Permalink to this headline">#</a></h3>
+<h3>KeyBy<a class="headerlink" href="#keyby" title="Permalink to this heading">#</a></h3>
 <p>Transformation / Narrow: Create a Pair RDD, forming one pair for each item in the original RDD. The pair’s key is calculated from the value via a user-supplied function.</p>
 <p><img alt="" src="_images/nqYhDW5.png" /></p>
 <div class="cell docutils container">
@@ -798,9 +799,9 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </section>
 </section>
 <section id="id4">
-<h2>Actions<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<h2>Actions<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
 <section id="map-reduce-operation">
-<h3>Map-Reduce operation<a class="headerlink" href="#map-reduce-operation" title="Permalink to this headline">#</a></h3>
+<h3>Map-Reduce operation<a class="headerlink" href="#map-reduce-operation" title="Permalink to this heading">#</a></h3>
 <p>Action / To Driver: Aggregate all the elements of the RDD by applying a user function pairwise to elements and partial results, and return a result to the driver</p>
 <p><img alt="" src="_images/R72uzwX.png" /></p>
 <div class="cell docutils container">
@@ -814,12 +815,12 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </div>
 </section>
 <section id="max-min-sum-mean-variance-stdev">
-<h3>Max, Min, Sum, Mean, Variance, Stdev<a class="headerlink" href="#max-min-sum-mean-variance-stdev" title="Permalink to this headline">#</a></h3>
+<h3>Max, Min, Sum, Mean, Variance, Stdev<a class="headerlink" href="#max-min-sum-mean-variance-stdev" title="Permalink to this heading">#</a></h3>
 <p>Action / To Driver: Compute the respective function (maximum value, minimum value, sum, mean, variance, or standard deviation) from a numeric RDD</p>
 <p><img alt="" src="_images/HUCtib1.png" /></p>
 </section>
 <section id="countbykey">
-<h3>CountByKey<a class="headerlink" href="#countbykey" title="Permalink to this headline">#</a></h3>
+<h3>CountByKey<a class="headerlink" href="#countbykey" title="Permalink to this heading">#</a></h3>
 <p>Action / To Driver: Return a map of keys and counts of their occurrences in the RDD</p>
 <p><img alt="" src="_images/jvQTGv6.png" /></p>
 <div class="cell docutils container">
@@ -842,7 +843,7 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </div>
 </section>
 <section id="exercise-10-1-word-count-in-apache-spark">
-<h3>Exercise 10.1 Word-count in Apache Spark<a class="headerlink" href="#exercise-10-1-word-count-in-apache-spark" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 10.1 Word-count in Apache Spark<a class="headerlink" href="#exercise-10-1-word-count-in-apache-spark" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write the sample text file</p></li>
 </ul>
@@ -858,12 +859,12 @@ Source: <a class="reference external" href="http://i.imgur.com/GFyji4U.png">http
 </section>
 </section>
 <section id="sparksession">
-<h2>SparkSession<a class="headerlink" href="#sparksession" title="Permalink to this headline">#</a></h2>
+<h2>SparkSession<a class="headerlink" href="#sparksession" title="Permalink to this heading">#</a></h2>
 <p>Since SPARK 2.0.0,  SparkSession provides a single point
 of entry to interact with Spark functionality and
 allows programming Spark with DataFrame and Dataset APIs.</p>
 <section id="pi-computation-example">
-<h3><span class="math notranslate nohighlight">\(\pi\)</span> computation example<a class="headerlink" href="#pi-computation-example" title="Permalink to this headline">#</a></h3>
+<h3><span class="math notranslate nohighlight">\(\pi\)</span> computation example<a class="headerlink" href="#pi-computation-example" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>We can estimate an approximate value for <span class="math notranslate nohighlight">\(\pi\)</span> using the following Monte-Carlo method:</p></li>
 </ul>
@@ -879,7 +880,7 @@ allows programming Spark with DataFrame and Dataset APIs.</p>
 <p>See <a class="reference external" href="https://computing.llnl.gov/tutorials/parallel_comp/#ExamplesPI">this tutorial</a>.</p>
 </section>
 <section id="exercise-9-2">
-<h3>Exercise 9.2<a class="headerlink" href="#exercise-9-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 9.2<a class="headerlink" href="#exercise-9-2" title="Permalink to this heading">#</a></h3>
 <p>Using the same method than the PI computation example, compute the integral
 $<span class="math notranslate nohighlight">\(
 I = \int_0^1 \exp(-x^2) dx
@@ -909,7 +910,7 @@ You can check your result with numpy</p>
 </div>
 </section>
 <section id="correlation-between-daily-stock">
-<h3>Correlation between daily stock<a class="headerlink" href="#correlation-between-daily-stock" title="Permalink to this headline">#</a></h3>
+<h3>Correlation between daily stock<a class="headerlink" href="#correlation-between-daily-stock" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Data preparation</p></li>
 </ul>
@@ -975,7 +976,7 @@ You can check your result with numpy</p>
 </div>
 </section>
 <section id="sequential-code">
-<h3>Sequential code<a class="headerlink" href="#sequential-code" title="Permalink to this headline">#</a></h3>
+<h3>Sequential code<a class="headerlink" href="#sequential-code" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filenames</span>
@@ -1022,7 +1023,7 @@ You can check your result with numpy</p>
 </div>
 </section>
 <section id="exercise-9-3">
-<h3>Exercise 9.3<a class="headerlink" href="#exercise-9-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 9.3<a class="headerlink" href="#exercise-9-3" title="Permalink to this heading">#</a></h3>
 <p>Parallelize the code above with Apache Spark.</p>
 <ul class="simple">
 <li><p>Change the filenames because of the Hadoop environment.</p></li>
@@ -1042,14 +1043,14 @@ You can check your result with numpy</p>
 <p>Computation time is slower because there is a lot of setup, workers creation, there is a lot of communications the correlation function is too small</p>
 </section>
 <section id="exercise-9-4-fasta-file-example">
-<h3>Exercise 9.4 Fasta file example<a class="headerlink" href="#exercise-9-4-fasta-file-example" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 9.4 Fasta file example<a class="headerlink" href="#exercise-9-4-fasta-file-example" title="Permalink to this heading">#</a></h3>
 <p>Use a RDD to calculate the GC content of fasta file nucleotide-sample.txt:</p>
 <div class="math notranslate nohighlight">
 \[\frac{G+C}{A+T+G+C}\times100 \% \]</div>
 <p>Create a rdd from fasta file genome.txt in data directory and count ‘G’ and ‘C’ then divide by the total number of bases.</p>
 </section>
 <section id="another-example">
-<h3>Another example<a class="headerlink" href="#another-example" title="Permalink to this headline">#</a></h3>
+<h3>Another example<a class="headerlink" href="#another-example" title="Permalink to this heading">#</a></h3>
 <p>Compute the most frequent sequence with 5 bases.</p>
 </section>
 </section>

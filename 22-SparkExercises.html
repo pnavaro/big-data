@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -66,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="NYC Flights data 2013 with Weather data" href="21-NYCFLights2013Spark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -464,9 +465,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="spark-exercises">
-<h1>Spark exercises<a class="headerlink" href="#spark-exercises" title="Permalink to this headline">#</a></h1>
+<h1>Spark exercises<a class="headerlink" href="#spark-exercises" title="Permalink to this heading">#</a></h1>
 <section id="start-the-spark-session">
-<h2>Start the spark session<a class="headerlink" href="#start-the-spark-session" title="Permalink to this headline">#</a></h2>
+<h2>Start the spark session<a class="headerlink" href="#start-the-spark-session" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
@@ -481,7 +482,7 @@ document.write(`
 </div>
 </section>
 <section id="load-the-data">
-<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this headline">#</a></h2>
+<h2>Load the data<a class="headerlink" href="#load-the-data" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Here we read the NYC taxi data files of year 2018 and select some variables.</p></li>
 </ul>
@@ -529,7 +530,7 @@ document.write(`
 <li><p>Investigate the <code class="docutils literal notranslate"><span class="pre">payment_type</span></code> column.  See how well each of the payment types correlate with the <code class="docutils literal notranslate"><span class="pre">tip_fraction</span></code>.  Did you find anything interesting?  Any guesses on what the different payment types might be?  If you’re interested you may be able to find more information on the <a class="reference external" href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">NYC TLC’s website</a></p></li>
 </ol>
 <section id="cheat-sheets-and-documentation">
-<h3>Cheat Sheets and documentation<a class="headerlink" href="#cheat-sheets-and-documentation" title="Permalink to this headline">#</a></h3>
+<h3>Cheat Sheets and documentation<a class="headerlink" href="#cheat-sheets-and-documentation" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://s3.amazonaws.com/assets.datacamp.com/blog_assets/PySpark_SQL_Cheat_Sheet_Python.pdf">Spark DataFrames in Python</a></p></li>
 <li><p><a class="reference external" href="http://datacamp-community.s3.amazonaws.com/4d91fcbc-820d-4ae2-891b-f7a436ebefd4">Spark in Python</a></p></li>

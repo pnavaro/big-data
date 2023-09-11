@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -69,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Parallel Computation" href="06-ParallelComputation.html" />
     <link rel="prev" title="Wordcount" href="04-WordCount.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -487,12 +488,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="map-reduce">
-<h1>Map Reduce<a class="headerlink" href="#map-reduce" title="Permalink to this headline">#</a></h1>
+<h1>Map Reduce<a class="headerlink" href="#map-reduce" title="Permalink to this heading">#</a></h1>
 <p>This notebook objective is to code in Python language a wordcount application using map-reduce process. A java version is well explained on <a class="reference external" href="https://www.dezyre.com/hadoop-tutorial/hadoop-mapreduce-wordcount-tutorial">this page</a></p>
 <p><img alt="domain decomposition" src="_images/domain_decomp.png" /></p>
 <p>credits: <a class="reference external" href="https://computing.llnl.gov/tutorials/parallel_comp">https://computing.llnl.gov/tutorials/parallel_comp</a></p>
 <section id="map-function-example">
-<h2><code class="docutils literal notranslate"><span class="pre">map</span></code> function example<a class="headerlink" href="#map-function-example" title="Permalink to this headline">#</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">map</span></code> function example<a class="headerlink" href="#map-function-example" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">map(func,</span> <span class="pre">seq)</span></code> Python function applies the function func to all the elements of the sequence seq. It returns a new list with the elements changed by func</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -532,7 +533,7 @@ document.write(`
 <p><img alt="MapReduce" src="_images/mapreduce.jpg" /></p>
 </section>
 <section id="functools-reduce-example">
-<h2><code class="docutils literal notranslate"><span class="pre">functools.reduce</span></code> example<a class="headerlink" href="#functools-reduce-example" title="Permalink to this headline">#</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">functools.reduce</span></code> example<a class="headerlink" href="#functools-reduce-example" title="Permalink to this heading">#</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">reduce(func,</span> <span class="pre">seq)</span></code> continually applies the function func() to the sequence seq and return a single value. For example, reduce(f, [1, 2, 3, 4, 5]) calculates f(f(f(f(1,2),3),4),5).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -546,7 +547,7 @@ document.write(`
 </div>
 </section>
 <section id="weighted-mean-and-variance">
-<h2>Weighted mean and Variance<a class="headerlink" href="#weighted-mean-and-variance" title="Permalink to this headline">#</a></h2>
+<h2>Weighted mean and Variance<a class="headerlink" href="#weighted-mean-and-variance" title="Permalink to this heading">#</a></h2>
 <p>If the generator of random variable <span class="math notranslate nohighlight">\(X\)</span> is discrete with probability mass function <span class="math notranslate nohighlight">\(x_1 \mapsto p_1, x_2 \mapsto p_2, \ldots, x_n \mapsto p_n\)</span> then</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{Var}(X) = \left(\sum_{i=1}^n p_i x_i ^2\right) - \mu^2,\]</div>
@@ -562,7 +563,7 @@ document.write(`
 </div>
 </div>
 <section id="exercise-5-1">
-<h3>Exercise 5.1<a class="headerlink" href="#exercise-5-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 5.1<a class="headerlink" href="#exercise-5-1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write functions to compute the average value and variance using for loops</p></li>
 </ul>
@@ -576,7 +577,7 @@ document.write(`
 </div>
 </section>
 <section id="exercise-5-2">
-<h3>Exercise 5.2<a class="headerlink" href="#exercise-5-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 5.2<a class="headerlink" href="#exercise-5-2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write functions to compute the average value and variance using <code class="docutils literal notranslate"><span class="pre">map</span></code> and <code class="docutils literal notranslate"><span class="pre">reduce</span></code></p></li>
 </ul>
@@ -585,16 +586,16 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 </section>
 </section>
 <section id="wordcount">
-<h2>Wordcount<a class="headerlink" href="#wordcount" title="Permalink to this headline">#</a></h2>
+<h2>Wordcount<a class="headerlink" href="#wordcount" title="Permalink to this heading">#</a></h2>
 <p>We will modify the <code class="docutils literal notranslate"><span class="pre">wordcount</span></code> application into a map-reduce process.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">map</span></code> process takes text files as input and breaks it into words. The <code class="docutils literal notranslate"><span class="pre">reduce</span></code>  process sums the counts for each word and emits a single key/value with the word and sum.</p>
 <p>We need to split the wordcount function we wrote in notebook 04 in order to use map and reduce.</p>
 <p>In the following exercices we will implement in Python the Java example described in <a class="reference external" href="https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html#Example:_WordCount_v1.0">Hadoop documentation</a>.</p>
 </section>
 <section id="map-read-file-and-return-a-key-value-pairs">
-<h2>Map - Read file and return a key/value pairs<a class="headerlink" href="#map-read-file-and-return-a-key-value-pairs" title="Permalink to this headline">#</a></h2>
+<h2>Map - Read file and return a key/value pairs<a class="headerlink" href="#map-read-file-and-return-a-key-value-pairs" title="Permalink to this heading">#</a></h2>
 <section id="exercise-5-3">
-<h3>Exercise 5.3<a class="headerlink" href="#exercise-5-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 5.3<a class="headerlink" href="#exercise-5-3" title="Permalink to this heading">#</a></h3>
 <p>Write a function <code class="docutils literal notranslate"><span class="pre">mapper</span></code> with a single file name as input that returns a sorted sequence of tuples (word, 1) values.</p>
 <div class="highlight-pybt notranslate"><div class="highlight"><pre><span></span>mapper(&#39;sample.txt&#39;)
 [(&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;adipisci&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;aliquam&#39;, 1), (&#39;amet&#39;, 1), (&#39;amet&#39;, 1), (&#39;amet&#39;, 1)...
@@ -603,9 +604,9 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 </section>
 </section>
 <section id="partition">
-<h2>Partition<a class="headerlink" href="#partition" title="Permalink to this headline">#</a></h2>
+<h2>Partition<a class="headerlink" href="#partition" title="Permalink to this heading">#</a></h2>
 <section id="exercise-5-4">
-<h3>Exercise 5.4<a class="headerlink" href="#exercise-5-4" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 5.4<a class="headerlink" href="#exercise-5-4" title="Permalink to this heading">#</a></h3>
 <p>Create a function named <code class="docutils literal notranslate"><span class="pre">partitioner</span></code> that stores the key/value pairs from <code class="docutils literal notranslate"><span class="pre">mapper</span></code>  that group (word, 1) pairs into a list as:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">partitioner</span><span class="p">(</span><span class="n">mapper</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">))</span>
 <span class="p">[(</span><span class="s1">&#39;adipisci&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;aliquam&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;amet&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="o">...</span><span class="p">]</span>
@@ -614,9 +615,9 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 </section>
 </section>
 <section id="reduce-sums-the-counts-and-returns-a-single-key-value-word-sum">
-<h2>Reduce - Sums the counts and returns a single key/value (word, sum).<a class="headerlink" href="#reduce-sums-the-counts-and-returns-a-single-key-value-word-sum" title="Permalink to this headline">#</a></h2>
+<h2>Reduce - Sums the counts and returns a single key/value (word, sum).<a class="headerlink" href="#reduce-sums-the-counts-and-returns-a-single-key-value-word-sum" title="Permalink to this heading">#</a></h2>
 <section id="exercice-5-5">
-<h3>Exercice 5.5<a class="headerlink" href="#exercice-5-5" title="Permalink to this headline">#</a></h3>
+<h3>Exercice 5.5<a class="headerlink" href="#exercice-5-5" title="Permalink to this heading">#</a></h3>
 <p>Write the function <code class="docutils literal notranslate"><span class="pre">reducer</span></code> that read a tuple <code class="docutils literal notranslate"><span class="pre">(word,[1,1,1,..,1])</span></code> and sum the occurrences of word to a final count, and then output the tuple (word,occurences).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">reducer</span><span class="p">((</span><span class="s1">&#39;hello&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
@@ -625,7 +626,7 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 </section>
 </section>
 <section id="process-several-files">
-<h2>Process several files<a class="headerlink" href="#process-several-files" title="Permalink to this headline">#</a></h2>
+<h2>Process several files<a class="headerlink" href="#process-several-files" title="Permalink to this heading">#</a></h2>
 <p>Let’s create 8 files <code class="docutils literal notranslate"><span class="pre">sample[0-7].txt</span></code>. Set most common words at the top of the output list.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -647,13 +648,13 @@ This is a bad way to code a variance in Python. You should use <a class="referen
 </div>
 </div>
 <section id="exercise-5-6">
-<h3>Exercise 5.6<a class="headerlink" href="#exercise-5-6" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 5.6<a class="headerlink" href="#exercise-5-6" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Use functions implemented above to count (word, occurences) by using a for loops over files and partitioned data.</p></li>
 </ul>
 </section>
 <section id="exercise-5-7">
-<h3>Exercise 5.7<a class="headerlink" href="#exercise-5-7" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 5.7<a class="headerlink" href="#exercise-5-7" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>This time use <code class="docutils literal notranslate"><span class="pre">map</span></code> function to apply mapper and reducer.</p></li>
 </ul>

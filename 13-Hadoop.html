@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="File Formats" href="14-FileFormats.html" />
     <link rel="prev" title="Basic Commands in the Unix Shell" href="12-UnixCommands.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -486,7 +487,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="hadoop">
-<h1>Hadoop<a class="headerlink" href="#hadoop" title="Permalink to this headline">#</a></h1>
+<h1>Hadoop<a class="headerlink" href="#hadoop" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Data sets that are so large or complex that traditional data processing application software is inadequate to deal with them.</p></li>
 <li><p>Data analysis requires massively parallel software running on several servers.</p></li>
@@ -502,7 +503,7 @@ document.write(`
 <li><p>Both MapReduce and the <strong>Hadoop Distributed File System</strong> are designed so that node failures are automatically handled by the framework.</p></li>
 </ul>
 <section id="hdfs">
-<h2>HDFS<a class="headerlink" href="#hdfs" title="Permalink to this headline">#</a></h2>
+<h2>HDFS<a class="headerlink" href="#hdfs" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>It is a distributed file systems.</p></li>
 <li><p>HDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware.</p></li>
@@ -524,14 +525,14 @@ document.write(`
 </ul>
 </section>
 <section id="accessibility">
-<h2>Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this headline">#</a></h2>
+<h2>Accessibility<a class="headerlink" href="#accessibility" title="Permalink to this heading">#</a></h2>
 <p>All <a class="reference external" href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html">HDFS commands</a>  are invoked by the bin/hdfs Java script:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span><span class="o">[</span>SHELL_OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>GENERIC_OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>COMMAND_OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
 </section>
 <section id="manage-files-and-directories">
-<h2>Manage files and directories<a class="headerlink" href="#manage-files-and-directories" title="Permalink to this headline">#</a></h2>
+<h2>Manage files and directories<a class="headerlink" href="#manage-files-and-directories" title="Permalink to this heading">#</a></h2>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>dfs<span class="w"> </span>-ls<span class="w"> </span>-h<span class="w"> </span>-R<span class="w"> </span><span class="c1"># Recursively list subdirectories with human-readable file sizes.</span>
 hdfs<span class="w"> </span>dfs<span class="w"> </span>-cp<span class="w">  </span><span class="c1"># Copy files from source to destination</span>
 hdfs<span class="w"> </span>dfs<span class="w"> </span>-mv<span class="w">  </span><span class="c1"># Move files from source to destination</span>
@@ -542,9 +543,9 @@ hdfs<span class="w"> </span>dfs<span class="w"> </span>-cat<span class="w"> </sp
 </div>
 </section>
 <section id="transfer-between-nodes">
-<h2>Transfer between nodes<a class="headerlink" href="#transfer-between-nodes" title="Permalink to this headline">#</a></h2>
+<h2>Transfer between nodes<a class="headerlink" href="#transfer-between-nodes" title="Permalink to this heading">#</a></h2>
 <section id="put">
-<h3>put<a class="headerlink" href="#put" title="Permalink to this headline">#</a></h3>
+<h3>put<a class="headerlink" href="#put" title="Permalink to this heading">#</a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hdfs<span class="w"> </span>fs<span class="w"> </span>-put<span class="w"> </span><span class="o">[</span>-f<span class="o">]</span><span class="w"> </span><span class="o">[</span>-p<span class="o">]</span><span class="w"> </span><span class="o">[</span>-l<span class="o">]</span><span class="w"> </span><span class="o">[</span>-d<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-<span class="w"> </span><span class="p">|</span><span class="w"> </span>&lt;localsrc1&gt;<span class="w"> </span>..<span class="w"> </span><span class="o">]</span>.<span class="w"> </span>&lt;dst&gt;
 </pre></div>
 </div>
@@ -569,21 +570,21 @@ hdfs<span class="w"> </span>fs<span class="w"> </span>-put<span class="w"> </spa
 </section>
 </section>
 <section id="hadoop-cluster">
-<h2>Hadoop cluster<a class="headerlink" href="#hadoop-cluster" title="Permalink to this headline">#</a></h2>
+<h2>Hadoop cluster<a class="headerlink" href="#hadoop-cluster" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>8 computers: sve1 -&gt; sve9</p></li>
 </ul>
 <section id="namenode-web-interface-hdfs-layer">
-<h3>NameNode Web Interface (HDFS layer)<a class="headerlink" href="#namenode-web-interface-hdfs-layer" title="Permalink to this headline">#</a></h3>
+<h3>NameNode Web Interface (HDFS layer)<a class="headerlink" href="#namenode-web-interface-hdfs-layer" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="http://svmass2.mass.uhb.fr:50070">http://svmass2.mass.uhb.fr:50070</a></p>
 <p>The name node web UI shows you a cluster summary including information about total/remaining capacity, live and dead nodes. Additionally, it allows you to browse the HDFS namespace and view the contents of its files in the web browser. It also gives access to the local machine’s Hadoop log files.</p>
 </section>
 <section id="secondary-namenode-information">
-<h3>Secondary Namenode Information.<a class="headerlink" href="#secondary-namenode-information" title="Permalink to this headline">#</a></h3>
+<h3>Secondary Namenode Information.<a class="headerlink" href="#secondary-namenode-information" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="http://svmass2.mass.uhb.fr:50090/">http://svmass2.mass.uhb.fr:50090/</a></p>
 </section>
 <section id="datanode-information">
-<h3>Datanode Information.<a class="headerlink" href="#datanode-information" title="Permalink to this headline">#</a></h3>
+<h3>Datanode Information.<a class="headerlink" href="#datanode-information" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="http://svpe1.mass.uhb.fr:50075/">http://svpe1.mass.uhb.fr:50075/</a></p></li>
 <li><p><a class="reference external" href="http://svpe2.mass.uhb.fr:50075/">http://svpe2.mass.uhb.fr:50075/</a></p></li>
@@ -666,7 +667,7 @@ hdfs<span class="w"> </span>dfs<span class="w"> </span>-rm<span class="w"> </spa
 </section>
 </section>
 <section id="hands-on-practice">
-<h2>Hands-on practice:<a class="headerlink" href="#hands-on-practice" title="Permalink to this headline">#</a></h2>
+<h2>Hands-on practice:<a class="headerlink" href="#hands-on-practice" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Create a directory <code class="docutils literal notranslate"><span class="pre">files</span></code> in HDFS.</p></li>
 <li><p>List the contents of a directory /.</p></li>
@@ -694,7 +695,7 @@ whoami<span class="w"> </span>&gt;&gt;<span class="w"> </span>today.txt
 </ol>
 </section>
 <section id="yarn">
-<h2>YARN<a class="headerlink" href="#yarn" title="Permalink to this headline">#</a></h2>
+<h2>YARN<a class="headerlink" href="#yarn" title="Permalink to this heading">#</a></h2>
 <p><em>YARN takes care of resource management and job scheduling/monitoring.</em></p>
 <ul class="simple">
 <li><p>The <strong>ResourceManager</strong> is the ultimate authority that arbitrates resources among all the applications in the system. It has two components: <strong>Scheduler</strong> and <strong>ApplicationsManager</strong>.</p></li>
@@ -708,7 +709,7 @@ whoami<span class="w"> </span>&gt;&gt;<span class="w"> </span>today.txt
 <p><img alt="Yarn in Hadoop documentation" src="_images/yarn_architecture.png" />
 Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_architecture.gif">http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/yarn_architecture.gif</a></p>
 <section id="yarn-web-interface">
-<h3>Yarn Web Interface<a class="headerlink" href="#yarn-web-interface" title="Permalink to this headline">#</a></h3>
+<h3>Yarn Web Interface<a class="headerlink" href="#yarn-web-interface" title="Permalink to this heading">#</a></h3>
 <p>The JobTracker web UI provides information about general job statistics of the Hadoop cluster, running/completed/failed jobs and a job history log file. It also gives access to the ‘‘local machine’s’’ Hadoop log files (the machine on which the web UI is running on).</p>
 <ul class="simple">
 <li><p>All Applications <a class="reference external" href="http://svmass2.mass.uhb.fr:8088">http://svmass2.mass.uhb.fr:8088</a></p></li>
@@ -716,7 +717,7 @@ Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable
 </section>
 </section>
 <section id="wordcount-example">
-<h2>WordCount Example<a class="headerlink" href="#wordcount-example" title="Permalink to this headline">#</a></h2>
+<h2>WordCount Example<a class="headerlink" href="#wordcount-example" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://wiki.apache.org/hadoop/WordCount">Worcount example</a> is implemented in Java and it is the example of <a class="reference external" href="https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html">Hadoop MapReduce Tutorial</a></p>
 <p>Let’s create some files with lorem python package</p>
 <ul class="simple">
@@ -727,7 +728,7 @@ Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">-p</span></code> flag force the directory creation even if it already exists.</p>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Copy all necessary files in HDFS system.</p></li>
 <li><p>Run the Java example using the command</p></li>
@@ -747,11 +748,11 @@ Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable
 </section>
 </section>
 <section id="deploying-the-mapreduce-python-code-on-hadoop">
-<h2>Deploying the MapReduce Python code on Hadoop<a class="headerlink" href="#deploying-the-mapreduce-python-code-on-hadoop" title="Permalink to this headline">#</a></h2>
+<h2>Deploying the MapReduce Python code on Hadoop<a class="headerlink" href="#deploying-the-mapreduce-python-code-on-hadoop" title="Permalink to this heading">#</a></h2>
 <p>This Python must use the <a class="reference external" href="http://hadoop.apache.org/docs/stable/hadoop-streaming/HadoopStreaming.html">Hadoop Streaming API</a> to pass data between our Map and Reduce code via Python’s sys.stdin (standard input) and sys.stdout (standard output).</p>
 </section>
 <section id="map">
-<h2>Map<a class="headerlink" href="#map" title="Permalink to this headline">#</a></h2>
+<h2>Map<a class="headerlink" href="#map" title="Permalink to this heading">#</a></h2>
 <p>The following Python code read data from sys.stdin, split it into words and output a list of lines mapping words to their (intermediate) counts to sys.stdout. For every word it outputs <word> 1 tuples immediately.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -795,7 +796,7 @@ Source: <a class="reference external" href="http://hadoop.apache.org/docs/stable
 </div>
 </section>
 <section id="reduce">
-<h2>Reduce<a class="headerlink" href="#reduce" title="Permalink to this headline">#</a></h2>
+<h2>Reduce<a class="headerlink" href="#reduce" title="Permalink to this heading">#</a></h2>
 <p>The following code reads the results of <a class="reference external" href="http://mapper.py">mapper.py</a> and sum the occurrences of each word to a final count, and then output its results to sys.stdout.
 Remember that Hadoop sorts map output so it is easier to count words.</p>
 <div class="cell docutils container">
@@ -863,7 +864,7 @@ Remember that Hadoop sorts map output so it is easier to count words.</p>
 </div>
 </section>
 <section id="execution-on-hadoop-cluster">
-<h2>Execution on Hadoop cluster<a class="headerlink" href="#execution-on-hadoop-cluster" title="Permalink to this headline">#</a></h2>
+<h2>Execution on Hadoop cluster<a class="headerlink" href="#execution-on-hadoop-cluster" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Copy all files to HDFS cluster</p></li>
 <li><p>Run the WordCount MapReduce</p></li>

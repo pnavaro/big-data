@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Dask bag" href="09-DaskBag.html" />
     <link rel="prev" title="Asynchronous Processing" href="07-AsynchronousProcessing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -484,7 +485,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dask">
-<h1>Dask<a class="headerlink" href="#dask" title="Permalink to this headline">#</a></h1>
+<h1>Dask<a class="headerlink" href="#dask" title="Permalink to this heading">#</a></h1>
 <img alt="_images/dask_logo.jpg" src="_images/dask_logo.jpg" />
 <ul class="simple">
 <li><p>process data that doesn’t fit into memory by breaking it into blocks and specifying task chains</p></li>
@@ -500,7 +501,7 @@ document.write(`
 </div>
 </div>
 <section id="define-two-slow-functions">
-<h2>Define two slow functions<a class="headerlink" href="#define-two-slow-functions" title="Permalink to this headline">#</a></h2>
+<h2>Define two slow functions<a class="headerlink" href="#define-two-slow-functions" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
@@ -528,7 +529,7 @@ document.write(`
 </div>
 </section>
 <section id="parallelize-with-dask-delayed">
-<h2>Parallelize with dask.delayed<a class="headerlink" href="#parallelize-with-dask-delayed" title="Permalink to this headline">#</a></h2>
+<h2>Parallelize with dask.delayed<a class="headerlink" href="#parallelize-with-dask-delayed" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Functions wrapped by <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code> don’t run immediately, but instead put those functions and arguments into a task graph.</p></li>
 <li><p>The result is computed separately by calling the <code class="docutils literal notranslate"><span class="pre">.compute()</span></code> method.</p></li>
@@ -558,7 +559,7 @@ document.write(`
 </div>
 </div>
 <section id="some-questions-to-consider">
-<h3>Some questions to consider:<a class="headerlink" href="#some-questions-to-consider" title="Permalink to this headline">#</a></h3>
+<h3>Some questions to consider:<a class="headerlink" href="#some-questions-to-consider" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Why did we go from 3s to 2s?  Why weren’t we able to parallelize down to 1s?</p></li>
 <li><p>What would have happened if the inc and add functions didn’t include the <code class="docutils literal notranslate"><span class="pre">sleep(1)</span></code>?  Would Dask still be able to speed up this code?</p></li>
@@ -567,7 +568,7 @@ document.write(`
 </section>
 </section>
 <section id="dask-graph">
-<h2>Dask graph<a class="headerlink" href="#dask-graph" title="Permalink to this headline">#</a></h2>
+<h2>Dask graph<a class="headerlink" href="#dask-graph" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Contains description of the calculations necessary to produce the result.</p></li>
 <li><p>The z object is a lazy Delayed object. This object holds everything we need to compute the final result. We can compute the result with .compute() as above or we can visualize the task graph for this value with .visualize().</p></li>
@@ -581,7 +582,7 @@ document.write(`
 </div>
 </section>
 <section id="parallelize-a-loop">
-<h2>Parallelize a loop<a class="headerlink" href="#parallelize-a-loop" title="Permalink to this headline">#</a></h2>
+<h2>Parallelize a loop<a class="headerlink" href="#parallelize-a-loop" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -600,7 +601,7 @@ document.write(`
 </div>
 </div>
 <section id="exercise-8-1">
-<h3>Exercise 8.1<a class="headerlink" href="#exercise-8-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 8.1<a class="headerlink" href="#exercise-8-1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Parallelize this by appending the delayed <code class="docutils literal notranslate"><span class="pre">slowinc</span></code> calls to the list <code class="docutils literal notranslate"><span class="pre">results</span></code>.</p></li>
 <li><p>Display the graph of <code class="docutils literal notranslate"><span class="pre">total</span></code> computation</p></li>
@@ -609,7 +610,7 @@ document.write(`
 </section>
 </section>
 <section id="decorator">
-<h2>Decorator<a class="headerlink" href="#decorator" title="Permalink to this headline">#</a></h2>
+<h2>Decorator<a class="headerlink" href="#decorator" title="Permalink to this heading">#</a></h2>
 <p>It is also common to see the delayed function used as a decorator. Same example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -642,7 +643,7 @@ document.write(`
 </div>
 </section>
 <section id="control-flow">
-<h2>Control flow<a class="headerlink" href="#control-flow" title="Permalink to this headline">#</a></h2>
+<h2>Control flow<a class="headerlink" href="#control-flow" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Delay only some functions, running a few of them immediately. This is helpful when those functions are fast and help us to determine what other slower functions we should call.</p></li>
 <li><p>In the example below we iterate through a list of inputs. If that input is even then we want to call <code class="docutils literal notranslate"><span class="pre">half</span></code>. If the input is odd then we want to call <code class="docutils literal notranslate"><span class="pre">odd_process</span></code>. This iseven decision to call <code class="docutils literal notranslate"><span class="pre">half</span></code> or <code class="docutils literal notranslate"><span class="pre">odd_process</span></code> has to be made immediately (not lazily) in order for our graph-building Python code to proceed.</p></li>
@@ -678,7 +679,7 @@ document.write(`
 </div>
 </div>
 <section id="exercise-8-2">
-<h3>Exercise 8.2<a class="headerlink" href="#exercise-8-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 8.2<a class="headerlink" href="#exercise-8-2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Parallelize the sequential code above using dask.delayed</p></li>
 <li><p>You will need to delay some functions, but not all</p></li>
@@ -686,7 +687,7 @@ document.write(`
 </ul>
 </section>
 <section id="exercise-8-3">
-<h3>Exercise 8.3<a class="headerlink" href="#exercise-8-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 8.3<a class="headerlink" href="#exercise-8-3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Parallelize the hdf5 conversion from json files</p></li>
 <li><p>Create a function <code class="docutils literal notranslate"><span class="pre">convert_to_hdf</span></code></p></li>
@@ -743,16 +744,16 @@ document.write(`
 </section>
 </section>
 <section id="exercise-parallelizing-a-pandas-groupby-reduction">
-<h2>Exercise: Parallelizing a Pandas Groupby Reduction<a class="headerlink" href="#exercise-parallelizing-a-pandas-groupby-reduction" title="Permalink to this headline">#</a></h2>
+<h2>Exercise: Parallelizing a Pandas Groupby Reduction<a class="headerlink" href="#exercise-parallelizing-a-pandas-groupby-reduction" title="Permalink to this heading">#</a></h2>
 <p>In this exercise we read several CSV files and perform a groupby operation in parallel.  We are given sequential code to do this and parallelize it with <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code>.</p>
 <p>The computation we will parallelize is to compute the mean departure delay per airport from some historical flight data.  We will do this by using <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code> together with <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.  In a future section we will do this same exercise with <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code>.</p>
 <section id="prep-data">
-<h3>Prep data<a class="headerlink" href="#prep-data" title="Permalink to this headline">#</a></h3>
+<h3>Prep data<a class="headerlink" href="#prep-data" title="Permalink to this heading">#</a></h3>
 <p>First, run this code to prep some data.  You don’t need to understand this code.</p>
 <p>This extracts some historical flight data for flights out of NYC between 1990 and 2000. The data is taken from <a class="reference external" href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>. This should only take a few seconds to run.</p>
 </section>
 <section id="inspect-data">
-<h3>Inspect data<a class="headerlink" href="#inspect-data" title="Permalink to this headline">#</a></h3>
+<h3>Inspect data<a class="headerlink" href="#inspect-data" title="Permalink to this heading">#</a></h3>
 <p>Data are in the file <code class="docutils literal notranslate"><span class="pre">data/nycflights.tar.gz</span></code>. You can extract them with the command</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>zxvf<span class="w"> </span>nycflights.tar.gz
 </pre></div>
@@ -767,7 +768,7 @@ document.write(`
 </div>
 </section>
 <section id="read-one-file-with-pandas-read-csv-and-compute-mean-departure-delay">
-<h3>Read one file with <code class="docutils literal notranslate"><span class="pre">pandas.read_csv</span></code> and compute mean departure delay<a class="headerlink" href="#read-one-file-with-pandas-read-csv-and-compute-mean-departure-delay" title="Permalink to this headline">#</a></h3>
+<h3>Read one file with <code class="docutils literal notranslate"><span class="pre">pandas.read_csv</span></code> and compute mean departure delay<a class="headerlink" href="#read-one-file-with-pandas-read-csv-and-compute-mean-departure-delay" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -803,7 +804,7 @@ document.write(`
 </div>
 </section>
 <section id="sequential-code-mean-departure-delay-per-airport">
-<h3>Sequential code: Mean Departure Delay Per Airport<a class="headerlink" href="#sequential-code-mean-departure-delay-per-airport" title="Permalink to this headline">#</a></h3>
+<h3>Sequential code: Mean Departure Delay Per Airport<a class="headerlink" href="#sequential-code-mean-departure-delay-per-airport" title="Permalink to this heading">#</a></h3>
 <p>The above cell computes the mean departure delay per-airport for one year. Here we expand that to all years using a sequential for loop.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -854,7 +855,7 @@ document.write(`
 </div>
 </section>
 <section id="exercise-parallelize-the-code-above">
-<h3>Exercise : Parallelize the code above<a class="headerlink" href="#exercise-parallelize-the-code-above" title="Permalink to this headline">#</a></h3>
+<h3>Exercise : Parallelize the code above<a class="headerlink" href="#exercise-parallelize-the-code-above" title="Permalink to this heading">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code> to parallelize the code above.  Some extra things you will need to know.</p>
 <ol class="arabic">
 <li><p>Methods and attribute access on delayed objects work automatically, so if you have a delayed object you can perform normal arithmetic, slicing, and method calls on it and it will produce the correct delayed calls.</p>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Pandas Dataframes" href="11-PandaDataframes.html" />
     <link rel="prev" title="Dask bag" href="09-DaskBag.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -482,7 +483,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pandas-series">
-<h1>Pandas Series<a class="headerlink" href="#pandas-series" title="Permalink to this headline">#</a></h1>
+<h1>Pandas Series<a class="headerlink" href="#pandas-series" title="Permalink to this heading">#</a></h1>
 <p><img alt="pandas" src="_images/pandas.png" /></p>
 <ul class="simple">
 <li><p>Started by Wes MacKinney with a first release in 2011.</p></li>
@@ -519,7 +520,7 @@ and data analysis tools in Python</em>”</p>
 </div>
 </div>
 <section id="series">
-<h2><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#series">Series</a><a class="headerlink" href="#series" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#series">Series</a><a class="headerlink" href="#series" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A Series contains a one-dimensional array of data, <em>and</em> an associated sequence of labels called the <em>index</em>.</p></li>
 <li><p>The index can contain numeric, string, or date/time values.</p></li>
@@ -542,13 +543,13 @@ and data analysis tools in Python</em>”</p>
 </div>
 </div>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Create a text with <code class="docutils literal notranslate"><span class="pre">lorem</span></code> and count word occurences with a <code class="docutils literal notranslate"><span class="pre">collection.Counter</span></code>. Put the result in a <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p></li>
 </ul>
 </section>
 <section id="id1">
-<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>From the results create a Pandas series name latin_series with words in alphabetical order as index.</p></li>
 </ul>
@@ -562,13 +563,13 @@ and data analysis tools in Python</em>”</p>
 </div>
 </section>
 <section id="id2">
-<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Plot the series using ‘bar’ kind.</p></li>
 </ul>
 </section>
 <section id="id3">
-<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Pandas provides explicit functions for indexing <code class="docutils literal notranslate"><span class="pre">loc</span></code> and <code class="docutils literal notranslate"><span class="pre">iloc</span></code>.</p>
 <ul>
@@ -579,14 +580,14 @@ and data analysis tools in Python</em>”</p>
 </ul>
 </section>
 <section id="id4">
-<h3>Exercise<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Sort words by number of occurrences.</p></li>
 <li><p>Plot the Series.</p></li>
 </ul>
 </section>
 <section id="full-globe-temperature-between-1901-and-2000">
-<h3>Full globe temperature between 1901 and 2000.<a class="headerlink" href="#full-globe-temperature-between-1901-and-2000" title="Permalink to this headline">#</a></h3>
+<h3>Full globe temperature between 1901 and 2000.<a class="headerlink" href="#full-globe-temperature-between-1901-and-2000" title="Permalink to this heading">#</a></h3>
 <p>We read the text file and load the results in a pandas dataframe.
 In cells below you need to clean the data and convert the dataframe to a time series.</p>
 <div class="cell docutils container">
@@ -605,7 +606,7 @@ In cells below you need to clean the data and convert the dataframe to a time se
 </div>
 </section>
 <section id="id5">
-<h3>Exercise<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Insert a third column with value one named “day” with <code class="docutils literal notranslate"><span class="pre">.insert</span></code>.</p></li>
 <li><p>convert df index to datetime with <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> function.</p></li>
@@ -613,20 +614,20 @@ In cells below you need to clean the data and convert the dataframe to a time se
 </ul>
 </section>
 <section id="id6">
-<h3>Exercise<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Display the beginning of the file with <code class="docutils literal notranslate"><span class="pre">.head</span></code>.</p></li>
 </ul>
 </section>
 <section id="id7">
-<h3>Exercise<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Display the end of the file with <code class="docutils literal notranslate"><span class="pre">.tail</span></code>.</p></li>
 </ul>
 <p>In the dataset, -999.00 was used to indicate that there was no value for that year.</p>
 </section>
 <section id="id8">
-<h3>Exercise<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Display values equal to -999 with <code class="docutils literal notranslate"><span class="pre">.values</span></code>.</p></li>
 <li><p>Replace the missing value (-999.000) by <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></li>
@@ -634,37 +635,37 @@ In cells below you need to clean the data and convert the dataframe to a time se
 <p>Once they have been converted to np.nan, missing values can be removed (dropped).</p>
 </section>
 <section id="id9">
-<h3>Exercise<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Remove missing values with <code class="docutils literal notranslate"><span class="pre">.dropna</span></code>.</p></li>
 </ul>
 </section>
 <section id="id10">
-<h3>Exercise<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Generate a basic visualization using <code class="docutils literal notranslate"><span class="pre">.plot</span></code>.</p></li>
 </ul>
 </section>
 <section id="id11">
-<h3>Exercise<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
 <p>Convert df index from timestamp to period is more meaningfull since it was measured and averaged over the month. Use <code class="docutils literal notranslate"><span class="pre">to_period</span></code> method.</p>
 </section>
 </section>
 <section id="resampling">
-<h2>Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">#</a></h2>
+<h2>Resampling<a class="headerlink" href="#resampling" title="Permalink to this heading">#</a></h2>
 <p>Series can be resample, downsample or upsample.</p>
 <ul class="simple">
 <li><p>Frequencies can be specified as strings: “us”, “ms”, “S”, “T”, “H”, “D”, “B”, “W”, “M”, “A”, “3min”, “2h20”, …</p></li>
 <li><p>More aliases at <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases">http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases</a></p></li>
 </ul>
 <section id="id12">
-<h3>Exercise<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>With <code class="docutils literal notranslate"><span class="pre">resample</span></code> method, convert df Series to 10 year blocks:</p></li>
 </ul>
 </section>
 <section id="saving-work">
-<h3>Saving Work<a class="headerlink" href="#saving-work" title="Permalink to this headline">#</a></h3>
+<h3>Saving Work<a class="headerlink" href="#saving-work" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://support.hdfgroup.org/HDF5/">HDF5</a> is widely used and one of the most powerful file format to store binary data. It allows to store both Series and DataFrames.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -676,7 +677,7 @@ In cells below you need to clean the data and convert the dataframe to a time se
 </div>
 </section>
 <section id="reloading-data">
-<h3>Reloading data<a class="headerlink" href="#reloading-data" title="Permalink to this headline">#</a></h3>
+<h3>Reloading data<a class="headerlink" href="#reloading-data" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">&quot;data/pandas_series.h5&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">store</span><span class="p">:</span>

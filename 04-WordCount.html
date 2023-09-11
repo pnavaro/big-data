@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Map Reduce" href="05-MapReduce.html" />
     <link rel="prev" title="Jupyter" href="03-JupyterQuickStart.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -481,7 +482,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="wordcount">
-<h1>Wordcount<a class="headerlink" href="#wordcount" title="Permalink to this headline">#</a></h1>
+<h1>Wordcount<a class="headerlink" href="#wordcount" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Word_count">Wikipedia</a></p></li>
 <li><p>Word count example reads text files and counts how often words occur.</p></li>
@@ -496,7 +497,7 @@ document.write(`
 <li><p><em>Notebooks will be updated every week with solutions</em></p></li>
 </ul>
 <section id="create-sample-text-file">
-<h2>Create sample text file<a class="headerlink" href="#create-sample-text-file" title="Permalink to this headline">#</a></h2>
+<h2>Create sample text file<a class="headerlink" href="#create-sample-text-file" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lorem</span> <span class="kn">import</span> <span class="n">text</span>
@@ -509,7 +510,7 @@ document.write(`
 </div>
 </div>
 <section id="exercise-4-1">
-<h3>Exercise 4.1<a class="headerlink" href="#exercise-4-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.1<a class="headerlink" href="#exercise-4-1" title="Permalink to this heading">#</a></h3>
 <p>Write a python program that counts the number of lines, different words and characters in that file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -522,7 +523,7 @@ document.write(`
 </div>
 </section>
 <section id="exercise-4-2">
-<h3>Exercise 4.2<a class="headerlink" href="#exercise-4-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.2<a class="headerlink" href="#exercise-4-2" title="Permalink to this heading">#</a></h3>
 <p>Create a function called <code class="docutils literal notranslate"><span class="pre">map_words</span></code> that take a file name as argument and return a lists containing all words as items.</p>
 <div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="x">map_words(&quot;sample.txt&quot;)[:5] # first five words</span>
 <span class="x">[&#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;, &#39;adipisci&#39;]</span>
@@ -531,7 +532,7 @@ document.write(`
 </section>
 </section>
 <section id="sorting-a-dictionary-by-value">
-<h2>Sorting a dictionary by value<a class="headerlink" href="#sorting-a-dictionary-by-value" title="Permalink to this headline">#</a></h2>
+<h2>Sorting a dictionary by value<a class="headerlink" href="#sorting-a-dictionary-by-value" title="Permalink to this heading">#</a></h2>
 <p>By default, if you use <code class="docutils literal notranslate"><span class="pre">sorted</span></code> function on a <code class="docutils literal notranslate"><span class="pre">dict</span></code>, it will use keys to sort it.
 To sort by values, you can use <a class="reference external" href="https://docs.python.org/3.6/library/operator.html">operator</a>.itemgetter(1)
 Return a callable object that fetches item from its operand using the operand’s <code class="docutils literal notranslate"><span class="pre">__getitem__(</span></code> method. It could be used to sort results.</p>
@@ -554,7 +555,7 @@ Return a callable object that fetches item from its operand using the operand’
 </div>
 </div>
 <section id="exercise-4-3">
-<h3>Exercise 4.3<a class="headerlink" href="#exercise-4-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.3<a class="headerlink" href="#exercise-4-3" title="Permalink to this heading">#</a></h3>
 <p>Create a function <code class="docutils literal notranslate"><span class="pre">reduce</span></code> to reduce the list of words returned by <code class="docutils literal notranslate"><span class="pre">map_words</span></code> and return a dictionary containing all words as keys and number of occurrences as values.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">recuce</span><span class="p">(</span><span class="s1">&#39;sample.txt&#39;</span><span class="p">)</span>
 <span class="p">{</span><span class="s1">&#39;tempora&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;non&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;quisquam&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;amet&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;sit&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
@@ -564,14 +565,14 @@ Return a callable object that fetches item from its operand using the operand’
 </section>
 </section>
 <section id="container-datatypes">
-<h2>Container datatypes<a class="headerlink" href="#container-datatypes" title="Permalink to this headline">#</a></h2>
+<h2>Container datatypes<a class="headerlink" href="#container-datatypes" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">collection</span></code> module implements specialized container datatypes providing alternatives to Python’s general purpose built-in containers, <code class="docutils literal notranslate"><span class="pre">dict</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code>, and <code class="docutils literal notranslate"><span class="pre">tuple</span></code>.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">defaultdict</span></code> :	dict subclass that calls a factory function to supply missing values</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Counter</span></code>	: dict subclass for counting hashable objects</p></li>
 </ul>
 <section id="defaultdict">
-<h3>defaultdict<a class="headerlink" href="#defaultdict" title="Permalink to this headline">#</a></h3>
+<h3>defaultdict<a class="headerlink" href="#defaultdict" title="Permalink to this heading">#</a></h3>
 <p>When you implement the <code class="docutils literal notranslate"><span class="pre">wordcount</span></code> function you probably had some problem to append key-value pair to your <code class="docutils literal notranslate"><span class="pre">dict</span></code>. If you try to change the value of a key that is not present
 in the dict, the key is not automatically created.</p>
 <p>You can use a <code class="docutils literal notranslate"><span class="pre">try-except</span></code> flow but the <code class="docutils literal notranslate"><span class="pre">defaultdict</span></code> could be a solution. This container is a <code class="docutils literal notranslate"><span class="pre">dict</span></code> subclass that calls a factory function to supply missing values.
@@ -591,13 +592,13 @@ For example, using list as the default_factory, it is easy to group a sequence o
 </div>
 </section>
 <section id="exercise-4-4">
-<h3>Exercise 4.4<a class="headerlink" href="#exercise-4-4" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.4<a class="headerlink" href="#exercise-4-4" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Modify the <code class="docutils literal notranslate"><span class="pre">reduce</span></code> function you wrote above by using a defaultdict with the most suitable factory.</p></li>
 </ul>
 </section>
 <section id="counter">
-<h3>Counter<a class="headerlink" href="#counter" title="Permalink to this headline">#</a></h3>
+<h3>Counter<a class="headerlink" href="#counter" title="Permalink to this heading">#</a></h3>
 <p>A Counter is a dict subclass for counting hashable objects. It is an unordered collection where elements are stored as dictionary keys and their counts are stored as dictionary values. Counts are allowed to be any integer value including zero or negative counts.</p>
 <p>Elements are counted from an iterable or initialized from another mapping (or counter):</p>
 <div class="cell docutils container">
@@ -636,13 +637,13 @@ For example, using list as the default_factory, it is easy to group a sequence o
 </div>
 </section>
 <section id="exercise-4-5">
-<h3>Exercise 4.5<a class="headerlink" href="#exercise-4-5" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.5<a class="headerlink" href="#exercise-4-5" title="Permalink to this heading">#</a></h3>
 <p>Use a <code class="docutils literal notranslate"><span class="pre">Counter</span></code> object to count words occurences in the sample text file.</p>
 <p>The Counter class is similar to bags or multisets in some Python libraries or other languages. We will see later how to use Counter-like objects in a parallel context.</p>
 </section>
 </section>
 <section id="process-multiple-files">
-<h2>Process multiple files<a class="headerlink" href="#process-multiple-files" title="Permalink to this headline">#</a></h2>
+<h2>Process multiple files<a class="headerlink" href="#process-multiple-files" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Create several files containing <code class="docutils literal notranslate"><span class="pre">lorem</span></code> text named ‘sample01.txt’, ‘sample02.txt’…</p></li>
 <li><p>If you process these files you return multiple dictionaries.</p></li>
@@ -661,13 +662,13 @@ For example, using list as the default_factory, it is easy to group a sequence o
 </div>
 </div>
 <section id="exercise-4-6">
-<h3>Exercise 4.6<a class="headerlink" href="#exercise-4-6" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.6<a class="headerlink" href="#exercise-4-6" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Write the program that creates files, processes and use <code class="docutils literal notranslate"><span class="pre">itertools.chain</span></code> to get the merged word count dictionary.</p></li>
 </ul>
 </section>
 <section id="exercise-4-7">
-<h3>Exercise 4.7<a class="headerlink" href="#exercise-4-7" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 4.7<a class="headerlink" href="#exercise-4-7" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Create the <code class="docutils literal notranslate"><span class="pre">wordcount</span></code> function in order to accept several files as arguments and
 return the result dict.</p></li>

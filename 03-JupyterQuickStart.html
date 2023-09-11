@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Wordcount" href="04-WordCount.html" />
     <link rel="prev" title="Installation" href="02-Installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -471,10 +472,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="jupyter">
-<h1>Jupyter<a class="headerlink" href="#jupyter" title="Permalink to this headline">#</a></h1>
+<h1>Jupyter<a class="headerlink" href="#jupyter" title="Permalink to this heading">#</a></h1>
 <p><img alt="jupyter" src="_images/jupyter-logo.png" /></p>
 <section id="launch-jupyter-server">
-<h2>Launch Jupyter server<a class="headerlink" href="#launch-jupyter-server" title="Permalink to this headline">#</a></h2>
+<h2>Launch Jupyter server<a class="headerlink" href="#launch-jupyter-server" title="Permalink to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
 </pre></div>
 </div>
@@ -484,18 +485,18 @@ document.write(`
 </ul>
 </section>
 <section id="make-a-copy">
-<h2>Make a Copy<a class="headerlink" href="#make-a-copy" title="Permalink to this headline">#</a></h2>
+<h2>Make a Copy<a class="headerlink" href="#make-a-copy" title="Permalink to this heading">#</a></h2>
 <p>Before modifying the notebook, make a copy of it. Go to to <code class="docutils literal notranslate"><span class="pre">File</span></code> menu
 on the top left of the notebook and click on <code class="docutils literal notranslate"><span class="pre">Make</span> <span class="pre">a</span> <span class="pre">Copy...</span></code></p>
 </section>
 <section id="jupyter-notebook">
-<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">#</a></h2>
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">#</a></h2>
 <p>Jupyter notebook, formerly known as the IPython notebook, is a flexible tool that helps you create readable analyses, as you can keep code, images, comments, formulae and plots together.</p>
 <p>Jupyter is quite extensible, supports many programming languages and is easily hosted on your computer or on almost any server — you only need to have ssh or http access. Best of all, it’s completely free.</p>
 <p>The name Jupyter is an indirect acronyum of the three core languages it was designed for: <strong>JU</strong>lia, <strong>PYT</strong>hon, and <strong>R</strong></p>
 </section>
 <section id="keyboard-shortcuts">
-<h2>Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permalink to this headline">#</a></h2>
+<h2>Keyboard Shortcuts<a class="headerlink" href="#keyboard-shortcuts" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>To access keyboard shortcuts, use the command palette: <code class="docutils literal notranslate"><span class="pre">Cmd</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">P</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Esc</span></code> will take you into command mode where you can navigate around your notebook with arrow keys.</p></li>
@@ -509,7 +510,7 @@ on the top left of the notebook and click on <code class="docutils literal notra
 </ul>
 </section>
 <section id="easy-links-to-documentation">
-<h2>Easy links to documentation<a class="headerlink" href="#easy-links-to-documentation" title="Permalink to this headline">#</a></h2>
+<h2>Easy links to documentation<a class="headerlink" href="#easy-links-to-documentation" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Shift + Tab will also show you the Docstring</p></li>
 </ul>
@@ -522,7 +523,7 @@ on the top left of the notebook and click on <code class="docutils literal notra
 </div>
 </section>
 <section id="magic-commands">
-<h2>Magic commands<a class="headerlink" href="#magic-commands" title="Permalink to this headline">#</a></h2>
+<h2>Magic commands<a class="headerlink" href="#magic-commands" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">lsmagic</span>
@@ -599,16 +600,16 @@ on the top left of the notebook and click on <code class="docutils literal notra
 </div>
 </section>
 <section id="installing-python-packages-from-a-jupyter-notebook">
-<h2>Installing Python Packages from a Jupyter Notebook<a class="headerlink" href="#installing-python-packages-from-a-jupyter-notebook" title="Permalink to this headline">#</a></h2>
+<h2>Installing Python Packages from a Jupyter Notebook<a class="headerlink" href="#installing-python-packages-from-a-jupyter-notebook" title="Permalink to this heading">#</a></h2>
 <section id="install-a-conda-package-in-the-current-jupyter-kernel">
-<h3>Install a conda package in the current Jupyter kernel<a class="headerlink" href="#install-a-conda-package-in-the-current-jupyter-kernel" title="Permalink to this headline">#</a></h3>
+<h3>Install a conda package in the current Jupyter kernel<a class="headerlink" href="#install-a-conda-package-in-the-current-jupyter-kernel" title="Permalink to this heading">#</a></h3>
 <p>Example with package <code class="docutils literal notranslate"><span class="pre">numpy</span></code> from <em>conda-forge</em></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">numpy</span>
 </pre></div>
 </div>
 </section>
 <section id="install-a-pip-package-in-the-current-jupyter-kernel">
-<h3>Install a pip package in the current Jupyter kernel<a class="headerlink" href="#install-a-pip-package-in-the-current-jupyter-kernel" title="Permalink to this headline">#</a></h3>
+<h3>Install a pip package in the current Jupyter kernel<a class="headerlink" href="#install-a-pip-package-in-the-current-jupyter-kernel" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
 </div>

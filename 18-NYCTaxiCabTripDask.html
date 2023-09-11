@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Spark dataframes on HDFS" href="19-NYCTaxiCabTripSpark.html" />
     <link rel="prev" title="Spark DataFrames" href="17-SparkDataFrames.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -468,11 +469,11 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dask-dataframes-on-hdfs">
-<h1>Dask dataframes on HDFS<a class="headerlink" href="#dask-dataframes-on-hdfs" title="Permalink to this headline">#</a></h1>
+<h1>Dask dataframes on HDFS<a class="headerlink" href="#dask-dataframes-on-hdfs" title="Permalink to this heading">#</a></h1>
 <p>To use Dask dataframes in parallel across an HDFS cluster to read CSV data. We can coordinate these computations with <a class="reference external" href="http://distributed.dask.org/en/latest/">distributed</a> and dask.dataframe.</p>
 <p>As Spark, Dask can work in cluster mode. There is several ways to launch a cluster.</p>
 <section id="local-cluster">
-<h2>Local cluster<a class="headerlink" href="#local-cluster" title="Permalink to this headline">#</a></h2>
+<h2>Local cluster<a class="headerlink" href="#local-cluster" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">LocalCluster</span><span class="p">,</span> <span class="n">Client</span>
@@ -484,7 +485,7 @@ document.write(`
 </div>
 </section>
 <section id="remote-clusters-via-ssh">
-<h2>Remote clusters via SSH<a class="headerlink" href="#remote-clusters-via-ssh" title="Permalink to this headline">#</a></h2>
+<h2>Remote clusters via SSH<a class="headerlink" href="#remote-clusters-via-ssh" title="Permalink to this heading">#</a></h2>
 <p>Code below can be used to launch a Dask SSH cluster on svmass2 server.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">SSHCluster</span>
 
@@ -496,7 +497,7 @@ document.write(`
 </div>
 </section>
 <section id="yarn-cluster">
-<h2>Yarn cluster<a class="headerlink" href="#yarn-cluster" title="Permalink to this headline">#</a></h2>
+<h2>Yarn cluster<a class="headerlink" href="#yarn-cluster" title="Permalink to this heading">#</a></h2>
 <p>Follow these <a class="reference external" href="https://yarn.dask.org/en/latest/environments.html">instructions</a> to create the environment file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask_yarn</span> <span class="kn">import</span> <span class="n">YarnCluster</span>
 <span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
@@ -514,7 +515,7 @@ document.write(`
 </div>
 </section>
 <section id="slurm-cluster">
-<h2>SLURM Cluster<a class="headerlink" href="#slurm-cluster" title="Permalink to this headline">#</a></h2>
+<h2>SLURM Cluster<a class="headerlink" href="#slurm-cluster" title="Permalink to this heading">#</a></h2>
 <p>You can use the dask module <a class="reference external" href="https://jobqueue.dask.org/en/latest/">dask_jobqueue</a>
 to launch a Dask cluster with the job manager SLURM.</p>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask_jobqueue</span> <span class="kn">import</span> <span class="n">SLURMCluster</span>
@@ -546,7 +547,7 @@ to launch a Dask cluster with the job manager SLURM.</p>
 <p>Use the script above to submit your dask pipeline to the HPC server of your insttitution.</p>
 </section>
 <section id="new-york-city-taxi-cab-trip">
-<h2>New York City Taxi Cab Trip<a class="headerlink" href="#new-york-city-taxi-cab-trip" title="Permalink to this headline">#</a></h2>
+<h2>New York City Taxi Cab Trip<a class="headerlink" href="#new-york-city-taxi-cab-trip" title="Permalink to this heading">#</a></h2>
 <p>We look at <a class="reference external" href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">the New York City Taxi Cab dataset</a>. This includes every ride made in the city of New York since 2009.</p>
 <p>On <a class="reference external" href="http://chriswhong.github.io/nyctaxi/">this website</a> you can see the data for one random NYC yellow taxi on a single day.</p>
 <p>On <a class="reference external" href="http://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/">this post</a>, you can see an analysis of this dataset. Postgres and R scripts are available on <a class="reference external" href="https://github.com/toddwschneider/nyc-taxi-data">GitHub</a>. There is also a dashboard available <a class="reference external" href="https://toddwschneider.com/dashboards/nyc-taxi-ridehailing-uber-lyft-data/">here</a> that updates monthly with the latest taxi, Uber, and Lyft aggregate stats.</p>
@@ -571,7 +572,7 @@ progress(nyc2014)
 </div>
 </div>
 <section id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Display head of the dataframe</p></li>
 <li><p>Display number of rows of this dataframe.</p></li>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Asynchronous Processing" href="07-AsynchronousProcessing.html" />
     <link rel="prev" title="Map Reduce" href="05-MapReduce.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -491,10 +492,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="parallel-computation">
-<h1>Parallel Computation<a class="headerlink" href="#parallel-computation" title="Permalink to this headline">#</a></h1>
+<h1>Parallel Computation<a class="headerlink" href="#parallel-computation" title="Permalink to this heading">#</a></h1>
 <p>This notebook objective is to learn how to parallelize application with Python</p>
 <section id="parallel-computers">
-<h2>Parallel computers<a class="headerlink" href="#parallel-computers" title="Permalink to this headline">#</a></h2>
+<h2>Parallel computers<a class="headerlink" href="#parallel-computers" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Multiprocessor/multicore: several processors work on data stored in shared memory</p></li>
 <li><p>Cluster: several processor/memory units work together by exchanging data over a network</p></li>
@@ -502,7 +503,7 @@ document.write(`
 </ul>
 </section>
 <section id="parallel-programming">
-<h2>Parallel Programming<a class="headerlink" href="#parallel-programming" title="Permalink to this headline">#</a></h2>
+<h2>Parallel Programming<a class="headerlink" href="#parallel-programming" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Decomposition of the complete task into independent subtasks and the data flow between them.</p></li>
 <li><p>Distribution of the subtasks over the processors minimizing the total execution time.</p></li>
@@ -512,7 +513,7 @@ document.write(`
 </ul>
 </section>
 <section id="mapreduce">
-<h2>MapReduce<a class="headerlink" href="#mapreduce" title="Permalink to this headline">#</a></h2>
+<h2>MapReduce<a class="headerlink" href="#mapreduce" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
@@ -541,7 +542,7 @@ document.write(`
 </div>
 </section>
 <section id="multiprocessing">
-<h2>Multiprocessing<a class="headerlink" href="#multiprocessing" title="Permalink to this headline">#</a></h2>
+<h2>Multiprocessing<a class="headerlink" href="#multiprocessing" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> is a package that supports spawning processes.</p>
 <p>We can use it to display how many concurrent processes you can launch on your computer.</p>
 <div class="cell docutils container">
@@ -555,7 +556,7 @@ document.write(`
 </div>
 </section>
 <section id="futures">
-<h2>Futures<a class="headerlink" href="#futures" title="Permalink to this headline">#</a></h2>
+<h2>Futures<a class="headerlink" href="#futures" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> module provides a high-level interface for asynchronously executing callables.</p>
 <p>The asynchronous execution can be performed with:</p>
 <ul class="simple">
@@ -620,7 +621,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </section>
 <section id="thread-and-process-differences">
-<h2>Thread and Process: Differences<a class="headerlink" href="#thread-and-process-differences" title="Permalink to this headline">#</a></h2>
+<h2>Thread and Process: Differences<a class="headerlink" href="#thread-and-process-differences" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A <strong>process</strong> is an instance of a running program.</p></li>
 <li><p><strong>Process</strong> may contain one or more <strong>threads</strong>, but a <strong>thread</strong> cannot contain a <strong>process</strong>.</p></li>
@@ -633,7 +634,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </ul>
 </section>
 <section id="the-global-interpreter-lock-gil">
-<h2>The Global Interpreter Lock (GIL)<a class="headerlink" href="#the-global-interpreter-lock-gil" title="Permalink to this headline">#</a></h2>
+<h2>The Global Interpreter Lock (GIL)<a class="headerlink" href="#the-global-interpreter-lock-gil" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The Python interpreter is not thread safe.</p></li>
 <li><p>A few critical internal data structures may only be accessed by one thread at a time. Access to them is protected by the GIL.</p></li>
@@ -643,7 +644,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </ul>
 </section>
 <section id="parallelize-text-files-downloads">
-<h2>Parallelize text files downloads<a class="headerlink" href="#parallelize-text-files-downloads" title="Permalink to this headline">#</a></h2>
+<h2>Parallelize text files downloads<a class="headerlink" href="#parallelize-text-files-downloads" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Victor Hugo <a class="reference external" href="http://www.gutenberg.org/files/135/135-0.txt">http://www.gutenberg.org/files/135/135-0.txt</a></p></li>
 <li><p>Marcel Proust <a class="reference external" href="http://www.gutenberg.org/files/7178/7178-8.txt">http://www.gutenberg.org/files/7178/7178-8.txt</a></p></li>
@@ -651,7 +652,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 <li><p>Stendhal <a class="reference external" href="http://www.gutenberg.org/files/44747/44747-0.txt">http://www.gutenberg.org/files/44747/44747-0.txt</a></p></li>
 </ul>
 <section id="exercise-6-1">
-<h3>Exercise 6.1<a class="headerlink" href="#exercise-6-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 6.1<a class="headerlink" href="#exercise-6-1" title="Permalink to this heading">#</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code> to parallelize the code above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -676,7 +677,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </section>
 </section>
 <section id="wordcount">
-<h2>Wordcount<a class="headerlink" href="#wordcount" title="Permalink to this headline">#</a></h2>
+<h2>Wordcount<a class="headerlink" href="#wordcount" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
@@ -717,7 +718,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </section>
 <section id="parallel-map">
-<h2>Parallel map<a class="headerlink" href="#parallel-map" title="Permalink to this headline">#</a></h2>
+<h2>Parallel map<a class="headerlink" href="#parallel-map" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Let’s improve the <code class="docutils literal notranslate"><span class="pre">mapper</span></code> function by print out inside the function the current process name.</p></li>
 </ul>
@@ -738,27 +739,27 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </div>
 <section id="exercise-6-2">
-<h3>Exercise 6.2<a class="headerlink" href="#exercise-6-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 6.2<a class="headerlink" href="#exercise-6-2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Modify the mapper function by adding this print.</p></li>
 </ul>
 </section>
 </section>
 <section id="parallel-reduce">
-<h2>Parallel reduce<a class="headerlink" href="#parallel-reduce" title="Permalink to this headline">#</a></h2>
+<h2>Parallel reduce<a class="headerlink" href="#parallel-reduce" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>For parallel reduce operation, data must be aligned in a container. We already created a <code class="docutils literal notranslate"><span class="pre">partitioner</span></code> function that returns this container.</p></li>
 </ul>
 <section id="exercise-6-3">
-<h3>Exercise 6.3<a class="headerlink" href="#exercise-6-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 6.3<a class="headerlink" href="#exercise-6-3" title="Permalink to this heading">#</a></h3>
 <p>Write a parallel program that uses the three functions above using <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code>. It reads all the “sample*.txt” files. Map and reduce steps are parallel.</p>
 </section>
 </section>
 <section id="increase-volume-of-data">
-<h2>Increase volume of data<a class="headerlink" href="#increase-volume-of-data" title="Permalink to this headline">#</a></h2>
+<h2>Increase volume of data<a class="headerlink" href="#increase-volume-of-data" title="Permalink to this heading">#</a></h2>
 <p><em>Due to the proxy, code above is not runnable on workstations</em></p>
 <section id="getting-the-data">
-<h3>Getting the data<a class="headerlink" href="#getting-the-data" title="Permalink to this headline">#</a></h3>
+<h3>Getting the data<a class="headerlink" href="#getting-the-data" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.thelatinlibrary.com/">The Latin Library</a> contains a huge collection of freely accessible Latin texts. We get links on the Latin Library’s homepage ignoring some links that are not associated with a particular author.</p></li>
 </ul>
@@ -779,7 +780,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </section>
 <section id="generate-html-links">
-<h3>Generate html links<a class="headerlink" href="#generate-html-links" title="Permalink to this headline">#</a></h3>
+<h3>Generate html links<a class="headerlink" href="#generate-html-links" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Create a list of all links pointing to Latin texts. The Latin Library uses a special format which makes it easy to find the corresponding links: All of these links contain the name of the text author.</p></li>
 </ul>
@@ -800,7 +801,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </section>
 <section id="download-webpages-content">
-<h3>Download webpages content<a class="headerlink" href="#download-webpages-content" title="Permalink to this headline">#</a></h3>
+<h3>Download webpages content<a class="headerlink" href="#download-webpages-content" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">urllib.error</span> <span class="kn">import</span> <span class="n">HTTPError</span>
@@ -822,7 +823,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </section>
 <section id="extract-data-files">
-<h3>Extract data files<a class="headerlink" href="#extract-data-files" title="Permalink to this headline">#</a></h3>
+<h3>Extract data files<a class="headerlink" href="#extract-data-files" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>I already put the content of pages in files named book-*.txt</p></li>
 <li><p>You can extract data from the archive by running the cell below</p></li>
@@ -843,7 +844,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </section>
 <section id="read-data-files">
-<h3>Read data files<a class="headerlink" href="#read-data-files" title="Permalink to this headline">#</a></h3>
+<h3>Read data files<a class="headerlink" href="#read-data-files" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
@@ -859,7 +860,7 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </section>
 <section id="extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences">
-<h3>Extract the text from html and split the text at periods to convert it into sentences.<a class="headerlink" href="#extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences" title="Permalink to this headline">#</a></h3>
+<h3>Extract the text from html and split the text at periods to convert it into sentences.<a class="headerlink" href="#extract-the-text-from-html-and-split-the-text-at-periods-to-convert-it-into-sentences" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
@@ -885,12 +886,12 @@ Both implement the same interface, which is defined by the abstract Executor cla
 </div>
 </section>
 <section id="exercise-6-4">
-<h3>Exercise 6.4<a class="headerlink" href="#exercise-6-4" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 6.4<a class="headerlink" href="#exercise-6-4" title="Permalink to this heading">#</a></h3>
 <p>Parallelize this last process using <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>.</p>
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://medium.com/&#64;felixmohr/using-python-and-conditional-random-fields-for-latin-word-segmentation-416ca7a9e513">Using Conditional Random Fields and Python for Latin word segmentation</a></p></li>
 </ul>

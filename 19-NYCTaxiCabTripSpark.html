@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="NYC Flights data analysis with Spark" href="20-NYCFlightsSpark.html" />
     <link rel="prev" title="Dask dataframes on HDFS" href="18-NYCTaxiCabTripDask.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -465,12 +466,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="spark-dataframes-on-hdfs">
-<h1>Spark dataframes on HDFS<a class="headerlink" href="#spark-dataframes-on-hdfs" title="Permalink to this headline">#</a></h1>
+<h1>Spark dataframes on HDFS<a class="headerlink" href="#spark-dataframes-on-hdfs" title="Permalink to this heading">#</a></h1>
 <p>We look at <a class="reference external" href="http://www.nyc.gov/html/tlc/html/about/trip_record_data.shtml">the New York City Taxi Cab dataset</a>. This includes every ride made in the city of New York since 2009.</p>
 <p>On <a class="reference external" href="http://chriswhong.github.io/nyctaxi/">this website</a> you can see the data for one random NYC yellow taxi on a single day.</p>
 <p>On <a class="reference external" href="http://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/">this post</a>, you can see an analysis of this dataset. Postgres and R scripts are available on <a class="reference external" href="https://github.com/toddwschneider/nyc-taxi-data">GitHub</a>.</p>
 <section id="loading-the-data">
-<h2>Loading the data<a class="headerlink" href="#loading-the-data" title="Permalink to this headline">#</a></h2>
+<h2>Loading the data<a class="headerlink" href="#loading-the-data" title="Permalink to this heading">#</a></h2>
 <p>Normally we would read and load this data into memory as a Pandas dataframe.  However in this case that would be unwise because this data is too large to fit in RAM.</p>
 <p>The data can stay in the hdfs filesystem but for performance reason we can’t use the csv format. The file is large (32Go) and text formatted. Data Access is very slow.</p>
 <p>You can convert csv file to parquet with Spark.</p>
@@ -491,14 +492,14 @@ document.write(`
 </div>
 </section>
 <section id="spark-cluster">
-<h2>Spark Cluster<a class="headerlink" href="#spark-cluster" title="Permalink to this headline">#</a></h2>
+<h2>Spark Cluster<a class="headerlink" href="#spark-cluster" title="Permalink to this heading">#</a></h2>
 <p>A Spark cluster is available and described on this <a class="reference external" href="http://mas-sdd-rennes2.ovh:8080">web interface</a></p>
 <p><img alt="" src="_images/cluster-overview.png" /></p>
 <p>The SparkSession is connected to the Spark’s own standalone cluster manager (It is also possible to use YARN). The manager allocate resources across applications. Once connected, Spark acquires executors on nodes in the cluster, which are processes that run computations and store data for your application. Next, it sends your application code (Python file) to the executors. Finally, tasks are sent to the executors to run.</p>
 <p>Spark can access to files located on hdfs and it is also possible to access to local files. Example:</p>
 </section>
 <section id="spark-submit-sh">
-<h2><a class="reference external" href="http://spark-submit.sh">spark-submit.sh</a><a class="headerlink" href="#spark-submit-sh" title="Permalink to this headline">#</a></h2>
+<h2><a class="reference external" href="http://spark-submit.sh">spark-submit.sh</a><a class="headerlink" href="#spark-submit-sh" title="Permalink to this heading">#</a></h2>
 <p>The spark-submit script is used to launch applications on a cluster. It can use all of Spark’s supported cluster managers through a uniform interface so you don’t have to configure your application especially for each one.</p>
 <p>Example</p>
 <div class="cell docutils container">
@@ -549,7 +550,7 @@ In Jupyter notebook you won’t see any progress or information if error occurs.
 <p><strong>Read carefully your script before, don’t submit many times.</strong></p>
 </section>
 <section id="some-examples-that-can-be-run-on-the-cluster">
-<h2>Some examples that can be run on the cluster<a class="headerlink" href="#some-examples-that-can-be-run-on-the-cluster" title="Permalink to this headline">#</a></h2>
+<h2>Some examples that can be run on the cluster<a class="headerlink" href="#some-examples-that-can-be-run-on-the-cluster" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Here we read the NYC taxi data files of year 2018 and select some variables.</p></li>
 </ul>
@@ -605,7 +606,7 @@ In Jupyter notebook you won’t see any progress or information if error occurs.
 </div>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
 <p>How well people tip based on the number of passengers in a cab.  To do this you have to:</p>
 <ol class="arabic simple">
 <li><p>Remove rides with zero fare</p></li>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -69,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Dask" href="08-DaskDelayed.html" />
     <link rel="prev" title="Parallel Computation" href="06-ParallelComputation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -482,13 +483,13 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="asynchronous-processing">
-<h1>Asynchronous Processing<a class="headerlink" href="#asynchronous-processing" title="Permalink to this headline">#</a></h1>
+<h1>Asynchronous Processing<a class="headerlink" href="#asynchronous-processing" title="Permalink to this heading">#</a></h1>
 <p>While many parallel applications can be described as maps, some can be more complex.
 In this section we look at the asynchronous <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> interface,
 which provides a simple API for ad-hoc parallelism.
 This is useful for when your computations don’t fit a regular pattern.</p>
 <section id="executor-submit">
-<h2>Executor.submit<a class="headerlink" href="#executor-submit" title="Permalink to this headline">#</a></h2>
+<h2>Executor.submit<a class="headerlink" href="#executor-submit" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">submit</span></code> method starts a computation in a separate thread or process and immediately gives us a <code class="docutils literal notranslate"><span class="pre">Future</span></code> object that refers to the result.  At first, the future is pending.  Once the function completes the future is finished.</p>
 <p>We collect the result of the task with the <code class="docutils literal notranslate"><span class="pre">.result()</span></code> method,
 which does not return until the results are available.</p>
@@ -519,7 +520,7 @@ which does not return until the results are available.</p>
 </div>
 </section>
 <section id="submit-many-tasks-receive-many-futures">
-<h2>Submit many tasks, receive many futures<a class="headerlink" href="#submit-many-tasks-receive-many-futures" title="Permalink to this headline">#</a></h2>
+<h2>Submit many tasks, receive many futures<a class="headerlink" href="#submit-many-tasks-receive-many-futures" title="Permalink to this heading">#</a></h2>
 <p>Because submit returns immediately we can submit many tasks all at once and they will execute in parallel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -549,7 +550,7 @@ which does not return until the results are available.</p>
 </ul>
 </section>
 <section id="exercise-7-1">
-<h2>Exercise 7.1<a class="headerlink" href="#exercise-7-1" title="Permalink to this headline">#</a></h2>
+<h2>Exercise 7.1<a class="headerlink" href="#exercise-7-1" title="Permalink to this heading">#</a></h2>
 <p>Parallelize the following code with e.submit</p>
 <ol class="arabic simple">
 <li><p>Replace the <code class="docutils literal notranslate"><span class="pre">results</span></code> list with a list called <code class="docutils literal notranslate"><span class="pre">futures</span></code></p></li>
@@ -557,7 +558,7 @@ which does not return until the results are available.</p>
 <li><p>At the end, block on the computation by recreating the <code class="docutils literal notranslate"><span class="pre">results</span></code> list by calling <code class="docutils literal notranslate"><span class="pre">.result()</span></code> on each future in the <code class="docutils literal notranslate"><span class="pre">futures</span></code> list.</p></li>
 </ol>
 <section id="extract-daily-stock-data-from-google">
-<h3>Extract daily stock data from google<a class="headerlink" href="#extract-daily-stock-data-from-google" title="Permalink to this headline">#</a></h3>
+<h3>Extract daily stock data from google<a class="headerlink" href="#extract-daily-stock-data-from-google" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!rm -rf data/daily-stock
@@ -585,7 +586,7 @@ which does not return until the results are available.</p>
 </div>
 </section>
 <section id="convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files">
-<h3>Convert data to pandas DataFrames and save it in hdf5 files<a class="headerlink" href="#convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files" title="Permalink to this headline">#</a></h3>
+<h3>Convert data to pandas DataFrames and save it in hdf5 files<a class="headerlink" href="#convert-data-to-pandas-dataframes-and-save-it-in-hdf5-files" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://portal.hdfgroup.org/display/support">HDF5</a> is a data model, library, and file format for storing and managing data. This format is widely used and is supported by many languages and platforms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -603,7 +604,7 @@ which does not return until the results are available.</p>
 </div>
 </section>
 <section id="sequential-version">
-<h3>Sequential version<a class="headerlink" href="#sequential-version" title="Permalink to this headline">#</a></h3>
+<h3>Sequential version<a class="headerlink" href="#sequential-version" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!rm -f data/daily-stock/*.h5
@@ -643,10 +644,10 @@ which does not return until the results are available.</p>
 </section>
 </section>
 <section id="exercise-7-2">
-<h2>Exercise 7.2<a class="headerlink" href="#exercise-7-2" title="Permalink to this headline">#</a></h2>
+<h2>Exercise 7.2<a class="headerlink" href="#exercise-7-2" title="Permalink to this heading">#</a></h2>
 <p>Parallelize the loop above using <code class="docutils literal notranslate"><span class="pre">ThreadPoolExecutor</span></code> and <code class="docutils literal notranslate"><span class="pre">map</span></code>.</p>
 <section id="read-files-and-load-dataframes">
-<h3>Read files and load dataframes.<a class="headerlink" href="#read-files-and-load-dataframes" title="Permalink to this headline">#</a></h3>
+<h3>Read files and load dataframes.<a class="headerlink" href="#read-files-and-load-dataframes" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -660,7 +661,7 @@ which does not return until the results are available.</p>
 </div>
 </section>
 <section id="application">
-<h3>Application<a class="headerlink" href="#application" title="Permalink to this headline">#</a></h3>
+<h3>Application<a class="headerlink" href="#application" title="Permalink to this heading">#</a></h3>
 <p>Given our HDF5 files from the last section we want to find the two datasets with the greatest pair-wise correlation.  This forces us to consider all <span class="math notranslate nohighlight">\(n\times(n-1)\)</span> possibilities.</p>
 <p>We use matplotlib to visually inspect the highly correlated timeseries</p>
 <div class="cell docutils container">
@@ -677,7 +678,7 @@ which does not return until the results are available.</p>
 </div>
 </section>
 <section id="analysis">
-<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">#</a></h3>
+<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h3>
 <p>This computation starts out by loading data from disk. We already know how to parallelize it:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">series</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
@@ -700,20 +701,20 @@ which does not return until the results are available.</p>
 </section>
 </section>
 <section id="exercise-7-3">
-<h2>Exercise 7.3<a class="headerlink" href="#exercise-7-3" title="Permalink to this headline">#</a></h2>
+<h2>Exercise 7.3<a class="headerlink" href="#exercise-7-3" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Parallelize pair-wise correlations with <code class="docutils literal notranslate"><span class="pre">e.submit</span></code></p></li>
 <li><p>Implement two versions one using Processes, another with Threads by replacing <code class="docutils literal notranslate"><span class="pre">e</span></code> with a ProcessPoolExecutor:</p></li>
 </ul>
 <section id="threads">
-<h3>Threads<a class="headerlink" href="#threads" title="Permalink to this headline">#</a></h3>
+<h3>Threads<a class="headerlink" href="#threads" title="Permalink to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="processes">
-<h3>Processes<a class="headerlink" href="#processes" title="Permalink to this headline">#</a></h3>
+<h3>Processes<a class="headerlink" href="#processes" title="Permalink to this heading">#</a></h3>
 <p>Be careful, a <code class="docutils literal notranslate"><span class="pre">ProcessPoolExecutor</span></code> does not run in the jupyter notebook cell.
 You must run your file in a terminal.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
@@ -726,7 +727,7 @@ You must run your file in a terminal.</p>
 </section>
 </section>
 <section id="some-conclusions-about-futures">
-<h2>Some conclusions about futures<a class="headerlink" href="#some-conclusions-about-futures" title="Permalink to this headline">#</a></h2>
+<h2>Some conclusions about futures<a class="headerlink" href="#some-conclusions-about-futures" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">submit</span></code> functions can help us to parallelize more complex applications</p></li>
 <li><p>It didn’t actually speed up the code very much</p></li>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Pandas Series" href="10-PandasSeries.html" />
     <link rel="prev" title="Dask" href="08-DaskDelayed.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -475,7 +476,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dask-bag">
-<h1>Dask bag<a class="headerlink" href="#dask-bag" title="Permalink to this headline">#</a></h1>
+<h1>Dask bag<a class="headerlink" href="#dask-bag" title="Permalink to this heading">#</a></h1>
 <p>Dask proposes “big data” collections with a small set of high-level primitives like <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, and <code class="docutils literal notranslate"><span class="pre">join</span></code>.  With these common patterns we can often handle computations that are more complex than map, but are still structured.</p>
 <ul class="simple">
 <li><p>Dask-bag excels in processing data that can be represented as a sequence of arbitrary inputs (“messy” data)</p></li>
@@ -566,7 +567,7 @@ document.write(`
 </div>
 </div>
 <section id="daily-stock-example">
-<h2>Daily stock example<a class="headerlink" href="#daily-stock-example" title="Permalink to this headline">#</a></h2>
+<h2>Daily stock example<a class="headerlink" href="#daily-stock-example" title="Permalink to this heading">#</a></h2>
 <p>Let’s use the bag interface to read the json files containing time series.</p>
 <p>Each line is a JSON encoded dictionary with the following keys</p>
 <ul class="simple">
@@ -678,7 +679,7 @@ document.write(`
 </div>
 </div>
 <section id="serial-version">
-<h3>Serial version<a class="headerlink" href="#serial-version" title="Permalink to this headline">#</a></h3>
+<h3>Serial version<a class="headerlink" href="#serial-version" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">time</span>
@@ -708,7 +709,7 @@ document.write(`
 </section>
 </section>
 <section id="dask-bag-methods">
-<h2>Dask.bag methods<a class="headerlink" href="#dask-bag-methods" title="Permalink to this headline">#</a></h2>
+<h2>Dask.bag methods<a class="headerlink" href="#dask-bag-methods" title="Permalink to this heading">#</a></h2>
 <p>We can construct most of the above computation with the following dask.bag methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">collection.map(function)</span></code>: apply function to each element in collection</p></li>
@@ -749,7 +750,7 @@ document.write(`
 </div>
 </div>
 <section id="wordcount-with-dask-bag">
-<h3>Wordcount with Dask bag<a class="headerlink" href="#wordcount-with-dask-bag" title="Permalink to this headline">#</a></h3>
+<h3>Wordcount with Dask bag<a class="headerlink" href="#wordcount-with-dask-bag" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lorem</span>
@@ -799,13 +800,13 @@ document.write(`
 </section>
 </section>
 <section id="genome-example">
-<h2>Genome example<a class="headerlink" href="#genome-example" title="Permalink to this headline">#</a></h2>
+<h2>Genome example<a class="headerlink" href="#genome-example" title="Permalink to this heading">#</a></h2>
 <p>We will use a Dask bag to calculate the frequencies of sequences of five bases, and then sort the sequences into descending order ranked by their frequency.</p>
 <ul class="simple">
 <li><p>First we will define some functions to split the bases into sequences of a certain size</p></li>
 </ul>
 <section id="exercise-9-1">
-<h3>Exercise 9.1<a class="headerlink" href="#exercise-9-1" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 9.1<a class="headerlink" href="#exercise-9-1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Implement a function <code class="docutils literal notranslate"><span class="pre">group_characters(line,</span> <span class="pre">n=5)</span></code> to group <code class="docutils literal notranslate"><span class="pre">n</span></code> characters together and return a iterator. <code class="docutils literal notranslate"><span class="pre">line</span></code> is a text line in genome.txt file.</p></li>
 </ul>
@@ -830,7 +831,7 @@ document.write(`
 </ul>
 </section>
 <section id="exercise-9-2">
-<h3>Exercise 9.2<a class="headerlink" href="#exercise-9-2" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 9.2<a class="headerlink" href="#exercise-9-2" title="Permalink to this heading">#</a></h3>
 <p>The <a class="reference external" href="http://www.cbs.dtu.dk/services/NetGene2/fasta.php">FASTA</a> file format is used to write several genome sequences.</p>
 <ul class="simple">
 <li><p>Create a function that can read a <a class="reference download internal" download="" href="_downloads/82cc6dde9f5da49d084044553e831f8b/nucleotide-sample.txt"><span class="xref download myst">FASTA file</span></a> and compute the frequencies for n = 5 of a given sequence.</p></li>
@@ -853,7 +854,7 @@ document.write(`
 </div>
 </section>
 <section id="exercise-9-3">
-<h3>Exercise 9.3<a class="headerlink" href="#exercise-9-3" title="Permalink to this headline">#</a></h3>
+<h3>Exercise 9.3<a class="headerlink" href="#exercise-9-3" title="Permalink to this heading">#</a></h3>
 <p>Write a program that uses the function implemented above to read several FASTA files stored in a Dask bag.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -865,7 +866,7 @@ document.write(`
 </section>
 </section>
 <section id="some-remarks-about-bag">
-<h2>Some remarks about bag<a class="headerlink" href="#some-remarks-about-bag" title="Permalink to this headline">#</a></h2>
+<h2>Some remarks about bag<a class="headerlink" href="#some-remarks-about-bag" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Higher level dask collections include functions for common patterns</p></li>
 <li><p>Move data to collection, construct lazy computation, trigger at the end</p></li>

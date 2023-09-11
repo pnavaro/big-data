@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Dask dataframes on HDFS" href="18-NYCTaxiCabTripDask.html" />
     <link rel="prev" title="Dask Dataframes" href="16-DaskDataframes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -487,7 +488,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="spark-dataframes">
-<h1>Spark DataFrames<a class="headerlink" href="#spark-dataframes" title="Permalink to this headline">#</a></h1>
+<h1>Spark DataFrames<a class="headerlink" href="#spark-dataframes" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Enable wider audiences beyond “Big Data” engineers to leverage the power of distributed processing</p></li>
 <li><p>Inspired by data frames in R and Python (Pandas)</p></li>
@@ -496,14 +497,14 @@ data and data science applications</p></li>
 <li><p>Extension to the existing RDD API</p></li>
 </ul>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://spark.apache.org/docs/latest/sql-programming-guide.html">Spark SQL, DataFrames and Datasets Guide</a></p></li>
 <li><p><a class="reference external" href="https://docs.databricks.com/spark/latest/dataframes-datasets/introduction-to-dataframes-python.html">Introduction to DataFrames - Python</a></p></li>
 <li><p><a class="reference external" href="https://www.datacamp.com/community/blog/pyspark-sql-cheat-sheet">PySpark Cheat Sheet: Spark DataFrames in Python</a></p></li>
 </ul>
 <section id="dataframes-are">
-<h3>DataFrames are :<a class="headerlink" href="#dataframes-are" title="Permalink to this headline">#</a></h3>
+<h3>DataFrames are :<a class="headerlink" href="#dataframes-are" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The preferred abstraction in Spark</p></li>
 <li><p>Strongly typed collection of distributed elements</p></li>
@@ -512,14 +513,14 @@ data and data science applications</p></li>
 </ul>
 </section>
 <section id="with-dataframes-you-can">
-<h3>With Dataframes you can :<a class="headerlink" href="#with-dataframes-you-can" title="Permalink to this headline">#</a></h3>
+<h3>With Dataframes you can :<a class="headerlink" href="#with-dataframes-you-can" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Track lineage information to efficiently recompute lost data</p></li>
 <li><p>Enable operations on collection of elements in parallel</p></li>
 </ul>
 </section>
 <section id="you-construct-dataframes">
-<h3>You construct DataFrames<a class="headerlink" href="#you-construct-dataframes" title="Permalink to this headline">#</a></h3>
+<h3>You construct DataFrames<a class="headerlink" href="#you-construct-dataframes" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>by parallelizing existing collections (e.g., Pandas DataFrames)</p></li>
 <li><p>by transforming an existing DataFrames</p></li>
@@ -527,7 +528,7 @@ data and data science applications</p></li>
 </ul>
 </section>
 <section id="features">
-<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">#</a></h3>
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Ability to scale from kilobytes of data on a single laptop to petabytes on a large cluster</p></li>
 <li><p>Support for a wide array of data formats and storage systems</p></li>
@@ -536,7 +537,7 @@ data and data science applications</p></li>
 </ul>
 </section>
 <section id="dataframes-versus-rdds">
-<h3>DataFrames versus RDDs<a class="headerlink" href="#dataframes-versus-rdds" title="Permalink to this headline">#</a></h3>
+<h3>DataFrames versus RDDs<a class="headerlink" href="#dataframes-versus-rdds" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Nice API for new users familiar with data frames in other programming languages.</p></li>
 <li><p>For existing Spark users, the API will make Spark easier to program than using RDDs</p></li>
@@ -545,7 +546,7 @@ data and data science applications</p></li>
 </section>
 </section>
 <section id="pyspark-shell">
-<h2>PySpark Shell<a class="headerlink" href="#pyspark-shell" title="Permalink to this headline">#</a></h2>
+<h2>PySpark Shell<a class="headerlink" href="#pyspark-shell" title="Permalink to this heading">#</a></h2>
 <p><strong>Run the Spark shell:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyspark
 </pre></div>
@@ -590,11 +591,11 @@ SparkSession available as &#39;spark&#39;.
 </div>
 </section>
 <section id="transformations-actions-laziness">
-<h2>Transformations, Actions, Laziness<a class="headerlink" href="#transformations-actions-laziness" title="Permalink to this headline">#</a></h2>
+<h2>Transformations, Actions, Laziness<a class="headerlink" href="#transformations-actions-laziness" title="Permalink to this heading">#</a></h2>
 <p>Like RDDs, DataFrames are lazy. Transformations contribute to the query plan, but they don’t execute anything.
 Actions cause the execution of the query.</p>
 <section id="transformation-examples">
-<h3>Transformation examples<a class="headerlink" href="#transformation-examples" title="Permalink to this headline">#</a></h3>
+<h3>Transformation examples<a class="headerlink" href="#transformation-examples" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>filter</p></li>
 <li><p>select</p></li>
@@ -604,7 +605,7 @@ Actions cause the execution of the query.</p>
 </ul>
 </section>
 <section id="action-examples">
-<h3>Action examples<a class="headerlink" href="#action-examples" title="Permalink to this headline">#</a></h3>
+<h3>Action examples<a class="headerlink" href="#action-examples" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>count</p></li>
 <li><p>collect</p></li>
@@ -615,7 +616,7 @@ Actions cause the execution of the query.</p>
 </section>
 </section>
 <section id="creating-a-dataframe-in-python">
-<h2>Creating a DataFrame in Python<a class="headerlink" href="#creating-a-dataframe-in-python" title="Permalink to this headline">#</a></h2>
+<h2>Creating a DataFrame in Python<a class="headerlink" href="#creating-a-dataframe-in-python" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">subprocess</span>
@@ -650,7 +651,7 @@ Actions cause the execution of the query.</p>
 </div>
 </section>
 <section id="schema-inference">
-<h2>Schema Inference<a class="headerlink" href="#schema-inference" title="Permalink to this headline">#</a></h2>
+<h2>Schema Inference<a class="headerlink" href="#schema-inference" title="Permalink to this heading">#</a></h2>
 <p>In this exercise, let’s explore schema inference. We’re going to be using a file called <code class="docutils literal notranslate"><span class="pre">irmar.txt</span></code>. The data is structured, but it has no self-describing schema. And, it’s not JSON, so Spark can’t infer the schema automatically. Let’s create an RDD and look at the first few rows of the file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -663,7 +664,7 @@ Actions cause the execution of the query.</p>
 </div>
 </section>
 <section id="hands-on-exercises">
-<h2>Hands-on Exercises<a class="headerlink" href="#hands-on-exercises" title="Permalink to this headline">#</a></h2>
+<h2>Hands-on Exercises<a class="headerlink" href="#hands-on-exercises" title="Permalink to this heading">#</a></h2>
 <p>You can look at the <a href="http://spark.apache.org/docs/2.3.1/api/python/index.html" target="_blank">DataFrames API documentation</a></p>
 <p>Let’s take a look to file “/tmp/irmar.csv”. Each line consists
 of the same information about a person:</p>
@@ -714,7 +715,7 @@ of the same information about a person:</p>
 </div>
 </div>
 <section id="schema">
-<h3>Schema<a class="headerlink" href="#schema" title="Permalink to this headline">#</a></h3>
+<h3>Schema<a class="headerlink" href="#schema" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -724,7 +725,7 @@ of the same information about a person:</p>
 </div>
 </section>
 <section id="display">
-<h3>display<a class="headerlink" href="#display" title="Permalink to this headline">#</a></h3>
+<h3>display<a class="headerlink" href="#display" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
@@ -734,7 +735,7 @@ of the same information about a person:</p>
 </div>
 </section>
 <section id="select">
-<h3>select<a class="headerlink" href="#select" title="Permalink to this headline">#</a></h3>
+<h3>select<a class="headerlink" href="#select" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">])</span>
@@ -751,7 +752,7 @@ of the same information about a person:</p>
 </div>
 </section>
 <section id="filter">
-<h3>filter<a class="headerlink" href="#filter" title="Permalink to this headline">#</a></h3>
+<h3>filter<a class="headerlink" href="#filter" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -761,7 +762,7 @@ of the same information about a person:</p>
 </div>
 </section>
 <section id="filter-select">
-<h3>filter + select<a class="headerlink" href="#filter-select" title="Permalink to this headline">#</a></h3>
+<h3>filter + select<a class="headerlink" href="#filter-select" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;team1&#39;</span><span class="p">])</span>
@@ -778,7 +779,7 @@ of the same information about a person:</p>
 </div>
 </section>
 <section id="orderby">
-<h3>orderBy<a class="headerlink" href="#orderby" title="Permalink to this headline">#</a></h3>
+<h3>orderBy<a class="headerlink" href="#orderby" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;R2&quot;</span><span class="p">)</span>
@@ -790,7 +791,7 @@ of the same information about a person:</p>
 </div>
 </section>
 <section id="groupby">
-<h3>groupBy<a class="headerlink" href="#groupby" title="Permalink to this headline">#</a></h3>
+<h3>groupBy<a class="headerlink" href="#groupby" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;hdr&quot;</span><span class="p">])</span>
@@ -829,7 +830,7 @@ of the same information about a person:</p>
 </div>
 </section>
 <section id="exercises">
-<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h3>
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>How many teachers from INSA (PR+MC) ?</p></li>
 <li><p>How many MC in STATS team ?</p></li>

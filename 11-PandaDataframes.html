@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -44,6 +44,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -67,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Basic Commands in the Unix Shell" href="12-UnixCommands.html" />
     <link rel="prev" title="Pandas Series" href="10-PandasSeries.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -483,7 +484,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pandas-dataframes">
-<h1>Pandas Dataframes<a class="headerlink" href="#pandas-dataframes" title="Permalink to this headline">#</a></h1>
+<h1>Pandas Dataframes<a class="headerlink" href="#pandas-dataframes" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
@@ -499,7 +500,7 @@ document.write(`
 </div>
 </div>
 <section id="create-a-dataframe">
-<h2>Create a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#dataframe">DataFrame</a><a class="headerlink" href="#create-a-dataframe" title="Permalink to this headline">#</a></h2>
+<h2>Create a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/dsintro.html#dataframe">DataFrame</a><a class="headerlink" href="#create-a-dataframe" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;20130101&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -522,7 +523,7 @@ document.write(`
 </div>
 </section>
 <section id="load-data-from-csv-file">
-<h2>Load Data from CSV File<a class="headerlink" href="#load-data-from-csv-file" title="Permalink to this headline">#</a></h2>
+<h2>Load Data from CSV File<a class="headerlink" href="#load-data-from-csv-file" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.fun-mooc.fr/c4x/agrocampusouest/40001S03/asset/AnaDo_JeuDonnees_TemperatFrance.csv&quot;</span>
@@ -534,7 +535,7 @@ document.write(`
 </div>
 </section>
 <section id="viewing-data">
-<h2>Viewing Data<a class="headerlink" href="#viewing-data" title="Permalink to this headline">#</a></h2>
+<h2>Viewing Data<a class="headerlink" href="#viewing-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -551,7 +552,7 @@ document.write(`
 </div>
 </section>
 <section id="index">
-<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">#</a></h2>
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="o">.</span><span class="n">index</span>
@@ -591,11 +592,11 @@ document.write(`
 </div>
 </div>
 <section id="exercise-rename-dataframe-months-in-english">
-<h3>Exercise: Rename DataFrame Months in English<a class="headerlink" href="#exercise-rename-dataframe-months-in-english" title="Permalink to this headline">#</a></h3>
+<h3>Exercise: Rename DataFrame Months in English<a class="headerlink" href="#exercise-rename-dataframe-months-in-english" title="Permalink to this heading">#</a></h3>
 </section>
 </section>
 <section id="from-a-local-or-remote-html-file">
-<h2>From a local or remote HTML file<a class="headerlink" href="#from-a-local-or-remote-html-file" title="Permalink to this headline">#</a></h2>
+<h2>From a local or remote HTML file<a class="headerlink" href="#from-a-local-or-remote-html-file" title="Permalink to this heading">#</a></h2>
 <p>We can download and extract data about mean sea level stations around the world from the <a class="reference external" href="http://www.psmsl.org/">PSMSL website</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -617,7 +618,7 @@ document.write(`
 </div>
 </section>
 <section id="indexing-on-dataframes">
-<h2>Indexing on DataFrames<a class="headerlink" href="#indexing-on-dataframes" title="Permalink to this headline">#</a></h2>
+<h2>Indexing on DataFrames<a class="headerlink" href="#indexing-on-dataframes" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="p">[</span><span class="s1">&#39;Lati&#39;</span><span class="p">]</span>  <span class="c1"># DF [] accesses columns (Series)</span>
@@ -649,7 +650,7 @@ document.write(`
 </div>
 </section>
 <section id="masking">
-<h2>Masking<a class="headerlink" href="#masking" title="Permalink to this headline">#</a></h2>
+<h2>Masking<a class="headerlink" href="#masking" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span>
@@ -667,7 +668,7 @@ document.write(`
 </div>
 </section>
 <section id="new-column">
-<h2>New column<a class="headerlink" href="#new-column" title="Permalink to this headline">#</a></h2>
+<h2>New column<a class="headerlink" href="#new-column" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="p">[</span><span class="s2">&quot;std&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">french_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">12</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -692,7 +693,7 @@ document.write(`
 </div>
 </section>
 <section id="modifying-a-dataframe-with-multiple-indexing">
-<h2>Modifying a dataframe with multiple indexing<a class="headerlink" href="#modifying-a-dataframe-with-multiple-indexing" title="Permalink to this headline">#</a></h2>
+<h2>Modifying a dataframe with multiple indexing<a class="headerlink" href="#modifying-a-dataframe-with-multiple-indexing" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># french_cities[&#39;Rennes&#39;][&#39;Sep&#39;] = 25 # It does not works and breaks the DataFrame</span>
@@ -710,7 +711,7 @@ document.write(`
 </div>
 </section>
 <section id="transforming-datasets">
-<h2>Transforming datasets<a class="headerlink" href="#transforming-datasets" title="Permalink to this headline">#</a></h2>
+<h2>Transforming datasets<a class="headerlink" href="#transforming-datasets" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">french_cities</span><span class="p">[</span><span class="s1">&#39;Ampl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
@@ -720,7 +721,7 @@ document.write(`
 </div>
 </section>
 <section id="apply">
-<h2>Apply<a class="headerlink" href="#apply" title="Permalink to this headline">#</a></h2>
+<h2>Apply<a class="headerlink" href="#apply" title="Permalink to this heading">#</a></h2>
 <p>Let’s convert the temperature mean from Celsius to Fahrenheit degree.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -732,7 +733,7 @@ document.write(`
 </div>
 </section>
 <section id="sort">
-<h2>Sort<a class="headerlink" href="#sort" title="Permalink to this headline">#</a></h2>
+<h2>Sort<a class="headerlink" href="#sort" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Lati&#39;</span><span class="p">)</span>
@@ -750,7 +751,7 @@ document.write(`
 </div>
 </section>
 <section id="stack-and-unstack">
-<h2>Stack and unstack<a class="headerlink" href="#stack-and-unstack" title="Permalink to this headline">#</a></h2>
+<h2>Stack and unstack<a class="headerlink" href="#stack-and-unstack" title="Permalink to this heading">#</a></h2>
 <p>Instead of seeing the months along the axis 1, and the cities along the axis 0, let’s try to convert these into an outer and an inner axis along only 1 time dimension.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -770,7 +771,7 @@ document.write(`
 </div>
 </section>
 <section id="transpose">
-<h2>Transpose<a class="headerlink" href="#transpose" title="Permalink to this headline">#</a></h2>
+<h2>Transpose<a class="headerlink" href="#transpose" title="Permalink to this heading">#</a></h2>
 <p>The result is grouped in the wrong order since it sorts first the axis that was unstacked. We need to transpose the dataframe.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -789,7 +790,7 @@ document.write(`
 </div>
 </section>
 <section id="describing">
-<h2>Describing<a class="headerlink" href="#describing" title="Permalink to this headline">#</a></h2>
+<h2>Describing<a class="headerlink" href="#describing" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">french_cities</span><span class="p">[</span><span class="s1">&#39;Région&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -828,10 +829,10 @@ document.write(`
 </div>
 </section>
 <section id="data-aggregation-summarization">
-<h2>Data Aggregation/summarization<a class="headerlink" href="#data-aggregation-summarization" title="Permalink to this headline">#</a></h2>
+<h2>Data Aggregation/summarization<a class="headerlink" href="#data-aggregation-summarization" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="groupby">
-<h2>groupby<a class="headerlink" href="#groupby" title="Permalink to this headline">#</a></h2>
+<h2>groupby<a class="headerlink" href="#groupby" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fc_grouped_region</span> <span class="o">=</span> <span class="n">french_cities</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Région&quot;</span><span class="p">)</span>
@@ -851,7 +852,7 @@ document.write(`
 </div>
 </div>
 <section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
 <p>Consider the following dataset <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant">UCI Machine Learning Repository Combined Cycle Power Plant Data Set</a>.
 This dataset consists of records of measurements relating to peaker power plants of 10000 points over 6 years (2006-2011).</p>
 <p><strong>Variables</strong></p>
